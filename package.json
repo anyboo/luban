@@ -2,7 +2,6 @@
   "name": "luban8",
   "version": "1.0.0",
   "description": "luban8",
-  "main": "index.js",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server -d --inline  --env.dev",
