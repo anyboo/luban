@@ -80,18 +80,17 @@
             <!--panel-->
         </div>
         <!--wrapper-->
-        <script type="text/ng-template" id="search.html" class="ng-scope">
-            <div class="modal-header">
-                <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        <div class="modal-header">
+            <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        </div>
+        <div class="modal-body">
+            <div ng-if="user.gv.branchs.length>1">
+                <p class="m-t-xs">校区:</p>
+                <select name="ob_id" ui-jq="chosen" ng-model="params.ob_id" ng-options="b.ob_id as b.branch_name for b in user.gv.branchs" required>
+                    <option value="">所有校区</option>
+                </select>
             </div>
-            <div class="modal-body">
-                <div ng-if="user.gv.branchs.length>1">
-                    <p class="m-t-xs">校区:</p>
-                    <select name="ob_id" ui-jq="chosen" ng-model="params.ob_id" ng-options="b.ob_id as b.branch_name for b in user.gv.branchs" required>
-                        <option value="">所有校区</option>
-                    </select>
-                </div>
-            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -104,7 +103,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

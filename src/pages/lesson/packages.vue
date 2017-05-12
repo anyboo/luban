@@ -89,27 +89,26 @@
             <!--panel-->
         </div>
         <!--wrapper-->
-        <script type="text/ng-template" id="search.html" class="ng-scope">
-            <div class="modal-header">
-                <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        <div class="modal-header">
+            <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        </div>
+        <div class="modal-body" ng-init="params.expire_duration = 0">
+            <p class="m-t-xs">有效期限制:</p>
+            <div class="btn-group">
+                <label btn-radio="'0'" ng-model="params.has_time_limited" class="btn btn-default">无限制</label>
+                <label btn-radio="'1'" ng-model="params.has_time_limited" class="btn btn-default">有限制</label>
             </div>
-            <div class="modal-body" ng-init="params.expire_duration = 0">
-                <p class="m-t-xs">有效期限制:</p>
-                <div class="btn-group">
-                    <label btn-radio="'0'" ng-model="params.has_time_limited" class="btn btn-default">无限制</label>
-                    <label btn-radio="'1'" ng-model="params.has_time_limited" class="btn btn-default">有限制</label>
-                </div>
-                <div ng-if="params.has_time_limited == '1'">
-                    <p class="m-t-xs">到期时间:</p>
-                    <select class="form-control" ng-model="params.expire_duration">
-                        <option value="0">所有</option>
-                        <option value="1">1个月内</option>
-                        <option value="2">2个月内</option>
-                        <option value="3">3个月内</option>
-                        <option value="100">已过期</option>
-                    </select>
-                </div>
+            <div ng-if="params.has_time_limited == '1'">
+                <p class="m-t-xs">到期时间:</p>
+                <select class="form-control" ng-model="params.expire_duration">
+                    <option value="0">所有</option>
+                    <option value="1">1个月内</option>
+                    <option value="2">2个月内</option>
+                    <option value="3">3个月内</option>
+                    <option value="100">已过期</option>
+                </select>
             </div>
+        </div>
     </div>
 </template>
 <script>
@@ -122,7 +121,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

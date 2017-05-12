@@ -115,25 +115,25 @@
             <!--panel-->
         </div>
         <!--wrapper-->
-        <script type="text/ng-template" id="search.html" class="ng-scope">
-            <div class="modal-header">
-                <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        <div class="modal-header">
+            <h3 class="modal-title">条件查询<button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button></h3>
+        </div>
+        <div class="modal-body">
+            <p class="m-t-xs">课程类别</p>
+   
+            <div>
+                <p class="m-t-xs">校区:</p>
+                <select name="ob_id" ui-jq="chosen" ng-model="params.ob_id" ng-options="b.ob_id as b.branch_name for b in user.gv.branchs" required>
+                    <option value="">所有校区</option>
+                </select>
             </div>
-            <div class="modal-body">
-                <p class="m-t-xs">课程类别</p>
-                <combo-select-tree input-data-store="lesson_cates" input-data-struct="plain" multi-select="false" output-model="params.olcg_id" output-key="olcg_id" name-key="cate_name" id-key="olcg_id" pid-key="parent_id" data-default-label="请选择..."></combo-select-tree>
-                <div>
-                    <p class="m-t-xs">校区:</p>
-                    <select name="ob_id" ui-jq="chosen" ng-model="params.ob_id" ng-options="b.ob_id as b.branch_name for b in user.gv.branchs" required>
-                        <option value="">所有校区</option>
-                    </select>
-                </div>
-                <p class="m-t-xs">收费模式</p>
-                <div class="btn-group">
-                    <label btn-radio="'0'" ng-model="params.price_model" class="btn btn-default">按期收费</label>
-                    <label btn-radio="'1'" ng-model="params.price_model" class="btn btn-default">按次收费</label>
-                </div>
+            <p class="m-t-xs">收费模式</p>
+            <div class="btn-group">
+                <label btn-radio="'0'" ng-model="params.price_model" class="btn btn-default">按期收费</label>
+                <label btn-radio="'1'" ng-model="params.price_model" class="btn btn-default">按次收费</label>
             </div>
+        </div>
+    </div>
 </template>
 <script>
 export default {
@@ -145,7 +145,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

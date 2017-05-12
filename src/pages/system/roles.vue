@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper bg-white ng-scope" ui-view="">
+    <div class="wrapper bg-white ng-scope" ui-view="">
         <div class="row ng-scope" xo-rest="roles" xo-rest-root="" xo-rest-ctrl="roles">
             <div class="col-xs-12 col-sm-7 col-md-8">
                 <div class="panel panel-default">
@@ -83,6 +83,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </template>
 <script>
 export default {
@@ -94,7 +95,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

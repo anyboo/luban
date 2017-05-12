@@ -1,5 +1,5 @@
 <template>
-<div ui-view="" class="ng-scope">
+    <div ui-view="" class="ng-scope">
         <div class="wrapper bg-white ng-scope" page-controller="hours_warning_index">
             <div class="row no-gutter">
                 <div class="col-xs-12 col-md-3">
@@ -82,6 +82,7 @@
             <!-- ngIf: lesson_type == 10 -->
             <!--课时包学员-->
         </div>
+    </div>
 </template>
 <script>
 export default {
@@ -93,7 +94,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

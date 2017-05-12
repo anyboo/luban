@@ -1,5 +1,5 @@
 <template>
-     <div ui-view="" class="ng-scope">
+    <div ui-view="" class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -411,9 +411,7 @@
                 </div>
             </div>
         </div>
-        <script type="text/ng-template" id="attendances.ctrl.js" class="ng-scope">var $util = $injector.get('$util'), $rest = $injector.get('$rest'), toaster = $injector.get('toaster'); $scope.duration = 'today'; $scope.saving = false; $scope.select_student = select_student; $scope.$on('branch:change',function(branch){ $scope.params.ob_id = $scope.user.gv.ob_id; $scope.grid.params.ob_id = $scope.user.gv.ob_id; $scope.rest_get(); }); $scope.$on('attendance:success',function(){ $scope.rest_get(); }); function select_student(os){ $scope.params.os_id = os.os_id; $scope.param_student_name = os.student_name; }
-        </script>
-  
+    </div>
 </template>
 <script>
 export default {
@@ -425,7 +423,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>
