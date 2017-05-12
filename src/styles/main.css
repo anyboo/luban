@@ -12872,7 +12872,7 @@ body {
         position: relative;
         height: 100%;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch
     }
     .app-aside-fixed .aside-wrap .navi-wrap::-webkit-scrollbar {
@@ -12977,7 +12977,7 @@ body {
 }
 
 html {
-    background: url('/assets/imgages/bg.jpg');
+    background: url('/assets/images/bg.jpg');
     background-attachment: fixed;
     background-size: cover
 }
