@@ -1,6 +1,6 @@
-import profile from '~/pages/profile/profile.vue'
+import list1 from '~/pages/fee/list1.vue'
 
 export default [{
-    path: '/main/profile',
-    component: profile
+    path: '/fee/list1',
+    component: list1
 }]
