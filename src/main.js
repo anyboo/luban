@@ -1,4 +1,5 @@
 import './styles/main.css'
+import './styles/layui.css'
 
 import Vue from 'vue'
 import VueResouse from 'vue-resource'
