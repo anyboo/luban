@@ -1,5 +1,5 @@
 <template>
-    <li @click="handerClick" class="ng-scope" :class="{'active':active}">
+    <li @click="handleClick" class="ng-scope" :class="{'active':active}">
         <a class="auto ng-scope">
             <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i> 
@@ -10,8 +10,8 @@
         </a>
         <ul class="nav nav-sub dk ng-scope">
             <template v-for="item in menu.menu">
-                <li class="ng-scope">
-                    <a href="#/student/add"><span class="ng-binding">{{menu.menuTitle}} </span></a>
+                <li class="ng-scope" >
+                    <a @click="handleRouter(item.to)"><span class="ng-binding">{{item.menuTitle}} </span></a>
                 </li>
             </template>
         </ul>
@@ -26,13 +26,15 @@ export default {
             active: false
         }
     },
-    computed: {
-    },
+    computed: {},
     watch: {},
     methods: {
-        handerClick() {
-            console.log(this.menu)
+        handleClick() {
             this.active = !this.active
+        },
+        handleRouter(to) {
+            console.log(to)
+            this.$router.push(to)
         }
     }
 }
