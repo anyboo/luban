@@ -3,7 +3,7 @@
         <lb-header @sidebarCollapsed="sidebarCollapsed" />
         <lb-sidebarmenu />
         <div class="app-content ng-scope">
-            <router-view></router-view>
+            <!--<router-view></router-view>-->
         </div>
         <lb-footer />
     </div>
@@ -26,7 +26,8 @@ export default {
         'lb-header': header,
         'lb-sidebarmenu': sidebarmenu,
         'lb-content': content,
-        'lb-footer': footer
+        'lb-footer': footer,
+
     },
     computed: {},
     watch: {

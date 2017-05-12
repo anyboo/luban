@@ -1,5 +1,5 @@
 <template>
-    <div class="app-content ng-scope">
+    <div>
         <div ui-butterbar="" class="butterbar hide"><span class="bar"></span></div>
         <a href="" class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
         <!-- uiView:  -->
@@ -100,9 +100,6 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        sidebarCollapsed() {
-            this.$emit('sidebarCollapsed')
-        },
     }
 }
 </script>

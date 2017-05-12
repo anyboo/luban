@@ -14,9 +14,6 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        sidebarCollapsed() {
-            this.$emit('sidebarCollapsed')
-        },
     }
 }
 </script>
