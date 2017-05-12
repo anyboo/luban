@@ -3,7 +3,7 @@
         <lb-header @sidebarCollapsed="sidebarCollapsed" />
         <lb-sidebarmenu />
         <div class="app-content ng-scope">
-            <!--<router-view></router-view>-->
+            <router-view></router-view>
         </div>
         <lb-footer />
     </div>
@@ -11,7 +11,6 @@
 <script>
 import header from '../header/header.vue'
 import sidebarmenu from '../sidebar-menu/sidebarmenu.vue'
-import content from '../content/content.vue'
 import footer from '../footer/footer.vue'
 
 export default {
@@ -25,9 +24,7 @@ export default {
     components: {
         'lb-header': header,
         'lb-sidebarmenu': sidebarmenu,
-        'lb-content': content,
         'lb-footer': footer,
-
     },
     computed: {},
     watch: {

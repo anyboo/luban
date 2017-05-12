@@ -1,57 +1,56 @@
 export default [{
-        menuTitle: '学员',
-        menuIcon: 'fa-users',
-        menu: [{
-            menuTitle: '档案录入',
-            to: '/student/add'
-        }, {
-            menuTitle: '学员管理',
-            to: '/student/list'
-        }, {
-            menuTitle: '在读学员',
-            to: '/student/list1'
-        }, {
-            menuTitle: '已结课学员',
-            to: '/student/list2'
-        }, {
-            menuTitle: '咨询管理',
-            to: '/student/liat0'
-        }, {
-            menuTitle: '流失名单',
-            to: '/student/lost'
-        }, {
-            menuTitle: '生日学员',
-            to: '/student/birthdays'
-        }]
+    menuTitle: '学员',
+    menuIcon: 'fa-users',
+    menu: [{
+        menuTitle: '档案录入',
+        to: '/student/add'
     }, {
-        menuTitle: '课程',
-        menuIcon: 'fa-book',
+        menuTitle: '学员管理',
+        to: '/student/list'
+    }, {
+        menuTitle: '在读学员',
+        to: '/student/list1'
+    }, {
+        menuTitle: '已结课学员',
+        to: '/student/list2'
+    }, {
+        menuTitle: '咨询管理',
+        to: '/student/liat0'
+    }, {
+        menuTitle: '流失名单',
+        to: '/student/lost'
+    }, {
+        menuTitle: '生日学员',
+        to: '/student/birthdays'
+    }]
+}, {
+    menuTitle: '课程',
+    menuIcon: 'fa-book',
+    menu: [{
+        menuTitle: '课程设置',
+        to: '/student/manage'
+    }, {
+        menuTitle: '订单',
+        to: '/student/orders'
+    }, {
+        menuTitle: '班组课',
+        to: '/student/classes'
+    }, {
+        menuTitle: '1对1',
+        to: '/student/contracts'
+    }, {
+        menuTitle: '课时包',
         menu: [{
-                menuTitle: '课程设置',
-                to: '/student/manage'
-            }, {
-                menuTitle: '订单',
-                to: '/student/orders'
-            }, {
-                menuTitle: '班组课',
-                to: '/student/classes'
-            }, {
-                menuTitle: '1对1',
-                to: '/student/contracts'
-            }, {
-                menuTitle: '课时包'
-                menu: [{
-                    menuTitle: '报读学员',
-                    to: '/student/packages'
-                }, {
-                    menuTitle: '科目设置',
-                    to: '/student/subjects'
-                }, {
-                    menuTitle: '班级设置',
-                    to: '/student/sclasses'
-                }]
-            }
+            menuTitle: '报读学员',
+            to: '/student/packages'
+        }, {
+            menuTitle: '科目设置',
+            to: '/student/subjects'
+        }, {
+            menuTitle: '班级设置',
+            to: '/student/sclasses'
         }]
+    }]
 }, {
     menuTitle: '学费',
     menuIcon: 'fa-money',
@@ -134,17 +133,13 @@ export default [{
 }, {
     menuTitle: '设置',
     menuIcon: 'fa-cog',
-    menu: []
 }, {
     menuTitle: '日志',
     menuIcon: 'fa-file-archive-o',
-    menu: []
 }, {
     menuTitle: '系统状态',
     menuIcon: ' fa-dashboard',
-    menu: []
 }, {
     menuTitle: '系统帮助',
     menuIcon: 'fa-question-circle',
-    menu: []
 }]
