@@ -1,11 +1,150 @@
 export default [{
-    menuTitle: '学员',
-    menuIcon: 'fa-users',
+        menuTitle: '学员',
+        menuIcon: 'fa-users',
+        menu: [{
+            menuTitle: '档案录入',
+            to: '/student/add'
+        }, {
+            menuTitle: '学员管理',
+            to: '/student/list'
+        }, {
+            menuTitle: '在读学员',
+            to: '/student/list1'
+        }, {
+            menuTitle: '已结课学员',
+            to: '/student/list2'
+        }, {
+            menuTitle: '咨询管理',
+            to: '/student/liat0'
+        }, {
+            menuTitle: '流失名单',
+            to: '/student/lost'
+        }, {
+            menuTitle: '生日学员',
+            to: '/student/birthdays'
+        }]
+    }, {
+        menuTitle: '课程',
+        menuIcon: 'fa-book',
+        menu: [{
+                menuTitle: '课程设置',
+                to: '/student/manage'
+            }, {
+                menuTitle: '订单',
+                to: '/student/orders'
+            }, {
+                menuTitle: '班组课',
+                to: '/student/classes'
+            }, {
+                menuTitle: '1对1',
+                to: '/student/contracts'
+            }, {
+                menuTitle: '课时包'
+                menu: [{
+                    menuTitle: '报读学员',
+                    to: '/student/packages'
+                }, {
+                    menuTitle: '科目设置',
+                    to: '/student/subjects'
+                }, {
+                    menuTitle: '班级设置',
+                    to: '/student/sclasses'
+                }]
+            }
+        }]
+}, {
+    menuTitle: '学费',
+    menuIcon: 'fa-money',
     menu: [{
-        menuTitle: '档案录入',
-        to: '/student/add'
+        menuTitle: '缴费明细',
+        to: '/student/list1'
+    }, {
+        menuTitle: '预存明细',
+        to: '/student/list2'
+    }, {
+        menuTitle: '欠费明细',
+        to: '/student/list3'
+    }, {
+        menuTitle: '退费明细',
+        to: '/student/list4'
     }]
 }, {
-    menuTitle: '设计库',
-    menuIcon: 'fa-gear',
+    menuTitle: '课时',
+    menuIcon: 'icon-clock',
+    menu: [{
+        menuTitle: '排课',
+        to: '/student/arrange'
+    }, {
+        menuTitle: '课程表',
+        to: '/student/schedule'
+    }, {
+        menuTitle: '考勤',
+        to: '/student/attendance'
+    }, {
+        menuTitle: '教师课耗',
+        to: '/student/teacher'
+    }, {
+        menuTitle: '学员课耗',
+        to: '/student/student'
+    }, {
+        menuTitle: '课时预警',
+        to: '/student/warning'
+    }, {
+        menuTitle: '缺课记录',
+        to: '/student/absences'
+    }, {
+        menuTitle: '请假管理',
+        to: '/student/leaves'
+    }, {
+        menuTitle: '停课管理',
+        to: '/student/suspends'
+    }]
+}, {
+    menuTitle: '收支',
+    menuIcon: 'fa-tachometer',
+    menu: [{
+        menuTitle: '流水',
+        to: '/student/flow'
+    }, {
+        menuTitle: '收入明细',
+        to: '/student/income'
+    }, {
+        menuTitle: '支出明细',
+        to: '/student/expenses'
+    }]
+}, {
+    menuTitle: '家校',
+    menuIcon: 'fa-university',
+    menu: [{
+        menuTitle: '短信通知',
+        to: '/student/sms'
+    }, {
+        menuTitle: '点评记录',
+        to: '/student/comments'
+    }, {
+        menuTitle: '微信互动',
+        to: '/student/wechats'
+    }, {
+        menuTitle: '校长信箱',
+        to: '/student/inbox'
+    }, {
+        menuTitle: '公告发布',
+        to: '/student/news'
+    }]
+}, {
+    menuTitle: '设置',
+    menuIcon: 'fa-cog',
+    menu: []
+}, {
+    menuTitle: '日志',
+    menuIcon: 'fa-file-archive-o',
+    menu: []
+}, {
+    menuTitle: '系统状态',
+    menuIcon: ' fa-dashboard',
+    menu: []
+}, {
+    menuTitle: '系统帮助',
+    menuIcon: 'fa-question-circle',
+    menu: []
 }]
