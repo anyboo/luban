@@ -15,7 +15,7 @@ export default [{
         to: '/student/list2'
     }, {
         menuTitle: '咨询管理',
-        to: '/student/liat0'
+        to: '/student/list0'
     }, {
         menuTitle: '流失名单',
         to: '/student/lost'
