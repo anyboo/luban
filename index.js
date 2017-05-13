@@ -1,3 +1,4 @@
-import make from './make'
+//import make from './make'
+import webreplace from './webreplace'
 
-make.main()
+webreplace.main()

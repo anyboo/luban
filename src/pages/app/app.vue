@@ -6,12 +6,19 @@
             <router-view></router-view>
         </div>
         <lb-footer />
+        <!--
+        <lb-dialog>
+            <lb-directive/>
+        </lb-dialog>
+        -->
     </div>
 </template>
 <script>
 import header from '../header/header.vue'
 import sidebarmenu from '../sidebar-menu/sidebarmenu.vue'
 import footer from '../footer/footer.vue'
+import dialog from '../dialog/dialog.vue'
+import directive from '../directive/selectStudentTpl.vue'
 
 export default {
     name: 'app',
@@ -25,6 +32,8 @@ export default {
         'lb-header': header,
         'lb-sidebarmenu': sidebarmenu,
         'lb-footer': footer,
+        'lb-dialog': dialog,
+        'lb-directive': directive
     },
     computed: {},
     watch: {
