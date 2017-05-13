@@ -1,0 +1,103 @@
+<template>
+    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
+        <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
+            <div class="modal-content" modal-transclude="">
+                <div page-controller="open_class" class="ng-scope">
+                    <div class="modal-header">
+                        <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                        <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>开新班</h3></div>
+                    <div class="modal-body">
+                        <form name="form1" class="form-validation form-horizontal m-t ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-pattern">
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">授课老师:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <div class="input-group">
+                                        <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true"> <span class="input-group-btn"><button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}"><i class="fa fa-user"></i> 选择</button></span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">课程:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-model="info.ol_id" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required="" style="display: none;">
+                                        <option value="" class="">选择课程</option>
+                                        <option value="0">默认课程</option>
+                                    </select>
+                                    <div class="chosen-container chosen-container-single" style="width: 485px;" title=""><a class="chosen-single" tabindex="-1"><span>选择课程</span><div><b></b></div></a>
+                                        <div class="chosen-drop">
+                                            <div class="chosen-search">
+                                                <input type="text" autocomplete="off">
+                                            </div>
+                                            <ul class="chosen-results"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">班级名称:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-model="info.class_name" ng-minlength="1" required="" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">开课日期:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <div class="inline w-sm">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" ng-model="info.open_time" datetimepicker="date" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">预计结课:</label>
+                                <div class="col-md-10 col-xs-12">
+                                    <div class="inline w-sm">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" ng-model="info.close_time" datetimepicker="date" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">额定人数:</label>
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="input-group w-sm">
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" ng-model="info.max_student_num" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">人</span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">授课次数:</label>
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="input-group w-sm">
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" ng-model="info.total_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">次</span></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-12">单次课时:</label>
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="input-group">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="info.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled"> <span class="input-group-addon">小时</span></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()" disabled="disabled">
+                            <!-- ngIf: saving -->确定</button>
+                        <button class="btn btn-warning" ng-click="vm.dismiss()">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'add-lessons',
+    data() {
+        return {
+
+        }
+    },
+    computed: {},
+    watch: {},
+    methods: {
+    }
+}
+</script>
