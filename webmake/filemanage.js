@@ -8,6 +8,7 @@ import events from 'events'
 class FileManage extends events {
     constructor() {
         super()
+        this.nextIndex = 0
         this.files = []
         this.fileContent = []
         let pwd = env.workPath
@@ -17,6 +18,14 @@ class FileManage extends events {
             })
         })
     }
+
+    [Symbol.iterator]() {
+        return this
+    }
+
+    next() {
+        return this.nextIndex < this.fileContent.length ? { value: this.fileContent[this.nextIndex++] } : { done: true }
+    }
     toString() {
         console.log(this.fileContent)
     }
@@ -25,6 +34,15 @@ class FileManage extends events {
             return this.readFile(item)
         })
         return Promise.all(promises)
+    }
+    writeFile(file, data) {
+        return new Promise((resolve) => {
+            fs.writeFile(file, data, (err) => {
+                if (err) throw err
+                console.log(file, data)
+                resolve()
+            })
+        })
     }
     readFile(pwd) {
         return new Promise((resolve) => {

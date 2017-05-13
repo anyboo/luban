@@ -14,17 +14,7 @@
                         <div class="col-xs-10">
                             <div class="input-group w-full">
                                 <div class="input-group">
-                                    <div class="input-group-btn" ng-init="
-              filter.fields = [
-                {name:'student_name',value:'姓名'},
-                {name:'first_tel',value:'手机号'},
-                {name:'home_address',value:'住址'},
-                  {name:'nickname',value:'英文名'},
-                  {name:'card_no',value:'学员卡号'}
-              ];
-              grid.search_key = 'student_name';
-              grid.search_value = '';
-              ">
+                                    <div class="input-group-btn" >
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">姓名&nbsp;<span class="caret"></span></button>
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字"> <span class="input-group-btn"><button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button></span></div>
@@ -166,7 +156,7 @@
 </template>
 <script>
 export default {
-    name: 'footer',
+    name: 'selectStudentTpl',
     data() {
         return {
 
