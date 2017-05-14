@@ -12872,7 +12872,8 @@ body {
         position: relative;
         height: 100%;
         overflow-x: hidden;
-        overflow-y: hidden;
+        overflow-y: auto;
+        max-height: 800px;
         -webkit-overflow-scrolling: touch
     }
     .app-aside-fixed .aside-wrap .navi-wrap::-webkit-scrollbar {

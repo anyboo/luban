@@ -1,5 +1,4 @@
 <template>
-<template>
     <div class="app-footer wrapper b-t bg-light ng-scope">
         <p class="text-center ng-binding ng-scope">版权所有 © 2017 鲁班</p>
     </div>
