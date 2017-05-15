@@ -6,19 +6,16 @@
             <router-view></router-view>
         </div>
         <lb-footer />
-        <!--
-        <lb-dialog>
-            <lb-directive/>
-        </lb-dialog>
-        -->
+        <lb-modalbackdrop/>
+        <lb-dialoglist/>
     </div>
 </template>
 <script>
 import header from '../header/header.vue'
 import sidebarmenu from '../sidebar-menu/sidebarmenu.vue'
 import footer from '../footer/footer.vue'
-import dialog from '../dialog/dialog.vue'
-import directive from '../directive/selectStudentTpl.vue'
+import dialoglist from '../dialog/dialoglist.vue'
+import modalbackdrop from '../modal-backdrop/modalbackdrop.vue'
 
 export default {
     name: 'app',
@@ -32,8 +29,8 @@ export default {
         'lb-header': header,
         'lb-sidebarmenu': sidebarmenu,
         'lb-footer': footer,
-        'lb-dialog': dialog,
-        'lb-directive': directive
+        'lb-dialoglist': dialoglist,
+        'lb-modalbackdrop': modalbackdrop
     },
     computed: {},
     watch: {
