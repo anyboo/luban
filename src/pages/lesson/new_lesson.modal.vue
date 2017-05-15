@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
+    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}" id="app">
         <div class="modal-content" modal-transclude="">
             <div page-controller="new_lesson" class="ng-scope">
                 <div class="modal-header">
@@ -14,9 +14,9 @@
                                     <label class="control-label col-md-3 col-xs-12">课程类型:</label>
                                     <div class="col-md-9 col-xs-12">
                                         <div class="btn-group">
-                                            <label btn-radio="'0'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid active">班课</label>
-                                            <label btn-radio="'1'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1</label>
-                                            <label btn-radio="'10'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包</label>
+                                            <label btn-radio="'0'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid  " :class="{active:isactive}" @click="clas()">班课</label>
+                                            <label btn-radio="'1'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid" :class="{active:isactives}" @click="oto()">1对1</label>
+                                            <label btn-radio="'10'" ng-model="lesson.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid" :class="{active:isactivess}" @click="classp()">课时包</label>
                                         </div>
                                     </div>
                                 </div>
@@ -94,9 +94,32 @@
                                         <input type="text" name="lesson_no" class="form-control ng-pristine ng-untouched ng-valid" ng-model="lesson.lesson_no">
                                     </div>
                                 </div>
+                                <!-- 科目-->
+                                <div class="form-group ng-scope" ng-if="lesson.lesson_type == '10'" v-show="ChargeMode">
+                                    <label class="control-label col-md-3 col-xs-12">科目:</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <div class="row no-gutter">
+                                            <div class="col-xs-10">
+                                                <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="lesson.sj_ids" theme="bootstrap">
+                                                    <div><span class="ui-select-match" placeholder="选择科目..."><!-- ngRepeat: $item in $select.selected --></span>
+                                                        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-valid ng-touched" placeholder="选择科目..." ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" ng-model="$select.search" style="width: 325px;">
+                                                    </div>
+                                                    <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope ng-hide" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.sj_id as item in user.gv.subjects | propsFilter:{subject_name:$select.search}">
+                                                        <li class="ui-select-choices-group">
+                                                            <div class="divider ng-hide" ng-show="$select.isGrouped &amp;&amp; $index > 0"></div>
+                                                            <div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding ng-hide" ng-bind-html="$group.name"></div>
+                                                            <!-- ngRepeat: item in $select.items -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2"><a class="btn btn-default" ng-click="$util.open('tpl/app/lesson/package/add_subject.modal.html','md',{})"><i class="fa fa-plus"></i></a></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- ngIf: lesson.lesson_type == '10' -->
                                 <!-- ngIf: lesson.lesson_type == '0' -->
-                                <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'">
+                                <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'" v-show=" CourseTimespan">
                                     <label class="control-label col-md-3 col-xs-12">课程时间跨度:</label>
                                     <div class="col-md-9 col-xs-12">
                                         <div class="input-group">
@@ -120,7 +143,7 @@
                             <div class="panel-heading">定价</div>
                             <div class="panel-body">
                                 <!-- ngIf: lesson.lesson_type == '0' -->
-                                <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'">
+                                <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'" v-show=" CourseTimespan">
                                     <label class="control-label col-md-3 col-xs-12">收费模式:</label>
                                     <div class="col-md-9 col-xs-12">
                                         <div class="btn-group">
@@ -198,7 +221,6 @@
                     <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
                 </div>
             </div>
-          
         </div>
     </div>
 </template>
@@ -207,11 +229,38 @@ export default {
     name: 'new_lesson.modal',
     data() {
         return {
+            CourseTimespan: true,
+            ChargeMode: false,
+            isactive: false,
+            isactives: false,
+            isactivess: false
 
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        clas() {
+            this.CourseTimespan = false
+            this.ChargeMode = false
+            this.isactive = true
+            this.isactives = false
+            this.isactivess = false
+
+        },
+        oto() {
+            this.CourseTimespan = true
+            this.ChargeMode = false
+            this.isactive = false
+            this.isactives = true
+            this.isactivess = false
+        },
+        classp() {
+            this.ChargeMode = true
+            this.isactive = false
+            this.isactives = false
+            this.isactivess = true
+        }
+    }
 }
 </script>
