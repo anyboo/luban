@@ -42,21 +42,142 @@
                 </thead>
                 <tbody>
                     <!-- ngRepeat: item in grid.data -->
+                    <!-- ngIf: !loading -->
+                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
+                        <td>
+                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
+                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <ng-transclude><i class="fa fa-cog ng-scope"></i><span class="ng-scope">操作</span></ng-transclude><span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)"><i class="icon-rocket"></i> 学员归属设定</a></li>
+                                    <li><a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)"><i class="icon-heart"></i> 意向程度设置</a></li>
+                                    <li><a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)"><i class="fa fa-phone-square"></i> 跟踪回访</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td><a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895"><span ng-bind-html="item.sex|sex:0" class="ng-binding"><i class="fa fa-female"></i></span>zzz</a>
+                            <!-- ngIf: item.age --><span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
+                            <!-- end ngIf: item.age -->
+                        </td>
+                        <td class="ng-binding">12345678645</td>
+                        <td>
+                            <!-- ngIf: item.region_oe_id == '0' --><span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                            <!-- end ngIf: item.region_oe_id == '0' -->
+                            <!-- ngIf: item.region_oe_id != '0' -->
+                        </td>
+                        <td>
+                            <!-- ngIf: item.purpose == '0' --><span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
+                            <!-- end ngIf: item.purpose == '0' -->
+                            <!-- ngIf: item.purpose != '0' -->
+                        </td>
+                        <td class="ng-binding">广告</td>
+                        <td class="ng-binding">2017-05-13</td>
+                        <td>
+                            <p ng-bind-html="item.note" class="ng-binding">dwwqad</p>
+                        </td>
+                        <td>
+                            <!-- ngIf: item.last_track -->
+                            <!-- ngIf: !item.last_track --><span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
+                            <!-- end ngIf: !item.last_track -->
+                        </td>
+                    </tr>
+                    <!-- end ngIf: !loading -->
+                    <!-- end ngRepeat: item in grid.data -->
+                    <!-- ngIf: !loading -->
+                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
+                        <td>
+                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
+                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <ng-transclude><i class="fa fa-cog ng-scope"></i><span class="ng-scope">操作</span></ng-transclude><span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)"><i class="icon-rocket"></i> 学员归属设定</a></li>
+                                    <li><a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)"><i class="icon-heart"></i> 意向程度设置</a></li>
+                                    <li><a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)"><i class="fa fa-phone-square"></i> 跟踪回访</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td><a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63894"><span ng-bind-html="item.sex|sex:0" class="ng-binding"><i class="fa fa-male"></i></span>qssd</a>
+                            <!-- ngIf: item.age --><span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
+                            <!-- end ngIf: item.age -->
+                        </td>
+                        <td class="ng-binding">13456789754</td>
+                        <td>
+                            <!-- ngIf: item.region_oe_id == '0' --><span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                            <!-- end ngIf: item.region_oe_id == '0' -->
+                            <!-- ngIf: item.region_oe_id != '0' -->
+                        </td>
+                        <td>
+                            <!-- ngIf: item.purpose == '0' --><span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
+                            <!-- end ngIf: item.purpose == '0' -->
+                            <!-- ngIf: item.purpose != '0' -->
+                        </td>
+                        <td class="ng-binding">上门</td>
+                        <td class="ng-binding">2017-05-13</td>
+                        <td>
+                            <p ng-bind-html="item.note" class="ng-binding">sqqs</p>
+                        </td>
+                        <td>
+                            <!-- ngIf: item.last_track -->
+                            <!-- ngIf: !item.last_track --><span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
+                            <!-- end ngIf: !item.last_track -->
+                        </td>
+                    </tr>
+                    <!-- end ngIf: !loading -->
+                    <!-- end ngRepeat: item in grid.data -->
+                    <!-- ngIf: !loading -->
+                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
+                        <td>
+                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
+                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <ng-transclude><i class="fa fa-cog ng-scope"></i><span class="ng-scope">操作</span></ng-transclude><span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)"><i class="icon-rocket"></i> 学员归属设定</a></li>
+                                    <li><a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)"><i class="icon-heart"></i> 意向程度设置</a></li>
+                                    <li><a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)"><i class="fa fa-phone-square"></i> 跟踪回访</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td><a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63893"><span ng-bind-html="item.sex|sex:0" class="ng-binding"><i class="fa fa-female"></i></span>qqq</a>
+                            <!-- ngIf: item.age --><span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
+                            <!-- end ngIf: item.age -->
+                        </td>
+                        <td class="ng-binding">13545389311</td>
+                        <td>
+                            <!-- ngIf: item.region_oe_id == '0' --><span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                            <!-- end ngIf: item.region_oe_id == '0' -->
+                            <!-- ngIf: item.region_oe_id != '0' -->
+                        </td>
+                        <td>
+                            <!-- ngIf: item.purpose == '0' --><span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
+                            <!-- end ngIf: item.purpose == '0' -->
+                            <!-- ngIf: item.purpose != '0' -->
+                        </td>
+                        <td class="ng-binding">其他</td>
+                        <td class="ng-binding">2017-05-13</td>
+                        <td>
+                            <p ng-bind-html="item.note" class="ng-binding">ad</p>
+                        </td>
+                        <td>
+                            <!-- ngIf: item.last_track -->
+                            <!-- ngIf: !item.last_track --><span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
+                            <!-- end ngIf: !item.last_track -->
+                        </td>
+                    </tr>
+                    <!-- end ngIf: !loading -->
+                    <!-- end ngRepeat: item in grid.data -->
                 </tbody>
             </table>
             <div class="wrapper" style="height:80px"></div>
             <div class="grid-data-result">
                 <!-- ngIf: loading -->
                 <!-- ngIf: !loading && grid.data.length==0 -->
-                <p class="text-center ng-binding ng-scope" ng-if="!loading &amp;&amp; grid.data.length==0"><i class="fa fa-frown-o"></i>无相关数据!</p>
-                <!-- end ngIf: !loading && grid.data.length==0 -->
             </div>
         </div>
         <!--table-responsive-->
         <div class="panel-footer">
             <div class="row">
                 <div class="col-sm-4 col-xs-12"></div>
-                <div class="col-sm-4 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 0 条记录">共 0 条记录</small></div>
+                <div class="col-sm-4 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 3 条记录">共 3 条记录</small></div>
                 <div class="col-sm-4 text-right text-center-xs">
                     <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
                         <!-- ngIf: boundaryLinks && totalPages > 1 -->

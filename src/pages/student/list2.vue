@@ -3,8 +3,8 @@
         <div class="row no-gutter">
             <div class="col-xs-12 col-md-3">
                 <div class="btn-group">
-                    <label btn-radio="0" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid active">班课学员</label>
-                    <label btn-radio="1" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1学员</label>
+                    <label btn-radio="0" ng-model="lesson_type" class="btn btn-default ng-untouched ng-valid active ng-dirty ng-valid-parse">班课学员</label>
+                    <label btn-radio="1" ng-model="lesson_type" class="btn btn-default ng-untouched ng-valid ng-dirty">1对1学员</label>
                     <label btn-radio="10" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包学员</label>
                 </div>
             </div>
@@ -27,6 +27,7 @@
                     <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                         <select ng-model="params.oc_id" class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;">
                             <option value="" class="">选择班级</option>
+                            <option value="0">11</option>
                         </select>
                         <div class="chosen-container chosen-container-single" style="width: 240px;" title=""><a class="chosen-single" tabindex="-1"><span>选择班级</span><div><b></b></div></a>
                             <div class="chosen-drop">
@@ -41,7 +42,7 @@
                     <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_end_students" export-params="params"><i class="glyphicon glyphicon-export"></i>导出</button>
                     <div id="fct-class_end_students" style="display:none;">
                         <form name="export_form_class_end_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                            <input type="hidden" name="X-XSRF-TOKEN" value="1f4158897bff2442142cd9ad69c92519">
+                            <input type="hidden" name="X-XSRF-TOKEN" value="30bed37d3e9766e5dc6b3b2b3ee823e0">
                             <input type="hidden" name="resource" value="class_end_students">
                             <!-- ngRepeat: (key,value) in params -->
                             <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" class="ng-scope">
@@ -72,20 +73,38 @@
                     </thead>
                     <tbody>
                         <!-- ngRepeat: item in grid.data -->
+                        <!-- ngIf: !loading -->
+                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
+                            <td class="ng-binding"><span ng-bind-html="item.student.sex|sex:0" class="ng-binding"><i class="fa fa-female"></i></span>zzzsz</td>
+                            <td class="ng-binding">12345678765</td>
+                            <td><a class="link ng-binding" ng-click="params.oc_id=item.oc_id" tooltip="点击班级名查看该班级所有学员">11</a></td>
+                            <td class="ng-binding">张英乙</td>
+                            <td class="ng-binding">2017-05-13</td>
+                            <td class="ng-binding">2017-05-15</td>
+                            <td class="ng-binding">4</td>
+                            <td class="ng-binding">1 <a class="btn btn-default btn-xs" ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})"><i class="icon-eye"></i></a></td>
+                            <td>
+                                <!-- ngIf: item.pay_status == '2' --><span class="label bg-success ng-scope" ng-if="item.pay_status == '2'">已缴清</span>
+                                <!-- end ngIf: item.pay_status == '2' -->
+                                <!-- ngIf: item.pay_status == '1' -->
+                                <!-- ngIf: item.pay_status == '0' -->
+                                <!-- ngIf: item.unpay_amount > 0 -->
+                            </td>
+                        </tr>
+                        <!-- end ngIf: !loading -->
+                        <!-- end ngRepeat: item in grid.data -->
                     </tbody>
                 </table>
                 <div class="grid-data-result">
                     <!-- ngIf: loading -->
                     <!-- ngIf: !loading && grid.data.length==0 -->
-                    <p class="text-center ng-binding ng-scope" ng-if="!loading &amp;&amp; grid.data.length==0"><i class="fa fa-frown-o"></i>无相关数据!</p>
-                    <!-- end ngIf: !loading && grid.data.length==0 -->
                 </div>
             </div>
             <!--table-responsive-->
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12"></div>
-                    <div class="col-sm-4 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 0 条记录">共 0 条记录</small></div>
+                    <div class="col-sm-4 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 1 条记录">共 1 条记录</small></div>
                     <div class="col-sm-4 text-right text-center-xs">
                         <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
                             <!-- ngIf: boundaryLinks && totalPages > 1 -->
