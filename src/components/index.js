@@ -1,7 +1,10 @@
 import dropdown from './dropdown/'
 
 const components = [
-    dropdown
+    dropdown.LbDropdown, 
+    dropdown.LbDropdownButton, 
+    dropdown.LbDropdownMenu, 
+    dropdown.LbDropdownMenuItem
 ]
 
 const install = function(Vue) {
@@ -14,5 +17,6 @@ const install = function(Vue) {
 
 export default {
     version: '1.0.1',
+    install,
     dropdown
 }
