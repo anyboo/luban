@@ -7,14 +7,20 @@
                         <input type="text" id="ctl_date_start" ng-model="params.date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;">
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
-                                <div class="btn btn-outline dateRangeLabel"><span class="rangeData1">2017-05-12</span> - <span class="rangeData2">2017-05-12</span><span class="caret"></span></div>
+                                <div class="btn btn-outline dateRangeLabel">
+                                    <span class="rangeData1">2017-05-12</span>  - 
+                                    <span class="rangeData2">2017-05-12</span>
+                                    <span class="caret"></span>
+                                </div>
                             </div>
                             <div class="datepicker-calendar-menu pickerBody datepickerHidden">
                                 <div class="datepicker-calendar">
-                                    <div class="datepicker-head form-inline showDate"><span>时间范围:</span>
+                                    <div class="datepicker-head form-inline showDate">
+                                        <span>时间范围:</span>
                                         <label>
                                             <input type="text" class="form-control rangeDate1">
-                                        </label><span class="date-separator">至</span>
+                                        </label>
+                                        <span class="date-separator">至</span>
                                         <label>
                                             <input type="text" class="form-control rangeDate2">
                                         </label>
@@ -32,9 +38,13 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Month"></span></th>
+                                                                                <th class="prev" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Month"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Month">五月 2017</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Month"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Month"></span>
+                                                                                </th>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th class="dow">一</th>
@@ -108,14 +118,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Year"></span></th>
+                                                                                <th class="prev" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Year"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Year">2017</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Year"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Year"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectMonth" class="month">1月</span><span data-action="selectMonth" class="month">2月</span><span data-action="selectMonth" class="month">3月</span><span data-action="selectMonth" class="month">4月</span><span data-action="selectMonth" class="month active">5月</span><span data-action="selectMonth" class="month disabled">6月</span><span data-action="selectMonth" class="month disabled">7月</span><span data-action="selectMonth" class="month disabled">8月</span><span data-action="selectMonth" class="month disabled">9月</span><span data-action="selectMonth" class="month disabled">10月</span><span data-action="selectMonth" class="month disabled">11月</span><span data-action="selectMonth" class="month disabled">12月</span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectMonth" class="month">1月</span>
+                                                                                    <span data-action="selectMonth" class="month">2月</span>
+                                                                                    <span data-action="selectMonth" class="month">3月</span>
+                                                                                    <span data-action="selectMonth" class="month">4月</span>
+                                                                                    <span data-action="selectMonth" class="month active">5月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">6月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">7月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">8月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">9月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">10月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">11月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">12月</span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -124,14 +151,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Decade"></span></th>
+                                                                                <th class="prev" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Decade"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Decade">2012-2023</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Decade"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Decade"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectYear" class="year">2012</span><span data-action="selectYear" class="year">2013</span><span data-action="selectYear" class="year">2014</span><span data-action="selectYear" class="year">2015</span><span data-action="selectYear" class="year">2016</span><span data-action="selectYear" class="year active">2017</span><span data-action="selectYear" class="year disabled">2018</span><span data-action="selectYear" class="year disabled">2019</span><span data-action="selectYear" class="year disabled">2020</span><span data-action="selectYear" class="year disabled">2021</span><span data-action="selectYear" class="year disabled">2022</span><span data-action="selectYear" class="year disabled">2023</span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectYear" class="year">2012</span>
+                                                                                    <span data-action="selectYear" class="year">2013</span>
+                                                                                    <span data-action="selectYear" class="year">2014</span>
+                                                                                    <span data-action="selectYear" class="year">2015</span>
+                                                                                    <span data-action="selectYear" class="year">2016</span>
+                                                                                    <span data-action="selectYear" class="year active">2017</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2018</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2019</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2020</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2021</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2022</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2023</span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -140,14 +184,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Century"></span></th>
+                                                                                <th class="prev" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Century"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5">2000-2107</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Century"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Century"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectDecade" class="decade" data-selection="2005">2000 - 2011</span><span data-action="selectDecade" class="decade active" data-selection="2017">2012 - 2023</span><span data-action="selectDecade" class="decade disabled" data-selection="2029">2024 - 2035</span><span data-action="selectDecade" class="decade disabled" data-selection="2041">2036 - 2047</span><span data-action="selectDecade" class="decade disabled" data-selection="2053">2048 - 2059</span><span data-action="selectDecade" class="decade disabled" data-selection="2065">2060 - 2071</span><span data-action="selectDecade" class="decade disabled" data-selection="2077">2072 - 2083</span><span data-action="selectDecade" class="decade disabled" data-selection="2089">2084 - 2095</span><span data-action="selectDecade" class="decade disabled" data-selection="2101">2096 - 2107</span><span></span><span></span><span></span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectDecade" class="decade" data-selection="2005">2000 - 2011</span>
+                                                                                    <span data-action="selectDecade" class="decade active" data-selection="2017">2012 - 2023</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2029">2024 - 2035</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2041">2036 - 2047</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2053">2048 - 2059</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2065">2060 - 2071</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2077">2072 - 2083</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2089">2084 - 2095</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2101">2096 - 2107</span>
+                                                                                    <span></span>
+                                                                                    <span></span>
+                                                                                    <span></span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -176,9 +237,13 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev disabled" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Month"></span></th>
+                                                                                <th class="prev disabled" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Month"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Month">五月 2017</th>
-                                                                                <th class="next" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Month"></span></th>
+                                                                                <th class="next" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Month"></span>
+                                                                                </th>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th class="dow">一</th>
@@ -252,14 +317,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev disabled" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Year"></span></th>
+                                                                                <th class="prev disabled" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Year"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Year">2017</th>
-                                                                                <th class="next" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Year"></span></th>
+                                                                                <th class="next" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Year"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectMonth" class="month disabled">1月</span><span data-action="selectMonth" class="month disabled">2月</span><span data-action="selectMonth" class="month disabled">3月</span><span data-action="selectMonth" class="month disabled">4月</span><span data-action="selectMonth" class="month active">5月</span><span data-action="selectMonth" class="month">6月</span><span data-action="selectMonth" class="month">7月</span><span data-action="selectMonth" class="month">8月</span><span data-action="selectMonth" class="month">9月</span><span data-action="selectMonth" class="month">10月</span><span data-action="selectMonth" class="month">11月</span><span data-action="selectMonth" class="month">12月</span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectMonth" class="month disabled">1月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">2月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">3月</span>
+                                                                                    <span data-action="selectMonth" class="month disabled">4月</span>
+                                                                                    <span data-action="selectMonth" class="month active">5月</span>
+                                                                                    <span data-action="selectMonth" class="month">6月</span>
+                                                                                    <span data-action="selectMonth" class="month">7月</span>
+                                                                                    <span data-action="selectMonth" class="month">8月</span>
+                                                                                    <span data-action="selectMonth" class="month">9月</span>
+                                                                                    <span data-action="selectMonth" class="month">10月</span>
+                                                                                    <span data-action="selectMonth" class="month">11月</span>
+                                                                                    <span data-action="selectMonth" class="month">12月</span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -268,14 +350,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev disabled" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Decade"></span></th>
+                                                                                <th class="prev disabled" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Decade"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Decade">2012-2023</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Decade"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Decade"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectYear" class="year disabled">2012</span><span data-action="selectYear" class="year disabled">2013</span><span data-action="selectYear" class="year disabled">2014</span><span data-action="selectYear" class="year disabled">2015</span><span data-action="selectYear" class="year disabled">2016</span><span data-action="selectYear" class="year active">2017</span><span data-action="selectYear" class="year">2018</span><span data-action="selectYear" class="year disabled">2019</span><span data-action="selectYear" class="year disabled">2020</span><span data-action="selectYear" class="year disabled">2021</span><span data-action="selectYear" class="year disabled">2022</span><span data-action="selectYear" class="year disabled">2023</span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectYear" class="year disabled">2012</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2013</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2014</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2015</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2016</span>
+                                                                                    <span data-action="selectYear" class="year active">2017</span>
+                                                                                    <span data-action="selectYear" class="year">2018</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2019</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2020</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2021</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2022</span>
+                                                                                    <span data-action="selectYear" class="year disabled">2023</span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -284,14 +383,31 @@
                                                                     <table class="table-condensed">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="prev disabled" data-action="previous"><span class="glyphicon glyphicon-chevron-left" title="Previous Century"></span></th>
+                                                                                <th class="prev disabled" data-action="previous">
+                                                                                    <span class="glyphicon glyphicon-chevron-left" title="Previous Century"></span>
+                                                                                </th>
                                                                                 <th class="picker-switch" data-action="pickerSwitch" colspan="5">2000-2107</th>
-                                                                                <th class="next disabled" data-action="next"><span class="glyphicon glyphicon-chevron-right" title="Next Century"></span></th>
+                                                                                <th class="next disabled" data-action="next">
+                                                                                    <span class="glyphicon glyphicon-chevron-right" title="Next Century"></span>
+                                                                                </th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td colspan="7"><span data-action="selectDecade" class="decade disabled" data-selection="2005">2000 - 2011</span><span data-action="selectDecade" class="decade active" data-selection="2017">2012 - 2023</span><span data-action="selectDecade" class="decade disabled" data-selection="2029">2024 - 2035</span><span data-action="selectDecade" class="decade disabled" data-selection="2041">2036 - 2047</span><span data-action="selectDecade" class="decade disabled" data-selection="2053">2048 - 2059</span><span data-action="selectDecade" class="decade disabled" data-selection="2065">2060 - 2071</span><span data-action="selectDecade" class="decade disabled" data-selection="2077">2072 - 2083</span><span data-action="selectDecade" class="decade disabled" data-selection="2089">2084 - 2095</span><span data-action="selectDecade" class="decade disabled" data-selection="2101">2096 - 2107</span><span></span><span></span><span></span></td>
+                                                                                <td colspan="7">
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2005">2000 - 2011</span>
+                                                                                    <span data-action="selectDecade" class="decade active" data-selection="2017">2012 - 2023</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2029">2024 - 2035</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2041">2036 - 2047</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2053">2048 - 2059</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2065">2060 - 2071</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2077">2072 - 2083</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2089">2084 - 2095</span>
+                                                                                    <span data-action="selectDecade" class="decade disabled" data-selection="2101">2096 - 2107</span>
+                                                                                    <span></span>
+                                                                                    <span></span>
+                                                                                    <span></span>
+                                                                                </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -322,27 +438,22 @@
                         <label btn-radio="'week'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本周</label>
                         <label btn-radio="'month'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本月</label>
                     </div>
-                    <button class="btn btn-default ng-isolate-scope" export="birthday_students" export-params="params"><i class="glyphicon glyphicon-export"></i>导出</button>
+                    <button class="btn btn-default ng-isolate-scope" export="birthday_students" export-params="params">
+                        <i class="glyphicon glyphicon-export"></i>  导出 
+                    </button>
                     <div id="fct-birthday_students" style="display:none;">
                         <form name="export_form_birthday_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
                             <input type="hidden" name="X-XSRF-TOKEN" value="1f4158897bff2442142cd9ad69c92519">
                             <input type="hidden" name="resource" value="birthday_students">
-                            <!-- ngRepeat: (key,value) in params -->
                             <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                            <!-- end ngRepeat: (key,value) in params -->
                             <input type="hidden" name="date_start" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                            <!-- end ngRepeat: (key,value) in params -->
                             <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" class="ng-scope">
-                            <!-- end ngRepeat: (key,value) in params -->
                             <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                            <!-- end ngRepeat: (key,value) in params -->
                             <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
-                            <!-- end ngRepeat: (key,value) in params -->
                         </form>
                     </div>
                 </div>
             </div>
-            <!--row-->
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <thead>
@@ -355,38 +466,26 @@
                             <th>在读课程数</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- ngRepeat: item in grid.data -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
                 <div class="grid-data-result">
-                    <!-- ngIf: loading -->
-                    <!-- ngIf: !loading && grid.data.length==0 -->
-                    <p class="text-center ng-binding ng-scope" ng-if="!loading &amp;&amp; grid.data.length==0"><i class="fa fa-frown-o"></i>无相关数据!</p>
-                    <!-- end ngIf: !loading && grid.data.length==0 -->
+                    <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
+                        <i class="fa fa-frown-o"></i>  无相关数据! 
+                    </p>
                 </div>
             </div>
-            <!--table-responsive-->
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12"></div>
-                    <div class="col-sm-4 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 0 条记录">共 0 条记录</small></div>
+                    <div class="col-sm-4 text-center">
+                        <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 0 条记录">共 0 条记录</small>
+                    </div>
                     <div class="col-sm-4 text-right text-center-xs">
-                        <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
-                            <!-- ngIf: boundaryLinks && totalPages > 1 -->
-                            <!-- ngIf: directionLinks && totalPages > 1 -->
-                            <!-- ngRepeat: page in pages track by $index -->
-                            <!-- ngIf: totalPages > 1 -->
-                            <!-- end ngRepeat: page in pages track by $index -->
-                            <!-- ngIf: directionLinks && totalPages > 1 -->
-                            <!-- ngIf: boundaryLinks && totalPages > 1 -->
-                        </ul>
+                        <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/ng-template" id="birthday_students.ctrl.js" class="ng-scope">var $rest = $injector.get('$rest'), $util = $injector.get('$util'), toaster = $injector.get('toaster'); $scope.duration = 'today'; $scope.params.ob_id = $scope.user.gv.ob_id; $scope.$on('branch:change',function(branch){ $scope.params.ob_id = $scope.user.gv.ob_id; $scope.grid.params.ob_id = $scope.user.gv.ob_id; $scope.rest_get(); });
-        </script>
     </div>
 </template>
 <script>

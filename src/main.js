@@ -6,11 +6,11 @@ import VueResouse from 'vue-resource'
 import App from './pages/app/app.vue'
 import router from './router'
 import store from './stores'
-//import BtCom from './components'
+import LbCom from './components'
 import mixin from './mixins/mixin'
 
 Vue.use(VueResouse)
-    //Vue.use(BtCom)
+Vue.use(LbCom)
 Vue.mixin(mixin)
 
 new Vue({

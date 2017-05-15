@@ -1,11 +1,17 @@
 <template>
-     <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
+    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
         <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
             <div class="modal-content" modal-transclude="">
                 <div page-controller="add_performance" class="ng-scope">
                     <div class="modal-header">
-                        <button type="button" ng-click="$dismiss()" class="close"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                        <h3 class="modal-title"><i class="icon-plus"></i> 登记考试成绩</h3></div>
+                        <button type="button" ng-click="$dismiss()" class="close" @click="lbCloseDailog()">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h3 class="modal-title">
+                            <i class="icon-plus"></i>  登记考试成绩 
+                        </h3>
+                    </div>
                     <div class="modal-body">
                         <form name="form1" class="form-validation form-horizontal ng-pristine ng-invalid ng-invalid-required">
                             <div class="form-group">
@@ -41,24 +47,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- ngRepeat: item in performance.students -->
                                         <tr ng-repeat="item in performance.students" class="ng-scope">
                                             <td>
                                                 <label class="checkbox-inline i-checks">
-                                                    <input type="checkbox" name="selected" ng-true-value="1" ng-false-value="0" ng-model="item.$$inputed" class="ng-pristine ng-untouched ng-valid"><i></i></label><span class="va-m inline ng-binding">小林</span></td>
+                                                    <input type="checkbox" name="selected" ng-true-value="1" ng-false-value="0" ng-model="item.$$inputed" class="ng-pristine ng-untouched ng-valid">
+                                                    <i></i>
+                                                </label>
+                                                <span class="va-m inline ng-binding">小林</span>
+                                            </td>
                                             <td>
                                                 <input type="number" ng-disabled="!item.$$inputed" ng-model="item.exam_score" class="form-control w-xs ng-pristine ng-untouched ng-valid" disabled="disabled">
                                             </td>
                                         </tr>
-                                        <!-- end ngRepeat: item in performance.students -->
                                     </tbody>
                                 </table>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">
-                            <!-- ngIf: saving -->登记成绩</button>
+                        <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记成绩</button>
                         <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
                     </div>
                 </div>

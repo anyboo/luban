@@ -1,10 +1,13 @@
 <template>
     <div ui-view="" class="ng-scope">
         <div class="wrapper-xs ng-scope" page-controller="lesson_subjects">
-            <!-- ngIf: $action == 'subjects' -->
             <div ng-if="$action == 'subjects'" class="ng-scope">
                 <ul class="breadcrumb bg-white b-a">
-                    <li><a ui-sref="lesson.packages" href="#/lesson/packages"><i class="fa fa-suitcase"></i> 课时包</a></li>
+                    <li>
+                        <a ui-sref="lesson.packages" href="#/lesson/packages">
+                            <i class="fa fa-suitcase"></i>  课时包 
+                        </a>
+                    </li>
                     <li class="active">科目设置</li>
                 </ul>
                 <div class="wrapper-xs bg-white">
@@ -31,23 +34,16 @@
                                                 <button class="btn btn-primary btn-xs" ng-click="add()" ng-disabled="saving">添加</button>
                                             </td>
                                         </tr>
-                                        <!-- ngRepeat: item in subject_rest.$list -->
                                     </tbody>
                                 </table>
-                                <!-- ngIf: subject_rest.$loading -->
-                                <!-- ngIf: subject_rest.$loaded && subject_rest.$list.length == 0 -->
-                                <div class="wrapper ng-scope" ng-if="subject_rest.$loaded &amp;&amp; subject_rest.$list.length == 0">
+                                <div class="wrapper ng-scope" ng-if="subject_rest.$loaded && subject_rest.$list.length == 0">
                                     <p>还没有添加科目,请添加科目</p>
                                 </div>
-                                <!-- end ngIf: subject_rest.$loaded && subject_rest.$list.length == 0 -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end ngIf: $action == 'subjects' -->
-            <!-- ngIf: $action == 'subject_level' -->
-            <!-- ngIf: $action == 'subject_attendance' -->
         </div>
     </div>
 </template>

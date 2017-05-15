@@ -7,7 +7,8 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title ng-binding">
-                    <i class="fa fa-user"></i>  请选择学员                 </h3>
+                    <i class="fa fa-user"></i>  请选择学员 
+                </h3>
             </div>
             <div class="modal-body ng-scope">
                 <div xo-rest="students" xo-rest-ctrl="modal_select_student" xo-rest-grid="{maxsize:5,params:vm.params}" loading-container=".list-student" loading-text="正在加载学员..." empty-text="没有符合条件的学员!" class="ng-scope">
@@ -21,7 +22,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-姓名 
+  姓名 
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -38,10 +39,10 @@
                             </div>
                             <div class="btn-group m-t">
                                 <label btn-radio="'image'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">
-                                    <i class="fa fa-image"></i>  头像
+                                    <i class="fa fa-image"></i>  头像 
                                 </label>
                                 <label btn-radio="'list'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid active">
-                                    <i class="fa fa-list"></i>  列表
+                                    <i class="fa fa-list"></i>  列表 
                                 </label>
                             </div>
                         </div>
@@ -156,12 +157,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false">
-                    </ul>
+                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();" disabled="disabled">确定</button>             </div>
+                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();" disabled="disabled">确定</button>
+            </div>
         </div>
     </div>
 </template>

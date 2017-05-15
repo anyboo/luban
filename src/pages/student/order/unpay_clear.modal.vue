@@ -3,11 +3,15 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="OrderUnpayClear" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="icon-ban"></i> 清除订单 <span class="label bg-info ng-binding">OB1161217050557024328509</span> 未付款</h3></div>
-                <!-- ngIf: order.pay_status == '2' -->
-                <!-- ngIf: order.order_type != '0' && order.order_type == '1' && order.order_type == '10' -->
-                <!-- ngIf: order.order_type == '0' || order.order_type == '1' || order.order_type == '10' -->
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="icon-ban"></i>  清除订单 
+                        <span class="label bg-info ng-binding">OB1161217050557024328509</span>  未付款 
+                    </h3>
+                </div>
                 <div class="modal-body ng-scope" ng-if="order.order_type == '0' || order.order_type == '1' || order.order_type == '10'">
                     <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-required ng-valid-number ng-valid-parse">
                         <div class="form-group">
@@ -28,30 +32,24 @@
                                 <p class="form-control-static ng-binding">60</p>
                             </div>
                         </div>
-                        <!-- ngIf: order.present_times > 0 -->
                         <div class="form-group ng-scope" ng-if="order.present_times > 0">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <p class="form-control-static ng-binding">2 次</p>
                             </div>
                         </div>
-                        <!-- end ngIf: order.present_times > 0 -->
-                        <!-- ngIf: order.present_times > 0 -->
                         <div class="form-group ng-scope" ng-if="order.present_times > 0">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static ng-binding">62 次</p>
                             </div>
                         </div>
-                        <!-- end ngIf: order.present_times > 0 -->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static ng-binding">50</p>
                             </div>
                         </div>
-                        <!-- ngIf: order.discount_amount > 0 -->
-                        <!-- ngIf: order.discount_amount > 0 -->
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">总金额:</label>
                             <div class="col-xs-12 col-md-5">
@@ -80,14 +78,18 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="times" ng-model="clear_data.times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required=""> <span class="input-group-addon">次</span></div>
+                                    <input type="number" name="times" ng-model="clear_data.times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required="">
+                                    <span class="input-group-addon">次</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="amount" ng-model="clear_data.amount" class="form-control ng-pristine ng-untouched ng-valid"> <span class="input-group-addon">元</span></div>
+                                    <input type="number" name="amount" ng-model="clear_data.amount" class="form-control ng-pristine ng-untouched ng-valid">
+                                    <span class="input-group-addon">元</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -98,10 +100,8 @@
                         </div>
                     </form>
                 </div>
-                <!-- end ngIf: order.order_type == '0' || order.order_type == '1' || order.order_type == '10' -->
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_save()">
-                        <!-- ngIf: saving -->确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_save()">确定</button>
                     <button class="btn btn-warning m-l" ng-click="vm.dismiss()">关闭</button>
                 </div>
             </div>

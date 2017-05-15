@@ -3,8 +3,15 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="change_branch" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="icon-shuffle"></i>为学员 <span class="label bg-info ng-binding">威锋</span> 转校区</h3></div>
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="icon-shuffle"></i>  为学员 
+                        <span class="label bg-info ng-binding">威锋</span>  转校区 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-valid ng-dirty ng-valid-parse">
                         <div class="wrapper-xs">
@@ -16,7 +23,6 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- ngIf: branch_rest.$loaded -->
                             <div class="form-group ng-scope" ng-if="branch_rest.$loaded">
                                 <label class="col-xs-3 col-md-2 control-label">新校区：</label>
                                 <div class="col-xs-9 col-md-5">
@@ -26,13 +32,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- end ngIf: branch_rest.$loaded -->
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_change()">
-                        <!-- ngIf: saving -->确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_change()">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
                 </div>
             </div>
