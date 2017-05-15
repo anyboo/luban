@@ -3,8 +3,15 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="change_account" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-user-md"></i>更换 <span class="badge bg-info ng-binding">陈佳木</span> 的登录账号</h3></div>
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="fa fa-user-md"></i>  更换 
+                        <span class="badge bg-info ng-binding">陈佳木</span>  的登录账号 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-pristine ng-valid">
                         <div class="form-group">
@@ -22,8 +29,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()">
-                        <!-- ngIf: saving -->确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
                 </div>
             </div>

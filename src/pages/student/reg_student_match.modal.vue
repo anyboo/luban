@@ -3,8 +3,15 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="reg_student_match" class="ng-scope">
                 <div class="modal-header">
-                    <button type="button" ng-click="$dismiss()" class="close"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title">登记 <span class="label bg-info ng-binding">小兵</span> 的赛事记录</h3></div>
+                    <button type="button" ng-click="$dismiss()" class="close" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+  登记 
+                        <span class="label bg-info ng-binding">小兵</span>  的赛事记录 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-parse">
                         <div class="form-group">
@@ -35,14 +42,14 @@
                                 <div class="edui-container" style="width: 100%; z-index: 999;">
                                     <div class="edui-toolbar">
                                         <div class="edui-btn-toolbar" unselectable="on" onmousedown="return false">
-                                            <div class="edui-btn edui-btn-undo  edui-disabled" unselectable="on" onmousedown="return false" data-original-title="撤销">
+                                            <div class="edui-btn edui-btn-undo edui-disabled" unselectable="on" onmousedown="return false" data-original-title="撤销">
                                                 <div unselectable="on" class="edui-icon-undo edui-icon"></div>
                                                 <div class="edui-tooltip" unselectable="on" onmousedown="return false">
                                                     <div class="edui-tooltip-arrow" unselectable="on" onmousedown="return false"></div>
                                                     <div class="edui-tooltip-inner" unselectable="on" onmousedown="return false"></div>
                                                 </div>
                                             </div>
-                                            <div class="edui-btn edui-btn-redo  edui-disabled" unselectable="on" onmousedown="return false" data-original-title="重做">
+                                            <div class="edui-btn edui-btn-redo edui-disabled" unselectable="on" onmousedown="return false" data-original-title="重做">
                                                 <div unselectable="on" class="edui-icon-redo edui-icon"></div>
                                                 <div class="edui-tooltip" unselectable="on" onmousedown="return false">
                                                     <div class="edui-tooltip-arrow" unselectable="on" onmousedown="return false"></div>
@@ -159,7 +166,7 @@
                                                 <br>
                                             </p>
                                         </div>
-                                        <textarea class="form-control ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" id="match-detail" editor="" editor-toolbar="['undo redo | bold italic underline | forecolor backcolor | link unlink | emotion image video  | removeformat source']" ng-model="match.detail" style="display: none;"></textarea>
+                                        <textarea class="form-control ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" id="match-detail" editor="" editor-toolbar="['undo redo | bold italic underline | forecolor backcolor | link unlink | emotion image video | removeformat source']" ng-model="match.detail" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -167,8 +174,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">
-                        <!-- ngIf: saving -->登记</button>
+                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记</button>
                     <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
                 </div>
             </div>

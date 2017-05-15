@@ -3,17 +3,24 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="endlesson" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-calendar"></i>学员 <span class="label bg-info ng-binding">威锋</span> 结课</h3></div>
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="fa fa-calendar"></i>  学员 
+                        <span class="label bg-info ng-binding">威锋</span>  结课 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <div class="row no-gutter step2" ng-class="{'step1':step==1,'step2':step==2}">
                         <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==1}">
-                            <h4 class="padder">1.选择已报课程</h4></div>
+                            <h4 class="padder">1.选择已报课程</h4>
+                        </div>
                         <div class="col-xs-6 bg-light lter bg-success" ng-class="{'bg-success':step==2}">
-                            <h4 class="padder">2.办理结课</h4></div>
+                            <h4 class="padder">2.办理结课</h4>
+                        </div>
                     </div>
-                    <!-- ngIf: step == 1 -->
-                    <!-- ngIf: step==2 -->
                     <div class="m-t ng-scope" ng-if="step==2">
                         <form name="form1" class="form-horizontal ng-pristine ng-valid">
                             <div class="form-group">
@@ -40,36 +47,44 @@
                                     <p class="form-control-static ng-binding">0</p>
                                 </div>
                             </div>
-                            <!-- ngIf: lesson.unpay_amount > 0 -->
                             <div class="form-group ng-scope" ng-if="lesson.unpay_amount > 0">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label text-danger">欠款:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
-                                    <p class="form-control-static"><span class="label bg-danger ng-binding">￥2000.00</span></p>
+                                    <p class="form-control-static">
+                                        <span class="label bg-danger ng-binding">￥2000.00</span>
+                                    </p>
                                     <div class="btn-group dropdown" dropdown="">
-                                        <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">欠费处理 <span class="caret"></span></button>
+                                        <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+  欠费处理 
+                                            <span class="caret"></span>
+                                        </button>
                                         <ul class="dropdown-menu">
-                                            <li><a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)"><i class="icon-plus"></i> 补交欠费</a></li>
-                                            <li><a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)"><i class="icon-ban"></i> 欠费清除</a></li>
+                                            <li>
+                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)">
+                                                    <i class="icon-plus"></i>  补交欠费 
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)">
+                                                    <i class="icon-ban"></i>  欠费清除 
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end ngIf: lesson.unpay_amount > 0 -->
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">剩余课次:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <p class="form-control-static ng-binding">20</p>
                                 </div>
                             </div>
-                            <!-- ngIf: lesson.remain_times > 0 && lesson.unpay_amount == '0' -->
-                            <!-- ngIf: end.remain_times_deal == 2 -->
                         </form>
                     </div>
-                    <!-- end ngIf: step==2 -->
                 </div>
-                <div class="modal-footer" ng-hide="step == 1"><a ng-show="step > 1" class="btn btn-link" ng-click="go_step(1)">返回</a>
-                    <button class="btn btn-primary" ng-disabled="lesson.unpay_amount > 0 || saving" ng-click="do_ok()" disabled="disabled">
-                        <!-- ngIf: saving -->确认结课</button>
+                <div class="modal-footer" ng-hide="step == 1">
+                    <a ng-show="step > 1" class="btn btn-link" ng-click="go_step(1)">返回</a>
+                    <button class="btn btn-primary" ng-disabled="lesson.unpay_amount > 0 || saving" ng-click="do_ok()" disabled="disabled">确认结课</button>
                     <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
                 </div>
             </div>

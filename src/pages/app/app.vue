@@ -1,13 +1,14 @@
 <template>
     <div class="app ng-scope app-header-fixed app-aside-fixed" :class="{'app-aside-folded':isSidebarCollapsed}">
-        <lb-header @sidebarCollapsed="sidebarCollapsed" />
-        <lb-sidebarmenu />
+        <lb-header @sidebarcollapsed="sidebarCollapsed"></lb-header>
+        <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
             <router-view></router-view>
         </div>
-        <lb-footer />
-        <lb-modalbackdrop/>
-        <lb-dialoglist/>
+        <lb-footer></lb-footer>
+        <lb-modalbackdrop>
+            <lb-dialoglist></lb-dialoglist>
+        </lb-modalbackdrop>
     </div>
 </template>
 <script>

@@ -10,7 +10,13 @@
                         <option value="1">初步意向</option>
                         <option value="2">意向强烈</option>
                     </select>
-                    <div class="chosen-container chosen-container-single" style="width: 120px;" title=""><a class="chosen-single" tabindex="-1"><span>没有意向</span><div><b></b></div></a>
+                    <div class="chosen-container chosen-container-single" style="width: 120px;" title="">
+                        <a class="chosen-single" tabindex="-1">
+                            <span>没有意向</span>
+                            <div>
+                                <b></b>
+                            </div>
+                        </a>
                         <div class="chosen-drop">
                             <div class="chosen-search">
                                 <input type="text" autocomplete="off">
@@ -25,8 +31,9 @@
                     </div>
                 </div>
                 <p class="m-t">
-                    <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">
-                        <!-- ngIf: saving -->确定</button> <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()">取消</a></p>
+                    <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
+                    <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()">取消</a>
+                </p>
             </div>
         </div>
     </div>

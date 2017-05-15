@@ -4,23 +4,36 @@
             <div oc-lazy-load="['js/widget/attendance.js']" class="ng-scope"></div>
             <div ng-controller="wAttendanceCtrl" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button"><span>×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-calendar"></i>考勤</h3></div>
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog()">
+                        <span>×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="fa fa-calendar"></i>  考勤 
+                    </h3>
+                </div>
                 <div class="modal-body" ng-switch="$action">
-                    <!-- ngSwitchWhen: menu -->
-                    <!-- ngSwitchWhen: att_by_today -->
-                    <!--现场考勤-->
-                    <!-- ngSwitchWhen: att_by_reg -->
                     <div ng-switch-when="att_by_reg" class="ng-scope">
-                        <div class="padder-v bg-light text-center"><a class="btn btn-default btn-xs pull-left m-l-xs" ng-click="back_menu()"><i class="fa fa-chevron-left"></i> 返回</a> <strong>对过去的考勤记录进行登记</strong></div>
+                        <div class="padder-v bg-light text-center">
+                            <a class="btn btn-default btn-xs pull-left m-l-xs" ng-click="back_menu()">
+                                <i class="fa fa-chevron-left"></i>  返回 
+                            </a>
+                            <strong>对过去的考勤记录进行登记</strong>
+                        </div>
                         <ul class="nav nav-pills nav-justified m-t">
-                            <li role="presentation" ng-click="select_reg_by('arrange')" ng-class="{'active':reg_by=='arrange'}" class=""><a><i class="fa fa-calendar"></i> 按排课登记</a></li>
-                            <li role="presentation" ng-click="select_reg_by('opt')" ng-class="{'active':reg_by=='opt'}" class="active"><a><i class="icon-plus"></i> 自由登记</a></li>
+                            <li role="presentation" ng-click="select_reg_by('arrange')" ng-class="{'active':reg_by=='arrange'}" class="">
+                                <a>
+                                    <i class="fa fa-calendar"></i>  按排课登记 
+                                </a>
+                            </li>
+                            <li role="presentation" ng-click="select_reg_by('opt')" ng-class="{'active':reg_by=='opt'}" class="active">
+                                <a>
+                                    <i class="icon-plus"></i>  自由登记 
+                                </a>
+                            </li>
                         </ul>
-                        <!-- ngInclude: 'tpl/app/widget/attendance/reg_by_'+reg_by+'.block.html' -->
                         <div class="m-t-xs ng-scope" ng-include="'tpl/app/widget/attendance/reg_by_'+reg_by+'.block.html'">
                             <div class="b-t ng-scope" ng-controller="wRegByOptCtl">
-                                <!-- ngIf: step == 1 -->
                                 <div class="form-horizontal ng-scope" ng-if="step == 1">
                                     <div class="form-group">
                                         <label class="control-label col-md-2 col-xs-3">考勤对象:</label>
@@ -35,15 +48,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ngIf: att.lesson_type == 10 || att.lesson_type == 11 -->
-                                    <!-- ngIf: att.sj_id > 0 || att.lesson_type == '0' || att.lesson_type == '1' -->
-                                    <!-- ngInclude: 'tpl/app/widget/attendance/select_'+att.lesson_type+'.block.html' -->
                                     <div ng-include="'tpl/app/widget/attendance/select_'+att.lesson_type+'.block.html'" ng-if="att.sj_id > 0 || att.lesson_type == '0' || att.lesson_type == '1'" class="ng-scope">
                                         <div class="wrapper bg-light lter ng-scope">
-                                            <!-- ngIf: !att.class -->
                                             <p class="text-center text-muted ng-scope" ng-if="!att.class">请在下面选择班级</p>
-                                            <!-- end ngIf: !att.class -->
-                                            <!-- ngIf: att.class -->
                                         </div>
                                         <div class="wrapper-xs ng-scope" xo-rest="classes" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_end:0}}" loading-text="正在加载班级..." empty-text="没有符合条件的班级!" xo-rest-ctrl="att_c">
                                             <div class="row wrapper no-gutter bg-light">
@@ -53,21 +60,20 @@
                                                 <div class="col-xs-10">
                                                     <div class="input-group w-full">
                                                         <div class="input-group">
-                                                            <div class="input-group-btn" ng-init="
-                      filter.fields = [
-                        {name:'class_name',value:'班级名'},
-                        {name:'master',value:'老师姓名'}
-                      ];
-                      grid.search_key = 'class_name';
-                      grid.search_value = '';
-                      ">
-                                                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">班级名&nbsp;<span class="caret"></span></button>
+                                                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'master',value:'老师姓名'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
+                                                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+  班级名 
+                                                                    <span class="caret"></span>
+                                                                </button>
                                                             </div>
-                                                            <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" ng-model="grid.search_value" placeholder="关键字"> <span class="input-group-btn"><button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button></span></div>
+                                                            <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" ng-model="grid.search_value" placeholder="关键字">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--row-->
                                             <div class="table-responsive m-t">
                                                 <table class="table table-striped table-hover b-t b-light">
                                                     <thead>
@@ -80,8 +86,6 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <!-- ngRepeat: item in grid.data -->
-                                                        <!-- ngIf: !loading -->
                                                         <tr ng-click="select_class(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                                                             <td class="ng-binding">11</td>
                                                             <td class="ng-binding">2</td>
@@ -89,46 +93,23 @@
                                                             <td class="ng-binding">0</td>
                                                             <td class="ng-binding">张英乙</td>
                                                         </tr>
-                                                        <!-- end ngIf: !loading -->
-                                                        <!-- end ngRepeat: item in grid.data -->
                                                     </tbody>
                                                 </table>
-                                                <div class="grid-data-result">
-                                                    <!-- ngIf: loading -->
-                                                    <!-- ngIf: !loading && grid.data.length==0 -->
-                                                </div>
+                                                <div class="grid-data-result"></div>
                                             </div>
-                                            <!--table-responsive-->
-                                            <!-- ngIf: grid.total > 0 -->
                                             <div class="panel-footer ng-scope" ng-if="grid.total > 0">
-                                                <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
-                                                    <!-- ngIf: boundaryLinks && totalPages > 1 -->
-                                                    <!-- ngIf: directionLinks && totalPages > 1 -->
-                                                    <!-- ngRepeat: page in pages track by $index -->
-                                                    <!-- ngIf: totalPages > 1 -->
-                                                    <!-- end ngRepeat: page in pages track by $index -->
-                                                    <!-- ngIf: directionLinks && totalPages > 1 -->
-                                                    <!-- ngIf: boundaryLinks && totalPages > 1 -->
-                                                </ul>
+                                                <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
                                             </div>
-                                            <!-- end ngIf: grid.total > 0 -->
                                         </div>
-                                        <script type="text/ng-template" id="att_c.ctrl.js" class="ng-scope"></script>
                                     </div>
-                                    <!-- end ngIf: att.sj_id > 0 || att.lesson_type == '0' || att.lesson_type == '1' -->
                                     <div class="panel-footer text-center">
                                         <button class="btn btn-primary" ng-click="go_step(2)">下一步</button>
                                         <button class="btn btn-warning m-l-xs" ng-click="back_menu()">返回</button>
                                     </div>
                                 </div>
-                                <!-- end ngIf: step == 1 -->
-                                <!-- ngIf: step == 2 -->
                             </div>
                         </div>
                     </div>
-                    <!-- end ngSwitchWhen: -->
-                    <!-- ngSwitchWhen: att_by_student -->
-                    <!--按学员考勤-->
                 </div>
             </div>
         </div>

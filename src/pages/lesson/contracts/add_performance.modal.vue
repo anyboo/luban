@@ -3,8 +3,14 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="add_performance" class="ng-scope">
                 <div class="modal-header">
-                    <button type="button" ng-click="$dismiss()" class="close"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="icon-plus"></i> 登记考试成绩</h3></div>
+                    <button type="button" ng-click="$dismiss()" class="close" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="icon-plus"></i>  登记考试成绩 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-parse">
                         <div class="form-group">
@@ -39,20 +45,16 @@
                                         <td width="200">成绩</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!-- ngRepeat: item in performance.students -->
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">
-                        <!-- ngIf: saving -->登记成绩</button>
+                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记成绩</button>
                     <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
                 </div>
             </div>
-          
         </div>
     </div>
 </template>

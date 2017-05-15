@@ -3,8 +3,15 @@
         <div class="modal-content" modal-transclude="">
             <div class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title">老师 <span class="label bg-info ng-binding">张英乙</span> 的排课记录</h3></div>
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+  老师 
+                        <span class="label bg-info ng-binding">张英乙</span>  的排课记录 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <div class="table-responsive m-t">
                         <table class="table table-striped b-t b-light">
@@ -18,9 +25,7 @@
                         </table>
                         <div style="height:400px;position: relative" ui-jq="perfectScrollbar" class="ps-container ps-theme-default" data-ps-id="5c7c4b02-343c-b4cc-fa5f-2b3c97329446">
                             <table class="table table-striped">
-                                <tbody>
-                                    <!-- ngRepeat: item in vm.input.$list -->
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                                 <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>

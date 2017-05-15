@@ -4,15 +4,27 @@
             <div class="modal-content" modal-transclude="">
                 <div page-controller="open_class" class="ng-scope">
                     <div class="modal-header">
-                        <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                        <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>开新班</h3></div>
+                        <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h3 class="modal-title">
+                            <i class="fa fa-flag-checkered"></i>  开新班 
+                        </h3>
+                    </div>
                     <div class="modal-body">
                         <form name="form1" class="form-validation form-horizontal m-t ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-pattern">
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">授课老师:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="input-group">
-                                        <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true"> <span class="input-group-btn"><button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}"><i class="fa fa-user"></i> 选择</button></span></div>
+                                        <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowDailog('lb-selectteachertpl')">
+                                                <i class="fa fa-user"></i>  选择 
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -22,7 +34,13 @@
                                         <option value="" class="">选择课程</option>
                                         <option value="0">默认课程</option>
                                     </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 485px;" title=""><a class="chosen-single" tabindex="-1"><span>选择课程</span><div><b></b></div></a>
+                                    <div class="chosen-container chosen-container-single" style="width: 485px;" title="">
+                                        <a class="chosen-single" tabindex="-1">
+                                            <span>选择课程</span>
+                                            <div>
+                                                <b></b>
+                                            </div>
+                                        </a>
                                         <div class="chosen-drop">
                                             <div class="chosen-search">
                                                 <input type="text" autocomplete="off">
@@ -58,28 +76,33 @@
                                 <label class="control-label col-md-2 col-xs-12">额定人数:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" ng-model="info.max_student_num" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">人</span></div>
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" ng-model="info.max_student_num" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled">
+                                        <span class="input-group-addon">人</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" ng-model="info.total_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">次</span></div>
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" ng-model="info.total_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled">
+                                        <span class="input-group-addon">次</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="info.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled"> <span class="input-group-addon">小时</span></div>
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="info.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled">
+                                        <span class="input-group-addon">小时</span>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()" disabled="disabled">
-                            <!-- ngIf: saving -->确定</button>
+                        <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()" disabled="disabled">确定</button>
                         <button class="btn btn-warning" ng-click="vm.dismiss()">取消</button>
                     </div>
                 </div>

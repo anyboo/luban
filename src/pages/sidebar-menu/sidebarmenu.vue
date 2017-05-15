@@ -5,14 +5,17 @@
                 <nav class="navi clearfix ng-scope">
                     <ul class="nav ng-scope">
                         <li class="">
-                            <a href="#/main/home"><i class="icon icon-home text-primary-dker"></i> <span class="font-normal">工作台</span></a>
+                            <a href="#/main/home">
+                                <i class="icon icon-home text-primary-dker"></i>
+                                <span class="font-normal">工作台</span>
+                            </a>
                         </li>
                         <template v-for="item in menu">
-                            <lb-sidebamenu-item :menu="item" />
+                            <lb-sidebamenu-item :menu="item"></lb-sidebamenu-item>
                         </template>
                     </ul>
                 </nav>
-                <lb-homestat/>
+                <lb-homestat></lb-homestat>
             </div>
         </div>
     </div>

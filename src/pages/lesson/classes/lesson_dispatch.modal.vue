@@ -3,16 +3,26 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="lesson_dispatch" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-calendar"></i>调整 <span class="label bg-info ng-binding">11</span> 的排课记录</h3></div>
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="fa fa-calendar"></i>  调整 
+                        <span class="label bg-info ng-binding">11</span>  的排课记录 
+                    </h3>
+                </div>
                 <div class="modal-body">
                     <div class="row no-gutter">
                         <div class="col-xs-4 bg-light lter bg-success" ng-class="{'bg-success':step==1}">
-                            <h4 class="padder">1.选择排课记录</h4></div>
+                            <h4 class="padder">1.选择排课记录</h4>
+                        </div>
                         <div class="col-xs-4 bg-light lter" ng-class="{'bg-success':step==2}">
-                            <h4 class="padder">2.确定调整策略</h4></div>
+                            <h4 class="padder">2.确定调整策略</h4>
+                        </div>
                         <div class="col-xs-4 bg-light lter" ng-class="{'bg-success':step==3}">
-                            <h4 class="padder">3.确定通知策略</h4></div>
+                            <h4 class="padder">3.确定通知策略</h4>
+                        </div>
                     </div>
                     <form name="step1" class="form-validation form-horizontal m-t ng-pristine ng-valid" ng-show="step==1">
                         <p class="alert alert-info">以下是班级的未考勤的排课记录,请选择单条或多条记录进行调整</p>
@@ -30,11 +40,8 @@
                             </table>
                             <div style="position:relative;height:400px" ui-jq="perfectScrollbar" class="ps-container ps-theme-default" data-ps-id="e63db38e-da45-326f-6fa2-6f4f8142f183">
                                 <table class="table table-striped table-hover">
-                                    <tbody>
-                                        <!-- ngRepeat: item in arranges_rest.$list -->
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
-                                <!-- ngIf: arranges_rest.$loading -->
                                 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                                     <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                 </div>
@@ -46,25 +53,22 @@
                     </form>
                     <form name="step2" class="form-validation m-t ng-pristine ng-valid ng-hide ng-valid-required ng-valid-pattern ng-valid-number" ng-show="step == 2">
                         <p class="text-info">将对以下排课进行调整</p>
-                        <ul class="list-group">
-                            <!-- ngRepeat: item in selected_arranges -->
-                        </ul>
+                        <ul class="list-group"></ul>
                         <p class="text-info">调整方案如下:</p>
                         <div class="btn-group m-l-xs">
                             <label class="btn btn-default ng-pristine ng-untouched ng-valid active" ng-model="dispatch.type" btn-radio="'1'">选中排课整体后移</label>
                             <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-disabled="selected_count > 1" ng-model="dispatch.type" btn-radio="'2'">本次及以后排课整体后移</label>
                             <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-disabled="selected_count > 1" ng-model="dispatch.type" btn-radio="'3'">调整到指定日期(针对单次)</label>
                         </div>
-                        <!-- ngIf: dispatch.type == '1' || dispatch.type == '2' -->
                         <div class="form-group m-t ng-scope" ng-if="dispatch.type == '1' || dispatch.type == '2'">
                             <label class="control-label">后移天数</label>
                             <div>
                                 <div class="input-group w-sm">
-                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" ng-model="dispatch.days" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required=""> <span class="input-group-addon">天</span></div>
+                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" ng-model="dispatch.days" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required="">
+                                    <span class="input-group-addon">天</span>
+                                </div>
                             </div>
                         </div>
-                        <!-- end ngIf: dispatch.type == '1' || dispatch.type == '2' -->
-                        <!-- ngIf: dispatch.type == '3' -->
                         <div class="form-group m-t">
                             <label class="control-label">调课原因:</label>
                             <div>
@@ -102,11 +106,9 @@
                     <button ng-show="step == 2" class="btn btn-default ng-hide" ng-click="step = 1">上一步</button>
                     <button ng-show="step == 2" class="btn btn-primary ng-hide" ng-disabled="step2.$invalid" ng-click="go_step3()">下一步</button>
                     <button ng-show="step == 3" class="btn btn-default ng-hide" ng-click="step = 2">上一步</button>
-                    <button ng-show="step == 3" class="btn btn-primary ng-hide" ng-disabled="saving" ng-click="do_ok()">
-                        <!-- ngIf: saving -->确定</button>
+                    <button ng-show="step == 3" class="btn btn-primary ng-hide" ng-disabled="saving" ng-click="do_ok()">确定</button>
                 </div>
             </div>
-           
         </div>
     </div>
 </template>

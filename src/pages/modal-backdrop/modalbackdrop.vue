@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop fade  in" :style="{'z-index': modalIndex}" v-if="modalShow"></div>
+    <div class="modal-backdrop fade in" :style="{'z-index': modalIndex}" v-if="modalShow"></div>
 </template>
 <script>
 export default {
