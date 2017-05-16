@@ -28,10 +28,10 @@
                         <label btn-radio="'1'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid active">在职</label>
                         <label btn-radio="'0'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">离职</label>
                     </div>
-                    <button class="btn btn-default pull-right" ng-click="$util.open('tpl/system/groups.html','lg',{})">
+                    <button ng-click="$util.open('tpl/system/groups.html','lg',{})" @click="lbShowDailog('lb-groups')">
                         <i class="fa fa-list"></i>分组设置
                     </button>
-                    <button class="btn btn-primary pull-right" ng-click="$util.open('tpl/system/employee/employee_add.modal.html','md')">
+                    <button ng-click="$util.open('tpl/system/employee/employee_add.modal.html','md')" @click="lbShowDailog('lb-employee_addmodal')">
                         <i class="fa fa-plus"></i>添加
                     </button>
                 </div>

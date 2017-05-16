@@ -34,12 +34,12 @@
                             </p>
                             <div class="row no-gutter m-t">
                                 <div class="col-xs-5">
-                                    <button class="btn btn-primary btn-block" ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',order)" ng-disabled="order.order_amount == 0">
+                                    <button ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',order)" @click="lbShowDailog('lb-pay_nowmodal')">
                                         <i class="icon-wallet"></i>现场缴费
                                     </button>
                                 </div>
                                 <div class="col-xs-4 ng-scope" ng-if="order.order_amount > 0">
-                                    <button class="btn btn-info btn-block" ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',order)" ng-disabled="order.order_amount == 0">
+                                    <button ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',order)" @click="lbShowDailog('lb-pay_regmodal')">
                                         <i class="icon-note"></i>缴费登记
                                     </button>
                                 </div>

@@ -30,10 +30,10 @@
                             <label btn-radio="'1'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1</label>
                             <label btn-radio="'10'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包</label>
                         </div>
-                        <button class="btn btn-default pull-right" ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})">
+                        <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowDailog('lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
-                        <button ui-per="lesson.add" class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})">
+                        <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog('lb-new_lessonmodal')">
                             <i class="fa fa-plus"></i>添加课程
                         </button>
                     </div>

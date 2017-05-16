@@ -1,5 +1,5 @@
 <template>
-	<div>空页面</div>
+    <div>空页面</div>
 </template>
 <script>
 export default {

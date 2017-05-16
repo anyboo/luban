@@ -448,7 +448,7 @@
                             </span>
                         </div>
                     </div>
-                    <button class="btn btn-primary pull-right" ui-per="widget.attendance" ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})">
+                    <button ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})" @click="lbShowDailog('lb-attendancemodal')">
                         <i class="icon-plus"></i>考勤登记
                     </button>
                 </div>

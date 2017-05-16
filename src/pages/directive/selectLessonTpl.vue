@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <button ui-per="lesson.add" class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})">
+                            <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog('lb-new_lessonmodal')">
                                 <i class="fa fa-plus"></i>添加课程
                             </button>
                         </div>
