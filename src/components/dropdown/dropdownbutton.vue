@@ -19,7 +19,6 @@ export default {
                 clearTimeout(this.timeCloseId)
                 this.$parent.handleOpen()
             }
-
         },
         handleClose(event) {
             event.preventDefault()
