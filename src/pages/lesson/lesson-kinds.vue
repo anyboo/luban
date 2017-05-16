@@ -9,13 +9,13 @@
                             <span class="sr-only">关闭</span>
                         </button>
                         <h3 class="modal-title">
-                            <i class="fa fa-book"></i>  课程分类设置 
+                            <i class="fa fa-book"></i>课程分类设置
                         </h3>
                     </div>
                     <div class="modal-body">
                         <p>
                             <a class="btn btn-default" ng-click="new_root()">
-                                <i class="fa fa-plus"></i>  新增大类 
+                                <i class="fa fa-plus"></i>新增大类
                             </a>
                         </p>
                         <div ui-tree="{dropped:onDrop}" id="cate-root" data-clone-enabled="true" class="ng-scope angular-ui-tree">

@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  学员 
-                        <span class="label bg-info ng-binding">威锋</span>  结课 
+                        <i class="fa fa-calendar"></i>学员
+                        <span class="label bg-info ng-binding">威锋</span>结课
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -53,24 +53,24 @@
                                     <p class="form-control-static">
                                         <span class="label bg-danger ng-binding">￥2000.00</span>
                                     </p>
-                                    <div class="btn-group dropdown" dropdown="">
-                                        <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  欠费处理 
+                                    <lb-dropdown>
+                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                            欠费处理
                                             <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
+                                        </lb-dropdown-button>
+                                        <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)">
-                                                    <i class="icon-plus"></i>  补交欠费 
+                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)" @click="lbShowDailog('lb-ordersmodal')">
+                                                    <i class="icon-plus"></i>补交欠费
                                                 </a>
                                             </li>
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)">
-                                                    <i class="icon-ban"></i>  欠费清除 
+                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                    <i class="icon-ban"></i>欠费清除
                                                 </a>
                                             </li>
-                                        </ul>
-                                    </div>
+                                        </lb-dropdown-menu>
+                                    </lb-dropdown>
                                 </div>
                             </div>
                             <div class="form-group">

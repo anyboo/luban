@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user"></i>  编辑 
-                        <span class="label bg-info ng-binding">陈佳木</span>  的资料 
+                        <i class="fa fa-user"></i>编辑
+                        <span class="label bg-info ng-binding">陈佳木</span>的资料
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -26,10 +26,10 @@
                             <div class="col-md-10 col-xs-12">
                                 <div class="btn-group">
                                     <label btn-radio="'1'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-male"></i>  男 
+                                        <i class="fa fa-male"></i>男
                                     </label>
                                     <label btn-radio="'2'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-female"></i>  女 
+                                        <i class="fa fa-female"></i>女
                                     </label>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <div class="checkbox inline m-l-xs">
                                     <label class="i-checks">
                                         <input ng-model="employee.is_sa" ng-true-value="'1'" ng-false-value="'0'" type="checkbox" value="1" class="ng-pristine ng-untouched ng-valid">
-                                        <i></i>  助教 
+                                        <i></i>助教
                                     </label>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                                     <span class="close ui-select-match-close" ng-hide="$select.disabled" ng-click="$select.removeChoice($index)">×</span>
                                                     <span uis-transclude-append="">
                                                         <span class="ng-binding ng-scope">
-  福州布尔培训 
+                                                            福州布尔培训
                                                             <福州布尔培训></福州布尔培训>
                                                         </span>
                                                     </span>
@@ -136,7 +136,7 @@
                                         <div class="tree-input" ng-click="onControlClicked($event)">
                                             <span ng-if="selectedItems.length > 0" class="selected-items ng-scope">
                                                 <span ng-repeat="selectedItem in selectedItems" class="selected-item btn btn-xs btn-default ng-binding ng-scope">
-  默认分组 
+                                                    默认分组
                                                     <span class="selected-item-close" ng-click="deselectItem(selectedItem, $event)"></span>
                                                 </span>
                                                 <span class="caret"></span>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">
-                                <i class="fa fa-phone"></i>  电话: 
+                                <i class="fa fa-phone"></i>电话:
                             </label>
                             <div class="col-md-10 col-xs-12">
                                 <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.tel">
@@ -175,7 +175,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">
-                                <i class="glyphicon glyphicon-envelope"></i>  Email: 
+                                <i class="glyphicon glyphicon-envelope"></i>Email:
                             </label>
                             <div class="col-md-10 col-xs-12">
                                 <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.email">

@@ -14,7 +14,7 @@
         </div>
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-info dker">
             <div class="nav navbar-nav hidden-xs ng-scope" ng-controller="UtilCtrl">
-                <a class="btn no-shadow navbar-btn" ng-click="$util.open('tpl/public/feature.modal.html','md',{})">
+                <a ng-click="$util.open('tpl/public/feature.modal.html','md',{})" @click="lbShowDailog('lb-featuremodal')">
                     <span class="badge badge-sm up bg-danger pull-right-xs ng-binding">2.1</span>
                 </a>
             </div>
@@ -30,7 +30,7 @@
                         <span>我的</span>
                         <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu">
+                    <lb-dropdown-menu slot="menuslot">
                         <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
                             <a ui-sref="my.news" href="#/my/news">
                                 <i ng-if="item.class" class="fa fa-file-text text-info-dker"></i>
@@ -79,7 +79,7 @@
                                 <span class="ng-binding">课堂点评</span>
                             </a>
                         </li>
-                    </ul>
+                    </lb-dropdown-menu>
                 </li>
             </ul>
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">
@@ -106,43 +106,43 @@
                         <li></li>
                         <li>
                             <a ui-sref="main.profile" href="#/main/profile">
-                                <i class="fa fa-user"></i>  个人资料 
+                                <i class="fa fa-user"></i>个人资料
                             </a>
                         </li>
                         <li>
                             <a ui-sref="main.system" ng-if="user.is_main == '1' || user.is_master == 1" class="ng-scope" href="#/main/system">
-                                <i class="fa fa-dashboard"></i>  系统状态 
+                                <i class="fa fa-dashboard"></i>系统状态
                             </a>
                         </li>
                         <li>
                             <a ui-sref="main.help" href="#/main/help">
-                                <i class="fa fa-question-circle"></i>  系统帮助 
+                                <i class="fa fa-question-circle"></i>系统帮助
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a ng-click="refresh_cache()">
-                                <i class="icon-reload"></i>  更新系统缓存 
+                                <i class="icon-reload"></i>更新系统缓存
                             </a>
                         </li>
                         <li>
                             <a ng-click="app.is_lock=1">
-                                <i class="icon-lock"></i>  锁屏 
+                                <i class="icon-lock"></i>锁屏
                             </a>
                         </li>
                         <li>
                             <a href="javascript:window.location.reload();">
-                                <i class="icon-refresh"></i>  刷新界面 
+                                <i class="icon-refresh"></i>刷新界面
                             </a>
                         </li>
                         <li>
                             <a href="http://v.xiao360.com/shortcut">
-                                <i class="fa fa-save"></i>  保存到桌面 
+                                <i class="fa fa-save"></i>保存到桌面
                             </a>
                         </li>
                         <li>
                             <a ng-click="logout()">
-                                <i class="icon-logout"></i>  退出 
+                                <i class="icon-logout"></i>退出
                             </a>
                         </li>
                     </ul>

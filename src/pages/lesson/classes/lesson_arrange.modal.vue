@@ -13,8 +13,8 @@
                         <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" ng-model="arrange_type" btn-radio="1">自由排课</label>
                     </div>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  为 
-                        <span class="label bg-info ng-binding">11</span>  排课 
+                        <i class="fa fa-calendar"></i>为
+                        <span class="label bg-info ng-binding">11</span>排课
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -32,7 +32,7 @@
                                 <li class="m-t-xs">
                                     <label>授课老师:</label>
                                     <span class="ng-binding">张英乙</span>
-                                    <a class="btn btn-default btn-xs" ng-click="$util.open('tpl/app/lesson/classes/teacher_arranges.modal.html','md',teacher_rest)">查看排课</a>
+                                    <a ng-click="$util.open('tpl/app/lesson/classes/teacher_arranges.modal.html','md',teacher_rest)" @click="lbShowDailog('lb-teacher_arrangesmodal')">查看排课</a>
                                 </li>
                                 <li class="m-t-xs">
                                     <label>开课日期:</label>
@@ -55,7 +55,7 @@
                             </ul>
                             <div class="well ng-hide" ng-show="arrange_type == 1">
                                 <p>
-                                    <i class="fa fa-info"></i>  自由排课模式下，设置好上课时间后直接点击日历上的日期就可以增加一条完整的排课记录。 
+                                    <i class="fa fa-info"></i>自由排课模式下，设置好上课时间后直接点击日历上的日期就可以增加一条完整的排课记录。
                                 </p>
                             </div>
                         </div>
@@ -104,13 +104,13 @@
                                                     <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="item.int_start_hour" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly">
                                                     <span class="inline">~</span>
                                                     <input type="text" ng-readonly="true" style="width:70px" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="item.int_end_hour" datetimepicker="time" datetimepicker-option="{step:15}" readonly="readonly">
-                                                    <div class="btn-group pull-right m-l-xs" dropdown="">
-                                                        <button type="button" class="btn btn-default btn-sm" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  选择时间段 
+                                                    <lb-dropdown>
+                                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
+                                                            选择时间段
                                                             <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu"></ul>
-                                                    </div>
+                                                        </lb-dropdown-button>
+                                                        <lb-dropdown-menu slot="menuslot"></lb-dropdown-menu>
+                                                    </lb-dropdown>
                                                 </div>
                                                 <div class="inline va-m">
                                                     <a ng-if="$first" class="btn btn-sm btn-default ng-scope" ng-click="add_week_loop_item()" ng-disabled="week_loops.length > 6">
@@ -134,12 +134,12 @@
                                         <div>
                                             <strong class="m-l-xs">设置排课避开日期</strong>
                                             <div class="inline">
-                                                <div dropdown="" class="btn-group dropdown">
-                                                    <button dropdown-toggle="" class="btn btn-sm btn-default" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="fa fa-plus"></i>  节假日 
+                                                <lb-dropdown>
+                                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-sm btn-default">
+                                                        <i class="fa fa-plus"></i>节假日
                                                         <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
+                                                    </lb-dropdown-button>
+                                                    <lb-dropdown-menu slot="menuslot">
                                                         <li ng-repeat="item in holidays" class="ng-scope">
                                                             <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">劳动节</a>
                                                         </li>
@@ -155,8 +155,8 @@
                                                         <li ng-repeat="item in holidays" class="ng-scope">
                                                             <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">元旦节</a>
                                                         </li>
-                                                    </ul>
-                                                </div>
+                                                    </lb-dropdown-menu>
+                                                </lb-dropdown>
                                             </div>
                                             <i class="pull-right fa fa-times" ng-click="show_week_loop_avoid=false"></i>
                                         </div>
@@ -186,13 +186,13 @@
                                             <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="default_int_start_hour" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly">
                                             <span class="inline">~</span>
                                             <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="default_int_end_hour" readonly="readonly">
-                                            <div class="btn-group pull-right m-l-xs" dropdown="">
-                                                <button type="button" class="btn btn-default btn-sm" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  选择时间段 
+                                            <lb-dropdown>
+                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
+                                                    选择时间段
                                                     <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu"></ul>
-                                            </div>
+                                                </lb-dropdown-button>
+                                                <lb-dropdown-menu slot="menuslot"></lb-dropdown-menu>
+                                            </lb-dropdown>
                                         </div>
                                     </li>
                                     <li class="m-t-xs">
@@ -519,9 +519,9 @@
                                         <tr ng-if="new_arranges.length == 0" class="ng-scope">
                                             <td colspan="3">
                                                 <p class="text-muted">
-  新增排课记录，请根据实际情况选择 
-                                                    <code>规律排课</code>  或 
-                                                    <code>自由排课</code>  任意1种方式来进行排课 
+                                                    新增排课记录，请根据实际情况选择
+                                                    <code>规律排课</code>或
+                                                    <code>自由排课</code>任意1种方式来进行排课
                                                 </p>
                                             </td>
                                         </tr>

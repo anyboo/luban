@@ -10,8 +10,8 @@
                             <span class="sr-only">关闭</span>
                         </button>
                         <h3 class="modal-title">
-                            <i class="icon-note"></i>  为订单号 
-                            <span class="label bg-info ng-binding">OC1167917120512043566309</span>  办理退款 
+                            <i class="icon-note"></i>为订单号
+                            <span class="label bg-info ng-binding">OC1167917120512043566309</span>办理退款
                         </h3>
                     </div>
                     <div class="modal-body">
@@ -28,8 +28,8 @@
                                 <li class="list-group-item ng-scope" ng-click="select_oph(item)" ng-repeat="item in pays_rest.$list" ng-class="{'active':item.oph_id == refund.oph_id}">
                                     <h4 class="list-group-item-heading ng-binding">缴费日期:2017-05-12 16:35</h4>
                                     <p class="list-group-item-text ng-binding">
-  缴费金额: 
-                                        <span class="text-danger ng-binding">1000.00元</span>  ,缴费方式:现金 
+                                        缴费金额:
+                                        <span class="text-danger ng-binding">1000.00元</span>,缴费方式:现金
                                     </p>
                                 </li>
                             </ul>

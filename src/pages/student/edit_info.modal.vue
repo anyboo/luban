@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user"></i>  编辑 
-                        <span class="badge bg-info ng-binding">威锋</span>  的基本资料 
+                        <i class="fa fa-user"></i>编辑
+                        <span class="badge bg-info ng-binding">威锋</span>的基本资料
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -20,13 +20,13 @@
                                 <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入学员姓名" ng-model="info.student_name" required="">
                                 <div class="btn-group m-t">
                                     <label class="btn btn-default ng-pristine ng-untouched ng-valid active" ng-model="info.sex" btn-radio="'1'">
-                                        <i class="fa fa-male"></i>  男 
+                                        <i class="fa fa-male"></i>男
                                     </label>
                                     <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="info.sex" btn-radio="'2'">
-                                        <i class="fa fa-female"></i>  女 
+                                        <i class="fa fa-female"></i>女
                                     </label>
                                     <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="info.sex" btn-radio="'0'">
-                                        <i class="fa fa-question-circle"></i>  待确定 
+                                        <i class="fa fa-question-circle"></i>待确定
                                     </label>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="col-md-5 col-xs-12">
                                 <div ng-if="$action != 'set_region'" class="ng-scope">
                                     <p class="form-control-static ng-scope" ng-if="info.region_oe_id == '0'">
-  未设置归属 
+                                        未设置归属
                                         <a class="link" ng-click="set_region(info)">设置</a>
                                     </p>
                                 </div>

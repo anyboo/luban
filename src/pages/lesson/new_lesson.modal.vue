@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-flag"></i>  创建课程 
+                        <i class="fa fa-flag"></i>创建课程
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -70,7 +70,7 @@
                                                             <span class="close ui-select-match-close" ng-hide="$select.disabled" ng-click="$select.removeChoice($index)">×</span>
                                                             <span uis-transclude-append="">
                                                                 <span class="ng-binding ng-scope">
-  呵呵 
+                                                                    呵呵
                                                                     <呵呵></呵呵>
                                                                 </span>
                                                             </span>
@@ -119,7 +119,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-2">
-                                                <a class="btn btn-default" ng-click="$util.open('tpl/app/lesson/package/add_subject.modal.html','md',{})">
+                                                <a ng-click="$util.open('tpl/app/lesson/package/add_subject.modal.html','md',{})" @click="lbShowDailog('lb-add_subjectmodal')">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
@@ -130,11 +130,11 @@
                                     <label class="control-label col-md-3 col-xs-12">课程时间跨度:</label>
                                     <div class="col-md-9 col-xs-12">
                                         <div class="input-group">
-                                            <div dropdown="" class="input-group-btn dropdown">
-                                                <button dropdown-toggle="" class="btn btn-default" type="button" aria-haspopup="true" aria-expanded="false">
-  选择 
+                                            <lb-dropdown>
+                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
+                                                    选择
                                                     <span class="caret"></span>
-                                                </button>
+                                                </lb-dropdown-button>
                                                 <ul class="dropdown-menu pull-right">
                                                     <li class="text-right">
                                                         <a href="javascript:;" ng-click="lesson.lesson_days=30">1个月</a>
@@ -149,7 +149,7 @@
                                                         <a href="javascript:;" ng-click="lesson.lesson_days=365">1年</a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </lb-dropdown>
                                             <input type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" ng-model="lesson.lesson_days">
                                             <span class="input-group-addon">天</span>
                                         </div>
@@ -206,11 +206,11 @@
                                     <label class="control-label col-md-3 col-xs-12">单次课时长:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group m-b">
-                                            <div dropdown="" class="input-group-btn dropdown">
-                                                <button dropdown-toggle="" class="btn btn-default" type="button" aria-haspopup="true" aria-expanded="false">
-  选择 
+                                            <lb-dropdown>
+                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
+                                                    选择
                                                     <span class="caret"></span>
-                                                </button>
+                                                </lb-dropdown-button>
                                                 <ul class="dropdown-menu pull-right">
                                                     <li class="text-right">
                                                         <a href="javascript:;" ng-click="lesson.unit_hours=0.75;cacu_hours()">45分钟</a>
@@ -225,7 +225,7 @@
                                                         <a href="javascript:;" ng-click="lesson.unit_hours=2.00;cacu_hours()">2小时</a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </lb-dropdown>
                                             <input type="text" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="lesson.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="cacu_hours()">
                                             <span class="input-group-addon">小时</span>
                                         </div>

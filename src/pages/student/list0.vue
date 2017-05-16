@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <button class="btn btn-default btn-sm m-l-xs" ng-click="open_aside_left('search',{backdrop:false});">
-                    <i class="fa fa-filter"></i>  过滤 
+                    <i class="fa fa-filter"></i>过滤
                 </button>
             </div>
             <div class="col-xs-12 col-md-8 m-t">
@@ -49,39 +49,36 @@
                 <tbody>
                     <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                         <td>
-                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
-                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-                                    <ng-transclude>
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                    </ng-transclude>
+                            <lb-dropdown>
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
+                                </lb-dropdown-button>
+                                <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)">
-                                            <i class="icon-rocket"></i>  学员归属设定 
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-region_setmodal')">
+                                            <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)">
-                                            <i class="icon-heart"></i>  意向程度设置 
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purpose_setmodal')">
+                                            <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)">
-                                            <i class="fa fa-phone-square"></i>  跟踪回访 
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>
-                                </ul>
-                            </div>
+                                </lb-dropdown-menu>
+                            </lb-dropdown>
                         </td>
                         <td>
                             <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895">
                                 <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-female"></i>
-                                </span>
-  zzz 
+                                </span>zzz
                             </a>
                             <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
                         </td>
@@ -103,39 +100,36 @@
                     </tr>
                     <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                         <td>
-                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
-                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-                                    <ng-transclude>
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                    </ng-transclude>
+                            <lb-dropdown>
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
+                                </lb-dropdown-button>
+                                <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)">
-                                            <i class="icon-rocket"></i>  学员归属设定 
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-region_setmodal')">
+                                            <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)">
-                                            <i class="icon-heart"></i>  意向程度设置 
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purpose_setmodal')">
+                                            <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)">
-                                            <i class="fa fa-phone-square"></i>  跟踪回访 
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>
-                                </ul>
-                            </div>
+                                </lb-dropdown-menu>
+                            </lb-dropdown>
                         </td>
                         <td>
                             <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63894">
                                 <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-male"></i>
-                                </span>
-  qssd 
+                                </span>qssd
                             </a>
                             <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
                         </td>
@@ -157,39 +151,36 @@
                     </tr>
                     <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                         <td>
-                            <div class="btn-group dropdown " dropdown="" btn-class="btn-default btn-xs" btn-tooltip="操作" item="item">
-                                <button class="btn btn-default btn-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-                                    <ng-transclude>
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                    </ng-transclude>
+                            <lb-dropdown>
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
+                                </lb-dropdown-button>
+                                <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ui-per="student.region_set" ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)">
-                                            <i class="icon-rocket"></i>  学员归属设定 
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-region_setmodal')">
+                                            <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.purpose_set" ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)">
-                                            <i class="icon-heart"></i>  意向程度设置 
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purpose_setmodal')">
+                                            <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)">
-                                            <i class="fa fa-phone-square"></i>  跟踪回访 
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>
-                                </ul>
-                            </div>
+                                </lb-dropdown-menu>
+                            </lb-dropdown>
                         </td>
                         <td>
                             <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63893">
                                 <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-female"></i>
-                                </span>
-  qqq 
+                                </span>qqq
                             </a>
                             <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
                         </td>

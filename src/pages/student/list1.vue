@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_students" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  导出 
+                        <i class="glyphicon glyphicon-export"></i>导出
                     </button>
                     <div id="fct-class_students" style="display:none;">
                         <form name="export_form_class_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -85,8 +85,7 @@
                             <td class="ng-binding">
                                 <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-female"></i>
-                                </span>
-  zzzsz 
+                                </span>zzzsz
                             </td>
                             <td class="ng-binding">12345678765</td>
                             <td>
@@ -102,8 +101,8 @@
                                 <span class="badge bg-info ng-binding">￥16.50</span>
                             </td>
                             <td class="ng-binding">
-  3 
-                                <a class="btn btn-default btn-xs" ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})">
+                                3
+                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowDailog('lb-view_coursemodal')">
                                     <i class="icon-eye"></i>
                                 </a>
                             </td>

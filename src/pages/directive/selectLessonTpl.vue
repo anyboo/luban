@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title ng-binding">
-                    <i class="fa fa-flag"></i>  请选择课时包 
+                    <i class="fa fa-flag"></i>请选择课时包
                 </h3>
             </div>
             <div class="modal-body ng-scope">
@@ -18,7 +18,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn" ng-init=" filter.fields = [ {name:'lesson_name',value:'课程名'}, {name:'lesson_no',value:'课程编号'} ]; grid.search_key = 'lesson_name'; grid.search_value = ''; ">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  课程名 
+                                            课程名
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -31,14 +31,14 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <button ui-per="lesson.add" class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})">
-                                <i class="fa fa-plus"></i>  添加课程 
+                                <i class="fa fa-plus"></i>添加课程
                             </button>
                         </div>
                     </div>
                     <ul class="list-group m-t">
                         <div class="grid-data-result">
                             <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                                <i class="fa fa-frown-o"></i>  没有符合条件的课程! 
+                                <i class="fa fa-frown-o"></i>没有符合条件的课程!
                             </p>
                         </div>
                     </ul>

@@ -50,20 +50,20 @@
                                         <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-model="att.teach_start_hour" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly">
                                         <span class="inline">~</span>
                                         <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-model="att.teach_end_hour" readonly="readonly">
-                                        <div class="btn-group pull-right m-l-xs" dropdown="">
-                                            <button type="button" class="btn btn-default btn-sm" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  选择时间段 
+                                        <lb-dropdown>
+                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
+                                                选择时间段
                                                 <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="menuslot">
                                                 <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
                                                     <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">班课 08:00 ~ 22:00</a>
                                                 </li>
                                                 <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
                                                     <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">d 11:00 ~ 12:00</a>
                                                 </li>
-                                            </ul>
-                                        </div>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdown>
                                     </div>
                                 </div>
                             </div>

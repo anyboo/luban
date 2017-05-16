@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-  老师 
-                        <span class="label bg-info ng-binding">张英乙</span>  的排课记录 
+                        老师
+                        <span class="label bg-info ng-binding">张英乙</span>的排课记录
                     </h3>
                 </div>
                 <div class="modal-body">

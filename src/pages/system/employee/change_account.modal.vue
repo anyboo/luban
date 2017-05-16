@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user-md"></i>  更换 
-                        <span class="badge bg-info ng-binding">陈佳木</span>  的登录账号 
+                        <i class="fa fa-user-md"></i>更换
+                        <span class="badge bg-info ng-binding">陈佳木</span>的登录账号
                     </h3>
                 </div>
                 <div class="modal-body">

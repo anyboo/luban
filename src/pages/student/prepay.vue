@@ -8,8 +8,8 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="fa fa-shopping-cart"></i>  学员 
-                    <span class="label bg-info ng-binding">张磊</span>  报名&缴费 
+                    <i class="fa fa-shopping-cart"></i>学员
+                    <span class="label bg-info ng-binding">张磊</span>报名&缴费
                 </h3>
             </div>
             <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl">
@@ -59,12 +59,12 @@
                             <div class="col-xs-8">
                                 <button type="button" ng-click="save_order()" ng-disabled="form1.$invalid || saving" class="btn btn-block btn-primary">
                                     <i class="fa fa-save" ng-hide="saving"></i>
-                                    <i class="fa fa-spin fa-spinner ng-hide" ng-show="saving"></i>  确定订单 
+                                    <i class="fa fa-spin fa-spinner ng-hide" ng-show="saving"></i>确定订单
                                 </button>
                             </div>
                             <div class="col-xs-4">
                                 <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()">
-                                    <i class="fa fa-reply"></i>  返回 
+                                    <i class="fa fa-reply"></i>返回
                                 </button>
                             </div>
                         </div>

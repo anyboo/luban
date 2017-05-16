@@ -16,7 +16,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn" ng-init=" filter.fields = [ {name:'name',value:'姓名'}, {name:'mobile',value:'手机号'} ]; grid.search_key = 'name'; grid.search_value = ''; ">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  姓名 
+                                            姓名
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -46,8 +46,7 @@
                                 <div class="name m-t ng-binding">
                                     <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                         <i class="fa fa-question-circle"></i>
-                                    </span>
-  陈佳木 
+                                    </span>陈佳木
                                 </div>
                             </div>
                         </div>

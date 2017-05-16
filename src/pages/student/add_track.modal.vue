@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-comment"></i>  为学员 
-                        <span class="label bg-info ng-binding">LLL</span>  添加跟踪回访记录 
+                        <i class="fa fa-comment"></i>为学员
+                        <span class="label bg-info ng-binding">LLL</span>添加跟踪回访记录
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -17,16 +17,16 @@
                         <div class="wrapper-xs">
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>  沟通方式 
+                                    <span class="text-danger">*</span>沟通方式
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
                                         <input type="text" ng-model="inquiry.track_way" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
-                                        <div dropdown="" class="input-group-btn dropdown">
-                                            <button dropdown-toggle="" class="btn btn-default" type="button" aria-haspopup="true" aria-expanded="false">
-  选择 
+                                        <lb-dropdown>
+                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
+                                                选择
                                                 <span class="caret"></span>
-                                            </button>
+                                            </lb-dropdown-button>
                                             <ul class="dropdown-menu pull-right">
                                                 <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
                                                     <a ng-click="inquiry.track_way=item.text" class="ng-binding">其他</a>
@@ -41,13 +41,13 @@
                                                     <a ng-click="inquiry.track_way=item.text" class="ng-binding">电话</a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </lb-dropdown>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>  沟通内容 
+                                    <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required=""></textarea>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group" ng-init="show_track_time=false">
                                 <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>  沟通日期 
+                                    <span class="text-danger">*</span>沟通日期
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
@@ -72,7 +72,7 @@
                             <div class="form-group" ng-init="need_next_time = false">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
                                     <span class="text-info" ng-click="need_next_time = !need_next_time">
-                                        <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>  下次回访提醒 
+                                        <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time">
                                         <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" ng-model="inquiry.next_time" datetimepicker-option="{minDate:max_date}">

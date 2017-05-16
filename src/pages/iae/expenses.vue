@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-12</span>  - 
+                                    <span class="rangeData1">2017-05-12</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>
@@ -439,7 +439,7 @@
                         <label btn-radio="'month'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本月</label>
                     </div>
                     <button class="btn btn-default ng-isolate-scope" export="expenses" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  导出 
+                        <i class="glyphicon glyphicon-export"></i>导出
                     </button>
                     <div id="fct-expenses" style="display:none;">
                         <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -476,7 +476,7 @@
                         <tr ng-if="grid.$data.ctotal_amount" class="ng-scope">
                             <td></td>
                             <td colspan="4">
-  小计: 
+                                小计:
                                 <span class="text-danger ng-binding">-30元</span>
                             </td>
                         </tr>

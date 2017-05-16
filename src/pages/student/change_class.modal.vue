@@ -17,7 +17,7 @@
                         <div class="panel-heading">转出班级</div>
                         <ul class="list-group ng-scope" ng-if="class_rest.$loaded && class_rest.$list.length > 0">
                             <li class="list-group-item ng-binding ng-scope active" ng-class="{'active':item.lesson_type == occ.lesson_type && item.oc_id == occ.from_oc_id}" ng-click="select_from_class(item)" ng-repeat="item in class_rest.$list">
-                                <i class="fa fa-angle-right"></i>  3期班 
+                                <i class="fa fa-angle-right"></i>3期班
                                 <span class="badge bg-info ng-binding" tooltip="剩余课次">62</span>
                             </li>
                         </ul>
@@ -30,7 +30,7 @@
                                     <input type="text" placeholder="班级" ng-model="occ.selected_class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="true" required="" readonly="readonly">
                                     <span class="input-group-btn">
                                         <button ng-disabled="occ.from_oc_id == 0" class="btn btn-default" select-tpl="tpl/directive/selectClassTpl.html" select-id-field="oc_id" max-num="1" on-selected="select_to_class" select-params="{ob_id:user.gv.ob_id,t:'order'}" select-title="请选择班级" @click="lbShowDailog('lb-selectclasstpl')">
-                                            <i class="fa fa-flag"></i>  选择班级 
+                                            <i class="fa fa-flag"></i>选择班级
                                         </button>
                                     </span>
                                 </div>

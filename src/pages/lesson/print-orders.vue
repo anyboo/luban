@@ -10,8 +10,8 @@
                             <span class="sr-only">关闭</span>
                         </button>
                         <h3 class="modal-title">
-                            <i class="icon-printer"></i>  打印订单号 
-                            <span class="label bg-info ng-binding">OP1167917120528043712540</span>  的收据 
+                            <i class="icon-printer"></i>打印订单号
+                            <span class="label bg-info ng-binding">OP1167917120528043712540</span>的收据
                         </h3>
                     </div>
                     <div class="modal-body">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" ng-disabled="selected_count() < 1 || saving" ng-click="do_print()" disabled="disabled">
-                            <i class="icon-printer" ng-hide="saving"></i>  打印 
+                            <i class="icon-printer" ng-hide="saving"></i>打印
                         </button>
                         <button class="btn btn-warning m-l" ng-click="vm.dismiss()">关闭</button>
                     </div>

@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title ng-binding">
-                    <i class="fa fa-user"></i>  请选择学员 
+                    <i class="fa fa-user"></i>请选择学员
                 </h3>
             </div>
             <div class="modal-body ng-scope">
@@ -22,7 +22,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  姓名 
+                                            姓名
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -39,10 +39,10 @@
                             </div>
                             <div class="btn-group m-t">
                                 <label btn-radio="'image'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">
-                                    <i class="fa fa-image"></i>  头像 
+                                    <i class="fa fa-image"></i>头像
                                 </label>
                                 <label btn-radio="'list'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid active">
-                                    <i class="fa fa-list"></i>  列表 
+                                    <i class="fa fa-list"></i>列表
                                 </label>
                             </div>
                         </div>

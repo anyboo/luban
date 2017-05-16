@@ -8,7 +8,7 @@
                             <div class="input-group">
                                 <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'master',value:'老师姓名'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
                                     <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  班级名 
+                                        班级名
                                         <span class="caret"></span>
                                     </button>
                                 </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-xs-12 col-md-8 m-t">
                     <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                        <i class="fa fa-filter"></i>  过滤 
+                        <i class="fa fa-filter"></i>过滤
                     </button>
                     <div class="btn-group m-l">
                         <label btn-radio="'1'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">已开课</label>
@@ -52,15 +52,15 @@
                     </div>
                     <div class="btn-group m-l-xs" ng-hide="app.isWeiXin">
                         <label btn-radio="'image'" ng-model="view_mode" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                            <i class="fa fa-image"></i>  区块 
+                            <i class="fa fa-image"></i>区块
                         </label>
                         <label btn-radio="'list'" ng-model="view_mode" class="btn btn-default ng-pristine ng-untouched ng-valid active">
-                            <i class="fa fa-list"></i>  列表 
+                            <i class="fa fa-list"></i>列表
                         </label>
                     </div>
                     <a class="btn btn-success m-l-xs ng-hide" ng-click="bat_class_dispatch()" ng-hide="no_class_selected()">批量调课</a>
-                    <a ui-per="class.add" class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')">
-                        <i class="fa fa-plus"></i>  开班 
+                    <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog('lb-open_classmodal')">
+                        <i class="fa fa-plus"></i>开班
                     </a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                         <tr>
                             <th>操作</th>
                             <th>
-  班级名 
+                                班级名
                                 <span class="table-header-sort ng-isolate-scope" header-sort="class_name" params="params">
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>

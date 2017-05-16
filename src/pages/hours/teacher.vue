@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-01</span>  - 
+                                    <span class="rangeData1">2017-05-01</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>
@@ -459,7 +459,7 @@
                         </div>
                     </div>
                     <button class="btn btn-default ng-isolate-scope" export="teacher_amount" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  按老师汇总导出 
+                        <i class="glyphicon glyphicon-export"></i>按老师汇总导出
                     </button>
                     <div id="fct-teacher_amount" style="display:none;">
                         <form name="export_form_teacher_amount" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -473,7 +473,7 @@
                         </form>
                     </div>
                     <button class="btn btn-default ng-isolate-scope" export="teacher_hours" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  按课次导出 
+                        <i class="glyphicon glyphicon-export"></i>按课次导出
                     </button>
                     <div id="fct-teacher_hours" style="display:none;">
                         <form name="export_form_teacher_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -515,7 +515,7 @@
                             <td class="ng-binding">1对1</td>
                             <td class="ng-binding">李达康</td>
                             <td>
-                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)">
+                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog('lb-view_lesson_amountmodal')">
                                     <span class="label bg-info ng-binding">￥100.00</span>
                                 </a>
                             </td>
@@ -535,7 +535,7 @@
                             <td class="ng-binding">班课</td>
                             <td class="ng-binding">小兵</td>
                             <td>
-                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)">
+                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog('lb-view_lesson_amountmodal')">
                                     <span class="label bg-info ng-binding">￥0.00</span>
                                 </a>
                             </td>
@@ -550,8 +550,8 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-  课程金额总计: 
-                        <span class="label bg-info ng-binding">￥100.00</span>  ,小计: 
+                        课程金额总计:
+                        <span class="label bg-info ng-binding">￥100.00</span>,小计:
                         <span class="label bg-info ng-binding">￥100</span>
                     </div>
                     <div class="col-sm-4 text-center">

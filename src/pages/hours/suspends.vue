@@ -4,7 +4,7 @@
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-6 m-t">
                     <a class="link ng-scope" ng-if="!show_time_filter" ng-click="show_filter()">
-                        <i class="glyphicon glyphicon-calendar"></i>  按时间过滤 
+                        <i class="glyphicon glyphicon-calendar"></i>按时间过滤
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-6 m-t">
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary pull-right" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_suspend" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行停课登记" @click="lbShowDailog('lb-selectstudenttpl')">
-                        <i class="icon-plus"></i>  停课登记 
+                        <i class="icon-plus"></i>停课登记
                     </button>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                             <th>停课原因</th>
                             <th>停课状态</th>
                             <th>
-  登记时间 
+                                登记时间
                                 <span class="table-header-sort ng-isolate-scope" header-sort="create_time" params="params">
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -57,7 +57,7 @@
                 </table>
                 <div class="grid-data-result">
                     <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                        <i class="fa fa-frown-o"></i>  无相关数据! 
+                        <i class="fa fa-frown-o"></i>无相关数据!
                     </p>
                 </div>
             </div>

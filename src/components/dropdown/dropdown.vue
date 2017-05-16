@@ -1,6 +1,6 @@
 <template>
     <div id="dropdown" class="btn-group dropdown" :class="{'open':open}">
-        <slot name="buttonslot" @open="handleOpen" @close='handleClose'></slot>
+        <slot name="buttonslot"></slot>
         <slot name="menuslot"></slot>
         <slot></slot>
     </div>

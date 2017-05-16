@@ -5,7 +5,7 @@
                 <ul class="breadcrumb bg-white b-a">
                     <li>
                         <a ui-sref="lesson.packages" href="#/lesson/packages">
-                            <i class="fa fa-suitcase"></i>  课时包 
+                            <i class="fa fa-suitcase"></i>课时包
                         </a>
                     </li>
                     <li class="active">科目设置</li>

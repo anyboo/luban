@@ -32,7 +32,7 @@
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>账号密码</dt>
                             <dd>
-  ********* 
+                                *********
                                 <a class="link pull-right" ng-click="edit_pwd()">修改密码</a>
                                 <p class="text-muted">修改密码请点击右边"修改密码"链接</p>
                             </dd>
@@ -40,7 +40,7 @@
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>真实姓名</dt>
                             <dd class="ng-binding">
-  林三金 
+                                林三金
                                 <a class="link pull-right" ng-click="edit_name()">修改姓名</a>
                                 <p class="text-muted">修改姓名请点击右边"修改姓名"" 链接</p>
                             </dd>
@@ -48,14 +48,14 @@
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>生日</dt>
                             <dd class="ng-binding">
-  - 
+                                -
                                 <a class="link pull-right" ng-click="edit_birth()">设置生日</a>
                                 <p class="text-muted">设置出生日期请点击右边"设置生日" 链接</p>
                             </dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>
-                                <i class="fa fa-mobile"></i>  手机绑定 
+                                <i class="fa fa-mobile"></i>手机绑定
                             </dt>
                             <dd>
                                 <p class="text-success ng-binding ng-scope" ng-if="profile.is_mobile_bind == '1'">已绑定手机号 18960828505</p>
@@ -63,26 +63,26 @@
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>
-                                <i class="fa fa-envelope"></i>  邮箱绑定 
+                                <i class="fa fa-envelope"></i>邮箱绑定
                             </dt>
                             <dd>
                                 <p class="text-muted ng-scope" ng-if="profile.is_email_bind != '1'">
-  未绑定邮箱 
+                                    未绑定邮箱
                                     <a class="btn btn-success btn-sm pull-right" ng-click="bind_email()">
-                                        <i class="fa fa-envelope"></i>  绑定邮箱 
+                                        <i class="fa fa-envelope"></i>绑定邮箱
                                     </a>
                                 </p>
                             </dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>
-                                <i class="fa fa-weixin"></i>  微信绑定 
+                                <i class="fa fa-weixin"></i>微信绑定
                             </dt>
                             <dd>
                                 <p class="text-muted ng-scope" ng-if="profile.is_weixin_bind != '1'">
-  未绑定微信号 
+                                    未绑定微信号
                                     <a class="btn btn-success btn-sm pull-right" ng-click="bind_weixin()">
-                                        <i class="fa fa-weixin"></i>  绑定微信 
+                                        <i class="fa fa-weixin"></i>绑定微信
                                     </a>
                                 </p>
                                 <p class="text-muted">绑定微信之后，可以用微信登录本系统，还可以接收微信通知.</p>
