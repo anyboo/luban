@@ -31,7 +31,7 @@
                     <a ng-show="step > 1" class="btn btn-link ng-hide" ng-click="go_step(1)">返回</a>
                     <button class="btn btn-primary" ng-show="step == 1" ng-disabled="!ocat_id" ng-click="go_step(2)" disabled="disabled">下一步</button>
                     <button class="btn btn-primary ng-hide" ng-show="step == 2" ng-click="remove_attendance()">确认撤销</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

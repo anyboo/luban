@@ -9,18 +9,21 @@ export default {
     props: ['buttonClass', 'buttonTooltip'],
     data() {
         return {
-
+            timeCloseId: 0
         }
     },
     methods: {
         handleOpen() {
             if (this.$parent.handleOpen) {
+                clearTimeout(this.timeCloseId)
                 this.$parent.handleOpen()
             }
         },
         handleClose() {
             if (this.$parent.handleClose) {
-                this.$parent.handleClose()
+                this.timeCloseId = setTimeout(() => {
+                    this.$parent.handleClose()
+                }, 200)
             }
         }
     },

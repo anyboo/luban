@@ -97,7 +97,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
             </h3>
         </div>
         <div class="modal-body" ng-init="params.expire_duration = 0">

@@ -35,7 +35,7 @@
                             <i class="fa fa-exclamation-triangle"></i>系统检测到班级还未结课,是否先要进行结课操作?
                         </p>
                         <p class="text-center">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)" @click="lbShowDailog('lb-end_classmodal')">立即结课</a>
+                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)" @click="lbShowDailog('lb-endclassmodal')">立即结课</a>
                             <a class="btn btn-default m-l" ng-click="vm.dismiss()">关闭</a>
                         </p>
                     </div>

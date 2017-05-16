@@ -61,17 +61,17 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                                 <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                                 <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-orderunpayclearmodal')">
                                                 <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
@@ -98,17 +98,17 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                                 <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                                 <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-orderunpayclearmodal')">
                                                 <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
@@ -135,17 +135,17 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                                 <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                                 <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-orderunpayclearmodal')">
                                                 <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
@@ -172,17 +172,17 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                                 <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                                 <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-orderunpayclearmodal')">
                                                 <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
@@ -209,17 +209,17 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                                 <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                                 <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-orderunpayclearmodal')">
                                                 <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>

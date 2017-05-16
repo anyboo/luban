@@ -3,7 +3,7 @@ var parse = require('co-body')
 var uploadparse = require('co-busboy')
 var monk = require('monk')
 var wrap = require('co-monk')
-var db = monk('localhost/socrates')
+var db = monk('localhost/luban')
 var fs = require('fs')
     /*
     var co = require('co')

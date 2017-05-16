@@ -11,9 +11,9 @@
                         <span class="label bg-info ng-binding">张磊</span>进行以下操作
                     </p>
                     <div class="clear">
-                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowDailog('lb-edit_photomodal')">设置图像</a>
+                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowDailog('lb-editphotomodal')">设置图像</a>
                         <a ng-click="$util.open('tpl/app/student/order.modal.html','md',student)" @click="lbShowDailog('lb-ordermodal')">报名</a>
-                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowDailog('lb-add_trackmodal')">登记咨询</a>
+                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowDailog('lb-addtrackmodal')">登记咨询</a>
                         <a class="btn btn-success m-t pull-right" ng-click="reset_form();$dismiss()">关闭</a>
                     </div>
                 </div>

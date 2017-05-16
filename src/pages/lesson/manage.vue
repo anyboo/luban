@@ -33,7 +33,7 @@
                         <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowDailog('lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
-                        <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog('lb-new_lessonmodal')">
+                        <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog('lb-newlessonmodal')">
                             <i class="fa fa-plus"></i>添加课程
                         </button>
                     </div>
@@ -59,7 +59,7 @@
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/lesson/lesson/edit_lesson.modal.html','md',item)" @click="lbShowDailog('lb-edit_lessonmodal')">
+                                                <a ng-click="$util.open('tpl/app/lesson/lesson/edit_lesson.modal.html','md',item)" @click="lbShowDailog('lb-editlessonmodal')">
                                                     <i class="fa fa-pencil-square"></i>编辑
                                                 </a>
                                             </li>
@@ -124,7 +124,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
             </h3>
         </div>
         <div class="modal-body">

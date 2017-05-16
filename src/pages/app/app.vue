@@ -6,9 +6,8 @@
             <router-view></router-view>
         </div>
         <lb-footer></lb-footer>
-        <lb-modalbackdrop>
-            <lb-dialoglist></lb-dialoglist>
-        </lb-modalbackdrop>
+        <lb-modalbackdrop></lb-modalbackdrop>
+        <lb-dialoglist></lb-dialoglist>
     </div>
 </template>
 <script>

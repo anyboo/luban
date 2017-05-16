@@ -37,7 +37,7 @@
                                 <div class="arrange-wrap bg-white">
                                     <div class="top padder-v">
                                         <p class="text-right padder ng-binding">
-                                            <a ng-click="$util.open('tpl/app/widget/attendance/no_arrange_explain.modal.html','md',{})" @click="lbShowDailog('lb-no_arrange_explainmodal')">
+                                            <a ng-click="$util.open('tpl/app/widget/attendance/no_arrange_explain.modal.html','md',{})" @click="lbShowDailog('lb-noarrangeexplainmodal')">
                                                 <i class="fa fa-question-circle"></i>有排课没有显示
                                             </a>2017年
                                             <span ng-if="vm.options.view_type=='week'" class="ng-binding ng-scope">第19周</span>

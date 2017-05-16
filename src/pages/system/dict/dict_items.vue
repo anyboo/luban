@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
+                    <button ng-click="$dismiss()" class="btn btn-warning" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

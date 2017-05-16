@@ -24,10 +24,10 @@
                                 </span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-paynowmodal')">
                                     <i class="icon-wallet"></i>现场缴费
                                 </a>
-                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-payregmodal')">
                                     <i class="icon-note"></i>缴费登记
                                 </a>
                             </p>

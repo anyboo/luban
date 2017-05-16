@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer ng-hide" ng-hide="in_end_process == 0">
                     <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">取消</button>
                 </div>
             </div>
         </div>

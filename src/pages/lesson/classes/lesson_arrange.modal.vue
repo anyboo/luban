@@ -32,7 +32,7 @@
                                 <li class="m-t-xs">
                                     <label>授课老师:</label>
                                     <span class="ng-binding">张英乙</span>
-                                    <a ng-click="$util.open('tpl/app/lesson/classes/teacher_arranges.modal.html','md',teacher_rest)" @click="lbShowDailog('lb-teacher_arrangesmodal')">查看排课</a>
+                                    <a ng-click="$util.open('tpl/app/lesson/classes/teacher_arranges.modal.html','md',teacher_rest)" @click="lbShowDailog('lb-teacherarrangesmodal')">查看排课</a>
                                 </li>
                                 <li class="m-t-xs">
                                     <label>开课日期:</label>
@@ -540,7 +540,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-show="!is_arrange_valid" ng-disabled="validing || new_arranges.length == 0" ng-click="valid_arrange()" disabled="disabled">验证排课</button>
                     <button class="btn btn-primary ng-hide" ng-show="is_arrange_valid" ng-disabled="saving" ng-click="save_arrange()">创建排课</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

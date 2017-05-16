@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

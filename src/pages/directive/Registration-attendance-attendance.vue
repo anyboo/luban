@@ -94,7 +94,7 @@
                 <div class="modal-footer">
                     <a ng-show="step > 1" class="btn btn-link" ng-click="back_step()">返回</a>
                     <button ng-show="step == 2" class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">登记考勤</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

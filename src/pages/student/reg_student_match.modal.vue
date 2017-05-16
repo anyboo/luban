@@ -175,7 +175,7 @@
                 </div>
                 <div class="modal-footer">
                     <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记</button>
-                    <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
+                    <button ng-click="$dismiss()" class="btn btn-warning" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

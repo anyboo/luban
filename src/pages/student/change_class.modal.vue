@@ -40,7 +40,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-disabled="form_invalid() || saving" ng-click="do_ok()" disabled="disabled">确认转班</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
                 </div>
             </div>
         </div>

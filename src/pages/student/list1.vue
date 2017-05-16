@@ -102,7 +102,7 @@
                             </td>
                             <td class="ng-binding">
                                 3
-                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowDailog('lb-view_coursemodal')">
+                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowDailog('lb-viewcoursemodal')">
                                     <i class="icon-eye"></i>
                                 </a>
                             </td>

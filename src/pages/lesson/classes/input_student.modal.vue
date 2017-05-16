@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button class="btn btn-primary" ng-disabled="input.students.length == 0 || saving" ng-click="save_input_students();">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">取消</button>
                 </div>
             </div>
         </div>

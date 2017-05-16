@@ -31,7 +31,7 @@
                     <button ng-click="$util.open('tpl/system/groups.html','lg',{})" @click="lbShowDailog('lb-groups')">
                         <i class="fa fa-list"></i>分组设置
                     </button>
-                    <button ng-click="$util.open('tpl/system/employee/employee_add.modal.html','md')" @click="lbShowDailog('lb-employee_addmodal')">
+                    <button ng-click="$util.open('tpl/system/employee/employee_add.modal.html','md')" @click="lbShowDailog('lb-employeeaddmodal')">
                         <i class="fa fa-plus"></i>添加
                     </button>
                 </div>
@@ -96,7 +96,7 @@
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a ng-click="$util.open('tpl/system/employee/employee_edit.modal.html','md',item)" @click="lbShowDailog('lb-employee_editmodal')">
+                                                <a ng-click="$util.open('tpl/system/employee/employee_edit.modal.html','md',item)" @click="lbShowDailog('lb-employeeeditmodal')">
                                                     <i class="fa fa-pencil"></i>编辑资料
                                                 </a>
                                             </li>
@@ -106,12 +106,12 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a ng-click="$util.open('tpl/system/employee/reset_account.modal.html','md',item)" @click="lbShowDailog('lb-reset_accountmodal')">
+                                                <a ng-click="$util.open('tpl/system/employee/reset_account.modal.html','md',item)" @click="lbShowDailog('lb-resetaccountmodal')">
                                                     <i class="fa fa-key"></i>重置密码
                                                 </a>
                                             </li>
                                             <li>
-                                                <a ng-click="$util.open('tpl/system/employee/change_account.modal.html','md',item)" @click="lbShowDailog('lb-change_accountmodal')">
+                                                <a ng-click="$util.open('tpl/system/employee/change_account.modal.html','md',item)" @click="lbShowDailog('lb-changeaccountmodal')">
                                                     <i class="fa fa-user-md"></i>更换登录账号
                                                 </a>
                                             </li>

@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog('lb-open_classmodal')">
+                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog('lb-openclassmodal')">
                                 <i class="fa fa-plus"></i>新班级
                             </a>
                         </div>

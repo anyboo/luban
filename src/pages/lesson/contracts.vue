@@ -47,7 +47,7 @@
                             <label btn-radio="'0'" ng-model="params.pay_status" class="btn btn-default ng-untouched ng-valid active ng-dirty ng-valid-parse">未缴费</label>
                             <label btn-radio="" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">所有</label>
                         </div>
-                        <a ng-click="$util.open('tpl/app/lesson/contracts/add_performance.modal.html','md',grid.data)" @click="lbShowDailog('lb-add_performancemodal')">
+                        <a ng-click="$util.open('tpl/app/lesson/contracts/add_performance.modal.html','md',grid.data)" @click="lbShowDailog('lb-addperformancemodal')">
                             <i class="icon-plus"></i>登记成绩
                         </a>
                     </div>
@@ -89,7 +89,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
             </h3>
         </div>
         <div class="modal-body">
