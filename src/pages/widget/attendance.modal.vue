@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="panel-footer text-center">
                                     <button class="btn btn-primary" ng-click="go_step(2)">下一步</button>
-                                    <button class="btn btn-warning m-l-xs" ng-click="back_menu()">返回</button>
+                                    <button class="btn btn-warning m-l-xs" ng-click="back_menu()" @click="backf()">返回</button>
                                 </div>
                             </div>
                         </div>
@@ -222,6 +222,11 @@ export default {
         backt() {
             this.OnAttendance = true
             this.SingleAttendance = false
+
+        },
+        backf() {
+            this.OnAttendance = true
+            this.BatchAttendance = false
 
         }
     }
