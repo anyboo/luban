@@ -7,7 +7,7 @@
                     <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                         <div class="showRange">
                             <div class="btn btn-outline dateRangeLabel">
-                                <span class="rangeData1">2017-05-01</span>  - 
+                                <span class="rangeData1">2017-05-01</span>-
                                 <span class="rangeData2">2017-05-12</span>
                                 <span class="caret"></span>
                             </div>
@@ -461,7 +461,7 @@
             </table>
             <div class="grid-data-result">
                 <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                    <i class="fa fa-frown-o"></i>  无相关数据! 
+                    <i class="fa fa-frown-o"></i>无相关数据!
                 </p>
             </div>
         </div>

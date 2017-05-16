@@ -4,7 +4,7 @@
             <ul class="breadcrumb bg-white b-a">
                 <li>
                     <a ui-sref="lesson.packages" href="#/lesson/packages">
-                        <i class="fa fa-suitcase"></i>  课时包 
+                        <i class="fa fa-suitcase"></i>课时包
                     </a>
                 </li>
                 <li class="active">报读学员</li>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
                         <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                            <i class="fa fa-filter"></i>  过滤 
+                            <i class="fa fa-filter"></i>过滤
                         </button>
                         <div class="btn-group m-l-xs">
                             <label btn-radio="'2'" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">已缴费</label>
@@ -77,7 +77,7 @@
                     </table>
                     <div class="grid-data-result">
                         <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                            <i class="fa fa-frown-o"></i>  没有符合条件的课时包! 
+                            <i class="fa fa-frown-o"></i>没有符合条件的课时包!
                         </p>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
         </div>
         <div class="modal-header">
             <h3 class="modal-title">
-  条件查询 
+                条件查询
                 <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()">关闭</button>
             </h3>
         </div>

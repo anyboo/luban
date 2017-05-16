@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-12</span>  - 
+                                    <span class="rangeData1">2017-05-12</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>
@@ -444,7 +444,7 @@
                         <label btn-radio="'1'" ng-model="params.type" class="btn btn-default ng-pristine ng-untouched ng-valid">收入</label>
                     </div>
                     <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  导出Excel 
+                        <i class="glyphicon glyphicon-export"></i>导出Excel
                     </button>
                     <div id="fct-flow" style="display:none;">
                         <form name="export_form_flow" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -457,8 +457,8 @@
                             <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
                         </form>
                     </div>
-                    <a class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})">
-                        <i class="fa fa-pencil"></i>  记一笔 
+                    <a ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})" @click="lbShowDailog('lb-flowaddmodal')">
+                        <i class="fa fa-pencil"></i>记一笔
                     </a>
                 </div>
             </div>
@@ -480,9 +480,9 @@
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
                                 <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
-                                    <i class="fa fa-reply"></i>  撤销 
+                                    <i class="fa fa-reply"></i>撤销
                                 </a>
-                                <a class="btn btn-default btn-xs" ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)">设置分类</a>
+                                <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowDailog('lb-set_odimodal')">设置分类</a>
                             </td>
                             <td class="ng-binding">2017-05-12 15:41</td>
                             <td>
@@ -503,7 +503,7 @@
                         <tr ng-if="grid.$data.ctotal_amount" class="ng-scope">
                             <td></td>
                             <td colspan="7">
-  小计: 
+                                小计:
                                 <span class="text-success ng-binding">-30元</span>
                             </td>
                         </tr>

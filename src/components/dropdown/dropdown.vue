@@ -1,6 +1,8 @@
 <template>
-    <div class="btn-group dropdown">
-       <slot> </slot>
+    <div id="dropdown" class="btn-group dropdown" :class="{'open':open}">
+        <slot name="buttonslot"></slot>
+        <slot name="menuslot"></slot>
+        <slot></slot>
     </div>
 </template>
 <script>
@@ -8,10 +10,17 @@ export default {
     name: 'LbDropdown',
     data() {
         return {
-            
+            open: false
         }
     },
-    methods: {},
+    methods: {
+        handleOpen() {
+            this.open = true
+        },
+        handleClose() {
+            this.open = false
+        }
+    },
     computed: {},
 }
 </script>

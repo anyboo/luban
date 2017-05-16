@@ -15,7 +15,7 @@
                     <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">
-                                <span class="text-danger">*</span>  类型 
+                                <span class="text-danger">*</span>类型
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="btn-group">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">
-                                <span class="text-danger">*</span>  金额 
+                                <span class="text-danger">*</span>金额
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">

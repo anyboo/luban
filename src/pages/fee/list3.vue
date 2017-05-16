@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <button class="btn btn-default m-l-xs ng-isolate-scope" export="arrearages" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  导出 
+                        <i class="glyphicon glyphicon-export"></i>导出
                     </button>
                     <div id="fct-arrearages" style="display:none;">
                         <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -54,29 +54,29 @@
                     <tbody>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
-                                <div class="btn-group dropdown open" dropdown="">
-                                    <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="true">
-  操作 
+                                <lb-dropdown>
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        操作
                                         <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                                <i class="icon-wallet"></i>  现场缴费 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                                <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                                <i class="icon-note"></i>  缴费登记 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                                <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)">
-                                                <i class="icon-ban"></i>  欠费清除 
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
+                                    </lb-dropdown-menu>
+                                </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 15:23</td>
                             <td class="ng-binding">OB1161217050523032304926</td>
@@ -91,29 +91,29 @@
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
-                                <div class="btn-group dropdown" dropdown="">
-                                    <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  操作 
+                                <lb-dropdown>
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        操作
                                         <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                                <i class="icon-wallet"></i>  现场缴费 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                                <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                                <i class="icon-note"></i>  缴费登记 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                                <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)">
-                                                <i class="icon-ban"></i>  欠费清除 
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
+                                    </lb-dropdown-menu>
+                                </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 15:23</td>
                             <td class="ng-binding">OB1161217050523032399824</td>
@@ -128,29 +128,29 @@
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
-                                <div class="btn-group dropdown" dropdown="">
-                                    <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  操作 
+                                <lb-dropdown>
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        操作
                                         <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                                <i class="icon-wallet"></i>  现场缴费 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                                <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                                <i class="icon-note"></i>  缴费登记 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                                <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)">
-                                                <i class="icon-ban"></i>  欠费清除 
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
+                                    </lb-dropdown-menu>
+                                </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 14:43</td>
                             <td class="ng-binding">OB1161217050557024328509</td>
@@ -165,29 +165,29 @@
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
-                                <div class="btn-group dropdown" dropdown="">
-                                    <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  操作 
+                                <lb-dropdown>
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        操作
                                         <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                                <i class="icon-wallet"></i>  现场缴费 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                                <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                                <i class="icon-note"></i>  缴费登记 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                                <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)">
-                                                <i class="icon-ban"></i>  欠费清除 
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
+                                    </lb-dropdown-menu>
+                                </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-04-17 17:49</td>
                             <td class="ng-binding">OC1161217170436054927089</td>
@@ -202,29 +202,29 @@
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
-                                <div class="btn-group dropdown" dropdown="">
-                                    <button type="button" class="btn btn-xs btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-  操作 
+                                <lb-dropdown>
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        操作
                                         <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                                <i class="icon-wallet"></i>  现场缴费 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                                <i class="icon-wallet"></i>现场缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                                <i class="icon-note"></i>  缴费登记 
+                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                                <i class="icon-note"></i>缴费登记
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)">
-                                                <i class="icon-ban"></i>  欠费清除 
+                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-order_unpay_clearmodal')">
+                                                <i class="icon-ban"></i>欠费清除
                                             </a>
                                         </li>
-                                    </ul>
-                                </div>
+                                    </lb-dropdown-menu>
+                                </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-04-17 15:37</td>
                             <td class="ng-binding">OB1161217170444033750849</td>
@@ -253,7 +253,7 @@
                         <tr ng-if="grid.$data.ctotal_unpay_amount" class="ng-scope">
                             <td></td>
                             <td colspan="6">
-  本页小计: 
+                                本页小计:
                                 <span class="text-success ng-binding">9040元</span>
                             </td>
                         </tr>

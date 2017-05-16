@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-  字典 
-                        <span class="label bg-info ng-binding">收款方式</span>  的字典项目 
+                        字典
+                        <span class="label bg-info ng-binding">收款方式</span>的字典项目
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -22,7 +22,7 @@
                                     <td width="80">排序</td>
                                     <td>
                                         <a class="m-l btn btn-info btn-xs" ng-click="add_dict_item()" ng-disabled="have_new_item">
-                                            <i class="fa fa-plus"></i>  新增 
+                                            <i class="fa fa-plus"></i>新增
                                         </a>
                                     </td>
                                 </tr>

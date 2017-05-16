@@ -12,7 +12,7 @@
                             <p class="list-grpup-item-text text-muted ng-binding">校长(Principal)</p>
                             <p class="list-group-item-text">
                                 <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled">
-                                    <i class="fa fa-times"></i>  删除 
+                                    <i class="fa fa-times"></i>删除
                                 </a>
                                 <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
                                 <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
@@ -25,7 +25,7 @@
                             <p class="list-grpup-item-text text-muted ng-binding">老师(Teacher)</p>
                             <p class="list-group-item-text">
                                 <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled">
-                                    <i class="fa fa-times"></i>  删除 
+                                    <i class="fa fa-times"></i>删除
                                 </a>
                                 <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
                                 <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
@@ -38,7 +38,7 @@
                             <p class="list-grpup-item-text text-muted ng-binding">前台接待(Receptionist)</p>
                             <p class="list-group-item-text">
                                 <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled">
-                                    <i class="fa fa-times"></i>  删除 
+                                    <i class="fa fa-times"></i>删除
                                 </a>
                                 <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
                                 <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
@@ -51,7 +51,7 @@
                             <p class="list-grpup-item-text text-muted ng-binding">管理员(Master)</p>
                             <p class="list-group-item-text">
                                 <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled">
-                                    <i class="fa fa-times"></i>  删除 
+                                    <i class="fa fa-times"></i>删除
                                 </a>
                                 <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
                                 <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
@@ -79,7 +79,7 @@
                             <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" ng-model="role.role_desc">
                             <div class="m-t m-b">
                                 <button type="submit" ng-disabled="form1.$invalid || saving || role.og_id==0" class="btn btn-primary" ng-click="rest_save('role','roles',save_callback)" disabled="disabled">
-                                    <i class="fa fa-spinner fa-spin ng-hide" ng-show="saving"></i>  保存 
+                                    <i class="fa fa-spinner fa-spin ng-hide" ng-show="saving"></i>保存
                                 </button>
                             </div>
                         </form>

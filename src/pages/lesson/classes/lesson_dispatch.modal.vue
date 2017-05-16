@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  调整 
-                        <span class="label bg-info ng-binding">11</span>  的排课记录 
+                        <i class="fa fa-calendar"></i>调整
+                        <span class="label bg-info ng-binding">11</span>的排课记录
                     </h3>
                 </div>
                 <div class="modal-body">

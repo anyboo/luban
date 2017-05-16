@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="icon-ban"></i>  清除订单 
-                        <span class="label bg-info ng-binding">OB1161217050557024328509</span>  未付款 
+                        <i class="icon-ban"></i>清除订单
+                        <span class="label bg-info ng-binding">OB1161217050557024328509</span>未付款
                     </h3>
                 </div>
                 <div class="modal-body ng-scope" ng-if="order.order_type == '0' || order.order_type == '1' || order.order_type == '10'">

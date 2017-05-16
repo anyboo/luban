@@ -9,8 +9,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="icon-note"></i>  为订单号 
-                        <span class="label bg-info ng-binding">OB1161217170444033750849</span>  办理退款 
+                        <i class="icon-note"></i>为订单号
+                        <span class="label bg-info ng-binding">OB1161217170444033750849</span>办理退款
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -40,7 +40,7 @@
                                 <label class="control-label col-xs-12 col-md-2">订单内容:</label>
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static ng-binding">
-  班课[1班]20次 
+                                        班课[1班]20次
                                         <span class="text-danger ng-binding ng-scope" ng-if="oph.remain_times > -1">剩余 20 次</span>
                                     </p>
                                 </div>

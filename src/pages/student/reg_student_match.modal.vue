@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-  登记 
-                        <span class="label bg-info ng-binding">小兵</span>  的赛事记录 
+                        登记
+                        <span class="label bg-info ng-binding">小兵</span>的赛事记录
                     </h3>
                 </div>
                 <div class="modal-body">

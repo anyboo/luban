@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-  为 
-                        <span class="label bg-info ng-binding">11</span>  批量报名 
+                        为
+                        <span class="label bg-info ng-binding">11</span>批量报名
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -21,24 +21,24 @@
                                     <td class="text-center">学员</td>
                                     <td class="text-center" width="100">报名课次</td>
                                     <td width="120">
-                                        <div dropdown="" class="btn-group dropdown">
-                                            <button dropdown-toggle="" class="btn btn-default btn-xs" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-plus"></i>  增加 
+                                        <lb-dropdown>
+                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs">
+                                                <i class="fa fa-plus"></i>增加
                                                 <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="menuslot">
                                                 <li>
                                                     <a ng-click="add_row()">
-                                                        <i class="fa fa-plus"></i>  新增学员 
+                                                        <i class="fa fa-plus"></i>新增学员
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="6" on-selected="add_exists_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员档案" @click="lbShowDailog('lb-selectstudenttpl')">
-                                                        <i class="fa fa-list"></i>  选择已有学员 
+                                                        <i class="fa fa-list"></i>选择已有学员
                                                     </a>
                                                 </li>
-                                            </ul>
-                                        </div>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdown>
                                     </td>
                                 </tr>
                             </thead>
@@ -52,10 +52,10 @@
                                         <div class="inline w-xs va-m">
                                             <div class="btn-group">
                                                 <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid active" ng-disabled="item.os_id" ng-model="item.sex" btn-radio="'1'">
-                                                    <i class="fa fa-male"></i>  男 
+                                                    <i class="fa fa-male"></i>男
                                                 </label>
                                                 <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" ng-disabled="item.os_id" ng-model="item.sex" btn-radio="'2'">
-                                                    <i class="fa fa-female"></i>  女 
+                                                    <i class="fa fa-female"></i>女
                                                 </label>
                                             </div>
                                         </div>

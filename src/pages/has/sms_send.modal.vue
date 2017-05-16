@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-comments"></i>  短信发送 
+                        <i class="fa fa-comments"></i>短信发送
                         <span class="label bg-danger ng-binding">剩余条数:10</span>
                     </h3>
                 </div>

@@ -13,7 +13,7 @@
                     <div xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:50,page:1,ocs_id:vm.input.ocs_id}}" ng-if="vm.input.lesson_type == '0'" class="ng-scope">
                         <p>
                             <button class="btn btn-default ng-isolate-scope" export="student_hours" export-params="params">
-                                <i class="glyphicon glyphicon-export"></i>  导出 
+                                <i class="glyphicon glyphicon-export"></i>导出
                             </button>
                             <div id="fct-student_hours" style="display:none;">
                                 <form name="export_form_student_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -40,25 +40,25 @@
                                     <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                                         <td class="ng-binding">小兵</td>
                                         <td class="ng-binding">
-  05-12 11:00 
+                                            05-12 11:00
                                             <span class="bg-info label ng-binding">周五</span>
                                             <br>
                                             <span class="badge bg-success ng-binding">1.00小时</span>
                                         </td>
                                         <td class="ng-binding">
-  班课 
+                                            班课
                                             <br>
                                             <span class="label bg-info ng-binding">3期班</span>
                                         </td>
                                         <td class="ng-binding">
-  陈佳木 
+                                            陈佳木
                                             <br>
                                             <span class="label bg-info ng-binding">￥0.00</span>
                                         </td>
                                         <td class="ng-binding">
-  2017-05-12 09:05 
+                                            2017-05-12 09:05
                                             <br>
-  陈佳木 
+陈佳木
                                         </td>
                                     </tr>
                                 </tbody>
@@ -68,8 +68,8 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-4 col-xs-12">
-  课程金额总计: 
-                                    <span class="label bg-info ng-binding">￥0.00</span>  ,小计: 
+                                    课程金额总计:
+                                    <span class="label bg-info ng-binding">￥0.00</span>,小计:
                                     <span class="label bg-info ng-binding">￥0</span>
                                 </div>
                                 <div class="col-sm-4 text-center">

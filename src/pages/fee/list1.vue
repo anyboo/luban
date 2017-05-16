@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-01</span>  - 
+                                    <span class="rangeData1">2017-05-01</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>

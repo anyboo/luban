@@ -8,8 +8,8 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="fa fa-shopping-cart"></i>  学员 
-                    <span class="label bg-info ng-binding">威锋</span>  报名&缴费 
+                    <i class="fa fa-shopping-cart"></i>学员
+                    <span class="label bg-info ng-binding">威锋</span>报名&缴费
                 </h3>
             </div>
             <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl">
@@ -18,7 +18,7 @@
                         <div class="col-xs-4 text-center">
                             <a ng-click="create_order(0)" class="block panel padder-v bg-warning item">
                                 <span class="text-white font-thin h1 block">
-                                    <i class="fa fa-users"></i>  班组课 
+                                    <i class="fa fa-users"></i>班组课
                                 </span>
                                 <span class="text-muted text-sm">排课、考勤跟班走</span>
                             </a>
@@ -26,7 +26,7 @@
                         <div class="col-xs-4 text-center">
                             <a ng-click="create_order(1)" class="block panel padder-v bg-danger item">
                                 <span class="text-white font-thin h1 block">
-                                    <i class="fa fa-user"></i>  一对一 
+                                    <i class="fa fa-user"></i>一对一
                                 </span>
                                 <span class="text-muted text-sm">单独排课、考勤</span>
                             </a>
@@ -34,7 +34,7 @@
                         <div class="col-xs-4 text-center">
                             <a ng-click="create_order(10)" class="block panel padder-v bg-info item">
                                 <span class="text-white font-thin h1 block">
-                                    <i class="fa fa-clock-o"></i>  课时包 
+                                    <i class="fa fa-clock-o"></i>课时包
                                 </span>
                                 <span class="text-muted text-sm">不排课,按次扣</span>
                             </a>
@@ -42,7 +42,7 @@
                         <div class="col-xs-6 text-center">
                             <a ng-click="create_order(2)" class="block panel padder-v bg-olive item">
                                 <span class="text-white font-thin h1 block">
-                                    <i class="fa fa-rmb"></i>  预充值 
+                                    <i class="fa fa-rmb"></i>预充值
                                 </span>
                                 <span class="text-muted text-sm ng-binding">钱包余额:0.00</span>
                             </a>
@@ -50,7 +50,7 @@
                         <div class="col-xs-6 text-center">
                             <a ng-click="create_order(3)" class="block panel padder-v bg-orange item">
                                 <span class="text-white font-thin h1 block">
-                                    <i class="fa fa-money"></i>  杂费 
+                                    <i class="fa fa-money"></i>杂费
                                 </span>
                                 <span class="text-muted text-sm">其他杂费缴费</span>
                             </a>

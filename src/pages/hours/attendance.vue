@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-12</span>  - 
+                                    <span class="rangeData1">2017-05-12</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>
@@ -448,8 +448,8 @@
                             </span>
                         </div>
                     </div>
-                    <button class="btn btn-primary pull-right" ui-per="widget.attendance" ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})">
-                        <i class="icon-plus"></i>  考勤登记 
+                    <button ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})" @click="lbShowDailog('lb-attendancemodal')">
+                        <i class="icon-plus"></i>考勤登记
                     </button>
                 </div>
             </div>
@@ -471,8 +471,7 @@
                             <td class="ng-binding">
                                 <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-male"></i>
-                                </span>
-  李达康 
+                                </span>李达康
                             </td>
                             <td class="ng-binding">古典吉他初级</td>
                             <td class="ng-binding">陈佳木</td>
@@ -489,8 +488,7 @@
                             <td class="ng-binding">
                                 <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                     <i class="fa fa-female"></i>
-                                </span>
-  小兵 
+                                </span>小兵
                             </td>
                             <td class="ng-binding">3期班</td>
                             <td class="ng-binding">陈佳木</td>

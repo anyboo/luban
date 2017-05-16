@@ -21,7 +21,7 @@
                                 <th>所在班级</th>
                                 <th>校区</th>
                                 <th>
-  报名课次 
+                                    报名课次
                                     <span class="table-header-sort ng-isolate-scope" header-sort="lesson_times" params="params">
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -32,7 +32,7 @@
                                     </span>
                                 </th>
                                 <th>
-  已上课次 
+                                    已上课次
                                     <span class="table-header-sort ng-isolate-scope" header-sort="use_times" params="params">
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -43,7 +43,7 @@
                                     </span>
                                 </th>
                                 <th>
-  剩余课次 
+                                    剩余课次
                                     <span class="table-header-sort ng-isolate-scope" header-sort="remain_times" params="params">
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -60,8 +60,7 @@
                                 <td class="ng-binding">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                         <i class="fa fa-female"></i>
-                                    </span>
-  小兵 
+                                    </span>小兵
                                 </td>
                                 <td class="ng-binding">18952565452</td>
                                 <td class="ng-binding">未登记</td>

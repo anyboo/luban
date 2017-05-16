@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-money"></i>  学员 
-                        <span class="label bg-info ng-binding">威锋</span>  订单缴费 
+                        <i class="fa fa-money"></i>学员
+                        <span class="label bg-info ng-binding">威锋</span>订单缴费
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -18,17 +18,17 @@
                             <span class="pull-right label bg-info ng-binding">￥2000.00</span>
                             <h4 class="list-group-item-heading ng-binding">1对1课[古典吉他初级]20次</h4>
                             <p class="list-group-item-text ng-binding">
-  订单编号:OC1161217130540023908405, 
+                                订单编号:OC1161217130540023908405,
                                 <span ng-bind-html="item.pay_status|pay_status" class="ng-binding">
                                     <span class="badge bg-danger">未付款</span>
                                 </span>
                             </p>
                             <p class="m-t-xs">
-                                <a class="btn btn-xs btn-default" ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)">
-                                    <i class="icon-wallet"></i>  现场缴费 
+                                <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowDailog('lb-pay_nowmodal')">
+                                    <i class="icon-wallet"></i>现场缴费
                                 </a>
-                                <a class="btn btn-xs btn-default m-l-xs" ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)">
-                                    <i class="icon-note"></i>  缴费登记 
+                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowDailog('lb-pay_regmodal')">
+                                    <i class="icon-note"></i>缴费登记
                                 </a>
                             </p>
                         </li>

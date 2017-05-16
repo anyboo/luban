@@ -9,26 +9,26 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  考勤 
+                        <i class="fa fa-calendar"></i>考勤
                     </h3>
                 </div>
                 <div class="modal-body" ng-switch="$action">
                     <div ng-switch-when="att_by_reg" class="ng-scope">
                         <div class="padder-v bg-light text-center">
                             <a class="btn btn-default btn-xs pull-left m-l-xs" ng-click="back_menu()">
-                                <i class="fa fa-chevron-left"></i>  返回 
+                                <i class="fa fa-chevron-left"></i>返回
                             </a>
                             <strong>对过去的考勤记录进行登记</strong>
                         </div>
                         <ul class="nav nav-pills nav-justified m-t">
                             <li role="presentation" ng-click="select_reg_by('arrange')" ng-class="{'active':reg_by=='arrange'}" class="">
                                 <a>
-                                    <i class="fa fa-calendar"></i>  按排课登记 
+                                    <i class="fa fa-calendar"></i>按排课登记
                                 </a>
                             </li>
                             <li role="presentation" ng-click="select_reg_by('opt')" ng-class="{'active':reg_by=='opt'}" class="active">
                                 <a>
-                                    <i class="icon-plus"></i>  自由登记 
+                                    <i class="icon-plus"></i>自由登记
                                 </a>
                             </li>
                         </ul>
@@ -62,7 +62,7 @@
                                                         <div class="input-group">
                                                             <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'master',value:'老师姓名'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
                                                                 <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  班级名 
+                                                                    班级名
                                                                     <span class="caret"></span>
                                                                 </button>
                                                             </div>

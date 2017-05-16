@@ -9,8 +9,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  登记 
-                        <span class="label bg-info ng-binding">11</span>  的考勤 
+                        <i class="fa fa-calendar"></i>登记
+                        <span class="label bg-info ng-binding">11</span>的考勤
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -25,8 +25,8 @@
                     <div class="m-t ng-scope" ng-if="step==1">
                         <div class="row no-gutter"></div>
                         <p class="text-center text-muted ng-scope" ng-if="arranges_rest.$loaded && arranges_rest.$list.length == 0">
-  没有排课记录，请先进行 
-                            <a class="link" ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',class)" ui-per="class.arranges">排课</a>  ! 
+                            没有排课记录，请先进行
+                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',class)" @click="lbShowDailog('lb-lesson_arrangemodal')">排课</a>!
                         </p>
                     </div>
                 </div>

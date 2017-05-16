@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="icon-plus"></i>  登记考试成绩 
+                        <i class="icon-plus"></i>登记考试成绩
                     </h3>
                 </div>
                 <div class="modal-body">

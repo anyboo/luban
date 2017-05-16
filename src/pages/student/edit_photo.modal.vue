@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-photo"></i>  编辑 
-                        <span class="badge bg-info ng-binding">威锋</span>  的图像 
+                        <i class="fa fa-photo"></i>编辑
+                        <span class="badge bg-info ng-binding">威锋</span>的图像
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -17,9 +17,7 @@
                     <div class="hbox hbox-auto-xs">
                         <div class="col">
                             <button ng-disabled="disabled" preview="myImage" selected-file="selected_file" class="btn btn-default m-b ng-isolate-scope">
-                                <ng-transclude>
-                                    <span class="ng-scope">选择图片</span>
-                                </ng-transclude>
+                                <span class="ng-scope">选择图片</span>
                             </button>
                             <input type="file" style="display:none">
                             <div class="wrapper-sm b-a bg-white m-r m-b-xs">

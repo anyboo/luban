@@ -8,8 +8,8 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="icon-wallet"></i>  为订单号 
-                    <span class="label bg-info ng-binding">OC1161217130540023908405</span>  缴费 
+                    <i class="icon-wallet"></i>为订单号
+                    <span class="label bg-info ng-binding">OC1161217130540023908405</span>缴费
                 </h3>
             </div>
             <div class="modal-body ng-scope" ng-init="init_payment()" ng-controller="OrderPayNowCtrl">

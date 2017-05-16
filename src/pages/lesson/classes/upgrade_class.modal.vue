@@ -8,8 +8,8 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>  对 
-                        <span class="label bg-info ng-binding">11</span>  进行升级操作 
+                        <i class="fa fa-calendar"></i>对
+                        <span class="label bg-info ng-binding">11</span>进行升级操作
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -20,7 +20,7 @@
                         </button>
                         <div ng-transclude="">
                             <h3 class="m-n ng-scope">
-                                <i class="fa fa-exclamation-circle"></i>  升级操作说明 
+                                <i class="fa fa-exclamation-circle"></i>升级操作说明
                             </h3>
                             <ul class="list-unstyled ng-scope">
                                 <li class="m-t-xs">班级升级适用于课程升级,班级配置整体不变的情况,如春季班升级到暑假班.</li>
@@ -32,10 +32,10 @@
                     </div>
                     <div class="m-t wrapper ng-scope" ng-if="vm.input.status != '2'">
                         <p class="m-t m-b text-danger text-2x">
-                            <i class="fa fa-exclamation-triangle"></i>  系统检测到班级还未结课,是否先要进行结课操作? 
+                            <i class="fa fa-exclamation-triangle"></i>系统检测到班级还未结课,是否先要进行结课操作?
                         </p>
                         <p class="text-center">
-                            <a class="btn btn-danger" ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)">立即结课</a>
+                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)" @click="lbShowDailog('lb-end_classmodal')">立即结课</a>
                             <a class="btn btn-default m-l" ng-click="vm.dismiss()">关闭</a>
                         </p>
                     </div>

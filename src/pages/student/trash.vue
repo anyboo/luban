@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="icon-lock"></i>  已封存学员档案列表 
+                    <i class="icon-lock"></i>已封存学员档案列表
                 </h3>
             </div>
             <div class="wrapper bg-white ng-scope" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,isdelete:1}}" xo-rest-ctrl="trash">
@@ -17,7 +17,7 @@
                             <div class="input-group">
                                 <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
                                     <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  姓名 
+                                        姓名
                                         <span class="caret"></span>
                                     </button>
                                 </div>
@@ -43,17 +43,16 @@
                                     <td class="ng-binding">
                                         <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                             <i class="fa fa-male"></i>
-                                        </span>
-  照理 
+                                        </span>照理
                                     </td>
                                     <td class="ng-binding">12368454877</td>
                                     <td class="ng-binding">2017-05-13</td>
                                     <td>
                                         <a class="link" ng-click="do_recover(item)">
-                                            <i class="icon-lock-open"></i>  恢复 
+                                            <i class="icon-lock-open"></i>恢复
                                         </a>
                                         <a class="link" ng-click="confirm_delete(item)" ui-per="student.delete">
-                                            <i class="fa fa-times"></i>  删除 
+                                            <i class="fa fa-times"></i>删除
                                         </a>
                                     </td>
                                 </tr>

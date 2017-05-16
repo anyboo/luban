@@ -8,7 +8,7 @@
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
-                                    <span class="rangeData1">2017-05-12</span>  - 
+                                    <span class="rangeData1">2017-05-12</span>-
                                     <span class="rangeData2">2017-05-12</span>
                                     <span class="caret"></span>
                                 </div>
@@ -469,7 +469,7 @@
                         </div>
                     </div>
                     <button class="btn btn-default ng-isolate-scope" export="student_hours" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>  导出 
+                        <i class="glyphicon glyphicon-export"></i>导出
                     </button>
                     <div id="fct-student_hours" style="display:none;">
                         <form name="export_form_student_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
@@ -490,7 +490,7 @@
                         <tr>
                             <th>学员</th>
                             <th>
-  上课时间 
+                                上课时间
                                 <span class="table-header-sort ng-isolate-scope" header-sort="teach_time" params="params">
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -506,7 +506,7 @@
                             <th>课程金额</th>
                             <th>授课老师</th>
                             <th>
-  登记时间 
+                                登记时间
                                 <span class="table-header-sort ng-isolate-scope" header-sort="create_time" params="params">
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
@@ -565,8 +565,8 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-  课程金额总计: 
-                        <span class="label bg-info ng-binding">￥100.00</span>  ,小计: 
+                        课程金额总计:
+                        <span class="label bg-info ng-binding">￥100.00</span>,小计:
                         <span class="label bg-info ng-binding">￥100</span>
                     </div>
                     <div class="col-sm-4 text-center">

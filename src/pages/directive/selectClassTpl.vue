@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title ng-binding">
-                    <i class="fa fa-flag"></i>  请选择班级 
+                    <i class="fa fa-flag"></i>请选择班级
                 </h3>
             </div>
             <div class="modal-body ng-scope">
@@ -18,7 +18,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名称'}, {name:'master',value:'老师姓名'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  班级名称 
+                                            班级名称
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -30,8 +30,8 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <a ui-per="class.add" class="btn btn-primary btn-sm" ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')">
-                                <i class="fa fa-plus"></i>  新班级 
+                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog('lb-open_classmodal')">
+                                <i class="fa fa-plus"></i>新班级
                             </a>
                         </div>
                     </div>

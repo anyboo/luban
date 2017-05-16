@@ -4,7 +4,7 @@
             <ul class="breadcrumb bg-white b-a">
                 <li>
                     <a ui-sref="lesson.packages" href="#/lesson/packages">
-                        <i class="fa fa-suitcase"></i>  课时包 
+                        <i class="fa fa-suitcase"></i>课时包
                     </a>
                 </li>
                 <li class="active">班级设置</li>
@@ -17,7 +17,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'short_name',value:'班级简称'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-  班级名 
+                                            班级名
                                             <span class="caret"></span>
                                         </button>
                                     </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
                         <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                            <i class="fa fa-filter"></i>  过滤 
+                            <i class="fa fa-filter"></i>过滤
                         </button>
                         <div class="btn-group m-l">
                             <label btn-radio="'0'" ng-model="params.is_end" class="btn btn-default ng-pristine ng-untouched ng-valid">未结课</label>
@@ -57,8 +57,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/sclasses/new_sclass.modal.html','md')">
-                            <i class="fa fa-plus"></i>  新建班级 
+                        <a ng-click="$util.open('tpl/app/lesson/sclasses/new_sclass.modal.html','md')" @click="lbShowDailog('lb-new_sclassmodal')">
+                            <i class="fa fa-plus"></i>新建班级
                         </a>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     </table>
                     <div class="grid-data-result">
                         <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                            <i class="fa fa-frown-o"></i>  没有符合条件的班级! 
+                            <i class="fa fa-frown-o"></i>没有符合条件的班级!
                         </p>
                     </div>
                 </div>

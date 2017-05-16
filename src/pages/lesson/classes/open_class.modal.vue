@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-flag-checkered"></i>  开新班 
+                        <i class="fa fa-flag-checkered"></i>开新班
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -20,7 +20,7 @@
                                     <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-valid ng-touched" readonly="true">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowDailog('lb-selectteachertpl')">
-                                            <i class="fa fa-user"></i>  选择 
+                                            <i class="fa fa-user"></i>选择
                                         </button>
                                     </span>
                                 </div>

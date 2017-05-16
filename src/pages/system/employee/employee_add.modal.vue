@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user"></i>  添加员工 
+                        <i class="fa fa-user"></i>添加员工
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -24,10 +24,10 @@
                             <div class="col-md-10 col-xs-12">
                                 <div class="btn-group">
                                     <label btn-radio="'1'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-male"></i>  男 
+                                        <i class="fa fa-male"></i>男
                                     </label>
                                     <label btn-radio="'2'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-female"></i>  女 
+                                        <i class="fa fa-female"></i>女
                                     </label>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">
-                                <i class="fa fa-phone"></i>  电话: 
+                                <i class="fa fa-phone"></i>电话:
                             </label>
                             <div class="col-md-10 col-xs-12">
                                 <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.tel">
@@ -118,7 +118,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">
-                                <i class="glyphicon glyphicon-envelope"></i>  Email: 
+                                <i class="glyphicon glyphicon-envelope"></i>Email:
                             </label>
                             <div class="col-md-10 col-xs-12">
                                 <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.email">

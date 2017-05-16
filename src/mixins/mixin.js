@@ -5,6 +5,9 @@ export default {
         },
         lbCloseDailog() {
             this.$store.commit('popdailog')
+        },
+        lbDropDown() {
+
         }
     }
 }
