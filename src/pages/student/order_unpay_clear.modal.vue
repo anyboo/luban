@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="student_unpay_orders" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -25,7 +25,7 @@
                                 <span ng-if="item.pay_status == '1'" class="ng-binding ng-scope">已付款:2000.00元</span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/student/order/unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-unpayclearmodal')">
+                                <a ng-click="$util.open('tpl/app/student/order/unpay_clear.modal.html','md',item)" @click="lbShowDailog($event,'lb-unpayclearmodal')">
                                     <i class="icon-ban"></i>欠费清除
                                 </a>
                             </p>
@@ -41,7 +41,7 @@
                                 <span ng-if="item.pay_status == '1'" class="ng-binding ng-scope">已付款:230.00元</span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/student/order/unpay_clear.modal.html','md',item)" @click="lbShowDailog('lb-unpayclearmodal')">
+                                <a ng-click="$util.open('tpl/app/student/order/unpay_clear.modal.html','md',item)" @click="lbShowDailog($event,'lb-unpayclearmodal')">
                                     <i class="icon-ban"></i>欠费清除
                                 </a>
                             </p>

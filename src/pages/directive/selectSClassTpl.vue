@@ -2,7 +2,7 @@
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude="">
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div ng-controller="ClassInputStudentsCtrl" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -33,7 +33,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="6" on-selected="add_exists_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员档案" @click="lbShowDailog('lb-selectstudenttpl')">
+                                                    <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="6" on-selected="add_exists_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员档案" @click="lbShowDailog($event,'lb-selectstudenttpl')">
                                                         <i class="fa fa-list"></i>选择已有学员
                                                     </a>
                                                 </li>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button class="btn btn-primary" ng-disabled="input.students.length == 0 || saving" ng-click="save_input_students();">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">取消</button>
                 </div>
             </div>
         </div>

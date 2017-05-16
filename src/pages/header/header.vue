@@ -14,7 +14,7 @@
         </div>
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-info dker">
             <div class="nav navbar-nav hidden-xs ng-scope" ng-controller="UtilCtrl">
-                <a ng-click="$util.open('tpl/public/feature.modal.html','md',{})" @click="lbShowDailog('lb-featuremodal')">
+                <a ng-click="$util.open('tpl/public/feature.modal.html','md',{})" @click="lbShowDailog($event,'lb-featuremodal')">
                     <span class="badge badge-sm up bg-danger pull-right-xs ng-binding">2.1</span>
                 </a>
             </div>

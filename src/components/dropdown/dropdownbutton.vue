@@ -1,5 +1,5 @@
 <template>
-    <button :class="buttonClass" :tooltip="buttonTooltip" @click="handleOpen" @blur="handleClose">
+    <button :class="buttonClass" :tooltip="buttonTooltip" @click="handleOpen($event)" @blur="handleClose($event)">
         <slot></slot>
     </button>
 </template>
@@ -13,14 +13,17 @@ export default {
         }
     },
     methods: {
-        handleOpen() {
-            if (this.$parent.handleOpen) {
+        handleOpen(event) {
+            event.preventDefault()
+            if (this.$parent && this.$parent.handleOpen) {
                 clearTimeout(this.timeCloseId)
                 this.$parent.handleOpen()
             }
+
         },
-        handleClose() {
-            if (this.$parent.handleClose) {
+        handleClose(event) {
+            event.preventDefault()
+            if (this.$parent && this.$parent.handleClose) {
                 this.timeCloseId = setTimeout(() => {
                     this.$parent.handleClose()
                 }, 200)

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div oc-lazy-load="['js/modules/order.js?v=2','lodop.print']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -88,7 +88,7 @@
                                 <div class="input-group ng-valid" ng-model="pay.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
                                     <input type="text" name="name" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowDailog('lb-selectteachertpl')">
+                                        <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowDailog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>
                                         </button>
                                     </span>
@@ -98,7 +98,7 @@
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
                                 <button class="btn btn-primary" ng-click="do_reg()" ng-disabled="saving">确认登记</button>
-                                <button class="btn btn-danger m-l" ng-disabled="saving" ng-click="vm.dismiss()">关闭</button>
+                                <button class="btn btn-danger m-l" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
                             </div>
                         </div>
                     </form>

@@ -35,7 +35,7 @@
                             <div class="input-group ng-valid" select-title="请选择学员" ng-model="params.os_id" select-params="{ob_id:user.gv.ob_id}">
                                 <input type="text" placeholder="学员" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowDailog('lb-selectstudenttpl')">
+                                    <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowDailog($event,'lb-selectstudenttpl')">
                                         <i class="icon-user"></i>
                                     </button>
                                 </span>
@@ -97,7 +97,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
             </h3>
         </div>
         <div class="modal-body" ng-init="params.expire_duration = 0">

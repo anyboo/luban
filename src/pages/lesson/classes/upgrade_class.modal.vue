@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="upgrade_class" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert ng-isolate-scope alert-info alert-dismissable" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]" role="alert" alert="" type="info" close="close_alert()" ng-if="alert_show==1">
-                        <button ng-show="closeable" type="button" class="close" ng-click="close()" @click="lbCloseDailog()">
+                        <button ng-show="closeable" type="button" class="close" ng-click="close()" @click="lbCloseDailog($event)">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">Close</span>
                         </button>
@@ -35,8 +35,8 @@
                             <i class="fa fa-exclamation-triangle"></i>系统检测到班级还未结课,是否先要进行结课操作?
                         </p>
                         <p class="text-center">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)" @click="lbShowDailog('lb-endclassmodal')">立即结课</a>
-                            <a class="btn btn-default m-l" ng-click="vm.dismiss()">关闭</a>
+                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',vm.input)" @click="lbShowDailog($event,'lb-endclassmodal')">立即结课</a>
+                            <a class="btn btn-default m-l" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</a>
                         </p>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div class="box box-success direct-chat direct-chat-success ng-scope" page-controller="wechat">
                 <div class="box-header with-border">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -56,7 +56,7 @@
                                     <a ng-disabled="$index == 0" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
                                         <i class="icon-close"></i>
                                     </a>
-                                    <a ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" @click="lbShowDailog('lb-editcontactmodal')">
+                                    <a ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" @click="lbShowDailog($event,'lb-editcontactmodal')">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                 </td>

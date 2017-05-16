@@ -30,10 +30,10 @@
                             <label btn-radio="'1'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1</label>
                             <label btn-radio="'10'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包</label>
                         </div>
-                        <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowDailog('lb-cate')">
+                        <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowDailog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
-                        <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog('lb-newlessonmodal')">
+                        <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowDailog($event,'lb-newlessonmodal')">
                             <i class="fa fa-plus"></i>添加课程
                         </button>
                     </div>
@@ -59,7 +59,7 @@
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/lesson/lesson/edit_lesson.modal.html','md',item)" @click="lbShowDailog('lb-editlessonmodal')">
+                                                <a ng-click="$util.open('tpl/app/lesson/lesson/edit_lesson.modal.html','md',item)" @click="lbShowDailog($event,'lb-editlessonmodal')">
                                                     <i class="fa fa-pencil-square"></i>编辑
                                                 </a>
                                             </li>
@@ -124,7 +124,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
             </h3>
         </div>
         <div class="modal-body">

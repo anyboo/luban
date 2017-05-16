@@ -21,6 +21,7 @@ export default new Vuex.Store({
         },
         pushdailog: (state, obj) => {
             state.dailog.push(obj)
+            state.modalbackdropzindex = state.dailog.length * 2 + 1997
             state.modalbackdrop = true
         }
     }

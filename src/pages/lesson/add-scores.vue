@@ -4,7 +4,7 @@
             <div class="modal-content" modal-transclude="">
                 <div page-controller="add_performance" class="ng-scope">
                     <div class="modal-header">
-                        <button type="button" ng-click="$dismiss()" class="close" @click="lbCloseDailog()">
+                        <button type="button" ng-click="$dismiss()" class="close" @click="lbCloseDailog($event)">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">关闭</span>
                         </button>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="modal-footer">
                         <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记成绩</button>
-                        <button ng-click="$dismiss()" class="btn btn-warning" @click="lbCloseDailog()">关闭</button>
+                        <button ng-click="$dismiss()" class="btn btn-warning" @click="lbCloseDailog($event)">关闭</button>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@
                     <div class="input-group">
                         <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowDailog('lb-selectstudenttpl')">
+                            <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowDailog($event,'lb-selectstudenttpl')">
                                 <i class="icon-user"></i>
                             </button>
                         </span>
@@ -57,17 +57,17 @@
                                 </lb-dropdown-button>
                                 <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-regionsetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-regionsetmodal')">
                                             <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purposesetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-purposesetmodal')">
                                             <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-addtrackmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                             <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>
@@ -108,17 +108,17 @@
                                 </lb-dropdown-button>
                                 <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-regionsetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-regionsetmodal')">
                                             <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purposesetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-purposesetmodal')">
                                             <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-addtrackmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                             <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>
@@ -159,17 +159,17 @@
                                 </lb-dropdown-button>
                                 <lb-dropdown-menu slot="menuslot">
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog('lb-regionsetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-regionsetmodal')">
                                             <i class="icon-rocket"></i>学员归属设定
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog('lb-purposesetmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowDailog($event,'lb-purposesetmodal')">
                                             <i class="icon-heart"></i>意向程度设置
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-addtrackmodal')">
+                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                             <i class="fa fa-phone-square"></i>跟踪回访
                                         </a>
                                     </li>

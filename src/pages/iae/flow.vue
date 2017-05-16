@@ -457,7 +457,7 @@
                             <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
                         </form>
                     </div>
-                    <a ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})" @click="lbShowDailog('lb-flowaddmodal')">
+                    <a ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})" @click="lbShowDailog($event,'lb-flowaddmodal')">
                         <i class="fa fa-pencil"></i>记一笔
                     </a>
                 </div>
@@ -482,7 +482,7 @@
                                 <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
                                     <i class="fa fa-reply"></i>撤销
                                 </a>
-                                <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowDailog('lb-setodimodal')">设置分类</a>
+                                <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowDailog($event,'lb-setodimodal')">设置分类</a>
                             </td>
                             <td class="ng-binding">2017-05-12 15:41</td>
                             <td>

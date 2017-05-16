@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="import" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" ng-hide="importing" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" ng-hide="importing" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>

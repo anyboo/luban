@@ -1,9 +1,9 @@
 import page1 from '~/pages/dialog/dialog.vue'
-import page2 from '~/pages/directive/selectTeacherTpl.vue'
-import page3 from '~/pages/widget/attendance/no_arrange_explain.modal.vue'
+import page2 from '~/pages/widget/attendance/no_arrange_explain.modal.vue'
+import page3 from '~/pages/directive/selectTeacherTpl.vue'
 import page4 from '~/pages/directive/selectStudentTpl.vue'
-import page5 from '~/pages/lesson/classes/open_class.modal.vue'
-import page6 from '~/pages/lesson/lesson/new_lesson.modal.vue'
+import page5 from '~/pages/lesson/lesson/new_lesson.modal.vue'
+import page6 from '~/pages/lesson/classes/open_class.modal.vue'
 import page7 from '~/pages/student/order/pay_now.modal.vue'
 import page8 from '~/pages/student/order/pay_reg.modal.vue'
 import page9 from '~/pages/student/order_unpay_clear.modal.vue'
@@ -55,11 +55,11 @@ import page54 from '~/pages/lesson/order/order_refund.modal.vue'
 
 var pages = {}
 pages['lb-dialog'] = page1
-pages['lb-selectteachertpl'] = page2
-pages['lb-noarrangeexplainmodal'] = page3
+pages['lb-noarrangeexplainmodal'] = page2
+pages['lb-selectteachertpl'] = page3
 pages['lb-selectstudenttpl'] = page4
-pages['lb-openclassmodal'] = page5
-pages['lb-newlessonmodal'] = page6
+pages['lb-newlessonmodal'] = page5
+pages['lb-openclassmodal'] = page6
 pages['lb-paynowmodal'] = page7
 pages['lb-payregmodal'] = page8
 pages['lb-orderunpayclearmodal'] = page9

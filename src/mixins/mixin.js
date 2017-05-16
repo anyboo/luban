@@ -1,14 +1,12 @@
 export default {
     methods: {
-        lbShowDailog(url) {
-            console.log('lbShowDailog', url)
+        lbShowDailog(event,url) {
+            event.preventDefault()
             this.$store.commit('pushdailog', url)
         },
-        lbCloseDailog() {
+        lbCloseDailog(event) {
+            event.preventDefault()
             this.$store.commit('popdailog')
-        },
-        lbDropDown() {
-
         }
     }
 }

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -34,17 +34,17 @@
                             </p>
                             <div class="row no-gutter m-t">
                                 <div class="col-xs-5">
-                                    <button ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',order)" @click="lbShowDailog('lb-paynowmodal')">
+                                    <button ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',order)" @click="lbShowDailog($event,'lb-paynowmodal')">
                                         <i class="icon-wallet"></i>现场缴费
                                     </button>
                                 </div>
                                 <div class="col-xs-4 ng-scope" ng-if="order.order_amount > 0">
-                                    <button ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',order)" @click="lbShowDailog('lb-payregmodal')">
+                                    <button ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',order)" @click="lbShowDailog($event,'lb-payregmodal')">
                                         <i class="icon-note"></i>缴费登记
                                     </button>
                                 </div>
                                 <div class="col-xs-3">
-                                    <a class="btn btn-warning btn-block" ng-click="vm.dismiss()">
+                                    <a class="btn btn-warning btn-block" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">
                                         <i class="fa fa-sign-out"></i>关闭
                                     </a>
                                 </div>

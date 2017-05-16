@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="sms_send" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog()">
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -39,7 +39,7 @@
                     <a ng-show="step > 1" class="btn btn-link ng-hide" ng-click="go_step(1)">返回</a>
                     <button class="btn btn-primary" ng-show="step == 1" ng-disabled="not_select_object()" ng-click="go_step(2)" disabled="disabled">下一步</button>
                     <button class="btn btn-primary ng-hide" ng-disabled="form1.$invalid || saving" ng-click="do_ok()" ng-hide="step == 1">确认发送</button>
-                    <button class="btn btn-danger" ng-click="vm.dismiss()">关闭</button>
+                    <button class="btn btn-danger" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
                 </div>
             </div>
         </div>

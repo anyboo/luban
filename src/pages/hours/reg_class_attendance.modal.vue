@@ -4,7 +4,7 @@
             <div oc-lazy-load="['js/modules/hours.js']" class="ng-scope"></div>
             <div ng-controller="reg_class_attendance" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -26,7 +26,7 @@
                         <div class="row no-gutter"></div>
                         <p class="text-center text-muted ng-scope" ng-if="arranges_rest.$loaded && arranges_rest.$list.length == 0">
                             没有排课记录，请先进行
-                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',class)" @click="lbShowDailog('lb-lessonarrangemodal')">排课</a>!
+                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',class)" @click="lbShowDailog($event,'lb-lessonarrangemodal')">排课</a>!
                         </p>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <a ng-show="step > 1" class="btn btn-link ng-hide" ng-click="go_step(1)">返回</a>
                     <button class="btn btn-primary" ng-show="step == 1" ng-disabled="!oca_id" ng-click="go_step(2)" disabled="disabled">下一步</button>
                     <button class="btn btn-primary ng-hide" ng-show="step == 2" ng-disabled="saving" ng-click="reg_attendance()">登记考勤</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
                 </div>
             </div>
         </div>

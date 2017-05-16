@@ -4,7 +4,7 @@
             <div oc-lazy-load="['js/modules/hours.js']" class="ng-scope"></div>
             <div ng-controller="remove_class_attendance" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -31,7 +31,7 @@
                     <a ng-show="step > 1" class="btn btn-link ng-hide" ng-click="go_step(1)">返回</a>
                     <button class="btn btn-primary" ng-show="step == 1" ng-disabled="!ocat_id" ng-click="go_step(2)" disabled="disabled">下一步</button>
                     <button class="btn btn-primary ng-hide" ng-show="step == 2" ng-click="remove_attendance()">确认撤销</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
                 </div>
             </div>
         </div>

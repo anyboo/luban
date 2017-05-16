@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="employee_lock" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -26,7 +26,7 @@
                         </p>
                         <p class="text-center">
                             <a class="btn btn-danger" ng-disabled="saving" ng-click="do_ok()">确定</a>
-                            <a class="btn btn-default m-l" ng-click="vm.dismiss()">关闭</a>
+                            <a class="btn btn-default m-l" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</a>
                         </p>
                     </div>
                 </div>

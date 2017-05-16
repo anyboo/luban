@@ -27,7 +27,7 @@
                             <div class="input-group ng-valid" select-title="请选择学员" ng-model="params.os_id" select-params="{ob_id:user.gv.ob_id}">
                                 <input type="text" placeholder="学员" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowDailog('lb-selectstudenttpl')">
+                                    <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowDailog($event,'lb-selectstudenttpl')">
                                         <i class="icon-user"></i>
                                     </button>
                                 </span>
@@ -47,7 +47,7 @@
                             <label btn-radio="'0'" ng-model="params.pay_status" class="btn btn-default ng-untouched ng-valid active ng-dirty ng-valid-parse">未缴费</label>
                             <label btn-radio="" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">所有</label>
                         </div>
-                        <a ng-click="$util.open('tpl/app/lesson/contracts/add_performance.modal.html','md',grid.data)" @click="lbShowDailog('lb-addperformancemodal')">
+                        <a ng-click="$util.open('tpl/app/lesson/contracts/add_performance.modal.html','md',grid.data)" @click="lbShowDailog($event,'lb-addperformancemodal')">
                             <i class="icon-plus"></i>登记成绩
                         </a>
                     </div>
@@ -89,7 +89,7 @@
         <div class="modal-header">
             <h3 class="modal-title">
                 条件查询
-                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog()">关闭</button>
+                <button class="btn btn-sm btn-default pull-right" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
             </h3>
         </div>
         <div class="modal-body">
