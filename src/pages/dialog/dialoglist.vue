@@ -10,7 +10,6 @@
 <script>
 import dialogpages from '~/stores/dialogpages.js'
 
-console.log(dialogpages)
 export default {
     name: 'dialog',
     data() {

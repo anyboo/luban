@@ -187,3 +187,16 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    name: 'add',
+    data() {
+        return {
+
+        }
+    },
+    computed: {},
+    watch: {},
+    methods: {}
+}
+</script>
