@@ -2,16 +2,7 @@
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude="">
             <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
-            <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">关闭</span>
-                </button>
-                <h3 class="modal-title">
-                    <i class="fa fa-shopping-cart"></i>学员
-                    <span class="label bg-info ng-binding">威锋</span>报名&缴费
-                </h3>
-            </div>
+            
             <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl">
                 <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
                     <div class="ng-scope">
@@ -61,7 +52,6 @@ export default {
     name: 'orderandpay2',
     data() {
         return {
-
         }
     },
     computed: {},
