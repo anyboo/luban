@@ -227,7 +227,6 @@ export default {
         backf() {
             this.OnAttendance = true
             this.BatchAttendance = false
-
         }
     }
 }
