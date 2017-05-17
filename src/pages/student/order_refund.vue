@@ -4,7 +4,7 @@
             <div oc-lazy-load="['js/modules/order.js?v=3']" class="ng-scope"></div>
             <div ng-init="init_pays()" ng-controller="OrderRefundCtrl" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -119,7 +119,7 @@
                     <button ng-show="step == 1" class="btn btn-primary ng-hide" ng-disabled="refund.oph_id == 0" ng-click="go_step(2)">下一步</button>
                     <button ng-show="step == 2" class="btn btn-default" ng-click="go_step(1)">上一步</button>
                     <button ng-show="step == 2" class="btn btn-primary" ng-disabled="saving" ng-click="do_refund()">确定退款</button>
-                    <button class="btn btn-warning m-l" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                    <button class="btn btn-warning m-l" ng-click="vm.dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -30,7 +30,7 @@
                                     <div class="input-group">
                                         <input type="text" placeholder="课时包" ng-model="selected_lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" select-tpl="tpl/directive/selectLessonTpl.html" select-id-field="ol_id" max-num="1" on-selected="select_lesson" select-params="{lesson_type:10}" select-title="请选择课时包" @click="lbShowDailog($event,'lb-selectlessontpl')">
+                                            <button class="btn btn-default" select-tpl="tpl/directive/selectLessonTpl.html" select-id-field="ol_id" max-num="1" on-selected="select_lesson" select-params="{lesson_type:10}" select-title="请选择课时包" @click="lbShowdialog($event,'lb-selectlessontpl')">
                                                 <i class="fa fa-clock-o"></i>选择课时包
                                             </button>
                                         </span>

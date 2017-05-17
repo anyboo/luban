@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="photo" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog($event)">
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>

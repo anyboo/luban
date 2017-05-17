@@ -1,12 +1,12 @@
 export default {
     methods: {
-        lbShowDailog(event,url) {
+        lbShowdialog(event,url) {
             event.preventDefault()
-            this.$store.commit('pushdailog', url)
+            this.$store.commit('pushdialog', url)
         },
-        lbCloseDailog(event) {
+        lbClosedialog(event) {
             event.preventDefault()
-            this.$store.commit('popdailog')
+            this.$store.commit('popdialog')
         }
     }
 }

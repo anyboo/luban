@@ -17,7 +17,7 @@
                                     <div class="m-b-xs m-t-sm">
                                         <span class="h3 text-black ng-binding ng-scope" ng-if="user.name">林三金</span>
                                     </div>
-                                    <button ng-click="$util.open('tpl/main/photo.modal.html',lg,user)" @click="lbShowDailog($event,'lb-photomodal')">更换图像</button>
+                                    <button ng-click="$util.open('tpl/main/photo.modal.html',lg,user)" @click="lbShowdialog($event,'lb-photomodal')">更换图像</button>
                                 </div>
                             </div>
                         </div>

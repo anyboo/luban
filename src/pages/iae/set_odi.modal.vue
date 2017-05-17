@@ -27,7 +27,7 @@
                 </div>
                 <p class="m-t">
                     <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <button class="btn btn-warning" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                    <button class="btn btn-warning" ng-click="vm.dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </p>
             </div>
         </div>

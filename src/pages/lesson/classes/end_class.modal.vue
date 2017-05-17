@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="end_class" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -19,13 +19,13 @@
                         </p>
                         <p class="text-center">
                             <a class="btn btn-danger" ng-click="in_process()">强制结课</a>
-                            <a class="btn btn-default m-l" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</a>
+                            <a class="btn btn-default m-l" ng-click="vm.dismiss()" @click="lbClosedialog($event)">关闭</a>
                         </p>
                     </div>
                 </div>
                 <div class="modal-footer ng-hide" ng-hide="in_end_process == 0">
                     <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
         </div>

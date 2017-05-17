@@ -33,10 +33,10 @@
                             <label btn-radio="'1'" class="btn btn-default">1对1</label>
                             <label btn-radio="'10'" class="btn btn-default">课时包</label>
                         </div>
-                        <button class="btn btn-default pull-right" @click="lbShowDailog($event,'lb-cate')">
+                        <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
-                        <button class="btn btn-primary pull-right" @click="lbShowDailog($event,'lb-newlessonmodal')">
+                        <button class="btn btn-primary pull-right" @click="lbShowdialog($event,'lb-newlessonmodal')">
                             <i class="fa fa-plus"></i>添加课程
                         </button>
                     </div>
@@ -62,7 +62,7 @@
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a @click="lbShowDailog($event,'lb-editlessonmodal')">
+                                                <a @click="lbShowdialog($event,'lb-editlessonmodal')">
                                                     <i class="fa fa-pencil-square"></i>编辑
                                                 </a>
                                             </li>

@@ -2,7 +2,7 @@
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude="">
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog($event,'lb-openclassmodal')">
+                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowdialog($event,'lb-openclassmodal')">
                                 <i class="fa fa-plus"></i>新班级
                             </a>
                         </div>

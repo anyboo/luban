@@ -16,7 +16,7 @@
                         <div class="input-group">
                             <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowDailog($event,'lb-selectstudenttpl')">
+                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
@@ -94,7 +94,7 @@
                             <td class="ng-binding">4</td>
                             <td class="ng-binding">
                                 1
-                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowDailog($event,'lb-viewcoursemodal')">
+                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowdialog($event,'lb-viewcoursemodal')">
                                     <i class="icon-eye"></i>
                                 </a>
                             </td>

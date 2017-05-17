@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-user"></i>学员档案录入
-                        <a ng-click="$util.open('tpl/app/student/import.html','md',{})" @click="lbShowDailog($event,'lb-import')">
+                        <a ng-click="$util.open('tpl/app/student/import.html','md',{})" @click="lbShowdialog($event,'lb-import')">
                             <i class="glyphicon glyphicon-import"></i>从Excel导入
                         </a>
                     </div>

@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="endlesson" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -60,12 +60,12 @@
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="menuslot">
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)" @click="lbShowDailog($event,'lb-ordersmodal')">
+                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordersmodal')">
                                                     <i class="icon-plus"></i>补交欠费
                                                 </a>
                                             </li>
                                             <li>
-                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)" @click="lbShowDailog($event,'lb-orderunpayclearmodal')">
+                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
                                                     <i class="icon-ban"></i>欠费清除
                                                 </a>
                                             </li>
@@ -85,7 +85,7 @@
                 <div class="modal-footer" ng-hide="step == 1">
                     <a ng-show="step > 1" class="btn btn-link" ng-click="go_step(1)">返回</a>
                     <button class="btn btn-primary" ng-disabled="lesson.unpay_amount > 0 || saving" ng-click="do_ok()" disabled="disabled">确认结课</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>

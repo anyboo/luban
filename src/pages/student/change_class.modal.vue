@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="change_class" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -29,7 +29,7 @@
                                 <div class="input-group">
                                     <input type="text" placeholder="班级" ng-model="occ.selected_class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="true" required="" readonly="readonly">
                                     <span class="input-group-btn">
-                                        <button ng-disabled="occ.from_oc_id == 0" class="btn btn-default" select-tpl="tpl/directive/selectClassTpl.html" select-id-field="oc_id" max-num="1" on-selected="select_to_class" select-params="{ob_id:user.gv.ob_id,t:'order'}" select-title="请选择班级" @click="lbShowDailog($event,'lb-selectclasstpl')">
+                                        <button ng-disabled="occ.from_oc_id == 0" class="btn btn-default" select-tpl="tpl/directive/selectClassTpl.html" select-id-field="oc_id" max-num="1" on-selected="select_to_class" select-params="{ob_id:user.gv.ob_id,t:'order'}" select-title="请选择班级" @click="lbShowdialog($event,'lb-selectclasstpl')">
                                             <i class="fa fa-flag"></i>选择班级
                                         </button>
                                     </span>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-disabled="form_invalid() || saving" ng-click="do_ok()" disabled="disabled">确认转班</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>

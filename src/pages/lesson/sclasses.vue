@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a ng-click="$util.open('tpl/app/lesson/sclasses/new_sclass.modal.html','md')" @click="lbShowDailog($event,'lb-newsclassmodal')">
+                        <a ng-click="$util.open('tpl/app/lesson/sclasses/new_sclass.modal.html','md')" @click="lbShowdialog($event,'lb-newsclassmodal')">
                             <i class="fa fa-plus"></i>新建班级
                         </a>
                     </div>

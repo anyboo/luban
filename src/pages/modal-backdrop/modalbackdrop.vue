@@ -11,10 +11,10 @@ export default {
     },
     computed: {
         modalShow() {
-            return this.$store.state.modalbackdrop
+            return this.$store.state.dialogs.modalbackdrop
         },
         modalIndex() {
-            return this.$store.state.modalbackdropzindex
+            return this.$store.state.dialogs.modalbackdropzindex
         }
     },
     watch: {},

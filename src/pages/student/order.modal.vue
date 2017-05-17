@@ -4,7 +4,7 @@
             <div class="modal-content" modal-transclude="">
                 <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
                 <div class="modal-header ng-scope">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>

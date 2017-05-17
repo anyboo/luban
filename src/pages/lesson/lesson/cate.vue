@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="lesson_cate" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>

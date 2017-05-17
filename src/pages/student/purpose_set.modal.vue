@@ -32,7 +32,7 @@
                 </div>
                 <p class="m-t">
                     <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">取消</a>
+                    <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbClosedialog($event)">取消</a>
                 </p>
             </div>
         </div>

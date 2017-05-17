@@ -20,10 +20,10 @@ export default {
     components: dialogpages,
     computed: {
         modalShow() {
-            return this.$store.state.modalbackdrop
+            return this.$store.state.dialogs.modalbackdrop
         },
         getDialog() {
-            return this.$store.state.dailog
+            return this.$store.state.dialogs.dailoglist
         }
     },
     watch: {},

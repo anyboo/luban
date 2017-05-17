@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div oc-lazy-load="['js/modules/order.js?v=2','lodop.print']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
+                <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -74,7 +74,7 @@
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
                                 <button class="btn btn-primary" ng-click="do_pay() || form1.$invalid" ng-disabled="is_pay_disable()" disabled="disabled">确认缴费</button>
-                                <button class="btn btn-danger m-l" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
+                                <button class="btn btn-danger m-l" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbClosedialog($event)">关闭</button>
                             </div>
                         </div>
                     </form>

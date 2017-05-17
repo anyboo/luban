@@ -12,7 +12,7 @@
                         <div class="input-group">
                             <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowDailog($event,'lb-selectstudenttpl')">
+                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
@@ -38,17 +38,17 @@
                         </lb-dropdown-button>
                         <lb-dropdown-menu slot="menuslot">
                             <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行请假登记" @click="lbShowDailog($event,'lb-selectstudenttpl')">
+                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行请假登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="fa fa-plus"></i>按上课时间单次登记
                                 </a>
                             </li>
                             <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员按排课登记考勤" @click="lbShowDailog($event,'lb-selectstudenttpl')">
+                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员按排课登记考勤" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="fa fa-calendar"></i>按排课记录批量登记
                                 </a>
                             </li>
                             <li>
-                                <a select-tpl="tpl/directive/selectSClassTpl.html" select-id-field="osc_id" max-num="1" on-selected="sclass_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择科目班级登记考勤" @click="lbShowDailog($event,'lb-selectsclasstpl')">
+                                <a select-tpl="tpl/directive/selectSClassTpl.html" select-id-field="osc_id" max-num="1" on-selected="sclass_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择科目班级登记考勤" @click="lbShowdialog($event,'lb-selectsclasstpl')">
                                     <i class="fa fa-users"></i>按科目班级批量登记
                                 </a>
                             </li>

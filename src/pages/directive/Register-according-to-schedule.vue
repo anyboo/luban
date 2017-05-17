@@ -4,7 +4,7 @@
             <div oc-lazy-load="['js/widget/attendance.js']" class="ng-scope"></div>
             <div ng-controller="wAttendanceCtrl" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog($event)">
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -37,7 +37,7 @@
                                 <div class="arrange-wrap bg-white">
                                     <div class="top padder-v">
                                         <p class="text-right padder ng-binding">
-                                            <a ng-click="$util.open('tpl/app/widget/attendance/no_arrange_explain.modal.html','md',{})" @click="lbShowDailog($event,'lb-noarrangeexplainmodal')">
+                                            <a ng-click="$util.open('tpl/app/widget/attendance/no_arrange_explain.modal.html','md',{})" @click="lbShowdialog($event,'lb-noarrangeexplainmodal')">
                                                 <i class="fa fa-question-circle"></i>有排课没有显示
                                             </a>2017年
                                             <span ng-if="vm.options.view_type=='week'" class="ng-binding ng-scope">第19周</span>

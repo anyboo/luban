@@ -4,7 +4,7 @@
             <div oc-lazy-load="['js/widget/attendance.js']" class="ng-scope"></div>
             <div ng-controller="wAttendanceCtrl" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog($event)">
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -23,7 +23,7 @@
                         <div class="wrapper text-center m-t">
                             <p class="text-center">请选择学员进行考勤登记!</p>
                             <p class="text-center m-t">
-                                <button class="btn btn-info" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_attendance" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行考勤登记" @click="lbShowDailog($event,'lb-selectstudenttpl')">
+                                <button class="btn btn-info" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_attendance" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行考勤登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="fa fa-user"></i>选择学员
                                 </button>
                             </p>
