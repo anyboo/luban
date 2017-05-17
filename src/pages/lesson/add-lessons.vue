@@ -18,7 +18,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课老师:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="input-group">
-                                        <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true">
+                                        <input type="text" name="master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true" v-model="lb_localdata.form.lb_info_master">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                 <i class="fa fa-user"></i>选择
@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">课程:</label>
                                 <div class="col-md-10 col-xs-12">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-model="info.ol_id" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required="" style="display: none;">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required="" style="display: none;" v-model="lb_localdata.form.lb_info_ol_id">
                                         <option value="" class="">选择课程</option>
                                         <option value="0">默认课程</option>
                                     </select>
@@ -53,14 +53,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                                 <div class="col-md-10 col-xs-12">
-                                    <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-model="info.class_name" ng-minlength="1" required="" disabled="disabled">
+                                    <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required="" disabled="disabled" v-model="lb_localdata.form.lb_info_class_name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">开课日期:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="inline w-sm">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" ng-model="info.open_time" datetimepicker="date" disabled="disabled">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_open_time">
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 <label class="control-label col-md-2 col-xs-12">预计结课:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="inline w-sm">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" ng-model="info.close_time" datetimepicker="date" disabled="disabled">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_close_time">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <label class="control-label col-md-2 col-xs-12">额定人数:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" ng-model="info.max_student_num" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled">
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled" v-model="lb_localdata.form.lb_info_max_student_num">
                                         <span class="input-group-addon">人</span>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" ng-model="info.total_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled">
+                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled" v-model="lb_localdata.form.lb_info_total_times">
                                         <span class="input-group-addon">次</span>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                 <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                                 <div class="col-md-3 col-xs-12">
                                     <div class="input-group">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="info.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled">
+                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled" v-model="lb_localdata.form.lb_info_unit_hours">
                                         <span class="input-group-addon">小时</span>
                                     </div>
                                 </div>
@@ -114,13 +114,24 @@
 export default {
     name: 'add-lessons',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_info_master': '',
+                'lb_info_ol_id': '',
+                'lb_info_class_name': '',
+                'lb_info_open_time': '',
+                'lb_info_close_time': '',
+                'lb_info_max_student_num': '',
+                'lb_info_total_times': '',
+                'lb_info_unit_hours': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

@@ -55,7 +55,7 @@
                             <label class="control-label col-xs-12 col-md-2">现款缴费:</label>
                             <div class="col-xs-12 col-md-4">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" name="money_pay_amount" ng-model="pay.money_pay_amount" ui-validate="{ a:'$value >= 0', b:'$value <= order_unpay_amount' }">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" name="money_pay_amount" ui-validate="{ a:'$value >= 0', b:'$value <= order_unpay_amount' }" v-model="lb_localdata.form.lb_pay_money_pay_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -87,8 +87,13 @@
 export default {
     name: 'pay_now.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_pay_money_pay_amount': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

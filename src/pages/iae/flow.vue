@@ -4,7 +4,7 @@
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="inline">
-                        <input type="text" id="ctl_date_start" ng-model="params.date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;">
+                        <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
@@ -429,20 +429,12 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="text" id="ctl_date_end" ng-model="params.date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;">
+                        <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 m-t">
-                    <div class="btn-group m-l">
-                        <label btn-radio="'today'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid active">今日</label>
-                        <label btn-radio="'week'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本周</label>
-                        <label btn-radio="'month'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本月</label>
-                    </div>
-                    <div class="btn-group m-l">
-                        <label btn-radio="" ng-model="params.type" class="btn btn-default ng-pristine ng-untouched ng-valid active">所有</label>
-                        <label btn-radio="'0'" ng-model="params.type" class="btn btn-default ng-pristine ng-untouched ng-valid">支出</label>
-                        <label btn-radio="'1'" ng-model="params.type" class="btn btn-default ng-pristine ng-untouched ng-valid">收入</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
+                    <lb-buttongroup :group-data="lb_localdata.lb_params_type" v-model="lb_localdata.form.lb_params_type"></lb-buttongroup>
                     <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">
                         <i class="glyphicon glyphicon-export"></i>导出Excel
                     </button>
@@ -530,13 +522,37 @@
 export default {
     name: 'flow',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_params_date_start': '',
+                'lb_params_date_end': '',
+                'lb_duration': '',
+                'lb_params_type': ''
+            },
+            'lb_duration': [{
+                'value': 'today',
+                'text': '今日'
+            }, {
+                'value': 'week',
+                'text': '本周'
+            }, {
+                'value': 'month',
+                'text': '本月'
+            }],
+            'lb_params_type': [{
+                'value': '0',
+                'text': '支出'
+            }, {
+                'value': '1',
+                'text': '收入'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

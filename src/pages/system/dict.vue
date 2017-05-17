@@ -68,13 +68,13 @@
 export default {
     name: 'dict',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

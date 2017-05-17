@@ -44,8 +44,9 @@
 export default {
     name: 'reg_class_attendance.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

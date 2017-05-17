@@ -24,11 +24,12 @@
 import sidebarmenuitem from '../sidebar-menu/sidebarmenuitem.vue'
 import homestat from '../homestat/homestat.vue'
 import menu from '~/stores/menu'
-
 export default {
     name: 'homestat',
     data() {
+        let lb_localdata = {}
         return {
+            lb_localdata,
             menu
         }
     },
@@ -38,8 +39,6 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {
-
-    }
+    methods: {}
 }
 </script>

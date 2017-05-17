@@ -34,7 +34,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">充值金额:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-5">
                                     <div class="input-group">
-                                        <input type="number" name="origin_amount" ng-model="order.origin_amount" ng-change="order.order_amount = order.origin_amount" class="form-control ng-pristine ng-untouched ng-valid">
+                                        <input type="number" name="origin_amount" ng-change="order.order_amount = order.origin_amount" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_order_origin_amount">
                                         <span class="input-group-addon">元</span>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" ng-disabled="order.oc_id == 0" ng-model="order.order_remark" placeholder="如有备注请输入">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" ng-disabled="order.oc_id == 0" placeholder="如有备注请输入" v-model="lb_localdata.form.lb_order_order_remark">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -78,8 +78,14 @@
 export default {
     name: 'prepay',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_order_origin_amount': '',
+                'lb_order_order_remark': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

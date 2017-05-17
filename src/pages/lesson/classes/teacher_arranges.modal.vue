@@ -44,8 +44,9 @@
 export default {
     name: 'teacher_arranges.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

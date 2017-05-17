@@ -18,10 +18,7 @@
                                 <span class="text-danger">*</span>类型
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="btn-group">
-                                    <label class="btn btn-default ng-pristine ng-untouched ng-valid active" ng-model="fee.type" btn-radio="'0'">支出</label>
-                                    <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="fee.type" btn-radio="'1'">收入</label>
-                                </div>
+                                <lb-buttongroup :group-data="lb_localdata.lb_fee_type" v-model="lb_localdata.form.lb_fee_type"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,7 +27,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">
-                                    <input type="number" name="amount" ng-model="fee.amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
+                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" v-model="lb_localdata.form.lb_fee_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -39,7 +36,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-model="fee.odi_id" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.lb_fee_odi_id">
                                         <option value="" class="">请选择</option>
                                         <option value="0">日常支出</option>
                                     </select>
@@ -64,7 +61,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" name="note" ng-model="fee.note" class="form-control ng-pristine ng-untouched ng-valid">
+                                    <input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_fee_note">
                                 </div>
                             </div>
                         </div>
@@ -73,7 +70,7 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
                                     <div class="input-group ng-valid" ng-model="fee.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
-                                        <input type="text" name="name" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'">
+                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="lb_localdata.form.lb_name">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                 <i class="fa fa-user"></i>
@@ -87,7 +84,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <input type="text" name="create_time" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="fee.create_time" datetimepicker="datetime">
+                                    <input type="text" name="create_time" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="datetime" v-model="lb_localdata.form.lb_fee_create_time">
                                 </div>
                             </div>
                         </div>
@@ -105,8 +102,25 @@
 export default {
     name: 'flow.add.modal',
     data() {
+        let lb_localdata = {
+            'lb_fee_type': [{
+                'value': '0',
+                'text': '支出'
+            }, {
+                'value': '1',
+                'text': '收入'
+            }],
+            'form': {
+                'lb_fee_type': '',
+                'lb_fee_amount': '',
+                'lb_fee_odi_id': '',
+                'lb_fee_note': '',
+                'lb_name': '',
+                'lb_fee_create_time': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

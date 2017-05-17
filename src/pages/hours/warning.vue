@@ -3,11 +3,7 @@
         <div class="wrapper bg-white ng-scope" page-controller="hours_warning_index">
             <div class="row no-gutter">
                 <div class="col-xs-12 col-md-3">
-                    <div class="btn-group m-l">
-                        <label btn-radio="0" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid active">班课</label>
-                        <label btn-radio="1" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1</label>
-                        <label btn-radio="10" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
                 </div>
             </div>
             <div class="m-t ng-scope" xo-rest="class_hours_warning" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" ng-if="lesson_type == 0" xo-rest-ctrl="hours_warning">
@@ -26,7 +22,7 @@
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                         </span>
-                                        <span class="icon">
+                                    <span class="icon">
                                             <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                         </span>
                                     </span>
@@ -37,7 +33,7 @@
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                         </span>
-                                        <span class="icon">
+                                    <span class="icon">
                                             <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                         </span>
                                     </span>
@@ -48,7 +44,7 @@
                                         <span class="icon">
                                             <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                         </span>
-                                        <span class="icon">
+                                    <span class="icon">
                                             <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                         </span>
                                     </span>
@@ -99,8 +95,23 @@
 export default {
     name: 'warning',
     data() {
+        let lb_localdata = {
+            'lb_lesson_type': [{
+                'value': '0',
+                'text': '班课'
+            }, {
+                'value': '1',
+                'text': '1对1'
+            }, {
+                'value': '10',
+                'text': '课时包'
+            }],
+            'form': {
+                'lb_lesson_type': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

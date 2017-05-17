@@ -27,8 +27,9 @@
 export default {
     name: 'homestat',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

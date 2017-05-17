@@ -41,8 +41,9 @@
 export default {
     name: 'remove_class_attendance.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

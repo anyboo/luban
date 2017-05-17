@@ -155,8 +155,9 @@
 export default {
     name: 'header',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

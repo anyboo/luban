@@ -17,25 +17,15 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">姓名:</label>
                             <div class="col-xs-12 col-md-5">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入学员姓名" ng-model="info.student_name" required="">
-                                <div class="btn-group m-t">
-                                    <label class="btn btn-default ng-pristine ng-untouched ng-valid active" ng-model="info.sex" btn-radio="'1'">
-                                        <i class="fa fa-male"></i>男
-                                    </label>
-                                    <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="info.sex" btn-radio="'2'">
-                                        <i class="fa fa-female"></i>女
-                                    </label>
-                                    <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="info.sex" btn-radio="'0'">
-                                        <i class="fa fa-question-circle"></i>待确定
-                                    </label>
-                                </div>
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入学员姓名" required="" v-model="lb_localdata.form.lb_info_student_name">
+                                <lb-buttongroup :group-data="lb_localdata.lb_info_sex" v-model="lb_localdata.form.lb_info_sex"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">
                                 <div class="inline w-sm">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" ng-model="info.nickname">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="lb_localdata.form.lb_info_nickname">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +33,7 @@
                             <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                             <div class="col-md-5 col-xs-12">
                                 <div class="w-sm">
-                                    <input type="text" name="birth_date" ng-model="info.birth_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date">
+                                    <input type="text" name="birth_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_info_birth_date">
                                 </div>
                             </div>
                         </div>
@@ -61,19 +51,19 @@
                         <div class="form-group ng-scope" ng-if="have_field('home_address')">
                             <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" ng-model="info.home_address">
+                                <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_info_home_address">
                             </div>
                         </div>
                         <div class="form-group ng-scope" ng-if="have_field('school')">
                             <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" ng-model="info.school">
+                                <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_info_school">
                             </div>
                         </div>
                         <div class="form-group ng-scope" ng-if="have_field('class')">
                             <label class="control-label col-md-2 col-xs-12">年级:</label>
                             <div class="col-md-5 col-xs-12">
-                                <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="grade" ng-model="info.grade" ng-options="item.value as item.text for item in $const.grades" style="display: none;">
+                                <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="grade" ng-options="item.value as item.text for item in $const.grades" style="display: none;" v-model="lb_localdata.form.lb_info_grade">
                                     <option value="" class="">请选择</option>
                                     <option value="0">不确定</option>
                                     <option value="1">一年级</option>
@@ -108,7 +98,7 @@
                         <div class="form-group ng-scope" ng-if="have_field('class')">
                             <label class="control-label col-md-2 col-xs-12">班级:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="class" class="form-control ng-pristine ng-untouched ng-valid" ng-model="info.class">
+                                <input type="text" name="class" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_info_class">
                             </div>
                         </div>
                         <div class="form-group">
@@ -131,8 +121,33 @@
 export default {
     name: 'edit_info.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_info_student_name': '',
+                'lb_info_sex': '',
+                'lb_info_nickname': '',
+                'lb_info_birth_date': '',
+                'lb_info_home_address': '',
+                'lb_info_school': '',
+                'lb_info_grade': '',
+                'lb_info_class': ''
+            },
+            'lb_info_sex': [{
+                'value': '1',
+                'iclass': 'fa fa-male',
+                'text': '男'
+            }, {
+                'value': '2',
+                'iclass': 'fa fa-female',
+                'text': '女'
+            }, {
+                'value': '0',
+                'iclass': 'fa fa-question-circle',
+                'text': '待确定'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

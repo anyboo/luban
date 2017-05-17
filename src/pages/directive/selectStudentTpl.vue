@@ -26,25 +26,14 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
                                 </div>
                             </div>
-                            <div class="btn-group m-t">
-                                <label btn-radio="" ng-model="params.status" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid active">所有</label>
-                                <label btn-radio="'0'" ng-model="params.status" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">未报读</label>
-                                <label btn-radio="'1'" ng-model="params.status" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">已报读</label>
-                            </div>
-                            <div class="btn-group m-t">
-                                <label btn-radio="'image'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">
-                                    <i class="fa fa-image"></i>头像
-                                </label>
-                                <label btn-radio="'list'" ng-model="view_mode" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid active">
-                                    <i class="fa fa-list"></i>列表
-                                </label>
-                            </div>
+                            <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
@@ -170,8 +159,31 @@
 export default {
     name: 'selectStudentTpl',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': '',
+                'lb_params_status': '',
+                'lb_view_mode': ''
+            },
+            'lb_params_status': [{
+                'value': '0',
+                'text': '未报读'
+            }, {
+                'value': '1',
+                'text': '已报读'
+            }],
+            'lb_view_mode': [{
+                'value': 'image',
+                'iclass': 'fa fa-image',
+                'text': '头像'
+            }, {
+                'value': 'list',
+                'iclass': 'fa fa-list',
+                'text': '列表'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

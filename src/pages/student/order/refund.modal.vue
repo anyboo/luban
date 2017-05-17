@@ -57,8 +57,9 @@
 export default {
     name: 'refund.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

@@ -31,10 +31,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">1</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -44,10 +44,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">2</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -57,10 +57,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">3</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -70,10 +70,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">4</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -83,10 +83,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">5</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -96,10 +96,10 @@
                                 <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                     <td class="ng-binding">10</td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.text" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_text">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.sort" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-change="item.$$dirty = true" ng-readonly="item.og_id == '0'" readonly="readonly" v-model="lb_localdata.form.lb_item_sort">
                                     </td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" ng-disabled="!item.$$dirty || saving" ng-click="save_dict_item(item)" disabled="disabled">保存</a>
@@ -121,8 +121,14 @@
 export default {
     name: 'dict_items',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_item_text': '',
+                'lb_item_sort': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

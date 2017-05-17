@@ -79,8 +79,9 @@
 export default {
     name: 'finishadd',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

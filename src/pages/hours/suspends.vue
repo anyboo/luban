@@ -8,15 +8,10 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-6 m-t">
-                    <div class="btn-group m-l-xs">
-                        <label btn-radio="''" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">所有</label>
-                        <label btn-radio="'1'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid active">停课中</label>
-                        <label btn-radio="'0'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">待停课</label>
-                        <label btn-radio="'2'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">已复课</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -46,7 +41,7 @@
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                     </span>
-                                    <span class="icon">
+                                <span class="icon">
                                         <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                     </span>
                                 </span>
@@ -79,8 +74,27 @@
 export default {
     name: 'suspends',
     data() {
+        let lb_localdata = {
+            'lb_params_status': [{
+                'value': '',
+                'text': '所有'
+            }, {
+                'value': '1',
+                'text': '停课中'
+            }, {
+                'value': '0',
+                'text': '待停课'
+            }, {
+                'value': '2',
+                'text': '已复课'
+            }],
+            'form': {
+                'lb_params_status': '',
+                'lb_param_student_name': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

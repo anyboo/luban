@@ -19,10 +19,8 @@
                         </p>
                         <p class="text-muted">
                             1,离职封存适用于员工离职之后，封存之后该账号对应的历史记录保留在系统，但是不能再登陆系统.
-                            <br>
-2,封存之后,自动释放所占用的账号名额.
-                            <br>
-3,之后如有需要可重新开启,再次开启需要占用新的账号名额.
+                            <br> 2,封存之后,自动释放所占用的账号名额.
+                            <br> 3,之后如有需要可重新开启,再次开启需要占用新的账号名额.
                         </p>
                         <p class="text-center">
                             <a class="btn btn-danger" ng-disabled="saving" ng-click="do_ok()">确定</a>
@@ -38,8 +36,9 @@
 export default {
     name: 'lock.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

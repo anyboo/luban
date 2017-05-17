@@ -95,8 +95,9 @@
 export default {
     name: 'endlesson.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

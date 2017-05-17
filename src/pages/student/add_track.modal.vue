@@ -21,7 +21,7 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" ng-model="inquiry.track_way" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" v-model="lb_localdata.form.lb_inquiry_track_way">
                                         <lb-dropdown>
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                 选择
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-xs-3 col-md-2 control-label">接待员</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" ng-model="inquiry.op_name" required="">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required="" v-model="lb_localdata.form.lb_inquiry_op_name">
                                 </div>
                             </div>
                             <div class="form-group" ng-init="show_track_time=false">
@@ -65,7 +65,7 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" ng-model="inquiry.track_time" datetimepicker-option="{maxDate:max_date}">
+                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{maxDate:max_date}" v-model="lb_localdata.form.lb_inquiry_track_time">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                         <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" ng-model="inquiry.next_time" datetimepicker-option="{minDate:max_date}">
+                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time">
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +94,16 @@
 export default {
     name: 'add_track.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_inquiry_track_way': '',
+                'lb_inquiry_op_name': '',
+                'lb_inquiry_track_time': '',
+                'lb_inquiry_next_time': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

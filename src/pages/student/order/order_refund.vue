@@ -55,8 +55,9 @@
 export default {
     name: 'order_refund',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

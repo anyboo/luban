@@ -21,7 +21,7 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
@@ -33,12 +33,9 @@
                         <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                             <i class="fa fa-filter"></i>过滤
                         </button>
-                        <div class="btn-group m-l">
-                            <label btn-radio="'0'" ng-model="params.is_end" class="btn btn-default ng-pristine ng-untouched ng-valid">未结课</label>
-                            <label btn-radio="'1'" ng-model="params.is_end" class="btn btn-default ng-pristine ng-untouched ng-valid">已结课</label>
-                        </div>
+                        <lb-buttongroup :group-data="lb_localdata.lb_params_is_end" v-model="lb_localdata.form.lb_params_is_end"></lb-buttongroup>
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
-                            <select ng-model="params.oe_id" class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;">
+                            <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oe_id">
                                 <option value="" class="">选择老师</option>
                                 <option value="0">纪岚雪</option>
                             </select>
@@ -104,13 +101,26 @@
 export default {
     name: 'sclasses',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': '',
+                'lb_params_is_end': '',
+                'lb_params_oe_id': ''
+            },
+            'lb_params_is_end': [{
+                'value': '0',
+                'text': '未结课'
+            }, {
+                'value': '1',
+                'text': '已结课'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

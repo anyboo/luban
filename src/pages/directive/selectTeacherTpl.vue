@@ -20,7 +20,7 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
@@ -28,11 +28,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <div class="btn-group m-l">
-                                <label btn-radio="" ng-model="params.is_part_time" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid active">所有</label>
-                                <label btn-radio="'0'" ng-model="params.is_part_time" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">全职</label>
-                                <label btn-radio="'1'" ng-model="params.is_part_time" class="btn btn-xs btn-default ng-pristine ng-untouched ng-valid">兼职</label>
-                            </div>
+                            <lb-buttongroup :group-data="lb_localdata.lb_params_is_part_time" v-model="lb_localdata.form.lb_params_is_part_time"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="row list-student m-t">
@@ -65,8 +61,21 @@
 export default {
     name: 'selectTeacherTpl',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': '',
+                'lb_params_is_part_time': ''
+            },
+            'lb_params_is_part_time': [{
+                'value': '0',
+                'text': '全职'
+            }, {
+                'value': '1',
+                'text': '兼职'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

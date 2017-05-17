@@ -17,7 +17,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">测验名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" ng-model="performance.exam_name" required="">
+                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" required="" v-model="lb_localdata.form.lb_performance_exam_name">
                                 </div>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">科目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
-                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" ng-model="performance.exam_course" required="">
+                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" required="" v-model="lb_localdata.form.lb_performance_exam_course">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="performance.exam_date" datetimepicker="date">
+                                    <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_performance_exam_date">
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,15 @@
 export default {
     name: 'add_performance.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_performance_exam_name': '',
+                'lb_performance_exam_course': '',
+                'lb_performance_exam_date': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

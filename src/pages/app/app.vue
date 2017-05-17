@@ -16,12 +16,12 @@ import sidebarmenu from '../sidebar-menu/sidebarmenu.vue'
 import footer from '../footer/footer.vue'
 import dialoglist from '../dialog/dialoglist.vue'
 import modalbackdrop from '../modal-backdrop/modalbackdrop.vue'
-
 export default {
     name: 'app',
-
     data() {
+        let lb_localdata = {}
         return {
+            lb_localdata,
             isSidebarCollapsed: false,
         }
     },
@@ -49,7 +49,7 @@ export default {
         },
         handleSelect(index) {
             console.log(index)
-                /**/
+            /**/
         },
     }
 }

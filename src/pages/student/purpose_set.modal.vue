@@ -4,7 +4,7 @@
             <div class="wrapper ng-scope" page-controller="purpose_set">
                 <p class="ng-binding">请设置学员 III 的意向程度</p>
                 <div class="w-sm">
-                    <select class="form-control ng-untouched ng-valid ng-valid-required ng-dirty ng-valid-parse" ui-jq="chosen" ng-model="purpose" ng-options="item.odi_id as item.text for item in $gv.dicts[6]" required="" style="display: none;">
+                    <select class="form-control ng-untouched ng-valid ng-valid-required ng-dirty ng-valid-parse" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[6]" required="" style="display: none;" v-model="lb_localdata.form.lb_purpose">
                         <option value="" class="">请选择</option>
                         <option value="0">没有意向</option>
                         <option value="1">初步意向</option>
@@ -42,8 +42,13 @@
 export default {
     name: 'purpose_set.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_purpose': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

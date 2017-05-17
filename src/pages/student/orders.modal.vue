@@ -42,8 +42,9 @@
 export default {
     name: 'orders.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

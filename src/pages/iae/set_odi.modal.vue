@@ -5,7 +5,7 @@
                 <div ng-if="vm.input.type == '0'" class="ng-scope">
                     <p>支出分类</p>
                     <div class="w-sm">
-                        <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-model="info.odi_id" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;">
+                        <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.lb_info_odi_id">
                             <option value="" class="">请选择</option>
                             <option value="0" selected="selected">日常支出</option>
                         </select>
@@ -37,8 +37,13 @@
 export default {
     name: 'set_odi.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_info_odi_id': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

@@ -5,8 +5,9 @@
 export default {
     name: 'modal-backdrop',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {

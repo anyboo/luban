@@ -2,11 +2,7 @@
     <div class="wrapper bg-white ng-scope" page-controller="list2index">
         <div class="row no-gutter">
             <div class="col-xs-12 col-md-3">
-                <div class="btn-group">
-                    <label btn-radio="0" ng-model="lesson_type" class="btn btn-default ng-untouched ng-valid active ng-dirty ng-valid-parse">班课学员</label>
-                    <label btn-radio="1" ng-model="lesson_type" class="btn btn-default ng-untouched ng-valid ng-dirty">1对1学员</label>
-                    <label btn-radio="10" ng-model="lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包学员</label>
-                </div>
+                <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
             </div>
         </div>
         <div class="m-t ng-scope" xo-rest="class_end_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list21">
@@ -14,7 +10,7 @@
                 <div class="col-xs-12">
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -22,14 +18,9 @@
                             </span>
                         </div>
                     </div>
-                    <div class="btn-group m-l-xs">
-                        <label btn-radio="'2'" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">已缴清</label>
-                        <label btn-radio="'1'" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">部分缴费</label>
-                        <label btn-radio="'0'" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid">未缴费</label>
-                        <label btn-radio="" ng-model="params.pay_status" class="btn btn-default ng-pristine ng-untouched ng-valid active">所有</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
                     <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
-                        <select ng-model="params.oc_id" class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;">
+                        <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oc_id">
                             <option value="" class="">选择班级</option>
                             <option value="0">11</option>
                         </select>
@@ -124,8 +115,36 @@
 export default {
     name: 'list2',
     data() {
+        let lb_localdata = {
+            'lb_lesson_type': [{
+                'value': '0',
+                'text': '班课学员'
+            }, {
+                'value': '1',
+                'text': '1对1学员'
+            }, {
+                'value': '10',
+                'text': '课时包学员'
+            }],
+            'form': {
+                'lb_lesson_type': '',
+                'lb_param_student_name': '',
+                'lb_params_pay_status': '',
+                'lb_params_oc_id': ''
+            },
+            'lb_params_pay_status': [{
+                'value': '2',
+                'text': '已缴清'
+            }, {
+                'value': '1',
+                'text': '部分缴费'
+            }, {
+                'value': '0',
+                'text': '未缴费'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

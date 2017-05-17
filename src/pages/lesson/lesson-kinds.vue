@@ -26,7 +26,7 @@
                                             <a class="btn btn-default btn-xs" data-nodrag="" ng-click="toggle(this)">
                                                 <i class="fa fa-minus-square-o" ng-class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                                             </a>
-                                            <input class="va-m ng-pristine ng-untouched ng-valid ng-scope" type="text" ng-model="node.cate_name" ng-if="!node.root" ng-change="node._editing=1">
+                                            <input class="va-m ng-pristine ng-untouched ng-valid ng-scope" type="text" ng-if="!node.root" ng-change="node._editing=1" v-model="lb_localdata.form.lb_node_cate_name">
                                             <a class="pull-right btn btn-danger btn-xs" tooltip="删除" data-nodrag="" ng-click="remove_cate(this);">
                                                 <i class="fa fa-times"></i>
                                             </a>
@@ -52,8 +52,13 @@
 export default {
     name: 'lesson-kinds',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_node_cate_name': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

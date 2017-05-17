@@ -54,8 +54,9 @@
 export default {
     name: 'edit_photo.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

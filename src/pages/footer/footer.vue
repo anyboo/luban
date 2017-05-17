@@ -7,13 +7,13 @@
 export default {
     name: 'footer',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

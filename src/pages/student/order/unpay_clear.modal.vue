@@ -78,7 +78,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="times" ng-model="clear_data.times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required="">
+                                    <input type="number" name="times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required="" v-model="lb_localdata.form.lb_clear_data_times">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="amount" ng-model="clear_data.amount" class="form-control ng-pristine ng-untouched ng-valid">
+                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_clear_data_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-parse" name="note" ng-model="clear_data.note" placeholder="请输入清除原因" required="">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-parse" name="note" placeholder="请输入清除原因" required="" v-model="lb_localdata.form.lb_clear_data_note">
                             </div>
                         </div>
                     </form>
@@ -112,8 +112,15 @@
 export default {
     name: 'unpay_clear.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_clear_data_times': '',
+                'lb_clear_data_amount': '',
+                'lb_clear_data_note': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

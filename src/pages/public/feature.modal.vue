@@ -25,8 +25,9 @@
 export default {
     name: 'feature.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

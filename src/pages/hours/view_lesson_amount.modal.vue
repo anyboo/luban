@@ -5,8 +5,9 @@
 export default {
     name: 'view_lesson_amount.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

@@ -57,8 +57,7 @@
                                         </td>
                                         <td class="ng-binding">
                                             2017-05-12 09:05
-                                            <br>
-陈佳木
+                                            <br> 陈佳木
                                         </td>
                                     </tr>
                                 </tbody>
@@ -90,8 +89,9 @@
 export default {
     name: 'view_course.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

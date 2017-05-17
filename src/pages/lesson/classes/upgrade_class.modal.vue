@@ -48,8 +48,9 @@
 export default {
     name: 'upgrade_class.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

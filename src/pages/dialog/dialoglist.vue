@@ -9,12 +9,12 @@
 </template>
 <script>
 import dialogpages from '~/stores/dialogpages.js'
-
 export default {
     name: 'dialog',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     components: dialogpages,

@@ -18,7 +18,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="match_name" ng-model="match.match_name" required="">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="match_name" required="" v-model="lb_localdata.form.lb_match_match_name">
                                 </div>
                             </div>
                         </div>
@@ -26,14 +26,14 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">参赛日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="match.join_date" name="join_date" datetimepicker="date">
+                                    <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="join_date" datetimepicker="date" v-model="lb_localdata.form.lb_match_join_date">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事成绩:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="result" ng-model="match.result" required="">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="result" required="" v-model="lb_localdata.form.lb_match_result">
                             </div>
                         </div>
                         <div class="panel panel-default no-border">
@@ -185,8 +185,15 @@
 export default {
     name: 'reg_student_match.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_match_match_name': '',
+                'lb_match_join_date': '',
+                'lb_match_result': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

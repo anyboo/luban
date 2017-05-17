@@ -22,7 +22,7 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" ng-model="grid.search_value" placeholder="关键字">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
@@ -51,8 +51,13 @@
 export default {
     name: 'selectSClassTpl',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

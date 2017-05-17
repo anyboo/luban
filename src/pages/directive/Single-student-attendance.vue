@@ -39,8 +39,9 @@
 export default {
     name: 'Single-student-attendance',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

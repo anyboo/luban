@@ -4,7 +4,7 @@
             <div class="wrapper ng-scope" page-controller="region_set">
                 <p class="ng-binding">请选择学员 录好 的归属</p>
                 <div class="w-sm">
-                    <select class="form-control ng-untouched ng-valid ng-dirty ng-valid-parse" ui-jq="chosen" ng-model="region_oe_id" ng-options="item.oe_id as item.name for (key,item) in $gv.employees" style="display: none;">
+                    <select class="form-control ng-untouched ng-valid ng-dirty ng-valid-parse" ui-jq="chosen" ng-options="item.oe_id as item.name for (key,item) in $gv.employees" style="display: none;" v-model="lb_localdata.form.lb_region_oe_id">
                         <option value="" class="">没有归属</option>
                         <option value="12494">陈佳木</option>
                     </select>
@@ -38,8 +38,13 @@
 export default {
     name: 'region_set.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_region_oe_id': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

@@ -44,8 +44,9 @@
 export default {
     name: 'import',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

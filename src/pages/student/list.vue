@@ -11,7 +11,7 @@
                                     <span class="caret"></span>
                                 </button>
                             </div>
-                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" ui-keyup="{enter:'search()'}" placeholder="关键字">
+                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ui-keyup="{enter:'search()'}" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                             <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                             </span>
@@ -23,19 +23,8 @@
                 <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                     <i class="fa fa-filter"></i>过滤
                 </button>
-                <div class="btn-group m-l">
-                    <label btn-radio="" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid active">所有</label>
-                    <label btn-radio="'0'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">未报读学员</label>
-                    <label btn-radio="'1'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">已报读学员</label>
-                </div>
-                <div class="btn-group m-l-xs">
-                    <label btn-radio="'image'" ng-model="view_mode" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                        <i class="fa fa-image"></i>头像
-                    </label>
-                    <label btn-radio="'list'" ng-model="view_mode" class="btn btn-default ng-untouched ng-valid active ng-dirty ng-valid-parse">
-                        <i class="fa fa-list"></i>列表
-                    </label>
-                </div>
+                <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
                 <button class="btn btn-default ng-isolate-scope" ui-per="student.export" export="students" export-params="params">
                     <i class="glyphicon glyphicon-export"></i>导出Excel
                 </button>
@@ -65,7 +54,7 @@
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                     </span>
-                                    <span class="icon">
+                                <span class="icon">
                                         <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                     </span>
                                 </span>
@@ -79,7 +68,7 @@
                                     <span class="icon">
                                         <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
                                     </span>
-                                    <span class="icon">
+                                <span class="icon">
                                         <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
                                     </span>
                                 </span>
@@ -502,8 +491,31 @@
 export default {
     name: 'list',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': '',
+                'lb_params_status': '',
+                'lb_view_mode': ''
+            },
+            'lb_params_status': [{
+                'value': '0',
+                'text': '未报读学员'
+            }, {
+                'value': '1',
+                'text': '已报读学员'
+            }],
+            'lb_view_mode': [{
+                'value': 'image',
+                'iclass': 'fa fa-image',
+                'text': '头像'
+            }, {
+                'value': 'list',
+                'iclass': 'fa fa-list',
+                'text': '列表'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

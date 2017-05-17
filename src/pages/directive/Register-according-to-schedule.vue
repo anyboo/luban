@@ -102,8 +102,7 @@
                                                 <tr ng-repeat="section in vm.time_sections" class="ng-scope">
                                                     <td class="ng-binding">
                                                         士大夫
-                                                        <br>
-18:00~22:00
+                                                        <br> 18:00~22:00
                                                     </td>
                                                     <td></td>
                                                     <td class="cell-body-day ng-scope" ng-repeat="day in vm.header_days">
@@ -160,8 +159,7 @@
                                                 <tr ng-repeat="section in vm.time_sections" class="ng-scope">
                                                     <td class="ng-binding">
                                                         12额
-                                                        <br>
-20:00~23:00
+                                                        <br> 20:00~23:00
                                                     </td>
                                                     <td></td>
                                                     <td class="cell-body-day ng-scope" ng-repeat="day in vm.header_days">
@@ -238,8 +236,9 @@
 export default {
     name: 'Register—according-to-schedule',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

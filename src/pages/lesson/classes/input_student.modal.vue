@@ -47,24 +47,17 @@
                                     <td class="ng-binding">1</td>
                                     <td>
                                         <div class="inline w-xxs va-m">
-                                            <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="item.os_id" placeholder="姓名" ng-model="item.name" required="">
+                                            <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="item.os_id" placeholder="姓名" required="" v-model="lb_localdata.form.lb_item_name">
                                         </div>
                                         <div class="inline w-xs va-m">
-                                            <div class="btn-group">
-                                                <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid active" ng-disabled="item.os_id" ng-model="item.sex" btn-radio="'1'">
-                                                    <i class="fa fa-male"></i>男
-                                                </label>
-                                                <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" ng-disabled="item.os_id" ng-model="item.sex" btn-radio="'2'">
-                                                    <i class="fa fa-female"></i>女
-                                                </label>
-                                            </div>
+                                            <lb-buttongroup :group-data="lb_localdata.lb_item_sex" v-model="lb_localdata.form.lb_item_sex"></lb-buttongroup>
                                         </div>
                                         <div class="inline w-xs va-m">
-                                            <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" placeholder="联系电话" ng-readonly="item.os_id" ng-model="item.tel" required="">
+                                            <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" placeholder="联系电话" ng-readonly="item.os_id" required="" v-model="lb_localdata.form.lb_item_tel">
                                         </div>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" ng-model="item.lesson_times" required="">
+                                        <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required="" v-model="lb_localdata.form.lb_item_lesson_times">
                                     </td>
                                     <td>
                                         <a class="btn btn-danger btn-xs" ng-click="input.students.splice($index,1)">删除</a>
@@ -86,8 +79,25 @@
 export default {
     name: 'input_student.modal',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_item_name': '',
+                'lb_item_sex': '',
+                'lb_item_tel': '',
+                'lb_item_lesson_times': ''
+            },
+            'lb_item_sex': [{
+                'value': '1',
+                'iclass': 'fa fa-male',
+                'text': '男'
+            }, {
+                'value': '2',
+                'iclass': 'fa fa-female',
+                'text': '女'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

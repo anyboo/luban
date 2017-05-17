@@ -24,7 +24,9 @@ export default {
     name: 'sidebarmenuitem',
     props: ['menu'],
     data() {
+        let lb_localdata = {}
         return {
+            lb_localdata,
             active: false
         }
     },

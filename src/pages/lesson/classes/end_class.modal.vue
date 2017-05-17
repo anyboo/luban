@@ -35,8 +35,9 @@
 export default {
     name: 'end_class.modal',
     data() {
+        let lb_localdata = {}
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

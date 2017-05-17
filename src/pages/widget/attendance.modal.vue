@@ -10,8 +10,8 @@
                             <span class="sr-only">关闭</span>
                         </button>
                         <h3 class="modal-title">
-                        <i class="fa fa-calendar"></i>考勤
-                    </h3>
+                            <i class="fa fa-calendar"></i>考勤
+                        </h3>
                     </div>
                     <div class="modal-body" ng-switch="$action" v-show=" OnAttendance">
                         <div ng-switch-when="menu" class="ng-scope">
@@ -19,22 +19,22 @@
                                 <li class="list-group-item ng-click-active" @click="InAttendances()" ui-per="widget.now_attendance">
                                     <i class="fa fa-chevron-right"></i>
                                     <h4 class="list-group-item-heading">
-                                    <i class="fa fa-calendar"></i>现场考勤
-                                </h4>
+                                        <i class="fa fa-calendar"></i>现场考勤
+                                    </h4>
                                     <p class="list-group-item-text text-muted">按我今天的排课进行现场考勤(老师考勤)</p>
                                 </li>
                                 <li class="list-group-item" @click="BatchAttendances()">
                                     <i class="fa fa-chevron-right"></i>
                                     <h4 class="list-group-item-heading">
-                                    <i class="fa fa-calendar-o"></i>批量登记考勤
-                                </h4>
+                                        <i class="fa fa-calendar-o"></i>批量登记考勤
+                                    </h4>
                                     <p class="list-group-item-text text-muted">对已经上过课的出勤情况进行登记(可按排课或自由登记)</p>
                                 </li>
                                 <li class="list-group-item" ng-click="att_by_student()" @click=" SingleAttendances()">
                                     <i class="fa fa-chevron-right"></i>
                                     <h4 class="list-group-item-heading">
-                                    <i class="fa fa-user"></i>单个学员登记考勤
-                                </h4>
+                                        <i class="fa fa-user"></i>单个学员登记考勤
+                                    </h4>
                                     <p class="list-group-item-text text-muted">对单个学员的出勤情况进行登记(可用于补课、漏补考勤)</p>
                                 </li>
                             </ul>
@@ -93,12 +93,7 @@
                                         <label class="control-label col-md-2 col-xs-3">考勤对象:</label>
                                         <div class="col-md-10 col-xs-9">
                                             <div class="form-control-static">
-                                                <div class="btn-group">
-                                                    <label btn-radio="'0'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid " :class="{active:isactivez}" @click="course()">课程班级</label>
-                                                    <label btn-radio="'1'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" :class="{active:isactiveo}" @click="onetwoone()">1对1学员</label>
-                                                    <label btn-radio="'10'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" :class="{active:isactivet}" @click="hoursc()">课时包科目班级</label>
-                                                    <label btn-radio="'11'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" :class="{active:isactivef}" @click="hoursp()">课时包学员</label>
-                                                </div>
+                                                <lb-buttongroup :group-data="lb_localdata.lb_att_lesson_type" v-model="lb_localdata.form.lb_att_lesson_type"></lb-buttongroup>
                                             </div>
                                         </div>
                                     </div>
@@ -120,10 +115,10 @@
                                                                     <span class="caret"></span>
                                                                 </button>
                                                             </div>
-                                                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字">
+                                                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                                             <span class="input-group-btn">
-                                                            <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
-                                                        </span>
+                                                                <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,7 +192,27 @@ import register from './register.vue'
 export default {
     name: 'attendance',
     data() {
+        let lb_localdata = {
+            'lb_att_lesson_type': [{
+                'value': '0',
+                'text': '课程班级'
+            }, {
+                'value': '1',
+                'text': '1对1学员'
+            }, {
+                'value': '10',
+                'text': '课时包科目班级'
+            }, {
+                'value': '11',
+                'text': '课时包学员'
+            }],
+            'form': {
+                'lb_att_lesson_type': '',
+                'lb_grid_search_value': ''
+            }
+        }
         return {
+            lb_localdata,
             OnAttendance: true,
             InAttendance: false,
             BatchAttendance: false,
@@ -219,7 +234,6 @@ export default {
         'lb-register': register,
         'lb-hourspackage': hourspackage,
         'lb-oto': oto,
-
     },
     computed: {},
     watch: {},
@@ -295,7 +309,6 @@ export default {
             this.isactiveo = false
             this.isactivet = false
             this.isactivef = true
-
         }
     }
 }

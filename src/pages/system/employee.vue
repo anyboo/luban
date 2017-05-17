@@ -12,7 +12,7 @@
                                         <span class="caret"></span>
                                     </button>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ng-model="grid.search_value" placeholder="关键字">
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                 </span>
@@ -24,10 +24,7 @@
                     <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                         <i class="fa fa-filter"></i>过滤
                     </button>
-                    <div class="btn-group m-l">
-                        <label btn-radio="'1'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid active">在职</label>
-                        <label btn-radio="'0'" ng-model="params.status" class="btn btn-default ng-pristine ng-untouched ng-valid">离职</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
                     <button ng-click="$util.open('tpl/system/groups.html','lg',{})" @click="lbShowdialog($event,'lb-groups')">
                         <i class="fa fa-list"></i>分组设置
                     </button>
@@ -148,13 +145,25 @@
 export default {
     name: 'employee',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_grid_search_value': '',
+                'lb_params_status': ''
+            },
+            'lb_params_status': [{
+                'value': '1',
+                'text': '在职'
+            }, {
+                'value': '0',
+                'text': '离职'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

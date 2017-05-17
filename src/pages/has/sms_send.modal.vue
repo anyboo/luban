@@ -22,11 +22,7 @@
                         </div>
                     </div>
                     <div class="m-t ng-scope" ng-if="step==1">
-                        <div class="btn-group">
-                            <label btn-radio="0" ng-model="send.to_type" class="btn btn-default ng-pristine ng-untouched ng-valid active">班级群发</label>
-                            <label btn-radio="1" ng-model="send.to_type" class="btn btn-default ng-pristine ng-untouched ng-valid">指定学员</label>
-                            <label btn-radio="2" ng-model="send.to_type" class="btn btn-default ng-pristine ng-untouched ng-valid">内部员工</label>
-                        </div>
+                        <lb-buttongroup :group-data="lb_localdata.lb_send_to_type" v-model="lb_localdata.form.lb_send_to_type"></lb-buttongroup>
                         <div class="m-t ng-scope" ng-if="send.to_type == 0">
                             <ul class="list-group"></ul>
                             <div class="wrapper ng-scope" ng-if="class_rest.$loaded && class_rest.$list.length == 0">
@@ -49,8 +45,23 @@
 export default {
     name: 'sms_send.modal',
     data() {
+        let lb_localdata = {
+            'lb_send_to_type': [{
+                'value': '0',
+                'text': '班级群发'
+            }, {
+                'value': '1',
+                'text': '指定学员'
+            }, {
+                'value': '2',
+                'text': '内部员工'
+            }],
+            'form': {
+                'lb_send_to_type': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

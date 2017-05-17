@@ -18,7 +18,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">测验名称:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="inline w-md">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="exam_name" ng-model="performance.exam_name" required="">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="exam_name" required="" v-model="lb_localdata.form.lb_performance_exam_name">
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">科目:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="inline w">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="exam_course" ng-model="performance.exam_course" required="">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="exam_course" required="" v-model="lb_localdata.form.lb_performance_exam_course">
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="w-sm">
-                                        <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="performance.exam_date" datetimepicker="date">
+                                        <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_performance_exam_date">
                                     </div>
                                 </div>
                             </div>
@@ -50,13 +50,13 @@
                                         <tr ng-repeat="item in performance.students" class="ng-scope">
                                             <td>
                                                 <label class="checkbox-inline i-checks">
-                                                    <input type="checkbox" name="selected" ng-true-value="1" ng-false-value="0" ng-model="item.$$inputed" class="ng-pristine ng-untouched ng-valid">
+                                                    <input type="checkbox" name="selected" ng-true-value="1" ng-false-value="0" class="ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_item_$$inputed">
                                                     <i></i>
                                                 </label>
                                                 <span class="va-m inline ng-binding">小林</span>
                                             </td>
                                             <td>
-                                                <input type="number" ng-disabled="!item.$$inputed" ng-model="item.exam_score" class="form-control w-xs ng-pristine ng-untouched ng-valid" disabled="disabled">
+                                                <input type="number" ng-disabled="!item.$$inputed" class="form-control w-xs ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="lb_localdata.form.lb_item_exam_score">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -77,13 +77,21 @@
 export default {
     name: 'add-scores',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_performance_exam_name': '',
+                'lb_performance_exam_course': '',
+                'lb_performance_exam_date': '',
+                'lb_item_$inputed': '',
+                'lb_item_exam_score': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
     watch: {},
-    methods: {
-    }
+    methods: {}
 }
 </script>

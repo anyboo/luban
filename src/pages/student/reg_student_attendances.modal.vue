@@ -39,7 +39,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课日期:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w-sm">
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="teach_date" ng-model="att.teach_day" datetimepicker="date">
+                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="teach_date" datetimepicker="date" v-model="lb_localdata.form.lb_att_teach_day">
                                     </div>
                                 </div>
                             </div>
@@ -47,9 +47,9 @@
                                 <label class="control-label col-md-2 col-xs-12">上课时间:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline">
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-model="att.teach_start_hour" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly">
+                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour">
                                         <span class="inline">~</span>
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-model="att.teach_end_hour" readonly="readonly">
+                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour">
                                         <lb-dropdown>
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                 选择时间段
@@ -72,7 +72,7 @@
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w">
                                         <div class="input-group ng-valid" ng-model="att.oe_id" value-field="oe_id" select-title="请选择授课老师" select-params="{ob_id:user.gv.ob_id,role_id:2}">
-                                            <input type="text" name="name" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" readonly="readonly">
+                                            <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" readonly="readonly" v-model="lb_localdata.form.lb_name">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择授课老师" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                     <i class="fa fa-user"></i>
@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">考勤备注:</label>
                                 <div class="col-md-7 col-xs-12">
-                                    <input type="text" name="lesson_content" ng-model="att.lesson_content" class="form-control ng-pristine ng-untouched ng-valid">
+                                    <input type="text" name="lesson_content" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_att_lesson_content">
                                 </div>
                             </div>
                         </form>
@@ -104,8 +104,17 @@
 export default {
     name: 'regstent',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_att_teach_day': '',
+                'lb_att_teach_start_hour': '',
+                'lb_att_teach_end_hour': '',
+                'lb_name': '',
+                'lb_att_lesson_content': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

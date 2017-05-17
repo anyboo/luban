@@ -8,10 +8,7 @@
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
-                    <div class="btn-group pull-right m-r">
-                        <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid active" ng-model="arrange_type" btn-radio="0">按规律排课</label>
-                        <label class="btn btn-default btn-xs ng-pristine ng-untouched ng-valid" ng-model="arrange_type" btn-radio="1">自由排课</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_arrange_type" v-model="lb_localdata.form.lb_arrange_type"></lb-buttongroup>
                     <h3 class="modal-title">
                         <i class="fa fa-calendar"></i>为
                         <span class="label bg-info ng-binding">11</span>排课
@@ -65,12 +62,12 @@
                                     <li class="m-t-xs">
                                         <label class="va-m">开始日期:</label>
                                         <div class="inline w-xs va-m">
-                                            <input type="text" class="form-control no-padder text-center ng-pristine ng-untouched ng-valid" datetimepicker="date" ng-model="week_loop_start">
+                                            <input type="text" class="form-control no-padder text-center ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_week_loop_start">
                                         </div>
                                         <div class="m-l-xs inline w-xs va-m">
                                             <div class="input-group bootstrap-touchspin">
                                                 <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                                <input class="form-control ng-pristine ng-untouched ng-valid" ui-jq="TouchSpin" ng-model="week_loop_times" type="text" data-min="0" data-max="2" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down" style="display: block;">
+                                                <input class="form-control ng-pristine ng-untouched ng-valid" ui-jq="TouchSpin" type="text" data-min="0" data-max="2" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down" style="display: block;" v-model="lb_localdata.form.lb_week_loop_times">
                                                 <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
                                                 <span class="input-group-btn-vertical">
                                                     <button class="btn btn-default bootstrap-touchspin-up" type="button">
@@ -89,7 +86,7 @@
                                         <div class="inline va-t">
                                             <div class="m-b-xs ng-scope" ng-repeat="item in week_loops">
                                                 <div class="inline va-m w-xs">
-                                                    <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="item.week" ng-options="w.value as w.name for w in week_days">
+                                                    <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-options="w.value as w.name for w in week_days" v-model="lb_localdata.form.lb_item_week">
                                                         <option value="" class="">每周</option>
                                                         <option value="0">周六</option>
                                                         <option value="1">周日</option>
@@ -101,9 +98,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="inline m-l-xs va-m">
-                                                    <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="item.int_start_hour" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly">
+                                                    <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_item_int_start_hour">
                                                     <span class="inline">~</span>
-                                                    <input type="text" ng-readonly="true" style="width:70px" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="item.int_end_hour" datetimepicker="time" datetimepicker-option="{step:15}" readonly="readonly">
+                                                    <input type="text" ng-readonly="true" style="width:70px" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" datetimepicker="time" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_item_int_end_hour">
                                                     <lb-dropdown>
                                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                             选择时间段
@@ -183,9 +180,9 @@
                                     <li class="m-t-xs">
                                         <label>上课时间：</label>
                                         <div class="inline">
-                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="default_int_start_hour" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly">
+                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_default_int_start_hour">
                                             <span class="inline">~</span>
-                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-model="default_int_end_hour" readonly="readonly">
+                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_default_int_end_hour">
                                             <lb-dropdown>
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                     选择时间段
@@ -550,8 +547,27 @@
 export default {
     name: 'lesson_arrange.modal',
     data() {
+        let lb_localdata = {
+            'lb_arrange_type': [{
+                'value': '0',
+                'text': '按规律排课'
+            }, {
+                'value': '1',
+                'text': '自由排课'
+            }],
+            'form': {
+                'lb_arrange_type': '',
+                'lb_week_loop_start': '',
+                'lb_week_loop_times': '',
+                'lb_item_week': '',
+                'lb_item_int_start_hour': '',
+                'lb_item_int_end_hour': '',
+                'lb_default_int_start_hour': '',
+                'lb_default_int_end_hour': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

@@ -39,12 +39,7 @@
                                         <label class="control-label col-md-2 col-xs-3">考勤对象:</label>
                                         <div class="col-md-10 col-xs-9">
                                             <div class="form-control-static">
-                                                <div class="btn-group">
-                                                    <label btn-radio="'0'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-untouched ng-valid ng-dirty active ng-valid-parse">课程班级</label>
-                                                    <label btn-radio="'1'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-untouched ng-valid ng-dirty">1对1学员</label>
-                                                    <label btn-radio="'10'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-untouched ng-valid ng-dirty">课时包科目班级</label>
-                                                    <label btn-radio="'11'" ng-model="att.lesson_type" class="btn btn-default btn-xs ng-untouched ng-valid ng-dirty">课时包学员</label>
-                                                </div>
+                                                <lb-buttongroup :group-data="lb_localdata.lb_att_lesson_type" v-model="lb_localdata.form.lb_att_lesson_type"></lb-buttongroup>
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +61,7 @@
                                                                     <span class="caret"></span>
                                                                 </button>
                                                             </div>
-                                                            <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" ng-model="grid.search_value" placeholder="关键字">
+                                                            <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
                                                             <span class="input-group-btn">
                                                                 <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                                             </span>
@@ -120,8 +115,27 @@
 export default {
     name: 'Free-registration',
     data() {
+        let lb_localdata = {
+            'lb_att_lesson_type': [{
+                'value': '0',
+                'text': '课程班级'
+            }, {
+                'value': '1',
+                'text': '1对1学员'
+            }, {
+                'value': '10',
+                'text': '课时包科目班级'
+            }, {
+                'value': '11',
+                'text': '课时包学员'
+            }],
+            'form': {
+                'lb_att_lesson_type': '',
+                'lb_grid_search_value': ''
+            }
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

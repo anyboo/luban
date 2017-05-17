@@ -4,7 +4,7 @@
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="inline">
-                        <input type="text" id="ctl_date_start" ng-model="params.date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;">
+                        <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
                         <div range-datetimepicker="" ng-model="dateRange" options="options" exoptions="exOptions" class="ng-pristine ng-untouched ng-valid ng-scope ng-isolate-scope range-datetimepicker-container clearfix">
                             <div class="showRange">
                                 <div class="btn btn-outline dateRangeLabel">
@@ -429,18 +429,14 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="text" id="ctl_date_end" ng-model="params.date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;">
+                        <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 m-t">
-                    <div class="btn-group m-l">
-                        <label btn-radio="'today'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid active">今日</label>
-                        <label btn-radio="'week'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本周</label>
-                        <label btn-radio="'month'" ng-model="duration" class="btn btn-default ng-pristine ng-untouched ng-valid">本月</label>
-                    </div>
+                    <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="学员" ng-model="param_student_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -523,8 +519,26 @@
 export default {
     name: 'absences',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_params_date_start': '',
+                'lb_params_date_end': '',
+                'lb_duration': '',
+                'lb_param_student_name': ''
+            },
+            'lb_duration': [{
+                'value': 'today',
+                'text': '今日'
+            }, {
+                'value': 'week',
+                'text': '本周'
+            }, {
+                'value': 'month',
+                'text': '本月'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},

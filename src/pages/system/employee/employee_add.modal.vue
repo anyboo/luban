@@ -16,20 +16,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">姓名:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-model="employee.name" ng-minlength="2" ng-change="employee.account=$util.py_account(employee.name)" required="">
+                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="2" ng-change="employee.account=$util.py_account(employee.name)" required="" v-model="lb_localdata.form.lb_employee_name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">性别:</label>
                             <div class="col-md-10 col-xs-12">
-                                <div class="btn-group">
-                                    <label btn-radio="'1'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-male"></i>男
-                                    </label>
-                                    <label btn-radio="'2'" ng-model="employee.sex" class="btn btn-default ng-pristine ng-untouched ng-valid">
-                                        <i class="fa fa-female"></i>女
-                                    </label>
-                                </div>
+                                <lb-buttongroup :group-data="lb_localdata.lb_employee_sex" v-model="lb_localdata.form.lb_employee_sex"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -38,7 +31,7 @@
                                 <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="employee.or_ids" theme="bootstrap">
                                     <div>
                                         <span class="ui-select-match" placeholder="选择角色..."></span>
-                                        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择角色..." ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" ng-model="$select.search" style="width: 469px;">
+                                        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择角色..." ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 469px;" v-model="lb_localdata.form.lb_$select_search">
                                     </div>
                                     <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.or_id as item in user.gv.roles | propsFilter:{role_name:$select.search}">
                                         <li class="ui-select-choices-group">
@@ -52,10 +45,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">类型:</label>
                             <div class="col-md-10 col-xs-12">
-                                <div class="btn-group">
-                                    <label btn-radio="'0'" ng-model="employee.is_part_time" class="btn btn-default ng-pristine ng-untouched ng-valid active">全职</label>
-                                    <label btn-radio="'1'" ng-model="employee.is_part_time" class="btn btn-default ng-pristine ng-untouched ng-valid">兼职</label>
-                                </div>
+                                <lb-buttongroup :group-data="lb_localdata.lb_employee_is_part_time" v-model="lb_localdata.form.lb_employee_is_part_time"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,7 +54,7 @@
                                 <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="employee.ob_ids" theme="bootstrap">
                                     <div>
                                         <span class="ui-select-match" placeholder="选择校区..."></span>
-                                        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择校区..." ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" ng-model="$select.search" style="width: 469px;">
+                                        <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择校区..." ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 469px;" v-model="lb_localdata.form.lb_$select_search">
                                     </div>
                                     <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.ob_id as item in user.gv.branchs | propsFilter: {short_name: $select.search, branch_name: $select.search}">
                                         <li class="ui-select-choices-group">
@@ -88,7 +78,7 @@
                                         <div class="tree-view ng-hide" ng-show="showTree">
                                             <div class="helper-container">
                                                 <div class="line-head">
-                                                    <input placeholder="搜索..." type="text" ng-model="filterKeyword" ng-click="onFilterClicked($event)" class="input-filter ng-pristine ng-untouched ng-valid">
+                                                    <input placeholder="搜索..." type="text" ng-click="onFilterClicked($event)" class="input-filter ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_filterkeyword">
                                                     <span class="clear-button" ng-click="clearFilter($event)">
                                                         <span class="item-close"></span>
                                                     </span>
@@ -113,7 +103,7 @@
                                 <i class="fa fa-phone"></i>电话:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.tel">
+                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_employee_tel">
                             </div>
                         </div>
                         <div class="form-group">
@@ -121,7 +111,7 @@
                                 <i class="glyphicon glyphicon-envelope"></i>Email:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" ng-model="employee.email">
+                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_employee_email">
                             </div>
                         </div>
                     </form>
@@ -138,8 +128,35 @@
 export default {
     name: 'employee_add',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_employee_name': '',
+                'lb_employee_sex': '',
+                'lb_$select_search': '',
+                'lb_employee_is_part_time': '',
+                'lb_filterkeyword': '',
+                'lb_employee_tel': '',
+                'lb_employee_email': ''
+            },
+            'lb_employee_sex': [{
+                'value': '1',
+                'iclass': 'fa fa-male',
+                'text': '男'
+            }, {
+                'value': '2',
+                'iclass': 'fa fa-female',
+                'text': '女'
+            }],
+            'lb_employee_is_part_time': [{
+                'value': '0',
+                'text': '全职'
+            }, {
+                'value': '1',
+                'text': '兼职'
+            }]
+        }
         return {
-
+            lb_localdata,
         }
     },
     computed: {},
