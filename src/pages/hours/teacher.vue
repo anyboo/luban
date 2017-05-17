@@ -515,7 +515,7 @@
                             <td class="ng-binding">1对1</td>
                             <td class="ng-binding">李达康</td>
                             <td>
-                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog('lb-view_lesson_amountmodal')">
+                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog($event,'lb-viewlessonamountmodal')">
                                     <span class="label bg-info ng-binding">￥100.00</span>
                                 </a>
                             </td>
@@ -535,7 +535,7 @@
                             <td class="ng-binding">班课</td>
                             <td class="ng-binding">小兵</td>
                             <td>
-                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog('lb-view_lesson_amountmodal')">
+                                <a ng-click="$util.open('tpl/app/hours/view_lesson_amount.modal.html','md',item)" @click="lbShowDailog($event,'lb-viewlessonamountmodal')">
                                     <span class="label bg-info ng-binding">￥0.00</span>
                                 </a>
                             </td>

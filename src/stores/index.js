@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         dailog: [],
         modalbackdrop: false,
-        modalbackdropzindex: 1999
+        modalbackdropzindex: 1997
     },
     mutations: {
         popdailog: (state) => {
@@ -16,11 +16,12 @@ export default new Vuex.Store({
             if (state.dailog.length == 0) {
                 state.modalbackdrop = false
             } else {
-                state.modalbackdropzindex = state.dailog.length * 2 + 1999
+                state.modalbackdropzindex = state.dailog.length * 2 + 1997
             }
         },
         pushdailog: (state, obj) => {
             state.dailog.push(obj)
+            state.modalbackdropzindex = state.dailog.length * 2 + 1997
             state.modalbackdrop = true
         }
     }

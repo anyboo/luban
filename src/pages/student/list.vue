@@ -48,7 +48,7 @@
                         <input type="hidden" name="pagesize" value="12" ng-repeat="(key,value) in params" class="ng-scope">
                     </form>
                 </div>
-                <a ng-click="$util.open('tpl/app/student/trash.html','md',{})" @click="lbShowDailog('lb-trash')">
+                <a ng-click="$util.open('tpl/app/student/trash.html','md',{})" @click="lbShowDailog($event,'lb-trash')">
                     <i class="icon-lock"></i>已封存档案
                 </a>
             </div>
@@ -99,62 +99,62 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog('lb-edit_infomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editinfomodal')">
                                                 <i class="fa fa-pencil"></i>修改资料
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog('lb-edit_photomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editphotomodal')">
                                                 <i class="fa fa-image"></i>更换头像
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog('lb-ordermodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordermodal')">
                                                 <i class="fa fa-shopping-cart"></i>报名
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog('lb-ordersmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordersmodal')">
                                                 <i class="fa fa-money"></i>缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_attendancesmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentattendancesmodal')">
                                                 <i class="fa fa-calendar-o"></i>登记考勤
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog('lb-change_classmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog($event,'lb-changeclassmodal')">
                                                 <i class="fa fa-exchange">转班</i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog('lb-wechatmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog($event,'lb-wechatmodal')">
                                                 <i class="fa fa-weixin"></i>微信对话
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                                 <i class="fa fa-phone-square"></i>跟踪回访
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_matchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentmatchmodal')">
                                                 <i class="fa fa-flag-o"></i>登记赛事记录
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog('lb-refundmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-refundmodal')">
                                                 <i class="fa fa-reply"></i>退费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog('lb-endlessonmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog($event,'lb-endlessonmodal')">
                                                 <i class="fa fa-stop"></i>结课
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog('lb-change_branchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog($event,'lb-changebranchmodal')">
                                                 <i class="icon-shuffle"></i>转校区
                                             </a>
                                         </li>
@@ -196,62 +196,62 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog('lb-edit_infomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editinfomodal')">
                                                 <i class="fa fa-pencil"></i>修改资料
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog('lb-edit_photomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editphotomodal')">
                                                 <i class="fa fa-image"></i>更换头像
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog('lb-ordermodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordermodal')">
                                                 <i class="fa fa-shopping-cart"></i>报名
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog('lb-ordersmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordersmodal')">
                                                 <i class="fa fa-money"></i>缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_attendancesmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentattendancesmodal')">
                                                 <i class="fa fa-calendar-o"></i>登记考勤
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog('lb-change_classmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog($event,'lb-changeclassmodal')">
                                                 <i class="fa fa-exchange">转班</i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog('lb-wechatmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog($event,'lb-wechatmodal')">
                                                 <i class="fa fa-weixin"></i>微信对话
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                                 <i class="fa fa-phone-square"></i>跟踪回访
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_matchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentmatchmodal')">
                                                 <i class="fa fa-flag-o"></i>登记赛事记录
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog('lb-refundmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-refundmodal')">
                                                 <i class="fa fa-reply"></i>退费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog('lb-endlessonmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog($event,'lb-endlessonmodal')">
                                                 <i class="fa fa-stop"></i>结课
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog('lb-change_branchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog($event,'lb-changebranchmodal')">
                                                 <i class="icon-shuffle"></i>转校区
                                             </a>
                                         </li>
@@ -293,62 +293,62 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog('lb-edit_infomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editinfomodal')">
                                                 <i class="fa fa-pencil"></i>修改资料
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog('lb-edit_photomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editphotomodal')">
                                                 <i class="fa fa-image"></i>更换头像
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog('lb-ordermodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordermodal')">
                                                 <i class="fa fa-shopping-cart"></i>报名
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog('lb-ordersmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordersmodal')">
                                                 <i class="fa fa-money"></i>缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_attendancesmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentattendancesmodal')">
                                                 <i class="fa fa-calendar-o"></i>登记考勤
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog('lb-change_classmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog($event,'lb-changeclassmodal')">
                                                 <i class="fa fa-exchange">转班</i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog('lb-wechatmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog($event,'lb-wechatmodal')">
                                                 <i class="fa fa-weixin"></i>微信对话
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                                 <i class="fa fa-phone-square"></i>跟踪回访
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_matchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentmatchmodal')">
                                                 <i class="fa fa-flag-o"></i>登记赛事记录
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog('lb-refundmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-refundmodal')">
                                                 <i class="fa fa-reply"></i>退费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog('lb-endlessonmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog($event,'lb-endlessonmodal')">
                                                 <i class="fa fa-stop"></i>结课
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog('lb-change_branchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog($event,'lb-changebranchmodal')">
                                                 <i class="icon-shuffle"></i>转校区
                                             </a>
                                         </li>
@@ -390,62 +390,62 @@
                                     </lb-dropdown-button>
                                     <lb-dropdown-menu slot="menuslot">
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog('lb-edit_infomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editinfomodal')">
                                                 <i class="fa fa-pencil"></i>修改资料
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog('lb-edit_photomodal')">
+                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowDailog($event,'lb-editphotomodal')">
                                                 <i class="fa fa-image"></i>更换头像
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog('lb-ordermodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordermodal')">
                                                 <i class="fa fa-shopping-cart"></i>报名
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog('lb-ordersmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowDailog($event,'lb-ordersmodal')">
                                                 <i class="fa fa-money"></i>缴费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_attendancesmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentattendancesmodal')">
                                                 <i class="fa fa-calendar-o"></i>登记考勤
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog('lb-change_classmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowDailog($event,'lb-changeclassmodal')">
                                                 <i class="fa fa-exchange">转班</i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog('lb-wechatmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowDailog($event,'lb-wechatmodal')">
                                                 <i class="fa fa-weixin"></i>微信对话
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog('lb-add_trackmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowDailog($event,'lb-addtrackmodal')">
                                                 <i class="fa fa-phone-square"></i>跟踪回访
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog('lb-reg_student_matchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowDailog($event,'lb-regstudentmatchmodal')">
                                                 <i class="fa fa-flag-o"></i>登记赛事记录
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog('lb-refundmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-refundmodal')">
                                                 <i class="fa fa-reply"></i>退费
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog('lb-endlessonmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowDailog($event,'lb-endlessonmodal')">
                                                 <i class="fa fa-stop"></i>结课
                                             </a>
                                         </li>
                                         <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog('lb-change_branchmodal')">
+                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowDailog($event,'lb-changebranchmodal')">
                                                 <i class="icon-shuffle"></i>转校区
                                             </a>
                                         </li>

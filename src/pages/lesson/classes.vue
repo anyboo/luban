@@ -59,7 +59,7 @@
                         </label>
                     </div>
                     <a class="btn btn-success m-l-xs ng-hide" ng-click="bat_class_dispatch()" ng-hide="no_class_selected()">批量调课</a>
-                    <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog('lb-open_classmodal')">
+                    <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowDailog($event,'lb-openclassmodal')">
                         <i class="fa fa-plus"></i>开班
                     </a>
                 </div>

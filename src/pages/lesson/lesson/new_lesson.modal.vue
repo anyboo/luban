@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="new_lesson" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -119,7 +119,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-2">
-                                                <a ng-click="$util.open('tpl/app/lesson/package/add_subject.modal.html','md',{})" @click="lbShowDailog('lb-add_subjectmodal')">
+                                                <a ng-click="$util.open('tpl/app/lesson/package/add_subject.modal.html','md',{})" @click="lbShowDailog($event,'lb-addsubjectmodal')">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
@@ -246,7 +246,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()" disabled="disabled">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">取消</button>
                 </div>
             </div>
         </div>

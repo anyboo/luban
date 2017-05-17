@@ -7,7 +7,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <span ng-bind="res.groups.data[0].group_name" class="ng-binding">福州布尔培训</span>
-                                <a class="pull-right btn btn-danger btn-xs m-r-xs" ng-click="vm.dismiss()">关闭</a>
+                                <a class="pull-right btn btn-danger btn-xs m-r-xs" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</a>
                                 <a class="pull-right btn btn-info btn-xs m-r-xs" ng-click="new_root()">新增分组</a>
                             </div>
                             <div class="panel-body wrapper-xs">

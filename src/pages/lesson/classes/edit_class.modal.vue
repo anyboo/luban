@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="edit_class" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -61,7 +61,7 @@
                                 <div class="input-group">
                                     <input type="text" name="master" ng-model="info.master" class="form-control ng-pristine ng-untouched ng-valid" readonly="true">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowDailog('lb-selectteachertpl')">
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowDailog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>选择
                                         </button>
                                     </span>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok()">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">取消</button>
                 </div>
             </div>
         </div>

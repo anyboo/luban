@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="student_order_refund" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -25,7 +25,7 @@
                                 <span ng-if="item.pay_status == '1'" class="ng-binding ng-scope">已付款:2000.00元</span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/lesson/order/order_refund.modal.html','md',item)" @click="lbShowDailog('lb-order_refundmodal')">
+                                <a ng-click="$util.open('tpl/app/lesson/order/order_refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-orderrefundmodal')">
                                     <i class="fa fa-reply"></i>办理退款
                                 </a>
                             </p>
@@ -42,7 +42,7 @@
                                 <span class="label bg-danger ng-binding ng-scope" ng-if="item.refund_status > 0">退款:30.00元</span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/lesson/order/order_refund.modal.html','md',item)" @click="lbShowDailog('lb-order_refundmodal')">
+                                <a ng-click="$util.open('tpl/app/lesson/order/order_refund.modal.html','md',item)" @click="lbShowDailog($event,'lb-orderrefundmodal')">
                                     <i class="fa fa-reply"></i>办理退款
                                 </a>
                             </p>

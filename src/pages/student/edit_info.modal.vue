@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="edit_info" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog()">
+                    <button ng-click="$dismiss()" class="close" type="button" @click="lbCloseDailog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok();">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">取消</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">取消</button>
                 </div>
             </div>
         </div>

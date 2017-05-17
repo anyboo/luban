@@ -5,7 +5,7 @@
                 <div oc-lazy-load="['js/modules/order.js?v=2']" class="ng-scope"></div>
                 <div ng-init="init_pays()" ng-controller="OrderPrintBillCtrl" class="ng-scope">
                     <div class="modal-header">
-                        <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                        <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">关闭</span>
                         </button>
@@ -50,7 +50,7 @@
                         <button class="btn btn-primary" ng-disabled="selected_count() < 1 || saving" ng-click="do_print()" disabled="disabled">
                             <i class="icon-printer" ng-hide="saving"></i>打印
                         </button>
-                        <button class="btn btn-warning m-l" ng-click="vm.dismiss()">关闭</button>
+                        <button class="btn btn-warning m-l" ng-click="vm.dismiss()" @click="lbCloseDailog($event)">关闭</button>
                     </div>
                 </div>
             </div>

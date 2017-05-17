@@ -3,7 +3,7 @@
         <div class="modal-content" modal-transclude="">
             <div page-controller="reg_student_attendance" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog()">
+                    <button class="close" type="button" ng-click="$dismiss()" @click="lbCloseDailog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -74,7 +74,7 @@
                                         <div class="input-group ng-valid" ng-model="att.oe_id" value-field="oe_id" select-title="请选择授课老师" select-params="{ob_id:user.gv.ob_id,role_id:2}">
                                             <input type="text" name="name" ng-model="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" readonly="readonly">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择授课老师" on-selected="set_user" select-params="selectParams" @click="lbShowDailog('lb-selectteachertpl')">
+                                                <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择授课老师" on-selected="set_user" select-params="selectParams" @click="lbShowDailog($event,'lb-selectteachertpl')">
                                                     <i class="fa fa-user"></i>
                                                 </button>
                                             </span>
@@ -94,7 +94,7 @@
                 <div class="modal-footer">
                     <a ng-show="step > 1" class="btn btn-link" ng-click="back_step()">返回</a>
                     <button ng-show="step == 2" class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">登记考勤</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()">关闭</button>
+                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbCloseDailog($event)">关闭</button>
                 </div>
             </div>
         </div>
