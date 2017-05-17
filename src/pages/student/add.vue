@@ -18,19 +18,9 @@
                                 </label>
                                 <div class="col-xs-12 col-md-10">
                                     <div class="inline va-m w-sm">
-                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" ng-model="student.student_name" required="">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" required="" v-model="lb_localdata.form.lb_student_student_name">
                                     </div>
-                                    <div class="btn-group m-l-xs">
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="student.sex" btn-radio="'1'">
-                                            <i class="fa fa-male"></i>男
-                                        </label>
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="student.sex" btn-radio="'2'">
-                                            <i class="fa fa-female"></i>女
-                                        </label>
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="student.sex" btn-radio="'0'">
-                                            <i class="fa fa-question-circle"></i>待确定
-                                        </label>
-                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.lb_student_sex" v-model="lb_localdata.form.lb_student_sex"></lb-buttongroup>
                                     <div class="error ng-hide" ng-show="form1.student_name.$dirty && form1.student_name.$invalid && form1.submitted">
                                         <span class="text-warning" ng-show="form1.student_name.$error.required">学员姓名必须填写</span>
                                     </div>
@@ -43,10 +33,10 @@
                                 <div class="col-xs-12 col-md-10">
                                     <div class="contact-list m-t-xs ng-scope ng-hide" ng-repeat="item in student.relations track by $index" ng-hide="$index == 0">
                                         <div class="inline va-m w-sm">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="输入手机号" ng-model="item.tel">
+                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="输入手机号" v-model="lb_localdata.form.lb_item_tel">
                                         </div>
                                         <div class="inline va-m w-xs m-l-xs">
-                                            <select class="form-control ng-pristine ng-untouched ng-valid" ng-model="student.grade" ng-options="item.value as item.text for item in $const.grades">
+                                            <select class="form-control ng-pristine ng-untouched ng-valid" ng-options="item.value as item.text for item in $const.grades" v-model="lb_localdata.form.lb_student_relation">
                                                 <option value="" class="">关系</option>
                                                 <option value="0">本人</option>
                                                 <option value="1">爸爸</option>
@@ -54,7 +44,7 @@
                                             </select>
                                         </div>
                                         <div class="inline va-m w-xs m-l-xs" ng-hide="item.name=='本人'">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" ng-model="student.name">
+                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="lb_localdata.form.lb_student_name">
                                         </div>
                                         <div class="inline va-m m-l-xs ng-hide" ng-show="$index > 0">
                                             <a ng-click="student.relations.splice($index, 1)">
@@ -74,28 +64,23 @@
                                     <span class="text-danger">*</span>来源渠道:
                                 </label>
                                 <div class="col-md-10 col-xs-12">
-                                    <div class="btn-group m-l-xs ng-scope" ng-if="$gv.dicts[3].length < 6">
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope" ng-model="student.track_from" btn-radio="'上门'" ng-repeat="item in $gv.dicts[3]">上门</label>
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope" ng-model="student.track_from" btn-radio="'广告'" ng-repeat="item in $gv.dicts[3]">广告</label>
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope" ng-model="student.track_from" btn-radio="'介绍'" ng-repeat="item in $gv.dicts[3]">介绍</label>
-                                        <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope" ng-model="student.track_from" btn-radio="'其他'" ng-repeat="item in $gv.dicts[3]">其他</label>
-                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.lb_student_track_from" v-model="lb_localdata.form.lb_student_track_from"></lb-buttongroup>
                                 </div>
                             </div>
                             <div class="m-t m-b b-t text-center ng-scope">
-                                <a ng-show="!set.expand" ng-click="set.expand=1" class="inline w b-l b-r b-b r-b ng-hide">
+                                <a v-if="!expand" @click="expand=true" class="inline w b-l b-r b-b r-b ng-hide">
                                     <i class="fa fa-arrow-down"></i>展开填写更多资料
                                 </a>
-                                <a ng-show="set.expand==1" ng-click="set.expand=0" class="inline w b-l b-r b-b r-b">
+                                <a v-if="expand" @click="expand=false" class="inline w b-l b-r b-b r-b">
                                     <i class="fa fa-arrow-up"></i>关闭更多资料
                                 </a>
                             </div>
-                            <div ng-show="set.expand==1" class="ng-scope">
+                            <div v-show="expand" class="ng-scope">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                                     <div class="col-xs-12 col-md-10">
                                         <div class="inline w-sm">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" ng-model="student.nickname">
+                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="lb_localdata.form.lb_student_nickname">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +88,7 @@
                                     <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-sm">
-                                            <input type="text" name="birth" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="student.birth" datetimepicker="date">
+                                            <input type="text" name="birth" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_student_birth">
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +96,7 @@
                                     <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-lg">
-                                            <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" ng-model="student.home_address">
+                                            <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_student_home_address">
                                         </div>
                                     </div>
                                 </div>
@@ -119,10 +104,10 @@
                                     <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline va-m w ng-scope" ng-if="have_field('school')">
-                                            <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" ng-model="student.school">
+                                            <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" v-model="lb_localdata.form.lb_student_school">
                                         </div>
-                                        <div class="inline va-m w-xs m-l-xs ng-scope" ng-if="have_field('grade')">
-                                            <select name="grade" class="form-control ng-pristine ng-untouched ng-valid" ng-model="student.grade" ng-options="item.value as item.text for item in $const.grades">
+                                        <div class="inline va-m w-xs m-l-xs ng-scope">
+                                            <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_student_grade">
                                                 <option value="" class="">年级</option>
                                                 <option value="0">不确定</option>
                                                 <option value="1">一年级</option>
@@ -139,27 +124,23 @@
                                                 <option value="12">高三</option>
                                             </select>
                                         </div>
-                                        <div class="inline va-m w-xxs m-l-xs input-box ng-scope" ng-if="have_field('class')">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="班级" ng-model="student.class">
-                                            <span class="caret"></span>
-                                            <div class="input-box-addon" style="width:62px">
-                                                <ul>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">1</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">2</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">3</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">4</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">5</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">6</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">7</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">8</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">9</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">10</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">11</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">12</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">13</li>
-                                                    <li ng-click="student.class=item.text;" ng-repeat="item in $const.classes_list" class="ng-binding ng-scope">14</li>
-                                                </ul>
-                                            </div>
+                                        <div class="inline va-m w-xs m-l-xs ng-scope">
+                                            <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_student_class">
+                                                <option value="" class="">年级</option>
+                                                <option value="0">1</option>
+                                                <option value="1">2</option>
+                                                <option value="2">3</option>
+                                                <option value="3">4</option>
+                                                <option value="4">5</option>
+                                                <option value="5">6</option>
+                                                <option value="6">7</option>
+                                                <option value="7">8</option>
+                                                <option value="8">9</option>
+                                                <option value="9">10</option>
+                                                <option value="10">11</option>
+                                                <option value="11">12</option>
+                                                <option value="12">13</option>
+                                            </select>
                                         </div>
                                         <span class="padder">班</span>
                                     </div>
@@ -178,7 +159,7 @@
                     <div class="m-t m-b panel-footer">
                         <div class="form-group">
                             <div class="col-xs-12 col-md-10 col-md-offset-2">
-                                <button type="submit" class="btn btn-primary w" ng-disabled="form1.$invalid || form_invalid() || saving" disabled="disabled">确认</button>
+                                <button type="button" class="btn btn-primary w" ng-disabled="form1.$invalid || form_invalid() || saving" @click="handleClick">确认</button>
                             </div>
                         </div>
                     </div>
@@ -191,12 +172,59 @@
 export default {
     name: 'add',
     data() {
+        let lb_localdata = {
+            'form': {
+                'lb_student_student_name': '',
+                'lb_student_sex': '',
+                'lb_item_tel': '',
+                'lb_student_relation': '',
+                'lb_student_name': '',
+                'lb_student_track_from': '',
+                'lb_student_nickname': '',
+                'lb_student_birth': '',
+                'lb_student_home_address': '',
+                'lb_student_school': '',
+                'lb_student_grade': '',
+                'lb_student_class': ''
+            },
+            'lb_student_sex': [{
+                'value': '1',
+                'iclass': 'fa fa-male',
+                'text': '男'
+            }, {
+                'value': '2',
+                'iclass': 'fa fa-female',
+                'text': '女'
+            }, {
+                'value': '0',
+                'iclass': 'fa fa-question-circle',
+                'text': '待确定'
+            }],
+            'lb_student_track_from': [{
+                'value': '上门',
+                'text': '上门'
+            }, {
+                'value': '广告',
+                'text': '广告'
+            }, {
+                'value': '介绍',
+                'text': '介绍'
+            }, {
+                'value': '其他',
+                'text': '其他'
+            }]
+        }
         return {
-
+            lb_localdata,
+            expand: false
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            console.log(this.lb_localdata.form)
+        }
+    }
 }
 </script>

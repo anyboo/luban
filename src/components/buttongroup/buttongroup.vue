@@ -1,27 +1,29 @@
 <template>
     <div class="btn-group m-l-xs ng-scope">
+        <input type="hidden" :value="groupvalue" :name="name" :id="name" />
         <template v-for="item in groupData">
-            <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope">
-                <i :class='item.iclass' v-if="item.iclass"></i>{{item.text}}
-            </label>
+            <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' @selected="handleSelected"></lb-buttongroup-item>
         </template>
     </div>
 </template>
 <script>
+import buttongroupitem from './buttongroupitem.vue'
+
 export default {
     name: 'LbButtongroup',
-    props: ['groupData'],
+    props: ['groupData', 'name', 'value'],
     data() {
         return {
-            open: false
+            groupvalue: this.value
         }
     },
+    components: {
+        'lb-buttongroup-item': buttongroupitem
+    },
     methods: {
-        handleOpen() {
-            this.open = true
-        },
-        handleClose() {
-            this.open = false
+        handleSelected(value) {
+            this.groupvalue = value
+            this.$emit('input', value)
         }
     },
     computed: {},
