@@ -36,6 +36,15 @@ export default [{
         menuTitle: '班组课',
         to: '/lesson/classes'
     }, {
+        menuTitle: '报读学员',
+        to: '/lesson/packages'
+    }, {
+        menuTitle: '科目设置',
+        to: '/lesson/subjects'
+    }, {
+        menuTitle: '班级设置',
+        to: '/lesson/sclasses'
+    }, {
         menuTitle: '1对1',
         to: '/lesson/contracts'
     }, {
@@ -142,8 +151,7 @@ export default [{
     }, {
         menuTitle: '员工管理',
         to: '/system/employee'
-    },
-    {
+    }, {
         menuTitle: '数据字典管理',
         to: '/system/dict'
     }]
