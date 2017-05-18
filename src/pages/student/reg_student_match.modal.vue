@@ -26,7 +26,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">参赛日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="join_date" datetimepicker="date" v-model="lb_localdata.form.lb_match_join_date">
+                                    <lb-date-picker type="date" name="join_date" v-model="lb_localdata.form.lb_match_join_date"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

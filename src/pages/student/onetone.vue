@@ -143,7 +143,7 @@ export default {
         }
         return {
             lb_localdata,
-            order: false           
+            order: false
         }
     },
     components: {

@@ -1,12 +1,15 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
+import { DatePicker } from 'element-ui'
 
+DatePicker.name='lb-date-picker'
 const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
     dropdown.LbDropdownMenu,
     dropdown.LbDropdownMenuItem,
-    buttongroup
+    buttongroup,
+    DatePicker
 ]
 
 const install = function(Vue) {

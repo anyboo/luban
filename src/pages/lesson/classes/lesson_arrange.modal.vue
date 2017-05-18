@@ -62,7 +62,7 @@
                                     <li class="m-t-xs">
                                         <label class="va-m">开始日期:</label>
                                         <div class="inline w-xs va-m">
-                                            <input type="text" class="form-control no-padder text-center ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_week_loop_start">
+                                            <lb-date-picker type="date" v-model="lb_localdata.form.lb_week_loop_start"></lb-date-picker>
                                         </div>
                                         <div class="m-l-xs inline w-xs va-m">
                                             <div class="input-group bootstrap-touchspin">

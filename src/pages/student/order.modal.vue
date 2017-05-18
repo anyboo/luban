@@ -13,8 +13,7 @@
                         <span class="label bg-info ng-binding">威锋</span>报名&缴费
                     </h3>
                 </div>
-                <component v-bind:is="currentView">
-                </component>
+                <component v-bind:is="currentView"></component>
             </div>
         </div>
     </div>

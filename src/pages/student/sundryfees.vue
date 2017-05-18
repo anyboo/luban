@@ -100,7 +100,7 @@
         </div>
     </div>
 </template>
-<style type="text/css">
+<style>
 .heighs {
     height: 39px;
     font-size: 18px;
@@ -130,7 +130,6 @@ export default {
                 this.$parent.switchPage(page)
             }
         },
-
     }
 }
 </script>

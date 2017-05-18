@@ -33,7 +33,7 @@
                             <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                             <div class="col-md-5 col-xs-12">
                                 <div class="w-sm">
-                                    <input type="text" name="birth_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_info_birth_date">
+                                    <lb-date-picker type="date" name="birth_date" v-model="lb_localdata.form.lb_info_birth_date"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

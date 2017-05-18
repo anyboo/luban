@@ -128,7 +128,7 @@
         <lb-orderandpay v-if="order"></lb-orderandpay>
     </div>
 </template>
-<style type="text/css">
+<style>
 .heighs {
     height: 39px;
     font-size: 18px;

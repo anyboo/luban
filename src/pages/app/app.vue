@@ -3,6 +3,9 @@
         <lb-header @sidebarcollapsed="sidebarCollapsed"></lb-header>
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
+            <div class="bg-light lter b-b wrapper-md" v-if="getCurrMenu.length>0">
+                <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>
+            </div>
             <router-view></router-view>
         </div>
         <lb-footer></lb-footer>
@@ -32,7 +35,11 @@ export default {
         'lb-dialoglist': dialoglist,
         'lb-modalbackdrop': modalbackdrop
     },
-    computed: {},
+    computed: {
+        getCurrMenu() {
+            return this.$store.state.envs.currMenu
+        }
+    },
     watch: {
         '$route.path': {
             handler(val) {

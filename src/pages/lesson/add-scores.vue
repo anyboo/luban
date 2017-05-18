@@ -34,7 +34,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="w-sm">
-                                        <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_performance_exam_date">
+                                        <lb-date-picker type="date" name="exam_date" v-model="lb_localdata.form.lb_performance_exam_date"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>

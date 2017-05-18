@@ -10,9 +10,7 @@
 <script>
 import dialogpages from '~/stores/dialogpages.js'
 import finishadd from '~/pages/student/finishadd.vue'
-
 dialogpages['lb-finishadd'] = finishadd
-
 export default {
     name: 'dialog',
     data() {

@@ -88,7 +88,7 @@
                                     <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-sm">
-                                            <input type="text" name="birth" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_student_birth">
+                                            <lb-date-picker type="date" name="birth" v-model="lb_localdata.form.lb_student_birth"></lb-date-picker>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            let vm =this
+            let vm = this
             this.handleSave().then(() => {
                 this.$store.state.envs.currStudent = vm.lb_localdata.form
                 vm.handleShowDialog('lb-finishadd')

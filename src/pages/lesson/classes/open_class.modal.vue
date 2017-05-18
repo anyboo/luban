@@ -62,7 +62,7 @@
                             <label class="control-label col-md-2 col-xs-12">开课日期:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_open_time">
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="open_time" disabled="disabled" v-model="lb_localdata.form.lb_info_open_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <label class="control-label col-md-2 col-xs-12">预计结课:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_close_time">
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="close_time" disabled="disabled" v-model="lb_localdata.form.lb_info_close_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

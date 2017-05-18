@@ -23,12 +23,6 @@
         </div>
     </div>
 </template>
-<style >
-    .clear a{
-        color: #fff;
-        font-weight: 700;
-    }
-</style>
 <script>
 export default {
     name: 'finishadd',
