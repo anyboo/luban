@@ -20,16 +20,14 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-8">
-                <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                    <i class="fa fa-filter"></i>过滤
-                </button>
-                <lb-buttongroup :group-data="lb_localdata.lb_params_lesson_type" v-model="lb_localdata.form.lb_params_lesson_type"></lb-buttongroup>
-                <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowdialog($event,'lb-cate')">
-                    <i class="fa fa-list"></i>课程分类
-                </button>
-                <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowdialog($event,'lb-newlessonmodal')">
-                    <i class="fa fa-plus"></i>添加课程
-                </button>
+                <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});"><i class="fa fa-filter"></i>过滤</button>
+                <div class="btn-group m-l">
+                    <label btn-radio="'0'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">班课</label>
+                    <label btn-radio="'1'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">1对1</label>
+                    <label btn-radio="'10'" ng-model="params.lesson_type" class="btn btn-default ng-pristine ng-untouched ng-valid">课时包</label>
+                </div>
+                <button class="btn btn-default pull-right" ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})"><i class="fa fa-list"></i> 课程分类</button>
+                <button ui-per="lesson.add" class="btn btn-primary pull-right" ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})"><i class="fa fa-plus"></i>添加课程</button>
             </div>
         </div>
         <div class="table-responsive m-t ng-scope" ng-if="view_mode == 'list'">
