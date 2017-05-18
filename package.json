@@ -4,7 +4,7 @@
   "description": "luban8",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server -d --inline  --env.dev",
+    "dev": "cnpm install&&webpack-dev-server -d --inline  --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules",
     "test": "karma start"
   },
