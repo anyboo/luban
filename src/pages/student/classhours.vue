@@ -122,7 +122,7 @@
                             </button>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="handleOpenf($event)">
+                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="switchPage('lb-ordermain')">
                                 <i class="fa fa-reply"></i>返回
                             </button>
                         </div>
@@ -133,13 +133,6 @@
         <lb-orderandpay v-if="order"></lb-orderandpay>
     </div>
 </template>
-<style type="text/css">
-    .heighs{
-        height: 39px;
-        font-size: 18px;
-        line-height: 39px;
-    }
-</style>
 <script>
 import orderandpay from './orderandpay2.vue'
 export default {
@@ -161,7 +154,7 @@ export default {
         return {
             lb_localdata,
             order: false,
-            body: true
+          
         }
     },
     components: {
@@ -170,15 +163,12 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        handleOpenf(event) {
-            event.preventDefault()
-            if (this.$parent && this.$parent.handleOpen) {
-                clearTimeout(this.timeCloseId)
-                this.$parent.handleOpenf()
+        switchPage(page) {
+            if (this.$parent && this.$parent.switchPage) {
+                this.$parent.switchPage(page)
             }
         },
         open() {
-            this.body = false
             this.order = true
         }
     }

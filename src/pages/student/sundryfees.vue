@@ -89,7 +89,7 @@
                                 </button>
                             </div>
                             <div class="col-xs-4">
-                                <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()">
+                                <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="switchPage('lb-ordermain')">
                                     <i class="fa fa-reply"></i>返回
                                 </button>
                             </div>
@@ -101,11 +101,11 @@
     </div>
 </template>
 <style type="text/css">
-    .heighs{
-        height: 39px;
-        font-size: 18px;
-        line-height: 39px;
-    }
+.heighs {
+    height: 39px;
+    font-size: 18px;
+    line-height: 39px;
+}
 </style>
 <script>
 export default {
@@ -124,6 +124,13 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        switchPage(page) {
+            if (this.$parent && this.$parent.switchPage) {
+                this.$parent.switchPage(page)
+            }
+        },
+
+    }
 }
 </script>

@@ -1,24 +1,18 @@
 <template>
     <div>
-        <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="ok">
+        <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="!order">
             <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
                 <div ng-controller="OrderCreateClassCtrl" ng-init="init_os_class()" class="ng-scope">
                     <div class="row no-gutter step1" ng-class="{'step1':step==1,'step2':step==2}">
 
                         <div class="col-xs-6 bg-light lter bg-success step1 .bg-success:after" ng-class="{'bg-success':step==1}">
                             <h4 class="padder heighs">1.创建订单</h4>
-
-
-
-
-
-
                         </div>
                         <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==2}">
                             <h4 class="padder heighs">2.缴费</h4>
                         </div>
                     </div>
-                    <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required" v-if="body">
+                    <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名班级:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -124,7 +118,7 @@
                             </button>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="handleOpen($event)">
+                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="switchPage('lb-ordermain')">
                                 <i class="fa fa-reply"></i>返回
                             </button>
                         </div>
@@ -163,9 +157,7 @@ export default {
         }
         return {
             lb_localdata,
-            ok: true,
             order: false,
-            body: true
         }
     },
     components: {
@@ -174,11 +166,9 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        handleOpen(event) {
-            event.preventDefault()
-            if (this.$parent && this.$parent.handleOpen) {
-                clearTimeout(this.timeCloseId)
-                this.$parent.handleOpen()
+        switchPage(page) {
+            if (this.$parent && this.$parent.switchPage) {
+                this.$parent.switchPage(page)
             }
         },
         open() {

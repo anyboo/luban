@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="ok">
+        <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="!order">
             <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
                 <div ng-controller="OrderCreate1by1Ctrl" class="ng-scope">
                     <div class="row no-gutter step1" ng-class="{'step1':step==1,'step2':step==2}">
@@ -113,7 +113,7 @@
                             </button>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="handleOpent($event)">
+                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="switchPage('lb-ordermain')">
                                 <i class="fa fa-reply"></i>返回
                             </button>
                         </div>
@@ -124,13 +124,6 @@
         <lb-orderandpay v-if="order"></lb-orderandpay>
     </div>
 </template>
-<style type="text/css">
-    .heighs{
-        height: 39px;
-        font-size: 18px;
-        line-height: 39px;
-    }
-</style>
 <script>
 import orderandpay from './orderandpay2.vue'
 export default {
@@ -150,8 +143,7 @@ export default {
         }
         return {
             lb_localdata,
-            order: false,
-            ok: true
+            order: false           
         }
     },
     components: {
@@ -160,15 +152,12 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        handleOpent(event) {
-            event.preventDefault()
-            if (this.$parent && this.$parent.handleOpent) {
-                clearTimeout(this.timeCloseId)
-                this.$parent.handleOpent()
+        switchPage(page) {
+            if (this.$parent && this.$parent.switchPage) {
+                this.$parent.switchPage(page)
             }
         },
         open() {
-            this.ok = false
             this.order = true
         }
     }

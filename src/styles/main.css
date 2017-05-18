@@ -219,6 +219,11 @@ td,
 th {
     padding: 0
 }
+.heighs {
+    height: 39px;
+    font-size: 18px;
+    line-height: 39px;
+}
 
 
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
@@ -11776,7 +11781,6 @@ button.close {
 .icon-users:before {
     content: "\e001"
 }
-
 
 html {
     background-color: #f0f3f4
