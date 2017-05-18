@@ -18,10 +18,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">类型</label>
                                 <div class="col-md-10 col-xs-9">
-                                    <div class="btn-group">
-                                        <label btn-radio="0" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty active ng-valid-parse">售前</label>
-                                        <label btn-radio="1" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty">售后</label>
-                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.lb_inquiry_track_type" v-model="lb_localdata.form.lb_inquiry_track_type"></lb-buttongroup>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -105,11 +102,19 @@ export default {
     data() {
         let lb_localdata = {
             'form': {
+                'lb_inquiry_track_type': '',
                 'lb_inquiry_track_way': '',
                 'lb_inquiry_op_name': '',
                 'lb_inquiry_track_time': '',
                 'lb_inquiry_next_time': ''
-            }
+            },
+            'lb_inquiry_track_type': [{
+                'value': '0',
+                'text': '售前'
+            }, {
+                'value': '1',
+                'text': '售后'
+            }]
         }
         return {
             lb_localdata,

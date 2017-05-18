@@ -30,9 +30,7 @@ export default {
             lb_localdata,
         }
     },
-    computed: {
-        
-    },
+    computed: {},
     watch: {},
     methods: {}
 }

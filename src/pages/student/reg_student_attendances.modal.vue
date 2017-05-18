@@ -39,7 +39,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课日期:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w-sm">
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="teach_date" datetimepicker="date" v-model="lb_localdata.form.lb_att_teach_day">
+                                        <lb-date-picker type="date" name="teach_date" v-model="lb_localdata.form.lb_att_teach_day"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>

@@ -25,7 +25,7 @@
                             <label class="col-sm-3 col-md-2 control-label">开课日期</label>
                             <div class="col-sm-9 col-md-5">
                                 <div class="inline w-sm">
-                                    <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" datetimepicker="date" v-model="lb_localdata.form.lb_info_open_time">
+                                    <lb-date-picker type="date" name="open_time" v-model="lb_localdata.form.lb_info_open_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="control-label col-md-2 col-xs-12">预计结课日期:</label>
                             <div class="col-md-5 col-xs-12">
                                 <div class="inline w-sm">
-                                    <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" datetimepicker="date" v-model="lb_localdata.form.lb_info_close_time">
+                                    <lb-date-picker type="date" name="close_time" v-model="lb_localdata.form.lb_info_close_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
