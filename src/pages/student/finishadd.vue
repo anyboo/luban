@@ -9,11 +9,13 @@
                     <p class="text-info">
                         您还可以继续对
                         <span class="label bg-info ng-binding">{{getStudentName}}</span>进行以下操作
+
                     </p>
-                    <div class="clear">
-                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowdialog($event,'lb-editphotomodal')">设置图像</a>
-                        <a ng-click="$util.open('tpl/app/student/order.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordermodal')">报名</a>
-                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowdialog($event,'lb-addtrackmodal')">登记咨询</a>
+                    <br>
+                    <div class="clear ">
+                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowdialog($event,'lb-editphotomodal')" class="btn btn-default m-t ">设置图像</a>
+                        <a ng-click="$util.open('tpl/app/student/order.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordermodal')" class="btn bg-info m-t ng-click-active col">报名</a>
+                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowdialog($event,'lb-addtrackmodal')" class="btn bg-info m-t " >登记咨询</a>
                         <a class="btn btn-success m-t pull-right" ng-click="reset_form();$dismiss()" @click="lbClosedialog($event)">关闭</a>
                     </div>
                 </div>
@@ -21,6 +23,12 @@
         </div>
     </div>
 </template>
+<style >
+    .clear a{
+        color: #fff;
+        font-weight: 700;
+    }
+</style>
 <script>
 export default {
     name: 'finishadd',
@@ -31,7 +39,7 @@ export default {
         }
     },
     computed: {
-        
+
     },
     watch: {},
     methods: {}
