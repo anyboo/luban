@@ -1,5 +1,5 @@
-import restfulapi from '../../api/restfulapi'
-import * as types from '../mutation-types'
+import restfulapi from '~/api/restfulapi'
+import * as types from './mutation-types'
 
 const state = {
     models: {},

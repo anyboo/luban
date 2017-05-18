@@ -216,14 +216,19 @@ export default {
         }
         return {
             lb_localdata,
-            expand: false
+            expand: false,
+            model: 'students'
         }
     },
     computed: {},
     watch: {},
     methods: {
         handleClick() {
-            console.log(this.lb_localdata.form)
+            let vm =this
+            this.handleSave().then(() => {
+                this.$store.state.envs.currStudent = vm.lb_localdata.form
+                vm.handleShowDialog('lb-finishadd')
+            })
         }
     }
 }
