@@ -1,7 +1,5 @@
 <template>
     <div id="dropdown" class="btn-group dropdown" :class="{'open':open}">
-        <slot name="buttonslot"></slot>
-        <slot name="menuslot"></slot>
         <slot></slot>
     </div>
 </template>
