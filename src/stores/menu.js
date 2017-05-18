@@ -19,6 +19,10 @@ export default [{
     }, {
         menuTitle: '流失名单',
         to: '/student/lost'
+    },
+    {
+        menuTitle: '跟踪回访记录',
+        to: '/student/tracks'
     }, {
         menuTitle: '生日学员',
         to: '/student/birthdays'

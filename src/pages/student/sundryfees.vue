@@ -17,10 +17,10 @@
                     <div ng-controller="OrderCreateOtherCtrl" class="ng-scope">
                         <div class="row no-gutter step1" ng-class="{'step1':step==1,'step2':step==2}">
                             <div class="col-xs-6 bg-light lter bg-success" ng-class="{'bg-success':step==1}">
-                                <h4 class="padder">1.创建订单</h4>
+                                <h4 class="padder heighs">1.创建订单</h4>
                             </div>
                             <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==2}">
-                                <h4 class="padder">2.缴费</h4>
+                                <h4 class="padder heighs">2.缴费</h4>
                             </div>
                         </div>
                         <form name="form1" class="form-horizontal ng-pristine ng-valid ng-valid-required">
@@ -100,6 +100,13 @@
         </div>
     </div>
 </template>
+<style type="text/css">
+    .heighs{
+        height: 39px;
+        font-size: 18px;
+        line-height: 39px;
+    }
+</style>
 <script>
 export default {
     name: 'sundryfees',
