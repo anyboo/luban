@@ -16,6 +16,15 @@
                     <form name="form1" class="form-validation form-horizontal ng-pristine ng-invalid ng-invalid-required">
                         <div class="wrapper-xs">
                             <div class="form-group">
+                                <label class="control-label col-md-2 col-xs-3">类型</label>
+                                <div class="col-md-10 col-xs-9">
+                                    <div class="btn-group">
+                                        <label btn-radio="0" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty active ng-valid-parse">售前</label>
+                                        <label btn-radio="1" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty">售后</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">
                                     <span class="text-danger">*</span>沟通方式
                                 </label>

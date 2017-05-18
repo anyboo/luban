@@ -6,7 +6,7 @@ export default {
         this._id = ''
     },
     computed: {
-        getStudentName(){
+        getStudentName() {
             return this.$store.state.envs.currStudent.lb_student_student_name
         }
     },
@@ -28,7 +28,7 @@ export default {
                 //let modalformValue = modalform.getForm()
             console.log(modalform, this.modalsType)
                 //if (modalformValue.validate) {
-            return new Promise((resolve,reject) => {
+            return new Promise((resolve, reject) => {
                 if (this.modalsType == types.APPEND_API) {
                     vm.$store.dispatch(types.APPEND_API, {
                         'model': this.model,

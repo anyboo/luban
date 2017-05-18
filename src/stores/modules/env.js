@@ -1,5 +1,6 @@
 const state = {
-    currStudent: {}
+    currStudent: {},
+    currMenu: ''
 }
 const getters = {}
 const actions = {}

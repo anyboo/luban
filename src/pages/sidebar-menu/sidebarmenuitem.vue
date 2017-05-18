@@ -11,7 +11,7 @@
         <ul class="nav nav-sub dk ng-scope">
             <template v-for="item in menu.menu">
                 <li class="ng-scope">
-                    <a @click="handleRouter($event,item.to)">
+                    <a @click="handleRouter($event,item)">
                         <span class="ng-binding">{{item.menuTitle}}</span>
                     </a>
                 </li>
@@ -36,8 +36,9 @@ export default {
         handleClick() {
             this.active = !this.active
         },
-        handleRouter(event, to) {
-            this.$router.push(to)
+        handleRouter(event, item) {
+            this.$store.state.envs.currMenu = item.menuTitle
+            this.$router.push(item.to)
             event.stopPropagation()
         }
     }
