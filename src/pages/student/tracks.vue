@@ -46,15 +46,15 @@
                                 </a>
                                 <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
                                     <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
-                                </a> </td>
+                                </a>
+                            </td>
                             <td>
                                 <pre ng-bind-html="item.detail" class="ng-binding">4IUI5I5I</pre>
                             </td>
                             <td width="120" class="ng-binding">电话</td>
                             <td width="100" class="ng-binding">陈佳木</td>
                             <td width="110" class="ng-binding">2017-05-08 15:16</td>
-                            <td width="60">
-                            </td>
+                            <td width="60"></td>
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
@@ -63,15 +63,15 @@
                                 </a>
                                 <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
                                     <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
-                                </a> </td>
+                                </a>
+                            </td>
                             <td>
                                 <pre ng-bind-html="item.detail" class="ng-binding">3T435T45Y45Y</pre>
                             </td>
                             <td width="120" class="ng-binding">面谈</td>
                             <td width="100" class="ng-binding">陈佳木</td>
                             <td width="110" class="ng-binding">2017-05-08 15:16</td>
-                            <td width="60">
-                            </td>
+                            <td width="60"></td>
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
@@ -80,15 +80,15 @@
                                 </a>
                                 <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63240">
                                     <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>小兵
-                                </a> </td>
+                                </a>
+                            </td>
                             <td>
                                 <pre ng-bind-html="item.detail" class="ng-binding">56与u456u456</pre>
                             </td>
                             <td width="120" class="ng-binding">网络</td>
                             <td width="100" class="ng-binding">陈佳木</td>
                             <td width="110" class="ng-binding">2017-05-08 15:14</td>
-                            <td width="60">
-                            </td>
+                            <td width="60"></td>
                         </tr>
                         <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
                             <td>
@@ -97,21 +97,20 @@
                                 </a>
                                 <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/51426">
                                     <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>李哥
-                                </a> </td>
+                                </a>
+                            </td>
                             <td>
                                 <pre ng-bind-html="item.detail" class="ng-binding">咨询舞蹈</pre>
                             </td>
                             <td width="120" class="ng-binding">电话</td>
                             <td width="100" class="ng-binding">陈佳木</td>
                             <td width="110" class="ng-binding">2017-04-17 10:26</td>
-                            <td width="60">
-                            </td>
+                            <td width="60"></td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="wrapper" style="height:80px"></div>
-                <div class="grid-data-result">
-                </div>
+                <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -120,8 +119,7 @@
                         <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 4 条记录">共 4 条记录</small>
                     </div>
                     <div class="col-sm-4 text-right text-center-xs">
-                        <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
-                        </ul>
+                        <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
                     </div>
                 </div>
             </div>

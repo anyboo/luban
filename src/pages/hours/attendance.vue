@@ -21,7 +21,7 @@
                             </span>
                         </div>
                     </div>
-                    <button ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})" @click="lbShowdialog($event,'lb-attendancemodal')" class="btn btn-primary pull-right ng-click-active">
+                    <button ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})" @click="lbShowdialog($event,'lb-attendancemodal')">
                         <i class="icon-plus"></i>考勤登记
                     </button>
                 </div>

@@ -106,7 +106,7 @@
                                                             选择时间段
                                                             <span class="caret"></span>
                                                         </lb-dropdown-button>
-                                                        <lb-dropdown-menu slot="menuslot"></lb-dropdown-menu>
+                                                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                                     </lb-dropdown>
                                                 </div>
                                                 <div class="inline va-m">
@@ -136,23 +136,7 @@
                                                         <i class="fa fa-plus"></i>节假日
                                                         <span class="caret"></span>
                                                     </lb-dropdown-button>
-                                                    <lb-dropdown-menu slot="menuslot">
-                                                        <li ng-repeat="item in holidays" class="ng-scope">
-                                                            <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">劳动节</a>
-                                                        </li>
-                                                        <li ng-repeat="item in holidays" class="ng-scope">
-                                                            <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">儿童节</a>
-                                                        </li>
-                                                        <li ng-repeat="item in holidays" class="ng-scope">
-                                                            <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">教师节</a>
-                                                        </li>
-                                                        <li ng-repeat="item in holidays" class="ng-scope">
-                                                            <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">国庆节</a>
-                                                        </li>
-                                                        <li ng-repeat="item in holidays" class="ng-scope">
-                                                            <a ng-click="add_holiday_avoid_day(item)" class="ng-binding">元旦节</a>
-                                                        </li>
-                                                    </lb-dropdown-menu>
+                                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                                 </lb-dropdown>
                                             </div>
                                             <i class="pull-right fa fa-times" ng-click="show_week_loop_avoid=false"></i>
@@ -188,7 +172,7 @@
                                                     选择时间段
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
-                                                <lb-dropdown-menu slot="menuslot"></lb-dropdown-menu>
+                                                <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                             </lb-dropdown>
                                         </div>
                                     </li>
@@ -564,7 +548,18 @@ export default {
                 'lb_item_int_end_hour': '',
                 'lb_default_int_start_hour': '',
                 'lb_default_int_end_hour': ''
-            }
+            },
+            'dropDownMenu': [{
+                'text': '劳动节'
+            }, {
+                'text': '儿童节'
+            }, {
+                'text': '教师节'
+            }, {
+                'text': '国庆节'
+            }, {
+                'text': '元旦节'
+            }]
         }
         return {
             lb_localdata,

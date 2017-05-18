@@ -49,23 +49,7 @@
                                     <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
+                                <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                             </lb-dropdown>
                         </td>
                         <td>
@@ -100,23 +84,7 @@
                                     <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
+                                <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                             </lb-dropdown>
                         </td>
                         <td>
@@ -151,23 +119,7 @@
                                     <span class="ng-scope">操作</span>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
+                                <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                             </lb-dropdown>
                         </td>
                         <td>
@@ -237,6 +189,19 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-regionsetmodal',
+                'icon': 'icon-rocket',
+                'text': '学员归属设定'
+            }, {
+                'url': 'lb-purposesetmodal',
+                'icon': 'icon-heart',
+                'text': '意向程度设置'
+            }, {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
             }]
         }
         return {

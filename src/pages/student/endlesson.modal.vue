@@ -58,18 +58,7 @@
                                             欠费处理
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="menuslot">
-                                            <li>
-                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                    <i class="icon-plus"></i>补交欠费
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                    <i class="icon-ban"></i>欠费清除
-                                                </a>
-                                            </li>
-                                        </lb-dropdown-menu>
+                                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                     </lb-dropdown>
                                 </div>
                             </div>
@@ -95,7 +84,17 @@
 export default {
     name: 'endlesson.modal',
     data() {
-        let lb_localdata = {}
+        let lb_localdata = {
+            'dropDownMenu': [{
+                'url': 'lb-ordersmodal',
+                'icon': 'icon-plus',
+                'text': '补交欠费'
+            }, {
+                'url': 'lb-orderunpayclearmodal',
+                'icon': 'icon-ban',
+                'text': '欠费清除'
+            }]
+        }
         return {
             lb_localdata,
         }

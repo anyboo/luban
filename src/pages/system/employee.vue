@@ -91,33 +91,7 @@
                                             <i class="fa fa-cog"></i>操作
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="menuslot">
-                                            <li>
-                                                <a ng-click="$util.open('tpl/system/employee/employee_edit.modal.html','md',item)" @click="lbShowdialog($event,'lb-employeeeditmodal')">
-                                                    <i class="fa fa-pencil"></i>编辑资料
-                                                </a>
-                                            </li>
-                                            <li ng-if="item.oa_id != '0' && item.status == '1'" class="ng-scope">
-                                                <a ng-click="$util.open('tpl/system/employee/lock.modal.html','md',item)" @click="lbShowdialog($event,'lb-lockmodal')">
-                                                    <i class="fa fa-lock"></i>离职封存
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a ng-click="$util.open('tpl/system/employee/reset_account.modal.html','md',item)" @click="lbShowdialog($event,'lb-resetaccountmodal')">
-                                                    <i class="fa fa-key"></i>重置密码
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a ng-click="$util.open('tpl/system/employee/change_account.modal.html','md',item)" @click="lbShowdialog($event,'lb-changeaccountmodal')">
-                                                    <i class="fa fa-user-md"></i>更换登录账号
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a ui-per="employee.delete" confirm-text="确定要删除该员工吗?" confirm-action="rest_remove(item,'oe_id','employees');" class="ng-isolate-scope">
-                                                    <i class="fa fa-trash-o"></i>删除
-                                                </a>
-                                            </li>
-                                        </lb-dropdown-menu>
+                                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                     </lb-dropdown>
                                     <p></p>
                                 </div>
@@ -156,6 +130,23 @@ export default {
             }, {
                 'value': '0',
                 'text': '离职'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-employeeeditmodal',
+                'icon': 'fa fa-pencil',
+                'text': '编辑资料'
+            }, {
+                'url': 'lb-lockmodal',
+                'icon': 'fa fa-lock',
+                'text': '离职封存'
+            }, {
+                'url': 'lb-resetaccountmodal',
+                'icon': 'fa fa-key',
+                'text': '重置密码'
+            }, {
+                'url': 'lb-changeaccountmodal',
+                'icon': 'fa fa-user-md',
+                'text': '更换登录账号'
             }]
         }
         return {

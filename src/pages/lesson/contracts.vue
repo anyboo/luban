@@ -73,33 +73,7 @@
                                         <span class="ng-scope">操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contract/edit.modal.html','md',item)" @click="lbShowdialog($event,'lb-editmodal')">
-                                                <i class="fa fa-pencil"></i>修改课耗单价
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_end.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessonendmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_delete.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondeletemodal')">
-                                                <i class="fa fa-trash-o"></i>合同删除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td>
@@ -172,33 +146,7 @@
                                         <span class="ng-scope">操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contract/edit.modal.html','md',item)" @click="lbShowdialog($event,'lb-editmodal')">
-                                                <i class="fa fa-pencil"></i>修改课耗单价
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_end.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessonendmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_delete.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondeletemodal')">
-                                                <i class="fa fa-trash-o"></i>合同删除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td>
@@ -302,6 +250,27 @@ export default {
             }, {
                 'value': '0',
                 'text': '未缴费'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-editmodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改课耗单价'
+            }, {
+                'url': 'lb-lessonarrangemodal',
+                'icon': 'fa fa-calendar text-info',
+                'text': '排课'
+            }, {
+                'url': 'lb-lessondispatchmodal',
+                'icon': 'fa fa-calendar text-warning',
+                'text': '调课'
+            }, {
+                'url': 'lb-lessonendmodal',
+                'icon': 'fa fa-calendar text-danger',
+                'text': '结课'
+            }, {
+                'url': 'lb-lessondeletemodal',
+                'icon': 'fa fa-trash-o',
+                'text': '合同删除'
             }]
         }
         return {

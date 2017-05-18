@@ -36,23 +36,7 @@
                             <i class="icon-plus"></i>请假登记
                             <span class="caret"></span>
                         </lb-dropdown-button>
-                        <lb-dropdown-menu slot="menuslot">
-                            <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行请假登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="fa fa-plus"></i>按上课时间单次登记
-                                </a>
-                            </li>
-                            <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员按排课登记考勤" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="fa fa-calendar"></i>按排课记录批量登记
-                                </a>
-                            </li>
-                            <li>
-                                <a select-tpl="tpl/directive/selectSClassTpl.html" select-id-field="osc_id" max-num="1" on-selected="sclass_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择科目班级登记考勤" @click="lbShowdialog($event,'lb-selectsclasstpl')">
-                                    <i class="fa fa-users"></i>按科目班级批量登记
-                                </a>
-                            </li>
-                        </lb-dropdown-menu>
+                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                     </lb-dropdown>
                 </div>
             </div>

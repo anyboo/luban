@@ -56,18 +56,7 @@
                                             <i class="fa fa-cog"></i>操作
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="menuslot">
-                                            <li>
-                                                <a @click="lbShowdialog($event,'lb-editlessonmodal')">
-                                                    <i class="fa fa-pencil-square"></i>编辑
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a confirm-text="确定要删除该课程吗?" confirm-action="rest_remove(item,'ol_id','lessons',remove_callback);">
-                                                    <i class="fa fa-times"></i>删除
-                                                </a>
-                                            </li>
-                                        </lb-dropdown-menu>
+                                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                     </lb-dropdown>
                                 </td>
                                 <td>

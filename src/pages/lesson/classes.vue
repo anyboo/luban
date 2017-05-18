@@ -88,53 +88,7 @@
                                         <span class="ng-scope">操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/edit_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-editclassmodal')">
-                                                <i class="icon-note"></i>编辑班级
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/input_student.modal.html','md',item)" @click="lbShowdialog($event,'lb-inputstudentmodal')">
-                                                <i class="fa fa-users"></i>批量报名
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/reg_performance.modal.html','md',item)" @click="lbShowdialog($event,'lb-regperformancemodal')">
-                                                <i class="fa fa-edit"></i>登记成绩
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-endclassmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/hours/reg_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-regclassattendancemodal')">
-                                                <i class="fa fa-calendar"></i>按排课考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/hours/remove_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-removeclassattendancemodal')">
-                                                <i class="icon-ban"></i>撤销考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/upgrade_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-upgradeclassmodal')">
-                                                <i class="fa fa-wrench"></i>升级
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td>
@@ -189,53 +143,7 @@
                                         <span class="ng-scope">操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/edit_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-editclassmodal')">
-                                                <i class="icon-note"></i>编辑班级
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/input_student.modal.html','md',item)" @click="lbShowdialog($event,'lb-inputstudentmodal')">
-                                                <i class="fa fa-users"></i>批量报名
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/reg_performance.modal.html','md',item)" @click="lbShowdialog($event,'lb-regperformancemodal')">
-                                                <i class="fa fa-edit"></i>登记成绩
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-endclassmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/hours/reg_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-regclassattendancemodal')">
-                                                <i class="fa fa-calendar"></i>按排课考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/hours/remove_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-removeclassattendancemodal')">
-                                                <i class="icon-ban"></i>撤销考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/upgrade_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-upgradeclassmodal')">
-                                                <i class="fa fa-wrench"></i>升级
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td>
@@ -290,53 +198,7 @@
                                         <span class="ng-scope">操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/edit_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-editclassmodal')">
-                                                <i class="icon-note"></i>编辑班级
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/input_student.modal.html','md',item)" @click="lbShowdialog($event,'lb-inputstudentmodal')">
-                                                <i class="fa fa-users"></i>批量报名
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/reg_performance.modal.html','md',item)" @click="lbShowdialog($event,'lb-regperformancemodal')">
-                                                <i class="fa fa-edit"></i>登记成绩
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-endclassmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li ng-hide="item.is_end == '1'">
-                                            <a ng-click="$util.open('tpl/app/hours/reg_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-regclassattendancemodal')">
-                                                <i class="fa fa-calendar"></i>按排课考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/hours/remove_class_attendance.modal.html','lg',item)" @click="lbShowdialog($event,'lb-removeclassattendancemodal')">
-                                                <i class="icon-ban"></i>撤销考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/classes/upgrade_class.modal.html','lg',item)" @click="lbShowdialog($event,'lb-upgradeclassmodal')">
-                                                <i class="fa fa-wrench"></i>升级
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td>
@@ -429,6 +291,43 @@ export default {
                 'value': 'list',
                 'iclass': 'fa fa-list',
                 'text': '列表'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-editclassmodal',
+                'icon': 'icon-note',
+                'text': '编辑班级'
+            }, {
+                'url': 'lb-inputstudentmodal',
+                'icon': 'fa fa-users',
+                'text': '批量报名'
+            }, {
+                'url': 'lb-regperformancemodal',
+                'icon': 'fa fa-edit',
+                'text': '登记成绩'
+            }, {
+                'url': 'lb-lessonarrangemodal',
+                'icon': 'fa fa-calendar text-info',
+                'text': '排课'
+            }, {
+                'url': 'lb-lessondispatchmodal',
+                'icon': 'fa fa-calendar text-warning',
+                'text': '调课'
+            }, {
+                'url': 'lb-endclassmodal',
+                'icon': 'fa fa-calendar text-danger',
+                'text': '结课'
+            }, {
+                'url': 'lb-regclassattendancemodal',
+                'icon': 'fa fa-calendar',
+                'text': '按排课考勤'
+            }, {
+                'url': 'lb-removeclassattendancemodal',
+                'icon': 'icon-ban',
+                'text': '撤销考勤'
+            }, {
+                'url': 'lb-upgradeclassmodal',
+                'icon': 'fa fa-wrench',
+                'text': '升级'
             }]
         }
         return {

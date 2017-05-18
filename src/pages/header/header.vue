@@ -30,56 +30,7 @@
                         <span>我的</span>
                         <b class="caret"></b>
                     </a>
-                    <lb-dropdown-menu slot="menuslot">
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.news" href="#/my/news">
-                                <i ng-if="item.class" class="fa fa-file-text text-info-dker"></i>
-                                <span class="ng-binding">公告</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.students" href="#/my/students">
-                                <i ng-if="item.class" class="fa fa-users text-info-dker"></i>
-                                <span class="ng-binding">学生</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.notify" href="#/my/notify">
-                                <i ng-if="item.class" class="fa fa-bullhorn text-info-dker"></i>
-                                <span class="ng-binding">提醒</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.schedule" href="#/my/schedule">
-                                <i ng-if="item.class" class="glyphicon glyphicon-calendar icon text-info-dker"></i>
-                                <span class="ng-binding">课表</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.courses" href="#/my/courses">
-                                <i ng-if="item.class" class="fa fa-calendar"></i>
-                                <span class="ng-binding">课时</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.tracks" href="#/my/tracks">
-                                <i ng-if="item.class" class="fa fa-comments"></i>
-                                <span class="ng-binding">回访</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.inquiry" href="#/my/inquiry">
-                                <i ng-if="item.class" class="icon-users"></i>
-                                <span class="ng-binding">咨询</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="item in user.gv.navs.my" ui-sref-active="active" class="ng-scope">
-                            <a ui-sref="my.comments" href="#/my/comments">
-                                <i ng-if="item.class" class="fa fa-comment-o"></i>
-                                <span class="ng-binding">课堂点评</span>
-                            </a>
-                        </li>
-                    </lb-dropdown-menu>
+                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                 </li>
             </ul>
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">

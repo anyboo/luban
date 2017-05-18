@@ -55,23 +55,7 @@
                                         操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                                <i class="icon-wallet"></i>现场缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                                <i class="icon-note"></i>缴费登记
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                <i class="icon-ban"></i>欠费清除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 15:23</td>
@@ -92,23 +76,7 @@
                                         操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                                <i class="icon-wallet"></i>现场缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                                <i class="icon-note"></i>缴费登记
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                <i class="icon-ban"></i>欠费清除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 15:23</td>
@@ -129,23 +97,7 @@
                                         操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                                <i class="icon-wallet"></i>现场缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                                <i class="icon-note"></i>缴费登记
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                <i class="icon-ban"></i>欠费清除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-05-05 14:43</td>
@@ -166,23 +118,7 @@
                                         操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                                <i class="icon-wallet"></i>现场缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                                <i class="icon-note"></i>缴费登记
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                <i class="icon-ban"></i>欠费清除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-04-17 17:49</td>
@@ -203,23 +139,7 @@
                                         操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                                <i class="icon-wallet"></i>现场缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                                <i class="icon-note"></i>缴费登记
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',item)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                <i class="icon-ban"></i>欠费清除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
+                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                 </lb-dropdown>
                             </td>
                             <td class="ng-binding">2017-04-17 15:37</td>
@@ -292,6 +212,19 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-paynowmodal',
+                'icon': 'icon-wallet',
+                'text': '现场缴费'
+            }, {
+                'url': 'lb-payregmodal',
+                'icon': 'icon-note',
+                'text': '缴费登记'
+            }, {
+                'url': 'lb-orderunpayclearmodal',
+                'icon': 'icon-ban',
+                'text': '欠费清除'
             }]
         }
         return {

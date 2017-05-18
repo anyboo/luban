@@ -55,14 +55,7 @@
                                                 选择时间段
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="menuslot">
-                                                <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
-                                                    <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">班课 08:00 ~ 22:00</a>
-                                                </li>
-                                                <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
-                                                    <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">d 11:00 ~ 12:00</a>
-                                                </li>
-                                            </lb-dropdown-menu>
+                                            <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                         </lb-dropdown>
                                     </div>
                                 </div>
@@ -111,7 +104,12 @@ export default {
                 'lb_att_teach_end_hour': '',
                 'lb_name': '',
                 'lb_att_lesson_content': ''
-            }
+            },
+            'dropDownMenu': [{
+                'text': '班课 08:00 ~ 22:00'
+            }, {
+                'text': 'd 11:00 ~ 12:00'
+            }]
         }
         return {
             lb_localdata,

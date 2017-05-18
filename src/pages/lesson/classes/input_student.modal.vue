@@ -26,18 +26,7 @@
                                                 <i class="fa fa-plus"></i>增加
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="menuslot">
-                                                <li>
-                                                    <a ng-click="add_row()">
-                                                        <i class="fa fa-plus"></i>新增学员
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="6" on-selected="add_exists_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员档案" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                                        <i class="fa fa-list"></i>选择已有学员
-                                                    </a>
-                                                </li>
-                                            </lb-dropdown-menu>
+                                            <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                         </lb-dropdown>
                                     </td>
                                 </tr>
@@ -94,6 +83,10 @@ export default {
                 'value': '2',
                 'iclass': 'fa fa-female',
                 'text': '女'
+            }],
+            'dropDownMenu': [{
+                'icon': 'fa fa-plus',
+                'text': '新增学员'
             }]
         }
         return {
