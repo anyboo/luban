@@ -1,7 +1,7 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="wrapper ng-scope" page-controller="student_add">
-            <form name="form1" novalidate="" class="form form-horizontal form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" ng-submit="do_save()">
+            <form name="form1" novalidate class="form form-horizontal form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" ng-submit="do_save()">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-user"></i>学员档案录入
@@ -18,7 +18,7 @@
                                 </label>
                                 <div class="col-xs-12 col-md-10">
                                     <div class="inline va-m w-sm">
-                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" required="" v-model="lb_localdata.form.lb_student_student_name">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" required v-model="lb_localdata.form.lb_student_student_name">
                                     </div>
                                     <lb-buttongroup :group-data="lb_localdata.lb_student_sex" v-model="lb_localdata.form.lb_student_sex"></lb-buttongroup>
                                     <div class="error ng-hide" ng-show="form1.student_name.$dirty && form1.student_name.$invalid && form1.submitted">
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="inline va-m w-xs m-l-xs">
                                             <select class="form-control ng-pristine ng-untouched ng-valid" ng-options="item.value as item.text for item in $const.grades" v-model="lb_localdata.form.lb_student_relation">
-                                                <option value="" class="">关系</option>
+                                                <option value class>关系</option>
                                                 <option value="0">本人</option>
                                                 <option value="1">爸爸</option>
                                                 <option value="2">妈妈</option>
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="inline va-m w-xs m-l-xs ng-scope">
                                             <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_student_grade">
-                                                <option value="" class="">年级</option>
+                                                <option value class>年级</option>
                                                 <option value="0">不确定</option>
                                                 <option value="1">一年级</option>
                                                 <option value="2">二年级</option>
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="inline va-m w-xs m-l-xs ng-scope">
                                             <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_student_class">
-                                                <option value="" class="">年级</option>
+                                                <option value class>年级</option>
                                                 <option value="0">1</option>
                                                 <option value="1">2</option>
                                                 <option value="2">3</option>

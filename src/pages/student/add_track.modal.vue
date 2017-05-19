@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="track" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -27,8 +27,8 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" v-model="lb_localdata.form.lb_inquiry_track_way">
-                                        <lb-dropdown>
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.lb_inquiry_track_way">
+                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                 选择
                                                 <span class="caret"></span>
@@ -56,13 +56,13 @@
                                     <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
-                                    <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required=""></textarea>
+                                    <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 col-md-2 control-label">接待员</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required="" v-model="lb_localdata.form.lb_inquiry_op_name">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.lb_inquiry_op_name">
                                 </div>
                             </div>
                             <div class="form-group" ng-init="show_track_time=false">

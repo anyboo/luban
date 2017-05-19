@@ -4,16 +4,23 @@ import {
     DatePicker,
     Table,
     TableColumn,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
 Table.name = 'lb-table'
 TableColumn.name = 'lb-table-column'
+Dropdown.name = 'lb-dropdowns'
+DropdownMenu.name = 'lb-dropdown-menu'
+DropdownItem.name = 'lb-dropdown-item'
 const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
-    dropdown.LbDropdownMenu,
-    dropdown.LbDropdownMenuItem,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
     buttongroup,
     DatePicker,
     Table,

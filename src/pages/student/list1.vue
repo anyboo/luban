@@ -21,10 +21,10 @@
                     <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
                     <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                         <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oc_id">
-                            <option value="" class="">选择班级</option>
+                            <option value class>选择班级</option>
                             <option value="0">11</option>
                         </select>
-                        <div class="chosen-container chosen-container-single" style="width: 240px;" title="">
+                        <div class="chosen-container chosen-container-single" style="width: 240px;" title>
                             <a class="chosen-single" tabindex="-1">
                                 <span>选择班级</span>
                                 <div>
@@ -54,57 +54,61 @@
                 </div>
             </div>
             <div class="table-responsive m-t">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>学生姓名</th>
-                            <th>联系电话</th>
-                            <th>所在班级</th>
-                            <th>授课老师</th>
-                            <th>报班日期</th>
-                            <th>缴费状态</th>
-                            <th>报读课次</th>
-                            <th>课次单价</th>
-                            <th>剩余课次</th>
-                            <th>剩余金额</th>
-                            <th>学员归属</th>
-                            <th>建档日期</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">
-                                <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-female"></i>
-                                </span>zzzsz
-                            </td>
-                            <td class="ng-binding">12345678765</td>
-                            <td>
-                                <a class="link ng-binding" ng-click="params.oc_id=item.oc_id" tooltip="点击班级名查看该班级所有学员">11</a>
-                            </td>
-                            <td class="ng-binding">张英乙</td>
-                            <td class="ng-binding">2017-05-13</td>
-                            <td>
-                                <span class="label bg-warning ng-binding ng-scope" ng-if="item.pay_status == '1'">欠费:￥22.00</span>
-                            </td>
-                            <td class="ng-binding">4</td>
-                            <td>
-                                <span class="badge bg-info ng-binding">￥16.50</span>
-                            </td>
-                            <td class="ng-binding">
-                                3
-                                <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowdialog($event,'lb-viewcoursemodal')">
-                                    <i class="icon-eye"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">￥49.5</span>
-                            </td>
-                            <td class="ng-binding">未指定</td>
-                            <td class="ng-binding">2017-05-13</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="学生姓名">
+                        <template scope="scope">
+                            <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                <i class="fa fa-female"></i>
+                            </span>zzzsz
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="联系电话">
+                        <template scope="scope">12345678765</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="所在班级">
+                        <template scope="scope">
+                            <a class="link ng-binding" ng-click="params.oc_id=item.oc_id" tooltip="点击班级名查看该班级所有学员">11</a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="授课老师">
+                        <template scope="scope">张英乙</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="报班日期">
+                        <template scope="scope">2017-05-13</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="缴费状态">
+                        <template scope="scope">
+                            <span class="label bg-warning ng-binding ng-scope" ng-if="item.pay_status == '1'">欠费:￥22.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="报读课次">
+                        <template scope="scope">4</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="课次单价">
+                        <template scope="scope">
+                            <span class="badge bg-info ng-binding">￥16.50</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="剩余课次">
+                        <template scope="scope">
+                            3
+                            <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowdialog($event,'lb-viewcoursemodal')">
+                                <i class="icon-eye"></i>
+                            </a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="剩余金额">
+                        <template scope="scope">
+                            <span class="badge bg-info ng-binding">￥49.5</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员归属">
+                        <template scope="scope">未指定</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="建档日期">
+                        <template scope="scope">2017-05-13</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

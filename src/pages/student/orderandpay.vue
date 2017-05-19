@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -28,7 +28,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">课时包:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="input-group">
-                                        <input type="text" placeholder="课时包" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly" v-model="lb_localdata.form.lb_selected_lesson_name">
+                                        <input type="text" placeholder="课时包" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lb_localdata.form.lb_selected_lesson_name">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" select-tpl="tpl/directive/selectLessonTpl.html" select-id-field="ol_id" max-num="1" on-selected="select_lesson" select-params="{lesson_type:10}" select-title="请选择课时包" @click="lbShowdialog($event,'lb-selectlessontpl')">
                                                 <i class="fa fa-clock-o"></i>选择课时包
@@ -41,7 +41,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">购买课次:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-5">
                                     <div class="input-group">
-                                        <input type="number" name="origin_times" ng-readonly="order.ol_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" readonly="readonly" v-model="lb_localdata.form.lb_order_origin_times">
+                                        <input type="number" name="origin_times" ng-readonly="order.ol_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required readonly="readonly" v-model="lb_localdata.form.lb_order_origin_times">
                                         <span class="input-group-addon">次</span>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-5">
                                     <div class="input-group">
-                                        <input type="number" name="unit_price" ng-readonly="order.ol_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" readonly="readonly" v-model="lb_localdata.form.lb_order_unit_price">
+                                        <input type="number" name="unit_price" ng-readonly="order.ol_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required readonly="readonly" v-model="lb_localdata.form.lb_order_unit_price">
                                         <span class="input-group-addon">元/次</span>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">课耗单价:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-5">
                                     <div class="input-group">
-                                        <input type="number" name="c_unit_price" ng-disabled="order.ol_id == 0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" disabled="disabled" v-model="lb_localdata.form.lb_order_c_unit_price">
+                                        <input type="number" name="c_unit_price" ng-disabled="order.ol_id == 0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required disabled="disabled" v-model="lb_localdata.form.lb_order_c_unit_price">
                                         <span class="input-group-addon">元/次</span>
                                     </div>
                                     <p class="alert alert-info no-padder m-t-xs">用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入）</p>

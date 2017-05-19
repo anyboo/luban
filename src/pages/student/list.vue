@@ -6,7 +6,7 @@
                     <div class="input-group w-full">
                         <div class="input-group">
                             <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'}, {name:'card_no',value:'学员卡号'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
-                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                     姓名
                                     <span class="caret"></span>
                                 </button>
@@ -44,194 +44,66 @@
         </div>
         <div class="wrapper list-student bg-light lter">
             <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
-                <table class="table table-striped table-hover b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>
-                                学员
-                                <span class="table-header-sort ng-isolate-scope" header-sort="student_name" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>联系电话</th>
-                            <th>年龄</th>
-                            <th>微信绑定</th>
-                            <th ng-if="have_field('card_no')" class="ng-scope">
-                                考勤卡号
-                                <span class="table-header-sort ng-isolate-scope" header-sort="card_no" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>住址</th>
-                            <th>学员归属</th>
-                            <th>档案备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63897">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>zzzsz
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">hh</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">12345678765</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">12eed</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">ewf</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63895">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>zzz
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">wew</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">12345678645</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">dqadqawd</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">dwwqad</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63894">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>qssd
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">s</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">13456789754</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">sss</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">sqqs</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63893">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>qqq
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">1we</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">13545389311</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">qwdwegfweg</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">ad</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">
+                            <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63897">
+                                <span ng-bind-html="item.sex|sex:0" class="ng-binding">
+                                    <i class="fa fa-female"></i>
+                                </span>zzzsz
+                                <span ng-if="item.nickname != ''" class="ng-binding ng-scope">hh</span>
+                            </a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="联系电话">
+                        <template scope="scope">
+                            <span ng-bind="item.first_tel" class="ng-binding">12345678765</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="年龄">
+                        <template scope="scope">
+                            <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="微信绑定">
+                        <template scope="scope">
+                            <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="考勤卡号">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="住址">
+                        <template scope="scope">12eed</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员归属">
+                        <template scope="scope">
+                            <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="档案备注">
+                        <template scope="scope">
+                            <p ng-bind-html="item.note" class="ng-binding">ewf</p>
+                        </template>
+                    </lb-table-column>
+                </lb-table>
             </div>
             <div class="grid-data-result"></div>
         </div>
         <div class="panel-footer">
             <div class="row">
                 <div class="col-sm-4 col-xs-12">
-                    <lb-dropdown></lb-dropdown>
+                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu"></lb-dropdown>
                 </div>
                 <div class="col-sm-3 text-center">
                     <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 4 名学员">共 4 名学员</small>

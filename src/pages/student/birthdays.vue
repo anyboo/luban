@@ -27,30 +27,28 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
-                <thead>
-                    <tr>
-                        <th>学员</th>
-                        <th>联系电话</th>
-                        <th>出生日期</th>
-                        <th>年龄</th>
-                        <th>建档日期</th>
-                        <th>在读课程数</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                        <td class="ng-binding">威锋</td>
-                        <th class="ng-binding">13605557745</th>
-                        <td class="ng-binding">1970-5-13</td>
-                        <td>
-                            <span class="badge bg-info ng-binding">47</span>
-                        </td>
-                        <td class="ng-binding">2017-05-13</td>
-                        <td class="ng-binding">2</td>
-                    </tr>
-                </tbody>
-            </table>
+            <lb-table :data="getTableData" stripe>
+                <lb-table-column prop="data" label="学员">
+                    <template scope="scope">威锋</template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="联系电话">
+                    <template scope="scope">13605557745</template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="出生日期">
+                    <template scope="scope">1970-5-13</template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="年龄">
+                    <template scope="scope">
+                        <span class="badge bg-info ng-binding">47</span>
+                    </template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="建档日期">
+                    <template scope="scope">2017-05-13</template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="在读课程数">
+                    <template scope="scope">2</template>
+                </lb-table-column>
+            </lb-table>
             <div class="grid-data-result"></div>
         </div>
         <div class="panel-footer">

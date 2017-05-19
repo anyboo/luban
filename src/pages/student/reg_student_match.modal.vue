@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="reg_student_match" class="ng-scope">
                 <div class="modal-header">
                     <button type="button" ng-click="$dismiss()" class="close" @click="lbClosedialog($event)">
@@ -18,7 +18,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="match_name" required="" v-model="lb_localdata.form.lb_match_match_name">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="match_name" required v-model="lb_localdata.form.lb_match_match_name">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事成绩:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="result" required="" v-model="lb_localdata.form.lb_match_result">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="result" required v-model="lb_localdata.form.lb_match_result">
                             </div>
                         </div>
                         <div class="panel panel-default no-border">
@@ -166,7 +166,7 @@
                                                 <br>
                                             </p>
                                         </div>
-                                        <textarea class="form-control ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" id="match-detail" editor="" editor-toolbar="['undo redo | bold italic underline | forecolor backcolor | link unlink | emotion image video | removeformat source']" ng-model="match.detail" style="display: none;"></textarea>
+                                        <textarea class="form-control ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" id="match-detail" editor editor-toolbar="['undo redo | bold italic underline | forecolor backcolor | link unlink | emotion image video | removeformat source']" ng-model="match.detail" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>

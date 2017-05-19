@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="reg_student_attendance" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -50,12 +50,11 @@
                                         <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour">
                                         <span class="inline">~</span>
                                         <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour">
-                                        <lb-dropdown>
+                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                 选择时间段
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                         </lb-dropdown>
                                     </div>
                                 </div>

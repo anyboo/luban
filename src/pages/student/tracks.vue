@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="wrapper bg-white ng-scope" xo-rest="student_tracks" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_tracks">
             <div class="row no-gutter">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -27,88 +27,35 @@
                 </div>
             </div>
             <div class="table-responsive m-t">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th width="100">学员</th>
-                            <th>沟通内容</th>
-                            <th>沟通方式</th>
-                            <th>接洽人</th>
-                            <th>沟通时间</th>
-                            <th>类型</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
-                                </a>
-                            </td>
-                            <td>
-                                <pre ng-bind-html="item.detail" class="ng-binding">4IUI5I5I</pre>
-                            </td>
-                            <td width="120" class="ng-binding">电话</td>
-                            <td width="100" class="ng-binding">陈佳木</td>
-                            <td width="110" class="ng-binding">2017-05-08 15:16</td>
-                            <td width="60"></td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
-                                </a>
-                            </td>
-                            <td>
-                                <pre ng-bind-html="item.detail" class="ng-binding">3T435T45Y45Y</pre>
-                            </td>
-                            <td width="120" class="ng-binding">面谈</td>
-                            <td width="100" class="ng-binding">陈佳木</td>
-                            <td width="110" class="ng-binding">2017-05-08 15:16</td>
-                            <td width="60"></td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63240">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>小兵
-                                </a>
-                            </td>
-                            <td>
-                                <pre ng-bind-html="item.detail" class="ng-binding">56与u456u456</pre>
-                            </td>
-                            <td width="120" class="ng-binding">网络</td>
-                            <td width="100" class="ng-binding">陈佳木</td>
-                            <td width="110" class="ng-binding">2017-05-08 15:14</td>
-                            <td width="60"></td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                                <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/51426">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>李哥
-                                </a>
-                            </td>
-                            <td>
-                                <pre ng-bind-html="item.detail" class="ng-binding">咨询舞蹈</pre>
-                            </td>
-                            <td width="120" class="ng-binding">电话</td>
-                            <td width="100" class="ng-binding">陈佳木</td>
-                            <td width="110" class="ng-binding">2017-04-17 10:26</td>
-                            <td width="60"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column width="100" prop="data" label="学员">
+                        <template scope="scope">
+                            <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                            <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
+                                <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
+                            </a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="沟通内容">
+                        <template scope="scope">
+                            <pre ng-bind-html="item.detail" class="ng-binding">4IUI5I5I</pre>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="沟通方式">
+                        <template scope="scope">电话</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="接洽人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="沟通时间">
+                        <template scope="scope">2017-05-08 15:16</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="类型">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="wrapper" style="height:80px"></div>
                 <div class="grid-data-result"></div>
             </div>

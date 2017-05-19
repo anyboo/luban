@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="endlesson" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -53,12 +53,11 @@
                                     <p class="form-control-static">
                                         <span class="label bg-danger ng-binding">￥2000.00</span>
                                     </p>
-                                    <lb-dropdown>
+                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
                                             欠费处理
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                                     </lb-dropdown>
                                 </div>
                             </div>

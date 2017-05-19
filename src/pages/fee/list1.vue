@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -24,82 +24,47 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>金额</th>
-                            <th>学员</th>
-                            <th>付款方式</th>
-                            <th>收据</th>
-                            <th>课程/班级</th>
-                            <th>校区</th>
-                            <th>备注</th>
-                            <th>经办人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">2017-05-05 14:45</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">现金</td>
-                            <td>
-                                <div class="inline ng-scope" ng-if="item.orb_id == '0'">
-                                    <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span ng-if="item.lesson_type == '0'" class="ng-scope">
-                                    <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">[班课]3期班</a>
-                                </span>
-                            </td>
-                            <td ng-bind-html="item.ob_id|branch_name" class="ng-binding">
-                                <label class="badge bg-info badge-xm">福州布尔培训</label>
-                            </td>
-                            <td ng-bind-html="item.pay_note" class="ng-binding"></td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">2017-05-05 14:44</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">微信支付</td>
-                            <td>
-                                <div class="inline ng-scope" ng-if="item.orb_id == '0'">
-                                    <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span ng-if="item.lesson_type == '0'" class="ng-scope">
-                                    <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">[班课]3期班</a>
-                                </span>
-                            </td>
-                            <td ng-bind-html="item.ob_id|branch_name" class="ng-binding">
-                                <label class="badge bg-info badge-xm">福州布尔培训</label>
-                            </td>
-                            <td ng-bind-html="item.pay_note" class="ng-binding"></td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right">小计:</td>
-                            <td xo-data-count="grid.data" xo-data-field="amount" class="ng-isolate-scope">
-                                <span class="ng-binding">2000</span>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-05 14:45</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="金额">
+                        <template scope="scope">
+                            <span class="badge bg-success ng-binding">1000.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">李哥</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="付款方式">
+                        <template scope="scope">现金</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="收据">
+                        <template scope="scope">
+                            <div class="inline ng-scope" ng-if="item.orb_id == '0'">
+                                <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
+                            </div>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="课程/班级">
+                        <template scope="scope">
+                            <span ng-if="item.lesson_type == '0'" class="ng-scope">
+                                <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">[班课]3期班</a>
+                            </span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="校区">
+                        <template scope="scope">
+                            <label class="badge bg-info badge-xm">福州布尔培训</label>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="备注">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

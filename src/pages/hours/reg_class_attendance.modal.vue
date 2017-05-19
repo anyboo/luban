@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/modules/hours.js']" class="ng-scope"></div>
             <div ng-controller="reg_class_attendance" class="ng-scope">
                 <div class="modal-header">

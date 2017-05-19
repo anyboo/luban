@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="refunds" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="refunds">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -24,37 +24,25 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>退款金额</th>
-                            <th>学员</th>
-                            <th>班级/课程</th>
-                            <th>经办人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">2017-05-12 15:41</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">30.00</span>
-                            </td>
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">1班</td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right">小计:</td>
-                            <td xo-data-count="grid.data" xo-data-field="amount" class="ng-isolate-scope">
-                                <span class="ng-binding">30</span>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-12 15:41</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="退款金额">
+                        <template scope="scope">
+                            <span class="badge bg-success ng-binding">30.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">李哥</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="班级/课程">
+                        <template scope="scope">1班</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

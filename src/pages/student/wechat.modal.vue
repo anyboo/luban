@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="box box-success direct-chat direct-chat-success ng-scope" page-controller="wechat">
                 <div class="box-header with-border">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -30,46 +30,37 @@
                     <p class="m-t b-t padder-v">
                         <strong>免去注册步骤、帮助开通账号:</strong>
                     </p>
-                    <table class="table table-striped m-b-none">
-                        <thead>
-                            <tr>
-                                <th>电话</th>
-                                <th>称呼</th>
-                                <th>姓名</th>
-                                <th>学习管家账号</th>
-                                <th>微信绑定</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in student.relations" class="ng-scope">
-                                <td class="ng-binding">13609989744</td>
-                                <td class="ng-binding">本人</td>
-                                <td class="ng-binding">未填写</td>
-                                <td>
-                                    <span class="label bg-info ng-scope" ng-if="item.ou_id != '0'">已开通</span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-gray ng-scope" ng-if="item.wb_id == '0'">未绑定</span>
-                                </td>
-                                <td>
-                                    <a ng-disabled="$index == 0" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
-                                        <i class="icon-close"></i>
-                                    </a>
-                                    <a ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" @click="lbShowdialog($event,'lb-editcontactmodal')">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <p class="text-muted">提醒：学习管家账号是手机号，默认密码是手机号后6位</p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <lb-table :data="getTableData" stripe>
+                        <lb-table-column prop="data" label="电话">
+                            <template scope="scope">13609989744</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="称呼">
+                            <template scope="scope">本人</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="姓名">
+                            <template scope="scope">未填写</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="学习管家账号">
+                            <template scope="scope">
+                                <span class="label bg-info ng-scope" ng-if="item.ou_id != '0'">已开通</span>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="微信绑定">
+                            <template scope="scope">
+                                <span class="badge bg-gray ng-scope" ng-if="item.wb_id == '0'">未绑定</span>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="操作">
+                            <template scope="scope">
+                                <a ng-disabled="$index == 0" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <a ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" @click="lbShowdialog($event,'lb-editcontactmodal')">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </template>
+                        </lb-table-column>
+                    </lb-table>
                 </div>
             </div>
         </div>

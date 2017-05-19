@@ -1,15 +1,15 @@
 <template>
     <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="set_odi" class="wrapper ng-scope">
                 <div ng-if="vm.input.type == '0'" class="ng-scope">
                     <p>支出分类</p>
                     <div class="w-sm">
                         <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.lb_info_odi_id">
-                            <option value="" class="">请选择</option>
+                            <option value class>请选择</option>
                             <option value="0" selected="selected">日常支出</option>
                         </select>
-                        <div class="chosen-container chosen-container-single" style="width: 120px;" title="">
+                        <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                             <a class="chosen-single" tabindex="-1">
                                 <span>日常支出</span>
                                 <div>

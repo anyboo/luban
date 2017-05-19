@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -35,146 +35,40 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>日期</th>
-                            <th>订单号</th>
-                            <th>订单内容</th>
-                            <th>欠费金额</th>
-                            <th>总金额</th>
-                            <th>学员</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                        操作
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td class="ng-binding">2017-05-05 15:23</td>
-                            <td class="ng-binding">OB1161217050523032304926</td>
-                            <td class="ng-binding">班课[3期班]60次</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">3000.00</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">3000.00</span>
-                            </td>
-                            <td class="ng-binding">小兵</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                        操作
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td class="ng-binding">2017-05-05 15:23</td>
-                            <td class="ng-binding">OB1161217050523032399824</td>
-                            <td class="ng-binding">班课[3期班]60次</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">3000.00</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">3000.00</span>
-                            </td>
-                            <td class="ng-binding">李岩</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                        操作
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td class="ng-binding">2017-05-05 14:43</td>
-                            <td class="ng-binding">OB1161217050557024328509</td>
-                            <td class="ng-binding">班课[3期班]62次</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">1000.00</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">3000.00</span>
-                            </td>
-                            <td class="ng-binding">李哥</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                        操作
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td class="ng-binding">2017-04-17 17:49</td>
-                            <td class="ng-binding">OC1161217170436054927089</td>
-                            <td class="ng-binding">1对1课[古典吉他初级]20次</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">2000.00</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">2000.00</span>
-                            </td>
-                            <td class="ng-binding">李达康</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                        操作
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td class="ng-binding">2017-04-17 15:37</td>
-                            <td class="ng-binding">OB1161217170444033750849</td>
-                            <td class="ng-binding">班课[1班]20次</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">40.00</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-info ng-binding">270.00</span>
-                            </td>
-                            <td class="ng-binding">李哥</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right">小计:</td>
-                            <td xo-data-count="grid.data" xo-data-field="unpay_amount" class="ng-isolate-scope">
-                                <span class="ng-binding">9040</span>
-                            </td>
-                            <td xo-data-count="grid.data" xo-data-field="order_amount" class="ng-isolate-scope">
-                                <span class="ng-binding">11270</span>
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr ng-if="grid.$data.ctotal_unpay_amount" class="ng-scope">
-                            <td></td>
-                            <td colspan="6">
-                                本页小计:
-                                <span class="text-success ng-binding">9040元</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                    操作
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-05 15:23</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="订单号">
+                        <template scope="scope">OB1161217050523032304926</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="订单内容">
+                        <template scope="scope">班课[3期班]60次</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="欠费金额">
+                        <template scope="scope">
+                            <span class="badge bg-danger ng-binding">3000.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="总金额">
+                        <template scope="scope">
+                            <span class="badge bg-info ng-binding">3000.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">小兵</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

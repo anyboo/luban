@@ -14,21 +14,32 @@
             </div>
         </div>
         <div class="table-responsive m-t">
-            <table class="table table-striped b-t b-light">
-                <thead>
-                    <tr>
-                        <th>学生姓名</th>
-                        <th>联系电话</th>
-                        <th>学校</th>
-                        <th>校区</th>
-                        <th>来源渠道</th>
-                        <th>建档日期</th>
-                        <th>最后课程</th>
-                        <th>流失时间</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <lb-table :data="getTableData" stripe>
+                <lb-table-column prop="data" label="学生姓名">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="联系电话">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="学校">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="校区">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="来源渠道">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="建档日期">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="最后课程">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="流失时间">
+                    <template scope="scope"></template>
+                </lb-table-column>
+            </lb-table>
             <div class="grid-data-result">
                 <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
                     <i class="fa fa-frown-o"></i>无相关数据!

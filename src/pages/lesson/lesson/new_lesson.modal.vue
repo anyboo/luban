@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}" id="app">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="new_lesson" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -64,7 +64,7 @@
                                                     <span ng-repeat="$item in $select.selected" class="ng-scope">
                                                         <span style="margin-right: 3px;" class="ui-select-match-item btn btn-default btn-xs" tabindex="-1" type="button" ng-disabled="$select.disabled" ng-click="$select.activeMatchIndex = $index;" ng-class="{'btn-primary':$select.activeMatchIndex === $index}">
                                                             <span class="close ui-select-match-close" ng-hide="$select.disabled" ng-click="$select.removeChoice($index)">×</span>
-                                                <span uis-transclude-append="">
+                                                <span uis-transclude-append>
                                                                 <span class="ng-binding ng-scope">
                                                                     呵呵
                                                                     <呵呵></呵呵>
@@ -73,7 +73,7 @@
                                                 </span>
                                                 </span>
                                                 </span>
-                                                <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="" ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 296px;" v-model="lb_localdata.form.lb_$select_search">
+                                                <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 296px;" v-model="lb_localdata.form.lb_$select_search">
                                             </div>
                                             <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope ng-hide" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.ob_id as item in user.gv.branchs | propsFilter: {short_name: $select.search, branch_name: $select.search}">
                                                 <li class="ui-select-choices-group">
@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-xs-12">课程名:</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input type="text" name="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required="" v-model="lb_localdata.form.lb_lesson_lesson_name">
+                                        <input type="text" name="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_localdata.form.lb_lesson_lesson_name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -126,7 +126,7 @@
                                     <label class="control-label col-md-3 col-xs-12">课程时间跨度:</label>
                                     <div class="col-md-9 col-xs-12">
                                         <div class="input-group">
-                                            <lb-dropdown>
+                                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                     选择
                                                     <span class="caret"></span>
@@ -199,7 +199,7 @@
                                     <label class="control-label col-md-3 col-xs-12">单次课时长:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group m-b">
-                                            <lb-dropdown>
+                                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                     选择
                                                     <span class="caret"></span>

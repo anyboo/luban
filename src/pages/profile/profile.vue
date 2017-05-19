@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div ui-butterbar="" class="butterbar hide">
+        <div ui-butterbar class="butterbar hide">
             <span class="bar"></span>
         </div>
-        <a href="" class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
-        <div class="app-content-body fade-in-up ng-scope" ui-view="">
+        <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
+        <div class="app-content-body fade-in-up ng-scope" ui-view>
             <div class="bg-white ng-scope" ng-controller="MainProfileCtrl" uploader="uploader">
                 <div document-title="'个人资料'" style="background:url(img/c4.jpg) center center; background-size:cover">
                     <div class="wrapper-lg bg-white-opacity">
                         <div class="row m-t">
                             <div class="col-sm-7">
-                                <a class="thumb-lg pull-left m-r" href="">
+                                <a class="thumb-lg pull-left m-r" href>
                                     <img class="img-circle" ng-src="img/a0.jpg" src="img/a0.jpg">
                                 </a>
                                 <div class="clear m-b">

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="upgrade_class" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -13,12 +13,12 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <div class="alert ng-isolate-scope alert-info alert-dismissable" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]" role="alert" alert="" type="info" close="close_alert()" ng-if="alert_show==1">
+                    <div class="alert ng-isolate-scope alert-info alert-dismissable" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissable' : null]" role="alert" alert type="info" close="close_alert()" ng-if="alert_show==1">
                         <button ng-show="closeable" type="button" class="close" ng-click="close()" @click="lbClosedialog($event)">
                             <span aria-hidden="true">×</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <div ng-transclude="">
+                        <div ng-transclude>
                             <h3 class="m-n ng-scope">
                                 <i class="fa fa-exclamation-circle"></i>升级操作说明
                             </h3>

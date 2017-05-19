@@ -1,7 +1,7 @@
 <template>
-    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
+    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
         <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
+            <div class="modal-content" modal-transclude>
                 <div oc-lazy-load="['js/modules/order.js?v=3']" class="ng-scope"></div>
                 <div ng-init="init_pays()" ng-controller="OrderRefundCtrl" class="ng-scope">
                     <div class="modal-header">

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/modules/order.js?v=3']" class="ng-scope"></div>
             <div ng-init="init_pays()" ng-controller="OrderRefundCtrl" class="ng-scope">
                 <div class="modal-header">

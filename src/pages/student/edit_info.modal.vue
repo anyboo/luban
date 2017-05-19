@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="edit_info" class="ng-scope">
                 <div class="modal-header">
                     <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">姓名:</label>
                             <div class="col-xs-12 col-md-5">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入学员姓名" required="" v-model="lb_localdata.form.lb_info_student_name">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入学员姓名" required v-model="lb_localdata.form.lb_info_student_name">
                                 <lb-buttongroup :group-data="lb_localdata.lb_info_sex" v-model="lb_localdata.form.lb_info_sex"></lb-buttongroup>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             <label class="control-label col-md-2 col-xs-12">年级:</label>
                             <div class="col-md-5 col-xs-12">
                                 <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="grade" ng-options="item.value as item.text for item in $const.grades" style="display: none;" v-model="lb_localdata.form.lb_info_grade">
-                                    <option value="" class="">请选择</option>
+                                    <option value class>请选择</option>
                                     <option value="0">不确定</option>
                                     <option value="1">一年级</option>
                                     <option value="2">二年级</option>
@@ -79,7 +79,7 @@
                                     <option value="11">高二</option>
                                     <option value="12">高三</option>
                                 </select>
-                                <div class="chosen-container chosen-container-single" style="width: 353px;" title="">
+                                <div class="chosen-container chosen-container-single" style="width: 353px;" title>
                                     <a class="chosen-single" tabindex="-1">
                                         <span>请选择</span>
                                         <div>

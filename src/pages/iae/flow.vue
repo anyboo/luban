@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="fees" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="fees">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -32,52 +32,45 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>日期</th>
-                            <th>金额</th>
-                            <th>类型</th>
-                            <th>分类</th>
-                            <th>备注</th>
-                            <th>经办人</th>
-                            <th>录入日期</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
-                                    <i class="fa fa-reply"></i>撤销
-                                </a>
-                                <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
-                            </td>
-                            <td class="ng-binding">2017-05-12 15:41</td>
-                            <td>
-                                <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">-30.00</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">支出</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.type == '0'" class="label bg-info ng-binding ng-scope">未设置</span>
-                            </td>
-                            <td>
-                                <span ng-bind-html="item.note" class="ng-binding">李哥订单退款,订单号:OB1161217170444033750849</span>
-                            </td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td class="ng-binding">2017-05-12 15:41</td>
-                        </tr>
-                        <tr ng-if="grid.$data.ctotal_amount" class="ng-scope">
-                            <td></td>
-                            <td colspan="7">
-                                小计:
-                                <span class="text-success ng-binding">-30元</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
+                                <i class="fa fa-reply"></i>撤销
+                            </a>
+                            <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-12 15:41</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="金额">
+                        <template scope="scope">
+                            <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">-30.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="类型">
+                        <template scope="scope">
+                            <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">支出</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="分类">
+                        <template scope="scope">
+                            <span ng-if="item.type == '0'" class="label bg-info ng-binding ng-scope">未设置</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="备注">
+                        <template scope="scope">
+                            <span ng-bind-html="item.note" class="ng-binding">李哥订单退款,订单号:OB1161217170444033750849</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="录入日期">
+                        <template scope="scope">2017-05-12 15:41</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

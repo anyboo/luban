@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="precharges" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="precharges">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -24,51 +24,39 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>预存金额</th>
-                            <th>学员</th>
-                            <th>当前余额</th>
-                            <th>付款方式</th>
-                            <th>收据</th>
-                            <th>校区</th>
-                            <th>备注</th>
-                            <th>经办人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">2017-05-11 20:07</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">李岩</td>
-                            <td class="ng-binding">1000.00</td>
-                            <td class="ng-binding"></td>
-                            <td class="ng-binding">收据未开</td>
-                            <td ng-bind-html="item.ob_id|branch_name" class="ng-binding">
-                                <label class="badge bg-info badge-xm">福州布尔培训</label>
-                            </td>
-                            <td ng-bind-html="item.note" class="ng-binding"></td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr>
-                            <td class="text-right">小计:</td>
-                            <td xo-data-count="grid.data" xo-data-field="amount" class="ng-isolate-scope">
-                                <span class="ng-binding">1000</span>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-11 20:07</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="预存金额">
+                        <template scope="scope">
+                            <span class="badge bg-success ng-binding">1000.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">李岩</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="当前余额">
+                        <template scope="scope">1000.00</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="付款方式">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="收据">
+                        <template scope="scope">收据未开</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="校区">
+                        <template scope="scope">
+                            <label class="badge bg-info badge-xm">福州布尔培训</label>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="备注">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

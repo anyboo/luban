@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope" xo-rest="packages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="packages" loading-text="正在加载课时包..." empty-text="没有符合条件的课时包!">
             <ul class="breadcrumb bg-white b-a">
                 <li>
@@ -14,9 +14,9 @@
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline w va-m">
                             <select name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:{'lesson_type':'10'}" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_ol_id">
-                                <option value="" class="">选择课程</option>
+                                <option value class>选择课程</option>
                             </select>
-                            <div class="chosen-container chosen-container-single" style="width: 81px;" title="">
+                            <div class="chosen-container chosen-container-single" style="width: 81px;" title>
                                 <a class="chosen-single" tabindex="-1">
                                     <span>选择课程</span>
                                     <div>
@@ -52,17 +52,20 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped b-t b-light">
-                        <thead>
-                            <tr>
-                                <th>学员</th>
-                                <th>课程</th>
-                                <th>缴费&课时</th>
-                                <th>分班</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <lb-table :data="getTableData" stripe>
+                        <lb-table-column prop="data" label="学员">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="课程">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="缴费&课时">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="分班">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                    </lb-table>
                     <div class="grid-data-result">
                         <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
                             <i class="fa fa-frown-o"></i>没有符合条件的课时包!

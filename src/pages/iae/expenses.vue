@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="expenses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="expenses">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -28,33 +28,22 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>金额</th>
-                            <th>备注</th>
-                            <th>经办人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">2017-05-12 15:41</td>
-                            <td>
-                                <span class="badge bg-danger ng-binding">-30.00</span>
-                            </td>
-                            <td class="ng-binding">李哥订单退款,订单号:OB1161217170444033750849</td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr ng-if="grid.$data.ctotal_amount" class="ng-scope">
-                            <td></td>
-                            <td colspan="4">
-                                小计:
-                                <span class="text-danger ng-binding">-30元</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="日期">
+                        <template scope="scope">2017-05-12 15:41</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="金额">
+                        <template scope="scope">
+                            <span class="badge bg-danger ng-binding">-30.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="备注">
+                        <template scope="scope">李哥订单退款,订单号:OB1161217170444033750849</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

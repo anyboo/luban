@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -27,55 +27,37 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped table-hover b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>学员</th>
-                            <th>课程/班级</th>
-                            <th>上课老师</th>
-                            <th>考勤时间</th>
-                            <th>出勤状态</th>
-                            <th>考勤方式</th>
-                            <th>登记时间</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">
-                                <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-male"></i>
-                                </span>李达康
-                            </td>
-                            <td class="ng-binding">古典吉他初级</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td class="ng-binding">05-12 11:00</td>
-                            <td>
-                                <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
-                            </td>
-                            <td>
-                                <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
-                            </td>
-                            <td class="ng-binding">05-12 09:06</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">
-                                <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-female"></i>
-                                </span>小兵
-                            </td>
-                            <td class="ng-binding">3期班</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td class="ng-binding">05-12 11:00</td>
-                            <td>
-                                <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
-                            </td>
-                            <td>
-                                <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
-                            </td>
-                            <td class="ng-binding">05-12 09:05</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">
+                            <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                <i class="fa fa-male"></i>
+                            </span>李达康
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="课程/班级">
+                        <template scope="scope">古典吉他初级</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="上课老师">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="考勤时间">
+                        <template scope="scope">05-12 11:00</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="出勤状态">
+                        <template scope="scope">
+                            <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="考勤方式">
+                        <template scope="scope">
+                            <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="登记时间">
+                        <template scope="scope">05-12 09:06</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

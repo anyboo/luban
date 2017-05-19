@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="modal-header ng-scope">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
@@ -21,7 +21,7 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                             姓名
                                             <span class="caret"></span>
                                         </button>
@@ -37,114 +37,26 @@
                         </div>
                     </div>
                     <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
-                        <table class="table table-striped table-hover b-t b-light">
-                            <thead>
-                                <tr>
-                                    <th width="30"></th>
-                                    <th>学员</th>
-                                    <th>性别</th>
-                                    <th>英文名</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">录好</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">III</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">LLL</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">小兵</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">女</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">李岩</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">李达康</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">李哥</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td>
-                                        <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
-                                    </td>
-                                    <td>
-                                        <span class="ng-binding">陈一</span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind-html="item.sex|sex:1" class="ng-binding">女</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <lb-table :data="getTableData" stripe>
+                            <lb-table-column width="30" prop="data" label>
+                                <template scope="scope">
+                                    <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="学员">
+                                <template scope="scope">
+                                    <span class="ng-binding">录好</span>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="性别">
+                                <template scope="scope">
+                                    <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="英文名">
+                                <template scope="scope"></template>
+                            </lb-table-column>
+                        </lb-table>
                     </div>
                     <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
                 </div>

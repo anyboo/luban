@@ -17,7 +17,7 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
                                     <div class="input-group">
-                                        <input type="text" placeholder="班级" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly" v-model="lb_localdata.form.lb_selected_class_name">
+                                        <input type="text" placeholder="班级" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lb_localdata.form.lb_selected_class_name">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" select-tpl="tpl/directive/selectClassTpl.html" select-id-field="oc_id" max-num="1" on-selected="select_class" select-params="{ob_id:user.gv.ob_id,t:'order'}" select-title="请选择班级" @click="lbShowdialog($event,'lb-selectclasstpl')">
                                                 <i class="fa fa-flag"></i>选择班级
@@ -33,7 +33,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="origin_times" ng-readonly="order.oc_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" readonly="readonly" v-model="lb_localdata.form.lb_order_origin_times">
+                                    <input type="number" name="origin_times" ng-readonly="order.oc_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required readonly="readonly" v-model="lb_localdata.form.lb_order_origin_times">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="unit_price" ng-readonly="order.oc_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required="" readonly="readonly" v-model="lb_localdata.form.lb_order_unit_price">
+                                    <input type="number" name="unit_price" ng-readonly="order.oc_id==0" ng-change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required readonly="readonly" v-model="lb_localdata.form.lb_order_unit_price">
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课耗单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="c_unit_price" ng-disabled="order.oc_id == 0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" disabled="disabled" v-model="lb_localdata.form.lb_order_c_unit_price">
+                                    <input type="number" name="c_unit_price" ng-disabled="order.oc_id == 0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required disabled="disabled" v-model="lb_localdata.form.lb_order_c_unit_price">
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                                 <p class="alert alert-info no-padder m-t-xs">用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入）</p>

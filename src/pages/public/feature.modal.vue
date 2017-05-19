@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="bg-white wrapper ng-scope">
                 <div class="wrapper text-success text-2x ng-binding">
                     <i class="icon-check"></i>张磊的档案录入成功!

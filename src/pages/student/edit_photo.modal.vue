@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="photo" class="ng-scope">
                 <div class="modal-header">
                     <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">

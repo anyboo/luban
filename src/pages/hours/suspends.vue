@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="suspends" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="suspends">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-6 m-t">
@@ -25,31 +25,32 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped table-hover b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>停课学员</th>
-                            <th>停课时间</th>
-                            <th>复课时间</th>
-                            <th>停课课程</th>
-                            <th>停课原因</th>
-                            <th>停课状态</th>
-                            <th>
-                                登记时间
-                                <span class="table-header-sort ng-isolate-scope" header-sort="create_time" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="停课学员">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="停课时间">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="复课时间">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="停课课程">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="停课原因">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="停课状态">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="登记时间">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result">
                     <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
                         <i class="fa fa-frown-o"></i>无相关数据!

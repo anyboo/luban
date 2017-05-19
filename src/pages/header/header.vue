@@ -24,29 +24,28 @@
                 </a>
             </div>
             <ul class="nav navbar-nav ng-scope" ng-controller="UtilCtrl">
-                <li dropdown="" class="dropdown">
-                    <a href="" dropdown-toggle="" class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
+                <li dropdown class="dropdown">
+                    <a href dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-user"></i>
                         <span>我的</span>
                         <b class="caret"></b>
                     </a>
-                    <lb-dropdown-menu :drop-menu-data="lb_localdata.dropDownMenu" :key="0"></lb-dropdown-menu>
                 </li>
             </ul>
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">
                 <li class="hidden-xs">
-                    <a ui-fullscreen="" class="">
+                    <a ui-fullscreen class>
                         <i class="fa fa-expand fa-fw text"></i>
                         <i class="fa fa-compress fa-fw text-active"></i>
                     </a>
                 </li>
-                <li dropdown="" ng-if="user.gv.branchs.length > 0" class="dropdown ng-scope">
-                    <a dropdown-toggle="" class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
+                <li dropdown ng-if="user.gv.branchs.length > 0" class="dropdown ng-scope">
+                    <a dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
                         <span class="ng-binding">福州三金书画培训</span>
                     </a>
                 </li>
-                <li dropdown="" class="dropdown">
-                    <a href="" dropdown-toggle="" class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
+                <li dropdown class="dropdown">
+                    <a href dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
                         <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                             <img src="/assets/images/a0.jpg" alt="...">
                         </span>

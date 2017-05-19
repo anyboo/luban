@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="edit_class" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-md-2 control-label">班级名称</label>
                             <div class="col-sm-9 col-md-5">
-                                <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-minlength ng-valid-parse" ng-minlength="1" required="" v-model="lb_localdata.form.lb_info_class_name">
+                                <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-minlength ng-valid-parse" ng-minlength="1" required v-model="lb_localdata.form.lb_info_class_name">
                             </div>
                         </div>
                         <div class="form-group">

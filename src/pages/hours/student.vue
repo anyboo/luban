@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_hours">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -23,10 +23,10 @@
                     </div>
                     <div class="inline w-md m-l-xs">
                         <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oe_id">
-                            <option value="" class="">选择老师</option>
+                            <option value class>选择老师</option>
                             <option value="0">陈佳木</option>
                         </select>
-                        <div class="chosen-container chosen-container-single" style="width: 240px;" title="">
+                        <div class="chosen-container chosen-container-single" style="width: 240px;" title>
                             <a class="chosen-single" tabindex="-1">
                                 <span>选择老师</span>
                                 <div>
@@ -58,81 +58,43 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>学员</th>
-                            <th>
-                                上课时间
-                                <span class="table-header-sort ng-isolate-scope" header-sort="teach_time" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>时长</th>
-                            <th>类型</th>
-                            <th>班级/课程</th>
-                            <th>课程金额</th>
-                            <th>授课老师</th>
-                            <th>
-                                登记时间
-                                <span class="table-header-sort ng-isolate-scope" header-sort="create_time" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>登记人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link ng-binding" ng-click="params.os_id=item.os_id">李达康</a>
-                            </td>
-                            <td class="ng-binding">2017-05-12 11:00</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1.00小时</span>
-                            </td>
-                            <td class="ng-binding">1对1</td>
-                            <td>
-                                <span class="label bg-info ng-binding">古典吉他初级</span>
-                            </td>
-                            <td>
-                                <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
-                            </td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td class="ng-binding">2017-05-12 09:06</td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link ng-binding" ng-click="params.os_id=item.os_id">小兵</a>
-                            </td>
-                            <td class="ng-binding">2017-05-12 11:00</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1.00小时</span>
-                            </td>
-                            <td class="ng-binding">班课</td>
-                            <td>
-                                <span class="label bg-info ng-binding">3期班</span>
-                            </td>
-                            <td>
-                                <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥0.00</span>
-                            </td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td class="ng-binding">2017-05-12 09:05</td>
-                            <td class="ng-binding">陈佳木</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">
+                            <a class="link ng-binding" ng-click="params.os_id=item.os_id">李达康</a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="上课时间">
+                        <template scope="scope">2017-05-12 11:00</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="时长">
+                        <template scope="scope">
+                            <span class="badge bg-success ng-binding">1.00小时</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="类型">
+                        <template scope="scope">1对1</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="班级/课程">
+                        <template scope="scope">
+                            <span class="label bg-info ng-binding">古典吉他初级</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="课程金额">
+                        <template scope="scope">
+                            <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="授课老师">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="登记时间">
+                        <template scope="scope">2017-05-12 09:06</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="登记人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

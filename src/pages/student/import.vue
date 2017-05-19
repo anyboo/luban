@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="import" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" ng-hide="importing" @click="lbClosedialog($event)">
@@ -33,7 +33,7 @@
                             <i class="glyphicon glyphicon-cloud-upload ng-scope"></i>
                             <span class="ng-scope">上传填好的Excel文件</span>
                         </button>
-                        <input type="file" nv-file-select="" uploader="uploader" style="display:none">
+                        <input type="file" nv-file-select uploader="uploader" style="display:none">
                     </p>
                 </div>
             </div>

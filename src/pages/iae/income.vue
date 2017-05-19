@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="bills" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="bills">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
@@ -39,109 +39,38 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>学员</th>
-                            <th>付款日期</th>
-                            <th>金额</th>
-                            <th>付款方式</th>
-                            <th>备注</th>
-                            <th>经办人</th>
-                            <th>对账状态</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">李岩</td>
-                            <td class="ng-binding">2017-05-11 20:07</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">现金</td>
-                            <td class="ng-binding">-</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td>
-                                <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">2017-05-05 14:45</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">现金</td>
-                            <td class="ng-binding">-</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td>
-                                <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">2017-05-05 14:44</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1000.00</span>
-                            </td>
-                            <td class="ng-binding">微信支付</td>
-                            <td class="ng-binding">-</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td>
-                                <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">陈一</td>
-                            <td class="ng-binding">2017-04-17 16:30</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">1900.00</span>
-                            </td>
-                            <td class="ng-binding">现金</td>
-                            <td class="ng-binding">2000</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td>
-                                <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">李哥</td>
-                            <td class="ng-binding">2017-04-17 15:38</td>
-                            <td>
-                                <span class="badge bg-success ng-binding">200.00</span>
-                            </td>
-                            <td class="ng-binding">微信支付</td>
-                            <td class="ng-binding">-</td>
-                            <td class="ng-binding">陈佳木</td>
-                            <td>
-                                <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
-                            </td>
-                        </tr>
-                        <tr ng-if="grid.$data.ctotal_amount" class="ng-scope">
-                            <td></td>
-                            <td colspan="8">
-                                小计:
-                                <span class="text-success ng-binding">5100元</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">李岩</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="付款日期">
+                        <template scope="scope">2017-05-11 20:07</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="金额">
+                        <template scope="scope">
+                            <span class="badge bg-success ng-binding">1000.00</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="付款方式">
+                        <template scope="scope">现金</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="备注">
+                        <template scope="scope">-</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="经办人">
+                        <template scope="scope">陈佳木</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="对账状态">
+                        <template scope="scope">
+                            <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
+                        </template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

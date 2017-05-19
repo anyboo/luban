@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
+            <div class="modal-content" modal-transclude>
                 <div oc-lazy-load="['js/widget/attendance.js']" class="ng-scope"></div>
                 <div ng-controller="wAttendanceCtrl" class="ng-scope">
                     <div class="modal-header">
@@ -110,7 +110,7 @@
                                                     <div class="input-group w-full">
                                                         <div class="input-group">
                                                             <div class="input-group-btn">
-                                                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                                                     班级名
                                                                     <span class="caret"></span>
                                                                 </button>
@@ -124,26 +124,23 @@
                                                 </div>
                                             </div>
                                             <div class="table-responsive m-t">
-                                                <table class="table table-striped table-hover b-t b-light">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>班级</th>
-                                                            <th>总课次</th>
-                                                            <th>已排</th>
-                                                            <th>已考勤</th>
-                                                            <th>教师</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr ng-click="select_class(item)" ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                                            <td class="ng-binding">11</td>
-                                                            <td class="ng-binding">2</td>
-                                                            <td class="ng-binding">0</td>
-                                                            <td class="ng-binding">0</td>
-                                                            <td class="ng-binding">张英乙</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <lb-table :data="getTableData" stripe>
+                                                    <lb-table-column prop="data" label="班级">
+                                                        <template scope="scope">11</template>
+                                                    </lb-table-column>
+                                                    <lb-table-column prop="data" label="总课次">
+                                                        <template scope="scope">2</template>
+                                                    </lb-table-column>
+                                                    <lb-table-column prop="data" label="已排">
+                                                        <template scope="scope">0</template>
+                                                    </lb-table-column>
+                                                    <lb-table-column prop="data" label="已考勤">
+                                                        <template scope="scope">0</template>
+                                                    </lb-table-column>
+                                                    <lb-table-column prop="data" label="教师">
+                                                        <template scope="scope">张英乙</template>
+                                                    </lb-table-column>
+                                                </lb-table>
                                                 <div class="grid-data-result"></div>
                                             </div>
                                             <div class="panel-footer ng-scope" ng-if="grid.total > 0">

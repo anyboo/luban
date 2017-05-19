@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/modules/order.js?v=2','lodop.print']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body ng-scope" ng-init="init_payment()" ng-controller="OrderPayNowCtrl">
                 <div ng-if="step==1" class="ng-scope">
-                    <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-b ng-valid-a" novalidate="">
+                    <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-b ng-valid-a" novalidate>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">学员:</label>
                             <div class="col-xs-12 col-md-5">
