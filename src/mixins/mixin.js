@@ -5,10 +5,10 @@ export default {
         this.modalsType = types.APPEND_API
         this._id = ''
     },
+    mounted: function() {
+        this.handleGetTable()
+    },
     computed: {
-        getStudentName() {
-            return this.$store.state.envs.currStudent.lb_student_student_name
-        },
         getTableData() {
             return [{
                 date: '2016-05-02',
@@ -30,6 +30,12 @@ export default {
         }
     },
     methods: {
+        getStudentName() {
+            return this.$store.state.envs.currStudent.student_name
+        },
+        getStudentNames() {
+            return this.$store.state.models.models.student.data
+        },
         handleShowDialog(url) {
             this.$store.commit('pushdialog', url)
         },
@@ -40,6 +46,15 @@ export default {
         lbClosedialog(event) {
             if (event) event.preventDefault()
             this.$store.commit('popdialog')
+        },
+        handleGetTable() {
+            let vm = this
+            if (vm.lb_tables) {
+                vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
+                    console.log(vm.lb_tables)
+                    this.getStudentNames()
+                })
+            }
         },
         handleSave() {
             let vm = this

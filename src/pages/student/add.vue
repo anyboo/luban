@@ -241,7 +241,7 @@ export default {
         handleClick() {
             let vm = this
             this.handleSave().then(() => {
-                this.$store.state.envs.currStudent = vm.lb_localdata.form
+                vm.$store.state.envs.currStudent = vm.lb_localdata.form
                 vm.handleShowDialog('lb-finishadd')
             })
         }

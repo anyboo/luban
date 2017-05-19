@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-comment"></i>为学员
-                        <span class="label bg-info ng-binding">{{getStudentName}}</span>添加跟踪回访记录
+                        <span class="label bg-info ng-binding">{{getStudentName()}}</span>添加跟踪回访记录
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -65,17 +65,17 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime" datetimepicker-option="{maxDate:max_date}" v-model="lb_localdata.form.lb_inquiry_track_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime"  v-model="lb_localdata.form.lb_inquiry_track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" ng-init="need_next_time = false">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
                                     <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
-                                        <i class="fa " :class="{'fa-check-square-o':!isActive,'fa-square-o':isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
+                                        <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
-                                    <div class="w-sm ng-hide" ng-show="need_next_time">
-                                        <lb-date-picker type="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time" v-if="hides"></lb-date-picker>
+                                    <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.lb_inquiry_next_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -113,8 +113,7 @@ export default {
         return {
             lb_localdata,
             model: 'track',
-            isActive: true,
-            hides: false
+            isActive: false,
         }
     },
     computed: {},
@@ -124,15 +123,12 @@ export default {
             this.lb_localdata.form.lb_inquiry_track_way = value
         },
         handleClick() {
-            let vm = this
             this.handleSave().then(() => {
-                this.$store.state.envs.currStudent = vm.lb_localdata.form
                 alert('做完数据提交数据库了')
             })
         },
         open() {
             this.isActive = !this.isActive
-            this.hides = !this.hides
         }
 
     }

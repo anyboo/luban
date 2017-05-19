@@ -13,11 +13,6 @@
             </a>
         </div>
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-info dker">
-            <div class="nav navbar-nav hidden-xs ng-scope" ng-controller="UtilCtrl">
-                <a ng-click="$util.open('tpl/public/feature.modal.html','md',{})" @click="lbShowdialog($event,'lb-featuremodal')">
-                    <span class="badge badge-sm up bg-danger pull-right-xs ng-binding">2.1</span>
-                </a>
-            </div>
             <div class="nav navbar-nav hidden-xs">
                 <a @click="sidebarCollapsed" class="btn no-shadow navbar-btn">
                     <i class="fa fa-fw fa-dedent"></i>

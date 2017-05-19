@@ -1,9 +1,9 @@
 <template>
-    <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content" modal-transclude>
             <div page-controller="edit_info" class="ng-scope">
                 <div class="modal-header">
-                    <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -119,7 +119,7 @@
 </template>
 <script>
 export default {
-    name: 'edit_info.modal',
+    name: 'edit_info',
     data() {
         let lb_localdata = {
             'form': {

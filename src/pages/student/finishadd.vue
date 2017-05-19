@@ -3,12 +3,12 @@
         <div class="modal-content" modal-transclude>
             <div class="bg-white wrapper ng-scope">
                 <div class="wrapper text-success text-2x ng-binding">
-                    <i class="icon-check"></i>{{getStudentName}}的档案录入成功!
+                    <i class="icon-check"></i>{{getStudentName()}}的档案录入成功!
                 </div>
                 <div class="panel-footer">
                     <p class="text-info">
                         您还可以继续对
-                        <span class="label bg-info ng-binding">{{getStudentName}}</span>进行以下操作
+                        <span class="label bg-info ng-binding">{{getStudentName()}}</span>进行以下操作
                     </p>
                     <br>
                     <div class="clear ">

@@ -1,8 +1,13 @@
 import restfulapi from '~/api/restfulapi'
 import * as types from './mutation-types'
+import Vue from 'vue'
 
 const state = {
-    models: {},
+    models: {
+        student: {
+            data: []
+        }
+    },
     currentModel: {}
 }
 
