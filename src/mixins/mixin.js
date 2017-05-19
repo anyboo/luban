@@ -33,8 +33,13 @@ export default {
         getStudentName() {
             return this.$store.state.envs.currStudent.student_name
         },
-        getStudentNames() {
-            return this.$store.state.models.models.student.data
+        getTablesData() {
+            let tablaData = []
+            if (this.lb_tables) {
+                let tablaName = this.lb_tables[0]
+                tablaData = this.$store.state.models.models[tablaName].data
+            }
+            return tablaData
         },
         handleShowDialog(url) {
             this.$store.commit('pushdialog', url)
@@ -51,8 +56,7 @@ export default {
             let vm = this
             if (vm.lb_tables) {
                 vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
-                    console.log(vm.lb_tables)
-                    this.getStudentNames()
+                    this.getTablesData()
                 })
             }
         },

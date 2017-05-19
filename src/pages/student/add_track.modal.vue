@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">类型</label>
                                 <div class="col-md-10 col-xs-9">
-                                    <lb-buttongroup :group-data="lb_localdata.lb_inquiry_track_type" v-model="lb_localdata.form.lb_inquiry_track_type"></lb-buttongroup>
+                                    <lb-buttongroup :group-data="lb_localdata.track_type" v-model="lb_localdata.form.track_type"></lb-buttongroup>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -27,7 +27,7 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.lb_inquiry_track_way">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.track_way">
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleCommand">
                                                 <lb-dropdown-button button-class="btn btn-default">
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-xs-3 col-md-2 control-label">接待员</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.lb_inquiry_op_name">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.op_name">
                                 </div>
                             </div>
                             <div class="form-group" ng-init="show_track_time=false">
@@ -65,7 +65,7 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime"  v-model="lb_localdata.form.lb_inquiry_track_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime"  v-model="lb_localdata.form.track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                         <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
-                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.lb_inquiry_next_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -96,13 +96,13 @@ export default {
     data() {
         let lb_localdata = {
             'form': {
-                'lb_inquiry_track_type': '',
-                'lb_inquiry_track_way': '',
-                'lb_inquiry_op_name': '',
-                'lb_inquiry_track_time': '',
-                'lb_inquiry_next_time': ''
+                'track_type': '',
+                'track_way': '',
+                'op_name': '',
+                'track_time': '',
+                'next_time': ''
             },
-            'lb_inquiry_track_type': [{
+            'track_type': [{
                 'value': '0',
                 'text': '售前'
             }, {
@@ -112,7 +112,7 @@ export default {
         }
         return {
             lb_localdata,
-            model: 'track',
+            model: 'inquiry',
             isActive: false,
         }
     },
@@ -120,7 +120,7 @@ export default {
     watch: {},
     methods: {
         handleCommand(value) {
-            this.lb_localdata.form.lb_inquiry_track_way = value
+            this.lb_localdata.form.track_way = value
         },
         handleClick() {
             this.handleSave().then(() => {

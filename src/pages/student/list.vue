@@ -44,7 +44,7 @@
         </div>
         <div class="wrapper list-student bg-light lter">
             <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
-                <lb-table :data="getStudentNames()" stripe>
+                <lb-table :data="getTablesData()" stripe>
                     <lb-table-column prop="data" label="操作">
                         <template scope="scope">
                             <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
