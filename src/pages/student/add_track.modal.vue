@@ -71,11 +71,11 @@
                             </div>
                             <div class="form-group" ng-init="need_next_time = false">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
-                                    <span class="text-info" ng-click="need_next_time = !need_next_time">
-                                        <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
+                                    <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
+                                        <i class="fa " :class="{'fa-check-square-o':!isActive,'fa-square-o':isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time">
-                                        <lb-date-picker type="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time" v-if="hides"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +112,9 @@ export default {
         }
         return {
             lb_localdata,
-            model: 'track'
+            model: 'track',
+            isActive: true,
+            hides: false
         }
     },
     computed: {},
@@ -127,7 +129,12 @@ export default {
                 this.$store.state.envs.currStudent = vm.lb_localdata.form
                 alert('做完数据提交数据库了')
             })
+        },
+        open() {
+            this.isActive = !this.isActive
+            this.hides = !this.hides
         }
+
     }
 }
 </script>
