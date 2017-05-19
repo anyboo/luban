@@ -98,9 +98,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="inline m-l-xs va-m">
-                                                    <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_item_int_start_hour">
+                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_item_int_start_hour"></lb-date-picker>
                                                     <span class="inline">~</span>
-                                                    <input type="text" ng-readonly="true" style="width:70px" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" datetimepicker="time" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_item_int_end_hour">
+                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_item_int_end_hour"></lb-date-picker>
                                                     <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                             选择时间段
@@ -162,9 +162,9 @@
                                     <li class="m-t-xs">
                                         <label>上课时间：</label>
                                         <div class="inline">
-                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_default_int_start_hour">
+                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_default_int_start_hour"></lb-date-picker>
                                             <span class="inline">~</span>
-                                            <input type="text" ng-readonly="true" style="width:70px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_default_int_end_hour">
+                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_default_int_end_hour"></lb-date-picker>
                                             <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                     选择时间段

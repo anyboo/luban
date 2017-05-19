@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-comment"></i>为学员
-                        <span class="label bg-info ng-binding">LLL</span>添加跟踪回访记录
+                        <span class="label bg-info ng-binding">{{getStudentName}}</span>添加跟踪回访记录
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -28,26 +28,20 @@
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
                                         <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.lb_inquiry_track_way">
-                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
-                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
-                                                选择
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">其他</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">面谈</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">网络</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">电话</a>
-                                                </li>
-                                            </ul>
-                                        </lb-dropdown>
+                                        <div class="input-group-btn">
+                                            <lb-dropdowns menu-align="start" @command="handleCommand">
+                                                <lb-dropdown-button button-class="btn btn-default">
+                                                    选择
+                                                    <span class="caret"></span>
+                                                </lb-dropdown-button>
+                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                    <lb-dropdown-item command="其他">其他</lb-dropdown-item>
+                                                    <lb-dropdown-item command="面谈">面谈</lb-dropdown-item>
+                                                    <lb-dropdown-item command="网络">网络</lb-dropdown-item>
+                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item>
+                                                </lb-dropdown-menu>
+                                            </lb-dropdowns>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +65,7 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{maxDate:max_date}" v-model="lb_localdata.form.lb_inquiry_track_time">
+                                        <lb-date-picker type="datetime" datetimepicker-option="{maxDate:max_date}" v-model="lb_localdata.form.lb_inquiry_track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +75,7 @@
                                         <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time">
+                                        <lb-date-picker type="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +92,7 @@
 </template>
 <script>
 export default {
-    name: 'add_track.modal',
+    name: 'add_track',
     data() {
         let lb_localdata = {
             'form': {
@@ -124,11 +118,14 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        handleCommand(value) {
+            this.lb_localdata.form.lb_inquiry_track_way = value
+        },
         handleClick() {
             let vm = this
             this.handleSave().then(() => {
                 this.$store.state.envs.currStudent = vm.lb_localdata.form
-                alert("做完数据提交数据库了")
+                alert('做完数据提交数据库了')
             })
         }
     }

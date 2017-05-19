@@ -1,7 +1,7 @@
 <template>
     <div v-if="modalShow">
         <template v-for="item,index in getDialog">
-            <lb-dialog :zindex="index*2+2000">
+            <lb-dialog :zindex="index*2+1500">
                 <component v-bind:is="item"></component>
             </lb-dialog>
         </template>

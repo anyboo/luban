@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费日期:</label>
                             <div class="col-xs-12 col-md-4">
-                                <input type="text" name="pay_time" class="form-control ng-pristine ng-untouched ng-valid" datetimepicker="datetime" v-model="lb_localdata.form.lb_pay_pay_time">
+                                <lb-date-picker type="datetime" name="pay_time" v-model="lb_localdata.form.lb_pay_pay_time"></lb-date-picker>
                             </div>
                         </div>
                         <div class="form-group">

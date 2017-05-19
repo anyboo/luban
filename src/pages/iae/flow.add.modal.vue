@@ -84,7 +84,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <input type="text" name="create_time" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="datetime" v-model="lb_localdata.form.lb_fee_create_time">
+                                    <lb-date-picker type="datetime" name="create_time" v-model="lb_localdata.form.lb_fee_create_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

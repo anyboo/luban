@@ -47,9 +47,9 @@
                                 <label class="control-label col-md-2 col-xs-12">上课时间:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline">
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour">
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour"></lb-date-picker>
                                         <span class="inline">~</span>
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour">
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour"></lb-date-picker>
                                         <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                 选择时间段
