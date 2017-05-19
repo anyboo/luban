@@ -89,7 +89,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_track()" disabled="disabled">确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_track()" @click="handleClick">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
@@ -118,10 +118,19 @@ export default {
         }
         return {
             lb_localdata,
+            model: 'track'
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            let vm = this
+            this.handleSave().then(() => {
+                this.$store.state.envs.currStudent = vm.lb_localdata.form
+                alert("做完数据提交数据库了")
+            })
+        }
+    }
 }
 </script>
