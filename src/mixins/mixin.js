@@ -7,7 +7,7 @@ export default {
     },
     computed: {
         getStudentName() {
-            return this.$store.state.envs.currStudent.lb_student_student_name
+            return this.$store.state.envs.currStudent.student_name
         },
         getTableData() {
             return [{
