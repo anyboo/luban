@@ -12,9 +12,9 @@
                     </p>
                     <br>
                     <div class="clear ">
-                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowdialog($event,'lb-editphotomodal')">设置图像</a>
-                        <a ng-click="$util.open('tpl/app/student/order.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordermodal')">报名</a>
-                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowdialog($event,'lb-addtrackmodal')">登记咨询</a>
+                        <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',student)" @click="lbShowdialog($event,'lb-editphotomodal')" class="btn btn-default">设置图像</a>
+                        <a ng-click="$util.open('tpl/app/student/order.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordermodal')" class="btn btn-info">报名</a>
+                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',student)" @click="lbShowdialog($event,'lb-addtrackmodal')" class="btn btn-info">登记咨询</a>
                         <a class="btn btn-success m-t pull-right" ng-click="reset_form();$dismiss()" @click="lbClosedialog($event)">关闭</a>
                     </div>
                 </div>
