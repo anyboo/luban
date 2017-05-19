@@ -39,6 +39,7 @@ export default {
                 let tablaName = this.lb_tables[0]
                 tablaData = this.$store.state.models.models[tablaName].data
             }
+            console.log(tablaData)
             return tablaData
         },
         handleShowDialog(url) {

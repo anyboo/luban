@@ -57,22 +57,22 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="学员">
                         <template scope="scope">
-                            <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63897">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-female"></i>
-                                </span>zzzsz
-                                <span ng-if="item.nickname != ''" class="ng-binding ng-scope">hh</span>
+                            <a class="link ng-binding" ui-per="student.view" href="#/student/63897">
+                                <span  class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                             </a>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="联系电话">
                         <template scope="scope">
-                            <span ng-bind="item.first_tel" class="ng-binding">12345678765</span>
+                            <span class="ng-binding">{{ scope.row.first_tel }}</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="年龄">
                         <template scope="scope">
-                            <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
+                            <span class="ng-binding ng-scope">{{ scope.row.age }}</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="微信绑定">
