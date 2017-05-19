@@ -110,7 +110,7 @@
                     </form>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok();">确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_ok();" @click="handleClick">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
@@ -148,10 +148,17 @@ export default {
         }
         return {
             lb_localdata,
+            model: 'modify'
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            this.handleSave().then(() => {
+                alert('做完数据提交数据库了')
+            })
+        }
+    }
 }
 </script>

@@ -130,7 +130,6 @@ export default {
         open() {
             this.isActive = !this.isActive
         }
-
     }
 }
 </script>
