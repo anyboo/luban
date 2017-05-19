@@ -34,6 +34,12 @@
                                                     选择
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
+                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                    <lb-dropdown-item command="其他">其他</lb-dropdown-item>
+                                                    <lb-dropdown-item command="面谈">面谈</lb-dropdown-item>
+                                                    <lb-dropdown-item command="网络">网络</lb-dropdown-item>
+                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item>
+                                                </lb-dropdown-menu>
                                             </lb-dropdowns>
                                         </div>
                                     </div>
