@@ -57,8 +57,8 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="学员">
                         <template scope="scope">
-                            <a class="link ng-binding" ui-per="student.view" href="#/student/63897">
-                                <span  class="ng-binding">
+                            <a class="link ng-binding">
+                                <span class="ng-binding">
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
                                 </span>{{ scope.row.student_name }}
                                 <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>

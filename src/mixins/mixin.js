@@ -39,7 +39,6 @@ export default {
                 let tablaName = this.lb_tables[0]
                 tablaData = this.$store.state.models.models[tablaName].data
             }
-            console.log(tablaData)
             return tablaData
         },
         handleShowDialog(url) {
@@ -57,7 +56,7 @@ export default {
             let vm = this
             if (vm.lb_tables) {
                 vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
-                    this.getTablesData()
+                    //this.getTablesData()
                 })
             }
         },
