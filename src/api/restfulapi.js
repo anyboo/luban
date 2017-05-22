@@ -9,6 +9,11 @@ function httpGetFieldsApi(model, fields) {
     return Vue.http.get(apiUrlGet)
 }
 
+function httpGetFilterApi({ model, filter, prepage, page }) {
+    let apiUrl = urlUtil.getUrlFilter(model, filter, prepage, page)
+    return Vue.http.get(apiUrl)
+}
+
 function httpGetApi(model) {
     let apiUrl = urlUtil.getUrl(model)
     return Vue.http.get(apiUrl)
@@ -23,10 +28,12 @@ function httpEditApi({ model, id, form }) {
     let apiUrl = urlUtil.getUrlById(model, id)
     return Vue.http.put(apiUrl, form)
 }
+
 function httpGetIdApi({ model, id }) {
     let apiUrl = urlUtil.getUrlById(model, id)
     return Vue.http.get(apiUrl)
 }
+
 function httpDeleteApi({ model, id }) {
     let apiUrl = urlUtil.getUrlById(model, id)
     return Vue.http.delete(apiUrl)
@@ -37,5 +44,6 @@ export default {
     httpAppendApi,
     httpEditApi,
     httpDeleteApi,
-    httpGetIdApi
+    httpGetIdApi,
+    httpGetFilterApi
 }

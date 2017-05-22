@@ -52,6 +52,20 @@ export default {
             if (event) event.preventDefault()
             this.$store.commit('popdialog')
         },
+        handleGetFilterTable(filter, prepage, page) {
+            let vm = this
+            if (vm.lb_tables) {
+                let table = {}
+                table.model = vm.lb_tables[0]
+                table.filter = filter
+                table.prepage = prepage
+                table.page = page
+
+                vm.$store.dispatch(types.GET_Filter_API, table).then(() => {
+                    //this.getTablesData()
+                })
+            }
+        },
         handleGetTable() {
             let vm = this
             if (vm.lb_tables) {

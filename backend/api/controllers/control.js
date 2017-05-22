@@ -5,10 +5,12 @@ var monk = require('monk')
 var wrap = require('co-monk')
 var db = monk('localhost/luban')
 var fs = require('fs')
-    /*
-    var co = require('co')
-    var os = require('os')
-    */
+var Buffer = require('buffer')
+
+/*
+var co = require('co')
+var os = require('os')
+*/
 var path = require('path')
 
 module.exports.all = function* all(name, next) {
@@ -16,10 +18,31 @@ module.exports.all = function* all(name, next) {
     let query = this.query
     let limit = Number.parseInt(query.prepage || 30)
     let skip = Number.parseInt(query.page || 0) * limit
+    let filter = query.filter
+    let findObj = {}
+    if (filter) {
+        try {
+            let filterObj = JSON.parse(new Buffer(filter, 'base64'))
+            if (filterObj) {
+                for (var item of filterObj) {
+                    let value = item.value
+                    let type = item.type
+                    let key = item.key
+                    if (type == 'like') {
+                        findObj[key] = '/' + value.replace(/[\*\.\?\+\$\^\\[\]\(\)\{\}\|\\\/]/g, '\\$1') + '/'
+                    } else {
+                        findObj[key] = value
+                    }
 
+                }
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
     var dbtable = wrap(db.get(name))
-    let count = yield dbtable.count({})
-    let data = yield dbtable.find({}, {
+    let count = yield dbtable.count(findObj)
+    let data = yield dbtable.find(findObj, {
         'skip': skip,
         'limit': limit,
         'sort': { '_id': -1 }

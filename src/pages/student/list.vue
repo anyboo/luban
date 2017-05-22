@@ -124,7 +124,7 @@
 </template>
 <script>
 import lodash from 'lodash'
-import buffer from 'buffer'
+import base64 from 'base-64'
 
 export default {
     name: 'list',
@@ -238,13 +238,14 @@ export default {
             }).value
         },
         handleSearch() {
-            let filterObj = {}
-            filterObj['filter'] = {
+            let filterObj = []
+            filterObj.push({
                 'key': this.lb_localdata.search.search_key,
-                'value': this.lb_localdata.form.lb_search_value
-            }
-            let filterTxt = new buffer(JSON.stringify(filterObj)).toString('base64')
-            console.log(filterTxt)
+                'value': this.lb_localdata.form.lb_search_value,
+                'type': 'like'
+            })
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
         }
     }
 }

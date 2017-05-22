@@ -1,6 +1,5 @@
 import restfulapi from '~/api/restfulapi'
 import * as types from './mutation-types'
-import Vue from 'vue'
 
 const state = {
     models: {
@@ -25,6 +24,18 @@ const actions = {
             restfulapi.httpGetApi(tableName)
                 .then(response => {
                     commit(types.GET_API, { tableName, response })
+                    resolve()
+                })
+                .catch(function(response) {
+                    console.info(response)
+                })
+        })
+    },
+    [types.GET_Filter_API]({ commit }, obj) {
+        return new Promise(resolve => {
+            restfulapi.httpGetFilterApi(obj)
+                .then(response => {
+                    commit(types.GET_API, { 'tableName': obj.model, response })
                     resolve()
                 })
                 .catch(function(response) {
