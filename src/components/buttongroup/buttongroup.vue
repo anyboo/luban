@@ -2,7 +2,7 @@
     <div class="btn-group m-l-xs ng-scope">
         <input type="hidden" :value="groupvalue" :name="name" :id="name" />
         <template v-for="item in groupData">
-            <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' @selected="handleSelected"></lb-buttongroup-item>
+            <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' :iactive='item.value==value' @selected="handleSelected"></lb-buttongroup-item>
         </template>
     </div>
 </template>

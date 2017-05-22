@@ -1,6 +1,7 @@
 import lodash from 'lodash'
 const state = {
     dailoglist: [],
+    dailogdata: {},
     modalbackdrop: false,
     modalbackdropzindex: 1457
 }
@@ -20,7 +21,8 @@ const mutations = {
         }
     },
     pushdialog: (state, obj) => {
-        state.dailoglist.push(obj)
+        state.dailogdata = obj.menuData
+        state.dailoglist.push(obj.url)
         state.modalbackdropzindex = state.dailoglist.length * 2 + 1457
         state.modalbackdrop = true
     }

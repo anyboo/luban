@@ -12,7 +12,7 @@
                     <span class="label bg-info ng-binding">OC1161217130540023908405</span>缴费
                 </h3>
             </div>
-            <div class="modal-body ng-scope" ng-init="init_payment()" ng-controller="OrderPayNowCtrl">
+            <div class="modal-body ng-scope" ng-controller="OrderPayNowCtrl">
                 <div ng-if="step==1" class="ng-scope">
                     <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-b ng-valid-a" novalidate>
                         <div class="form-group">

@@ -5,7 +5,7 @@
                 <div class="padder">
                     <div class="input-group w-full">
                         <div class="input-group">
-                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'oso_no',value:'订单号'} ]; grid.search_key = 'oso_no'; grid.search_value = ''; ">
+                            <div class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                     订单号
                                     <span class="caret"></span>
@@ -115,7 +115,15 @@ export default {
             }, {
                 'value': '2',
                 'text': '已付款订单'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'oso_no',
+                    'value': '订单号'
+                }],
+                'search_key': 'oso_no',
+                'search_value': ''
+            }
         }
         return {
             lb_localdata,

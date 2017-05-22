@@ -6,10 +6,10 @@
 <script>
 export default {
     name: 'LbButtongroupItem',
-    props: ['iclass', 'itext', 'ivalue'],
+    props: ['iclass', 'itext', 'ivalue','iactive'],
     data() {
         return {
-            active: false
+            active: this.iactive
         }
     },
     methods: {

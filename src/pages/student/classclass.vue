@@ -2,7 +2,7 @@
     <div>
         <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="ok">
             <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
-                <div ng-controller="OrderCreateClassCtrl" ng-init="init_os_class()" class="ng-scope">
+                <div ng-controller="OrderCreateClassCtrl" class="ng-scope">
                     <div class="row no-gutter step1" ng-class="{'step1':step==1,'step2':step==2}">
                         <div class="col-xs-6 bg-light lter bg-success step1 .bg-success:after" ng-class="{'bg-success':step==1}">
                             <h4 class="padder heighs">1.创建订单</h4>

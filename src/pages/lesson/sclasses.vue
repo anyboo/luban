@@ -15,7 +15,7 @@
                         <div class="padder">
                             <div class="input-group w-full">
                                 <div class="input-group">
-                                    <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'short_name',value:'班级简称'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
+                                    <div class="input-group-btn">
                                         <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                             班级名
                                             <span class="caret"></span>
@@ -126,7 +126,18 @@ export default {
             }, {
                 'value': '1',
                 'text': '已结课'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'class_name',
+                    'value': '班级名'
+                }, {
+                    'name': 'short_name',
+                    'value': '班级简称'
+                }],
+                'search_key': 'class_name',
+                'search_value': ''
+            }
         }
         return {
             lb_localdata,

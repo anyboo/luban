@@ -63,7 +63,9 @@
                                             <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="item.name">
                                         </div>
                                         <div class="inline va-m m-l-xs ng-hide">
-                                            <a @click="lb_localdata.form.relations.splice(index, 1)"><i class="icon-close"></i></a>
+                                            <a @click="lb_localdata.form.relations.splice(index, 1)">
+                                                <i class="icon-close"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div>
@@ -106,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ng-scope" ng-if="have_field('home_address')">
+                                <div class="form-group ng-scope">
                                     <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-lg">
@@ -114,7 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ng-scope" ng-if="have_field('school') || have_field('grade') || have_field('class')">
+                                <div class="form-group ng-scope">
                                     <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline va-m w ng-scope" ng-if="have_field('school')">
@@ -163,7 +165,7 @@
                                     <label class="control-label col-md-2 col-xs-12">备注:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-lg">
-                                            <textarea name="note" ng-model="student.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
+                                            <textarea name="note" v-model="lb_localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +202,8 @@ export default {
                 'home_address': '',
                 'school': '',
                 'grade': '',
-                'class': ''
+                'class': '',
+                'note': ''
             },
             'sex': [{
                 'value': '1',

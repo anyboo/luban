@@ -15,7 +15,7 @@
                     <div class="padder">
                         <div class="input-group w-full">
                             <div class="input-group">
-                                <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
+                                <div class="input-group-btn">
                                     <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                         姓名
                                         <span class="caret"></span>
@@ -78,6 +78,23 @@ export default {
         let lb_localdata = {
             'form': {
                 'lb_grid_search_value': ''
+            },
+            'search': {
+                'fields': [{
+                    'name': 'student_name',
+                    'value': '姓名'
+                }, {
+                    'name': 'first_tel',
+                    'value': '手机号'
+                }, {
+                    'name': 'home_address',
+                    'value': '住址'
+                }, {
+                    'name': 'nickname',
+                    'value': '英文名'
+                }],
+                'search_key': 'student_name',
+                'search_value': ''
             }
         }
         return {

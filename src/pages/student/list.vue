@@ -5,15 +5,22 @@
                 <div class="padder">
                     <div class="input-group w-full">
                         <div class="input-group">
-                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'}, {name:'card_no',value:'学员卡号'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
-                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                    姓名
-                                    <span class="caret"></span>
-                                </button>
+                            <div class="input-group-btn">
+                                <lb-dropdowns menu-align="start" @command="handleCommand">
+                                    <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        {{lb_localdata.search.search_value}}
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                        <template v-for="item in lb_localdata.search.fields">
+                                            <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                        </template>
+                                    </lb-dropdown-menu>
+                                </lb-dropdowns>
                             </div>
-                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ui-keyup="{enter:'search()'}" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                             <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
                         </div>
                     </div>
@@ -23,7 +30,7 @@
                 <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                     <i class="fa fa-filter"></i>过滤
                 </button>
-                <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                 <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
                 <button class="btn btn-default ng-isolate-scope" ui-per="student.export" export="students" export-params="params">
                     <i class="glyphicon glyphicon-export"></i>导出Excel
@@ -37,17 +44,46 @@
                         <input type="hidden" name="pagesize" value="12" ng-repeat="(key,value) in params" class="ng-scope">
                     </form>
                 </div>
-                <a ng-click="$util.open('tpl/app/student/trash.html','md',{})" @click="lbShowdialog($event,'lb-trash')">
+                <a @click="lbShowdialog($event,'lb-trash')">
                     <i class="icon-lock"></i>已封存档案
                 </a>
             </div>
         </div>
         <div class="wrapper list-student bg-light lter">
-            <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
+            <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'image'">
+                <template v-for="item in getTablesData()">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
+                        <div class="bg-white b-a r-2x list-student-item box-shadow">
+                            <div class="face ng-scope">
+                                <a href="#/student/64267">
+                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; "><img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height=""></div>
+                                </a>
+                            </div>
+                            <div class="name m-t">
+                                <a class="link ng-binding">
+                                    <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
+                                </span>{{ item.student_name }}
+                                    <span v-if="item.nickname != ''" class="ng-binding ng-scope">{{ item.nickname }}</span>
+                                </a>
+                            </div>
+                            <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
+                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" class="pull-right">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                        <i class="fa fa-cog ng-scope"></i>
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                </lb-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="table-responsive ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
                 <lb-table :data="getTablesData()" stripe>
                     <lb-table-column prop="data" label="操作">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog ng-scope"></i>
                                     <span class="caret"></span>
@@ -84,7 +120,7 @@
                         <template scope="scope"></template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="住址">
-                        <template scope="scope">12eed</template>
+                        <template scope="scope">{{ scope.row.home_address }}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="学员归属">
                         <template scope="scope">
@@ -93,7 +129,7 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="档案备注">
                         <template scope="scope">
-                            <p ng-bind-html="item.note" class="ng-binding">ewf</p>
+                            <p class="ng-binding">{{ scope.row.note }}</p>
                         </template>
                     </lb-table-column>
                 </lb-table>
@@ -102,9 +138,7 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu"></lb-dropdown>
-                </div>
+            
                 <div class="col-sm-3 text-center">
                     <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 4 名学员">共 4 名学员</small>
                 </div>
@@ -116,16 +150,23 @@
     </div>
 </template>
 <script>
+import lodash from 'lodash'
+import base64 from '~/api/base64.js'
+import makeimage from '~/api/makeImage.js'
+
 export default {
     name: 'list',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_grid_search_value': '',
+                'lb_search_value': '',
                 'lb_params_status': '',
-                'lb_view_mode': ''
+                'lb_view_mode': 'list'
             },
             'lb_params_status': [{
+                'value': '',
+                'text': '所有学员'
+            }, {
                 'value': '0',
                 'text': '未报读学员'
             }, {
@@ -188,15 +229,65 @@ export default {
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'student_name',
+                    'value': '姓名'
+                }, {
+                    'name': 'first_tel',
+                    'value': '手机号'
+                }, {
+                    'name': 'home_address',
+                    'value': '住址'
+                }, {
+                    'name': 'nickname',
+                    'value': '英文名'
+                }, {
+                    'name': 'card_no',
+                    'value': '学员卡号'
+                }],
+                'search_key': 'student_name',
+                'search_value': '姓名'
+            }
         }
         return {
             lb_localdata,
-            lb_tables:['student'],
+            lb_tables: ['student'],
+            makeImage: makeimage
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let status = this.lb_localdata.form.lb_params_status.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'status',
+                    'value': status,
+                    'type': ''
+                })
+            }
+
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>

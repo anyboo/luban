@@ -6,7 +6,7 @@
                     <div class="padder">
                         <div class="input-group w-full">
                             <div class="input-group">
-                                <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'master',value:'老师姓名'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
+                                <div class="input-group-btn">
                                     <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                         班级名
                                         <span class="caret"></span>
@@ -210,7 +210,18 @@ export default {
                 'url': 'lb-upgradeclassmodal',
                 'icon': 'fa fa-wrench',
                 'text': '升级'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'class_name',
+                    'value': '班级名'
+                }, {
+                    'name': 'master',
+                    'value': '老师姓名'
+                }],
+                'search_key': 'class_name',
+                'search_value': ''
+            }
         }
         return {
             lb_localdata,

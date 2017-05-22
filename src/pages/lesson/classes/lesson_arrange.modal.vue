@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
             <div oc-lazy-load="js/modules/class_arrange.js" class="ng-scope"></div>
-            <div ng-controller="ClassLessonArrangeCtrl" ng-init="init()" class="ng-scope">
+            <div ng-controller="ClassLessonArrangeCtrl" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
