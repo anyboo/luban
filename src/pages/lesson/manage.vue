@@ -1,8 +1,8 @@
 <template>
-    <div ui-view>
-        <div class="bg-light lter b-b wrapper-md">
+    <div ui-view="">
+        <!-- <div class="bg-light lter b-b wrapper-md">
             <h1 class="m-n font-thin h3">课程</h1>
-        </div>
+        </div> -->
         <div class="wrapper-xs" xo-rest="lessons" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="lesson" loading-container=".list-lesson" loading-text="正在加载课程列表..." empty-text="没有符合条件的课程!">
             <div class="panel panel-default">
                 <div class="row wrapper">
@@ -28,7 +28,11 @@
                         <button class="btn btn-default btn-sm">
                             <i class="fa fa-filter"></i>过滤
                         </button>
-                        <lb-buttongroup class="btn-group m-l"></lb-buttongroup>
+                        <div class="btn-group m-l">
+                            <label btn-radio="'0'" class="btn btn-default">班课</label>
+                            <label btn-radio="'1'" class="btn btn-default">1对1</label>
+                            <label btn-radio="'10'" class="btn btn-default">课时包</label>
+                        </div>
                         <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
@@ -111,10 +115,7 @@
 export default {
     name: 'manage',
     data() {
-        let lb_localdata = {}
-        return {
-            lb_localdata,
-        }
+      return {}
     },
     computed: {},
     watch: {},
