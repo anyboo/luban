@@ -17,7 +17,7 @@
 <script>
 export default {
     name: 'LbDropdown',
-    props: ['dropMenuData', 'id'],
+    props: ['dropMenuData', 'id', 'menuData'],
     data() {
         return {
 
@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         handleCommand(common) {
-            this.handleShowDialog(common)
+            this.handleShowDialog(common,this.menuData)
         }
     },
     computed: {},

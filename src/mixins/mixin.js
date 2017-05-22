@@ -30,6 +30,10 @@ export default {
         }
     },
     methods: {
+        setEditModle(id) {
+            this.modalsType = types.EDIT_API
+            this._id = id
+        },
         getStudentName() {
             return this.$store.state.envs.currStudent.student_name
         },
@@ -41,12 +45,12 @@ export default {
             }
             return tablaData
         },
-        handleShowDialog(url) {
-            this.$store.commit('pushdialog', url)
+        handleShowDialog(url, menuData) {
+            this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {
             if (event) event.preventDefault()
-            this.$store.commit('pushdialog', url)
+            this.$store.commit('pushdialog', { url })
         },
         lbClosedialog(event) {
             if (event) event.preventDefault()

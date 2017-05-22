@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ng-scope" ng-if="have_field('home_address')">
+                                <div class="form-group ng-scope">
                                     <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-lg">
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ng-scope" ng-if="have_field('school') || have_field('grade') || have_field('class')">
+                                <div class="form-group ng-scope">
                                     <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline va-m w ng-scope" ng-if="have_field('school')">
