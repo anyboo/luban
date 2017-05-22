@@ -1,7 +1,7 @@
 <template>
     <div v-if="modalShow">
         <template v-for="item,index in getDialog">
-            <lb-dialog :zindex="index*2+2000">
+            <lb-dialog :zindex="index*2+1500">
                 <component v-bind:is="item"></component>
             </lb-dialog>
         </template>
@@ -10,9 +10,7 @@
 <script>
 import dialogpages from '~/stores/dialogpages.js'
 import finishadd from '~/pages/student/finishadd.vue'
-
 dialogpages['lb-finishadd'] = finishadd
-
 export default {
     name: 'dialog',
     data() {

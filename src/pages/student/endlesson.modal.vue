@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="endlesson" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -53,23 +53,11 @@
                                     <p class="form-control-static">
                                         <span class="label bg-danger ng-binding">￥2000.00</span>
                                     </p>
-                                    <lb-dropdown>
+                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
                                             欠费处理
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="menuslot">
-                                            <li>
-                                                <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',student)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                    <i class="icon-plus"></i>补交欠费
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a ng-click="$util.open('tpl/app/student/order_unpay_clear.modal.html','md',student)" @click="lbShowdialog($event,'lb-orderunpayclearmodal')">
-                                                    <i class="icon-ban"></i>欠费清除
-                                                </a>
-                                            </li>
-                                        </lb-dropdown-menu>
                                     </lb-dropdown>
                                 </div>
                             </div>
@@ -95,7 +83,17 @@
 export default {
     name: 'endlesson.modal',
     data() {
-        let lb_localdata = {}
+        let lb_localdata = {
+            'dropDownMenu': [{
+                'url': 'lb-ordersmodal',
+                'icon': 'icon-plus',
+                'text': '补交欠费'
+            }, {
+                'url': 'lb-orderunpayclearmodal',
+                'icon': 'icon-ban',
+                'text': '欠费清除'
+            }]
+        }
         return {
             lb_localdata,
         }

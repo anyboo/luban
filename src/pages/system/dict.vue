@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper bg-white ng-scope" ui-view="">
+    <div class="wrapper bg-white ng-scope" ui-view>
         <div class="panel panel-default ng-scope" xo-rest="dicts" xo-rest-grid="{params:{pagesize:100,page:1}}" loading-container=".list-group" loading-text="正在加载字典..." empty-text="没有符合条件的字典!">
             <div class="panel-heading">字典列表</div>
             <ul class="list-group">

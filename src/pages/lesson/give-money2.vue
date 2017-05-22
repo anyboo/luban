@@ -1,7 +1,7 @@
 <template>
-    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
+    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window size="md" index="0" animate="animate" style="z-index: 1050; display: block;">
         <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
+            <div class="modal-content" modal-transclude>
                 <div oc-lazy-load="['js/modules/order.js?v=3']" class="ng-scope"></div>
                 <div ng-init="init_pays()" ng-controller="OrderRefundCtrl" class="ng-scope">
                     <div class="modal-header">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="m-t ng-scope" ng-if="step==2">
-                            <form name="form1" class="form-horizontal for-validation ng-pristine ng-valid" novalidate="">
+                            <form name="form1" class="form-horizontal for-validation ng-pristine ng-valid" novalidate>
                                 <div class="form-group">
                                     <label class="control-label col-xs-12 col-md-2">学员:</label>
                                     <div class="col-xs-12 col-md-5">
@@ -107,9 +107,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button ng-show="step == 1" class="btn btn-primary ng-hide" ng-disabled="refund.oph_id == 0" ng-click="go_step(2)" style="">下一步</button>
-                        <button ng-show="step == 2" class="btn btn-default" ng-click="go_step(1)" style="">上一步</button>
-                        <button ng-show="step == 2" class="btn btn-primary" ng-disabled="saving" ng-click="do_refund()" style="">确定退款</button>
+                        <button ng-show="step == 1" class="btn btn-primary ng-hide" ng-disabled="refund.oph_id == 0" ng-click="go_step(2)" style>下一步</button>
+                        <button ng-show="step == 2" class="btn btn-default" ng-click="go_step(1)" style>上一步</button>
+                        <button ng-show="step == 2" class="btn btn-primary" ng-disabled="saving" ng-click="do_refund()" style>确定退款</button>
                         <button class="btn btn-warning m-l" ng-click="vm.dismiss()" @click="lbClosedialog($event)">关闭</button>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="modal-header ng-scope">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
@@ -16,7 +16,7 @@
                         <div class="input-group w-full">
                             <div class="input-group">
                                 <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
-                                    <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                    <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                         姓名
                                         <span class="caret"></span>
                                     </button>
@@ -29,35 +29,31 @@
                         </div>
                     </div>
                     <div class="table-responsive m-t">
-                        <table class="table table-striped b-t b-light">
-                            <thead>
-                                <tr>
-                                    <th>学生姓名</th>
-                                    <th>联系电话</th>
-                                    <th>建档日期</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                    <td class="ng-binding">
-                                        <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                            <i class="fa fa-male"></i>
-                                        </span>照理
-                                    </td>
-                                    <td class="ng-binding">12368454877</td>
-                                    <td class="ng-binding">2017-05-13</td>
-                                    <td>
-                                        <a class="link" ng-click="do_recover(item)">
-                                            <i class="icon-lock-open"></i>恢复
-                                        </a>
-                                        <a class="link" ng-click="confirm_delete(item)" ui-per="student.delete">
-                                            <i class="fa fa-times"></i>删除
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <lb-table :data="getTableData" stripe>
+                            <lb-table-column prop="data" label="学生姓名">
+                                <template scope="scope">
+                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
+                                        <i class="fa fa-male"></i>
+                                    </span>照理
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="联系电话">
+                                <template scope="scope">12368454877</template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="建档日期">
+                                <template scope="scope">2017-05-13</template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="操作">
+                                <template scope="scope">
+                                    <a class="link" ng-click="do_recover(item)">
+                                        <i class="icon-lock-open"></i>恢复
+                                    </a>
+                                    <a class="link" ng-click="confirm_delete(item)" ui-per="student.delete">
+                                        <i class="fa fa-times"></i>删除
+                                    </a>
+                                </template>
+                            </lb-table-column>
+                        </lb-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer">

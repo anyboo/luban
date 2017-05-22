@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/modules/order.js?v=2','lodop.print']" class="ng-scope"></div>
             <div class="modal-header ng-scope">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body ng-scope" ng-init="init_payment()" ng-controller="OrderPayRegCtrl">
                 <div ng-if="step==1" class="ng-scope">
-                    <form name="form1" class="form-horizontal for-validation ng-pristine ng-valid" novalidate="">
+                    <form name="form1" class="form-horizontal for-validation ng-pristine ng-valid" novalidate>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">订单号:</label>
                             <div class="col-xs-12 col-md-5">
@@ -46,7 +46,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">付款方式:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <select class="form-control w-xs ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="pay_type" ng-options="item.odi_id as item.text for item in $gv.dicts[2]" style="display: none;" v-model="lb_localdata.form.lb_pay_pay_type">
-                                    <option value="" class="">请选择</option>
+                                    <option value class>请选择</option>
                                     <option value="0" selected="selected">现金</option>
                                     <option value="1">刷卡</option>
                                     <option value="2">微信支付</option>
@@ -54,7 +54,7 @@
                                     <option value="4">银行转账</option>
                                     <option value="5">其他</option>
                                 </select>
-                                <div class="chosen-container chosen-container-single" style="width: 90px;" title="">
+                                <div class="chosen-container chosen-container-single" style="width: 90px;" title>
                                     <a class="chosen-single" tabindex="-1">
                                         <span>现金</span>
                                         <div>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费日期:</label>
                             <div class="col-xs-12 col-md-4">
-                                <input type="text" name="pay_time" class="form-control ng-pristine ng-untouched ng-valid" datetimepicker="datetime" v-model="lb_localdata.form.lb_pay_pay_time">
+                                <lb-date-picker type="datetime" name="pay_time" v-model="lb_localdata.form.lb_pay_pay_time"></lb-date-picker>
                             </div>
                         </div>
                         <div class="form-group">

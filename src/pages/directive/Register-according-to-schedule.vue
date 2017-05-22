@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div oc-lazy-load="['js/widget/attendance.js']" class="ng-scope"></div>
             <div ng-controller="wAttendanceCtrl" class="ng-scope">
                 <div class="modal-header">
@@ -26,7 +26,7 @@
                                     <i class="fa fa-calendar"></i>按排课登记
                                 </a>
                             </li>
-                            <li role="presentation" ng-click="select_reg_by('opt')" ng-class="{'active':reg_by=='opt'}" class="">
+                            <li role="presentation" ng-click="select_reg_by('opt')" ng-class="{'active':reg_by=='opt'}" class>
                                 <a>
                                     <i class="icon-plus"></i>自由登记
                                 </a>

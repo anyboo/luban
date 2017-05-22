@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="reg_student_attendance" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -39,7 +39,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课日期:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w-sm">
-                                        <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="teach_date" datetimepicker="date" v-model="lb_localdata.form.lb_att_teach_day">
+                                        <lb-date-picker type="date" name="teach_date" v-model="lb_localdata.form.lb_att_teach_day"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -47,22 +47,14 @@
                                 <label class="control-label col-md-2 col-xs-12">上课时间:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline">
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour">
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_start_hour"></lb-date-picker>
                                         <span class="inline">~</span>
-                                        <input type="text" ng-readonly="true" style="width:50px" datetimepicker="time" datetimepicker-option="{step:15}" class="form-control input-sm w-xs inline no-padder text-center ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour">
-                                        <lb-dropdown>
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" readonly="readonly" v-model="lb_localdata.form.lb_att_teach_end_hour"></lb-date-picker>
+                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                 选择时间段
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="menuslot">
-                                                <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
-                                                    <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">士大夫 18:00 ~ 22:00</a>
-                                                </li>
-                                                <li ng-repeat="item in time_sections_rest.$list" class="ng-scope">
-                                                    <a ng-click="att.teach_start_hour = item.int_start_hour;att.teach_end_hour=item.int_end_hour" class="ng-binding">12额 20:00 ~ 23:00</a>
-                                                </li>
-                                            </lb-dropdown-menu>
                                         </lb-dropdown>
                                     </div>
                                 </div>
@@ -112,7 +104,12 @@ export default {
                 'lb_att_teach_end_hour': '',
                 'lb_name': '',
                 'lb_att_lesson_content': ''
-            }
+            },
+            'dropDownMenu': [{
+                'text': '士大夫 18:00 ~ 22:00'
+            }, {
+                'text': '12额 20:00 ~ 23:00'
+            }]
         }
         return {
             lb_localdata,

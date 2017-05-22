@@ -1,6 +1,6 @@
 <template>
-    <div class="wrapper bg-white ng-scope" ui-view="">
-        <div class="row ng-scope" xo-rest="roles" xo-rest-root="" xo-rest-ctrl="roles">
+    <div class="wrapper bg-white ng-scope" ui-view>
+        <div class="row ng-scope" xo-rest="roles" xo-rest-root xo-rest-ctrl="roles">
             <div class="col-xs-12 col-sm-7 col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">角色列表</div>
@@ -72,9 +72,9 @@
                         <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
                             <input type="hidden" name="og_id" class="ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_role_og_id">
                             <p>角色ID:(仅限2个字符)</p>
-                            <input type="text" name="role_id" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-maxlength="2" ng-minlength="1" required="" v-model="lb_localdata.form.lb_role_role_id">
+                            <input type="text" name="role_id" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-maxlength="2" ng-minlength="1" required v-model="lb_localdata.form.lb_role_role_id">
                             <p>角色名称:</p>
-                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required="" v-model="lb_localdata.form.lb_role_role_name">
+                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_localdata.form.lb_role_role_name">
                             <p>角色描述:</p>
                             <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_role_role_desc">
                             <div class="m-t m-b">

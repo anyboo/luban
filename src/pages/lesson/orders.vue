@@ -1,13 +1,13 @@
 <template>
-    <div>
+    <div class="panel panel-default ng-scope" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
         <div class="row wrapper">
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-4 m-t">
                 <div class="padder">
                     <div class="input-group w-full">
                         <div class="input-group">
-                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'lesson_name',value:'课程名'}, {na me:'lesson_no',value:'课程编号'} ]; grid.search_key = 'lesson_name'; grid.search_value = ''; ">
-                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
-                                    课程名
+                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'oso_no',value:'订单号'} ]; grid.search_key = 'oso_no'; grid.search_value = ''; ">
+                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
+                                    订单号
                                     <span class="caret"></span>
                                 </button>
                             </div>
@@ -19,88 +19,65 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-8 m-t">
+                <div class="inline w va-m">
+                    <div class="input-group">
+                        <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                <i class="icon-user"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
                 <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                     <i class="fa fa-filter"></i>过滤
                 </button>
-                <lb-buttongroup :group-data="lb_localdata.lb_params_lesson_type" v-model="lb_localdata.form.lb_params_lesson_type"></lb-buttongroup>
-                <button ng-click="$util.open('tpl/app/lesson/lesson/cate.html','lg',{})" @click="lbShowdialog($event,'lb-cate')">
-                    <i class="fa fa-list"></i>课程分类
-                </button>
-                <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowdialog($event,'lb-newlessonmodal')">
-                    <i class="fa fa-plus"></i>添加课程
-                </button>
+                <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
             </div>
         </div>
-        <div class="table-responsive m-t ng-scope" ng-if="view_mode == 'list'">
-            <table class="table table-hover b-t b-light">
-                <thead>
-                    <tr>
-                        <th>操作</th>
-                        <th width="300">课程</th>
-                        <th>定价</th>
-                        <th>内容</th>
-                        <th>适用校区</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                        <td>
-                            <lb-dropdown>
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                    <i class="fa fa-cog"></i>操作
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/lesson/lesson/edit_lesson.modal.html','md',item)" @click="lbShowdialog($event,'lb-editlessonmodal')">
-                                            <i class="fa fa-pencil-square"></i>编辑
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a confirm-text="确定要删除该课程吗?" confirm-action="rest_remove(item,'ol_id','lessons',remove_callback);" class="ng-isolate-scope">
-                                            <i class="fa fa-times"></i>删除
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
-                            </lb-dropdown>
-                        </td>
-                        <td>
-                            <p class="ng-binding">
-                                <span class="label bg-danger ng-binding ng-scope" ng-if="item.lesson_type=='0'">班课</span>默认课程
-                                <small class="label bg-info m-l ng-binding">DL</small>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="ng-binding">
-                                <span ng-if="item.price_model=='0'" class="ng-scope">按期收费</span>,课程单价:0.00元/次
-                            </p>
-                            <p>
-                                <label>课程售价:</label>
-                                <span class="label bg-info ng-binding" ng-bind="item.price">1888.00</span>元
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>单次课时长:</label>
-                                <span class="label bg-info ng-binding" ng-bind="item.unit_hours">1.00</span>时
-                            </p>
-                            <p>
-                                <label>课程包含:</label>
-                                <span class="label bg-info ng-binding ng-scope" ng-if="item.price_model=='0'">1期,</span>
-                                <span class="label bg-info ng-binding" ng-bind="item.inc_hours|empty_replace">10.00</span>课时
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <span ng-bind-html="item|branchs" class="ng-binding">
-                                    <label class="xlabel">小雪</label>
-                                </span>
-                            </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="table-responsive">
+            <lb-table :data="getTableData" stripe>
+                <lb-table-column prop="data" label="操作">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="学员">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="类型">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="订单号">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="订单金额">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="订单内容">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="下单日期">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="付款情况">
+                    <template scope="scope"></template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="备注">
+                    <template scope="scope"></template>
+                </lb-table-column>
+            </lb-table>
+            <div class="grid-data-result"></div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12"></div>
+                <div class="col-sm-4 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 16 条记录">共 16 条记录</small>
+                </div>
+                <div class="col-sm-4 text-right text-center-xs">
+                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -111,7 +88,8 @@ export default {
         let lb_localdata = {
             'form': {
                 'lb_grid_search_value': '',
-                'lb_params_lesson_type': ''
+                'lb_param_student_name': '',
+                'lb_params_pay_status': ''
             },
             'lb_params_lesson_type': [{
                 'value': '0',
@@ -122,6 +100,21 @@ export default {
             }, {
                 'value': '10',
                 'text': '课时包'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-editlessonmodal',
+                'icon': 'fa fa-pencil-square',
+                'text': '编辑'
+            }],
+            'lb_params_pay_status': [{
+                'value': '0',
+                'text': '未付款订单'
+            }, {
+                'value': '1',
+                'text': '部分付款订单'
+            }, {
+                'value': '2',
+                'text': '已付款订单'
             }]
         }
         return {

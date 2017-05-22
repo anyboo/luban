@@ -4,7 +4,7 @@
             <div class="navi-wrap ps-container ps-theme-default">
                 <nav class="navi clearfix ng-scope">
                     <ul class="nav ng-scope">
-                        <li class="">
+                        <li class>
                             <a href="#/main/home">
                                 <i class="icon icon-home text-primary-dker"></i>
                                 <span class="font-normal">工作台</span>

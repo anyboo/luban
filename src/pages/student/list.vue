@@ -6,7 +6,7 @@
                     <div class="input-group w-full">
                         <div class="input-group">
                             <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'}, {name:'card_no',value:'学员卡号'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
-                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                     姓名
                                     <span class="caret"></span>
                                 </button>
@@ -44,438 +44,66 @@
         </div>
         <div class="wrapper list-student bg-light lter">
             <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
-                <table class="table table-striped table-hover b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>
-                                学员
-                                <span class="table-header-sort ng-isolate-scope" header-sort="student_name" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>联系电话</th>
-                            <th>年龄</th>
-                            <th>微信绑定</th>
-                            <th ng-if="have_field('card_no')" class="ng-scope">
-                                考勤卡号
-                                <span class="table-header-sort ng-isolate-scope" header-sort="card_no" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                            <th>住址</th>
-                            <th>学员归属</th>
-                            <th>档案备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editinfomodal')">
-                                                <i class="fa fa-pencil"></i>修改资料
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editphotomodal')">
-                                                <i class="fa fa-image"></i>更换头像
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordermodal')">
-                                                <i class="fa fa-shopping-cart"></i>报名
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                <i class="fa fa-money"></i>缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentattendancesmodal')">
-                                                <i class="fa fa-calendar-o"></i>登记考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-changeclassmodal')">
-                                                <i class="fa fa-exchange">转班</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowdialog($event,'lb-wechatmodal')">
-                                                <i class="fa fa-weixin"></i>微信对话
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                                <i class="fa fa-phone-square"></i>跟踪回访
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentmatchmodal')">
-                                                <i class="fa fa-flag-o"></i>登记赛事记录
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowdialog($event,'lb-refundmodal')">
-                                                <i class="fa fa-reply"></i>退费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowdialog($event,'lb-endlessonmodal')">
-                                                <i class="fa fa-stop"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowdialog($event,'lb-changebranchmodal')">
-                                                <i class="icon-shuffle"></i>转校区
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63897">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>zzzsz
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">hh</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">12345678765</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">12eed</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">ewf</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editinfomodal')">
-                                                <i class="fa fa-pencil"></i>修改资料
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editphotomodal')">
-                                                <i class="fa fa-image"></i>更换头像
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordermodal')">
-                                                <i class="fa fa-shopping-cart"></i>报名
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                <i class="fa fa-money"></i>缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentattendancesmodal')">
-                                                <i class="fa fa-calendar-o"></i>登记考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-changeclassmodal')">
-                                                <i class="fa fa-exchange">转班</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowdialog($event,'lb-wechatmodal')">
-                                                <i class="fa fa-weixin"></i>微信对话
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                                <i class="fa fa-phone-square"></i>跟踪回访
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentmatchmodal')">
-                                                <i class="fa fa-flag-o"></i>登记赛事记录
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowdialog($event,'lb-refundmodal')">
-                                                <i class="fa fa-reply"></i>退费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowdialog($event,'lb-endlessonmodal')">
-                                                <i class="fa fa-stop"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowdialog($event,'lb-changebranchmodal')">
-                                                <i class="icon-shuffle"></i>转校区
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63895">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>zzz
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">wew</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">12345678645</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">dqadqawd</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">dwwqad</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editinfomodal')">
-                                                <i class="fa fa-pencil"></i>修改资料
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editphotomodal')">
-                                                <i class="fa fa-image"></i>更换头像
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordermodal')">
-                                                <i class="fa fa-shopping-cart"></i>报名
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                <i class="fa fa-money"></i>缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentattendancesmodal')">
-                                                <i class="fa fa-calendar-o"></i>登记考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-changeclassmodal')">
-                                                <i class="fa fa-exchange">转班</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowdialog($event,'lb-wechatmodal')">
-                                                <i class="fa fa-weixin"></i>微信对话
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                                <i class="fa fa-phone-square"></i>跟踪回访
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentmatchmodal')">
-                                                <i class="fa fa-flag-o"></i>登记赛事记录
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowdialog($event,'lb-refundmodal')">
-                                                <i class="fa fa-reply"></i>退费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowdialog($event,'lb-endlessonmodal')">
-                                                <i class="fa fa-stop"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowdialog($event,'lb-changebranchmodal')">
-                                                <i class="icon-shuffle"></i>转校区
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63894">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>qssd
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">s</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">13456789754</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">sss</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">sqqs</p>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editinfomodal')">
-                                                <i class="fa fa-pencil"></i>修改资料
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)" @click="lbShowdialog($event,'lb-editphotomodal')">
-                                                <i class="fa fa-image"></i>更换头像
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordermodal')">
-                                                <i class="fa fa-shopping-cart"></i>报名
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)" @click="lbShowdialog($event,'lb-ordersmodal')">
-                                                <i class="fa fa-money"></i>缴费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentattendancesmodal')">
-                                                <i class="fa fa-calendar-o"></i>登记考勤
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)" @click="lbShowdialog($event,'lb-changeclassmodal')">
-                                                <i class="fa fa-exchange">转班</i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)" @click="lbShowdialog($event,'lb-wechatmodal')">
-                                                <i class="fa fa-weixin"></i>微信对话
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                                <i class="fa fa-phone-square"></i>跟踪回访
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)" @click="lbShowdialog($event,'lb-regstudentmatchmodal')">
-                                                <i class="fa fa-flag-o"></i>登记赛事记录
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)" @click="lbShowdialog($event,'lb-refundmodal')">
-                                                <i class="fa fa-reply"></i>退费
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)" @click="lbShowdialog($event,'lb-endlessonmodal')">
-                                                <i class="fa fa-stop"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)" @click="lbShowdialog($event,'lb-changebranchmodal')">
-                                                <i class="icon-shuffle"></i>转校区
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63893">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-female"></i>
-                                    </span>qqq
-                                    <span ng-if="item.nickname != ''" class="ng-binding ng-scope">1we</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span ng-bind="item.first_tel" class="ng-binding">13545389311</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.age" class="ng-binding ng-scope">0岁</span>
-                            </td>
-                            <td>
-                                <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                            </td>
-                            <td ng-if="have_field('card_no')" class="ng-binding ng-scope"></td>
-                            <td class="ng-binding">qwdwegfweg</td>
-                            <td>
-                                <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                            </td>
-                            <td>
-                                <p ng-bind-html="item.note" class="ng-binding">ad</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTablesData()" stripe>
+                    <lb-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">
+                            <a class="link ng-binding">
+                                <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                            </a>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="联系电话">
+                        <template scope="scope">
+                            <span class="ng-binding">{{ scope.row.first_tel }}</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="年龄">
+                        <template scope="scope">
+                            <span class="ng-binding ng-scope">{{ scope.row.age }}</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="微信绑定">
+                        <template scope="scope">
+                            <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="考勤卡号">
+                        <template scope="scope"></template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="住址">
+                        <template scope="scope">12eed</template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="学员归属">
+                        <template scope="scope">
+                            <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="档案备注">
+                        <template scope="scope">
+                            <p ng-bind-html="item.note" class="ng-binding">ewf</p>
+                        </template>
+                    </lb-table-column>
+                </lb-table>
             </div>
             <div class="grid-data-result"></div>
         </div>
         <div class="panel-footer">
             <div class="row">
                 <div class="col-sm-4 col-xs-12">
-                    <lb-dropdown></lb-dropdown>
+                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu"></lb-dropdown>
                 </div>
                 <div class="col-sm-3 text-center">
                     <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 4 名学员">共 4 名学员</small>
@@ -512,10 +140,59 @@ export default {
                 'value': 'list',
                 'iclass': 'fa fa-list',
                 'text': '列表'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-editinfomodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改资料'
+            }, {
+                'url': 'lb-editphotomodal',
+                'icon': 'fa fa-image',
+                'text': '更换头像'
+            }, {
+                'url': 'lb-ordermodal',
+                'icon': 'fa fa-shopping-cart',
+                'text': '报名'
+            }, {
+                'url': 'lb-ordersmodal',
+                'icon': 'fa fa-money',
+                'text': '缴费'
+            }, {
+                'url': 'lb-regstudentattendancesmodal',
+                'icon': 'fa fa-calendar-o',
+                'text': '登记考勤'
+            }, {
+                'url': 'lb-changeclassmodal',
+                'icon': 'fa fa-exchange'
+            }, {
+                'url': 'lb-wechatmodal',
+                'icon': 'fa fa-weixin',
+                'text': '微信对话'
+            }, {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
+            }, {
+                'url': 'lb-regstudentmatchmodal',
+                'icon': 'fa fa-flag-o',
+                'text': '登记赛事记录'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-reply',
+                'text': '退费'
+            }, {
+                'url': 'lb-endlessonmodal',
+                'icon': 'fa fa-stop',
+                'text': '结课'
+            }, {
+                'url': 'lb-changebranchmodal',
+                'icon': 'icon-shuffle',
+                'text': '转校区'
             }]
         }
         return {
             lb_localdata,
+            lb_tables:['student'],
         }
     },
     computed: {},

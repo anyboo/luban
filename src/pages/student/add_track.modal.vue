@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="track" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-comment"></i>为学员
-                        <span class="label bg-info ng-binding">LLL</span>添加跟踪回访记录
+                        <span class="label bg-info ng-binding">{{getStudentName()}}</span>添加跟踪回访记录
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -18,10 +18,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">类型</label>
                                 <div class="col-md-10 col-xs-9">
-                                    <div class="btn-group">
-                                        <label btn-radio="0" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty active ng-valid-parse">售前</label>
-                                        <label btn-radio="1" ng-model="inquiry.track_type" class="btn btn-default btn-sm ng-untouched ng-valid ng-dirty">售后</label>
-                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.track_type" v-model="lb_localdata.form.track_type"></lb-buttongroup>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -30,27 +27,21 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" v-model="lb_localdata.form.lb_inquiry_track_way">
-                                        <lb-dropdown>
-                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
-                                                选择
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">其他</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">面谈</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">网络</a>
-                                                </li>
-                                                <li ng-repeat="item in $gv.dicts[4]" class="ng-scope">
-                                                    <a ng-click="inquiry.track_way=item.text" class="ng-binding">电话</a>
-                                                </li>
-                                            </ul>
-                                        </lb-dropdown>
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.track_way">
+                                        <div class="input-group-btn">
+                                            <lb-dropdowns menu-align="start" @command="handleCommand">
+                                                <lb-dropdown-button button-class="btn btn-default">
+                                                    选择
+                                                    <span class="caret"></span>
+                                                </lb-dropdown-button>
+                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                    <lb-dropdown-item command="其他">其他</lb-dropdown-item>
+                                                    <lb-dropdown-item command="面谈">面谈</lb-dropdown-item>
+                                                    <lb-dropdown-item command="网络">网络</lb-dropdown-item>
+                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item>
+                                                </lb-dropdown-menu>
+                                            </lb-dropdowns>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +50,13 @@
                                     <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
-                                    <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required=""></textarea>
+                                    <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-3 col-md-2 control-label">接待员</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required="" v-model="lb_localdata.form.lb_inquiry_op_name">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.op_name">
                                 </div>
                             </div>
                             <div class="form-group" ng-init="show_track_time=false">
@@ -74,17 +65,17 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{maxDate:max_date}" v-model="lb_localdata.form.lb_inquiry_track_time">
+                                        <lb-date-picker type="datetime"  v-model="lb_localdata.form.track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" ng-init="need_next_time = false">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
-                                    <span class="text-info" ng-click="need_next_time = !need_next_time">
-                                        <i class="fa fa-square-o" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
+                                    <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
+                                        <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
                                     </span>
-                                    <div class="w-sm ng-hide" ng-show="need_next_time">
-                                        <input type="text" class="form-control no-padder input-sm text-center ng-pristine ng-untouched ng-valid" datetimepicker="datetime" datetimepicker-option="{minDate:max_date}" v-model="lb_localdata.form.lb_inquiry_next_time">
+                                    <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +83,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_track()" disabled="disabled">确定</button>
+                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_track()" @click="handleClick">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
@@ -101,22 +92,44 @@
 </template>
 <script>
 export default {
-    name: 'add_track.modal',
+    name: 'add_track',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_inquiry_track_way': '',
-                'lb_inquiry_op_name': '',
-                'lb_inquiry_track_time': '',
-                'lb_inquiry_next_time': ''
-            }
+                'track_type': '',
+                'track_way': '',
+                'op_name': '',
+                'track_time': '',
+                'next_time': ''
+            },
+            'track_type': [{
+                'value': '0',
+                'text': '售前'
+            }, {
+                'value': '1',
+                'text': '售后'
+            }]
         }
         return {
             lb_localdata,
+            model: 'inquiry',
+            isActive: false,
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.form.track_way = value
+        },
+        handleClick() {
+            this.handleSave().then(() => {
+                alert('做完数据提交数据库了')
+            })
+        },
+        open() {
+            this.isActive = !this.isActive
+        }
+    }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="open_class" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -29,13 +29,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">课程:</label>
                             <div class="col-md-10 col-xs-12">
-                                <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required="" style="display: none;" v-model="lb_localdata.form.lb_info_ol_id">
-                                    <option value="" class="">选择课程</option>
+                                <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required style="display: none;" v-model="lb_localdata.form.lb_info_ol_id">
+                                    <option value class>选择课程</option>
                                     <option value="0">吉他高级班</option>
                                     <option value="1">印度舞初级</option>
                                     <option value="2">默认课程</option>
                                 </select>
-                                <div class="chosen-container chosen-container-single" style="width: 485px;" title="">
+                                <div class="chosen-container chosen-container-single" style="width: 485px;" title>
                                     <a class="chosen-single" tabindex="-1">
                                         <span>选择课程</span>
                                         <div>
@@ -54,14 +54,14 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required="" disabled="disabled" v-model="lb_localdata.form.lb_info_class_name">
+                                <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required disabled="disabled" v-model="lb_localdata.form.lb_info_class_name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">开课日期:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_open_time">
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="open_time" disabled="disabled" v-model="lb_localdata.form.lb_info_open_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             <label class="control-label col-md-2 col-xs-12">预计结课:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" datetimepicker="date" disabled="disabled" v-model="lb_localdata.form.lb_info_close_time">
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="close_time" disabled="disabled" v-model="lb_localdata.form.lb_info_close_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

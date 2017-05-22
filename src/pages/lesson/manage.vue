@@ -42,74 +42,59 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t">
-                    <table class="table table-hover b-t b-light">
-                        <thead>
-                            <tr>
-                                <th>操作</th>
-                                <th width="300">课程</th>
-                                <th>定价</th>
-                                <th>内容</th>
-                                <th>适用校区</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <lb-dropdown>
-                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                            <i class="fa fa-cog"></i>操作
-                                            <span class="caret"></span>
-                                        </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="menuslot">
-                                            <li>
-                                                <a @click="lbShowdialog($event,'lb-editlessonmodal')">
-                                                    <i class="fa fa-pencil-square"></i>编辑
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a confirm-text="确定要删除该课程吗?" confirm-action="rest_remove(item,'ol_id','lessons',remove_callback);">
-                                                    <i class="fa fa-times"></i>删除
-                                                </a>
-                                            </li>
-                                        </lb-dropdown-menu>
-                                    </lb-dropdown>
-                                </td>
-                                <td>
-                                    <p>
-                                        <span class="label bg-danger">班课</span>默认课程
-                                        <small class="label bg-info m-l">DL</small>
-                                    </p>
-                                </td>
-                                <td>
-                                    <p>
-                                        <span>按期收费</span>,课程单价:0.00元/次
-                                    </p>
-                                    <p>
-                                        <label>课程售价:</label>
-                                        <span class="label bg-info">1888.00</span>元
-                                    </p>
-                                </td>
-                                <td>
-                                    <p>
-                                        <label>单次课时长:</label>
-                                        <span class="label bg-info">1.00</span>时
-                                    </p>
-                                    <p>
-                                        <label>课程包含:</label>
-                                        <span class="label bg-info">1期,</span>
-                                        <span class="label bg-info">10.00</span>课时
-                                    </p>
-                                </td>
-                                <td>
-                                    <p>
-                                        <span>
-                                            <label class="xlabel">小雪</label>
-                                        </span>
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <lb-table :data="getTableData" stripe>
+                        <lb-table-column prop="data" label="操作">
+                            <template scope="scope">
+                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                        <i class="fa fa-cog"></i>操作
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                </lb-dropdown>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column width="300" prop="data" label="课程">
+                            <template scope="scope">
+                                <p>
+                                    <span class="label bg-danger">班课</span>默认课程
+                                    <small class="label bg-info m-l">DL</small>
+                                </p>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="定价">
+                            <template scope="scope">
+                                <p>
+                                    <span>按期收费</span>,课程单价:0.00元/次
+                                </p>
+                                <p>
+                                    <label>课程售价:</label>
+                                    <span class="label bg-info">1888.00</span>元
+                                </p>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="内容">
+                            <template scope="scope">
+                                <p>
+                                    <label>单次课时长:</label>
+                                    <span class="label bg-info">1.00</span>时
+                                </p>
+                                <p>
+                                    <label>课程包含:</label>
+                                    <span class="label bg-info">1期,</span>
+                                    <span class="label bg-info">10.00</span>课时
+                                </p>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="适用校区">
+                            <template scope="scope">
+                                <p>
+                                    <span>
+                                        <label class="xlabel">小雪</label>
+                                    </span>
+                                </p>
+                            </template>
+                        </lb-table-column>
+                    </lb-table>
                 </div>
                 <div class="panel-footer">
                     <div class="row">

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="edit_contact" class="ng-scope">
                 <div class="modal-header">
                     <button ng-click="$dismiss()" class="close" type="button" @click="lbClosedialog($event)">
@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">手机号:</label>
                             <div class="col-xs-12 col-md-5">
-                                <input type="text" ng-readonly="info.is_has_open" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern" placeholder="输入手机号" ng-pattern="/^1\d{10}$/" required="" readonly="readonly" v-model="lb_localdata.form.lb_info_tel">
+                                <input type="text" ng-readonly="info.is_has_open" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern" placeholder="输入手机号" ng-pattern="/^1\d{10}$/" required readonly="readonly" v-model="lb_localdata.form.lb_info_tel">
                             </div>
                         </div>
                         <div class="form-group">
@@ -25,12 +25,12 @@
                             <div class="col-xs-12 col-md-5">
                                 <div class="inline w-xs">
                                     <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.text as item.text for item in $gv.dicts[1]" style="display: none;" v-model="lb_localdata.form.lb_info_relation">
-                                        <option value="" class="">称呼</option>
+                                        <option value class>称呼</option>
                                         <option value="0" selected="selected">本人</option>
                                         <option value="1">爸爸</option>
                                         <option value="2">妈妈</option>
                                     </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 90px;" title="">
+                                    <div class="chosen-container chosen-container-single" style="width: 90px;" title>
                                         <a class="chosen-single" tabindex="-1">
                                             <span>本人</span>
                                             <div>

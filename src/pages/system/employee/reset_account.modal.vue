@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="rest_account" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录密码</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="6" required="" v-model="lb_localdata.form.lb_reset_password">
+                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="6" required v-model="lb_localdata.form.lb_reset_password">
                             </div>
                             <div class="col-md-5 col-xs-12">
                                 <a href="javascript:;" class="btn btn-default btn-xs m-l" ng-click="reset.password=$util.random(6)">随机</a>

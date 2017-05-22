@@ -1,7 +1,7 @@
 <template>
-    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window="" size="lg" index="0" animate="animate" style="z-index: 1050; display: block;">
+    <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window size="lg" index="0" animate="animate" style="z-index: 1050; display: block;">
         <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
+            <div class="modal-content" modal-transclude>
                 <div page-controller="lesson_cate" class="ng-scope">
                     <div class="modal-header">
                         <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -19,23 +19,23 @@
                             </a>
                         </p>
                         <div ui-tree="{dropped:onDrop}" id="cate-root" data-clone-enabled="true" class="ng-scope angular-ui-tree">
-                            <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes="" ng-model="lesson_cates">
-                                <li ng-repeat="node in lesson_cates" ui-tree-node="" ng-include="'cate_tree.html'" class="ng-scope angular-ui-tree-node" collapsed="false">
-                                    <div ui-tree-handle="" class="tree-node tree-node-content ng-scope angular-ui-tree-handle">
+                            <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes ng-model="lesson_cates">
+                                <li ng-repeat="node in lesson_cates" ui-tree-node ng-include="'cate_tree.html'" class="ng-scope angular-ui-tree-node" collapsed="false">
+                                    <div ui-tree-handle class="tree-node tree-node-content ng-scope angular-ui-tree-handle">
                                         <div class="tree-node-content">
-                                            <a class="btn btn-default btn-xs" data-nodrag="" ng-click="toggle(this)">
+                                            <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
                                                 <i class="fa fa-minus-square-o" ng-class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                                             </a>
                                             <input class="va-m ng-pristine ng-untouched ng-valid ng-scope" type="text" ng-if="!node.root" ng-change="node._editing=1" v-model="lb_localdata.form.lb_node_cate_name">
-                                            <a class="pull-right btn btn-danger btn-xs" tooltip="删除" data-nodrag="" ng-click="remove_cate(this);">
+                                            <a class="pull-right btn btn-danger btn-xs" tooltip="删除" data-nodrag ng-click="remove_cate(this);">
                                                 <i class="fa fa-times"></i>
                                             </a>
-                                            <a class="pull-right btn btn-info btn-xs m-r-xs" tooltip="新增" data-nodrag="" ng-click="new_sub(node)">
+                                            <a class="pull-right btn btn-info btn-xs m-r-xs" tooltip="新增" data-nodrag ng-click="new_sub(node)">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}"></ul>
+                                    <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes ng-model="node.nodes" ng-class="{hidden: collapsed}"></ul>
                                 </li>
                             </ul>
                         </div>

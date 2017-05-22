@@ -5,10 +5,10 @@
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="inline w va-m">
                         <select class="form-control ng-pristine ng-untouched ng-valid" name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:filter_contract" style="display: none;" v-model="lb_localdata.form.lb_params_ol_id">
-                            <option value="" class="">选择课程</option>
+                            <option value class>选择课程</option>
                             <option value="0">古典吉他初级</option>
                         </select>
-                        <div class="chosen-container chosen-container-single" style="width: 200px;" title="">
+                        <div class="chosen-container chosen-container-single" style="width: 200px;" title>
                             <a class="chosen-single" tabindex="-1">
                                 <span>选择课程</span>
                                 <div>
@@ -43,219 +43,84 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>学员</th>
-                            <th>
-                                <span class="inline w-xs text-right">合同</span>
-                            </th>
-                            <th>
-                                <span class="inline w-xs text-right">课程</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63899">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>威锋
-                                </a>
-                                <br>
-                                <i class="fa fa-phone"></i>
-                                <span ng-bind="item.student.first_tel" class="ng-binding">13605557745</span>
-                                <br>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contract/edit.modal.html','md',item)" @click="lbShowdialog($event,'lb-editmodal')">
-                                                <i class="fa fa-pencil"></i>修改课耗单价
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_end.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessonendmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_delete.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondeletemodal')">
-                                                <i class="fa fa-trash-o"></i>合同删除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <label class="inline w-xs">合同号:</label>
-                                        <span>
-                                            <a class="link ng-binding" tooltip="合同详情" ui-sref="lesson.contract({oct_id:item.oct_id})" href="#/lesson/contract/11635">C1161217130540023959331</a>
-                                        </span>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">缴费情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.contract_amount" value="item.pay_amount" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="2000.00" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0.00 / 2000.00</span>
-                                                </div>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="学员">
+                        <template scope="scope">
+                            <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/63899">
+                                <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                    <i class="fa fa-male"></i>
+                                </span>威锋
+                            </a>
+                            <br>
+                            <i class="fa fa-phone"></i>
+                            <span ng-bind="item.student.first_tel" class="ng-binding">13605557745</span>
+                            <br>
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="ng-scope">操作</span>
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label>
+                        <template scope="scope">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label class="inline w-xs">合同号:</label>
+                                    <span>
+                                        <a class="link ng-binding" tooltip="合同详情" ui-sref="lesson.contract({oct_id:item.oct_id})" href="#/lesson/contract/11635">C1161217130540023959331</a>
+                                    </span>
+                                </li>
+                                <li class="m-t-xs">
+                                    <label class="inline w-xs">缴费情况:</label>
+                                    <div class="inline w va-m">
+                                        <div class="progress ng-isolate-scope" style="margin:0" max="item.contract_amount" value="item.pay_amount" type="info">
+                                            <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="2000.00" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude style="width: 0%;">
+                                                <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0.00 / 2000.00</span>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <label class="inline w-xs">课耗单价:</label>
-                                        <span class="ng-binding">￥100.00</span>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <label class="inline w-xs">课程:</label>
-                                        <span class="ng-binding">古典吉他初级</span>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">排课情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.arrange_times" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 20</span>
-                                                </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="inline w-xs">课耗单价:</label>
+                                    <span class="ng-binding">￥100.00</span>
+                                </li>
+                            </ul>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label>
+                        <template scope="scope">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label class="inline w-xs">课程:</label>
+                                    <span class="ng-binding">古典吉他初级</span>
+                                </li>
+                                <li class="m-t-xs">
+                                    <label class="inline w-xs">排课情况:</label>
+                                    <div class="inline w va-m">
+                                        <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.arrange_times" type="info">
+                                            <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude style="width: 0%;">
+                                                <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 20</span>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">课耗情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.use_times" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 20</span>
-                                                </div>
+                                    </div>
+                                </li>
+                                <li class="m-t-xs">
+                                    <label class="inline w-xs">课耗情况:</label>
+                                    <div class="inline w va-m">
+                                        <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.use_times" type="info">
+                                            <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude style="width: 0%;">
+                                                <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 20</span>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td>
-                                <a class="link ng-binding" ui-sref="student.view({os_id:item.os_id})" ui-per="student.view" href="#/student/51442">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>李达康
-                                </a>
-                                <br>
-                                <i class="fa fa-phone"></i>
-                                <span ng-bind="item.student.first_tel" class="ng-binding">18050238516</span>
-                                <br>
-                                <lb-dropdown>
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                    <lb-dropdown-menu slot="menuslot">
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contract/edit.modal.html','md',item)" @click="lbShowdialog($event,'lb-editmodal')">
-                                                <i class="fa fa-pencil"></i>修改课耗单价
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_arrange.modal.html','lg',item)" @click="lbShowdialog($event,'lb-lessonarrangemodal')">
-                                                <i class="fa fa-calendar text-info"></i>排课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_dispatch.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondispatchmodal')">
-                                                <i class="fa fa-calendar text-warning"></i>调课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_end.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessonendmodal')">
-                                                <i class="fa fa-calendar text-danger"></i>结课
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a ng-click="$util.open('tpl/app/lesson/contracts/lesson_delete.modal.html','md',item)" @click="lbShowdialog($event,'lb-lessondeletemodal')">
-                                                <i class="fa fa-trash-o"></i>合同删除
-                                            </a>
-                                        </li>
-                                    </lb-dropdown-menu>
-                                </lb-dropdown>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <label class="inline w-xs">合同号:</label>
-                                        <span>
-                                            <a class="link ng-binding" tooltip="合同详情" ui-sref="lesson.contract({oct_id:item.oct_id})" href="#/lesson/contract/11316">C1161217170436054948591</a>
-                                        </span>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">缴费情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.contract_amount" value="item.pay_amount" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="2000.00" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0.00 / 2000.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label class="inline w-xs">课耗单价:</label>
-                                        <span class="ng-binding">￥100.00</span>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <label class="inline w-xs">课程:</label>
-                                        <span class="ng-binding">古典吉他初级</span>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">排课情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.arrange_times" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="5%" ng-transclude="" style="width: 5%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">1 / 20</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="m-t-xs">
-                                        <label class="inline w-xs">课耗情况:</label>
-                                        <div class="inline w va-m">
-                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.lesson_times" value="item.use_times" type="info">
-                                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="20" ng-style="{width: percent + '%'}" aria-valuetext="5%" ng-transclude="" style="width: 5%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">1 / 20</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">
@@ -302,6 +167,27 @@ export default {
             }, {
                 'value': '0',
                 'text': '未缴费'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-editmodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改课耗单价'
+            }, {
+                'url': 'lb-lessonarrangemodal',
+                'icon': 'fa fa-calendar text-info',
+                'text': '排课'
+            }, {
+                'url': 'lb-lessondispatchmodal',
+                'icon': 'fa fa-calendar text-warning',
+                'text': '调课'
+            }, {
+                'url': 'lb-lessonendmodal',
+                'icon': 'fa fa-calendar text-danger',
+                'text': '结课'
+            }, {
+                'url': 'lb-lessondeletemodal',
+                'icon': 'fa fa-trash-o',
+                'text': '合同删除'
             }]
         }
         return {

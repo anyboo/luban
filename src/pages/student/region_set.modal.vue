@@ -1,14 +1,14 @@
 <template>
     <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="wrapper ng-scope" page-controller="region_set">
                 <p class="ng-binding">请选择学员 录好 的归属</p>
                 <div class="w-sm">
                     <select class="form-control ng-untouched ng-valid ng-dirty ng-valid-parse" ui-jq="chosen" ng-options="item.oe_id as item.name for (key,item) in $gv.employees" style="display: none;" v-model="lb_localdata.form.lb_region_oe_id">
-                        <option value="" class="">没有归属</option>
+                        <option value class>没有归属</option>
                         <option value="12494">陈佳木</option>
                     </select>
-                    <div class="chosen-container chosen-container-single" style="width: 120px;" title="">
+                    <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <a class="chosen-single" tabindex="-1">
                             <span>陈佳木</span>
                             <div>

@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -14,19 +14,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="table-responsive m-t">
-                        <table class="table table-striped b-t b-light">
-                            <thead>
-                                <tr>
-                                    <th>日期</th>
-                                    <th>上课时间</th>
-                                    <th>上课对象</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <lb-table :data="getTableData" stripe>
+                            <lb-table-column prop="data" label="日期">
+                                <template scope="scope"></template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="上课时间">
+                                <template scope="scope"></template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="上课对象">
+                                <template scope="scope"></template>
+                            </lb-table-column>
+                        </lb-table>
                         <div style="height:400px;position: relative" ui-jq="perfectScrollbar" class="ps-container ps-theme-default" data-ps-id="5c7c4b02-343c-b4cc-fa5f-2b3c97329446">
-                            <table class="table table-striped">
-                                <tbody></tbody>
-                            </table>
+                            <lb-table :data="getTableData" stripe></lb-table>
                             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                                 <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                             </div>

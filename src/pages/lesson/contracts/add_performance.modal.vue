@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="add_performance" class="ng-scope">
                 <div class="modal-header">
                     <button type="button" ng-click="$dismiss()" class="close" @click="lbClosedialog($event)">
@@ -17,7 +17,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">测验名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" required="" v-model="lb_localdata.form.lb_performance_exam_name">
+                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" required v-model="lb_localdata.form.lb_performance_exam_name">
                                 </div>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">科目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
-                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" required="" v-model="lb_localdata.form.lb_performance_exam_course">
+                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" required v-model="lb_localdata.form.lb_performance_exam_course">
                                 </div>
                             </div>
                         </div>
@@ -33,20 +33,19 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <input type="text" name="exam_date" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="date" v-model="lb_localdata.form.lb_performance_exam_date">
+                                    <lb-date-picker type="date" name="exam_date" v-model="lb_localdata.form.lb_performance_exam_date"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td width="100">学员</td>
-                                        <td width="200">成绩</td>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                            <lb-table :data="getTableData" stripe>
+                                <lb-table-column width="100" prop="data" label="学员">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                                <lb-table-column width="200" prop="data" label="成绩">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                            </lb-table>
                         </div>
                     </form>
                 </div>

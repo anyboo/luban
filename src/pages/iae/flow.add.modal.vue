@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="flow_add" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -27,7 +27,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">
-                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="" v-model="lb_localdata.form.lb_fee_amount">
+                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.lb_fee_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -37,10 +37,10 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
                                     <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.lb_fee_odi_id">
-                                        <option value="" class="">请选择</option>
+                                        <option value class>请选择</option>
                                         <option value="0">日常支出</option>
                                     </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 120px;" title="">
+                                    <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                                         <a class="chosen-single" tabindex="-1">
                                             <span>请选择</span>
                                             <div>
@@ -84,7 +84,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <input type="text" name="create_time" class="form-control input-sm ng-pristine ng-untouched ng-valid" datetimepicker="datetime" v-model="lb_localdata.form.lb_fee_create_time">
+                                    <lb-date-picker type="datetime" name="create_time" v-model="lb_localdata.form.lb_fee_create_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>

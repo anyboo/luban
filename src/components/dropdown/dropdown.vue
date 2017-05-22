@@ -1,24 +1,31 @@
 <template>
-    <div id="dropdown" class="btn-group dropdown" :class="{'open':open}">
-        <slot name="buttonslot"></slot>
-        <slot name="menuslot"></slot>
-        <slot></slot>
-    </div>
+    <lb-dropdowns @command="handleCommand" menu-align="start">
+        <div>
+            <slot name="buttonslot"></slot>
+        </div>
+        <lb-dropdown-menu slot="dropdown">
+            <template v-for="item in dropMenuData">
+                <lb-dropdown-item :command="item.url">
+                    <a :id="id">
+                        <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
+                    </a>
+                </lb-dropdown-item>
+            </template>
+        </lb-dropdown-menu>
+    </lb-dropdowns>
 </template>
 <script>
 export default {
     name: 'LbDropdown',
+    props: ['dropMenuData', 'id'],
     data() {
         return {
-            open: false
+
         }
     },
     methods: {
-        handleOpen() {
-            this.open = true
-        },
-        handleClose() {
-            this.open = false
+        handleCommand(common) {
+            this.handleShowDialog(common)
         }
     },
     computed: {},

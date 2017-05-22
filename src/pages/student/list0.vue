@@ -26,176 +26,58 @@
             </div>
         </div>
         <div class="table-responsive m-t">
-            <table class="table table-striped b-t b-light">
-                <thead>
-                    <tr>
-                        <th width="90">操作</th>
-                        <th width="100">学员</th>
-                        <th width="100">联系电话</th>
-                        <th width="100">学员归属</th>
-                        <th width="100">意向程度</th>
-                        <th width="100">来源渠道</th>
-                        <th width="150">建档日期</th>
-                        <th>档案备注</th>
-                        <th>最后跟踪</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                        <td>
-                            <lb-dropdown>
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
-                                    <span class="ng-scope">操作</span>
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
-                            </lb-dropdown>
-                        </td>
-                        <td>
-                            <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-female"></i>
-                                </span>zzz
-                            </a>
-                            <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
-                        </td>
-                        <td class="ng-binding">12345678645</td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                        </td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
-                        </td>
-                        <td class="ng-binding">广告</td>
-                        <td class="ng-binding">2017-05-13</td>
-                        <td>
-                            <p ng-bind-html="item.note" class="ng-binding">dwwqad</p>
-                        </td>
-                        <td>
-                            <span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                        <td>
-                            <lb-dropdown>
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
-                                    <span class="ng-scope">操作</span>
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
-                            </lb-dropdown>
-                        </td>
-                        <td>
-                            <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63894">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-male"></i>
-                                </span>qssd
-                            </a>
-                            <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
-                        </td>
-                        <td class="ng-binding">13456789754</td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                        </td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
-                        </td>
-                        <td class="ng-binding">上门</td>
-                        <td class="ng-binding">2017-05-13</td>
-                        <td>
-                            <p ng-bind-html="item.note" class="ng-binding">sqqs</p>
-                        </td>
-                        <td>
-                            <span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                        <td>
-                            <lb-dropdown>
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
-                                    <span class="ng-scope">操作</span>
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                                <lb-dropdown-menu slot="menuslot">
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/region_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-regionsetmodal')">
-                                            <i class="icon-rocket"></i>学员归属设定
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/purpose_set.modal.html','sm',item)" @click="lbShowdialog($event,'lb-purposesetmodal')">
-                                            <i class="icon-heart"></i>意向程度设置
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)" @click="lbShowdialog($event,'lb-addtrackmodal')">
-                                            <i class="fa fa-phone-square"></i>跟踪回访
-                                        </a>
-                                    </li>
-                                </lb-dropdown-menu>
-                            </lb-dropdown>
-                        </td>
-                        <td>
-                            <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63893">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-female"></i>
-                                </span>qqq
-                            </a>
-                            <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
-                        </td>
-                        <td class="ng-binding">13545389311</td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
-                        </td>
-                        <td>
-                            <span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
-                        </td>
-                        <td class="ng-binding">其他</td>
-                        <td class="ng-binding">2017-05-13</td>
-                        <td>
-                            <p ng-bind-html="item.note" class="ng-binding">ad</p>
-                        </td>
-                        <td>
-                            <span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <lb-table :data="getTableData" stripe>
+                <lb-table-column width="90" prop="data" label="操作">
+                    <template scope="scope">
+                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
+                                <i class="fa fa-cog ng-scope"></i>
+                                <span class="ng-scope">操作</span>
+                                <span class="caret"></span>
+                            </lb-dropdown-button>
+                        </lb-dropdown>
+                    </template>
+                </lb-table-column>
+                <lb-table-column width="100" prop="data" label="学员">
+                    <template scope="scope">
+                        <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895">
+                            <span ng-bind-html="item.sex|sex:0" class="ng-binding">
+                                <i class="fa fa-female"></i>
+                            </span>zzz
+                        </a>
+                        <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
+                    </template>
+                </lb-table-column>
+                <lb-table-column width="100" prop="data" label="联系电话">
+                    <template scope="scope">12345678645</template>
+                </lb-table-column>
+                <lb-table-column width="100" prop="data" label="学员归属">
+                    <template scope="scope">
+                        <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                    </template>
+                </lb-table-column>
+                <lb-table-column width="100" prop="data" label="意向程度">
+                    <template scope="scope">
+                        <span class="label bg-gray ng-scope" ng-if="item.purpose == '0'">未设置</span>
+                    </template>
+                </lb-table-column>
+                <lb-table-column width="100" prop="data" label="来源渠道">
+                    <template scope="scope">广告</template>
+                </lb-table-column>
+                <lb-table-column width="150" prop="data" label="建档日期">
+                    <template scope="scope">2017-05-13</template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="档案备注">
+                    <template scope="scope">
+                        <p ng-bind-html="item.note" class="ng-binding">dwwqad</p>
+                    </template>
+                </lb-table-column>
+                <lb-table-column prop="data" label="最后跟踪">
+                    <template scope="scope">
+                        <span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
+                    </template>
+                </lb-table-column>
+            </lb-table>
             <div class="wrapper" style="height:80px"></div>
             <div class="grid-data-result"></div>
         </div>
@@ -237,6 +119,19 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
+            }],
+            'dropDownMenu': [{
+                'url': 'lb-regionsetmodal',
+                'icon': 'icon-rocket',
+                'text': '学员归属设定'
+            }, {
+                'url': 'lb-purposesetmodal',
+                'icon': 'icon-heart',
+                'text': '意向程度设置'
+            }, {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
             }]
         }
         return {

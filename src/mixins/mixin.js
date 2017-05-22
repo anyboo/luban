@@ -5,12 +5,42 @@ export default {
         this.modalsType = types.APPEND_API
         this._id = ''
     },
+    mounted: function() {
+        this.handleGetTable()
+    },
     computed: {
-        getStudentName() {
-            return this.$store.state.envs.currStudent.lb_student_student_name
+        getTableData() {
+            return [{
+                date: '2016-05-02',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1517 弄'
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1519 弄'
+            }, {
+                date: '2016-05-03',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1516 弄'
+            }]
         }
     },
     methods: {
+        getStudentName() {
+            return this.$store.state.envs.currStudent.student_name
+        },
+        getTablesData() {
+            let tablaData = []
+            if (this.lb_tables) {
+                let tablaName = this.lb_tables[0]
+                tablaData = this.$store.state.models.models[tablaName].data
+            }
+            return tablaData
+        },
         handleShowDialog(url) {
             this.$store.commit('pushdialog', url)
         },
@@ -21,6 +51,14 @@ export default {
         lbClosedialog(event) {
             if (event) event.preventDefault()
             this.$store.commit('popdialog')
+        },
+        handleGetTable() {
+            let vm = this
+            if (vm.lb_tables) {
+                vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
+                    //this.getTablesData()
+                })
+            }
         },
         handleSave() {
             let vm = this

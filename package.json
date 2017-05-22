@@ -4,12 +4,13 @@
   "description": "luban8",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server -d --inline  --env.dev",
+    "dev": "cnpm install&&webpack-dev-server -d --inline  --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules",
     "test": "karma start"
   },
   "dependencies": {
     "async-validator": "^1.6.8",
+    "element-ui": "^1.3.3",
     "lodash": "^4.17.4",
     "vue": "^2.3.3",
     "vue-resource": "^1.2.1",

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper bg-white ng-scope" ui-view="">
+    <div class="wrapper bg-white ng-scope" ui-view>
         <div class="wrapper-xs ng-scope" ng-controller="SystemConfigParamsCtrl">
             <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid">
                 <div class="b-b">

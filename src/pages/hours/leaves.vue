@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="leaves" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="leaves">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-6 m-t">
@@ -31,98 +31,67 @@
                             <input type="hidden" name="tffield" value="int_day" ng-repeat="(key,value) in params" class="ng-scope">
                         </form>
                     </div>
-                    <lb-dropdown>
+                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-success">
                             <i class="icon-plus"></i>请假登记
                             <span class="caret"></span>
                         </lb-dropdown-button>
-                        <lb-dropdown-menu slot="menuslot">
-                            <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行请假登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="fa fa-plus"></i>按上课时间单次登记
-                                </a>
-                            </li>
-                            <li>
-                                <a select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员按排课登记考勤" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="fa fa-calendar"></i>按排课记录批量登记
-                                </a>
-                            </li>
-                            <li>
-                                <a select-tpl="tpl/directive/selectSClassTpl.html" select-id-field="osc_id" max-num="1" on-selected="sclass_arrange_leave" select-params="{ob_id:user.gv.ob_id}" select-title="请选择科目班级登记考勤" @click="lbShowdialog($event,'lb-selectsclasstpl')">
-                                    <i class="fa fa-users"></i>按科目班级批量登记
-                                </a>
-                            </li>
-                        </lb-dropdown-menu>
                     </lb-dropdown>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped table-hover b-t b-light">
-                    <thead>
-                        <tr>
-                            <th>请假学员</th>
-                            <th>请假信息</th>
-                            <th>关联排课</th>
-                            <th>
-                                登记时间
-                                <span class="table-header-sort ng-isolate-scope" header-sort="create_time" params="params">
-                                    <span class="icon">
-                                        <i class="fa fa-sort-asc" ng-class="{'active':is_sort('ASC')}" ng-click="asc()"></i>
-                                    </span>
-                                <span class="icon">
-                                        <i class="fa fa-sort-desc" ng-class="{'active':is_sort('DESC')}" ng-click="desc()"></i>
-                                    </span>
-                                </span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                            <td class="ng-binding">
-                                <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                    <i class="fa fa-male"></i>
-                                </span>李哥
-                                <p>
-                                    <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-text="确认要删除该请假信息吗?" confirm-action="remove_leave(item)">
-                                        <i class="icon-ban" ng-disabled="saving"></i>删除
-                                    </a>
-                                </p>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled w4">
-                                    <li class="ng-binding">
-                                        <label>上课日期:</label>2017-05-19
-                                    </li>
-                                    <li>
-                                        <label>上课时间:</label>
-                                        <span class="ng-binding">11:00</span>-
-                                        <span class="ng-binding">12:00</span>
-                                    </li>
-                                    <li class="ng-binding">
-                                        <label>请假原因:</label>病假
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul class="list-unstyled w6 ng-scope" ng-if="item.ota_id > 0">
-                                    <li>
-                                        <label>课程/班级:</label>
-                                        <span class="ng-binding">3期班</span>
-                                    </li>
-                                    <li>
-                                        <label>授课老师:</label>
-                                        <span class="ng-binding">陈佳木</span>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td class="ng-binding">
-                                2017-05-12 15:59
-                                <br>
-                                <span class="label bg-warning ng-scope" ng-if="item.create_from == 0">机构登记</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <lb-table :data="getTableData" stripe>
+                    <lb-table-column prop="data" label="请假学员">
+                        <template scope="scope">
+                            <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                <i class="fa fa-male"></i>
+                            </span>李哥
+                            <p>
+                                <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-text="确认要删除该请假信息吗?" confirm-action="remove_leave(item)">
+                                    <i class="icon-ban" ng-disabled="saving"></i>删除
+                                </a>
+                            </p>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="请假信息">
+                        <template scope="scope">
+                            <ul class="list-unstyled w4">
+                                <li class="ng-binding">
+                                    <label>上课日期:</label>2017-05-19
+                                </li>
+                                <li>
+                                    <label>上课时间:</label>
+                                    <span class="ng-binding">11:00</span>-
+                                    <span class="ng-binding">12:00</span>
+                                </li>
+                                <li class="ng-binding">
+                                    <label>请假原因:</label>病假
+                                </li>
+                            </ul>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="关联排课">
+                        <template scope="scope">
+                            <ul class="list-unstyled w6 ng-scope" ng-if="item.ota_id > 0">
+                                <li>
+                                    <label>课程/班级:</label>
+                                    <span class="ng-binding">3期班</span>
+                                </li>
+                                <li>
+                                    <label>授课老师:</label>
+                                    <span class="ng-binding">陈佳木</span>
+                                </li>
+                            </ul>
+                        </template>
+                    </lb-table-column>
+                    <lb-table-column prop="data" label="登记时间">
+                        <template scope="scope">
+                            2017-05-12 15:59
+                            <br>
+                            <span class="label bg-warning ng-scope" ng-if="item.create_from == 0">机构登记</span>
+                        </template>
+                    </lb-table-column>
+                </lb-table>
                 <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer">

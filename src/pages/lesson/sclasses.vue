@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="" class="ng-scope">
+    <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope" xo-rest="sclasses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="sclasses" loading-text="正在加载班级..." empty-text="没有符合条件的班级!">
             <ul class="breadcrumb bg-white b-a">
                 <li>
@@ -16,7 +16,7 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn" ng-init=" filter.fields = [ {name:'class_name',value:'班级名'}, {name:'short_name',value:'班级简称'} ]; grid.search_key = 'class_name'; grid.search_value = ''; ">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select="">
+                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                             班级名
                                             <span class="caret"></span>
                                         </button>
@@ -36,10 +36,10 @@
                         <lb-buttongroup :group-data="lb_localdata.lb_params_is_end" v-model="lb_localdata.form.lb_params_is_end"></lb-buttongroup>
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
                             <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oe_id">
-                                <option value="" class="">选择老师</option>
+                                <option value class>选择老师</option>
                                 <option value="0">纪岚雪</option>
                             </select>
-                            <div class="chosen-container chosen-container-single" style="width: 240px;" title="">
+                            <div class="chosen-container chosen-container-single" style="width: 240px;" title>
                                 <a class="chosen-single" tabindex="-1">
                                     <span>选择老师</span>
                                     <div>
@@ -60,22 +60,35 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t" style="min-height:400px">
-                    <table class="table table-striped b-t b-light">
-                        <thead>
-                            <tr>
-                                <th width="80"></th>
-                                <th>简称</th>
-                                <th>名称</th>
-                                <th>科目</th>
-                                <th>级别</th>
-                                <th>已排课次数</th>
-                                <th>已考勤次数</th>
-                                <th>教师</th>
-                                <th>开课日期</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <lb-table :data="getTableData" stripe>
+                        <lb-table-column width="80" prop="data" label>
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="简称">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="名称">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="科目">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="级别">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="已排课次数">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="已考勤次数">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="教师">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="开课日期">
+                            <template scope="scope"></template>
+                        </lb-table-column>
+                    </lb-table>
                     <div class="grid-data-result">
                         <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
                             <i class="fa fa-frown-o"></i>没有符合条件的班级!

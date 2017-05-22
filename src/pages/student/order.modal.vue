@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
+            <div class="modal-content" modal-transclude>
                 <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
                 <div class="modal-header ng-scope">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -13,8 +13,7 @@
                         <span class="label bg-info ng-binding">威锋</span>报名&缴费
                     </h3>
                 </div>
-                <component v-bind:is="currentView">
-                </component>
+                <component v-bind:is="currentView"></component>
             </div>
         </div>
     </div>

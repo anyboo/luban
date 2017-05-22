@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="lesson_dispatch" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -27,21 +27,25 @@
                     <form name="step1" class="form-validation form-horizontal m-t ng-pristine ng-valid" ng-show="step==1">
                         <p class="alert alert-info">以下是班级的未考勤的排课记录,请选择单条或多条记录进行调整</p>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <td>课次</td>
-                                        <td>日期</td>
-                                        <td>时间段</td>
-                                        <td>老师</td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <lb-table :data="getTableData" stripe>
+                                <lb-table-column prop="data" label="课次">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="日期">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="时间段">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="老师">
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label>
+                                    <template scope="scope"></template>
+                                </lb-table-column>
+                            </lb-table>
                             <div style="position:relative;height:400px" ui-jq="perfectScrollbar" class="ps-container ps-theme-default" data-ps-id="e63db38e-da45-326f-6fa2-6f4f8142f183">
-                                <table class="table table-striped table-hover">
-                                    <tbody></tbody>
-                                </table>
+                                <lb-table :data="getTableData" stripe></lb-table>
                                 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                                     <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                 </div>
@@ -60,7 +64,7 @@
                             <label class="control-label">后移天数</label>
                             <div>
                                 <div class="input-group w-sm">
-                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required="" v-model="lb_localdata.form.lb_dispatch_days">
+                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required v-model="lb_localdata.form.lb_dispatch_days">
                                     <span class="input-group-addon">天</span>
                                 </div>
                             </div>

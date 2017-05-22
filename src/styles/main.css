@@ -76,6 +76,11 @@ mark {
     background: #ff0
 }
 
+.clear a {
+    color: #fff;
+    font-weight: 700;
+}
+
 small {
     font-size: 80%
 }
@@ -219,6 +224,7 @@ td,
 th {
     padding: 0
 }
+
 .heighs {
     height: 39px;
     font-size: 18px;

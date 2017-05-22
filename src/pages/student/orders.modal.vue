@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div page-controller="student_orders" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -24,11 +24,11 @@
                                 </span>
                             </p>
                             <p class="m-t-xs">
-                                <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')">
-                                    <i class="icon-wallet"></i>现场缴费
+                                <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')" class="btn btn-xs btn-default ng-click-active">
+                                    <i class="icon-wallet "></i>现场缴费
                                 </a>
-                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')">
-                                    <i class="icon-note"></i>缴费登记
+                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')" class="btn btn-xs btn-default ng-click-active">
+                                    <i class="icon-note "></i>缴费登记
                                 </a>
                             </p>
                         </li>

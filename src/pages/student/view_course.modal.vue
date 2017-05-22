@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude="">
+        <div class="modal-content" modal-transclude>
             <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
@@ -26,42 +26,39 @@
                             </div>
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-striped b-t b-light">
-                                <thead>
-                                    <tr>
-                                        <th>学员</th>
-                                        <th>上课时间</th>
-                                        <th>班级</th>
-                                        <th>课程金额/老师</th>
-                                        <th>登记</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="item in grid.data" ng-if="!loading" class="ng-scope">
-                                        <td class="ng-binding">小兵</td>
-                                        <td class="ng-binding">
-                                            05-12 11:00
-                                            <span class="bg-info label ng-binding">周五</span>
-                                            <br>
-                                            <span class="badge bg-success ng-binding">1.00小时</span>
-                                        </td>
-                                        <td class="ng-binding">
-                                            班课
-                                            <br>
-                                            <span class="label bg-info ng-binding">3期班</span>
-                                        </td>
-                                        <td class="ng-binding">
-                                            陈佳木
-                                            <br>
-                                            <span class="label bg-info ng-binding">￥0.00</span>
-                                        </td>
-                                        <td class="ng-binding">
-                                            2017-05-12 09:05
-                                            <br> 陈佳木
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <lb-table :data="getTableData" stripe>
+                                <lb-table-column prop="data" label="学员">
+                                    <template scope="scope">小兵</template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="上课时间">
+                                    <template scope="scope">
+                                        05-12 11:00
+                                        <span class="bg-info label ng-binding">周五</span>
+                                        <br>
+                                        <span class="badge bg-success ng-binding">1.00小时</span>
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="班级">
+                                    <template scope="scope">
+                                        班课
+                                        <br>
+                                        <span class="label bg-info ng-binding">3期班</span>
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="课程金额/老师">
+                                    <template scope="scope">
+                                        陈佳木
+                                        <br>
+                                        <span class="label bg-info ng-binding">￥0.00</span>
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="登记">
+                                    <template scope="scope">
+                                        2017-05-12 09:05
+                                        <br> 陈佳木
+                                    </template>
+                                </lb-table-column>
+                            </lb-table>
                             <div class="grid-data-result"></div>
                         </div>
                         <div class="panel-footer">
