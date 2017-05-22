@@ -59,17 +59,17 @@
                                     <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.op_name">
                                 </div>
                             </div>
-                            <div class="form-group" ng-init="show_track_time=false">
+                            <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">
                                     <span class="text-danger">*</span>沟通日期
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime"  v-model="lb_localdata.form.track_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group" ng-init="need_next_time = false">
+                            <div class="form-group">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
                                     <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
                                         <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒

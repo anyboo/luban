@@ -63,7 +63,9 @@
                                             <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="item.name">
                                         </div>
                                         <div class="inline va-m m-l-xs ng-hide">
-                                            <a @click="lb_localdata.form.relations.splice(index, 1)"><i class="icon-close"></i></a>
+                                            <a @click="lb_localdata.form.relations.splice(index, 1)">
+                                                <i class="icon-close"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div>

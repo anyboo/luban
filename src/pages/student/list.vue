@@ -5,15 +5,22 @@
                 <div class="padder">
                     <div class="input-group w-full">
                         <div class="input-group">
-                            <div class="input-group-btn" ng-init=" filter.fields = [ {name:'student_name',value:'姓名'}, {name:'first_tel',value:'手机号'}, {name:'home_address',value:'住址'}, {name:'nickname',value:'英文名'}, {name:'card_no',value:'学员卡号'} ]; grid.search_key = 'student_name'; grid.search_value = ''; ">
-                                <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                    姓名
-                                    <span class="caret"></span>
-                                </button>
+                            <div class="input-group-btn">
+                                <lb-dropdowns menu-align="start" @command="handleCommand">
+                                    <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        {{lb_localdata.search.search_value}}
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                    <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                        <template v-for="item in lb_localdata.search.fields">
+                                            <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                        </template>
+                                    </lb-dropdown-menu>
+                                </lb-dropdowns>
                             </div>
-                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ui-keyup="{enter:'search()'}" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ui-keyup="{enter:'search()'}" placeholder="关键字" v-model="lb_localdata.form.lb_search_value">
                             <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
                         </div>
                     </div>
@@ -116,16 +123,22 @@
     </div>
 </template>
 <script>
+import lodash from 'lodash'
+import buffer from 'buffer'
+
 export default {
     name: 'list',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_grid_search_value': '',
+                'lb_search_value': '',
                 'lb_params_status': '',
                 'lb_view_mode': ''
             },
             'lb_params_status': [{
+                'value': '',
+                'text': '所有学员'
+            }, {
                 'value': '0',
                 'text': '未报读学员'
             }, {
@@ -188,15 +201,51 @@ export default {
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'student_name',
+                    'value': '姓名'
+                }, {
+                    'name': 'first_tel',
+                    'value': '手机号'
+                }, {
+                    'name': 'home_address',
+                    'value': '住址'
+                }, {
+                    'name': 'nickname',
+                    'value': '英文名'
+                }, {
+                    'name': 'card_no',
+                    'value': '学员卡号'
+                }],
+                'search_key': 'student_name',
+                'search_value': '姓名'
+            }
         }
         return {
             lb_localdata,
-            lb_tables:['student'],
+            lb_tables: ['student'],
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+        },
+        handleSearch() {
+            let filterObj = {}
+            filterObj['filter'] = {
+                'key': this.lb_localdata.search.search_key,
+                'value': this.lb_localdata.form.lb_search_value
+            }
+            let filterTxt = new buffer(JSON.stringify(filterObj)).toString('base64')
+            console.log(filterTxt)
+        }
+    }
 }
 </script>
