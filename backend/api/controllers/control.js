@@ -40,6 +40,7 @@ module.exports.all = function* all(name, next) {
             console.log(e)
         }
     }
+    console.log(findObj)
     var dbtable = wrap(db.get(name))
     let count = yield dbtable.count(findObj)
     let data = yield dbtable.find(findObj, {
