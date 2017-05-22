@@ -18,7 +18,7 @@
                                     </lb-dropdown-menu>
                                 </lb-dropdowns>
                             </div>
-                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" ui-keyup="{enter:'search()'}" placeholder="关键字" v-model="lb_localdata.form.lb_search_value">
+                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                             <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -91,7 +91,7 @@
                         <template scope="scope"></template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="住址">
-                        <template scope="scope">12eed</template>
+                        <template scope="scope">{{ scope.row.home_address }}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="学员归属">
                         <template scope="scope">
@@ -100,7 +100,7 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="档案备注">
                         <template scope="scope">
-                            <p ng-bind-html="item.note" class="ng-binding">ewf</p>
+                            <p class="ng-binding">{{ scope.row.note }}</p>
                         </template>
                     </lb-table-column>
                 </lb-table>
@@ -124,7 +124,7 @@
 </template>
 <script>
 import lodash from 'lodash'
-import base64 from 'base-64'
+import base64 from '~/api/base64.js'
 
 export default {
     name: 'list',
@@ -244,6 +244,7 @@ export default {
                 'value': this.lb_localdata.form.lb_search_value,
                 'type': 'like'
             })
+            console.log()
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)
         }

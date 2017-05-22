@@ -165,7 +165,7 @@
                                     <label class="control-label col-md-2 col-xs-12">备注:</label>
                                     <div class="col-md-10 col-xs-12">
                                         <div class="inline w-lg">
-                                            <textarea name="note" ng-model="student.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
+                                            <textarea name="note" v-model="lb_localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,8 @@ export default {
                 'home_address': '',
                 'school': '',
                 'grade': '',
-                'class': ''
+                'class': '',
+                'note': ''
             },
             'sex': [{
                 'value': '1',
