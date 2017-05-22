@@ -1,8 +1,8 @@
 <template>
     <div ui-view="">
-        <!-- <div class="bg-light lter b-b wrapper-md">
+        <div class="bg-light lter b-b wrapper-md">
             <h1 class="m-n font-thin h3">课程</h1>
-        </div> -->
+        </div>
         <div class="wrapper-xs" xo-rest="lessons" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="lesson" loading-container=".list-lesson" loading-text="正在加载课程列表..." empty-text="没有符合条件的课程!">
             <div class="panel panel-default">
                 <div class="row wrapper">
