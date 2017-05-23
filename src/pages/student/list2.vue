@@ -54,16 +54,16 @@
                 </div>
             </div>
             <div class="table-responsive m-t">
-                <lb-table :data="getTableData" stripe>
+                <lb-table :data="getTablesData()" stripe>
                     <lb-table-column prop="data" label="学生姓名">
                         <template scope="scope">
                             <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                 <i class="fa fa-female"></i>
-                            </span>zzzsz
+                            </span>{{ scope.row.student_name }}
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="联系电话">
-                        <template scope="scope">12345678765</template>
+                        <template scope="scope">{{ scope.row.first_tel }}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="所在班级">
                         <template scope="scope">
@@ -146,6 +146,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['student']
         }
     },
     computed: {},

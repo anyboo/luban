@@ -20,6 +20,8 @@
                             </span>
                         </div>
                     </div>
+
+
                     <lb-buttongroup :group-data="lb_localdata.lb_param_track_type" v-model="lb_localdata.form.lb_param_track_type"></lb-buttongroup>
                     <button class="btn btn-primary pull-right" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="add_track" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行咨询回访登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                         <i class="icon-plus"></i>跟踪回访登记
@@ -27,33 +29,33 @@
                 </div>
             </div>
             <div class="table-responsive m-t">
-                <lb-table :data="getTableData" stripe>
+                <lb-table :data="getTablesData()" stripe>
                     <lb-table-column width="100" prop="data" label="学员">
                         <template scope="scope">
                             <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
                                 <i class="fa fa-plus"></i>
                             </a>
                             <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>LLL
+                                <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>
                             </a>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="沟通内容">
                         <template scope="scope">
-                            <pre ng-bind-html="item.detail" class="ng-binding">4IUI5I5I</pre>
+                            <pre class="ng-binding">{{ scope.row.detail}}</pre>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="沟通方式">
-                        <template scope="scope">电话</template>
+                        <template scope="scope">{{ scope.row.track_way }}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="接洽人">
-                        <template scope="scope">陈佳木</template>
+                        <template scope="scope">{{scope.row.op_name}}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="沟通时间">
-                        <template scope="scope">2017-05-08 15:16</template>
+                        <template scope="scope">{{scope.row.track_time}}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="类型">
-                        <template scope="scope"></template>
+                        <template scope="scope">{{scope.row.track_type}}</template>
                     </lb-table-column>
                 </lb-table>
                 <div class="wrapper" style="height:80px"></div>
@@ -105,6 +107,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['inquiry'],
         }
     },
     computed: {},

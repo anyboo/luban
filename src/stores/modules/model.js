@@ -5,6 +5,9 @@ const state = {
     models: {
         student: {
             data: []
+        },
+        inquiry: {
+            data: []
         }
     },
     currentModel: {}

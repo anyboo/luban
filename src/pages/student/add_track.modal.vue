@@ -50,11 +50,11 @@
                                     <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
-                                    <textarea name="note" ng-model="inquiry.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required></textarea>
+                                    <textarea name="note" v-model="lb_localdata.form.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-3 col-md-2 control-label">接待员</label>
+                                <label class="col-xs-3 col-md-2 control-label"></label>
                                 <div class="col-xs-9 col-md-5">
                                     <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.op_name">
                                 </div>
@@ -100,7 +100,8 @@ export default {
                 'track_way': '',
                 'op_name': '',
                 'track_time': '',
-                'next_time': ''
+                'next_time': '',
+                'detail': ''
             },
             'track_type': [{
                 'value': '0',

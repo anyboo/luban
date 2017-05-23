@@ -27,12 +27,12 @@
             </div>
         </div>
         <div class="table-responsive">
-            <lb-table :data="getTableData" stripe>
+            <lb-table :data="getTablesData()" stripe>
                 <lb-table-column prop="data" label="学员">
-                    <template scope="scope">威锋</template>
+                    <template scope="scope">{{ scope.row.student_name }}</template>
                 </lb-table-column>
                 <lb-table-column prop="data" label="联系电话">
-                    <template scope="scope">13605557745</template>
+                    <template scope="scope">{{ scope.row.first_tel }}</template>
                 </lb-table-column>
                 <lb-table-column prop="data" label="出生日期">
                     <template scope="scope">1970-5-13</template>
@@ -88,6 +88,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['student']
         }
     },
     computed: {},

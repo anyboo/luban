@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="table-responsive m-t">
-            <lb-table :data="getTableData" stripe>
+            <lb-table :data="getTablesData()" stripe>
                 <lb-table-column width="90" prop="data" label="操作">
                     <template scope="scope">
                         <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
@@ -43,13 +43,13 @@
                         <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895">
                             <span ng-bind-html="item.sex|sex:0" class="ng-binding">
                                 <i class="fa fa-female"></i>
-                            </span>zzz
+                            </span>{{ scope.row.student_name }}
                         </a>
                         <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
                     </template>
                 </lb-table-column>
                 <lb-table-column width="100" prop="data" label="联系电话">
-                    <template scope="scope">12345678645</template>
+                    <template scope="scope">{{ scope.row.first_tel }}</template>
                 </lb-table-column>
                 <lb-table-column width="100" prop="data" label="学员归属">
                     <template scope="scope">
@@ -136,6 +136,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['student']
         }
     },
     computed: {},
