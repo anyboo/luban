@@ -19,17 +19,26 @@
                         </div>
                         <div class="col-xs-10">
                             <div class="input-group w-full">
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                            姓名
-                                            <span class="caret"></span>
-                                        </button>
+                                <div class="input-group w-full">
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <lb-dropdowns menu-align="start" @command="handleCommand">
+                                                <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                    {{lb_localdata.search.search_value}}
+                                                    <span class="caret"></span>
+                                                </lb-dropdown-button>
+                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                    <template v-for="item in lb_localdata.search.fields">
+                                                        <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                    </template>
+                                                </lb-dropdown-menu>
+                                            </lb-dropdowns>
+                                        </div>
+                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                        <span class="input-group-btn">
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                            </span>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
-                                    </span>
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
@@ -54,7 +63,6 @@
                                         </a>
                                     </div>
                                     <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
-                                   
                                     </div>
                                 </div>
                             </div>
@@ -62,9 +70,13 @@
                     </div>
                     <div class="table-responsive ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column width="30" prop="data" label>
+
+
+
+                            <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
-                                    <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
+                                 <!-- <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i> -->
+                                 <i class="fa-circle-o"></i>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
@@ -93,6 +105,9 @@
         </div>
     </div>
 </template>
+<style>
+
+</style>
 <script>
 import lodash from 'lodash'
 import base64 from '~/api/base64.js'
@@ -124,7 +139,27 @@ export default {
                 'value': 'list',
                 'iclass': 'fa fa-list',
                 'text': '列表'
-            }]
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'student_name',
+                    'value': '姓名'
+                }, {
+                    'name': 'first_tel',
+                    'value': '手机号'
+                }, {
+                    'name': 'home_address',
+                    'value': '住址'
+                }, {
+                    'name': 'nickname',
+                    'value': '英文名'
+                }, {
+                    'name': 'card_no',
+                    'value': '学员卡号'
+                }],
+                'search_key': 'student_name',
+                'search_value': '姓名'
+            }
         }
         return {
             lb_localdata,
@@ -135,6 +170,13 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+        },
+
         handleSearch() {
             let filterObj = []
             let status = this.lb_localdata.form.lb_params_status.trim()
