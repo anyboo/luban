@@ -16,29 +16,37 @@
                         <div class="input-group w-full">
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                        姓名
-                                        <span class="caret"></span>
-                                    </button>
+                                    <lb-dropdowns menu-align="start" @command="handleCommand">
+                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                            {{lb_localdata.search.search_value}}
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                        <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <template v-for="item in lb_localdata.search.fields">
+                                                <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                            </template>
+                                        </lb-dropdown-menu>
+                                    </lb-dropdowns>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
-                                </span>
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                            </span>
                             </div>
                         </div>
                     </div>
                     <div class="table-responsive m-t">
-                        <lb-table :data="getTableData" stripe>
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>照理
+                                    <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="联系电话">
-                                <template scope="scope">12368454877</template>
+                                <template scope="scope">{{ scope.row.first_tel }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="建档日期">
                                 <template scope="scope">2017-05-13</template>
@@ -72,12 +80,14 @@
     </div>
 </template>
 <script>
+import lodash from 'lodash'
+import base64 from '~/api/base64.js'
 export default {
     name: 'trash',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_grid_search_value': ''
+                'lb_search_value': ''
             },
             'search': {
                 'fields': [{
@@ -94,15 +104,37 @@ export default {
                     'value': '英文名'
                 }],
                 'search_key': 'student_name',
-                'search_value': ''
+                'search_value': '姓名'
             }
         }
         return {
             lb_localdata,
+            lb_tables: ['student']
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+        },
+
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>
