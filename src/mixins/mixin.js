@@ -1,9 +1,11 @@
 import * as types from '~/stores/modules/mutation-types'
+import lodash from 'lodash'
 
 export default {
     created: function() {
         this.modalsType = types.APPEND_API
         this._id = ''
+        this.lodash = lodash
     },
     mounted: function() {
         this.handleGetTable()

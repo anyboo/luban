@@ -7,6 +7,7 @@ import {
     Dropdown,
     DropdownMenu,
     DropdownItem,
+    Upload
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
@@ -15,6 +16,7 @@ TableColumn.name = 'lb-table-column'
 Dropdown.name = 'lb-dropdowns'
 DropdownMenu.name = 'lb-dropdown-menu'
 DropdownItem.name = 'lb-dropdown-item'
+Upload.name = 'lb-upload'
 const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
@@ -24,7 +26,8 @@ const components = [
     buttongroup,
     DatePicker,
     Table,
-    TableColumn
+    TableColumn,
+    Upload
 ]
 
 const install = function(Vue) {
@@ -42,5 +45,6 @@ export default {
     buttongroup,
     DatePicker,
     Table,
-    TableColumn
+    TableColumn,
+    Upload
 }
