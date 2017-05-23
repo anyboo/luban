@@ -20,9 +20,7 @@
                             </span>
                         </div>
                     </div>
-
-
-                    <lb-buttongroup :group-data="lb_localdata.lb_param_track_type" v-model="lb_localdata.form.lb_param_track_type"></lb-buttongroup>
+                    <lb-buttongroup :group-data="lb_localdata.lb_param_track_type" v-model="lb_localdata.form.lb_param_track_type" @input="handleSearch"></lb-buttongroup>
                     <button class="btn btn-primary pull-right" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="add_track" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行咨询回访登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                         <i class="icon-plus"></i>跟踪回访登记
                     </button>
@@ -76,6 +74,7 @@
     </div>
 </template>
 <script>
+import base64 from '~/api/base64.js'
 export default {
     name: 'tracks',
     data() {
@@ -112,6 +111,29 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleSearch() {
+            let filterObj = []
+            // let search_value = this.lb_localdata.form.lb_search_value.trim()
+            // if (search_value.length > 0) {
+            //     filterObj.push({
+            //         'key': this.lb_localdata.search.search_key,
+            //         'value': search_value,
+            //         'type': 'like'
+            //     })
+            // }
+            let status = this.lb_localdata.form.lb_param_track_type.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'track_type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>
