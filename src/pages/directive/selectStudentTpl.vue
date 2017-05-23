@@ -32,12 +32,36 @@
                                     </span>
                                 </div>
                             </div>
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                             <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
                         </div>
                     </div>
-                    <div class="table-responsive ng-scope" ng-if="view_mode == 'list'">
-                        <lb-table :data="getTableData" stripe>
+                    <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'image'">
+                        <template v-for="item in getTablesData()">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
+                                <div class="bg-white b-a r-2x list-student-item box-shadow">
+                                    <div class="face ng-scope">
+                                        <a href="#/student/64267">
+                                            <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; "><img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height=""></div>
+                                        </a>
+                                    </div>
+                                    <div class="name m-t">
+                                        <a class="link ng-binding">
+                                            <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
+                                </span>{{ item.student_name }}
+                                            <span v-if="item.nickname != ''" class="ng-binding ng-scope">{{ item.nickname }}</span>
+                                        </a>
+                                    </div>
+                                    <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="table-responsive ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column width="30" prop="data" label>
                                 <template scope="scope">
                                     <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i>
@@ -45,16 +69,18 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <span class="ng-binding">录好</span>
+                                    <span class="ng-binding">{{ scope.row.student_name }}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="性别">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.sex|sex:1" class="ng-binding">男</span>
+                                    <span ng-bind-html="item.sex|sex:1" class="ng-binding">{{ scope.row.sex }}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="英文名">
-                                <template scope="scope"></template>
+                                <template scope="scope">
+                                    {{scope.row.nickname}}
+                                </template>
                             </lb-table-column>
                         </lb-table>
                     </div>
@@ -68,6 +94,9 @@
     </div>
 </template>
 <script>
+import lodash from 'lodash'
+import base64 from '~/api/base64.js'
+import makeimage from '~/api/makeImage.js'
 export default {
     name: 'selectStudentTpl',
     data() {
@@ -75,9 +104,12 @@ export default {
             'form': {
                 'lb_grid_search_value': '',
                 'lb_params_status': '',
-                'lb_view_mode': ''
+                'lb_view_mode': 'list'
             },
             'lb_params_status': [{
+                'value': '',
+                'text': '所有学员'
+            }, {
                 'value': '0',
                 'text': '未报读'
             }, {
@@ -96,10 +128,26 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['student'],
+            makeImage: makeimage
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleSearch() {
+            let filterObj = []
+            let status = this.lb_localdata.form.lb_params_status.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'track_type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>

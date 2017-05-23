@@ -28,7 +28,7 @@
             </div>
             <div class="col-xs-12 col-md-8 m-t">
                 <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                    <i class="fa fa-filter"></i>过滤
+                    <i class="fa fa-filter"></i>过滤aaa
                 </button>
                 <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                 <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
