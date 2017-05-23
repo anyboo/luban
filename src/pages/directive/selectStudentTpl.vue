@@ -170,6 +170,14 @@ export default {
 
         handleSearch() {
             let filterObj = []
+            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
             let status = this.lb_localdata.form.lb_params_status.trim()
             if (status.length > 0) {
                 filterObj.push({
