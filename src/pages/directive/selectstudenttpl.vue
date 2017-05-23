@@ -13,11 +13,7 @@
             <div class="modal-body ng-scope">
                 <div xo-rest="students" xo-rest-ctrl="modal_select_student" xo-rest-grid="{maxsize:5,params:vm.params}" loading-container=".list-student" loading-text="正在加载学员..." empty-text="没有符合条件的学员!" class="ng-scope">
                     <div class="row wrapper no-gutter bg-light">
-                        <div class="col-xs-2">
-                            <p>筛选</p>
-                            <button class="btn btn-default btn-xs" ng-class="{'btn-info':show_en_name,'active':show_en_name}" ng-click="toggle_en_name()" ui-toggle-class="btn-info">英文名</button>
-                        </div>
-                        <div class="col-xs-10">
+                        <div class="col-xs-12">
                             <div class="input-group w-full">
                                 <div class="input-group w-full">
                                     <div class="input-group">
@@ -36,47 +32,45 @@
                                         </div>
                                         <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                                         <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                            </span>
+                                            <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                             <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
                         </div>
                     </div>
-                    <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'image'">
-                        <template v-for="item in getTablesData()">
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
-                                <div class="bg-white b-a r-2x list-student-item box-shadow">
-                                    <div class="face ng-scope">
-                                        <a href="#/student/64267">
-                                            <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; "><img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height=""></div>
-                                        </a>
-                                    </div>
-                                    <div class="name m-t">
-                                        <a class="link ng-binding">
+                    <div class="wrapper list-student bg-light lter">
+                        <div class="row ng-scope text-center " v-if="lb_localdata.form.lb_view_mode == 'image'">
+                            <template v-for="item in getTablesData()">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b ng-scope">
+                                    <div class="bg-white b-a r-2x list-student-item box-shadow">
+                                        <div class="face ng-scope ">
+                                            <a href="#/student/64267">
+                                                <div class="avatar-wrapper adres-css " style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px;">
+                                                    <img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="name m-t">
                                             <span class="ng-binding">
-                                    <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
-                                </span>{{ item.student_name }}
-                                            <span v-if="item.nickname != ''" class="ng-binding ng-scope">{{ item.nickname }}</span>
-                                        </a>
-                                    </div>
-                                    <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
+                                                <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
+                                            </span>{{ item.student_name }}
+                                        </div>
+                                        <div class="tel m-t"><span class="ng-binding">{{ item.nickname }}&nbsp;</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
                     </div>
-                    <div class="table-responsive ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
+                    <div class="table-responsive ng-scope " v-if="lb_localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
-
-
-
                             <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
-                                 <!-- <i class="fa fa-circle-o" ng-class="{'fa-circle-o':!vm.is_selected(item),'fa-check-circle':vm.is_selected(item)}"></i> -->
-                                 <i class="fa-circle-o"></i>
+                                    <input type="radio" name="selectid">
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
@@ -105,9 +99,6 @@
         </div>
     </div>
 </template>
-<style>
-
-</style>
 <script>
 import lodash from 'lodash'
 import base64 from '~/api/base64.js'
