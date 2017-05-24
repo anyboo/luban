@@ -31,7 +31,6 @@ import page30 from '~/pages/lesson/contracts/lesson_delete.modal.vue'
 import page31 from '~/pages/lesson/lesson/cate.vue'
 import page32 from '~/pages/lesson/lesson/edit_lesson.modal.vue'
 import page33 from '~/pages/lesson/sclasses/new_sclass.modal.vue'
-import page34 from '~/pages/main/photo.modal.vue'
 import page35 from '~/pages/student/edit_photo.modal.vue'
 import page36 from '~/pages/student/order.modal.vue'
 import page37 from '~/pages/student/add_track.modal.vue'
@@ -56,7 +55,6 @@ import page55 from '~/pages/student/edit_contact.modal.vue'
 import page56 from '~/pages/system/dict/dict_items.vue'
 import page57 from '~/pages/system/groups.vue'
 import page58 from '~/pages/system/employee/employee_add.modal.vue'
-import page59 from '~/pages/system/employee/photo.modal.vue'
 import page60 from '~/pages/system/employee/employee_edit.modal.vue'
 import page61 from '~/pages/system/employee/lock.modal.vue'
 import page62 from '~/pages/system/employee/reset_account.modal.vue'
@@ -99,7 +97,7 @@ pages['lb-lessondeletemodal'] = page30
 pages['lb-cate'] = page31
 pages['lb-editlessonmodal'] = page32
 pages['lb-newsclassmodal'] = page33
-pages['lb-photomodal'] = page34
+pages['lb-photomodal'] = page35
 pages['lb-editphotomodal'] = page35
 pages['lb-ordermodal'] = page36
 pages['lb-addtrackmodal'] = page37
@@ -124,7 +122,6 @@ pages['lb-editcontactmodal'] = page55
 pages['lb-dictitems'] = page56
 pages['lb-groups'] = page57
 pages['lb-employeeaddmodal'] = page58
-pages['lb-photomodal'] = page59
 pages['lb-employeeeditmodal'] = page60
 pages['lb-lockmodal'] = page61
 pages['lb-resetaccountmodal'] = page62

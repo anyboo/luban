@@ -3,6 +3,8 @@ import lodash from 'lodash'
 import schema from 'async-validate'
 import schemaall from 'async-validate/plugin/all'
 import moment from 'moment'
+import makeimage from '~/api/makeImage.js'
+import base64 from '~/api/base64.js'
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -27,6 +29,8 @@ export default {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = lodash
+        this.makeImage = makeimage
+        this.base64 = base64
     },
     mounted: function() {
         this.handleGetTable()
@@ -56,8 +60,7 @@ export default {
         fromNow(datestring) {
             let dateTemp = moment(datestring)
             let fromNowStr = ''
-            if (dateTemp.isValid())
-            {
+            if (dateTemp.isValid()) {
                 fromNowStr = dateTemp.fromNow()
             }
             return fromNowStr
@@ -116,7 +119,7 @@ export default {
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
-                if (vm.lb_localdata.validator&& vm.lb_localdata.validator.errorStatus) {
+                if (vm.lb_localdata.validator && vm.lb_localdata.validator.errorStatus) {
                     reject()
                     return
                 }

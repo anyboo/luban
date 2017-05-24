@@ -35,15 +35,6 @@
                 <button class="btn btn-default ng-isolate-scope" ui-per="student.export" export="students" export-params="params">
                     <i class="glyphicon glyphicon-export"></i>导出Excel
                 </button>
-                <div id="fct-students" style="display:none;">
-                    <form name="export_form_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                        <input type="hidden" name="X-XSRF-TOKEN" value="30bed37d3e9766e5dc6b3b2b3ee823e0">
-                        <input type="hidden" name="resource" value="students">
-                        <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" class="ng-scope">
-                        <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                        <input type="hidden" name="pagesize" value="12" ng-repeat="(key,value) in params" class="ng-scope">
-                    </form>
-                </div>
                 <a @click="lbShowdialog($event,'lb-trash')">
                     <i class="icon-lock"></i>已封存档案
                 </a>
@@ -68,7 +59,7 @@
                                 </a>
                             </div>
                             <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
-                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" class="pull-right">
+                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="item" class="pull-right">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                         <i class="fa fa-cog ng-scope"></i>
                                         <span class="caret"></span>
@@ -150,10 +141,6 @@
     </div>
 </template>
 <script>
-import lodash from 'lodash'
-import base64 from '~/api/base64.js'
-import makeimage from '~/api/makeImage.js'
-
 export default {
     name: 'list',
     data() {
@@ -254,7 +241,6 @@ export default {
         return {
             lb_localdata,
             lb_tables: ['student'],
-            makeImage: makeimage
         }
     },
     computed: {},
@@ -262,7 +248,7 @@ export default {
     methods: {
         handleCommand(value) {
             this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
                 'name': value
             }).value
         },
@@ -285,7 +271,7 @@ export default {
                 })
             }
 
-            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)
         }
     }

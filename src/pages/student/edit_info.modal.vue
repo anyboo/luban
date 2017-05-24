@@ -123,7 +123,6 @@
     </div>
 </template>
 <script>
-import lodash from 'lodash'
 export default {
     name: 'edit_info',
     data() {
@@ -177,14 +176,14 @@ export default {
     },
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-        this.lb_localdata.form = lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
     },
     computed: {},
     watch: {},
     methods: {
         handleClick() {
             this.handleSave().then(() => {
-                this.$store.state.dialogs.dailogdata = lodash.assign(this.$store.state.dialogs.dailogdata, this.lb_localdata.form)
+                this.$store.state.dialogs.dailogdata = this.lodash.assign(this.$store.state.dialogs.dailogdata, this.lb_localdata.form)
                 this.lbClosedialog()
             })
         }

@@ -7,7 +7,8 @@ import {
     Dropdown,
     DropdownMenu,
     DropdownItem,
-    Upload
+    Upload,
+    Message
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
@@ -36,6 +37,7 @@ const install = function(Vue) {
     components.map(component => {
         Vue.component(component.name, component)
     })
+    Vue.prototype.$message = Message
 }
 
 export default {

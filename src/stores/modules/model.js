@@ -8,6 +8,9 @@ const state = {
         },
         inquiry: {
             data: []
+        },
+        employee: {
+            data: []
         }
     },
     currentModel: {}
