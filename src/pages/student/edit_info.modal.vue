@@ -15,19 +15,19 @@
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-pristine ng-valid ng-valid-required">
                         <div class="form-group ng-scope">
-                            <label class="col-xs-12 col-md-2 control-label">
-                                <span class="text-danger">*</span>姓名:
-                            </label>
-                            <div class="col-xs-12 col-md-10">
-                                <div class="inline va-m w-sm">
-                                    <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="lb_localdata.form.student_name" @change="validate('student_name')">
-                                </div>
-                                <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
-                                <div class="error ng-hide" v-if="lb_localdata.validator.fields.student_name.errorStatus">
-                                    <span class="text-warning">学员姓名必须填写</span>
+                                <label class="col-xs-12 col-md-2 control-label">
+                                    <span class="text-danger">*</span>姓名:
+                                </label>
+                                <div class="col-xs-12 col-md-10">
+                                    <div class="inline va-m w-sm">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="lb_localdata.form.student_name" @change="validate('student_name')">
+                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
+                                    <div class="error ng-hide" v-if="lb_localdata.validator.fields.student_name.errorStatus">
+                                        <span class="text-warning">学员姓名必须填写</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">

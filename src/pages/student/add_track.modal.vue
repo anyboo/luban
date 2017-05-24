@@ -27,7 +27,7 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.track_way">
+                                        <input type="text" name="detail" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.detail.errorStatus}" v-model.trim.lazy="lb_localdata.form.detail" @change="validate('detail')">
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleCommand">
                                                 <lb-dropdown-button button-class="btn btn-default">
@@ -50,32 +50,32 @@
                                     <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
-                                    <textarea name="note" v-model="lb_localdata.form.detail" rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required></textarea>
+                                    <textarea name="track_way" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.track_way.errorStatus}" v-model.trim.lazy="lb_localdata.form.track_way" @change="validate('track_way')">></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-3 col-md-2 control-label"></label>
+                                <label class="col-xs-3 col-md-2 control-label">接洽人</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" placeholder="输入接待员姓名" required v-model="lb_localdata.form.op_name">
+                                    <input type="text" name="op_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.op_name.errorStatus}" placeholder="请输入接洽人的名字" v-model.trim.lazy="lb_localdata.form.op_name" @change="validate('op_name')">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>沟通日期
+                                    <span class="text-danger"></span>沟通日期
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.track_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.track_time" ></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
                                     <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
-                                        <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}" ng-class="{'fa-square-o':!need_next_time,'fa-check-square-o':need_next_time}"></i>下次回访提醒
+                                        <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
-                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time"></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time" ></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,42 @@ export default {
             }, {
                 'value': '1',
                 'text': '售后'
-            }]
+            }],
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'detail': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'track_way': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'op_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'track_time': {
+                        'type': 'date',
+                       
+                    },
+                    'next_time': {
+                        'type': 'date',
+                    }
+                }
+            },
         }
         return {
             lb_localdata,
@@ -134,4 +169,3 @@ export default {
     }
 }
 </script>
-
