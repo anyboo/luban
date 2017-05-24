@@ -6,10 +6,15 @@
 <script>
 export default {
     name: 'LbButtongroupItem',
-    props: ['iclass', 'itext', 'ivalue','iactive'],
+    props: ['iclass', 'itext', 'ivalue', 'iactive'],
     data() {
         return {
-            active: this.iactive
+            
+        }
+    },
+    computed: {
+        active() {
+            return this.iactive == this.ivalue
         }
     },
     methods: {
@@ -29,7 +34,6 @@ export default {
             }
             this.$emit('selected', this.ivalue)
         }
-    },
-    computed: {},
+    }
 }
 </script>

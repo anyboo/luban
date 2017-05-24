@@ -1,8 +1,7 @@
 <template>
     <div class="btn-group m-l-xs ng-scope">
-        <input type="hidden" :value="groupvalue" :name="name" :id="name" />
         <template v-for="item in groupData">
-            <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' :iactive='item.value==value' @selected="handleSelected"></lb-buttongroup-item>
+            <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' :iactive='value' @selected="handleSelected"></lb-buttongroup-item>
         </template>
     </div>
 </template>
@@ -14,7 +13,7 @@ export default {
     props: ['groupData', 'name', 'value'],
     data() {
         return {
-            groupvalue: this.value
+
         }
     },
     components: {
@@ -22,7 +21,6 @@ export default {
     },
     methods: {
         handleSelected(value) {
-            this.groupvalue = value
             this.$emit('input', value)
         }
     },

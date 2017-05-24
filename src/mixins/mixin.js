@@ -4,7 +4,7 @@ import schema from 'async-validate'
 import schemaall from 'async-validate/plugin/all'
 import moment from 'moment'
 
-moment.lang('en', {
+moment.updateLocale('en', {
     relativeTime: {
         future: 'in %s',
         past: '%s',
