@@ -85,10 +85,9 @@ export default {
         handleSave() {
             let vm = this
             let modalform = vm.lb_localdata.form
-            console.log(modalform, vm.modalsType)
-
             return new Promise((resolve, reject) => {
                 vm.validate()
+                vm.changeFormDateTime(modalform)
                 console.log(vm.lb_localdata.validator.errorStatus)
                 if (vm.lb_localdata.validator.errorStatus) {
                     reject()
@@ -120,7 +119,19 @@ export default {
                         console.log(error, 'Promise error')
                     })
                 }
+                console.log(modalform, vm.modalsType)
             })
+        },
+        changeFormDateTime(modalform) {
+            let vm = this
+            let descriptor = vm.lb_localdata.validator
+            for (var item in descriptor.fields) {
+                if (descriptor.fields[item].type == 'date') {
+                    let dateValue = modalform[item]
+                    let dataTemp = new Date(dateValue)
+                    modalform[item] = dataTemp.getTime()
+                }
+            }
         },
         handleValidateErrors(errors, filed) {
             let vm = this

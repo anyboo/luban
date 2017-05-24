@@ -223,6 +223,9 @@ export default {
                         'len': 11,
                         'required': true,
                         'errorStatus': false
+                    },
+                    'birth': {
+                        'type': 'date',
                     }
                 }
             },
