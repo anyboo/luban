@@ -14,18 +14,20 @@
                 </div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-pristine ng-valid ng-valid-required">
-                        <div class="form-group">
-                            <label class="col-xs-12 col-md-2 control-label">姓名:</label>
-                            <div class="col-xs-12 col-md-10">
-                                <div class="inline va-m w-sm">
-                                    <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" required v-model="lb_localdata.form.student_name">
-                                </div>
-                                <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
-                                <div class="error ng-hide" ng-show="form1.student_name.$dirty && form1.student_name.$invalid && form1.submitted">
-                                    <span class="text-warning" ng-show="form1.student_name.$error.required">学员姓名必须填写</span>
+                        <div class="form-group ng-scope">
+                                <label class="col-xs-12 col-md-2 control-label">
+                                    <span class="text-danger">*</span>姓名:
+                                </label>
+                                <div class="col-xs-12 col-md-10">
+                                    <div class="inline va-m w-sm">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="lb_localdata.form.student_name" @change="validate('student_name')">
+                                    </div>
+                                    <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
+                                    <div class="error ng-hide" v-if="lb_localdata.validator.fields.student_name.errorStatus">
+                                        <span class="text-warning">学员姓名必须填写</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">
@@ -149,7 +151,22 @@ export default {
                 'value': '0',
                 'iclass': 'fa fa-question-circle',
                 'text': '待确定'
-            }]
+            }],
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'student_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+                    
+                }
+            },
         }
         return {
             lb_localdata,
