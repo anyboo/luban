@@ -111,7 +111,7 @@ export default {
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
-                if (vm.lb_localdata.validator&& vm.lb_localdata.validato.errorStatus) {
+                if (vm.lb_localdata.validator&& vm.lb_localdata.validator.errorStatus) {
                     reject()
                     return
                 }
