@@ -2,6 +2,25 @@ import * as types from '~/stores/modules/mutation-types'
 import lodash from 'lodash'
 import schema from 'async-validate'
 import schemaall from 'async-validate/plugin/all'
+import moment from 'moment'
+
+moment.lang('en', {
+    relativeTime: {
+        future: 'in %s',
+        past: '%s ago',
+        s: 'seconds',
+        m: 'a minute',
+        mm: '%d minutes',
+        h: 'an hour',
+        hh: '%d hours',
+        d: 'a day',
+        dd: '%d天',
+        M: 'a month',
+        MM: '%d months',
+        y: 'a year',
+        yy: '%d岁'
+    }
+})
 
 export default {
     created: function() {
@@ -34,6 +53,10 @@ export default {
         }
     },
     methods: {
+        fromNow(datestring) {
+            console.log(datestring, moment(datestring).fromNow())
+            return moment(datestring).fromNow(true)
+        },
         setEditModle(id) {
             this.modalsType = types.EDIT_API
             this._id = id
@@ -88,8 +111,7 @@ export default {
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
-                console.log(vm.lb_localdata.validator.errorStatus)
-                if (vm.lb_localdata.validator.errorStatus) {
+                if (vm.lb_localdata.validator&& vm.lb_localdata.validato.errorStatus) {
                     reject()
                     return
                 }
@@ -125,11 +147,13 @@ export default {
         changeFormDateTime(modalform) {
             let vm = this
             let descriptor = vm.lb_localdata.validator
-            for (var item in descriptor.fields) {
-                if (descriptor.fields[item].type == 'date') {
-                    let dateValue = modalform[item]
-                    let dataTemp = new Date(dateValue)
-                    modalform[item] = dataTemp.getTime()
+            if (descriptor) {
+                for (var item in descriptor.fields) {
+                    if (descriptor.fields[item].type == 'date') {
+                        let dateValue = modalform[item]
+                        let dataTemp = new Date(dateValue)
+                        modalform[item] = dataTemp.getTime()
+                    }
                 }
             }
         },
@@ -149,22 +173,26 @@ export default {
             let vm = this
             let modalform = vm.lb_localdata.form
             let descriptor = vm.lb_localdata.validator
-            let validator = new schema(descriptor)
-            schema.plugin(schemaall)
-            vm.lb_localdata.validator.errorStatus = false
-            if (filed) {
-                descriptor.fields[filed].errorStatus = false
-            } else {
-                for (var item in descriptor.fields) {
-                    descriptor.fields[item].errorStatus = false
+
+            if (descriptor) {
+                vm.lb_localdata.validator.errorStatus = false
+                if (filed) {
+                    descriptor.fields[filed].errorStatus = false
+                } else {
+                    for (var item in descriptor.fields) {
+                        descriptor.fields[item].errorStatus = false
+                    }
                 }
+                let validator = new schema(descriptor)
+                schema.plugin(schemaall)
+                validator.validate(modalform, (errors, fields) => {
+                    if (fields && fields.errors && fields.errors.length > 0) {
+                        vm.lb_localdata.validator.errorStatus = true
+                        return vm.handleValidateErrors(fields.fields, filed)
+                    }
+                })
             }
-            validator.validate(modalform, (errors, fields) => {
-                if (fields && fields.errors && fields.errors.length > 0) {
-                    vm.lb_localdata.validator.errorStatus = true
-                    return vm.handleValidateErrors(fields.fields, filed)
-                }
-            })
+
         }
     }
 }
