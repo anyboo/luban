@@ -7,7 +7,7 @@ import moment from 'moment'
 moment.lang('en', {
     relativeTime: {
         future: 'in %s',
-        past: '%s ago',
+        past: '%s',
         s: 'seconds',
         m: 'a minute',
         mm: '%d minutes',
@@ -54,8 +54,13 @@ export default {
     },
     methods: {
         fromNow(datestring) {
-            console.log(datestring, moment(datestring).fromNow())
-            return moment(datestring).fromNow(true)
+            let dateTemp = moment(datestring)
+            let fromNowStr = ''
+            if (dateTemp.isValid())
+            {
+                fromNowStr = dateTemp.fromNow()
+            }
+            return fromNowStr
         },
         setEditModle(id) {
             this.modalsType = types.EDIT_API
