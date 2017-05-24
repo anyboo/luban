@@ -18,11 +18,11 @@
                                 </label>
                                 <div class="col-xs-12 col-md-10">
                                     <div class="inline va-m w-sm">
-                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="输入学员姓名" required v-model="lb_localdata.form.student_name">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="lb_localdata.form.student_name" @change="validate('student_name')">
                                     </div>
                                     <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
-                                    <div class="error ng-hide" ng-show="form1.student_name.$dirty && form1.student_name.$invalid && form1.submitted">
-                                        <span class="text-warning" ng-show="form1.student_name.$error.required">学员姓名必须填写</span>
+                                    <div class="error ng-hide" v-if="lb_localdata.validator.fields.student_name.errorStatus">
+                                        <span class="text-warning">学员姓名必须填写</span>
                                     </div>
                                 </div>
                             </div>
@@ -31,21 +31,22 @@
                                     <span class="text-danger">*</span>联系方式:
                                 </label>
                                 <div class="col-xs-12 col-md-10">
-                                    <div class="contact-list m-t-xs ng-scope ng-hide">
-                                        <div class="inline va-m w-sm">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="输入手机号" v-model="lb_localdata.form.first_tel">
-                                        </div>
-                                        <div class="inline va-m w-xs m-l-xs">
-                                            <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.first_rel_rel">
-                                                <option value selected>关系</option>
-                                                <option value="0">本人</option>
-                                                <option value="1">爸爸</option>
-                                                <option value="2">妈妈</option>
-                                            </select>
-                                        </div>
-                                        <div class="inline va-m w-xs m-l-xs" ng-hide="item.name=='本人'">
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="lb_localdata.form.first_rel_name">
-                                        </div>
+                                    <div class="inline va-m w-sm">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.first_tel.errorStatus}" placeholder="输入手机号" v-model.trim.lazy="lb_localdata.form.first_tel" @change="validate('first_tel')">
+                                    </div>
+                                    <div class="inline va-m w-xs m-l-xs">
+                                        <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.first_rel_rel">
+                                            <option value selected>关系</option>
+                                            <option value="0">本人</option>
+                                            <option value="1">爸爸</option>
+                                            <option value="2">妈妈</option>
+                                        </select>
+                                    </div>
+                                    <div class="inline va-m w-xs m-l-xs" ng-hide="item.name=='本人'">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="lb_localdata.form.first_rel_name">
+                                    </div>
+                                    <div class="error ng-hide" v-if="lb_localdata.validator.fields.first_tel.errorStatus">
+                                        <span class="text-warning">手机号必须填写且为11位</span>
                                     </div>
                                     <div class="contact-list m-t-xs ng-scope ng-hide" v-for="item,index in lb_localdata.form.relations">
                                         <div class="inline va-m w-sm">
@@ -77,7 +78,7 @@
                             </div>
                             <div class="form-group ng-scope">
                                 <label class="control-label col-sm-2 col-xs-12">
-                                    <span class="text-danger">*</span>来源渠道:
+                                    来源渠道:
                                 </label>
                                 <div class="col-md-10 col-xs-12">
                                     <lb-buttongroup :group-data="lb_localdata.track_from" v-model="lb_localdata.form.track_from"></lb-buttongroup>
@@ -191,12 +192,12 @@ export default {
         let lb_localdata = {
             'form': {
                 'student_name': '',
-                'sex': '',
+                'sex': '0',
                 'first_tel': '',
                 'first_rel_rel': '',
                 'first_rel_name': '',
                 'relations': [],
-                'track_from': '',
+                'track_from': '其他',
                 'nickname': '',
                 'birth': '',
                 'home_address': '',
@@ -204,6 +205,26 @@ export default {
                 'grade': '',
                 'class': '',
                 'note': ''
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'student_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'first_tel': {
+                        'type': 'string',
+                        'len': 11,
+                        'required': true,
+                        'errorStatus': false
+                    }
+                }
             },
             'sex': [{
                 'value': '1',
@@ -246,6 +267,8 @@ export default {
             this.handleSave().then(() => {
                 vm.$store.state.envs.currStudent = vm.lb_localdata.form
                 vm.handleShowDialog('lb-finishadd')
+            }, (e) => {
+                console.log(e)
             })
         }
     }

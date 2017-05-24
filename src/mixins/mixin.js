@@ -1,5 +1,7 @@
 import * as types from '~/stores/modules/mutation-types'
 import lodash from 'lodash'
+import schema from 'async-validate'
+import schemaall from 'async-validate/plugin/all'
 
 export default {
     created: function() {
@@ -82,14 +84,23 @@ export default {
         },
         handleSave() {
             let vm = this
-            let modalform = this.lb_localdata.form
-                //let modalformValue = modalform.getForm()
-            console.log(modalform, this.modalsType)
-                //if (modalformValue.validate) {
+            let modalform = vm.lb_localdata.form
+            console.log(modalform, vm.modalsType)
+
             return new Promise((resolve, reject) => {
-                if (this.modalsType == types.APPEND_API) {
+                vm.validate()
+                console.log(vm.lb_localdata.validator.errorStatus)
+                if (vm.lb_localdata.validator.errorStatus) {
+                    reject()
+                    return
+                }
+
+                if (vm.modalsType == types.APPEND_API) {
+                    let creattime = new Date()
+                    modalform.creattime = creattime.getTime()
+
                     vm.$store.dispatch(types.APPEND_API, {
-                        'model': this.model,
+                        'model': vm.model,
                         'form': modalform
                     }).then(() => {
                         resolve()
@@ -99,8 +110,8 @@ export default {
                     })
                 } else {
                     vm.$store.dispatch(types.EDIT_API, {
-                        'model': this.model,
-                        'id': this._id,
+                        'model': vm.model,
+                        'id': vm._id,
                         'form': modalform,
                     }).then(() => {
                         resolve()
@@ -108,6 +119,39 @@ export default {
                         reject()
                         console.log(error, 'Promise error')
                     })
+                }
+            })
+        },
+        handleValidateErrors(errors, filed) {
+            let vm = this
+            if (filed) {
+                if (errors[filed]) {
+                    vm.lb_localdata.validator.fields[filed].errorStatus = true
+                }
+            } else {
+                for (var err in errors) {
+                    vm.lb_localdata.validator.fields[err].errorStatus = true
+                }
+            }
+        },
+        validate(filed) {
+            let vm = this
+            let modalform = vm.lb_localdata.form
+            let descriptor = vm.lb_localdata.validator
+            let validator = new schema(descriptor)
+            schema.plugin(schemaall)
+            vm.lb_localdata.validator.errorStatus = false
+            if (filed) {
+                descriptor.fields[filed].errorStatus = false
+            } else {
+                for (var item in descriptor.fields) {
+                    descriptor.fields[item].errorStatus = false
+                }
+            }
+            validator.validate(modalform, (errors, fields) => {
+                if (fields && fields.errors && fields.errors.length > 0) {
+                    vm.lb_localdata.validator.errorStatus = true
+                    return vm.handleValidateErrors(fields.fields, filed)
                 }
             })
         }
