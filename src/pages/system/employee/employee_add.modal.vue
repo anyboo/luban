@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">姓名:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="2" ng-change="employee.account=$util.py_account(employee.name)" required v-model="lb_localdata.form.lb_employee_name">
+                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" required v-model="lb_localdata.form.lb_employee_name">
                             </div>
                         </div>
                         <div class="form-group">

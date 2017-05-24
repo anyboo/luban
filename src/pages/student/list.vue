@@ -55,7 +55,7 @@
                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
                         <div class="bg-white b-a r-2x list-student-item box-shadow">
                             <div class="face ng-scope">
-                                <a href="#/student/64267">
+                                <a href="/#/studentinfo/64267">
                                     <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; "><img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height=""></div>
                                 </a>
                             </div>
@@ -93,7 +93,7 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="学员">
                         <template scope="scope">
-                            <a class="link ng-binding">
+                            <a class="link ng-binding" href="/#/studentinfo/64267">
                                 <span class="ng-binding">
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                 </span>{{ scope.row.student_name }}

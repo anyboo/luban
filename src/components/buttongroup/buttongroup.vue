@@ -1,5 +1,5 @@
 <template>
-    <div class="btn-group m-l-xs ng-scope">
+    <div class="btn-group ng-scope">
         <template v-for="item in groupData">
             <lb-buttongroup-item :iclass='item.iclass' :itext='item.text' :ivalue='item.value' :iactive='value' @selected="handleSelected"></lb-buttongroup-item>
         </template>

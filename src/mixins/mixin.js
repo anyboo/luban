@@ -8,15 +8,15 @@ moment.updateLocale('en', {
     relativeTime: {
         future: 'in %s',
         past: '%s',
-        s: 'seconds',
+        s: '',
         m: 'a minute',
-        mm: '%d minutes',
+        mm: '%d分钟',
         h: 'an hour',
-        hh: '%d hours',
+        hh: '%d小时',
         d: 'a day',
         dd: '%d天',
         M: 'a month',
-        MM: '%d months',
+        MM: '%d月',
         y: 'a year',
         yy: '%d岁'
     }
