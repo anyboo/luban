@@ -15,6 +15,9 @@ const state = {
         role: {
             data: []
         },
+        team: {
+            data: []
+        },
         dictionary: {
             data: []
         }

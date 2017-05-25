@@ -22,7 +22,7 @@
                                         <tr ng-repeat="item in dict_item_rest.$list" class="ng-scope">
                                             <td class="ng-binding">{{index}}</td>
                                             <td>
-                                                <input type="text" name="lb_item" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.lb_item_text">
+                                                <input type="text" name="lb_item_text" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.lb_item_text">
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.lb_item_sort">

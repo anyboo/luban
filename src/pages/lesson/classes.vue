@@ -53,10 +53,10 @@
                 </div>
             </div>
             <div class="table-responsive ng-scope" style="min-height:450px" ng-if="view_mode == 'list'">
-                <lb-table :data="getTableData" stripe>
+                <lb-table :data="getTablesData()" stripe>
                     <lb-table-column prop="data" label="操作">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog ng-scope"></i>
                                     <span class="ng-scope">操作</span>
@@ -67,7 +67,7 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="班级名">
                         <template scope="scope">
-                            <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">3期班</a>
+                            <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">{{scope.row.class_name}}</a>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="老师">
@@ -225,6 +225,8 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['team']
+
         }
     },
     computed: {},
