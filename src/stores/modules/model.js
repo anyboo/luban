@@ -14,6 +14,9 @@ const state = {
         },
         role: {
             data: []
+        },
+        dictionary: {
+            data: []
         }
     },
     currentModel: {}
@@ -28,99 +31,99 @@ const getters = {
 
 // actions
 const actions = {
-    [types.GET_API]({ commit }, tableName) {
-        return new Promise(resolve => {
-            restfulapi.httpGetApi(tableName)
-                .then(response => {
-                    commit(types.GET_API, { tableName, response })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.GET_Filter_API]({ commit }, obj) {
-        return new Promise(resolve => {
-            restfulapi.httpGetFilterApi(obj)
-                .then(response => {
-                    commit(types.GET_API, { 'tableName': obj.model, response })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.GET_ARRAY_API]({ commit }, tableName) {
-        let tableArray = []
-        tableName.forEach(function(item) {
-            tableArray.push(restfulapi.httpGetApi(item))
-        })
-
-        return new Promise(resolve => {
-            Promise.all(tableArray)
-                .then(response => {
-                    response.forEach(item => {
-                        commit(types.GET_API, { 'tableName': item.data.name, 'response': item })
+        [types.GET_API]({ commit }, tableName) {
+            return new Promise(resolve => {
+                restfulapi.httpGetApi(tableName)
+                    .then(response => {
+                        commit(types.GET_API, { tableName, response })
+                        resolve()
                     })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.GET_ID_API]({ commit }, obj) {
-        let id = obj.id
-        return new Promise(resolve => {
-            restfulapi.httpGetIdApi(obj)
-                .then(response => {
-                    commit(types.GET_API, { id, response })
-                    resolve(response)
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.APPEND_API]({ commit }, obj) {
-        return new Promise(resolve => {
-            restfulapi.httpAppendApi(obj)
-                .then(() => {
-                    //commit(types.APPEND_API, { tableName, response })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.EDIT_API]({ commit }, obj) {
-        return new Promise(resolve => {
-            restfulapi.httpEditApi(obj)
-                .then(() => {
-                    //commit(types.APPEND_API, { tableName, response })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-    [types.DELETE_API]({ commit }, obj) {
-        return new Promise(resolve => {
-            restfulapi.httpDeleteApi(obj)
-                .then(() => {
-                    //commit(types.APPEND_API, { tableName, response })
-                    resolve()
-                })
-                .catch(function(response) {
-                    console.info(response)
-                })
-        })
-    },
-}
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.GET_Filter_API]({ commit }, obj) {
+            return new Promise(resolve => {
+                restfulapi.httpGetFilterApi(obj)
+                    .then(response => {
+                        commit(types.GET_API, { 'tableName': obj.model, response })
+                        resolve()
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.GET_ARRAY_API]({ commit }, tableName) {
+            let tableArray = []
+            tableName.forEach(function(item) {
+                tableArray.push(restfulapi.httpGetApi(item))
+            })
+
+            return new Promise(resolve => {
+                Promise.all(tableArray)
+                    .then(response => {
+                        response.forEach(item => {
+                            commit(types.GET_API, { 'tableName': item.data.name, 'response': item })
+                        })
+                        resolve()
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.GET_ID_API]({ commit }, obj) {
+            let id = obj.id
+            return new Promise(resolve => {
+                restfulapi.httpGetIdApi(obj)
+                    .then(response => {
+                        commit(types.GET_API, { id, response })
+                        resolve(response)
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.APPEND_API]({ commit }, obj) {
+            return new Promise(resolve => {
+                restfulapi.httpAppendApi(obj)
+                    .then(() => {
+                        //commit(types.APPEND_API, { tableName, response })
+                        resolve()
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.EDIT_API]({ commit }, obj) {
+            return new Promise(resolve => {
+                restfulapi.httpEditApi(obj)
+                    .then(() => {
+                        //commit(types.APPEND_API, { tableName, response })
+                        resolve()
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+        [types.DELETE_API]({ commit }, obj) {
+            return new Promise(resolve => {
+                restfulapi.httpDeleteApi(obj)
+                    .then(() => {
+                        //commit(types.APPEND_API, { tableName, response })
+                        resolve()
+                    })
+                    .catch(function(response) {
+                        console.info(response)
+                    })
+            })
+        },
+    }
     // mutations
 const mutations = {
     [types.GET_API](state, { tableName, response }) {

@@ -33,9 +33,9 @@
                     <div class="panel-body">
                         <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
                             <p>*角色ID:(仅限2个字符)</p>
-                            <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" v-model="lb_localdata.form.role_id">
+                            <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':lb_localdata.validator.fields.role_id.errorStatus}" v-model="lb_localdata.form.role_id" @change="validate('role_id')">
                             <p>*角色名称:</p>
-                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.role_name">
+                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.role_name"  :class="{'ng-dirty':lb_localdata.validator.fields.role_id.errorStatus}" @change="validate('role_name')">
                             <p>角色描述:</p>
                             <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.role_desc">
                             <div class="m-t m-b">
@@ -60,7 +60,29 @@ export default {
                 'role_id': '',
                 'role_name': '',
                 'role_desc': ''
-            }
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'role_id': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'role_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+
+                }
+            },
         }
         return {
             lb_localdata,
