@@ -31,6 +31,7 @@ export default {
         this.lodash = lodash
         this.makeImage = makeimage
         this.base64 = base64
+        this.types = types
     },
     mounted: function() {
         this.handleGetTable()
@@ -112,6 +113,27 @@ export default {
                     //this.getTablesData()
                 })
             }
+        },
+        handleDelete(id) {
+            let vm = this
+            return new Promise((resolve, reject) => {
+                if (vm.lb_tables) {
+                    let table = {}
+                    table.model = vm.lb_tables[0]
+                    table.id = id
+
+                    vm.$store.dispatch(types.DELETE_API, table).then(() => {
+                        console.log('handleDelete')
+                        resolve()
+                    }).catch((error) => {
+                        reject()
+                        console.log(error, 'Promise error')
+                    })
+
+                } else {
+                    reject()
+                }
+            })
         },
         handleSave() {
             let vm = this

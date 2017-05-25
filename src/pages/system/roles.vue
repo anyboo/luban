@@ -5,87 +5,41 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">角色列表</div>
                     <ul class="list-group">
-                        <!-- ngRepeat: item in res.roles.data -->
-                        <li class="list-group-item ng-scope" ng-repeat="item in res.roles.data" ng-class="{active:item.or_id == edit_handler.or_id}" v-for="(item,index) in myData">
-                            <label class="badge badge-sm bg-info pull-right ng-binding" ng-bind="item.role_id">{{item.characterId}}</label>
-                            <!-- ngIf: item.og_id==0 -->
-                            <h4 class="list-group-item-head ng-binding" ng-bind="item.role_name" ng-class="{'text-danger':item.og_id==0}">{{item.characterName}}</h4>
-                            <p class="list-grpup-item-text text-muted ng-binding">{{item.description}}</p>
-                            <p class="list-group-item-text"><a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove"><i class="fa fa-times" @mouseout="nowindex=index"@del="save(nowindex)"></i>删除</a> <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit">编辑</a>
-                                <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
-                            </p>
-                        </li>
-                        <!-- end ngRepeat: item in res.roles.data -->
-                        <li class="list-group-item ng-scope" ng-repeat="item in res.roles.data" ng-class="{active:item.or_id == edit_handler.or_id}">
-                            <label class="badge badge-sm bg-info pull-right ng-binding" ng-bind="item.role_id">P</label>
-                            <!-- ngIf: item.og_id==0 -->
-                            <label class="label bg-success ng-scope" ng-if="item.og_id==0">系统角色</label>
-                            <!-- end ngIf: item.og_id==0 -->
-                            <h4 class="list-group-item-head ng-binding text-danger" ng-bind="item.role_name" ng-class="{'text-danger':item.og_id==0}">校长</h4>
-                            <p class="list-grpup-item-text text-muted ng-binding">校长(Principal)</p>
-                            <p class="list-group-item-text"><a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled"><i class="fa fa-times"></i>删除</a> <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
-                                <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
-                            </p>
-                        </li>
-                        <!-- end ngRepeat: item in res.roles.data -->
-                        <li class="list-group-item ng-scope" ng-repeat="item in res.roles.data" ng-class="{active:item.or_id == edit_handler.or_id}">
-                            <label class="badge badge-sm bg-info pull-right ng-binding" ng-bind="item.role_id">T</label>
-                            <!-- ngIf: item.og_id==0 -->
-                            <label class="label bg-success ng-scope" ng-if="item.og_id==0">系统角色</label>
-                            <!-- end ngIf: item.og_id==0 -->
-                            <h4 class="list-group-item-head ng-binding text-danger" ng-bind="item.role_name" ng-class="{'text-danger':item.og_id==0}">教师</h4>
-                            <p class="list-grpup-item-text text-muted ng-binding">老师(Teacher)</p>
-                            <p class="list-group-item-text"><a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled"><i class="fa fa-times"></i>删除</a> <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
-                                <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
-                            </p>
-                        </li>
-                        <!-- end ngRepeat: item in res.roles.data -->
-                        <li class="list-group-item ng-scope" ng-repeat="item in res.roles.data" ng-class="{active:item.or_id == edit_handler.or_id}">
-                            <label class="badge badge-sm bg-info pull-right ng-binding" ng-bind="item.role_id">R</label>
-                            <!-- ngIf: item.og_id==0 -->
-                            <label class="label bg-success ng-scope" ng-if="item.og_id==0">系统角色</label>
-                            <!-- end ngIf: item.og_id==0 -->
-                            <h4 class="list-group-item-head ng-binding text-danger" ng-bind="item.role_name" ng-class="{'text-danger':item.og_id==0}">前台</h4>
-                            <p class="list-grpup-item-text text-muted ng-binding">前台接待(Receptionist)</p>
-                            <p class="list-group-item-text"><a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled"><i class="fa fa-times"></i>删除</a> <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
-                                <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
-                            </p>
-                        </li>
-                        <!-- end ngRepeat: item in res.roles.data -->
-                        <li class="list-group-item ng-scope" ng-repeat="item in res.roles.data" ng-class="{active:item.or_id == edit_handler.or_id}">
-                            <label class="badge badge-sm bg-info pull-right ng-binding" ng-bind="item.role_id">M</label>
-                            <!-- ngIf: item.og_id==0 -->
-                            <label class="label bg-success ng-scope" ng-if="item.og_id==0">系统角色</label>
-                            <!-- end ngIf: item.og_id==0 -->
-                            <h4 class="list-group-item-head ng-binding text-danger" ng-bind="item.role_name" ng-class="{'text-danger':item.og_id==0}">管理员</h4>
-                            <p class="list-grpup-item-text text-muted ng-binding">管理员(Master)</p>
-                            <p class="list-group-item-text"><a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" ng-disabled="item.og_id==0" confirm-text="确定要删除该角色吗?" confirm-action="rest_remove(item,'or_id','roles',save_callback);" ui-per="roles.remove" disabled="disabled"><i class="fa fa-times"></i>删除</a> <a class="btn btn-xs btn-default" ng-click="rest_edit(item,'role')" ng-disabled="item.og_id==0" ui-per="system.roles.edit" disabled="disabled">编辑</a>
-                                <button class="btn btn-xs btn-default" ng-click="per_set(item)" ui-per="system.roles.permission">权限设置</button>
-                            </p>
-                        </li>
-                        <!-- end ngRepeat: item in res.roles.data -->
+                        <template v-for="item in getTablesData()">
+                            <li class="list-group-item ng-scope" ng-class="{active:item.or_id == edit_handler.or_id}">
+                                <label class="badge badge-sm bg-info pull-right ng-binding">{{item.role_id}}</label>
+                                <h4 class="list-group-item-head ng-binding text-danger">{{item.role_name}}</h4>
+                                <p class="list-grpup-item-text text-muted ng-binding">{{item.role_desc}}</p>
+                                <p class="list-group-item-text">
+                                    <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
+                                        <i class="fa fa-times"></i>删除
+                                    </a>
+                                    <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
+                                    <button class="btn btn-xs btn-default">权限设置</button>
+                                </p>
+                            </li>
+                        </template>
                     </ul>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-5 col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span ng-if="action!='edit'" class="ng-scope">添加角色</span>
-                        <button class="btn btn-default btn-xs pull-right ng-hide" ng-click="rest_new('role')" ng-show="action == 'edit'" ui-per="system.roles.add">
+                        <span ng-if="action!='edit'" class="ng-scope">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
+                        <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                     <div class="panel-body">
                         <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
-                            <input type="hidden" name="og_id" class="ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_role_og_id">
-                            <p>角色ID:(仅限2个字符)</p>
-                            <input type="text" name="role_id" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-maxlength="2" ng-minlength="1" required v-model="lb_role_role_id">
-                            <p>角色名称:</p>
-                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_role_role_name">
+                            <p>*角色ID:(仅限2个字符)</p>
+                            <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" v-model="lb_localdata.form.role_id">
+                            <p>*角色名称:</p>
+                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.role_name">
                             <p>角色描述:</p>
-                            <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_role_role_desc">
+                            <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.role_desc">
                             <div class="m-t m-b">
-                                <button type='button' class="btn btn-primary" @click="add()">
+                                <button type='button' class="btn btn-primary" @click="handleClick">
                                     保存
                                 </button>
                             </div>
@@ -102,39 +56,54 @@ export default {
     data() {
         let lb_localdata = {
             'form': {
-                'lb_role_og_id': '',
-                'lb_role_role_id': '',
-                'lb_role_role_name': '',
-                'lb_role_role_desc': ''
+                'og_id': '',
+                'role_id': '',
+                'role_name': '',
+                'role_desc': ''
             }
         }
         return {
             lb_localdata,
-            myData: [],
-            'lb_role_og_id': '',
-            'lb_role_role_id': '',
-            'lb_role_role_name': '',
-            'lb_role_role_desc': '',
-            'nowindex': -999
+            model: 'role',
+            lb_tables: ['role'],
         }
     },
     computed: {},
     watch: {},
     methods: {
-        add() {
-            this.myData.unshift({
-                characterId: this.lb_role_role_id,
-                characterName: this.lb_role_role_name,
-                description: this.lb_role_role_desc
-
-
-            })
-            this.lb_role_role_id = this.lb_role_role_id
-            this.lb_role_role_name = this.lb_role_role_name
-            this.lb_role_role_desc =this.lb_role_role_desc
+        clearForm() {
+            this.lb_localdata.form = {
+                'og_id': '',
+                'role_id': '',
+                'role_name': '',
+                'role_desc': ''
+            }
+            this.modalsType = this.types.APPEND_API
         },
-        del(n) {
-            this.myData.splice(n, 1)
+        handleEditClick(item) {
+            this.setEditModle(item._id)
+            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, item)
+        },
+        handleDelClick(id) {
+            this.handleDelete(id).then(() => {
+                this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                })
+                this.handleGetTable()
+            })
+        },
+        handleClick() {
+            this.handleSave().then(() => {
+                this.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                this.clearForm()
+                this.handleGetTable()
+            }, (e) => {
+                console.log(e)
+            })
         }
     }
 }

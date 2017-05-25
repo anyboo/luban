@@ -11,6 +11,9 @@ const state = {
         },
         employee: {
             data: []
+        },
+        role: {
+            data: []
         }
     },
     currentModel: {}
