@@ -20,7 +20,7 @@ const state = {
         },
         dictionary: {
             data: []
-        }
+        },
     },
     currentModel: {}
 }
