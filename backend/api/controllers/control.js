@@ -21,6 +21,7 @@ module.exports.all = function* all(name, next) {
     let filter = query.filter
     let findObj = {}
     let options = []
+    console.log(filter)
     if (filter) {
         try {
             let filterObj = JSON.parse(Buffer.from(filter, 'base64').toString())
@@ -32,25 +33,25 @@ module.exports.all = function* all(name, next) {
                     if (type == 'like') {
                         let like = new RegExp(value)
                         findObj[key] = like
+                    } else if (type == 'lookup') {
+                        options.push({ '$lookup': value })
                     } else {
                         findObj[key] = value
                     }
-                    if (type == 'lookup') {
-                        options.push({ '$lookup': item.value })
-                    }
+
                 }
             }
         } catch (e) {
             console.log(e)
         }
     }
-    console.log(findObj)
     var dbtable = wrap(db.get(name))
     let count = yield dbtable.count(findObj)
     options.push({ '$match': findObj })
     options.push({ '$sort': { '_id': -1 } })
     options.push({ '$limit': limit })
     options.push({ '$skip': skip })
+    console.log(options, name)
     let data = yield dbtable.aggregate(options)
     this.body = {
         'data': data,
@@ -128,15 +129,30 @@ module.exports.fetch = function* fetch(name, id, next) {
         this.throw(404, 'model with _id = ' + id + ' was not found')
     }
     this.body = yield model
-        //}
-
 }
 
+function changeModelId(model) {
+    for (var item in model) {
+        if (typeof item == 'string') {
+            if (item.indexOf('_id') >= 0) {
+                try {
+                    let monkid = monk.id(model[item])
+                    model[item] = monkid
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+        }
+    }
+}
 module.exports.add = function* add(name, next) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
-        limit: '100kb'
+        limit: '500kb'
     })
+    console.log(model)
+    changeModelId(model)
+    console.log(model)
     var inserted = yield wrap(db.get(name)).insert(model)
     if (!inserted) {
         this.throw(405, 'The model couldn\'t be added.')
@@ -148,7 +164,7 @@ module.exports.modify = function* modify(name, id, next) {
     if ('PUT' != this.method) return yield next
 
     var data = yield parse(this, {
-        limit: '100kb'
+        limit: '500kb'
     })
 
     var model = yield wrap(db.get(name)).find({ '_id': monk.id(id) })
@@ -156,7 +172,7 @@ module.exports.modify = function* modify(name, id, next) {
     if (model.length === 0) {
         this.throw(404, 'model with _id = ' + id + ' was not found')
     }
-
+    changeModelId(data)
     var updated = wrap(db.get(name)).update(model[0], {
         $set: data
     })
