@@ -34,7 +34,7 @@ export default {
         this.types = types
     },
     mounted: function() {
-        //this.handleGetTable()
+        this.handleGetTable()
     },
     computed: {
         getTableData() {

@@ -32,9 +32,7 @@ export default {
                 let action = common.replace('u:', '')
                 this.this.$emit('command', action)
             }
-        }
-    },
-    computed: {
+        },
         getItemCommand(item) {
             let result = 'u:' + item.url
             if (item.action) {
@@ -43,5 +41,6 @@ export default {
             return result
         }
     },
+    computed: {},
 }
 </script>
