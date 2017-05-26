@@ -54,7 +54,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-3 col-md-2 control-label">接洽人</label>
+                                <label class="col-xs-3 col-md-2 control-label">
+                                    <span class="text-danger">*</span>接洽人
+                                </label>
                                 <div class="col-xs-9 col-md-5">
                                     <input type="text" name="op_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.op_name.errorStatus}" placeholder="请输入接洽人的名字" v-model.trim.lazy="lb_localdata.form.op_name" @change="validate('op_name')">
                                 </div>
@@ -65,7 +67,7 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.track_time" ></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.track_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +77,7 @@
                                         <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
-                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time" ></lb-date-picker>
+                                        <lb-date-picker type="datetime" v-model="lb_localdata.form.next_time"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +103,8 @@ export default {
                 'op_name': '',
                 'track_time': '',
                 'next_time': '',
-                'detail': ''
+                'detail': '',
+                'student_id': this.getStudentId()
             },
             'track_type': [{
                 'value': '0',
@@ -138,7 +141,7 @@ export default {
                     },
                     'track_time': {
                         'type': 'date',
-                       
+
                     },
                     'next_time': {
                         'type': 'date',

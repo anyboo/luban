@@ -20,6 +20,52 @@ module.exports.all = function* all(name, next) {
     let skip = Number.parseInt(query.page || 0) * limit
     let filter = query.filter
     let findObj = {}
+    let options = []
+    if (filter) {
+        try {
+            let filterObj = JSON.parse(Buffer.from(filter, 'base64').toString())
+            if (filterObj) {
+                for (var item of filterObj) {
+                    let value = item.value
+                    let type = item.type
+                    let key = item.key
+                    if (type == 'like') {
+                        let like = new RegExp(value)
+                        findObj[key] = like
+                    } else {
+                        findObj[key] = value
+                    }
+                    if (type == 'lookup') {
+                        options.push({ '$lookup': item.value })
+                    }
+                }
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    console.log(findObj)
+    var dbtable = wrap(db.get(name))
+    let count = yield dbtable.count(findObj)
+    options.push({ '$match': findObj })
+    options.push({ '$sort': { '_id': -1 } })
+    options.push({ '$limit': limit })
+    options.push({ '$skip': skip })
+    let data = yield dbtable.aggregate(options)
+    this.body = {
+        'data': data,
+        'count': count,
+        'name': name
+    }
+}
+
+module.exports.allold = function* allold(name, next) {
+    if ('GET' != this.method) return yield next
+    let query = this.query
+    let limit = Number.parseInt(query.prepage || 30)
+    let skip = Number.parseInt(query.page || 0) * limit
+    let filter = query.filter
+    let findObj = {}
     if (filter) {
         try {
             let filterObj = JSON.parse(Buffer.from(filter, 'base64').toString())
@@ -95,7 +141,7 @@ module.exports.add = function* add(name, next) {
     if (!inserted) {
         this.throw(405, 'The model couldn\'t be added.')
     }
-    this.body = '{"success":1}'
+    this.body = yield model
 }
 
 module.exports.modify = function* modify(name, id, next) {

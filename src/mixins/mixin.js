@@ -34,7 +34,7 @@ export default {
         this.types = types
     },
     mounted: function() {
-        this.handleGetTable()
+        //this.handleGetTable()
     },
     computed: {
         getTableData() {
@@ -73,6 +73,9 @@ export default {
         getStudentName() {
             return this.$store.state.envs.currStudent.student_name
         },
+        getStudentId() {
+            return this.$store.state.envs.currStudent._id
+        },
         getTablesData() {
             let tablaData = []
             if (this.lb_tables) {
@@ -91,6 +94,17 @@ export default {
         lbClosedialog(event) {
             if (event) event.preventDefault()
             this.$store.commit('popdialog')
+        },
+        handlelookup() {
+            let filterObj = []
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.lb_localdata.lookup,
+                'type': 'lookup'
+            })
+
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
         },
         handleGetFilterTable(filter, prepage, page) {
             let vm = this
@@ -153,8 +167,8 @@ export default {
                     vm.$store.dispatch(types.APPEND_API, {
                         'model': vm.model,
                         'form': modalform
-                    }).then(() => {
-                        resolve()
+                    }).then((response) => {
+                        resolve(response)
                     }).catch((error) => {
                         reject()
                         console.log(error, 'Promise error')

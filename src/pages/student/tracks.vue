@@ -30,12 +30,11 @@
                 <lb-table :data="getTablesData()" stripe>
                     <lb-table-column width="100" prop="data" label="学员">
                         <template scope="scope">
-                            <a class="link" ng-click="add_track(item.student)" tooltip="新增记录">
-                                <i class="fa fa-plus"></i>
+                            <a class="link" ng-click="add_track(item.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
+                            <a class="ng-binding" href="#/student/64267">
+                                <span class="ng-binding"></span>{{ scope.row.student.student_name}}
                             </a>
-                            <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63717">
-                                <span ng-bind-html="item.sex|sex:0" class="ng-binding"></span>
-                            </a>
+                            <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="沟通内容">
@@ -102,8 +101,15 @@ export default {
             }, {
                 'value': '1',
                 'text': '售后'
-            }]
+            }],
+            'lookup': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
+            }
         }
+
         return {
             lb_localdata,
             lb_tables: ['inquiry'],
@@ -122,6 +128,11 @@ export default {
                     'type': ''
                 })
             }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.lb_localdata.lookup,
+                'type': 'lookup'
+            })
 
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)

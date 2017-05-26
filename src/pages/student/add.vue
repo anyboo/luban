@@ -267,8 +267,8 @@ export default {
     methods: {
         handleClick() {
             let vm = this
-            this.handleSave().then(() => {
-                vm.$store.state.envs.currStudent = vm.lb_localdata.form
+            this.handleSave().then((response) => {
+                vm.$store.state.envs.currStudent = response
                 vm.handleShowDialog('lb-finishadd')
             }, (e) => {
                 console.log(e)

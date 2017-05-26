@@ -1,5 +1,5 @@
 <template>
-    <div ui-view="">
+    <div ui-view>
         <div class="bg-light lter b-b wrapper-md">
             <h1 class="m-n font-thin h3">课程</h1>
         </div>
@@ -28,11 +28,7 @@
                         <button class="btn btn-default btn-sm">
                             <i class="fa fa-filter"></i>过滤
                         </button>
-                        <div class="btn-group m-l">
-                            <label btn-radio="'0'" class="btn btn-default">班课</label>
-                            <label btn-radio="'1'" class="btn btn-default">1对1</label>
-                            <label btn-radio="'10'" class="btn btn-default">课时包</label>
-                        </div>
+                        <lb-buttongroup class="btn-group m-l"></lb-buttongroup>
                         <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
                         </button>
@@ -115,7 +111,10 @@
 export default {
     name: 'manage',
     data() {
-      return {}
+        let lb_localdata = {}
+        return {
+            lb_localdata,
+        }
     },
     computed: {},
     watch: {},
