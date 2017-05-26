@@ -66,6 +66,24 @@ export default {
             }
             return fromNowStr
         },
+        getButtongroupText(obj, value) {
+            let result = ''
+            if (obj.length > 0) {
+                let findobj = this.lodash.find(obj, { 'value': value })
+                if (findobj){
+                    result = findobj.text
+                }
+            }
+            return result
+        },
+        getDatetime(datestring) {
+            let dateTemp = moment(datestring)
+            let datetimestr = ''
+            if (dateTemp.isValid()) {
+                datetimestr = dateTemp.format('YYYY-M-D h:mm')
+            }
+            return datetimestr
+        },
         setEditModle(id) {
             this.modalsType = types.EDIT_API
             this._id = id

@@ -12,7 +12,7 @@
                     <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -20,7 +20,7 @@
                             </span>
                         </div>
                     </div>
-                    <lb-buttongroup :group-data="lb_localdata.lb_param_track_type" v-model="lb_localdata.form.lb_param_track_type" @input="handleSearch"></lb-buttongroup>
+                    <lb-buttongroup :group-data="lb_localdata.track_type" v-model="lb_localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
                     <button class="btn btn-primary pull-right" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="add_track" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行咨询回访登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                         <i class="icon-plus"></i>跟踪回访登记
                     </button>
@@ -32,7 +32,7 @@
                         <template scope="scope">
                             <a class="link" ng-click="add_track(item.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
                             <a class="ng-binding" href="#/student/64267">
-                                <span class="ng-binding"></span>{{ scope.row.student.student_name}}
+                                <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                             </a>
                             <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
                         </template>
@@ -49,14 +49,13 @@
                         <template scope="scope">{{scope.row.op_name}}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="沟通时间">
-                        <template scope="scope">{{scope.row.track_time}}</template>
+                        <template scope="scope">{{getDatetime(scope.row.track_time)}}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="类型">
-                        <template scope="scope">{{scope.row.track_type}}</template>
+                        <template scope="scope">{{ getButtongroupText(lb_localdata.track_type,scope.row.track_type)}}</template>
                     </lb-table-column>
                 </lb-table>
-                <div class="wrapper" style="height:80px"></div>
-                <div class="grid-data-result"></div>
+               
             </div>
             <div class="panel-footer">
                 <div class="row">
@@ -82,8 +81,8 @@ export default {
                 'lb_params_date_start': '',
                 'lb_params_date_end': '',
                 'lb_duration': '',
-                'lb_param_student_name': '',
-                'lb_param_track_type': ''
+                'student_name': '',
+                'track_type': ''
             },
             'lb_duration': [{
                 'value': 'today',
@@ -95,7 +94,7 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'lb_param_track_type': [{
+            'track_type': [{
                 'value': '0',
                 'text': '售前'
             }, {
@@ -109,7 +108,6 @@ export default {
                 'as': 'student'
             }
         }
-
         return {
             lb_localdata,
             lb_tables: ['inquiry'],
@@ -118,9 +116,16 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        getLookUp(obj, key) {
+            let result = ''
+            if (obj.length > 0) {
+                result = obj[0][key]
+            }
+            return result
+        },
         handleSearch() {
             let filterObj = []
-            let status = this.lb_localdata.form.lb_param_track_type.trim()
+            let status = this.lb_localdata.form.track_type.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'track_type',

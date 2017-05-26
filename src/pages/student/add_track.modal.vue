@@ -98,7 +98,7 @@ export default {
     data() {
         let lb_localdata = {
             'form': {
-                'track_type': '',
+                'track_type': '0',
                 'track_way': '',
                 'op_name': '',
                 'track_time': '',
