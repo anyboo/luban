@@ -133,6 +133,9 @@ export default {
                     'min': 1,
                     'max': 256,
                     'errorStatus': false
+                },
+                'birth': {
+                    'type': 'date',
                 }
             }
         }
