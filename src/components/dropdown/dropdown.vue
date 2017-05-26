@@ -25,12 +25,12 @@ export default {
     },
     methods: {
         handleCommand(common) {
-            if (common.indexOf('u:')) {
+            if (common.indexOf('u:')>=0) {
                 let url = common.replace('u:', '')
                 this.handleShowDialog(url, this.menuData)
             } else {
-                let action = common.replace('u:', '')
-                this.this.$emit('command', action)
+                let action = common.replace('a:', '')
+                this.$emit('command', action)
             }
         },
         getItemCommand(item) {
