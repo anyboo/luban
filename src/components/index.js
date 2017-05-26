@@ -8,7 +8,8 @@ import {
     DropdownMenu,
     DropdownItem,
     Upload,
-    Message
+    Message,
+    MessageBox
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
@@ -38,6 +39,7 @@ const install = function(Vue) {
         Vue.component(component.name, component)
     })
     Vue.prototype.$message = Message
+    Vue.prototype.$confirm = MessageBox.confirm
 }
 
 export default {

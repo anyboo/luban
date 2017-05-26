@@ -5,7 +5,7 @@
         </div>
         <lb-dropdown-menu slot="dropdown">
             <template v-for="item in dropMenuData">
-                <lb-dropdown-item :command="item.url">
+                <lb-dropdown-item :command="getItemCommand(item)">
                     <a :id="id">
                         <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
                     </a>
@@ -25,9 +25,23 @@ export default {
     },
     methods: {
         handleCommand(common) {
-            this.handleShowDialog(common,this.menuData)
+            if (common.indexOf('u:')) {
+                let url = common.replace('u:', '')
+                this.handleShowDialog(url, this.menuData)
+            } else {
+                let action = common.replace('u:', '')
+                this.this.$emit('command', action)
+            }
         }
     },
-    computed: {},
+    computed: {
+        getItemCommand(item) {
+            let result = 'u:' + item.url
+            if (item.action) {
+                result = 'a:' + item.action
+            }
+            return result
+        }
+    },
 }
 </script>

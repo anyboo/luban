@@ -27,7 +27,7 @@
                                 </label>
                                 <div class="col-md-5 col-xs-9">
                                     <div class="input-group">
-                                        <input type="text" name="detail" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.detail.errorStatus}" v-model.trim.lazy="lb_localdata.form.detail" @change="validate('detail')">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.track_way.errorStatus}" v-model.trim.lazy="lb_localdata.form.track_way" @change="validate('track_way')">
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleCommand">
                                                 <lb-dropdown-button button-class="btn btn-default">
@@ -50,7 +50,7 @@
                                     <span class="text-danger">*</span>沟通内容
                                 </label>
                                 <div class="col-md-10 col-xs-9">
-                                    <textarea name="track_way" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.track_way.errorStatus}" v-model.trim.lazy="lb_localdata.form.track_way" @change="validate('track_way')">></textarea>
+                                    <textarea class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.detail.errorStatus}" v-model.trim.lazy="lb_localdata.form.detail" @change="validate('detail')">></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
