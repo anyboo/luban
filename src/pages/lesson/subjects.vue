@@ -1,5 +1,6 @@
 <template>
-    <div class="wrapper-xs ng-scope" page-controller="lesson_subjects">
+    <div>
+        <div class="wrapper-xs ng-scope" page-controller="lesson_subjects">
         <div ng-if="$action == 'subjects'" class="ng-scope">
             <ul class="breadcrumb bg-white b-a">
                 <li>
@@ -36,6 +37,9 @@
             </div>
         </div>
     </div>
+    
+    </div>
+
 </template>
 <script>
 export default {
