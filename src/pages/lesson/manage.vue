@@ -1,8 +1,5 @@
 <template>
     <div ui-view>
-        <div class="bg-light lter b-b wrapper-md">
-            <h1 class="m-n font-thin h3">课程</h1>
-        </div>
         <div class="wrapper-xs" xo-rest="lessons" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="lesson" loading-container=".list-lesson" loading-text="正在加载课程列表..." empty-text="没有符合条件的课程!">
             <div class="panel panel-default">
                 <div class="row wrapper">
@@ -11,14 +8,21 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm" data-html="1" bs-options="item.name as item.value for item in filter.fields">
-                                            课程名
-                                            <span class="caret"></span>
-                                        </button>
+                                        <lb-dropdowns menu-align="start" @command="handleMenuCommand">
+                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                {{lb_localdata.search.search_value}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <template v-for="item in lb_localdata.search.fields">
+                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                </template>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control" placeholder="关键字">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button">搜索</button>
+                                        <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                     </span>
                                 </div>
                             </div>
@@ -112,6 +116,10 @@ export default {
     name: 'manage',
     data() {
         let lb_localdata = {
+            'form': {
+                'lb_search_value': '',
+                'lb_params_status': ''
+            },
             'dropDownMenu': [{
                 'url': 'lb-newlessonmodal',
                 'icon': 'fa fa-pencil',
@@ -120,7 +128,18 @@ export default {
                 'action': 'delete',
                 'icon': 'fa fa-times',
                 'text': '删除'
-            }, ],
+            }],
+            'search': {
+                'fields': [{
+                    'name': 'lesson_name',
+                    'value': '课程名'
+                }, {
+                    'name': 'lesson_no',
+                    'value': '课程编号'
+                }],
+                'search_key': 'lesson_name',
+                'search_value': '课程名'
+            }
         }
         return {
             lb_localdata,
@@ -130,6 +149,25 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        handleMenuCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        },
         handleCommand({
             action,
             data
