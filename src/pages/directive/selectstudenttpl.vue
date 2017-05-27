@@ -67,10 +67,10 @@
                         </div>
                     </div>
                     <div class="table-responsive ng-scope " v-if="lb_localdata.form.lb_view_mode == 'list'">
-                        <lb-table :data="getTablesData()" stripe>
+                        <lb-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleCurrentChange">
                             <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
-                                    <input type="radio" name="selectid">
+                                    <input type="radio" name="selectid" :checked="getCheckRow(scope.row._id)">
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();" disabled="disabled">确定</button>
+                <button class="btn btn-primary ng-binding" @click="handleSelectStudent" :disabled="currentRow==null">确定</button>
             </div>
         </div>
     </div>
@@ -155,19 +155,35 @@ export default {
         return {
             lb_localdata,
             lb_tables: ['student'],
-            makeImage: makeimage
+            makeImage: makeimage,
+            currentRow: null
         }
     },
     computed: {},
     watch: {},
     methods: {
+        handleSelectStudent() {
+            this.$store.state.envs.currStudent = this.currentRow
+            this.lbClosedialog()
+        },
+        getCheckRow(rowid) {
+            let result = false
+            if (this.currentRow) {
+                if (this.currentRow._id == rowid) {
+                    result = true
+                }
+            }
+            return result
+        },
         handleCommand(value) {
             this.lb_localdata.search.search_key = value
             this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
                 'name': value
             }).value
         },
-
+        handleCurrentChange(row) {
+            this.currentRow = row
+        },
         handleSearch() {
             let filterObj = []
             let search_value = this.lb_localdata.form.lb_search_value.trim()

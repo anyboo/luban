@@ -4,7 +4,7 @@
             <div class="row no-gutter">
                 <div class="col-xs-12 col-md-4 m-t"></div>
                 <div class="col-xs-12 col-md-8 m-t">
-                    <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
+                    <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration" @input="handleSearch"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
                             <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="lb_localdata.form.student_name">
@@ -79,7 +79,7 @@ export default {
                 'track_type': ''
             },
             'lb_duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',
@@ -110,17 +110,6 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        getLookUp(obj, key) {
-            let result = ''
-            if (obj.length > 0) {
-                if (key) {
-                    result = obj[0][key]
-                } else {
-                    result = obj[0]
-                }
-            }
-            return result
-        },
         handleAddTrack(item) {
             this.$store.state.envs.currStudent = this.getLookUp(item)
             this.handleShowDialog('lb-addtrackmodal')
@@ -135,12 +124,20 @@ export default {
                     'type': ''
                 })
             }
+            let lb_duration = this.lb_localdata.form.lb_duration.trim()
+            if (lb_duration.length > 0) {
+                filterObj.push({
+                    'key': 'track_time',
+                    'value': this.getDatetimeStartOf(lb_duration),
+                    'type': 'gt'
+                })
+            }
             filterObj.push({
                 'key': 'lookup',
                 'value': this.lb_localdata.lookup,
                 'type': 'lookup'
             })
-
+            console.log(filterObj)
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)
         }
