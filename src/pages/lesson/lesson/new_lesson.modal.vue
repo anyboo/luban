@@ -205,7 +205,7 @@ export default {
                 'text': '课时包'
             }],
             'form': {
-                'lesson_type': '',
+                'lesson_type': '0',
                 'lb_filterkeyword': '',
                 'lb_$select_search': '',
                 'lesson_name': '',
