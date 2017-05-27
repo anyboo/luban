@@ -58,6 +58,9 @@ export default {
         }
     },
     methods: {
+        getDatetimeStartOf(value) {
+            return moment().startOf(value).toDate().getTime()
+        },
         fromNow(datestring) {
             let dateTemp = moment(datestring)
             let fromNowStr = ''
@@ -70,7 +73,7 @@ export default {
             let result = ''
             if (obj.length > 0) {
                 let findobj = this.lodash.find(obj, { 'value': value })
-                if (findobj){
+                if (findobj) {
                     result = findobj.text
                 }
             }
@@ -256,6 +259,17 @@ export default {
                 })
             }
 
-        }
+        },
+        getLookUp(obj, key) {
+            let result = ''
+            if (obj && obj.length > 0) {
+                if (key) {
+                    result = obj[0][key]
+                } else {
+                    result = obj[0]
+                }
+            }
+            return result
+        },
     }
 }
