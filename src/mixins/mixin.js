@@ -58,8 +58,19 @@ export default {
         }
     },
     methods: {
-        getDatetimeStartOf(value) {
-            return moment().startOf(value).toDate().getTime()
+        getDatetimeStartOf(value, end) {
+            let datetime = moment().startOf(value)
+            if (end) {
+                datetime = moment().endOf(value)
+            }
+            return datetime.toDate().getTime()
+        },
+        getDatetimeEndOf(value) {
+            let datetime = moment(value)
+            if (datetime.isValid()) {
+                datetime = datetime.endOf('day')
+            }
+            return datetime.toDate().getTime()
         },
         fromNow(datestring) {
             let dateTemp = moment(datestring)
@@ -80,6 +91,14 @@ export default {
             return result
         },
         getDatetime(datestring) {
+            let dateTemp = moment(datestring)
+            let datetimestr = 0
+            if (dateTemp.isValid()) {
+                datetimestr = dateTemp.toDate().getTime()
+            }
+            return datetimestr
+        },
+        getDateFormat(datestring) {
             let dateTemp = moment(datestring)
             let datetimestr = ''
             if (dateTemp.isValid()) {
@@ -113,8 +132,9 @@ export default {
             if (event) event.preventDefault()
             this.$store.commit('pushdialog', { url })
         },
-        lbClosedialog(event) {
-            if (event) event.preventDefault()
+        lbClosedialog() {
+            this.$store.state.envs.currDialog = ''
+            this.$store.state.envs.currDialogResult = null
             this.$store.commit('popdialog')
         },
         handlelookup() {

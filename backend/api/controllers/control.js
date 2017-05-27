@@ -13,6 +13,21 @@ var os = require('os')
 */
 var path = require('path')
 
+function changeModelId(model) {
+    for (var item in model) {
+        if (typeof item == 'string') {
+            if (item.indexOf('_id') >= 0) {
+                try {
+                    let monkid = monk.id(model[item])
+                    model[item] = monkid
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+        }
+    }
+}
+
 module.exports.all = function* all(name, next) {
     if ('GET' != this.method) return yield next
     let query = this.query
@@ -36,10 +51,12 @@ module.exports.all = function* all(name, next) {
                     } else if (type == 'lookup') {
                         options.push({ '$lookup': value })
                     } else if (type == 'lt') {
-                        findObj[key] = { '$lt': value }
+                        findObj[key] = findObj[key] || {}
+                        findObj[key]['$lt'] = value
                         console.log(findObj[key])
                     } else if (type == 'gt') {
-                        findObj[key] = { '$gt': value }
+                        findObj[key] = findObj[key] || {}
+                        findObj[key]['$gt'] = value
                         console.log(findObj[key])
                     } else {
                         findObj[key] = value
@@ -51,6 +68,7 @@ module.exports.all = function* all(name, next) {
             console.log(e)
         }
     }
+    changeModelId(findObj)
     var dbtable = wrap(db.get(name))
     let count = yield dbtable.count(findObj)
     options.push({ '$match': findObj })
@@ -137,20 +155,6 @@ module.exports.fetch = function* fetch(name, id, next) {
     this.body = yield model
 }
 
-function changeModelId(model) {
-    for (var item in model) {
-        if (typeof item == 'string') {
-            if (item.indexOf('_id') >= 0) {
-                try {
-                    let monkid = monk.id(model[item])
-                    model[item] = monkid
-                } catch (e) {
-                    console.log(e)
-                }
-            }
-        }
-    }
-}
 module.exports.add = function* add(name, next) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {

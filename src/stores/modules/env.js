@@ -1,5 +1,7 @@
 const state = {
     currStudent: {},
+    currDialogResult: {},
+    currDialog:'',
     currMenu: ''
 }
 const getters = {}
