@@ -158,7 +158,7 @@ export default {
                 table.page = page
 
                 vm.$store.dispatch(types.GET_Filter_API, table).then(() => {
-                    //this.getTablesData()
+                    this.getTablesData()
                 })
             }
         },
@@ -166,7 +166,7 @@ export default {
             let vm = this
             if (vm.lb_tables) {
                 vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
-                    //this.getTablesData()
+                    this.getTablesData()
                 })
             }
         },
@@ -220,8 +220,8 @@ export default {
                         'model': vm.model,
                         'id': vm._id,
                         'form': modalform,
-                    }).then(() => {
-                        resolve()
+                    }).then((response) => {
+                        resolve(response)
                     }).catch((error) => {
                         reject()
                         console.log(error, 'Promise error')

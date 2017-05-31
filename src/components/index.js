@@ -1,5 +1,6 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
+import listtree from './listtree/'
 import {
     DatePicker,
     Table,
@@ -29,7 +30,9 @@ const components = [
     DatePicker,
     Table,
     TableColumn,
-    Upload
+    Upload,
+    listtree.LbListTree,
+    listtree.LbListtreeItem
 ]
 
 const install = function(Vue) {

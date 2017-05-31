@@ -1,9 +1,9 @@
 <template>
-    <div class="modal-dialog modal-lg" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div page-controller="lesson_cate" class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -13,34 +13,15 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <a class="btn btn-default" ng-click="new_root()">
+                        <a class="btn btn-default" @click="handleClick">
                             <i class="fa fa-plus"></i>新增大类
                         </a>
                     </p>
-                    <div ui-tree="{dropped:onDrop}" id="cate-root" data-clone-enabled="true" class="ng-scope angular-ui-tree">
-                        <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes ng-model="lesson_cates">
-                            <li ng-repeat="node in lesson_cates" ui-tree-node ng-include="'cate_tree.html'" class="ng-scope angular-ui-tree-node" collapsed="false">
-                                <div ui-tree-handle class="tree-node tree-node-content ng-scope angular-ui-tree-handle">
-                                    <div class="tree-node-content">
-                                        <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
-                                            <i class="fa fa-minus-square-o" ng-class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
-                                        </a>
-                                        <input class="va-m ng-pristine ng-untouched ng-valid ng-scope" type="text" ng-if="!node.root" ng-change="node._editing=1" v-model="lb_localdata.form.lb_node_cate_name">
-                                        <a class="pull-right btn btn-danger btn-xs" tooltip="删除" data-nodrag ng-click="remove_cate(this);">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                        <a class="pull-right btn btn-info btn-xs m-r-xs" tooltip="新增" data-nodrag ng-click="new_sub(node)">
-                                            <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" ui-tree-nodes ng-model="node.nodes" ng-class="{hidden: collapsed}"></ul>
-                            </li>
-                        </ul>
-                    </div>
+                    <lb-listtree :tree-data="getreeData" ref="listtree">
+                    </lb-listtree>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
+                    <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>
@@ -52,15 +33,24 @@ export default {
     data() {
         let lb_localdata = {
             'form': {
-                'lb_node_cate_name': ''
+                'name': ''
             }
         }
         return {
             lb_localdata,
+            lb_tables: ['cate']
         }
     },
-    computed: {},
+    computed: {
+        getreeData() {
+            return this.$store.state.models.models.cate.data
+        }
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            this.$refs.listtree.addRoot()
+        }
+    }
 }
 </script>

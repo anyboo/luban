@@ -85,11 +85,11 @@
                                 </p>
                             </template>
                         </lb-table-column>
-                        <lb-table-column prop="data" label="适用校区">
+                        <lb-table-column prop="data" >
                             <template scope="scope">
                                 <p>
                                     <span>
-                                        <label class="xlabel">新华</label>
+                                        <label class="xlabel"></label>
                                     </span>
                                 </p>
                             </template>

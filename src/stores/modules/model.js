@@ -24,6 +24,9 @@ const state = {
         course: {
             data: []
         },
+        cate: {
+            data: []
+        }
     },
     currentModel: {}
 }
@@ -109,7 +112,7 @@ const actions = {
                 restfulapi.httpEditApi(obj)
                     .then((response) => {
                         //commit(types.APPEND_API, { tableName, response })
-                        resolve(response)
+                        resolve(response.data)
                     })
                     .catch(function(response) {
                         console.info(response)
