@@ -1,7 +1,7 @@
 <template>
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default ng-scope" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:12,page:1}}" xo-rest-ctrl="students" loading-container=".list-student" loading-text="正在加载学员..." empty-text="没有符合条件的学员!">
+            <div class="panel panel-default ng-scope">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="padder">
