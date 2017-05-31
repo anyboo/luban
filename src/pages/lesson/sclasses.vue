@@ -1,14 +1,6 @@
 <template>
     <div ui-view class="ng-scope">
-        <div class="wrapper-xs ng-scope" xo-rest="sclasses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="sclasses" loading-text="正在加载班级..." empty-text="没有符合条件的班级!">
-            <ul class="breadcrumb bg-white b-a">
-                <li>
-                    <a ui-sref="lesson.packages" href="#/lesson/packages">
-                        <i class="fa fa-suitcase"></i>课时包
-                    </a>
-                </li>
-                <li class="active">班级设置</li>
-            </ul>
+        <div class="wrapper-xs ng-scope">
             <div class="panel panel-default">
                 <div class="row wrapper no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
@@ -37,31 +29,11 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
-                            <i class="fa fa-filter"></i>过滤
-                        </button>
                         <lb-buttongroup :group-data="lb_localdata.lb_params_is_end" v-model="lb_localdata.form.lb_params_is_end"></lb-buttongroup>
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
-                            <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oe_id">
-                                <option value class>选择老师</option>
-                                <option value="0">纪岚雪</option>
-                            </select>
-                            <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                <a class="chosen-single" tabindex="-1">
-                                    <span>选择老师</span>
-                                    <div>
-                                        <b></b>
-                                    </div>
-                                </a>
-                                <div class="chosen-drop">
-                                    <div class="chosen-search">
-                                        <input type="text" autocomplete="off">
-                                    </div>
-                                    <ul class="chosen-results"></ul>
-                                </div>
-                            </div>
+                            
                         </div>
-                        <a ng-click="$util.open('tpl/app/lesson/sclasses/new_sclass.modal.html','md')" @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
+                        <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"></i>新建班级
                         </a>
                     </div>
@@ -151,7 +123,7 @@ export default {
                     'value': '班级简称'
                 }],
                 'search_key': 'class_name',
-                'search_value': ''
+                'search_value': '班级名'
             },
             'dropDownMenu': [{
                 'url': 'lb-newsclassmodal',
