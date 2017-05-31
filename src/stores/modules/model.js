@@ -29,6 +29,9 @@ const state = {
         },
         setting: {
             data: []
+        },
+        flow: {
+            data: []
         }
     },
     currentModel: {}

@@ -26,13 +26,13 @@
                             <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
                         </form>
                     </div>
-                    <a ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})" @click="lbShowdialog($event,'lb-flowaddmodal')">
+                    <a ng-click="$util.open('tpl/app/iae/flow.add.modal.html','md',{})" @click="lbShowdialog($event,'lb-flowaddmodal')" class="btn btn-primary pull-right ng-click-active">
                         <i class="fa fa-pencil"></i>记一笔
                     </a>
                 </div>
             </div>
             <div class="table-responsive">
-                <lb-table :data="getTableData" stripe>
+                <lb-table :data="getTablesData()" stripe>
                     <lb-table-column prop="data" label="操作">
                         <template scope="scope">
                             <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
@@ -46,12 +46,12 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="金额">
                         <template scope="scope">
-                            <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">-30.00</span>
+                            <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">{{scope.row.amount}}</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="类型">
                         <template scope="scope">
-                            <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">支出</span>
+                            <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">{{scope.row.type}}</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="分类">
@@ -61,14 +61,14 @@
                     </lb-table-column>
                     <lb-table-column prop="data" label="备注">
                         <template scope="scope">
-                            <span ng-bind-html="item.note" class="ng-binding">李哥订单退款,订单号:OB1161217170444033750849</span>
+                            <span ng-bind-html="item.note" class="ng-binding">{{scope.row.note}}</span>
                         </template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="经办人">
-                        <template scope="scope">陈佳木</template>
+                        <template scope="scope">{{scope.row.lb_name}}</template>
                     </lb-table-column>
                     <lb-table-column prop="data" label="录入日期">
-                        <template scope="scope">2017-05-12 15:41</template>
+                        <template scope="scope">{{scope.row.create_time}}</template>
                     </lb-table-column>
                 </lb-table>
                 <div class="grid-data-result"></div>
@@ -114,6 +114,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['flow']
         }
     },
     computed: {},

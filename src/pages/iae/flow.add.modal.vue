@@ -18,7 +18,7 @@
                                 <span class="text-danger">*</span>类型
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <lb-buttongroup :group-data="lb_localdata.lb_fee_type" v-model="lb_localdata.form.lb_fee_type"></lb-buttongroup>
+                                <lb-buttongroup :group-data="lb_localdata.type" v-model="lb_localdata.form.type"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -27,7 +27,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">
-                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.lb_fee_amount">
+                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.lb_fee_odi_id">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.odi_id">
                                         <option value class>请选择</option>
                                         <option value="0">日常支出</option>
                                     </select>
@@ -61,7 +61,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_fee_note">
+                                    <input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.note">
                                 </div>
                             </div>
                         </div>
@@ -84,14 +84,14 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <lb-date-picker type="datetime" name="create_time" v-model="lb_localdata.form.lb_fee_create_time"></lb-date-picker>
+                                    <lb-date-picker type="datetime" name="create_time" v-model="lb_localdata.form.create_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="saving" ng-click="save_fee()">确定</button>
+                    <button class="btn btn-primary" ng-disabled="saving" ng-click="save_fee()" @click="handleClick">确定</button>
                     <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
@@ -100,10 +100,10 @@
 </template>
 <script>
 export default {
-    name: 'flow.add.modal',
+    name: 'flow',
     data() {
         let lb_localdata = {
-            'lb_fee_type': [{
+            'type': [{
                 'value': '0',
                 'text': '支出'
             }, {
@@ -111,20 +111,27 @@ export default {
                 'text': '收入'
             }],
             'form': {
-                'lb_fee_type': '',
-                'lb_fee_amount': '',
-                'lb_fee_odi_id': '',
-                'lb_fee_note': '',
+                'type': '',
+                'amount': '',
+                'odi_id': '',
+                'note': '',
                 'lb_name': '',
-                'lb_fee_create_time': ''
+                'create_time': ''
             }
         }
         return {
             lb_localdata,
+            model: 'flow'
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            this.handleSave().then(() => {
+                alert('数据已经提交数据库了')
+            })
+        },
+    }
 }
 </script>
