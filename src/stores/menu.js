@@ -19,8 +19,7 @@ export default [{
     }, {
         menuTitle: '流失名单',
         to: '/student/lost'
-    },
-    {
+    }, {
         menuTitle: '跟踪回访记录',
         to: '/student/tracks'
     }, {
@@ -31,38 +30,23 @@ export default [{
     menuTitle: '课程',
     menuIcon: 'fa-book',
     menu: [{
+        menuTitle: '班级设置',
+        to: '/lesson/sclasses'
+    }, {
         menuTitle: '课程设置',
         to: '/lesson/manage'
     }, {
         menuTitle: '订单',
         to: '/lesson/orders'
     }, {
-        menuTitle: '班组课',
+        menuTitle: '班课',
         to: '/lesson/classes'
-    }, {
-        menuTitle: '报读学员',
-        to: '/lesson/packages'
-    }, {
-        menuTitle: '科目设置',
-        to: '/lesson/subjects'
-    }, {
-        menuTitle: '班级设置',
-        to: '/lesson/sclasses'
     }, {
         menuTitle: '1对1',
         to: '/lesson/contracts'
     }, {
         menuTitle: '课时包',
-        menu: [{
-            menuTitle: '报读学员',
-            to: 'lesson/packages'
-        }, {
-            menuTitle: '科目设置',
-            to: 'lesson/subjects'
-        }, {
-            menuTitle: '班级设置',
-            to: 'lesson/sclasses'
-        }]
+        to: '/lesson/packages'
     }]
 }, {
     menuTitle: '学费',
