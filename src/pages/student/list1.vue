@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive m-t">
+                    <div class="row m-t">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="学生姓名">
                                 <template scope="scope">

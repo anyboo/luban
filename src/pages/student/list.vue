@@ -2,7 +2,7 @@
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
             <div class=" wrapper panel panel-default ng-scope">
-                <div class="row ">
+                <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="padder">
                             <div class="input-group w-full">
@@ -39,7 +39,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="wrapper list-student bg-light lter">
+                <div class=" list-student ">
                     <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
@@ -69,7 +69,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="table-responsive ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
+                    <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">

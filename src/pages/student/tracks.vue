@@ -25,7 +25,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="table-responsive m-t">
+                    <div class="row m-t">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column width="100" prop="data" label="学员">
                                 <template scope="scope">

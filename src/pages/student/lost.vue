@@ -15,7 +15,7 @@
                         <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="table-responsive m-t">
+                <div class="row m-t">
                     <lb-table :data="getTableData" stripe>
                         <lb-table-column prop="data" label="学生姓名">
                             <template scope="scope"></template>
