@@ -32,6 +32,11 @@ export default {
         this.makeImage = makeimage
         this.base64 = base64
         this.types = types
+        this.pagination = {}
+        this.pagination.currentPage = 1
+        this.pagination.total = 0
+        this.pagination.pagesize = 10
+        this.pagination.pagesizes = [10, 20, 50, 100]
     },
     mounted: function() {
         this.handleGetTable()
@@ -121,6 +126,7 @@ export default {
             if (this.lb_tables) {
                 let tablaName = this.lb_tables[0]
                 tablaData = this.$store.state.models.models[tablaName].data
+                this.pagination.total = this.$store.state.models.models[tablaName].count
             }
             return tablaData
         },
@@ -291,5 +297,11 @@ export default {
             }
             return result
         },
+        handleSizeChange(val) {
+            console.log(`每页 ${val} 条`)
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`)
+        }
     }
 }
