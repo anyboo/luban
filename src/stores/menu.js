@@ -1,4 +1,8 @@
 export default [{
+    menuTitle: '工作台',
+    menuIcon: 'icon-home text-primary-dker',
+    to: '/main/home'
+}, {
     menuTitle: '学员',
     menuIcon: 'fa-users',
     menu: [{

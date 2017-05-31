@@ -1,7 +1,7 @@
 <template>
     <li @click="handleClick" class="ng-scope" :class="{'active':active}">
-        <a class="auto ng-scope">
-            <span class="pull-right text-muted">
+        <a class="auto ng-scope" @click="handleRouter($event,menu)">
+            <span class="pull-right text-muted" v-if="menu.menu">
                 <i class="fa fa-fw fa-angle-right text"></i>
                 <i class="fa fa-fw fa-angle-down text-active"></i>
             </span>
@@ -38,8 +38,10 @@ export default {
         },
         handleRouter(event, item) {
             this.$store.state.envs.currMenu = item.menuTitle
-            this.$router.push(item.to)
-            event.stopPropagation()
+            if (item.to) {
+                this.$router.push(item.to)
+                event.stopPropagation()
+            }
         }
     }
 }
