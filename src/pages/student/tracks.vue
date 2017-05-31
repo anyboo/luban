@@ -55,15 +55,10 @@
                             </lb-table-column>
                         </lb-table>
                     </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-4 col-xs-12"></div>
-                            <div class="col-sm-4 text-center">
-                                <small class="text-muted inline m-t-sm m-b-sm ng-binding">共 4 条记录</small>
-                            </div>
-                            <div class="col-sm-4 text-right text-center-xs">
-                                <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid"></ul>
-                            </div>
+                      <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
                         </div>
                     </div>
                 </div>
