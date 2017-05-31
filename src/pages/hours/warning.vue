@@ -2,7 +2,7 @@
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
             <div ui-view class="ng-scope">
-                <div class="wrapper bg-white ng-scope" page-controller="hours_warning_index">
+                <div class="wrapperpanel panel-default bg-white ng-scope" page-controller="hours_warning_index">
                     <div class="row no-gutter">
                         <div class="col-xs-12 col-md-3">
                             <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>

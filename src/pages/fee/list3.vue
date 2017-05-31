@@ -1,80 +1,84 @@
 <template>
     <div ui-view class="ng-scope">
-        <div class="panel panel-default ng-scope" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
-            <div class="row wrapper">
-                <div class="col-xs-12 col-md-4 m-t">
-                    <div class="inline">
-                        <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
-                        <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-8 m-t">
-                    <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
-                    <div class="inline w-sm va-m m-l-xs">
-                        <div class="input-group">
-                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
-                            <span class="input-group-btn">
+        <div class="wrapper-xs ng-scope">
+            <div ui-view class="ng-scope">
+                <div class="panel panel-default ng-scope" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
+                    <div class="row wrapper">
+                        <div class="col-xs-12 col-md-4 m-t">
+                            <div class="inline">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-8 m-t">
+                            <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
+                            <div class="inline w-sm va-m m-l-xs">
+                                <div class="input-group">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                                    <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
+                                </div>
+                            </div>
+                            <button class="btn btn-default m-l-xs ng-isolate-scope" export="arrearages" export-params="params">
+                                <i class="glyphicon glyphicon-export"></i>导出
+                            </button>
+                            <div id="fct-arrearages" style="display:none;">
+                                <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
+                                    <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
+                                    <input type="hidden" name="resource" value="arrearages">
+                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <button class="btn btn-default m-l-xs ng-isolate-scope" export="arrearages" export-params="params">
-                        <i class="glyphicon glyphicon-export"></i>导出
-                    </button>
-                    <div id="fct-arrearages" style="display:none;">
-                        <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                            <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
-                            <input type="hidden" name="resource" value="arrearages">
-                            <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                            <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                            <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
-                        </form>
+                    <div class="table-responsive">
+                        <lb-table :data="getTableData" stripe>
+                            <lb-table-column prop="data" label="操作">
+                                <template scope="scope">
+                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
+                                            操作
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                    </lb-dropdown>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="日期">
+                                <template scope="scope">2017-05-05 15:23</template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="订单号">
+                                <template scope="scope">OB1161217050523032304926</template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="订单内容">
+                                <template scope="scope">班课[3期班]60次</template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="欠费金额">
+                                <template scope="scope">
+                                    <span class="badge bg-danger ng-binding">3000.00</span>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="总金额">
+                                <template scope="scope">
+                                    <span class="badge bg-info ng-binding">3000.00</span>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column prop="data" label="学员">
+                                <template scope="scope">小兵</template>
+                            </lb-table-column>
+                        </lb-table>
+                        <div class="grid-data-result"></div>
                     </div>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <lb-table :data="getTableData" stripe>
-                    <lb-table-column prop="data" label="操作">
-                        <template scope="scope">
-                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
-                                    操作
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                            </lb-dropdown>
-                        </template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="日期">
-                        <template scope="scope">2017-05-05 15:23</template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="订单号">
-                        <template scope="scope">OB1161217050523032304926</template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="订单内容">
-                        <template scope="scope">班课[3期班]60次</template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="欠费金额">
-                        <template scope="scope">
-                            <span class="badge bg-danger ng-binding">3000.00</span>
-                        </template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="总金额">
-                        <template scope="scope">
-                            <span class="badge bg-info ng-binding">3000.00</span>
-                        </template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="学员">
-                        <template scope="scope">小兵</template>
-                    </lb-table-column>
-                </lb-table>
-                <div class="grid-data-result"></div>
-            </div>
-            <div class="panel-footer ">
-                <div class="row ">
-                    <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                    </lb-pagination>
+                    <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
