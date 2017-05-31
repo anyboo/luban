@@ -29,9 +29,6 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <button class="btn btn-default btn-sm">
-                            <i class="fa fa-filter"></i>过滤
-                        </button>
                         <lb-buttongroup class="btn-group m-l"></lb-buttongroup>
                         <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
@@ -85,7 +82,7 @@
                                 </p>
                             </template>
                         </lb-table-column>
-                        <lb-table-column prop="data" >
+                        <lb-table-column prop="data">
                             <template scope="scope">
                                 <p>
                                     <span>

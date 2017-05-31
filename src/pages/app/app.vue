@@ -19,6 +19,7 @@ import sidebarmenu from '../sidebar-menu/sidebarmenu.vue'
 import footer from '../footer/footer.vue'
 import dialoglist from '../dialog/dialoglist.vue'
 import modalbackdrop from '../modal-backdrop/modalbackdrop.vue'
+import menu from '~/stores/menu'
 export default {
     name: 'app',
     data() {
@@ -37,7 +38,26 @@ export default {
     },
     computed: {
         getCurrMenu() {
-            return this.$store.state.envs.currMenu
+            var menuName = this.$store.state.envs.currMenu
+            if (this.$store.state.envs.currMenu.length == 0) {
+                let to = this.$route.path
+                for (var item of menu) {
+                    if (item.to == to) {
+                        menuName = item.menuTitle
+                        break
+                    } else {
+                        if (item.menu) {
+                            for (var subitem of item.menu) {
+                                if (subitem.to == to) {
+                                    menuName = subitem.menuTitle
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return menuName
         }
     },
     watch: {
@@ -56,7 +76,7 @@ export default {
         },
         handleSelect(index) {
             console.log(index)
-            /**/
+                /**/
         },
     }
 }
