@@ -23,7 +23,10 @@ const state = {
         },
         course: {
             data: []
-        },
+        }, 
+        setting: {
+            data: []
+        }
     },
     currentModel: {}
 }
