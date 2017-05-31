@@ -1,8 +1,8 @@
 <template>
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default ng-scope">
-                <div class="row wrapper">
+            <div class=" wrapper panel panel-default ng-scope">
+                <div class="row ">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="padder">
                             <div class="input-group w-full">

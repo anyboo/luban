@@ -1,15 +1,13 @@
 <template>
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default">
-                <div class="m-t ng-scope">
-                    <div class="row no-gutter">
-                        <div class="col-xs-12 ">
-                            <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
-                        </div>
+            <div class="wrapper panel panel-default bg-white ng-scope" page-controller="list1index">
+                <div class="row no-gutter">
+                    <div class="col-xs-12 ">
+                        <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="m-t ng-scope">
+                <div class="m-t ng-scope" xo-rest="class_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list11">
                     <div class="row no-gutter">
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">

@@ -1,7 +1,7 @@
 <template>
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default bg-white ng-scope" page-controller="list2index">
+            <div class=" wrapper panel panel-default bg-white ng-scope" page-controller="list2index">
                 <div class="row no-gutter">
                     <div class="col-xs-12 ">
                         <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
