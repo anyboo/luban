@@ -3,11 +3,23 @@
         <div class="wrapper">
             <!-- stats-->
             <div ng-controller="homePublicStatCtrl" class="row no-gutter home-public-stat ng-scope" ui-per="widget.home_stat">
+
                 <div class="col-xs-12 col-md-8">
                     <div class="row no-gutter bg-info lter">
-                        <div class="col-xs-4 stat-box b-r"><a ui-sref="lesson.classes" ui-per="lesson.classes" ui-per-no-hide="true" href="#/lesson/classes"><h1 class="text-center"><i class="fa fa-flag-checkered"></i><span ng-bind-html="vm.$data.total.class" class="m-l-xs ng-binding">5</span></h1><p class="title text-center">正常开班数</p></a></div>
-                        <div class="col-xs-4 stat-box b-r"><a ui-sref="student.list" ui-per="student.list" ui-per-no-hide="true" href="#/student/list"><h1 class="text-center"><i class="fa fa-users"></i><span ng-bind-html="vm.$data.total.student" class="m-l-xs ng-binding">1</span></h1><p class="title text-center">总学员数</p></a></div>
-                        <div class="col-xs-4 stat-box text-center"><a ui-sref="student.list0" ui-per="student.list0" ui-per-no-hide="true" href="#/student/list0"><h1 class="text-center"><i class="fa fa-compass"></i><span ng-bind-html="vm.$data.total.inquiry" class="m-l-xs ng-binding">37</span></h1><p class="title text-center">总咨询名单</p></a></div>
+                        <div class="col-xs-4 stat-box b-r">
+                        <a ui-sref="lesson.classes" ui-per="lesson.classes" ui-per-no-hide="true" href="#/lesson/classes">
+                        <h1 class="text-center heghts">
+                        <i class="fa fa-flag-checkered">
+                            
+                        </i><span ng-bind-html="vm.$data.total.class" class="m-l-xs ng-binding">5</span>
+                        </h1><p class="title text-center">正常开班数</p></a></div>
+                        <div class="col-xs-4 stat-box b-r "><a ui-sref="student.list" ui-per="student.list" ui-per-no-hide="true" href="#/student/list" >
+                        <h1 class="text-center heghts"><i class="fa fa-users "></i><span ng-bind-html="vm.$data.total.student" class="m-l-xs ng-binding">1</span>
+                        </h1><p class="title text-center">总学员数</p></a></div>
+                        <div class="col-xs-4 stat-box text-center"><a ui-sref="student.list0" ui-per="student.list0" ui-per-no-hide="true" href="#/student/list0">
+                        <h1 class="text-center heghts"><i class="fa fa-compass"></i>
+                        <span ng-bind-html="vm.$data.total.inquiry" class="m-l-xs ng-binding">37</span>
+                        </h1><p class="title text-center">总咨询名单</p></a></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-4">
@@ -23,6 +35,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
             <div class="row no-gutter bg-white home-widget m-t">
                 <div class="col-lg-1 col-md-1 col-xs-4">
                     <button class="btn btn-app btn-info" ui-per="widget.add_student" ng-click="$util.open('tpl/app/widget/add_student.modal.html','md',{})"><i class="icon-user-follow"></i> <span>档案录入</span></button>
@@ -85,7 +101,7 @@
                     <div ng-controller="homePersonalStatCtrl" class="panel panel-default home-box ng-scope">
                         <div class="panel-heading">个人统计</div>
                         <div class="list-group bg-white"><a class="list-group-item"><i class="fa fa-weixin"></i> 微信发送 <span ng-bind-html="vm.$data.wechat_send_count" class="badge bg-info ng-binding">0</span></a> <a class="list-group-item"><i class="fa fa-phone"></i> 短信发送 <span ng-bind-html="vm.$data.sms_count" class="badge bg-info ng-binding">0</span></a> <a class="list-group-item" ui-sref="my.tracks" href="#/my/tracks"><i class="fa fa-comment"></i> 回访记录 <span ng-bind-html="vm.$data.track_count" class="badge bg-info ng-binding">8</span></a> <a class="list-group-item" ui-sref="my.courses" href="#/my/courses"><i class="fa fa-calendar"></i> 课次记录 <span ng-bind-html="vm.$data.teach_count" class="badge bg-info ng-binding">0</span></a> <a class="list-group-item" ui-sref="my.comments" href="#/my/comments"><i class="fa fa-comments"></i> 点评记录 <span ng-bind-html="vm.$data.comment_count" class="badge bg-info ng-binding">0</span></a></div>
-                    </div>
+                    </div>s
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <div ng-controller="homeBirthCtrl" class="panel panel-default home-box ng-scope">
@@ -102,9 +118,10 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
-    name: 'home',
+    name: 'footer',
     data() {
         let lb_localdata = {}
         return {
