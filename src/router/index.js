@@ -21,6 +21,18 @@ menu.forEach((item) => {
                 }
             }
         })
+    } else {
+        if (item.to) {
+            var to = '.' + item.to + '.vue'
+            try {
+                routes.push({
+                    path: item.to,
+                    component: req(`${to}`) //resolve => require([`${to}`], resolve)
+                })
+            } catch (err) {
+                console.log(to, err)
+            }
+        }
     }
 })
 

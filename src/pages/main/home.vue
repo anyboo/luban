@@ -104,7 +104,7 @@
 </template>
 <script>
 export default {
-    name: 'footer',
+    name: 'home',
     data() {
         let lb_localdata = {}
         return {
