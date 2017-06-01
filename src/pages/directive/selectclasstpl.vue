@@ -30,31 +30,30 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowdialog($event,'lb-openclassmodal')">
+                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-primary btn-sm ng-click-active">
                                 <i class="fa fa-plus"></i>新班级
                             </a>
                         </div>
                     </div>
                     <ul class="list-group m-t">
-                        <li class="list-group-item ng-scope" ng-class="{'active':vm.is_selected(item)}" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
-                            <h4 class="list-group-item-heading ng-binding">3期班</h4>
-                            <p class="list-group-item-text text-muted ng-binding">老师:陈佳木,已报人数:3/6,上课次数:0/60</p>
-                        </li>
-                        <li class="list-group-item ng-scope" ng-class="{'active':vm.is_selected(item)}" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
-                            <h4 class="list-group-item-heading ng-binding">1班</h4>
-                            <p class="list-group-item-text text-muted ng-binding">老师:陈佳木,已报人数:1/6,上课次数:0/20</p>
-                        </li>
-                        <li class="list-group-item ng-scope" ng-class="{'active':vm.is_selected(item)}" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
-                            <h4 class="list-group-item-heading ng-binding">13414</h4>
-                            <p class="list-group-item-text text-muted ng-binding">老师:陈佳木,已报人数:0/6,上课次数:0/10</p>
-                        </li>
+                        <template v-for="item in getTablesData()">
+                            <li class="list-group-item ng-scope" ng-class="{'active':vm.is_selected(item)}" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
+                                <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
+                                <p class="list-group-item-text text-muted ng-binding">老师:陈佳木,已报人数:3/6,上课次数:0/60</p>
+                            </li>
+                        </template>
                         <div class="grid-data-result"></div>
                     </ul>
-                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
+                  <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();" disabled="disabled">确定</button>
+                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();">确定</button>
             </div>
         </div>
     </div>
@@ -81,6 +80,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['team'],
         }
     },
     computed: {},
