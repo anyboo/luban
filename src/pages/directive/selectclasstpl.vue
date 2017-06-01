@@ -17,15 +17,22 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                            班级名称
-                                            <span class="caret"></span>
-                                        </button>
+                                        <lb-dropdowns menu-align="start" @command="handleCommand">
+                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                {{lb_localdata.search.search_value}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <template v-for="item in lb_localdata.search.fields">
+                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                </template>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
-                                    </span>
+                                            <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                        </span>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +51,7 @@
                         </template>
                         <div class="grid-data-result"></div>
                     </ul>
-                  <div class="panel-footer ">
+                    <div class="panel-footer ">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -59,12 +66,15 @@
     </div>
 </template>
 <script>
+import base64 from '~/api/base64.js'
 export default {
     name: 'selectClassTpl',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_grid_search_value': ''
+                'lb_grid_search_value': '',
+                'search_value': '',
+                'status': '',
             },
             'search': {
                 'fields': [{
@@ -75,7 +85,7 @@ export default {
                     'value': '老师姓名'
                 }],
                 'search_key': 'class_name',
-                'search_value': ''
+                'search_value': '班级名称'
             }
         }
         return {
@@ -85,6 +95,35 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+            this.handleSearch()
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.lb_localdata.form.search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let status = this.lb_localdata.form.status.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'track_type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>
