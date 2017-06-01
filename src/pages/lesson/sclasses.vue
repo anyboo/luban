@@ -141,7 +141,7 @@ export default {
         }
         return {
             lb_localdata,
-            lb_tables: ['setting'],
+            lb_tables: ['sclasses'],
         }
     },
     computed: {},

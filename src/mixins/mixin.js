@@ -168,6 +168,14 @@ export default {
                 })
             }
         },
+        getTabledata(table) {
+            let vm = this
+            if (table) {
+                vm.$store.dispatch(types.GET_API, table).then(() => {
+                    
+                })
+            }
+        },
         handleGetTable() {
             let vm = this
             if (vm.lb_tables) {

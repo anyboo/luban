@@ -27,7 +27,7 @@ const state = {
         cate: {
             data: []
         },
-        setting: {
+        sclasses: {
             data: []
         },
         flow: {

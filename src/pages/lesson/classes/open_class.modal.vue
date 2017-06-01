@@ -19,7 +19,7 @@
                                 <div class="input-group">
                                     <input type="text" name="master" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="lb_localdata.form.master">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择老师" on-selected="select_teacher" select-params="{ob_id:user.gv.ob_id,role_id:2}" @click="lbShowdialog($event,'lb-selectteachertpl')">
+                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>选择
                                         </button>
                                     </span>
@@ -29,27 +29,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">课程:</label>
                             <div class="col-md-10 col-xs-12">
-                                <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="ol_id" ng-change="lesson_change()" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in lessons|filter:cur_branch|filter:filter_class" required style="display: none;" v-model="lb_localdata.form.ol_id">
-                                    <option value class>选择课程</option>
-                                    <option value="0">22</option>
-                                    <option value="1">22</option>
-                                    <option value="2">嗯嗯</option>
-                                    <option value="3">默认课程嗯嗯</option>
-                                </select>
-                                <div class="chosen-container chosen-container-single" style="width: 485px;" title>
-                                    <a class="chosen-single" tabindex="-1">
-                                        <span>选择课程</span>
-                                        <div>
-                                            <b></b>
-                                        </div>
-                                    </a>
-                                    <div class="chosen-drop">
-                                        <div class="chosen-search">
-                                            <input type="text" autocomplete="off">
-                                        </div>
-                                        <ul class="chosen-results"></ul>
-                                    </div>
-                                </div>
+                                <lb-cascader placeholder="课程分类" :options="getreeData" v-model="lb_localdata.form.cate_array" filterable change-on-select></lb-cascader>
                             </div>
                         </div>
                         <div class="form-group">
@@ -120,6 +100,7 @@ export default {
                 'master': '',
                 'ol_id': '',
                 'class_name': '',
+                'cate_array': [],
                 'open_time': '',
                 'close_time': '',
                 'max_student_num': '',
@@ -144,7 +125,35 @@ export default {
             model: 'team',
         }
     },
-    computed: {},
+    mounted() {
+        this.getTabledata('cate')
+    },
+    computed: {
+        getreeData() {
+            let cateData = this.$store.state.models.models.cate.data
+            let treeData = []
+            let treemap = {}
+            for (var item of cateData) {
+                treemap[item._id] = {
+                    value: item._id,
+                    label: item.name
+                }
+            }
+            for (var subitem of cateData) {
+                if (subitem.pid == '') {
+                    treeData.push(treemap[subitem._id])
+                } else {
+                    if (typeof treemap[subitem.pid] == 'object') {
+                        if (typeof treemap[subitem.pid].children !== 'object') {
+                            treemap[subitem.pid].children = []
+                        }
+                        treemap[subitem.pid].children.push(treemap[subitem._id])
+                    }
+                }
+            }
+            return treeData
+        }
+    },
     watch: {},
     methods: {
         handleClick() {

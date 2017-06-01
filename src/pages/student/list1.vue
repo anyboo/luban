@@ -30,7 +30,10 @@
                                     <a class="chosen-single" tabindex="-1">
                                         <span>选择班级</span>
                                         <div>
-                                            <b></b>
+                                            <el-select v-model="value8" filterable placeholder="请选择">
+                                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                                </el-option>
+                                            </el-select>
                                         </div>
                                     </a>
                                     <div class="chosen-drop">
@@ -94,7 +97,7 @@
                             <lb-table-column prop="data" label="剩余课次">
                                 <template scope="scope">
                                     3
-                                    <a ng-click="$util.open('tpl/app/student/view_course.modal.html','lg',{ocs_id:item.ocs_id,lesson_type:'0'})" @click="lbShowdialog($event,'lb-viewcoursemodal')">
+                                    <a @click="lbShowdialog($event,'lb-viewcoursemodal')">
                                         <i class="icon-eye"></i>
                                     </a>
                                 </template>
@@ -160,6 +163,10 @@ export default {
             lb_localdata,
             lb_tables: ['student']
         }
+    },
+    mounted() {
+       
+        this.getTabledata('cate')
     },
     computed: {},
     watch: {},

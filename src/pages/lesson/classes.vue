@@ -34,7 +34,7 @@
                             <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
                        
                             <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
-                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
+                            <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
                                 <i class="fa fa-plus "></i>开班
                             </a>
                         </div>

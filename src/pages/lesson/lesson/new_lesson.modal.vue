@@ -25,6 +25,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-xs-12">课程分类:</label>
                                     <div class="col-md-9 col-xs-12">
+                                        <lb-cascader placeholder="课程分类" :options="getreeData" v-model="lb_localdata.form.cate_array" filterable change-on-select></lb-cascader>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -179,8 +180,7 @@ export default {
             }],
             'form': {
                 'lesson_type': '0',
-                'lb_filterkeyword': '',
-                'lb_$select_search': '',
+                'cate_array': [],
                 'lesson_name': '',
                 'lesson_no': '',
                 'lesson_days': '',
@@ -234,8 +234,34 @@ export default {
         } else {
             this.title = '创建'
         }
+        this.getTabledata('cate')
     },
-    computed: {},
+    computed: {
+        getreeData() {
+            let cateData = this.$store.state.models.models.cate.data
+            let treeData = []
+            let treemap = {}
+            for (var item of cateData) {
+                treemap[item._id] = {
+                    value: item._id,
+                    label: item.name
+                }
+            }
+            for (var subitem of cateData) {
+                if (subitem.pid == '') {
+                    treeData.push(treemap[subitem._id])
+                } else {
+                    if (typeof treemap[subitem.pid] == 'object') {
+                        if (typeof treemap[subitem.pid].children !== 'object') {
+                            treemap[subitem.pid].children = []
+                        }
+                        treemap[subitem.pid].children.push(treemap[subitem._id])
+                    }
+                }
+            }
+            return treeData
+        }
+    },
     watch: {},
     methods: {
         changeTimePrice() {
@@ -268,7 +294,7 @@ export default {
         handleClick() {
             this.handleSave().then(() => {
                 this.$message({
-                    message: '新增成功',
+                    message: '操作成功',
                     type: 'success'
                 })
             })
