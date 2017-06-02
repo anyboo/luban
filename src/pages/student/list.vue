@@ -106,9 +106,10 @@
                                     <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="考勤卡号">
+                            <!--<lb-table-column prop="data" label="考勤卡号">
                                 <template scope="scope"></template>
                             </lb-table-column>
+                            -->
                             <lb-table-column prop="data" label="住址">
                                 <template scope="scope">{{ scope.row.home_address }}</template>
                             </lb-table-column>
@@ -127,11 +128,11 @@
                     <div class="grid-data-result"></div>
                 </div>
                 <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
+                </div>
             </div>
         </div>
     </div>

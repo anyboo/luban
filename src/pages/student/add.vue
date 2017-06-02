@@ -42,7 +42,7 @@
                                             <option value="2">妈妈</option>
                                         </select>
                                     </div>
-                                    <div class="inline va-m w-xs m-l-xs" ng-hide="item.name=='本人'">
+                                    <div class="inline va-m w-xs m-l-xs" v-if="lb_localdata.form.first_rel_rel!='0'">
                                         <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="lb_localdata.form.first_rel_name">
                                     </div>
                                     <div class="error ng-hide" v-if="lb_localdata.validator.fields.first_tel.errorStatus">
@@ -60,7 +60,7 @@
                                                 <option value="2">妈妈</option>
                                             </select>
                                         </div>
-                                        <div class="inline va-m w-xs m-l-xs">
+                                        <div class="inline va-m w-xs m-l-xs" v-if="item.relation!='0'">
                                             <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="item.name">
                                         </div>
                                         <div class="inline va-m m-l-xs ng-hide">

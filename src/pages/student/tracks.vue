@@ -55,7 +55,7 @@
                             </lb-table-column>
                         </lb-table>
                     </div>
-                      <div class="panel-footer ">
+                    <div class="panel-footer ">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -174,31 +174,32 @@ export default {
                     'type': ''
                 })
             }
-            if (this.localdata.form.daterange.length == 2) {
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
                 let startTime = this.getDatetime(this.localdata.form.daterange[0])
                 let endTime = this.getDatetime(this.localdata.form.daterange[1])
-                if (startTime == endTime) {
-                    endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'track_time',
+                        'value': startTime,
+                        'type': 'gt'
+                    })
+                    filterObj.push({
+                        'key': 'track_time',
+                        'value': endTime,
+                        'type': 'lt'
+                    })
                 }
-                filterObj.push({
-                    'key': 'track_time',
-                    'value': startTime,
-                    'type': 'gt'
-                })
-                filterObj.push({
-                    'key': 'track_time',
-                    'value': endTime,
-                    'type': 'lt'
-                })
             }
             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
-            console.log(filterObj)
-            let filterTxt = base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterObj)
         }
     }
 }

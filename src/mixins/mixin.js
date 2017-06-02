@@ -152,17 +152,18 @@ export default {
             })
 
             let filterTxt = base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         },
-        handleGetFilterTable(filter, prepage, page) {
+        handleGetFilterTable(filterObj) {
             let vm = this
             if (vm.lb_tables) {
                 let table = {}
                 table.model = vm.lb_tables[0]
+                let filter = base64.encode(JSON.stringify(filterObj))
                 table.filter = filter
-                table.prepage = prepage
-                table.page = page
-
+                table.prepage = this.pagination.pagesize
+                table.page = this.pagination.currentPage - 1
+                console.log(table,filterObj)
                 vm.$store.dispatch(types.GET_Filter_API, table).then(() => {
                     this.getTablesData()
                 })
@@ -172,16 +173,20 @@ export default {
             let vm = this
             if (table) {
                 vm.$store.dispatch(types.GET_API, table).then(() => {
-                    
+
                 })
             }
         },
         handleGetTable() {
             let vm = this
-            if (vm.lb_tables) {
-                vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
-                    this.getTablesData()
-                })
+            if (this.handleSearch) {
+                this.handleSearch()
+            } else {
+                if (vm.lb_tables) {
+                    vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
+                        this.getTablesData()
+                    })
+                }
             }
         },
         handleDelete(id) {
@@ -305,11 +310,13 @@ export default {
             }
             return result
         },
-        handleSizeChange(val) {
-            console.log(`每页 ${val} 条`)
+        handleSizeChange(value) {
+            this.pagination.pagesize = value
+            this.handleGetTable()
         },
-        handleCurrentChange(val) {
-            console.log(`当前页: ${val}`)
+        handleCurrentChange(value) {
+            this.pagination.currentPage = value
+            this.handleGetTable()
         }
     }
 }
