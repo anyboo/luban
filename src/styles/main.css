@@ -93,7 +93,6 @@ sup {
     vertical-align: baseline
 }
 
-
 sup {
     top: -0.5em
 }
@@ -21658,6 +21657,7 @@ button.toast-close-button {
 
 
 /* --- Tree --- */
+
 .tree-node {
     border: 1px solid #dae2ea;
     background: #f8faff;
@@ -21671,15 +21671,30 @@ button.toast-close-button {
 .tree-node-content {
     margin: 5px;
 }
+
 .tree-handle {
     padding: 5px;
     background: #428bca;
     color: #FFF;
     margin-right: 5px;
 }
-.heghts{
+
+.heghts {
     font-size: 36px;
     margin-top: 20px;
     margin-bottom: 10px;
+}
 
+.manages {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    font-size: 18px;
+}
+
+.heights {
+    margin-top: 9px;
 }

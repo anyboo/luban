@@ -62,6 +62,7 @@ import page63 from '~/pages/system/employee/change_account.modal.vue'
 import page64 from '~/pages/lesson/classes/teacher_arranges.modal.vue'
 import page65 from '~/pages/lesson/package/add_subject.modal.vue'
 import page66 from '~/pages/lesson/order/order_refund.modal.vue'
+import page67 from '~/pages/system/branch/add_modal.vue'
 
 var pages = {}
 pages['lb-dialog'] = page1
@@ -129,4 +130,5 @@ pages['lb-changeaccountmodal'] = page63
 pages['lb-teacherarrangesmodal'] = page64
 pages['lb-addsubjectmodal'] = page65
 pages['lb-orderrefundmodal'] = page66
+pages['lb-addmodal'] = page67
 export default pages

@@ -6,7 +6,7 @@
 
                 <div class="col-xs-12 col-md-8">
                     <div class="row no-gutter bg-info lter">
-                        <div class="col-xs-4 stat-box b-r">
+                        <div class="col-xs-4 stat-box b-r" @click="handleShowDialog('lb-selectteachertpl', menuData)">
                         <a ui-sref="lesson.classes" ui-per="lesson.classes" ui-per-no-hide="true" href="#/lesson/classes">
                         <h1 class="text-center heghts">
                         <i class="fa fa-flag-checkered">

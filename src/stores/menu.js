@@ -146,6 +146,9 @@ export default [{
     }, {
         menuTitle: '数据字典管理',
         to: '/system/dict'
+    }, {
+        menuTitle: '机构与校区设置',
+        to: '/system/org'
     }]
 }, {
     menuTitle: '日志',

@@ -58,7 +58,7 @@
                                         <p>
                                             <label>账号:</label>
                                             <span class="m-l-xs ng-binding ng-scope" ng-if="item.oa_id>0">
-                                            <i class="fa fa-user ng-scope"></i>13609598376
+                                            <i class="fa fa-user ng-scope"></i>1360959837
                                         </span>
                                         </p>
                                         <p>
