@@ -27,7 +27,7 @@
                         <div class="panel-body">
                             <div class="form-group ng-scope" ng-if="occ.from_oc_id != 0 && occ.lesson_type == 0">
                                 <div class="input-group">
-                                    <input type="text" placeholder="班级" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="true" required readonly="readonly" v-model="lb_localdata.form.lb_occ_selected_class_name">
+                                    <input type="text" placeholder="班级" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="true" required readonly="readonly" v-model="localdata.form.lb_occ_selected_class_name">
                                     <span class="input-group-btn">
                                         <button ng-disabled="occ.from_oc_id == 0" class="btn btn-default" select-tpl="tpl/directive/selectClassTpl.html" select-id-field="oc_id" max-num="1" on-selected="select_to_class" select-params="{ob_id:user.gv.ob_id,t:'order'}" select-title="请选择班级" @click="lbShowdialog($event,'lb-selectclasstpl')">
                                             <i class="fa fa-flag"></i>选择班级
@@ -50,13 +50,13 @@
 export default {
     name: 'change_class.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_occ_selected_class_name': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

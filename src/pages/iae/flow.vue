@@ -6,14 +6,14 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
-                                <lb-date-picker v-model="lb_localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
+                                <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_type" v-model="lb_localdata.form.lb_params_type"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_params_type" v-model="localdata.form.lb_params_type"></lb-buttongroup>
                             <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">
                                 <i class="glyphicon glyphicon-export"></i>导出Excel
                             </button>
@@ -90,7 +90,7 @@
 export default {
     name: 'flow',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_params_date_start': '',
                 'lb_daterange': '',
@@ -117,7 +117,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['flow']
         }
     },

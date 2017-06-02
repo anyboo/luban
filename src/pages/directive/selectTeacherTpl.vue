@@ -20,7 +20,7 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_is_part_time" v-model="lb_localdata.form.lb_params_is_part_time"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_params_is_part_time" v-model="localdata.form.lb_params_is_part_time"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="row list-student m-t">
@@ -68,7 +68,7 @@
 export default {
     name: 'selectTeacherTpl',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_grid_search_value': '',
                 'lb_params_is_part_time': ''
@@ -93,7 +93,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['employee'],
         }
     },

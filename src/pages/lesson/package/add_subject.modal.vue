@@ -5,9 +5,9 @@
 export default {
     name: 'add_subject.modal',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

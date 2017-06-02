@@ -5,9 +5,9 @@
 export default {
     name: 'order_refund.modal',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

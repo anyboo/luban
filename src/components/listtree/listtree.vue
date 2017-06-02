@@ -13,13 +13,13 @@ export default {
     name: 'LbListtree',
     props: ['treeData'],
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
 
             }
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'cate',
             lb_tables: ['cate']
         }
@@ -28,7 +28,7 @@ export default {
         addRoot() {
             let vm = this
             vm.modalsType = vm.types.APPEND_API
-            vm.lb_localdata.form =  {
+            vm.localdata.form =  {
                 name: '',
                 pid: '',
                 save: false

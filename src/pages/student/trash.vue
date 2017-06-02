@@ -18,17 +18,17 @@
                                 <div class="input-group-btn">
                                     <lb-dropdowns menu-align="start" @command="handleCommand">
                                         <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                            {{lb_localdata.search.search_value}}
+                                            {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                            <template v-for="item in lb_localdata.search.fields">
+                                            <template v-for="item in localdata.search.fields">
                                                 <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                             </template>
                                         </lb-dropdown-menu>
                                     </lb-dropdowns>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -85,7 +85,7 @@ import base64 from '~/api/base64.js'
 export default {
     name: 'trash',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_search_value': ''
             },
@@ -108,7 +108,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['student']
         }
     },
@@ -116,18 +116,18 @@ export default {
     watch: {},
     methods: {
         handleCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },
 
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.lb_search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })

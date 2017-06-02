@@ -10,7 +10,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-shopping-cart"></i>学员
-                        <span class="label bg-info ng-binding">{{lb_localdata.form.student_name }}</span>报名&缴费
+                        <span class="label bg-info ng-binding">{{localdata.form.student_name }}</span>报名&缴费
                     </h3>
                 </div>
                 <component v-bind:is="currentView"></component>
@@ -29,19 +29,19 @@ import ordermain from './ordermain.vue'
 export default {
     name: 'order',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'student_name': '',
             }
         }
         return {
-            lb_localdata,
+            localdata,
             currentView: 'lb-ordermain'
         }
     },
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-        this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
     },
     components: {
         'lb-cc': cc,

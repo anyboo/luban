@@ -10,17 +10,17 @@
                                     <div class="input-group-btn">
                                         <lb-dropdowns menu-align="start" @command="handleCommand">
                                             <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                {{lb_localdata.search.search_value}}
+                                                {{localdata.search.search_value}}
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
                                             <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                <template v-for="item in lb_localdata.search.fields">
+                                                <template v-for="item in localdata.search.fields">
                                                     <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                                 </template>
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
-                        <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
                         <button class="btn btn-default ng-isolate-scope" ui-per="student.export" export="students" export-params="params">
                             <i class="glyphicon glyphicon-export"></i>导出Excel
                         </button>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class=" list-student ">
-                    <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'image'">
+                    <div class="row ng-scope" v-if="localdata.form.lb_view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
                                 <div class="bg-white b-a r-2x list-student-item box-shadow">
@@ -58,7 +58,7 @@
                                         </a>
                                     </div>
                                     <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
-                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                                 <i class="fa fa-cog ng-scope"></i>
                                                 <span class="caret"></span>
@@ -69,11 +69,11 @@
                             </div>
                         </template>
                     </div>
-                    <div class="row ng-scope" v-if="lb_localdata.form.lb_view_mode == 'list'">
+                    <div class="row ng-scope" v-if="localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
                                             <span class="caret"></span>
@@ -141,7 +141,7 @@
 export default {
     name: 'list',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_search_value': '',
                 'lb_params_status': '',
@@ -236,7 +236,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['student'],
         }
     },
@@ -244,22 +244,22 @@ export default {
     watch: {},
     methods: {
         handleCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.lb_search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })
             }
-            let status = this.lb_localdata.form.lb_params_status.trim()
+            let status = this.localdata.form.lb_params_status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'status',

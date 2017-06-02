@@ -58,9 +58,9 @@
 export default {
     name: 'print-orders',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

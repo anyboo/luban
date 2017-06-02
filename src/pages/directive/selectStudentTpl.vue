@@ -20,17 +20,17 @@
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleCommand">
                                                 <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                    {{lb_localdata.search.search_value}}
+                                                    {{localdata.search.search_value}}
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
                                                 <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                    <template v-for="item in lb_localdata.search.fields">
+                                                    <template v-for="item in localdata.search.fields">
                                                         <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                                     </template>
                                                 </lb-dropdown-menu>
                                             </lb-dropdowns>
                                         </div>
-                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.search_value" @change="handleSearch">
+                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                         <span class="input-group-btn">
                                             <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                         </span>
@@ -38,12 +38,12 @@
                                 </div>
                             </div>
                             <br>
-                            <lb-buttongroup :group-data="lb_localdata.status" v-model="lb_localdata.form.status" @input="handleSearch"></lb-buttongroup>
-                            <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="wrapper list-student bg-light lter">
-                        <div class="row ng-scope text-center " v-if="lb_localdata.form.lb_view_mode == 'image'">
+                        <div class="row ng-scope text-center " v-if="localdata.form.lb_view_mode == 'image'">
                             <template v-for="item in getTablesData()">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b ng-scope">
                                     <div class="b-a r-2x list-student-item box-shadow" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
@@ -66,7 +66,7 @@
                             </template>
                         </div>
                     </div>
-                    <div class="table-responsive ng-scope " v-if="lb_localdata.form.lb_view_mode == 'list'">
+                    <div class="table-responsive ng-scope " v-if="localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleCurrentChange">
                             <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
@@ -106,7 +106,7 @@ import makeimage from '~/api/makeImage.js'
 export default {
     name: 'selectStudentTpl',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'search_value': '',
                 'status': '',
@@ -153,7 +153,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['student'],
             makeImage: makeimage,
             currentRow: null
@@ -187,8 +187,8 @@ export default {
             this.currentRow = row
         },
         handleCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
             this.handleSearch()
@@ -198,15 +198,15 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.search_value.trim()
+            let search_value = this.localdata.form.search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })
             }
-            let status = this.lb_localdata.form.status.trim()
+            let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'track_type',

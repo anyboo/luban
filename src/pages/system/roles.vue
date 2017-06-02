@@ -33,11 +33,11 @@
                     <div class="panel-body">
                         <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
                             <p>*角色ID:(仅限2个字符)</p>
-                            <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':lb_localdata.validator.fields.role_id.errorStatus}" v-model="lb_localdata.form.role_id" @change="validate('role_id')">
+                            <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.role_id.errorStatus}" v-model="localdata.form.role_id" @change="validate('role_id')">
                             <p>*角色名称:</p>
-                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.role_name"  :class="{'ng-dirty':lb_localdata.validator.fields.role_id.errorStatus}" @change="validate('role_name')">
+                            <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.role_name"  :class="{'ng-dirty':localdata.validator.fields.role_id.errorStatus}" @change="validate('role_name')">
                             <p>角色描述:</p>
-                            <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.role_desc">
+                            <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.role_desc">
                             <div class="m-t m-b">
                                 <button type='button' class="btn btn-primary" @click="handleClick">
                                     保存
@@ -54,7 +54,7 @@
 export default {
     name: 'roles',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'og_id': '',
                 'role_id': '',
@@ -85,7 +85,7 @@ export default {
             },
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'role',
             lb_tables: ['role'],
         }
@@ -94,7 +94,7 @@ export default {
     watch: {},
     methods: {
         clearForm() {
-            this.lb_localdata.form = {
+            this.localdata.form = {
                 'og_id': '',
                 'role_id': '',
                 'role_name': '',
@@ -104,7 +104,7 @@ export default {
         },
         handleEditClick(item) {
             this.setEditModle(item._id)
-            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, item)
+            this.localdata.form = this.lodash.assign(this.localdata.form, item)
         },
         handleDelClick(id) {
             this.handleDelete(id).then(() => {

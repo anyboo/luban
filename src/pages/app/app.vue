@@ -23,9 +23,9 @@ import menu from '~/stores/menu'
 export default {
     name: 'app',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
             isSidebarCollapsed: false,
         }
     },

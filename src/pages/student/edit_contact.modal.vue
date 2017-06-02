@@ -17,14 +17,14 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">手机号:</label>
                             <div class="col-xs-12 col-md-5">
-                                <input type="text" ng-readonly="info.is_has_open" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern" placeholder="输入手机号" ng-pattern="/^1\d{10}$/" required readonly="readonly" v-model="lb_localdata.form.lb_info_tel">
+                                <input type="text" ng-readonly="info.is_has_open" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern" placeholder="输入手机号" ng-pattern="/^1\d{10}$/" required readonly="readonly" v-model="localdata.form.lb_info_tel">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">称呼:</label>
                             <div class="col-xs-12 col-md-5">
                                 <div class="inline w-xs">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.text as item.text for item in $gv.dicts[1]" style="display: none;" v-model="lb_localdata.form.lb_info_relation">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.text as item.text for item in $gv.dicts[1]" style="display: none;" v-model="localdata.form.lb_info_relation">
                                         <option value class>称呼</option>
                                         <option value="0" selected="selected">本人</option>
                                         <option value="1">爸爸</option>
@@ -50,14 +50,14 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">姓/名</label>
                             <div class="col-xs-12 col-md-5">
-                                <input type="text" class="form-control w-sm ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="lb_localdata.form.lb_info_name">
+                                <input type="text" class="form-control w-sm ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="localdata.form.lb_info_name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2"></label>
                             <div class="col-xs-12 col-md-10">
                                 <label class="i-switch bg-primary inline va-m">
-                                    <input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" class="ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_info_is_has_open">
+                                    <input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_info_is_has_open">
                                     <i></i>
                                 </label>
                                 <span class="inline va-m">是否开通家校互联账号</span>
@@ -67,7 +67,7 @@
                             <label class="control-label col-xs-12 col-md-2"></label>
                             <div class="col-xs-12 col-md-10">
                                 <label class="i-switch bg-info inline va-m">
-                                    <input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="info.is_main == '1'" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="lb_localdata.form.lb_info_is_main">
+                                    <input type="checkbox" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="info.is_main == '1'" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.lb_info_is_main">
                                     <i></i>
                                 </label>
                                 <span class="inline va-m">是否设为第1联系方式</span>
@@ -87,7 +87,7 @@
 export default {
     name: 'edit_contact.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_info_tel': '',
                 'lb_info_relation': '',
@@ -97,7 +97,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

@@ -93,7 +93,7 @@
                                         <label class="control-label col-md-2 col-xs-3">考勤对象:</label>
                                         <div class="col-md-10 col-xs-9">
                                             <div class="form-control-static">
-                                                <lb-buttongroup :group-data="lb_localdata.lb_att_lesson_type" v-model="lb_localdata.form.lb_att_lesson_type"></lb-buttongroup>
+                                                <lb-buttongroup :group-data="localdata.lb_att_lesson_type" v-model="localdata.form.lb_att_lesson_type"></lb-buttongroup>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                                                     <span class="caret"></span>
                                                                 </button>
                                                             </div>
-                                                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                                                            <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
                                                             <span class="input-group-btn">
                                                                 <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                                             </span>
@@ -189,7 +189,7 @@ import register from './register.vue'
 export default {
     name: 'attendance',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'lb_att_lesson_type': [{
                 'value': '0',
                 'text': '课程班级'
@@ -209,7 +209,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             OnAttendance: true,
             InAttendance: false,
             BatchAttendance: false,

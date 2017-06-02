@@ -59,12 +59,12 @@
                         <p class="text-info">将对以下排课进行调整</p>
                         <ul class="list-group"></ul>
                         <p class="text-info">调整方案如下:</p>
-                        <lb-buttongroup :group-data="lb_localdata.lb_dispatch_type" v-model="lb_localdata.form.lb_dispatch_type"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_dispatch_type" v-model="localdata.form.lb_dispatch_type"></lb-buttongroup>
                         <div class="form-group m-t ng-scope" ng-if="dispatch.type == '1' || dispatch.type == '2'">
                             <label class="control-label">后移天数</label>
                             <div>
                                 <div class="input-group w-sm">
-                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required v-model="lb_localdata.form.lb_dispatch_days">
+                                    <input type="number" name="days" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-pattern ng-valid-number" required v-model="localdata.form.lb_dispatch_days">
                                     <span class="input-group-addon">天</span>
                                 </div>
                             </div>
@@ -72,13 +72,13 @@
                         <div class="form-group m-t">
                             <label class="control-label">调课原因:</label>
                             <div>
-                                <input type="text" name="reason" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_dispatch_reason">
+                                <input type="text" name="reason" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_dispatch_reason">
                             </div>
                         </div>
                     </form>
                     <form name="step3" class="form-validation m-t ng-pristine ng-valid ng-hide" ng-show="step==3">
                         <p class="m-t text-info">是否需要通知相关老师</p>
-                        <lb-buttongroup :group-data="lb_localdata.lb_dispatch_notify_teacher" v-model="lb_localdata.form.lb_dispatch_notify_teacher"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_dispatch_notify_teacher" v-model="localdata.form.lb_dispatch_notify_teacher"></lb-buttongroup>
                         <div ng-hide="dispatch.notify_teacher == '0'">
                             <p class="m-t text-info">通知内容预览</p>
                             <div class="form-group">
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <p class="m-t text-info">是否需要通知学生</p>
-                        <lb-buttongroup :group-data="lb_localdata.lb_dispatch_notify_student" v-model="lb_localdata.form.lb_dispatch_notify_student"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_dispatch_notify_student" v-model="localdata.form.lb_dispatch_notify_student"></lb-buttongroup>
                         <div ng-hide="dispatch.notify_student == '0'">
                             <p class="m-t text-info">通知内容预览</p>
                             <div class="form-group">
@@ -110,7 +110,7 @@
 export default {
     name: 'lesson_dispatch.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'lb_dispatch_type': [{
                 'value': '1',
                 'text': '选中排课整体后移'
@@ -144,7 +144,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

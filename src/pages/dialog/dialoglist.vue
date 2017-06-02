@@ -14,9 +14,9 @@ dialogpages['lb-finishadd'] = finishadd
 export default {
     name: 'dialog',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     components: dialogpages,

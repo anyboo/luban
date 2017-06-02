@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-xs-12">课程类型:</label>
                                         <div class="col-md-9 col-xs-12">
-                                            <lb-buttongroup :group-data="lb_localdata.lb_lesson_lesson_type" v-model="lb_localdata.form.lb_lesson_lesson_type"></lb-buttongroup>
+                                            <lb-buttongroup :group-data="localdata.lb_lesson_lesson_type" v-model="localdata.form.lb_lesson_lesson_type"></lb-buttongroup>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -36,7 +36,7 @@
                                                     <div class="tree-view ng-hide" ng-show="showTree" style>
                                                         <div class="helper-container">
                                                             <div class="line-head">
-                                                                <input placeholder="搜索..." type="text" ng-click="onFilterClicked($event)" class="input-filter ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_filterkeyword">
+                                                                <input placeholder="搜索..." type="text" ng-click="onFilterClicked($event)" class="input-filter ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_filterkeyword">
                                                                 <span class="clear-button" ng-click="clearFilter($event)">
                                                                     <span class="item-close"></span>
                                                                 </span>
@@ -74,7 +74,7 @@
                                                     </span>
                                                     </span>
                                                     </span>
-                                                    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 296px;" v-model="lb_localdata.form.lb_$select_search">
+                                                    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder ng-disabled="$select.disabled" ng-hide="$select.disabled" ng-click="$select.activate()" style="width: 296px;" v-model="localdata.form.lb_$select_search">
                                                 </div>
                                                 <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope ng-hide" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.ob_id as item in user.gv.branchs | propsFilter: {short_name: $select.search, branch_name: $select.search}" style>
                                                     <li class="ui-select-choices-group">
@@ -88,20 +88,20 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-xs-12">课程名:</label>
                                         <div class="col-md-9 col-xs-12">
-                                            <input type="text" name="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_localdata.form.lb_lesson_lesson_name">
+                                            <input type="text" name="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="localdata.form.lb_lesson_lesson_name">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-xs-12">课程编号:</label>
                                         <div class="col-md-9 col-xs-12">
-                                            <input type="text" name="lesson_no" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_lesson_lesson_no">
+                                            <input type="text" name="lesson_no" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_lesson_lesson_no">
                                         </div>
                                     </div>
                                     <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'">
                                         <label class="control-label col-md-3 col-xs-12">课程时间跨度:</label>
                                         <div class="col-md-9 col-xs-12">
                                             <div class="input-group">
-                                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                         选择
                                                         <span class="caret"></span>
@@ -121,7 +121,7 @@
                                                         </li>
                                                     </ul>
                                                 </lb-dropdown>
-                                                <input type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_lesson_lesson_days">
+                                                <input type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_lesson_lesson_days">
                                                 <span class="input-group-addon">天</span>
                                             </div>
                                         </div>
@@ -134,7 +134,7 @@
                                     <div class="form-group ng-scope" ng-if="lesson.lesson_type == '0'">
                                         <label class="control-label col-md-3 col-xs-12">收费模式:</label>
                                         <div class="col-md-9 col-xs-12">
-                                            <lb-buttongroup :group-data="lb_localdata.lb_lesson_price_model" v-model="lb_localdata.form.lb_lesson_price_model"></lb-buttongroup>
+                                            <lb-buttongroup :group-data="localdata.lb_lesson_price_model" v-model="localdata.form.lb_lesson_price_model"></lb-buttongroup>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -142,7 +142,7 @@
                                         <div class="col-md-5 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon">￥</span>
-                                                <input type="text" name="unit_price" class="form-control ng-pristine ng-untouched ng-valid" ng-change="cacu_price()" v-model="lb_localdata.form.lb_lesson_unit_price">
+                                                <input type="text" name="unit_price" class="form-control ng-pristine ng-untouched ng-valid" ng-change="cacu_price()" v-model="localdata.form.lb_lesson_unit_price">
                                                 <span ng-if="lesson.price_model=='1'" class="input-group-addon ng-scope">元/次</span>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                                         <label class="control-label col-md-3 col-xs-12">总共:</label>
                                         <div class="col-md-5 col-xs-12">
                                             <div class="input-group ng-scope" ng-if="lesson.price_model=='1'">
-                                                <input type="text" name="inc_times" ng-pattern="/^[0-9]+$/" ng-change="cacu_price()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="lb_localdata.form.lb_lesson_inc_times">
+                                                <input type="text" name="inc_times" ng-pattern="/^[0-9]+$/" ng-change="cacu_price()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.lb_lesson_inc_times">
                                                 <span class="input-group-addon">次</span>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                         <label class="control-label col-md-3 col-xs-12">售价:</label>
                                         <div class="col-md-5 col-xs-12">
                                             <div class="input-group">
-                                                <input type="text" name="price" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_lesson_price">
+                                                <input type="text" name="price" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_lesson_price">
                                                 <span class="input-group-addon">元</span>
                                             </div>
                                         </div>
@@ -174,7 +174,7 @@
                                         <label class="control-label col-md-3 col-xs-12">单次课时长:</label>
                                         <div class="col-md-5 col-xs-12">
                                             <div class="input-group m-b">
-                                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default">
                                                         选择
                                                         <span class="caret"></span>
@@ -194,7 +194,7 @@
                                                         </li>
                                                     </ul>
                                                 </lb-dropdown>
-                                                <input type="text" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="cacu_hours()" v-model="lb_localdata.form.lb_lesson_unit_hours">
+                                                <input type="text" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="cacu_hours()" v-model="localdata.form.lb_lesson_unit_hours">
                                                 <span class="input-group-addon">小时</span>
                                             </div>
                                         </div>
@@ -203,7 +203,7 @@
                                         <label class="control-label col-md-3 col-xs-12">课程总时长:</label>
                                         <div class="col-md-5 col-xs-12">
                                             <div class="input-group">
-                                                <input type="text" name="inc_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="lb_localdata.form.lb_lesson_inc_hours">
+                                                <input type="text" name="inc_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.lb_lesson_inc_hours">
                                                 <span class="input-group-addon">小时</span>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
 export default {
     name: 'create-lesson',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'lb_lesson_lesson_type': [{
                 'value': '0',
                 'text': '班课'
@@ -259,7 +259,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

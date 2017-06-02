@@ -10,36 +10,36 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级名称：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" placeholder="请输入完整的班级名称" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="class_name" v-model="lb_localdata.form.class_name" required="">
+                                <input type="text" placeholder="请输入完整的班级名称" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="class_name" v-model="localdata.form.class_name" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级简称：</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
-                                <input type="text" placeholder="简短易记的名称或编号" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="short_name" v-model="lb_localdata.form.short_name" required="">
+                                <input type="text" placeholder="简短易记的名称或编号" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="short_name" v-model="localdata.form.short_name" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">主教老师：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请选择主教老师" v-model="lb_localdata.form.teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="text" placeholder="请选择主教老师" v-model="localdata.form.teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">助教老师：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" v-model="lb_localdata.form.has_second_oe_id" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
+                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" v-model="localdata.form.has_second_oe_id" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
                                 <div class="input-group ng-scope" ng-if="sclass.has_second_oe_id">
-                                    <input type="text" placeholder="请选择助教老师" v-model="lb_localdata.form.second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="text" placeholder="请选择助教老师" v-model="localdata.form.second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-md-2 control-label">开课日期：</label>
                             <div class="col-sm-9 col-md-5">
                                 <div class="inline w-sm">
-                                    <lb-date-picker type="date" name="open_time" v-model="lb_localdata.form.open_time"></lb-date-picker>
+                                    <lb-date-picker type="date" name="open_time" v-model="localdata.form.open_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
 export default {
     name: 'newsclass',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'class_name': '',
                 'short_name': '',
@@ -69,7 +69,7 @@ export default {
             },
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'sclasses'
         }
     },

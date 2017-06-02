@@ -1,70 +1,67 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="ng-scope">
-                <div class=" wrapper panel panel-default bg-white ng-scope">
-                    <div class="row no-gutter ">
-                        <div class="col-xs-12 col-md-4 m-t">
-                            <lb-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
-                        </div>
-                        <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
-                            <div class="inline w-sm va-m m-l-xs">
-                                <div class="input-group">
-                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
-                                    <span class="input-group-btn">
+            <div class="wrapper panel panel-default bg-white ng-scope">
+                <div class="row no-gutter ">
+                    <div class="col-xs-12 col-md-4 m-t">
+                        <lb-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                    </div>
+                    <div class="col-xs-12 col-md-8 m-t">
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
+                        <div class="inline w-sm va-m m-l-xs">
+                            <div class="input-group">
+                                <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
+                                <span class="input-group-btn">
                                 <button class="btn btn-default" @click="handSelectStudent(false)">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
-                                </div>
                             </div>
-                            <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
-                            <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
-                                <i class="icon-plus"></i>跟踪回访登记
-                            </button>
                         </div>
+                        <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
+                        <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
+                            <i class="icon-plus"></i>跟踪回访登记
+                        </button>
                     </div>
-                    <div class="row m-t">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column width="100" prop="data" label="学员">
-                                <template scope="scope">
-                                    <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
-                                    <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
-                                        <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
-                                    </a>
-                                    <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
-                                </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="沟通内容">
-                                <template scope="scope">
-                                    <pre class="ng-binding">{{ scope.row.detail}}</pre>
-                                </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="沟通方式">
-                                <template scope="scope">{{ scope.row.track_way }}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="接洽人">
-                                <template scope="scope">{{scope.row.op_name}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="沟通时间">
-                                <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="类型">
-                                <template scope="scope">{{ getButtongroupText(localdata.track_type,scope.row.track_type)}}</template>
-                            </lb-table-column>
-                        </lb-table>
-                    </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                </div>
+                <div class="row m-t">
+                    <lb-table :data="getTablesData()" stripe>
+                        <lb-table-column width="100" prop="data" label="学员">
+                            <template scope="scope">
+                                <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
+                                <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
+                                    <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
+                                </a>
+                                <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="沟通内容">
+                            <template scope="scope">
+                                <pre class="ng-binding">{{ scope.row.detail}}</pre>
+                            </template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="沟通方式">
+                            <template scope="scope">{{ scope.row.track_way }}</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="接洽人">
+                            <template scope="scope">{{scope.row.op_name}}</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="沟通时间">
+                            <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
+                        </lb-table-column>
+                        <lb-table-column prop="data" label="类型">
+                            <template scope="scope">{{ getButtongroupText(localdata.track_type,scope.row.track_type)}}</template>
+                        </lb-table-column>
+                    </lb-table>
+                </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 <script>
@@ -198,10 +195,10 @@ export default {
                 }
             }
             filterObj.push({
-                    'key': 'lookup',
-                    'value': this.localdata.lookup,
-                    'type': 'lookup'
-                })
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
                 //console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)

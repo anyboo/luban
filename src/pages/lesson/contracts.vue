@@ -4,7 +4,7 @@
             <div class="row wrapper no-gutter">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="inline w va-m">
-                        <select class="form-control ng-pristine ng-untouched ng-valid" name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:filter_contract" style="display: none;" v-model="lb_localdata.form.lb_params_ol_id">
+                        <select class="form-control ng-pristine ng-untouched ng-valid" name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:filter_contract" style="display: none;" v-model="localdata.form.lb_params_ol_id">
                             <option value class>选择课程</option>
                             <option value="0">古典吉他初级</option>
                         </select>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="inline w va-m">
                         <div class="input-group ng-valid" select-title="请选择学员" ng-model="params.os_id" select-params="{ob_id:user.gv.ob_id}">
-                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_name">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 m-t">
-                    <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
-                    <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
                     <a ng-click="$util.open('tpl/app/lesson/contracts/add_performance.modal.html','md',grid.data)" @click="lbShowdialog($event,'lb-addperformancemodal')">
                         <i class="icon-plus"></i>登记成绩
                     </a>
@@ -55,7 +55,7 @@
                             <i class="fa fa-phone"></i>
                             <span ng-bind="item.student.first_tel" class="ng-binding">13605557745</span>
                             <br>
-                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog ng-scope"></i>
                                     <span class="ng-scope">操作</span>
@@ -136,7 +136,7 @@
 export default {
     name: 'contracts',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_params_ol_id': '',
                 'lb_name': '',
@@ -186,7 +186,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

@@ -3,9 +3,9 @@
 export default {
     name: 'no_arrange_explain.modal',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

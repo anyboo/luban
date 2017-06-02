@@ -4,7 +4,7 @@
             <div class="wrapper panel panel-default bg-white ng-scope" page-controller="list1index">
                 <div class="row no-gutter">
                     <div class="col-xs-12 ">
-                        <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_lesson_type" v-model="localdata.form.lb_lesson_type"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="m-t ng-scope" xo-rest="class_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list11">
@@ -12,7 +12,7 @@
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -20,9 +20,9 @@
                             </span>
                                 </div>
                             </div>
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
-                                <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="lb_localdata.form.lb_params_oc_id">
+                                <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="localdata.form.lb_params_oc_id">
                                     <option value class>选择班级</option>
                                     <option value="0">11</option>
                                 </select>
@@ -131,7 +131,7 @@
 export default {
     name: 'list1',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'lb_lesson_type': [{
                 'value': '0',
                 'text': '班课学员'
@@ -160,7 +160,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['student']
         }
     },

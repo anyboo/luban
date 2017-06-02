@@ -18,7 +18,7 @@
                                 <span class="text-danger">*</span>类型
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <lb-buttongroup :group-data="lb_localdata.type" v-model="lb_localdata.form.type"></lb-buttongroup>
+                                <lb-buttongroup :group-data="localdata.type" v-model="localdata.form.type"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -27,7 +27,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">
-                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="lb_localdata.form.amount">
+                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="localdata.form.amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="lb_localdata.form.odi_id">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
                                         <option value class>请选择</option>
                                         <option value="0">日常支出</option>
                                     </select>
@@ -61,7 +61,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.note">
+                                    <input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.note">
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
                                     <div class="input-group ng-valid" ng-model="fee.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
-                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="lb_localdata.form.lb_name">
+                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="localdata.form.lb_name">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                 <i class="fa fa-user"></i>
@@ -84,7 +84,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <lb-date-picker type="datetime" name="create_time" v-model="lb_localdata.form.create_time"></lb-date-picker>
+                                    <lb-date-picker type="datetime" name="create_time" v-model="localdata.form.create_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
 export default {
     name: 'flow',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'type': [{
                 'value': '0',
                 'text': '支出'
@@ -120,7 +120,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'flow'
         }
     },

@@ -5,14 +5,14 @@
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
-                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
-                            <lb-date-picker v-model="lb_localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
+                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
+                            <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
+                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_lost_marked" v-model="lb_localdata.form.lb_params_lost_marked"></lb-buttongroup>
-                        <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_params_lost_marked" v-model="localdata.form.lb_params_lost_marked"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="row m-t">
@@ -48,12 +48,12 @@
                         </p>
                     </div>
                 </div>
-                  <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
 export default {
     name: 'lost',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_params_date_start': '',
                 'lb_daterange': '',
@@ -89,7 +89,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

@@ -8,13 +8,13 @@
                 <div class="modal-body">
                     <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-minlength ng-dirty ng-valid-parse">
                         <p>校区名:</p>
-                        <input type="text" name="branch_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.branch_name" ng-minlength="2" required="">
+                        <input type="text" name="branch_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.branch_name" ng-minlength="2" required="">
                         <p class="m-t">校区简称:</p>
-                        <input type="text" name="short_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.short_name" ng-minlength="1" required="">
+                        <input type="text" name="short_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.short_name" ng-minlength="1" required="">
                         <p class="m-t">联系电话:</p>
-                        <input type="text" name="branch_tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.branch_tel">
+                        <input type="text" name="branch_tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.branch_tel">
                         <p class="m-t">所在地区:</p>
-                        <div class="city-select ng-scope ng-valid ng-dirty ng-valid-parse" ng-class="{'open': $select.open}" v-model="lb_localdata.form.city" on-city-selected="branch_city_changed">
+                        <div class="city-select ng-scope ng-valid ng-dirty ng-valid-parse" ng-class="{'open': $select.open}" v-model="localdata.form.city" on-city-selected="branch_city_changed">
                             <div class="form-control ng-binding" ng-class="{'ng-dirty ng-valid':$select.selected.cn.length > 0}" ng-click="$select.activate()">请选择城市 <span class="caret"></span></div>
                             <div class="city-select-drop">
                                 <div class="city-select-tab">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <p class="m-t">详细地址(有长度限制最少5个字符):</p>
-                        <input type="text" name="branch_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.branch_address">
+                        <input type="text" name="branch_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.branch_address">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -105,7 +105,7 @@
 export default {
     name: 'add_modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'group_name': '',
                 'branch_name': '',
@@ -117,7 +117,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'campus',
             title: '创建',
         }
@@ -126,7 +126,7 @@ export default {
         if (this.$store.state.dialogs.dailogdata) {
             this.title = '编辑'
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
         } else {
             this.title = '创建'
         }

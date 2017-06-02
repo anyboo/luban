@@ -17,13 +17,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">姓名:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-minlength ng-valid-parse" ng-minlength="2" ng-change="employee.account=$util.py_account(employee.name)" required v-model="lb_localdata.form.name">
+                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-minlength ng-valid-parse" ng-minlength="2" ng-change="employee.account=$util.py_account(employee.name)" required v-model="localdata.form.name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">性别:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
+                                <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -32,7 +32,7 @@
                                 <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="employee.or_ids" theme="bootstrap">
                                     <div>
                                         <span class="ui-select-match" placeholder="选择角色...">  </span>
-                                        <input type="text" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.roles">
+                                        <input type="text" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" v-model="localdata.form.roles">
                                     </div>
                                     <ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope ng-hide" role="menu" aria-labelledby="dLabel" ng-show="$select.items.length > 0" repeat="item.or_id as item in user.gv.roles | propsFilter:{role_name:$select.search}">
                                         <li class="ui-select-choices-group">
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">类型:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="lb_localdata.is_part_time" v-model="lb_localdata.form.is_part_time"></lb-buttongroup>
+                                <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -54,7 +54,7 @@
                                 <i class="fa fa-phone"></i>电话:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.tel">
+                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.tel">
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +62,7 @@
                                 <i class="glyphicon glyphicon-envelope"></i>Email:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.email">
+                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.email">
                             </div>
                         </div>
                     </form>
@@ -79,7 +79,7 @@
 export default {
     name: 'employee_edit',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'name': '',
                 'sex': '',
@@ -106,20 +106,20 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'employee'
         }
     },
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-        this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
     },
     computed: {},
     watch: {},
     methods: {
         handleClick() {
             this.handleSave().then(() => {
-                this.$store.state.dialogs.dailogdata = this.lodash.assign(this.$store.state.dialogs.dailogdata, this.lb_localdata.form)
+                this.$store.state.dialogs.dailogdata = this.lodash.assign(this.$store.state.dialogs.dailogdata, this.localdata.form)
                 this.lbClosedialog()
             })
         }

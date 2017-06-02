@@ -13,7 +13,8 @@ import {
     MessageBox,
     Pagination,
     Cascader,
-    Select
+    Select,
+    Option
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
@@ -26,7 +27,7 @@ Upload.name = 'lb-upload'
 Pagination.name = 'lb-pagination'
 Cascader.name = 'lb-cascader'
 Select.name = 'lb-select'
-
+Option.name = 'lb-option'
 const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
@@ -42,7 +43,8 @@ const components = [
     listtree.LbListtreeItem,
     Pagination,
     Cascader,
-    Select
+    Select,
+    Option
 ]
 
 const install = function(Vue) {

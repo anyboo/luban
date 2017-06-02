@@ -17,7 +17,7 @@
                             <label class="control-label col-md-2 col-xs-12">授课老师:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" name="master" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="lb_localdata.form.master">
+                                    <input type="text" name="master" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="localdata.form.master">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>选择
@@ -29,20 +29,20 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">课程:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-cascader placeholder="课程分类" :options="getreeData" v-model="lb_localdata.form.cate_array" filterable change-on-select></lb-cascader>
+                                <lb-cascader placeholder="课程分类" :options="getreeData" v-model="localdata.form.cate_array" filterable change-on-select></lb-cascader>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_localdata.form.class_name">
+                                <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="localdata.form.class_name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">开课日期:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="open_time" v-model="lb_localdata.form.open_time"></lb-date-picker>
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="open_time" v-model="localdata.form.open_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <label class="control-label col-md-2 col-xs-12">预计结课:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline w-sm">
-                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="close_time" v-model="lb_localdata.form.close_time"></lb-date-picker>
+                                    <lb-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="close_time" v-model="localdata.form.close_time"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <label class="control-label col-md-2 col-xs-12">额定人数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="lb_localdata.form.max_student_num">
+                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.max_student_num">
                                     <span class="input-group-addon">人</span>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                             <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="lb_localdata.form.total_times">
+                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="lb_localdata.form.unit_hours">
+                                    <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
                                     <span class="input-group-addon">小时</span>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
 export default {
     name: 'open_class',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'master': '',
                 'ol_id': '',
@@ -121,7 +121,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'team',
           
         }

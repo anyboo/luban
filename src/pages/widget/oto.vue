@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-xs-10">
                         <div class="m-b-xs">
-                            <select class="form-control ng-pristine ng-untouched ng-valid" name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:{'lesson_type':'1'}" style="display: none;" v-model="lb_localdata.form.lb_params_ol_id">
+                            <select class="form-control ng-pristine ng-untouched ng-valid" name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:{'lesson_type':'1'}" style="display: none;" v-model="localdata.form.lb_params_ol_id">
                                 <option value class>选择课程</option>
                                 <option value="0">qq</option>
                             </select>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="m-b">
                             <div class="input-group ng-valid" select-title="请选择学员" ng-model="params.os_id" select-params="{ob_id:user.gv.ob_id}">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_name">
+                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_name">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                         <i class="icon-user"></i>
@@ -82,14 +82,14 @@
 export default {
     name: 'oto',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_params_ol_id': '',
                 'lb_name': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

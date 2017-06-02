@@ -130,8 +130,8 @@
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column width="100" prop="data" label="操作">
                                 <template scope="scope">
-                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
-                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="lb_localdata.dropDownMenu">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
+                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
                                             <i class="fa fa-cog"></i>操作
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
@@ -170,7 +170,7 @@
 export default {
     name: 'groups',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_node_group_name': ''
             },
@@ -185,7 +185,7 @@ export default {
             }],
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['campus'],
             title: '创建',
         }
@@ -194,7 +194,7 @@ export default {
         if (this.$store.state.dialogs.dailogdata) {
             this.title = '编辑'
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
         } else {
             this.title = '创建'
         }

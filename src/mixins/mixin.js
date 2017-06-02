@@ -163,7 +163,7 @@ export default {
             let filterObj = []
             filterObj.push({
                 'key': 'lookup',
-                'value': this.lb_localdata.lookup,
+                'value': this.localdata.lookup,
                 'type': 'lookup'
             })
 
@@ -183,7 +183,7 @@ export default {
                 })
             }
         },
-        getTabledata(table) {
+        getTableApidata(table) {
             let vm = this
             if (table) {
                 vm.$store.dispatch(types.GET_API, table).then(() => {
@@ -226,11 +226,11 @@ export default {
         },
         handleSave() {
             let vm = this
-            let modalform = vm.lb_localdata.form
+            let modalform = vm.localdata.form
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
-                if (vm.lb_localdata.validator && vm.lb_localdata.validator.errorStatus) {
+                if (vm.localdata.validator && vm.localdata.validator.errorStatus) {
                     reject()
                     return
                 }
@@ -265,7 +265,7 @@ export default {
         },
         changeFormDateTime(modalform) {
             let vm = this
-            let descriptor = vm.lb_localdata.validator
+            let descriptor = vm.localdata.validator
             if (descriptor) {
                 for (var item in descriptor.fields) {
                     if (descriptor.fields[item].type == 'date') {
@@ -280,21 +280,21 @@ export default {
             let vm = this
             if (filed) {
                 if (errors[filed]) {
-                    vm.lb_localdata.validator.fields[filed].errorStatus = true
+                    vm.localdata.validator.fields[filed].errorStatus = true
                 }
             } else {
                 for (var err in errors) {
-                    vm.lb_localdata.validator.fields[err].errorStatus = true
+                    vm.localdata.validator.fields[err].errorStatus = true
                 }
             }
         },
         validate(filed) {
             let vm = this
-            let modalform = vm.lb_localdata.form
-            let descriptor = vm.lb_localdata.validator
+            let modalform = vm.localdata.form
+            let descriptor = vm.localdata.validator
 
             if (descriptor) {
-                vm.lb_localdata.validator.errorStatus = false
+                vm.localdata.validator.errorStatus = false
                 if (filed) {
                     descriptor.fields[filed].errorStatus = false
                 } else {
@@ -306,7 +306,7 @@ export default {
                 schema.plugin(schemaall)
                 validator.validate(modalform, (errors, fields) => {
                     if (fields && fields.errors && fields.errors.length > 0) {
-                        vm.lb_localdata.validator.errorStatus = true
+                        vm.localdata.validator.errorStatus = true
                         return vm.handleValidateErrors(fields.fields, filed)
                     }
                 })

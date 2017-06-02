@@ -7,7 +7,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-10 text-right">
-                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="getStudentInfo">
+                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="getStudentInfo">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
                             <i class="fa fa-cog ng-scope"></i><span class="ng-scope"> 操作</span></ng-transclude><span class="caret"></span>
                         </lb-dropdown-button>
@@ -115,7 +115,7 @@
 export default {
     name: 'footer',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'dropDownMenu': [{
                 'url': 'lb-editinfomodal',
                 'icon': 'fa fa-pencil',
@@ -166,7 +166,7 @@ export default {
             }],
         }
         return {
-            lb_localdata,
+            localdata,
             student: {}
         }
     },

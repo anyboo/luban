@@ -74,7 +74,7 @@
                                     <label class="control-label col-xs-12 col-md-2">退款金额:</label>
                                     <div class="col-xs-12 col-md-3">
                                         <div class="input-group">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" ng-change="set_refund_policy()" v-model="lb_localdata.form.lb_refund_amount">
+                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" ng-change="set_refund_policy()" v-model="localdata.form.lb_refund_amount">
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
@@ -82,25 +82,25 @@
                                 <div class="form-group ng-hide" ng-hide="oph.create_type == '0' || oph.pay_type == '1'">
                                     <label class="control-label col-xs-12 col-md-2">退款方式:</label>
                                     <div class="col-xs-12 col-md-9">
-                                        <lb-buttongroup :group-data="lb_localdata.lb_refund_refund_to" v-model="lb_localdata.form.lb_refund_refund_to"></lb-buttongroup>
+                                        <lb-buttongroup :group-data="localdata.lb_refund_refund_to" v-model="localdata.form.lb_refund_refund_to"></lb-buttongroup>
                                     </div>
                                 </div>
                                 <div class="form-group ng-scope" ng-if="oph.money_pay_amount > 0 && vm.input.order_type != '2'">
                                     <label class="control-label col-xs-12 col-md-2">现金退款:</label>
                                     <div class="col-xs-12 col-md-9">
-                                        <lb-buttongroup :group-data="lb_localdata.lb_refund_money_refund_to" v-model="lb_localdata.form.lb_refund_money_refund_to"></lb-buttongroup>
+                                        <lb-buttongroup :group-data="localdata.lb_refund_money_refund_to" v-model="localdata.form.lb_refund_money_refund_to"></lb-buttongroup>
                                     </div>
                                 </div>
                                 <div class="form-group ng-scope" ng-if="order.order_type == '0' || order.order_type == '1' || order.order_type == '10'">
                                     <label class="control-label col-xs-12 col-md-2">课时处理:</label>
                                     <div class="col-xs-12 col-md-9">
-                                        <lb-buttongroup :group-data="lb_localdata.lb_refund_refund_times_policy" v-model="lb_localdata.form.lb_refund_refund_times_policy"></lb-buttongroup>
+                                        <lb-buttongroup :group-data="localdata.lb_refund_refund_times_policy" v-model="localdata.form.lb_refund_refund_times_policy"></lb-buttongroup>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">退款备注:</label>
                                     <div class="col-xs-12 col-sm-9 col-md-6">
-                                        <input type="text" name="refund_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_refund_refund_note">
+                                        <input type="text" name="refund_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_refund_refund_note">
                                     </div>
                                 </div>
                             </form>
@@ -121,7 +121,7 @@
 export default {
     name: 'give-money2',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_refund_amount': '',
                 'lb_refund_refund_to': '',
@@ -155,7 +155,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

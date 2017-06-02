@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-user"></i>编辑
-                        <span class="badge bg-info ng-binding">{{lb_localdata.form.student_name }}</span>的基本资料
+                        <span class="badge bg-info ng-binding">{{localdata.form.student_name }}</span>的基本资料
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -20,10 +20,10 @@
                                 </label>
                                 <div class="col-xs-12 col-md-10">
                                     <div class="inline va-m w-sm">
-                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':lb_localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="lb_localdata.form.student_name" @change="validate('student_name')">
+                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
                                     </div>
-                                    <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
-                                    <div class="error ng-hide" v-if="lb_localdata.validator.fields.student_name.errorStatus">
+                                    <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
+                                    <div class="error ng-hide" v-if="localdata.validator.fields.student_name.errorStatus">
                                         <span class="text-warning">学员姓名必须填写</span>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">
                                 <div class="inline w-sm">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="lb_localdata.form.nickname">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="localdata.form.nickname">
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                             <div class="col-md-5 col-xs-12">
                                 <div class="w-sm">
-                                    <lb-date-picker type="date" name="birth_date" v-model="lb_localdata.form.birth"></lb-date-picker>
+                                    <lb-date-picker type="date" name="birth_date" v-model="localdata.form.birth"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -58,17 +58,17 @@
                         <div class="form-group ng-scope" ng-if="have_field('home_address')">
                             <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.home_address">
+                                <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.home_address">
                             </div>
                         </div>
                         <div class="form-group ng-scope">
                             <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="inline va-m w ng-scope" ng-if="have_field('school')">
-                                    <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" v-model="lb_localdata.form.school">
+                                    <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" v-model="localdata.form.school">
                                 </div>
                                 <div class="inline va-m w-xs m-l-xs ng-scope">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.grade">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.grade">
                                         <option value class>年级</option>
                                         <option value="0">不确定</option>
                                         <option value="1">一年级</option>
@@ -86,7 +86,7 @@
                                     </select>
                                 </div>
                                 <div class="inline va-m w-xs m-l-xs ng-scope">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.class">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.class">
                                         <option value class>年级</option>
                                         <option value="0">1</option>
                                         <option value="1">2</option>
@@ -109,7 +109,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">备注:</label>
                             <div class="col-md-5 col-xs-12">
-                                <textarea name="note" v-model="lb_localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
+                                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
                             </div>
                         </div>
                     </form>
@@ -126,7 +126,7 @@
 export default {
     name: 'edit_info',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'student_name': '',
                 'sex': '',
@@ -170,22 +170,22 @@ export default {
             },
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'student'
         }
     },
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-        this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
     },
     computed: {},
     watch: {},
     methods: {
         handleClick() {
             let vm = this
-            vm.lb_localdata.form.birthstr = vm.getDateNumFormat(vm.lb_localdata.form.birth)
+            vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
             vm.handleSave().then(() => {
-                vm.$store.state.dialogs.dailogdata = vm.lodash.assign(vm.$store.state.dialogs.dailogdata, vm.lb_localdata.form)
+                vm.$store.state.dialogs.dailogdata = vm.lodash.assign(vm.$store.state.dialogs.dailogdata, vm.localdata.form)
                 vm.lbClosedialog()
             })
         }

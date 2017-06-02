@@ -9,17 +9,17 @@
                                 <div class="input-group-btn">
                                     <lb-dropdowns menu-align="start" @command="handleCommand">
                                         <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                            {{lb_localdata.search.search_value}}
+                                            {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
                                         <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                            <template v-for="item in lb_localdata.search.fields">
+                                            <template v-for="item in localdata.search.fields">
                                                 <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                             </template>
                                         </lb-dropdown-menu>
                                     </lb-dropdowns>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                     <button @click="lbShowdialog($event,'lb-employeeaddmodal')" class="btn btn-primary pull-right">
                         <i class="fa fa-plus"></i>添加
                     </button>
@@ -80,7 +80,7 @@
                                             <span class="ng-binding">{{item.email.length>0?item.tel:'未填写'}}</span>
                                         </p>
                                         <p></p>
-                                        <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="item">
+                                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="操作">
                                                 <i class="fa fa-cog"></i>操作
                                                 <span class="caret"></span>
@@ -107,7 +107,7 @@
 export default {
     name: 'employee',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_search_value': '',
                 'lb_params_status': ''
@@ -149,7 +149,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['employee'],
         }
     },
@@ -157,23 +157,23 @@ export default {
     watch: {},
     methods: {
         handleCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.lb_search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })
             }
-            console.log(this.lb_localdata.form.lb_params_status)
-            let status = this.lb_localdata.form.lb_params_status.trim()
+            console.log(this.localdata.form.lb_params_status)
+            let status = this.localdata.form.lb_params_status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'is_part_time',

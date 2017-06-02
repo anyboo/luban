@@ -5,7 +5,7 @@
                 <div class="wrapperpanel panel-default bg-white ng-scope" page-controller="hours_warning_index">
                     <div class="row no-gutter">
                         <div class="col-xs-12 col-md-3">
-                            <lb-buttongroup :group-data="lb_localdata.lb_lesson_type" v-model="lb_localdata.form.lb_lesson_type"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_lesson_type" v-model="localdata.form.lb_lesson_type"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="m-t ng-scope" xo-rest="class_hours_warning" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" ng-if="lesson_type == 0" xo-rest-ctrl="hours_warning">
@@ -64,7 +64,7 @@
 export default {
     name: 'warning',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'lb_lesson_type': [{
                 'value': '0',
                 'text': '班课'
@@ -80,7 +80,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

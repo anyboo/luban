@@ -53,7 +53,7 @@
                                     <p class="form-control-static">
                                         <span class="label bg-danger ng-binding">￥2000.00</span>
                                     </p>
-                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
                                             欠费处理
                                             <span class="caret"></span>
@@ -83,7 +83,7 @@
 export default {
     name: 'endlesson.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'dropDownMenu': [{
                 'url': 'lb-ordersmodal',
                 'icon': 'icon-plus',
@@ -95,7 +95,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},
