@@ -190,7 +190,6 @@ export default {
            
         }
     },
-<<<<<<< HEAD
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.title = '编辑'
@@ -200,12 +199,6 @@ export default {
             this.title = '创建'
         }
         this.getTabledata('cate')
-    },
-=======
-  
->>>>>>> b6ed6e42d9ad79b27da22ffc35b2f021fc899a1f
-    computed: {
-       
     },
     watch: {},
     methods: {
