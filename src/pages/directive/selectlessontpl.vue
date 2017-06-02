@@ -17,47 +17,65 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                            课程名
-                                            <span class="caret"></span>
-                                        </button>
+                                        <lb-dropdowns menu-align="start" @command="handleCommand">
+                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                {{lb_localdata.search.search_value}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <template v-for="item in lb_localdata.search.fields">
+                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                </template>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="lb_localdata.form.lb_grid_search_value">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
-                                    </span>
+                                            <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                        </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowdialog($event,'lb-newlessonmodal')">
+                            <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowdialog($event,'lb-newlessonmodal')" class="btn btn-primary pull-right ng-click-active">
                                 <i class="fa fa-plus"></i>添加课程
                             </button>
                         </div>
                     </div>
                     <ul class="list-group m-t">
+                        <template v-for="item in getTablesData()">
+                            <li class="list-group-item ng-scope">
+                                <h4 class="list-group-item-heading ng-binding">{{item.lesson_name}}<span class="label bg-warning pull-right ng-binding ng-scope" ng-if="item.lesson_type == '1'">1对1</span></h4>
+                                <p class="list-group-item-text text-muted ng-binding">课程编号:<span class="text-danger ng-binding">{{item.lesson_no}}</span>,课程售价:<span class="text-success ng-binding">{{item.price}}</span>,课程单价:8.00,总课次:123</p>
+                            </li>
+                        </template>
                         <div class="grid-data-result">
-                            <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                                <i class="fa fa-frown-o"></i>没有符合条件的课程!
-                            </p>
                         </div>
                     </ul>
-                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
+                  <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();" disabled="disabled">确定</button>
+                <button class="btn btn-primary ng-binding">确定</button>
             </div>
         </div>
     </div>
 </template>
 <script>
+import base64 from '~/api/base64.js'
 export default {
     name: 'selectLessonTpl',
     data() {
         let lb_localdata = {
             'form': {
-                'lb_grid_search_value': ''
+                'lb_grid_search_value': '',
+                'search_value': '',
+                'status': '',
             },
             'search': {
                 'fields': [{
@@ -68,15 +86,45 @@ export default {
                     'value': '课程编号'
                 }],
                 'search_key': 'lesson_name',
-                'search_value': ''
+                'search_value': '课程名'
             }
         }
         return {
             lb_localdata,
+            lb_tables: ['course']
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.lb_localdata.search.search_key = value
+            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+                'name': value
+            }).value
+            this.handleSearch()
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.lb_localdata.form.search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.lb_localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let status = this.lb_localdata.form.status.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'track_type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt, 6, 0)
+        }
+    }
 }
 </script>
