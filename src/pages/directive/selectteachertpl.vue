@@ -32,23 +32,30 @@
                         </div>
                     </div>
                     <div class="row list-student m-t">
-                        <div class="col-sm-3 col-xs-4 m-b ng-scope" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
-                            <div class="list-student-item box-shadow" ng-class="{'bg-info':vm.is_selected(item)}">
-                                <div class="face">
-                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
-                                        <img src=>
+                        <template v-for="item in getTablesData()">
+                            <div class="col-sm-3 col-xs-4 m-b ng-scope" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
+                                <div class="list-student-item box-shadow" ng-class="{'bg-info':vm.is_selected(item)}">
+                                    <div class="face">
+                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
+                                           <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
+                                        </div>
+                                    </div>
+                                    <div class="name m-t ng-binding">
+                                        <span ng-bind-html="item.sex|sex:0" class="ng-binding">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>{{item.name}}
                                     </div>
                                 </div>
-                                <div class="name m-t ng-binding">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-question-circle"></i>
-                                    </span>陈佳木sss
-                                </div>
                             </div>
-                        </div>
+                        </template>
                         <div class="grid-data-result"></div>
                     </div>
-                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
+                    <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
@@ -87,6 +94,7 @@ export default {
         }
         return {
             lb_localdata,
+            lb_tables: ['employee'],
         }
     },
     computed: {},
