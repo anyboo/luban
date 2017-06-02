@@ -7,7 +7,7 @@ function makeImage(str, width) {
 
     var chart = '空'
 
-    if (str.length > 0) {
+    if (str && str.length > 0) {
         chart = str[0]
     }
     ctx.fillStyle = '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6)

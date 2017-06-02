@@ -8,7 +8,7 @@ import base64 from '~/api/base64.js'
 
 moment.updateLocale('en', {
     relativeTime: {
-        future: 'in %s',
+        future: '%s',
         past: '%s',
         s: '',
         m: 'a minute',
