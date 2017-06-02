@@ -199,7 +199,9 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
-            this.handleGetFilterTable(filterObj)
+            console.log(filterObj)
+            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
         }
     }
 }

@@ -154,16 +154,14 @@ export default {
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
-        handleGetFilterTable(filterObj) {
+        handleGetFilterTable(filter) {
             let vm = this
             if (vm.lb_tables) {
                 let table = {}
                 table.model = vm.lb_tables[0]
-                let filter = base64.encode(JSON.stringify(filterObj))
                 table.filter = filter
                 table.prepage = this.pagination.pagesize
                 table.page = this.pagination.currentPage - 1
-                console.log(table,filterObj)
                 vm.$store.dispatch(types.GET_Filter_API, table).then(() => {
                     this.getTablesData()
                 })
