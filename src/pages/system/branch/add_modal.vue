@@ -7,8 +7,9 @@
                     <h3 class="modal-title"><i class="icon-plus"></i> {{title}}新校区</h3></div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-minlength ng-dirty ng-valid-parse">
-                        <p>校区名:</p>
-                        <input type="text" name="branch_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.branch_name" ng-minlength="2" required="">
+                        <p>*校区名:</p>
+                        
+                         <input type="text" name="branch_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':lb_localdata.validator.fields.branch_name.errorStatus}" v-model="lb_localdata.form.branch_name"  @change="validate('branch_name')">
                         <p class="m-t">校区简称:</p>
                         <input type="text" name="short_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="lb_localdata.form.short_name" ng-minlength="1" required="">
                         <p class="m-t">联系电话:</p>
@@ -114,7 +115,23 @@ export default {
                 'city': '',
                 'branch_address': ''
 
-            }
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'branch_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+                 
+
+                }
+            },
         }
         return {
             lb_localdata,
