@@ -4,31 +4,14 @@
             <div class="page-bar row m-b">
                 <div class="col-xs-12 col-md-2">
                     <div class="btn-group dropdown" dropdown=""><a class="btn btn-default" href="javascript:history.back();">返回</a>
-                        <button class="btn btn-default" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li ui-per="student.list"><a ui-sref="student.list" href="#/student/list">到学员列表</a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-10 text-right">
-                    <div class=" btn-group dropdown  btn-group dropdown " dropdown="" btn-class="btn-default m-b-xs" btn-tooltip="操作" item="student">
-                        <button class="btn btn-default m-b-xs" tooltip="操作" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-                            <ng-transclude><i class="fa fa-cog ng-scope"></i><span class="ng-scope"> 操作</span></ng-transclude><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a ui-per="student.edit" ng-click="$util.open('tpl/app/student/edit_info.modal.html','lg',item)"><i class="fa fa-pencil"></i> 修改资料</a></li>
-                            <li><a ui-per="student.photo" ng-click="$util.open('tpl/app/student/edit_photo.modal.html','lg',item)"><i class="fa fa-image"></i> 更换头像</a></li>
-                            <li><a ui-per="student.order" ng-click="$util.open('tpl/app/student/order.modal.html','md',item)"><i class="fa fa-shopping-cart"></i> 报名</a></li>
-                            <li><a ui-per="student.pay" ng-click="$util.open('tpl/app/student/orders.modal.html','md',item)"><i class="fa fa-money"></i> 缴费</a></li>
-                            <li><a ui-per="student.attendances.add" ng-click="$util.open('tpl/app/student/reg_student_attendances.modal.html','md',item)"><i class="fa fa-calendar-o"></i> 登记考勤</a></li>
-                            <li><a ui-per="student.change_class" ng-click="$util.open('tpl/app/student/change_class.modal.html','md',item)"><i class="fa fa-exchange">转班</i></a></li>
-                            <li><a ui-per="student.wechat" ng-click="$util.open('tpl/app/student/wechat.modal.html','md',item)"><i class="fa fa-weixin"></i> 微信对话</a></li>
-                            <li><a ui-per="student.tracks.add" ng-click="$util.open('tpl/app/student/add_track.modal.html','md',item)"><i class="fa fa-phone-square"></i> 跟踪回访</a></li>
-                            <li><a ui-per="student.match.add" ng-click="$util.open('tpl/app/student/reg_student_match.modal.html','md',item)"><i class="fa fa-flag-o"></i> 登记赛事记录</a></li>
-                            <li><a ui-per="student.refund" ng-click="$util.open('tpl/app/student/order/refund.modal.html','md',item)"><i class="fa fa-reply"></i> 退费</a></li>
-                            <li><a ui-per="student.endlesson" ng-click="$util.open('tpl/app/student/endlesson.modal.html','md',item)"><i class="fa fa-stop"></i> 结课</a></li>
-                            <li><a ui-per="student.change_branch" ng-click="$util.open('tpl/app/student/change_branch.modal.html','md',item)"><i class="icon-shuffle"></i> 转校区</a></li>
-                        </ul>
-                    </div>
+                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="getStudentInfo">
+                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
+                            <i class="fa fa-cog ng-scope"></i><span class="ng-scope"> 操作</span></ng-transclude><span class="caret"></span>
+                        </lb-dropdown-button>
+                    </lb-dropdown>
                     <button class="btn btn-danger btn-danger m-b-xs ng-isolate-scope" confirm-text="确定要封存该学员档案吗?" confirm-action="student_delete()" ui-per="student.delete"><i class="fa fa-trash-o"></i> 封存档案</button>
                 </div>
             </div>
@@ -234,12 +217,65 @@
 export default {
     name: 'footer',
     data() {
-        let lb_localdata = {}
+        let lb_localdata = {
+            'dropDownMenu': [{
+                'url': 'lb-editinfomodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改资料'
+            }, {
+                'url': 'lb-editphotomodal',
+                'icon': 'fa fa-image',
+                'text': '更换头像'
+            }, {
+                'url': 'lb-ordermodal',
+                'icon': 'fa fa-shopping-cart',
+                'text': '报名'
+            }, {
+                'url': 'lb-ordersmodal',
+                'icon': 'fa fa-money',
+                'text': '缴费'
+            }, {
+                'url': 'lb-regstudentattendancesmodal',
+                'icon': 'fa fa-calendar-o',
+                'text': '登记考勤'
+            }, {
+                'url': 'lb-changeclassmodal',
+                'icon': 'fa fa-exchange'
+            }, {
+                'url': 'lb-wechatmodal',
+                'icon': 'fa fa-weixin',
+                'text': '微信对话'
+            }, {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
+            }, {
+                'url': 'lb-regstudentmatchmodal',
+                'icon': 'fa fa-flag-o',
+                'text': '登记赛事记录'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-reply',
+                'text': '退费'
+            }, {
+                'url': 'lb-endlessonmodal',
+                'icon': 'fa fa-stop',
+                'text': '结课'
+            }, {
+                'url': 'lb-changebranchmodal',
+                'icon': 'icon-shuffle',
+                'text': '转校区'
+            }],
+        }
         return {
             lb_localdata,
         }
     },
-    computed: {},
+    computed: {
+        getStudentInfo(){
+            return this.$store.state.envs.currStudent 
+        }
+    },
     watch: {},
     methods: {}
 }

@@ -36,6 +36,10 @@ menu.forEach((item) => {
     }
 })
 
+routes.push({
+    path: '/student/info',
+    component: req('./student/info.vue') //resolve => require([`${to}`], resolve)
+})
 const router = new VueRouter({
     mode: 'history',
     base: __dirname,
