@@ -30,7 +30,7 @@
                             <lb-table-column width="100" prop="data" label="学员">
                                 <template scope="scope">
                                     <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
-                                    <a class="ng-binding" @click="handleRouter($event,item)">
+                                    <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
                                     <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
@@ -137,7 +137,7 @@ export default {
     watch: {},
     methods: {
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + item._id)
+            this.$router.push('/student/info/' + this.getLookUp(item, '_id'))
             event.stopPropagation()
         },
         handSelectStudent(add) {
@@ -198,11 +198,11 @@ export default {
                 }
             }
             filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.lookup,
-                'type': 'lookup'
-            })
-            //console.log(filterObj)
+                    'key': 'lookup',
+                    'value': this.localdata.lookup,
+                    'type': 'lookup'
+                })
+                //console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }

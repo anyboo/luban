@@ -29,7 +29,6 @@ import page28 from '~/pages/lesson/contracts/lesson_dispatch.modal.vue'
 import page29 from '~/pages/lesson/contracts/lesson_end.modal.vue'
 import page30 from '~/pages/lesson/contracts/lesson_delete.modal.vue'
 import page31 from '~/pages/lesson/lesson/cate.vue'
-import page32 from '~/pages/lesson/lesson/edit_lesson.modal.vue'
 import page33 from '~/pages/lesson/sclasses/new_sclass.modal.vue'
 import page35 from '~/pages/student/edit_photo.modal.vue'
 import page36 from '~/pages/student/order.modal.vue'
@@ -96,7 +95,6 @@ pages['lb-lessondispatchmodal'] = page28
 pages['lb-lessonendmodal'] = page29
 pages['lb-lessondeletemodal'] = page30
 pages['lb-cate'] = page31
-pages['lb-editlessonmodal'] = page32
 pages['lb-newsclassmodal'] = page33
 pages['lb-photomodal'] = page35
 pages['lb-editphotomodal'] = page35

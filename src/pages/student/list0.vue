@@ -1,34 +1,33 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default bg-white ng-scope" xo-rest="inquiry_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="inquiry_students">
+            <div class="panel panel-default bg-white ng-scope">
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
-                        <div class="inline va-m">
-                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="lb_localdata.form.lb_params_date_start">
-                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_date_end">
+                        <div class="inline">
+                            &nbsp;<lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                         </div>
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
                                 <span class="input-group-btn">
-                            <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                <i class="icon-user"></i>
-                            </button>
-                        </span>
+                                    <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                        <i class="icon-user"></i>
+                                    </button>
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_region_oe_id" v-model="lb_localdata.form.lb_params_region_oe_id"></lb-buttongroup>
-                        <lb-buttongroup :group-data="lb_localdata.lb_duration" v-model="lb_localdata.form.lb_duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.region_oe_id" v-model="localdata.form.region_oe_id"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="table-responsive m-t">
                     <lb-table :data="getTablesData()" stripe>
                         <lb-table-column width="90" prop="data" label="操作">
                             <template scope="scope">
-                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
                                         <i class="fa fa-cog ng-scope"></i>
                                         <span class="ng-scope">操作</span>
@@ -39,18 +38,17 @@
                         </lb-table-column>
                         <lb-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
-                                <a ui-sref="student.view({os_id:item.os_id})" class="ng-binding" href="#/student/63895">
-                                    <span ng-bind-html="item.sex|sex:0" class="ng-binding">
+                                <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
+                                    <span class="ng-binding">
                                 <i class="fa fa-female"></i>
-                            </span>{{ scope.row.student_name }}
+                                    </span>{{ scope.row.student_name }}
                                 </a>
-                                <span class="label bg-info ng-binding ng-scope" ng-if="item.age">0岁</span>
                             </template>
                         </lb-table-column>
-                        <lb-table-column width="100" prop="data" label="联系电话">
+                        <lb-table-column width="120" prop="data" label="联系电话">
                             <template scope="scope">{{ scope.row.first_tel }}</template>
                         </lb-table-column>
-                        <lb-table-column width="100" prop="data" label="学员归属">
+                        <lb-table-column width="120" prop="data" label="学员归属">
                             <template scope="scope">
                                 <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
                             </template>
@@ -80,12 +78,12 @@
                     <div class="wrapper" style="height:80px"></div>
                     <div class="grid-data-result"></div>
                 </div>
-                  <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -94,19 +92,18 @@
 export default {
     name: 'list0',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_params_date_end': '',
-                'lb_param_student_name': '',
-                'lb_params_region_oe_id': '',
-                'lb_duration': ''
+                'daterange': '',
+                'duration': '',
+                'region_oe_id': '',
+                'student_name': '',
             },
-            'lb_params_region_oe_id': [{
+            'region_oe_id': [{
                 'value': '0',
                 'text': '未归属'
             }],
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {
@@ -131,12 +128,49 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['student']
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleRouter(event, item) {
+            this.$router.push('/student/info/' + this.getLookUp(item, '_id'))
+            event.stopPropagation()
+        },
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
+        handleSearch() {
+            let filterObj = []
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'birthstr',
+                        'value': this.getDateNumFormat(startTime),
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'birthstr',
+                        'value': this.getDateNumFormat(endTime),
+                        'type': 'lte'
+                    })
+                }
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
+    }
 }
 </script>
