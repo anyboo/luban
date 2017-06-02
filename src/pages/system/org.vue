@@ -187,9 +187,10 @@ export default {
         return {
             localdata,
             lb_tables: ['campus'],
-            title: '创建',
+           
         }
     },
+<<<<<<< HEAD
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.title = '编辑'
@@ -200,31 +201,11 @@ export default {
         }
         this.getTabledata('cate')
     },
+=======
+  
+>>>>>>> b6ed6e42d9ad79b27da22ffc35b2f021fc899a1f
     computed: {
-        getreeData() {
-            let cateData = this.$store.state.models.models.cate.data
-            let treeData = []
-            let treemap = {}
-            for (var item of cateData) {
-                treemap[item._id] = {
-                    value: item._id,
-                    label: item.name
-                }
-            }
-            for (var subitem of cateData) {
-                if (subitem.pid == '') {
-                    treeData.push(treemap[subitem._id])
-                } else {
-                    if (typeof treemap[subitem.pid] == 'object') {
-                        if (typeof treemap[subitem.pid].children !== 'object') {
-                            treemap[subitem.pid].children = []
-                        }
-                        treemap[subitem.pid].children.push(treemap[subitem._id])
-                    }
-                }
-            }
-            return treeData
-        }
+       
     },
     watch: {},
     methods: {

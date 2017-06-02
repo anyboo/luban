@@ -26,7 +26,7 @@
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5"></div>
