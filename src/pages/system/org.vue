@@ -122,7 +122,7 @@
             </div>
             <div class="panel panel-default ng-scope" xo-rest="branchs" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="branchs">
                 <div class="panel-heading ">
-                    <a class="btn btn-sm btn-primary pull-right heights" ng-click="$util.open('tpl/system/branch/add.modal.html','md',{})" @click="handleShowDialog('lb-addmodal', menuData)">
+                    <a class="btn btn-sm btn-primary pull-right heights" ng-click="$util.open('tpl/system/branch/add.modal.html','md',{})" @click="handleShowDialog('lb-addmodal')">
                         <i class="fa fa-plus"></i> 添加新校区</a>
                     <h4 class="manages">校区管理</h4></div>
                 <div class="panel-body no-padder">
@@ -130,7 +130,12 @@
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column width="100" prop="data" label="操作">
                                 <template scope="scope">
-                                    <a class="btn btn-sm btn-default" @click="handleShowDialog('lb-addmodal', menuData)"><i class="icon-note"></i> 编辑</a>
+                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
+                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="lb_localdata.dropDownMenu">
+                                            <i class="fa fa-cog"></i>操作
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                    </lb-dropdown>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="校区简称">
@@ -151,7 +156,7 @@
                         </lb-table>
                     </div>
                 </div>
-                 <div class="panel-footer ">
+                <div class="panel-footer ">
                     <div class="row ">
                         <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </lb-pagination>
@@ -168,15 +173,86 @@ export default {
         let lb_localdata = {
             'form': {
                 'lb_node_group_name': ''
-            }
+            },
+            'dropDownMenu': [{
+                'url': 'lb-addmodal',
+                'icon': 'fa fa-pencil',
+                'text': '编辑'
+            }, {
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除'
+            }],
         }
         return {
             lb_localdata,
             lb_tables: ['campus'],
+            title: '创建',
         }
     },
-    computed: {},
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.title = '编辑'
+            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        } else {
+            this.title = '创建'
+        }
+        this.getTabledata('cate')
+    },
+    computed: {
+        getreeData() {
+            let cateData = this.$store.state.models.models.cate.data
+            let treeData = []
+            let treemap = {}
+            for (var item of cateData) {
+                treemap[item._id] = {
+                    value: item._id,
+                    label: item.name
+                }
+            }
+            for (var subitem of cateData) {
+                if (subitem.pid == '') {
+                    treeData.push(treemap[subitem._id])
+                } else {
+                    if (typeof treemap[subitem.pid] == 'object') {
+                        if (typeof treemap[subitem.pid].children !== 'object') {
+                            treemap[subitem.pid].children = []
+                        }
+                        treemap[subitem.pid].children.push(treemap[subitem._id])
+                    }
+                }
+            }
+            return treeData
+        }
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand({
+            action,
+            data
+        }) {
+            if (action == 'delete') {
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.handleDelete(data._id).then(() => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.handleGetTable()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
+        }
+    }
 }
 </script>
