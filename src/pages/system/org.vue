@@ -187,44 +187,12 @@ export default {
         return {
             lb_localdata,
             lb_tables: ['campus'],
-            title: '创建',
+           
         }
     },
-    mounted() {
-        if (this.$store.state.dialogs.dailogdata) {
-            this.title = '编辑'
-            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
-        } else {
-            this.title = '创建'
-        }
-        this.getTabledata('cate')
-    },
+  
     computed: {
-        getreeData() {
-            let cateData = this.$store.state.models.models.cate.data
-            let treeData = []
-            let treemap = {}
-            for (var item of cateData) {
-                treemap[item._id] = {
-                    value: item._id,
-                    label: item.name
-                }
-            }
-            for (var subitem of cateData) {
-                if (subitem.pid == '') {
-                    treeData.push(treemap[subitem._id])
-                } else {
-                    if (typeof treemap[subitem.pid] == 'object') {
-                        if (typeof treemap[subitem.pid].children !== 'object') {
-                            treemap[subitem.pid].children = []
-                        }
-                        treemap[subitem.pid].children.push(treemap[subitem._id])
-                    }
-                }
-            }
-            return treeData
-        }
+       
     },
     watch: {},
     methods: {
