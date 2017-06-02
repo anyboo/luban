@@ -5,25 +5,14 @@
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
-                            <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                            <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <button class="btn btn-default ng-isolate-scope" export="birthday_students" export-params="params">
                             <i class="glyphicon glyphicon-export"></i>导出
                         </button>
-                        <div id="fct-birthday_students" style="display:none;">
-                            <form name="export_form_birthday_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                                <input type="hidden" name="X-XSRF-TOKEN" value="eab0907a6f266d9e9fdd12fb1d6f54c6">
-                                <input type="hidden" name="resource" value="birthday_students">
-                                <input type="hidden" name="date_end" value="2017-05-17" ng-repeat="(key,value) in params" class="ng-scope">
-                                <input type="hidden" name="date_start" value="2017-05-01" ng-repeat="(key,value) in params" class="ng-scope">
-                                <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
-                            </form>
-                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -35,7 +24,7 @@
                             <template scope="scope">{{ scope.row.first_tel }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="出生日期">
-                            <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
+                            <template scope="scope">{{getDateFormat(scope.row.birth)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="年龄">
                             <template scope="scope">
@@ -91,6 +80,39 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
+        handleSearch() {
+            let filterObj = []
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'birthstr',
+                        'value': this.getDateNumFormat(startTime),
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'birthstr',
+                        'value': this.getDateNumFormat(endTime),
+                        'type': 'lte'
+                    })
+                }
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
+    }
 }
 </script>

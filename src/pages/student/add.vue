@@ -267,7 +267,8 @@ export default {
     methods: {
         handleClick() {
             let vm = this
-            this.handleSave().then((response) => {
+            vm.lb_localdata.form.birthstr = vm.getDateNumFormat(vm.lb_localdata.form.birth)
+            vm.handleSave().then((response) => {
                 vm.$store.state.envs.currStudent = response
                 vm.handleShowDialog('lb-finishadd')
             }, (e) => {

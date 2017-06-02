@@ -182,9 +182,11 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            this.handleSave().then(() => {
-                this.$store.state.dialogs.dailogdata = this.lodash.assign(this.$store.state.dialogs.dailogdata, this.lb_localdata.form)
-                this.lbClosedialog()
+            let vm = this
+            vm.lb_localdata.form.birthstr = vm.getDateNumFormat(vm.lb_localdata.form.birth)
+            vm.handleSave().then(() => {
+                vm.$store.state.dialogs.dailogdata = vm.lodash.assign(vm.$store.state.dialogs.dailogdata, vm.lb_localdata.form)
+                vm.lbClosedialog()
             })
         }
     }

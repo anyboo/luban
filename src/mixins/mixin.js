@@ -107,15 +107,23 @@ export default {
             let dateTemp = moment(datestring)
             let datetimestr = ''
             if (dateTemp.isValid()) {
-                datetimestr = dateTemp.format('YYYY-M-D h:mm')
+                datetimestr = dateTemp.format('YYYY-MM-DD h:mm')
             }
             return datetimestr
+        },
+        getDateNumFormat(datestring) {
+            let dateTemp = moment(datestring)
+            let datetimestr = 0
+            if (dateTemp.isValid()) {
+                datetimestr = dateTemp.format('MMDD')
+            }
+            return Number(datetimestr)
         },
         getDateFormat(datestring) {
             let dateTemp = moment(datestring)
             let datetimestr = ''
             if (dateTemp.isValid()) {
-                datetimestr = dateTemp.format('YYYY-M-D')
+                datetimestr = dateTemp.format('YYYY-MM-DD')
             }
             return datetimestr
         },

@@ -37,17 +37,14 @@
                             <ul class="list-unstyled">
                                 <li>
                                     <label class="field">昵称/英文名:</label><span class="ng-binding">{{ student.nickname }}</span></li>
-                                <li>
-                                    <label class="field">建档日期:</label><span class="ng-binding">{{ getDateFormat(student.creattime) }}</span></li>
-                                <li>
-                                    <label class="field">生日:</label>
-                                    <span class="text-info ng-scope">{{ getDateFormat(student.birth) }}</span>
-                                </li>
                                 <li class="m-t-xs">
                                     <label class="field">账户余额:</label><span class="label bg-danger ng-binding">￥0.00</span> <a class="btn btn-xs btn-default" ng-click="$util.open('tpl/app/student/view/amount_history.modal.html','md',student)">余额详情</a> <a class="btn btn-xs btn-default" ng-click="$util.open('tpl/app/student/view/amount_withdraw.modal.html','md',student)" ng-disabled="student.amount <= 0" ui-per="student.amount_withdraw" disabled="disabled">余额提现</a></li>
                                 <li class="m-t-xs">
                                     <label class="field">微信绑定:</label>
                                     <span class="badge bg-gray ng-scope" ng-if="student.wb_id == '0'">未绑定</span>
+                                </li>
+                                <li class="m-t-xs ng-scope">
+                                    <label class="field">学员归属:</label><span class="label bg-info ng-binding">林三金</span>
                                 </li>
                             </ul>
                         </div>
@@ -59,17 +56,21 @@
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">校区:</label><span ng-bind-html="student.ob_id|branch_name" class="ng-binding"><label class="badge bg-info badge-xm">呵呵</label></span></div>
                                         <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">住址:</label><span class="ng-binding">未填写</span></div>
+                                            <label class="inline w-xs text-right">住址:</label><span class="ng-binding">{{ student.home_address }}</span></div>
                                         <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">备注:</label><span ng-bind-html="student.note|empty_replace:'-'" class="ng-binding">-</span></div>
-                                        <div class="col-xs-12 col-md-6 ng-scope" ng-if="have_field('idcard')">
-                                            <label class="inline w-xs text-right">身份证:</label><span class="ng-binding"></span></div>
-                                        <div class="col-xs-12 col-md-6 ng-scope" ng-if="have_field('school')">
-                                            <label class="inline w-xs text-right">学校:</label><span class="ng-binding">未填写</span></div>
-                                        <div class="col-xs-12 col-md-6 ng-scope" ng-if="have_field('grade')">
-                                            <label class="inline w-xs text-right">年级:</label><span class="ng-binding">-</span></div>
-                                        <div class="col-xs-12 col-md-6 ng-scope" ng-if="have_field('class')">
-                                            <label class="inline w-xs text-right">班级:</label><span class="ng-binding">-</span></div>
+                                            <label class="inline w-xs text-right">备注:</label><span class="ng-binding">{{ student.note }}</span></div>
+                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                            <label class="inline w-xs text-right">学校:</label><span class="ng-binding">{{ student.school }}</span></div>
+                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                            <label class="inline w-xs text-right">年级:</label><span class="ng-binding">{{ student.grade }}</span></div>
+                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                            <label class="inline w-xs text-right">班级:</label><span class="ng-binding">{{ student.class }}</span></div>
+                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                            <label class="inline w-xs text-right">建档日期:</label><span class="ng-binding">{{ getDateFormat(student.creattime) }}</span>
+                                        </div>
+                                         <div class="col-xs-12 col-md-6 ng-scope">
+                                            <label class="inline w-xs text-right">生日:</label><span class="text-info ng-scope">{{ getDateFormat(student.birth) }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
