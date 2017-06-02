@@ -4,7 +4,7 @@
             <div page-controller="branch_add" class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="icon-plus"></i> 添加新校区</h3></div>
+                    <h3 class="modal-title"><i class="icon-plus"></i> {{title}}新校区</h3></div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-minlength ng-dirty ng-valid-parse">
                         <p>校区名:</p>
@@ -112,16 +112,52 @@ export default {
                 'short_name': '',
                 'branch_tel': '',
                 'city': '',
-                'branch_address':''
+                'branch_address': ''
 
             }
         }
         return {
             lb_localdata,
             model: 'campus',
+            title: '创建',
         }
     },
-    computed: {},
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.title = '编辑'
+            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, this.$store.state.dialogs.dailogdata)
+        } else {
+            this.title = '创建'
+        }
+        this.getTabledata('cate')
+    },
+    computed: {
+        getreeData() {
+            let cateData = this.$store.state.models.models.cate.data
+            let treeData = []
+            let treemap = {}
+            for (var item of cateData) {
+                treemap[item._id] = {
+                    value: item._id,
+                    label: item.name
+                }
+            }
+            for (var subitem of cateData) {
+                if (subitem.pid == '') {
+                    treeData.push(treemap[subitem._id])
+                } else {
+                    if (typeof treemap[subitem.pid] == 'object') {
+                        if (typeof treemap[subitem.pid].children !== 'object') {
+                            treemap[subitem.pid].children = []
+                        }
+                        treemap[subitem.pid].children.push(treemap[subitem._id])
+                    }
+                }
+            }
+            return treeData
+        }
+    },
     watch: {},
     methods: {
         handleClick() {
