@@ -35,15 +35,15 @@
                             <template scope="scope">{{ scope.row.first_tel }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="出生日期">
-                            <template scope="scope">1970-5-13</template>
+                            <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="年龄">
                             <template scope="scope">
-                                <span class="badge bg-info ng-binding">47</span>
+                                <span class="badge bg-info ng-binding">{{ fromNow(scope.row.birth) }}</span>
                             </template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="建档日期">
-                            <template scope="scope">2017-05-13</template>
+                            <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="在读课程数">
                             <template scope="scope">2</template>
@@ -51,12 +51,12 @@
                     </lb-table>
                     <div class="grid-data-result"></div>
                 </div>
-                  <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -85,7 +85,8 @@ export default {
         }
         return {
             localdata,
-            tables: ['student']
+            lb_tables: ['student'],
+
         }
     },
     computed: {},

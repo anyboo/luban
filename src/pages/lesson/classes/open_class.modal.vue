@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">班级名称:</label>scope.row.
+                            <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                             <div class="col-md-10 col-xs-12">
                                 <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="lb_localdata.form.class_name">
                             </div>
