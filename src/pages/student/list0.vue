@@ -5,7 +5,8 @@
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
-                            &nbsp;<lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                            &nbsp;
+                            <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                         </div>
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
@@ -27,7 +28,7 @@
                     <lb-table :data="getTablesData()" stripe>
                         <lb-table-column width="90" prop="data" label="操作">
                             <template scope="scope">
-                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
+                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
                                         <i class="fa fa-cog ng-scope"></i>
                                         <span class="ng-scope">操作</span>
@@ -59,7 +60,7 @@
                             </template>
                         </lb-table-column>
                         <lb-table-column width="100" prop="data" label="来源渠道">
-                            <template scope="scope">广告</template>
+                            <template scope="scope">{{scope.row.track_from}}</template>
                         </lb-table-column>
                         <lb-table-column width="150" prop="data" label="建档日期">
                             <template scope="scope">2017-05-13</template>

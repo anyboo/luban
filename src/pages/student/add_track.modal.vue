@@ -155,6 +155,11 @@ export default {
             isActive: false,
         }
     },
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata){
+            this.$store.state.envs.currStudent = this.$store.state.dialogs.dailogdata
+        }
+    },
     computed: {},
     watch: {},
     methods: {
