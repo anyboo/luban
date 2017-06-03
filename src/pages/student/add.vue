@@ -206,7 +206,8 @@ export default {
                 'class': '',
                 'note': '',
                 'region_oe_id': '0',
-                'purpose': '0'
+                'purpose': '0',
+                'isdel': false
             },
             'validator': {
                 'type': 'object',

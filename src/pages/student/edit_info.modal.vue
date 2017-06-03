@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" modal-transclude>
-            <div page-controller="edit_info" class="ng-scope">
+        <div class="modal-content">
+            <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
@@ -15,19 +15,19 @@
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-pristine ng-valid ng-valid-required">
                         <div class="form-group ng-scope">
-                                <label class="col-xs-12 col-md-2 control-label">
-                                    <span class="text-danger">*</span>姓名:
-                                </label>
-                                <div class="col-xs-12 col-md-10">
-                                    <div class="inline va-m w-sm">
-                                        <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
-                                    </div>
-                                    <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
-                                    <div class="error ng-hide" v-if="localdata.validator.fields.student_name.errorStatus">
-                                        <span class="text-warning">学员姓名必须填写</span>
-                                    </div>
+                            <label class="col-xs-12 col-md-2 control-label">
+                                <span class="text-danger">*</span>姓名:
+                            </label>
+                            <div class="col-xs-12 col-md-10">
+                                <div class="inline va-m w-sm">
+                                    <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
+                                </div>
+                                <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
+                                <div class="error ng-hide" v-if="localdata.validator.fields.student_name.errorStatus">
+                                    <span class="text-warning">学员姓名必须填写</span>
                                 </div>
                             </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">
@@ -47,12 +47,10 @@
                         <div class="form-group ng-scope" ng-if="info.inited">
                             <label class="control-label col-md-2 col-xs-12">学员归属:</label>
                             <div class="col-md-5 col-xs-12">
-                                <div ng-if="$action != 'set_region'" class="ng-scope">
-                                    <p class="form-control-static ng-scope" ng-if="info.region_oe_id == '0'">
-                                        未设置归属
-                                        <a class="link" ng-click="set_region(info)">设置</a>
-                                    </p>
-                                </div>
+                                <lb-select v-model="localdata.form.region_oe_id" placeholder="请选择">
+                                    <lb-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
+                                    </lb-option>
+                                </lb-select>
                             </div>
                         </div>
                         <div class="form-group ng-scope" ng-if="have_field('home_address')">
@@ -177,8 +175,14 @@ export default {
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
         this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
+        this.getTableApidata('employee')
     },
-    computed: {},
+    computed: {
+        getEmployeeData() {
+            let employeeData = this.$store.state.models.models.employee.data
+            return employeeData
+        },
+    },
     watch: {},
     methods: {
         handleClick() {

@@ -12,33 +12,21 @@
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="icon-user"></i>
-                                </button>
-                            </span>
+                                    <button class="btn btn-default" @click="handleSelectStudent">
+                                        <i class="icon-user"></i>
+                                    </button>
+                                </span>
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
-                                <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="localdata.form.lb_params_oc_id">
-                                    <option value class>选择班级</option>
-                                    <option value="0">11</option>
-                                </select>
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <a class="chosen-single" tabindex="-1">
-                                        <span>选择班级</span>
-                                        <div>
-                                            <b></b>
-                                        </div>
-                                    </a>
-                                    <div class="chosen-drop">
-                                        <div class="chosen-search">
-                                            <input type="text" autocomplete="off">
-                                        </div>
-                                        <ul class="chosen-results"></ul>
-                                    </div>
+                                    <lb-select v-model="localdata.form.classes_id" placeholder="请选择班级">
+                                        <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
+                                        </lb-option>
+                                    </lb-select>
                                 </div>
                             </div>
                             <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_end_students" export-params="params">
@@ -59,9 +47,12 @@
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                <i class="fa fa-female"></i>
-                            </span>{{ scope.row.student_name }}
+                                    <a class="link ng-binding" @click="handleRouter($event,scope.row)">
+                                        <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                        <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    </a>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="联系电话">
@@ -69,7 +60,7 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="所在班级">
                                 <template scope="scope">
-                                    <a class="link ng-binding" ng-click="params.oc_id=item.oc_id" tooltip="点击班级名查看该班级所有学员">11</a>
+                                    <a class="link ng-binding" tooltip="点击班级名查看该班级所有学员">11</a>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="授课老师">
@@ -100,7 +91,7 @@
                         </lb-table>
                         <div class="grid-data-result"></div>
                     </div>
-                     <div class="panel-footer ">
+                    <div class="panel-footer ">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -128,9 +119,10 @@ export default {
             }],
             'form': {
                 'lb_lesson_type': '',
-                'lb_param_student_name': '',
                 'lb_params_pay_status': '',
-                'lb_params_oc_id': ''
+                'lb_params_oc_id': '',
+                'student_name': '学员',
+                'student_id': '',
             },
             'lb_params_pay_status': [{
                 'value': '2',
@@ -148,8 +140,57 @@ export default {
             lb_tables: ['student']
         }
     },
-    computed: {},
+    mounted() {
+        this.getTableApidata('classes')
+    },
+    computed: {
+        getClassesData() {
+            let classes = this.$store.state.models.models.classes.data
+            return classes
+        },
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.localdata.form.student_id = ''
+                    this.localdata.form.student_name = '学员'
+                }
+                this.handleSearch()
+            }
+            return this.localdata.form.student_name
+        },
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleSelectStudent() {
+            //this.$store.state.envs.currDialog = ''
+            //this.$store.state.envs.currDialogResult = null
+            this.handleShowDialog('lb-selectstudenttpl')
+        },
+        handleRouter(event, item) {
+            this.$router.push('/student/info/' + item._id)
+            event.stopPropagation()
+        },
+        handleSearch() {
+            let filterObj = []
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': '_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
+    }
 }
 </script>

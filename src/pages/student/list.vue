@@ -31,7 +31,7 @@
                     <div class="col-xs-12 col-md-8 m-t">
                         <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
                         <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
-                        <button class="btn btn-default ng-isolate-scope" ui-per="student.export" export="students" export-params="params">
+                        <button class="btn btn-default ng-isolate-scope">
                             <i class="glyphicon glyphicon-export"></i>导出Excel
                         </button>
                         <a @click="lbShowdialog($event,'lb-trash')">
@@ -115,7 +115,7 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员归属">
                                 <template scope="scope">
-                                    <span class="label bg-gray ng-scope" ng-if="item.region_oe_id == '0'">未设定</span>
+                                    <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="档案备注">
@@ -214,6 +214,12 @@ export default {
                 'icon': 'icon-shuffle',
                 'text': '转校区'
             }],
+            'lookup': {
+                'localField': 'region_oe_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
             'search': {
                 'fields': [{
                     'name': 'student_name',
@@ -243,6 +249,13 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        getEmployeeName(item) {
+            let name = '未设定'
+            if (item.employee && item.employee.length > 0) {
+                name = this.getLookUp(item.employee, 'name')
+            }
+            return name
+        },
         handleCommand(value) {
             this.localdata.search.search_key = value
             this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
@@ -267,12 +280,21 @@ export default {
                     'type': ''
                 })
             }
-
+            filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)
         },
         handleRouter(event, item) {
-            this.$router.push('/student/info/'+item._id)
+            this.$router.push('/student/info/' + item._id)
             event.stopPropagation()
         }
     }

@@ -12,15 +12,15 @@
                         <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
+                                <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                    <button class="btn btn-default" @click="handleSelectStudent">
                                         <i class="icon-user"></i>
                                     </button>
                                 </span>
                             </div>
                         </div>
-                        <lb-buttongroup :group-data="localdata.region_oe_id" v-model="localdata.form.region_oe_id"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.region_oe_id" v-model="localdata.form.region_oe_id" @input="handleRegion"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="row m-t">
@@ -51,12 +51,12 @@
                         </lb-table-column>
                         <lb-table-column width="120" prop="data" label="学员归属">
                             <template scope="scope">
-                                <span class="label bg-gray ng-scope">{{ getEmployeeName(scope.row) }}</span>
+                                <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
                             </template>
                         </lb-table-column>
                         <lb-table-column width="100" prop="data" label="意向程度">
                             <template scope="scope">
-                                <span class="label bg-gray ng-scope">{{ getButtongroupText(localdata.purpose,scope.row.purpose)}}</span>
+                                <span class="label ng-scope" :class="{'bg-info':scope.row.purpose!='0','bg-gray':scope.row.purpose=='0'}">{{ getButtongroupText(localdata.purpose,scope.row.purpose)}}</span>
                             </template>
                         </lb-table-column>
                         <lb-table-column width="100" prop="data" label="来源渠道">
@@ -72,7 +72,13 @@
                         </lb-table-column>
                         <lb-table-column prop="data" label="最后跟踪">
                             <template scope="scope">
-                                <span class="label bg-danger ng-scope" ng-if="!item.last_track">无跟踪记录</span>
+                                <div v-if="scope.row.inquiry && scope.row.inquiry.length > 0" class="ng-binding ng-scope">{{getDateFormat(getLookUp(scope.row.inquiry, 'track_time'))}}
+                                    <p class="text-muted ng-binding">{{getLookUp(scope.row.inquiry, 'detail')}}</p>
+                                    <p class="text-gray text-right ng-binding">{{getLookUp(scope.row.inquiry, 'op_name')}}</p>
+                                </div>
+                                <span v-else class="label bg-danger ng-scope">
+                                    无跟踪记录
+                                </span>
                             </template>
                         </lb-table-column>
                     </lb-table>
@@ -98,7 +104,8 @@ export default {
                 'daterange': '',
                 'duration': '',
                 'region_oe_id': '',
-                'student_name': '',
+                'student_name': '学员',
+                'student_id': '',
             },
             'region_oe_id': [{
                 'value': '1',
@@ -148,6 +155,12 @@ export default {
                 'from': 'employee',
                 'foreignField': '_id',
                 'as': 'employee'
+            },
+            'lookupinquiry': {
+                'localField': 'inquiry_id',
+                'from': 'inquiry',
+                'foreignField': '_id',
+                'as': 'inquiry'
             }
         }
         return {
@@ -156,13 +169,30 @@ export default {
         }
     },
     computed: {
-
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.localdata.form.student_id = ''
+                    this.localdata.form.student_name = '学员'
+                }
+                this.handleSearch()
+            }
+            return this.localdata.form.student_name
+        },
     },
     watch: {},
     methods: {
+        handleSelectStudent() {
+            //this.$store.state.envs.currDialog = ''
+            //this.$store.state.envs.currDialogResult = null
+            this.handleShowDialog('lb-selectstudenttpl')
+        },
         getEmployeeName(item) {
             let name = '未设定'
-            if (item.employee&&item.employee.length>0) {
+            if (item.employee && item.employee.length > 0) {
                 name = this.getLookUp(item.employee, 'name')
             }
             return name
@@ -178,8 +208,27 @@ export default {
             this.localdata.form.daterange = [start, end]
             this.handleSearch()
         },
+        handleRegion(value) {
+            this.handleSearch()
+            console.log(value, this.localdata.form.region_oe_id)
+        },
         handleSearch() {
             let filterObj = []
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': '_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.region_oe_id == '0') {
+                filterObj.push({
+                    'key': 'region_oe_id',
+                    'value': '',
+                    'type': ''
+                })
+            }
             if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
                 let startTime = this.getDatetime(this.localdata.form.daterange[0])
                 let endTime = this.getDatetime(this.localdata.form.daterange[1])
@@ -201,8 +250,18 @@ export default {
                 }
             }
             filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
+            filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupinquiry,
                 'type': 'lookup'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))

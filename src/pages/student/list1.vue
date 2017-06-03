@@ -1,47 +1,32 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="wrapper panel panel-default bg-white ng-scope" page-controller="list1index">
+            <div class="wrapper panel panel-default bg-white ng-scope">
                 <div class="row no-gutter">
                     <div class="col-xs-12 ">
-                        <lb-buttongroup :group-data="localdata.lb_lesson_type" v-model="localdata.form.lb_lesson_type"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lesson_type" v-model="localdata.form.lesson_type"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="m-t ng-scope" xo-rest="class_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list11">
+                <div class="m-t ng-scope">
                     <div class="row no-gutter">
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
                                 </div>
                             </div>
-                            <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
-                                <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oc_id as item.class_name for item in class_rest.$list" style="display: none;" v-model="localdata.form.lb_params_oc_id">
-                                    <option value class>选择班级</option>
-                                    <option value="0">11</option>
-                                </select>
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <a class="chosen-single" tabindex="-1">
-                                        <span>选择班级</span>
-                                        <div>
-                                            <el-select v-model="value8" filterable placeholder="请选择">
-                                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                    </a>
-                                    <div class="chosen-drop">
-                                        <div class="chosen-search">
-                                            <input type="text" autocomplete="off">
-                                        </div>
-                                        <ul class="chosen-results"></ul>
-                                    </div>
+                                    <lb-select v-model="localdata.form.classes_id" placeholder="请选择班级">
+                                        <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
+                                        </lb-option>
+                                    </lb-select>
                                 </div>
                             </div>
                             <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_students" export-params="params">
@@ -62,9 +47,12 @@
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                <i class="fa fa-female"></i>
-                            </span>{{ scope.row.student_name }}
+                                    <a class="link ng-binding" @click="handleRouter($event,scope.row)">
+                                        <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                        <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    </a>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="联系电话">
@@ -108,10 +96,10 @@
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员归属">
-                                <template scope="scope">未指定</template>
+                                <template scope="scope"> <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span></template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="建档日期">
-                                <template scope="scope">2017-05-13</template>
+                                <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                             </lb-table-column>
                         </lb-table>
                         <div class="grid-data-result"></div>
@@ -132,7 +120,7 @@ export default {
     name: 'list1',
     data() {
         let localdata = {
-            'lb_lesson_type': [{
+            'lesson_type': [{
                 'value': '0',
                 'text': '班课学员'
             }, {
@@ -143,12 +131,15 @@ export default {
                 'text': '课时包学员'
             }],
             'form': {
-                'lb_lesson_type': '',
-                'lb_param_student_name': '',
-                'lb_params_pay_status': '',
-                'lb_params_oc_id': ''
+                'lesson_type': '',
+                'pay_status': '',
+                'oc_id': '',
+                'classes_id': '',
+                'region_oe_id': '',
+                'student_name': '学员',
+                'student_id': '',
             },
-            'lb_params_pay_status': [{
+            'pay_status': [{
                 'value': '2',
                 'text': '已缴费'
             }, {
@@ -157,7 +148,13 @@ export default {
             }, {
                 'value': '0',
                 'text': '未缴费'
-            }]
+            }],
+            'lookup': {
+                'localField': 'region_oe_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
         }
         return {
             localdata,
@@ -165,11 +162,50 @@ export default {
         }
     },
     mounted() {
-       
-        this.getTabledata('cate')
+        this.getTableApidata('classes')
     },
-    computed: {},
+    computed: {
+        getClassesData() {
+            let classes = this.$store.state.models.models.classes.data
+            return classes
+        },
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleRouter(event, item) {
+            this.$router.push('/student/info/' + item._id)
+            event.stopPropagation()
+        },
+        getEmployeeName(item) {
+            let name = '未设定'
+            if (item.employee && item.employee.length > 0) {
+                name = this.getLookUp(item.employee, 'name')
+            }
+            return name
+        },
+        handleSearch() {
+            let filterObj = []
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': '_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
+    }
 }
 </script>

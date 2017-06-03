@@ -12,7 +12,7 @@
                             <i class="fa fa-cog ng-scope"></i><span class="ng-scope"> 操作</span></ng-transclude><span class="caret"></span>
                         </lb-dropdown-button>
                     </lb-dropdown>
-                    <button class="btn btn-danger btn-danger m-b-xs ng-isolate-scope" confirm-text="确定要封存该学员档案吗?" confirm-action="student_delete()" ui-per="student.delete"><i class="fa fa-trash-o"></i> 封存档案</button>
+                    <button class="btn btn-danger btn-danger m-b-xs ng-isolate-scope" @click="deleteStudent"><i class="fa fa-trash-o"></i> 封存档案</button>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -44,7 +44,7 @@
                                     <span class="badge bg-gray ng-scope" ng-if="student.wb_id == '0'">未绑定</span>
                                 </li>
                                 <li class="m-t-xs ng-scope">
-                                    <label class="field">学员归属:</label><span class="label bg-info ng-binding">林三金</span>
+                                    <label class="field">学员归属:</label><span class="label bg-info ng-binding">{{getEmployeeName}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -68,7 +68,7 @@
                                         <div class="col-xs-12 col-md-6 ng-scope">
                                             <label class="inline w-xs text-right">建档日期:</label><span class="ng-binding">{{ getDateFormat(student.creattime) }}</span>
                                         </div>
-                                         <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6 ng-scope">
                                             <label class="inline w-xs text-right">生日:</label><span class="text-info ng-scope">{{ getDateFormat(student.birth) }}</span>
                                         </div>
                                     </div>
@@ -116,6 +116,9 @@ export default {
     name: 'footer',
     data() {
         let localdata = {
+            'form': {
+                'student_id': '',
+            },
             'dropDownMenu': [{
                 'url': 'lb-editinfomodal',
                 'icon': 'fa fa-pencil',
@@ -164,28 +167,79 @@ export default {
                 'icon': 'icon-shuffle',
                 'text': '转校区'
             }],
+            'lookup': {
+                'localField': 'region_oe_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
         }
         return {
             localdata,
-            student: {}
+            student: {},
+            lb_tables: ['student']
         }
-    },
-    created() {
-        let vm = this
-        let id = this.$route.params.id
-        this.$store.dispatch(this.types.GET_ID_API, {
-            'model': 'student',
-            'id': id
-        }).then((data) => {
-            vm.student = data.data[0]
-        })
     },
     computed: {
+        getEmployeeName() {
+            let name = '未设定'
+            if (this.student.employee && this.student.employee.length > 0) {
+                name = this.getLookUp(this.student.employee, 'name')
+            }
+            return name
+        },
         getStudentInfo() {
             return this.student
-        }
+        },
     },
     watch: {},
-    methods: {}
+    methods: {
+        deleteStudent() {
+            let vm = this
+            this.$confirm('确定要封存该学员档案吗?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                vm.updateTeble('student', vm.student._id, {
+                    'isdel': true
+                }).then(() => {
+                    vm.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    history.back()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                })
+            })
+
+        },
+        handleSearch() {
+            let filterObj = []
+            let student_id = this.$route.params.id
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': '_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            console.log(this.$route.params.id, filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt).then(() => {
+                console.log(this.$store.state.models.models.student.data)
+                this.student = this.$store.state.models.models.student.data[0]
+            })
+        },
+    }
 }
 </script>

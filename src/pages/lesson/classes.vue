@@ -214,7 +214,7 @@ export default {
                 'lb_grid_search_value': '',
                 'lb_params_status': '',
                 'lb_params_master_oe_id': '',
-                'lb_view_mode': '',
+                'lb_view_mode': 'list',
                 'lb_search_value': ''
 
             },
@@ -269,10 +269,6 @@ export default {
                 'url': 'lb-removeclassattendancemodal',
                 'icon': 'icon-ban',
                 'text': '撤销考勤'
-            }, {
-                'url': 'lb-upgradeclassmodal',
-                'icon': 'fa fa-wrench',
-                'text': '升级'
             }],
             'search': {
                 'fields': [{
@@ -288,8 +284,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['team']
-
+            lb_tables: ['classes']
         }
     },
     computed: {},

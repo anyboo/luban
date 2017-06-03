@@ -1,4 +1,4 @@
-<template>
+t<template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
             <div class="modal-header ng-scope">
@@ -27,11 +27,8 @@
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-<<<<<<< HEAD
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
-=======
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
->>>>>>> b6ed6e42d9ad79b27da22ffc35b2f021fc899a1f
                                     <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>

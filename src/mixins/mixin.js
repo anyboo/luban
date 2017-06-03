@@ -172,16 +172,20 @@ export default {
         },
         handleGetFilterTable(filter) {
             let vm = this
-            if (vm.lb_tables) {
-                let table = {}
-                table.model = vm.lb_tables[0]
-                table.filter = filter
-                table.prepage = this.pagination.pagesize
-                table.page = this.pagination.currentPage - 1
-                vm.$store.dispatch(types.GET_Filter_API, table).then(() => {
-                    this.getTablesData()
-                })
-            }
+            return new Promise((resolve, reject) => {
+                if (vm.lb_tables) {
+                    let table = {}
+                    table.model = vm.lb_tables[0]
+                    table.filter = filter
+                    table.prepage = this.pagination.pagesize
+                    table.page = this.pagination.currentPage - 1
+                    vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                        resolve(response)
+                    })
+                } else {
+                    reject()
+                }
+            })
         },
         getTableApidata(table) {
             let vm = this
@@ -222,6 +226,21 @@ export default {
                 } else {
                     reject()
                 }
+            })
+        },
+        updateTeble(table, id, data) {
+            let vm = this
+            return new Promise((resolve, reject) => {
+                vm.$store.dispatch(types.EDIT_API, {
+                    'model': table,
+                    'id': id,
+                    'form': data,
+                }).then((response) => {
+                    resolve(response)
+                }).catch((error) => {
+                    reject()
+                    console.log(error, 'Promise error')
+                })
             })
         },
         handleSave() {

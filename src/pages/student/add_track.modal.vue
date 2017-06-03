@@ -156,7 +156,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$store.state.dialogs.dailogdata){
+        if (this.$store.state.dialogs.dailogdata) {
             this.$store.state.envs.currStudent = this.$store.state.dialogs.dailogdata
         }
     },
@@ -167,8 +167,17 @@ export default {
             this.localdata.form.track_way = value
         },
         handleClick() {
-            this.handleSave().then(() => {
-                alert('做完数据提交数据库了')
+            let vm = this
+            vm.handleSave().then((data) => {
+                vm.updateTeble('student', vm.$store.state.envs.currStudent._id, {
+                    'inquiry_id': data._id
+                }).then(() => {
+                    vm.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    vm.lbClosedialog()
+                })
             })
         },
         open() {

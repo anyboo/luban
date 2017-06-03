@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-disabled="vm.selected.length == 0" ng-click="vm.confirm();">确定</button>
+                <button class="btn btn-primary ng-binding" ng-click="vm.confirm();">确定</button>
             </div>
         </div>
     </div>

@@ -21,7 +21,6 @@ import page20 from '~/pages/lesson/classes/lesson_dispatch.modal.vue'
 import page21 from '~/pages/lesson/classes/end_class.modal.vue'
 import page22 from '~/pages/hours/reg_class_attendance.modal.vue'
 import page23 from '~/pages/hours/remove_class_attendance.modal.vue'
-import page24 from '~/pages/lesson/classes/upgrade_class.modal.vue'
 import page25 from '~/pages/lesson/contracts/add_performance.modal.vue'
 import page26 from '~/pages/lesson/contract/edit.modal.vue'
 import page27 from '~/pages/lesson/contracts/lesson_arrange.modal.vue'
@@ -87,7 +86,6 @@ pages['lb-lessondispatchmodal'] = page20
 pages['lb-endclassmodal'] = page21
 pages['lb-regclassattendancemodal'] = page22
 pages['lb-removeclassattendancemodal'] = page23
-pages['lb-upgradeclassmodal'] = page24
 pages['lb-addperformancemodal'] = page25
 pages['lb-editmodal'] = page26
 pages['lb-lessonarrangemodal'] = page27

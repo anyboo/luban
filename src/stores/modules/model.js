@@ -15,7 +15,7 @@ const state = {
         role: {
             data: []
         },
-        team: {
+        classes: {
             data: []
         },
         dictionary: {
@@ -66,7 +66,7 @@ const actions = {
                 restfulapi.httpGetFilterApi(obj)
                     .then(response => {
                         commit(types.GET_API, { 'tableName': obj.model, response })
-                        resolve()
+                        resolve(response)
                     })
                     .catch(function(response) {
                         console.info(response)

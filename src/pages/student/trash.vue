@@ -53,10 +53,10 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <a class="link" ng-click="do_recover(item)">
+                                    <a class="link" @click="do_recover(scope.row._id)">
                                         <i class="icon-lock-open"></i>恢复
                                     </a>
-                                    <a class="link" ng-click="confirm_delete(item)" ui-per="student.delete">
+                                    <a class="link" @click="confirm_delete(scope.row._id)">
                                         <i class="fa fa-times"></i>删除
                                     </a>
                                 </template>
@@ -64,14 +64,10 @@
                         </lb-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 1 条记录">共 1 条记录</small>
-                            </div>
-                            <div class="col-sm-8 text-right text-center-xs">
-                                <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
-                            </div>
+                    <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
                         </div>
                     </div>
                 </div>
@@ -121,7 +117,39 @@ export default {
                 'name': value
             }).value
         },
-
+        do_recover(id) {
+            let vm = this
+            vm.updateTeble('student', id, {
+                'isdel': false
+            }).then(() => {
+                vm.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                vm.handleSearch()
+            })
+        },
+        confirm_delete(id) {
+            let vm = this
+            vm.$confirm('是否确定删除学员的档案?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                vm.handleDelete(id).then(() => {
+                    vm.$message({
+                        message: '删除成功',
+                        type: 'success'
+                    })
+                    vm.handleSearch()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                })
+            })
+        },
         handleSearch() {
             let filterObj = []
             let search_value = this.localdata.form.lb_search_value.trim()
@@ -132,6 +160,11 @@ export default {
                     'type': 'like'
                 })
             }
+            filterObj.push({
+                'key': 'isdel',
+                'value': true,
+                'type': ''
+            })
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt, 6, 0)
         }

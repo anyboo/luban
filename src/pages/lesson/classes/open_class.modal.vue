@@ -122,12 +122,11 @@ export default {
         }
         return {
             localdata,
-            model: 'team',
-          
+            model: 'classes',
         }
     },
     mounted() {
-        this.getTabledata('cate')
+        this.getTableApidata('cate')
     },
     computed: {
         getreeData() {
@@ -159,7 +158,11 @@ export default {
     methods: {
         handleClick() {
             this.handleSave().then(() => {
-                alert('做完数据提交数据库了')
+                this.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                this.lbClosedialog()
             })
         },
 
