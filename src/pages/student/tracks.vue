@@ -33,7 +33,7 @@
                                     <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
-                                    <span class="label bg-success ng-scope pull" ng-if="item.student.status > 0" width="100">已报读</span>
+                                    <span class="label bg-success ng-scope pull" width="100">已报读</span>
                                     <div> &nbsp</div>
                                 </template>
                             </lb-table-column>
@@ -102,7 +102,7 @@ export default {
                 'date_end': '',
                 'duration': '',
                 'student_id': '',
-                'student_name': '学员',
+                
                 'track_type': ''
             },
             'duration': [{
@@ -131,11 +131,32 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['inquiry']
+            lb_tables: ['inquiry'],
+            'student_name': '学员',
         }
     },
     computed: {
-
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    if (this.selStudentAddInquiry) {
+                        this.$store.state.envs.currStudent = this.$store.state.envs.currDialogResult
+                        this.handleShowDialog('lb-addtrackmodal')
+                    } else {
+                        this.student_name = this.$store.state.envs.currDialogResult.student_name
+                        this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                        this.handleSearch()
+                    }
+                } else {
+                    if (!this.selStudentAddInquiry) {
+                        this.localdata.form.student_id = ''
+                        this.student_name = '学员'
+                        this.handleSearch()
+                    }
+                }
+            }
+            return this.student_name
+        },
     },
     watch: {},
     methods: {

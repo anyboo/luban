@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header ng-scope">
+            <div class="modal-header ng-scope" :class='{result:changeTeacher}'>
                 <button class="close" type="button" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
@@ -51,7 +51,7 @@
                         </template>
                         <div class="grid-data-result"></div>
                     </ul>
-                    <div class="panel-footer ">
+                    <div class="panel-footer">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -95,10 +95,18 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['sclasses'],
+            lb_tables: ['classes'],
         }
     },
-    computed: {},
+    computed: {
+        changeTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-selectteachertpl') {
+                this.handleSearch()
+            }
+            return result
+        },
+    },
     watch: {},
     methods: {
         handleCommand(value) {

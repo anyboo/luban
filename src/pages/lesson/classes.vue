@@ -212,7 +212,6 @@ export default {
                 'lb_params_master_oe_id': '',
                 'lb_view_mode': 'list',
                 'lb_search_value': ''
-
             },
             'lb_params_status': [{
                 'value': '1',
