@@ -1,9 +1,9 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
-            <div page-controller="open_class" class="ng-scope">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -11,13 +11,13 @@
                         <i class="fa fa-flag-checkered"></i>{{title}}班级信息
                     </h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" :class="{result:changeSelectTeacher}">
                     <form name="form1" class="form-validation form-horizontal m-t ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-pattern">
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">授课老师:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" name="master" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="localdata.form.master">
+                                    <input type="text" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="teacher_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>选择
@@ -97,15 +97,14 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'master': '',
-                'ol_id': '',
                 'class_name': '',
                 'cate_array': [],
                 'open_time': '',
                 'close_time': '',
                 'max_student_num': '',
                 'total_times': '',
-                'unit_hours': ''
+                'unit_hours': '',
+                'teacher_id': ''
             },
             'fields': {
                 'detail': {
@@ -124,6 +123,7 @@ export default {
             localdata,
             model: 'classes',
             title: '创建',
+            teacher_name: '请选择老师',
         }
     },
 
@@ -137,6 +137,22 @@ export default {
         }
     },
     computed: {
+        changeSelectTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-selectteachertpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.teacher_name = this.$store.state.envs.currDialogResult.name
+                    this.localdata.form.teacher_id = this.$store.state.envs.currDialogResult._id
+
+                } else {
+                    this.teacher_name = '请选择老师'
+                    this.localdata.form.teacher_id = ''
+                }
+                result = true
+            }
+            console.log(this.$store.state.envs.currDialog,this.localdata.form)
+            return result
+        },
         getreeData() {
             let cateData = this.$store.state.models.models.cate.data
             let treeData = []
@@ -171,6 +187,7 @@ export default {
                     type: 'success'
                 })
                 this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-openclass'
             })
         },
 
