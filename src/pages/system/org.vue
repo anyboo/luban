@@ -5,7 +5,7 @@
                 <div class="col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>机构基本信息</h4></div>
+                            <h4>机构基本信息</h4></div> 
                         <div class="panel-body">
                             <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-dirty ng-valid-parse">
                                 <div class="form-group">

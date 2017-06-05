@@ -26,31 +26,32 @@
                         </div>
                     </div>
                     <div class="row m-t">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column width="100" prop="data" label="学员">
+                        <lb-table :data="getTablesData()" stripe >
+                            <lb-table-column width="100" prop="data" label="学员" class="widthes">
                                 <template scope="scope">
                                     <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
                                     <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
-                                    <span class="label bg-success ng-scope" ng-if="item.student.status > 0">已报读</span>
+                                    <span class="label bg-success ng-scope pull" ng-if="item.student.status > 0" width="100">已报读</span>
+                                 <div> &nbsp</div>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="沟通内容">
+                            <lb-table-column prop="data" label="沟通内容" >
                                 <template scope="scope">
-                                    <pre class="ng-binding">{{ scope.row.detail}}</pre>
+                                    <pre class="ng-binding widths">{{ scope.row.detail}}</pre>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="沟通方式">
+                            <lb-table-column prop="data" label="沟通方式" width="120">
                                 <template scope="scope">{{ scope.row.track_way }}</template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="接洽人">
+                            <lb-table-column prop="data" label="接洽人" width="100">
                                 <template scope="scope">{{scope.row.op_name}}</template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="沟通时间">
+                            <lb-table-column prop="data" label="沟通时间" width="110">
                                 <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="类型">
+                            <lb-table-column prop="data" label="类型" width="80">
                                 <template scope="scope">{{ getButtongroupText(localdata.track_type,scope.row.track_type)}}</template>
                             </lb-table-column>
                         </lb-table>
@@ -67,6 +68,32 @@
     </div>
     </div>
 </template>
+<style type="text/css">
+pre {
+    display: block;
+    padding: 5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 30px;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  
+}
+
+.widths{
+    max-width: 1090px;
+}
+.pull{
+   margin-bottom:10px !important; 
+
+}
+
+    
+</style>
 <script>
 export default {
     name: 'tracks',
