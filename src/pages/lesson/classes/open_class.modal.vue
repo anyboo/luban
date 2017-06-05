@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-flag-checkered"></i>开新班
+                        <i class="fa fa-flag-checkered"></i>{{title}}班级信息
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -123,10 +123,18 @@ export default {
         return {
             localdata,
             model: 'classes',
+            title: '创建',
         }
     },
+
     mounted() {
-        this.getTableApidata('cate')
+        if (this.$store.state.dialogs.dailogdata) {
+            this.title = '编辑'
+            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
+        } else {
+            this.title = '创建'
+        }
     },
     computed: {
         getreeData() {

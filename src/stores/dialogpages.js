@@ -14,7 +14,6 @@ import page13 from '~/pages/widget/attendance.modal.vue'
 import page14 from '~/pages/hours/view_lesson_amount.modal.vue'
 import page15 from '~/pages/iae/flow.add.modal.vue'
 import page16 from '~/pages/iae/set_odi.modal.vue'
-import page17 from '~/pages/lesson/classes/edit_class.modal.vue'
 import page18 from '~/pages/lesson/classes/input_student.modal.vue'
 import page19 from '~/pages/lesson/classes/reg_performance.modal.vue'
 import page20 from '~/pages/lesson/classes/lesson_dispatch.modal.vue'
@@ -81,7 +80,6 @@ pages['lb-attendancemodal'] = page13
 pages['lb-viewlessonamountmodal'] = page14
 pages['lb-flowaddmodal'] = page15
 pages['lb-setodimodal'] = page16
-pages['lb-editclassmodal'] = page17
 pages['lb-inputstudentmodal'] = page18
 pages['lb-regperformancemodal'] = page19
 pages['lb-lessondispatchmodal'] = page20

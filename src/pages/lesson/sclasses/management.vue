@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary" ng-click="do_ok()" ng-disabled="assign.students.length == 0" disabled="disabled">
+                <button class="btn btn-primary" ng-click="do_ok()" ng-disabled="assign.students.length == 0">
                     确定</button>
                 <button class="btn btn-warning ng-click-active" @click="switchPage('lb-main')">返回</button>
             </div>

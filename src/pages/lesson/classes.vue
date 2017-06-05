@@ -238,10 +238,10 @@ export default {
                 'text': '列表'
             }],
             'dropDownMenu': [{
-                'url': 'lb-editclassmodal',
+                'url': 'lb-openclassmodal',
                 'icon': 'icon-note',
                 'text': '编辑班级'
-            }, {
+            }, { 
                 'url': 'lb-inputstudentmodal',
                 'icon': 'fa fa-users',
                 'text': '批量报名'
