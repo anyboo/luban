@@ -4,7 +4,7 @@
             <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>创建新的科目班</h3></div>
+                    <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>{{title}}科目班</h3></div>
                 <div class="modal-body">
                     <form name="form1" class="form-validation form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-parse">
                         <div class="form-group">
@@ -70,10 +70,45 @@ export default {
         }
         return {
             localdata,
-            model: 'sclasses'
+            model: 'sclasses',
+            title: '创建',
         }
     },
-    computed: {},
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.title = '编辑'
+            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
+        } else {
+            this.title = '创建'
+        }
+    },
+    computed: {
+        getreeData() {
+            let cateData = this.$store.state.models.models.cate.data
+            let treeData = []
+            let treemap = {}
+            for (var item of cateData) {
+                treemap[item._id] = {
+                    value: item._id,
+                    label: item.name
+                }
+            }
+            for (var subitem of cateData) {
+                if (subitem.pid == '') {
+                    treeData.push(treemap[subitem._id])
+                } else {
+                    if (typeof treemap[subitem.pid] == 'object') {
+                        if (typeof treemap[subitem.pid].children !== 'object') {
+                            treemap[subitem.pid].children = []
+                        }
+                        treemap[subitem.pid].children.push(treemap[subitem._id])
+                    }
+                }
+            }
+            return treeData
+        }
+    },
     watch: {},
     methods: {
         handleClick() {

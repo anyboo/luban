@@ -71,7 +71,7 @@
 <style type="text/css">
 pre {
     display: block;
-    padding: 5px;
+    padding: 6px;
     margin: 0 0 10px;
     font-size: 13px;
     line-height: 30px;
