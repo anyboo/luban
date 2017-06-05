@@ -56,9 +56,9 @@
 export default {
     name: 'order_unpay_clear.modal',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

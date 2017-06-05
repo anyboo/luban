@@ -86,9 +86,9 @@
 export default {
     name: 'view_course.modal',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

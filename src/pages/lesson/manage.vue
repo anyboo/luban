@@ -10,17 +10,17 @@
                                     <div class="input-group-btn">
                                         <lb-dropdowns menu-align="start" @command="handleMenuCommand">
                                             <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                {{lb_localdata.search.search_value}}
+                                                {{localdata.search.search_value}}
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
                                             <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                <template v-for="item in lb_localdata.search.fields">
+                                                <template v-for="item in localdata.search.fields">
                                                     <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                                 </template>
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                     </span>
@@ -42,8 +42,8 @@
                     <lb-table :data="getTablesData()" stripe>
                         <lb-table-column prop="data" label="操作">
                             <template scope="scope">
-                                <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="lb_localdata.dropDownMenu">
+                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
                                         <i class="fa fa-cog"></i>操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
@@ -107,7 +107,7 @@
 export default {
     name: 'manage',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_search_value': '',
                 'lb_params_status': ''
@@ -134,7 +134,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['course']
         }
     },
@@ -142,17 +142,17 @@ export default {
     watch: {},
     methods: {
         handleMenuCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.lb_search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })

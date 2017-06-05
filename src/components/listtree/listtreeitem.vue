@@ -26,13 +26,13 @@ export default {
     name: 'LbListtreeItem',
     props: ['treeData', 'treeItem'],
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
 
             }
         }
         return {
-            lb_localdata,
+            localdata,
             collapsed: false,
             change: this.treeItem.save ? !this.treeItem.save : true,
             model: 'cate',
@@ -69,12 +69,12 @@ export default {
             if (vm.treeItem) {
                 if (vm.treeItem._id) {
                     vm.setEditModle(vm.treeItem._id)
-                    vm.lb_localdata.form = vm.lodash.assign(vm.lb_localdata.form, vm.treeItem)
+                    vm.localdata.form = vm.lodash.assign(vm.localdata.form, vm.treeItem)
                 } else {
                     vm.modalsType = vm.types.APPEND_API
-                    vm.lb_localdata.form = vm.lodash.assign(vm.lb_localdata.form, vm.treeItem)
+                    vm.localdata.form = vm.lodash.assign(vm.localdata.form, vm.treeItem)
                 }
-                vm.lb_localdata.form.save = true
+                vm.localdata.form.save = true
                 vm.handleSave().then(() => {
                     //vm.treeItem = data
                     vm.change = false
@@ -89,7 +89,7 @@ export default {
 
             if (vm.treeItem && vm.treeItem._id) {
                 vm.modalsType = vm.types.APPEND_API
-                vm.lb_localdata.form = {
+                vm.localdata.form = {
                     name: '',
                     pid: vm.treeItem._id,
                     save: false

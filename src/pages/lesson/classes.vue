@@ -11,17 +11,17 @@
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleMenuCommand">
                                                 <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                    {{lb_localdata.search.search_value}}
+                                                    {{localdata.search.search_value}}
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
                                                 <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                    <template v-for="item in lb_localdata.search.fields">
+                                                    <template v-for="item in localdata.search.fields">
                                                         <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
                                                     </template>
                                                 </lb-dropdown-menu>
                                             </lb-dropdowns>
                                         </div>
-                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
+                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                         <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                     </span>
@@ -31,16 +31,16 @@
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
               
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
                        
-                            <lb-buttongroup :group-data="lb_localdata.lb_view_mode" v-model="lb_localdata.form.lb_view_mode"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
                             <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
                                 <i class="fa fa-plus "></i>开班
                             </a>
                         </div>
                     </div>
                     <!-- hhhhh -->
-                    <div class="row ng-scope " v-if="lb_localdata.form.lb_view_mode == 'image'">
+                    <div class="row ng-scope " v-if="localdata.form.lb_view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="panel-footer text-center b-t"><a class="btn btn-xs pull-left btn-default" ng-class="{'btn-warning':item.$$selected,'btn-default':!item.$$selected}" ng-click="item.$$selected = !item.$$selected"><i class="fa fa-rmb"></i></a> <a class="btn btn-sm btn-default" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13311">班级详情</a>
                                         <div class="pull-right btn-group dropdown  btn-group dropdown " dropdown="" btn-class="btn-info btn-sm" btn-tooltip="操作" item="item">
-                                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                                     <i class="fa fa-cog ng-scope"> 操作</i>
                                                     <span class="caret"></span>
@@ -116,11 +116,11 @@
                         </template>
                     </div>
                     <!-- hhhhh -->
-                    <div class="table-responsive ng-scope" style="min-height:450px" v-if="lb_localdata.form.lb_view_mode == 'list'">
+                    <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.lb_view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu" :menu-data="scope.row">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
                                             <span class="ng-scope">操作</span>
@@ -209,12 +209,12 @@
 export default {
     name: 'classes',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_grid_search_value': '',
                 'lb_params_status': '',
                 'lb_params_master_oe_id': '',
-                'lb_view_mode': '',
+                'lb_view_mode': 'list',
                 'lb_search_value': ''
 
             },
@@ -269,10 +269,6 @@ export default {
                 'url': 'lb-removeclassattendancemodal',
                 'icon': 'icon-ban',
                 'text': '撤销考勤'
-            }, {
-                'url': 'lb-upgradeclassmodal',
-                'icon': 'fa fa-wrench',
-                'text': '升级'
             }],
             'search': {
                 'fields': [{
@@ -287,26 +283,25 @@ export default {
             }
         }
         return {
-            lb_localdata,
-            lb_tables: ['team']
-
+            localdata,
+            lb_tables: ['classes']
         }
     },
     computed: {},
     watch: {},
     methods: {
         handleMenuCommand(value) {
-            this.lb_localdata.search.search_key = value
-            this.lb_localdata.search.search_value = this.lodash.find(this.lb_localdata.search.fields, {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.lb_localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.lb_search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
-                    'key': this.lb_localdata.search.search_key,
+                    'key': this.localdata.search.search_key,
                     'value': search_value,
                     'type': 'like'
                 })

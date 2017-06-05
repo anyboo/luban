@@ -68,9 +68,9 @@
 export default {
     name: 'dict',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

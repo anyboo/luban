@@ -26,7 +26,7 @@
                             <div class="form-group ng-scope" ng-if="branch_rest.$loaded">
                                 <label class="col-xs-3 col-md-2 control-label">新校区：</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <select class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-options="item.ob_id as item.branch_name for item in branch_rest.$list" v-model="lb_localdata.form.lb_change_branch_ob_id">
+                                    <select class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-options="item.ob_id as item.branch_name for item in branch_rest.$list" v-model="localdata.form.lb_change_branch_ob_id">
                                         <option value class>选择校区</option>
                                         <option value="0">福州布尔培训</option>
                                     </select>
@@ -47,13 +47,13 @@
 export default {
     name: 'change_branch.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_change_branch_ob_id': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

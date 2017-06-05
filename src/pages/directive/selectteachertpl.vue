@@ -1,4 +1,4 @@
-<template>
+t<template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
             <div class="modal-header ng-scope">
@@ -27,6 +27,7 @@
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="lb_localdata.form.lb_search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
@@ -35,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <lb-buttongroup :group-data="lb_localdata.lb_params_is_part_time" v-model="lb_localdata.form.lb_params_is_part_time"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.lb_params_is_part_time" v-model="localdata.form.lb_params_is_part_time"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="row list-student m-t">
@@ -75,7 +76,7 @@
 export default {
     name: 'selectTeacherTpl',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_grid_search_value': '',
                 'lb_params_is_part_time': '',
@@ -103,7 +104,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['employee'],
         }
     },

@@ -50,9 +50,9 @@
 export default {
     name: 'give-money1',
     data() {
-        let lb_localdata = {}
+        let localdata = {}
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

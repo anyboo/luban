@@ -37,7 +37,7 @@
                             <label class="control-label col-xs-12 col-md-2">缴费金额:</label>
                             <div class="col-xs-12 col-md-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" v-model="lb_localdata.form.lb_pay_pay_amount">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" v-model="localdata.form.lb_pay_pay_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">付款方式:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <select class="form-control w-xs ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="pay_type" ng-options="item.odi_id as item.text for item in $gv.dicts[2]" style="display: none;" v-model="lb_localdata.form.lb_pay_pay_type">
+                                <select class="form-control w-xs ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="pay_type" ng-options="item.odi_id as item.text for item in $gv.dicts[2]" style="display: none;" v-model="localdata.form.lb_pay_pay_type">
                                     <option value class>请选择</option>
                                     <option value="0" selected="selected">现金</option>
                                     <option value="1">刷卡</option>
@@ -73,20 +73,20 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费日期:</label>
                             <div class="col-xs-12 col-md-4">
-                                <lb-date-picker type="datetime" name="pay_time" v-model="lb_localdata.form.lb_pay_pay_time"></lb-date-picker>
+                                <lb-date-picker type="datetime" name="pay_time" v-model="localdata.form.lb_pay_pay_time"></lb-date-picker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-6">
-                                <input type="text" name="pay_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.lb_pay_pay_note">
+                                <input type="text" name="pay_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_pay_pay_note">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">经办人:</label>
                             <div class="col-xs-12 col-md-3">
                                 <div class="input-group ng-valid" ng-model="pay.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
-                                    <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="lb_localdata.form.lb_name">
+                                    <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="localdata.form.lb_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>
@@ -111,7 +111,7 @@
 export default {
     name: 'pay_reg.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_pay_pay_amount': '',
                 'lb_pay_pay_type': '',
@@ -121,7 +121,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

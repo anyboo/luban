@@ -18,7 +18,14 @@
                 <div class="table-responsive">
                     <lb-table :data="getTablesData()" stripe>
                         <lb-table-column prop="data" label="学员">
-                            <template scope="scope">{{ scope.row.student_name }}</template>
+                            <template scope="scope">
+                                <a class="link ng-binding" @click="handleRouter($event,scope.row)">
+                                    <span class="ng-binding">
+                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                </span>{{ scope.row.student_name }}
+                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                </a>
+                            </template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="联系电话">
                             <template scope="scope">{{ scope.row.first_tel }}</template>
@@ -81,6 +88,10 @@ export default {
     computed: {},
     watch: {},
     methods: {
+        handleRouter(event, item) {
+            this.$router.push('/student/info/' + item._id)
+            event.stopPropagation()
+        },
         handleDuration() {
             let duration = this.localdata.form.duration.trim()
             let start = this.getDatetimeStartOf(duration)
@@ -110,6 +121,11 @@ export default {
                     })
                 }
             }
+            filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }

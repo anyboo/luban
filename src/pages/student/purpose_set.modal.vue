@@ -1,38 +1,21 @@
 <template>
-    <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
-            <div class="wrapper ng-scope" page-controller="purpose_set">
-                <p class="ng-binding">请设置学员 III 的意向程度</p>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="wrapper ng-scope">
+                <p class="ng-binding">请设置学员 {{getStudentName }} 的意向程度</p>
                 <div class="w-sm">
-                    <select class="form-control ng-untouched ng-valid ng-valid-required ng-dirty ng-valid-parse" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[6]" required style="display: none;" v-model="lb_localdata.form.lb_purpose">
-                        <option value class>请选择</option>
-                        <option value="0">没有意向</option>
-                        <option value="1">初步意向</option>
-                        <option value="2">意向强烈</option>
-                    </select>
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
-                        <a class="chosen-single" tabindex="-1">
-                            <span>没有意向</span>
-                            <div>
-                                <b></b>
-                            </div>
-                        </a>
                         <div class="chosen-drop">
-                            <div class="chosen-search">
-                                <input type="text" autocomplete="off">
-                            </div>
-                            <ul class="chosen-results">
-                                <li class="active-result" data-option-array-index="0">请选择</li>
-                                <li class="active-result result-selected" data-option-array-index="1">没有意向</li>
-                                <li class="active-result" data-option-array-index="2">初步意向</li>
-                                <li class="active-result" data-option-array-index="3">意向强烈</li>
-                            </ul>
+                            <lb-select v-model="localdata.form.purpose" placeholder="请选择">
+                                <lb-option v-for="item in localdata.purpose" :key="item.value" :label="item.text" :value="item.value">
+                                </lb-option>
+                            </lb-select>
                         </div>
                     </div>
                 </div>
                 <p class="m-t">
-                    <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbClosedialog($event)">取消</a>
+                    <button class="btn btn-primary" @click="handleClick">确定</button>
+                    <a class="btn btn-danger m-l-xs" @click="lbClosedialog($event)">取消</a>
                 </p>
             </div>
         </div>
@@ -40,19 +23,51 @@
 </template>
 <script>
 export default {
-    name: 'purpose_set.modal',
+    name: 'purpose_set',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
-                'lb_purpose': ''
-            }
+                'purpose': '',
+                'student_name': '',
+            },
+            'purpose': [{
+                'value': '0',
+                'text': '请选择'
+            }, {
+                'value': '1',
+                'text': '没有意向'
+            }, {
+                'value': '2',
+                'text': '初步意向'
+            }, {
+                'value': '3',
+                'text': '意向强烈'
+            }]
         }
         return {
-            lb_localdata,
+            localdata,
+            model: 'student'
         }
     },
-    computed: {},
+    mounted() {
+        this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+        this.localdata.form.purpose = this.$store.state.dialogs.dailogdata.purpose
+        this.localdata.form.student_name = this.$store.state.dialogs.dailogdata.student_name
+    },
+    computed: {
+        getStudentName(){
+            return this.localdata.form.student_name
+        }
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            let vm = this
+            vm.handleSave().then((data) => {
+                this.$store.state.dialogs.dailogdata.purpose = data.purpose
+                vm.lbClosedialog()
+            })
+        }
+    }
 }
 </script>

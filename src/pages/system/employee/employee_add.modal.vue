@@ -16,13 +16,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">姓名:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" required v-model="lb_localdata.form.name">
+                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" required v-model="localdata.form.name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">性别:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="lb_localdata.sex" v-model="lb_localdata.form.sex"></lb-buttongroup>
+                                <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -31,7 +31,7 @@
                                 <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="employee.or_ids" theme="bootstrap">
                                     <div>
                                         <span class="ui-select-match" placeholder="选择角色..."></span>
-                                        <input type="text" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择角色..." style="width: 469px;" v-model="lb_localdata.form.roles">
+                                        <input type="text" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择角色..." style="width: 469px;" v-model="localdata.form.roles">
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">类型:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="lb_localdata.is_part_time" v-model="lb_localdata.form.is_part_time"></lb-buttongroup>
+                                <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,7 +47,7 @@
                                 <i class="fa fa-phone"></i>电话:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.tel">
+                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.tel">
                             </div>
                         </div>
                         <div class="form-group">
@@ -55,7 +55,7 @@
                                 <i class="glyphicon glyphicon-envelope"></i>Email:
                             </label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="lb_localdata.form.email">
+                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.email">
                             </div>
                         </div>
                     </form>
@@ -72,7 +72,7 @@
 export default {
     name: 'employee_add',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'name': '',
                 'sex': '1',
@@ -99,7 +99,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'employee'
         }
     },

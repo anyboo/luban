@@ -48,14 +48,14 @@
 export default {
     name: 'dict_items',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'text': '',
                 'sort': '100'
             }
         }
         return {
-            lb_localdata,
+            localdata,
             model: 'dictionary',
             lb_tables: ['dictionary'],
         }
@@ -64,7 +64,7 @@ export default {
     watch: {},
     methods: {
         clearForm() {
-            this.lb_localdata.form = {
+            this.localdata.form = {
                 'text': '',
                 'sort': '100'
             }
@@ -72,7 +72,7 @@ export default {
         },
         handleEditClick(item) {
             this.setEditModle(item._id)
-            this.lb_localdata.form = this.lodash.assign(this.lb_localdata.form, item)
+            this.localdata.form = this.lodash.assign(this.localdata.form, item)
             this.handleClick()
         },
         handleClick() {

@@ -31,13 +31,13 @@
 export default {
     name: 'cate',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'name': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
             lb_tables: ['cate']
         }
     },

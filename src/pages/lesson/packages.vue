@@ -13,7 +13,7 @@
                 <div class="row wrapper no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline w va-m">
-                            <select name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:{'lesson_type':'10'}" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="lb_localdata.form.lb_params_ol_id">
+                            <select name="ol_id" ui-jq="chosen" ng-options="lesson.ol_id as lesson.lesson_name for lesson in $gv.lessons|filter:cur_branch|filter:{'lesson_type':'10'}" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_ol_id">
                                 <option value class>选择课程</option>
                             </select>
                             <div class="chosen-container chosen-container-single" style="width: 81px;" title>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="inline w va-m">
                             <div class="input-group ng-valid" select-title="请选择学员" ng-model="params.os_id" select-params="{ob_id:user.gv.ob_id}">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_name">
+                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_name">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default " select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="selectParams" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                         <i class="icon-user"></i>
@@ -46,9 +46,9 @@
                         <button class="btn btn-default btn-sm" ng-click="open_aside_left('search',{backdrop:false});">
                             <i class="fa fa-filter"></i>过滤
                         </button>
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_pay_status" v-model="lb_localdata.form.lb_params_pay_status"></lb-buttongroup>
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_assign_class" v-model="lb_localdata.form.lb_params_assign_class"></lb-buttongroup>
-                        <lb-buttongroup :group-data="lb_localdata.lb_params_status" v-model="lb_localdata.form.lb_params_status"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_params_assign_class" v-model="localdata.form.lb_params_assign_class"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -86,7 +86,7 @@
 export default {
     name: 'packages',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_params_ol_id': '',
                 'lb_name': '',
@@ -117,7 +117,7 @@ export default {
             }]
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

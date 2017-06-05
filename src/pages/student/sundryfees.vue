@@ -28,7 +28,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费项目:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="w-sm">
-                                        <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[5]" required style="display: none;" v-model="lb_localdata.form.lb_order_odi_id">
+                                        <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[5]" required style="display: none;" v-model="localdata.form.lb_order_odi_id">
                                             <option value class>请选择</option>
                                             <option value="0">教材费</option>
                                             <option value="1">赛事报名费</option>
@@ -60,7 +60,7 @@
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-5">
                                     <div class="input-group">
-                                        <input type="number" name="origin_amount" ng-change="order.order_amount = order.origin_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="lb_localdata.form.lb_order_origin_amount">
+                                        <input type="number" name="origin_amount" ng-change="order.order_amount = order.origin_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.lb_order_origin_amount">
                                         <span class="input-group-addon">元</span>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" ng-disabled="order.oc_id == 0" placeholder="如有备注请输入" v-model="lb_localdata.form.lb_order_order_remark">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" ng-disabled="order.oc_id == 0" placeholder="如有备注请输入" v-model="localdata.form.lb_order_order_remark">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -111,7 +111,7 @@
 export default {
     name: 'sundryfees',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_order_odi_id': '',
                 'lb_order_origin_amount': '',
@@ -119,7 +119,7 @@ export default {
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

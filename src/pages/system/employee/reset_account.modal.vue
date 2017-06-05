@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录密码</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="6" required v-model="lb_localdata.form.lb_reset_password">
+                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="6" required v-model="localdata.form.lb_reset_password">
                             </div>
                             <div class="col-md-5 col-xs-12">
                                 <a href="javascript:;" class="btn btn-default btn-xs m-l" ng-click="reset.password=$util.random(6)">随机</a>
@@ -45,13 +45,13 @@
 export default {
     name: 'reset_account.modal',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_reset_password': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},

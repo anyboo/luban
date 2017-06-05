@@ -2,33 +2,20 @@
     <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
             <div class="wrapper ng-scope" page-controller="region_set">
-                <p class="ng-binding">请选择学员 录好 的归属</p>
+                <p class="ng-binding">请选择学员 {{getStudentName }} 的归属</p>
                 <div class="w-sm">
-                    <select class="form-control ng-untouched ng-valid ng-dirty ng-valid-parse" ui-jq="chosen" ng-options="item.oe_id as item.name for (key,item) in $gv.employees" style="display: none;" v-model="lb_localdata.form.lb_region_oe_id">
-                        <option value class>没有归属</option>
-                        <option value="12494">陈佳木</option>
-                    </select>
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
-                        <a class="chosen-single" tabindex="-1">
-                            <span>陈佳木</span>
-                            <div>
-                                <b></b>
-                            </div>
-                        </a>
                         <div class="chosen-drop">
-                            <div class="chosen-search">
-                                <input type="text" autocomplete="off">
-                            </div>
-                            <ul class="chosen-results">
-                                <li class="active-result result-selected" data-option-array-index="0">没有归属</li>
-                                <li class="active-result" data-option-array-index="1">陈佳木</li>
-                            </ul>
+                            <lb-select v-model="localdata.form.region_oe_id" placeholder="请选择">
+                                <lb-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
+                                </lb-option>
+                            </lb-select>
                         </div>
                     </div>
                 </div>
                 <p class="m-t">
-                    <button class="btn btn-primary" ng-disabled="saving" ng-click="do_ok()">确定</button>
-                    <a class="btn btn-danger m-l-xs" ng-disabled="saving" ng-click="vm.dismiss()" @click="lbClosedialog($event)">取消</a>
+                    <button class="btn btn-primary" @click="handleClick">确定</button>
+                    <a class="btn btn-danger m-l-xs" @click="lbClosedialog($event)">取消</a>
                 </p>
             </div>
         </div>
@@ -36,19 +23,44 @@
 </template>
 <script>
 export default {
-    name: 'region_set.modal',
+    name: 'region_set',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
-                'lb_region_oe_id': ''
+                'region_oe_id': '',
+                'student_name': '',
             }
         }
         return {
-            lb_localdata,
+            localdata,
+            model: 'student'
         }
     },
-    computed: {},
+    mounted() {
+        this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+        this.localdata.form.region_oe_id = this.$store.state.dialogs.dailogdata.region_oe_id
+        this.localdata.form.student_name = this.$store.state.dialogs.dailogdata.student_name
+
+        this.getTableApidata('employee')
+    },
+    computed: {
+        getEmployeeData() {
+            let employeeData = this.$store.state.models.models.employee.data
+            return employeeData
+        },
+        getStudentName(){
+            return this.localdata.form.student_name
+        }
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            let vm = this
+            vm.handleSave().then((data) => {
+                this.$store.state.dialogs.dailogdata.region_oe_id = data.region_oe_id
+                vm.lbClosedialog()
+            })
+        },
+    }
 }
 </script>

@@ -12,7 +12,7 @@
                         <div class="col-xs-12 col-md-6 m-t">
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="lb_localdata.form.lb_param_student_name">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -33,7 +33,7 @@
                                     <input type="hidden" name="tffield" value="int_day" ng-repeat="(key,value) in params" class="ng-scope">
                                 </form>
                             </div>
-                            <lb-dropdown :drop-menu-data="lb_localdata.dropDownMenu">
+                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-success">
                                     <i class="icon-plus"></i>请假登记
                                     <span class="caret"></span>
@@ -111,13 +111,13 @@
 export default {
     name: 'leaves',
     data() {
-        let lb_localdata = {
+        let localdata = {
             'form': {
                 'lb_param_student_name': ''
             }
         }
         return {
-            lb_localdata,
+            localdata,
         }
     },
     computed: {},
