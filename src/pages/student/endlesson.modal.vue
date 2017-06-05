@@ -15,10 +15,10 @@
                 <div class="modal-body">
                     <div class="row no-gutter step2" ng-class="{'step1':step==1,'step2':step==2}">
                         <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==1}">
-                            <h4 class="padder">1.选择已报课程</h4>
+                            <h4 class="padder heighs" >1.选择已报课程</h4>
                         </div>
                         <div class="col-xs-6 bg-light lter bg-success" ng-class="{'bg-success':step==2}">
-                            <h4 class="padder">2.办理结课</h4>
+                            <h4 class="padder heighs">2.办理结课</h4>
                         </div>
                     </div>
                     <div class="m-t ng-scope" ng-if="step==2">
