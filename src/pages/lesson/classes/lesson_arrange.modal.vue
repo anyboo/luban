@@ -222,7 +222,7 @@
 </template>
 <script>
 export default {
-    name: 'lesson_arrange.modal',
+    name: 'lesson_arrange',
     data() {
         let localdata = {
             'lb_arrange_type': [{

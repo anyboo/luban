@@ -55,7 +55,7 @@
 </template>
 <script>
 export default {
-    name: 'refund.modal',
+    name: 'refund',
     data() {
         let localdata = {}
         return {

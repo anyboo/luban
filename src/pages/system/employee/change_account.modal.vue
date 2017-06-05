@@ -38,7 +38,7 @@
 </template>
 <script>
 export default {
-    name: 'change_account.modal',
+    name: 'change_account',
     data() {
         let localdata = {
             'form': {

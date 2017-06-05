@@ -42,7 +42,7 @@
 </template>
 <script>
 export default {
-    name: 'reg_class_attendance.modal',
+    name: 'reg_class_attendance',
     data() {
         let localdata = {}
         return {

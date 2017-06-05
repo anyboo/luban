@@ -54,7 +54,7 @@
 </template>
 <script>
 export default {
-    name: 'order_unpay_clear.modal',
+    name: 'order_unpay_clear',
     data() {
         let localdata = {}
         return {

@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-    name: 'lock.modal',
+    name: 'lock',
     data() {
         let localdata = {}
         return {

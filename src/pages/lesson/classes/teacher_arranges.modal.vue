@@ -42,7 +42,7 @@
 </template>
 <script>
 export default {
-    name: 'teacher_arranges.modal',
+    name: 'teacher_arranges',
     data() {
         let localdata = {}
         return {

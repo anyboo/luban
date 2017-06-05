@@ -43,7 +43,7 @@
 </template>
 <script>
 export default {
-    name: 'sms_send.modal',
+    name: 'sms_send',
     data() {
         let localdata = {
             'lb_send_to_type': [{

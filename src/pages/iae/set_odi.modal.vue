@@ -35,7 +35,7 @@
 </template>
 <script>
 export default {
-    name: 'set_odi.modal',
+    name: 'set_odi',
     data() {
         let localdata = {
             'form': {

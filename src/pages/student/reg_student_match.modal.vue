@@ -183,7 +183,7 @@
 </template>
 <script>
 export default {
-    name: 'reg_student_match.modal',
+    name: 'reg_student_match',
     data() {
         let localdata = {
             'form': {

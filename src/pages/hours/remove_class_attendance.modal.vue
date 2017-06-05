@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-    name: 'remove_class_attendance.modal',
+    name: 'remove_class_attendance',
     data() {
         let localdata = {}
         return {

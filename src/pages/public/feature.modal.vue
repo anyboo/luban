@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-    name: 'feature.modal',
+    name: 'feature',
     data() {
         let localdata = {}
         return {

@@ -110,7 +110,7 @@
 </template>
 <script>
 export default {
-    name: 'unpay_clear.modal',
+    name: 'unpay_clear',
     data() {
         let localdata = {
             'form': {

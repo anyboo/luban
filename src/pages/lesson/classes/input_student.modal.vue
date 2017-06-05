@@ -54,7 +54,7 @@
 </template>
 <script>
 export default {
-    name: 'input_student.modal',
+    name: 'input_student',
     data() {
         let localdata = {
             'form': {

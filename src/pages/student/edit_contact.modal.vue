@@ -85,7 +85,7 @@
 </template>
 <script>
 export default {
-    name: 'edit_contact.modal',
+    name: 'edit_contact',
     data() {
         let localdata = {
             'form': {

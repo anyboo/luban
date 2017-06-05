@@ -59,7 +59,7 @@
 </template>
 <script>
 export default {
-    name: 'add_performance.modal',
+    name: 'add_performance',
     data() {
         let localdata = {
             'form': {

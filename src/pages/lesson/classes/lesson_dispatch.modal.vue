@@ -108,7 +108,7 @@
 </template>
 <script>
 export default {
-    name: 'lesson_dispatch.modal',
+    name: 'lesson_dispatch',
     data() {
         let localdata = {
             'lb_dispatch_type': [{

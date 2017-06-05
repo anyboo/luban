@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name: 'order_refund.modal',
+    name: 'order_refund',
     data() {
         let localdata = {}
         return {

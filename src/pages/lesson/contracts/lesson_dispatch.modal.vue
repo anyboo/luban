@@ -1,7 +1,7 @@
 <template></template>
 <script>
 export default {
-    name: 'reg_performance.modal',
+    name: 'reg_performance',
     data() {
         let localdata = {}
         return {

@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name: 'add_subject.modal',
+    name: 'add_subject',
     data() {
         let localdata = {}
         return {

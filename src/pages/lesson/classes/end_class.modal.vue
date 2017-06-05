@@ -33,7 +33,7 @@
 </template>
 <script>
 export default {
-    name: 'end_class.modal',
+    name: 'end_class',
     data() {
         let localdata = {}
         return {

@@ -112,7 +112,7 @@
 </template>
 <script>
 export default {
-    name: 'open_class.modal',
+    name: 'open_class',
     data() {
         let localdata = {
             'form': {

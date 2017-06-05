@@ -81,7 +81,7 @@
 </template>
 <script>
 export default {
-    name: 'endlesson.modal',
+    name: 'endlesson',
     data() {
         let localdata = {
             'dropDownMenu': [{

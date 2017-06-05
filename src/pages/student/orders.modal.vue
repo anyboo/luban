@@ -40,7 +40,7 @@
 </template>
 <script>
 export default {
-    name: 'orders.modal',
+    name: 'orders',
     data() {
         let localdata = {}
         return {

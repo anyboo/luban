@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name: 'view_lesson_amount.modal',
+    name: 'view_lesson_amount',
     data() {
         let localdata = {}
         return {

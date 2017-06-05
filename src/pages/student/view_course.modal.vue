@@ -84,7 +84,7 @@
 </template>
 <script>
 export default {
-    name: 'view_course.modal',
+    name: 'view_course',
     data() {
         let localdata = {}
         return {

@@ -43,7 +43,7 @@
 </template>
 <script>
 export default {
-    name: 'reset_account.modal',
+    name: 'reset_account',
     data() {
         let localdata = {
             'form': {

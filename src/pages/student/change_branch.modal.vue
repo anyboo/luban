@@ -45,7 +45,7 @@
 </template>
 <script>
 export default {
-    name: 'change_branch.modal',
+    name: 'change_branch',
     data() {
         let localdata = {
             'form': {

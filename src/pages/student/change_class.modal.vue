@@ -48,7 +48,7 @@
 </template>
 <script>
 export default {
-    name: 'change_class.modal',
+    name: 'change_class',
     data() {
         let localdata = {
             'form': {

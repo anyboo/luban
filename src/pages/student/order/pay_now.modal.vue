@@ -85,7 +85,7 @@
 </template>
 <script>
 export default {
-    name: 'pay_now.modal',
+    name: 'pay_now',
     data() {
         let localdata = {
             'form': {

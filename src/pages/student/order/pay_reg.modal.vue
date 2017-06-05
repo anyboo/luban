@@ -109,7 +109,7 @@
 </template>
 <script>
 export default {
-    name: 'pay_reg.modal',
+    name: 'pay_reg',
     data() {
         let localdata = {
             'form': {
