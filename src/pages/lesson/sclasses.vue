@@ -16,7 +16,7 @@
                                             <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                 <template v-for="item in localdata.search.fields">
                                                     <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
-                                                </template>
+                                                </template> 
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
@@ -119,7 +119,7 @@ export default {
                 'icon': 'fa icon-note',
                 'text': '编辑班级'
             }, {
-                'url': 'lb-editphotomodal',
+                'url': 'lb-studentsmodal',
                 'icon': 'fa icon-user',
                 'text': '学员管理'
             }, {

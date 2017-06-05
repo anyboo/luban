@@ -10,13 +10,14 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级名称：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" placeholder="请输入完整的班级名称" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="class_name" v-model="localdata.form.class_name" required="">
+                             <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.class_name.errorStatus}" v-model="localdata.form.class_name" @change="validate('class_name')">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级简称：</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <input type="text" placeholder="简短易记的名称或编号" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="short_name" v-model="localdata.form.short_name" required="">
+                                
                             </div>
                         </div>
                         <div class="form-group">
@@ -66,6 +67,20 @@ export default {
                 'teacher_name': '',
                 'open_time': '',
                 'has_second_oe_id': ''
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'class_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+                }
             },
         }
         return {
