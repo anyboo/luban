@@ -67,7 +67,6 @@
     </div>
 </template>
 <script>
-import base64 from '~/api/base64.js'
 export default {
     name: 'selectLessonTpl',
     data() {
@@ -122,7 +121,7 @@ export default {
                     'type': ''
                 })
             }
-            let filterTxt = base64.encode(JSON.stringify(filterObj))
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }
     }

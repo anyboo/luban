@@ -4,8 +4,8 @@
             <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>{{title}}科目班</h3></div>
-                <div class="modal-body">
+                    <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>{{title}}班级</h3></div>
+                <div class="modal-body" :class='{result:changeSelectTeacher}'>
                     <form name="form1" class="form-validation form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-parse">
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级名称：</label>
@@ -24,16 +24,16 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">主教老师：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请选择主教老师" v-model="localdata.form.teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required="" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="text" placeholder="请选择主教老师" v-model="localdata.teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(false)"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">助教老师：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" v-model="localdata.form.has_second_oe_id" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
-                                <div class="input-group ng-scope" ng-if="sclass.has_second_oe_id">
-                                    <input type="text" placeholder="请选择助教老师" v-model="localdata.form.second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly"> <span class="input-group-btn"><button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="checkbox" v-model="localdata.form.has_second_oe_id" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
+                                <div class="input-group ng-scope" v-if="localdata.form.has_second_oe_id">
+                                    <input type="text" placeholder="请选择助教老师" v-model="localdata.second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(true)"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,11 +62,11 @@ export default {
             'form': {
                 'class_name': '',
                 'short_name': '',
-                'sj_id': '',
                 'track_time': '',
-                'teacher_name': '',
+                'teacher_id': '',
                 'open_time': '',
-                'has_second_oe_id': ''
+                'has_second_oe_id': false,
+                'second_teacher_id': '',
             },
             'validator': {
                 'type': 'object',
@@ -87,6 +87,9 @@ export default {
             localdata,
             model: 'sclasses',
             title: '创建',
+            selSecondTeacher: false,
+            'teacher_name': '',
+            'second_teacher_name': '',
         }
     },
     mounted() {
@@ -99,6 +102,31 @@ export default {
         }
     },
     computed: {
+        changeSelectTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-selectteachertpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    if (this.selSecondTeacher) {
+                        this.localdata.second_teacher_name = this.$store.state.envs.currDialogResult.name
+                        this.localdata.form.second_teacher_id = this.$store.state.envs.currDialogResult._id
+                    } else {
+                        this.localdata.teacher_name = this.$store.state.envs.currDialogResult.name
+                        this.localdata.form.teacher_id = this.$store.state.envs.currDialogResult._id
+                    }
+                } else {
+                    if (this.selSecondTeacher) {
+                        this.localdata.form.second_teacher_name = '请选择老师'
+                        this.localdata.form.second_teacher_id = ''
+                    } else {
+                        this.localdata.form.teacher_name = '请选择助教老师'
+                        this.localdata.form.teacher_id = ''
+
+                    }
+                }
+                result = true
+            }
+            return result
+        },
         getreeData() {
             let cateData = this.$store.state.models.models.cate.data
             let treeData = []
@@ -126,14 +154,20 @@ export default {
     },
     watch: {},
     methods: {
+        selectTeacher(selSecond) {
+            this.selSecondTeacher = selSecond
+            this.handleShowDialog('lb-selectteachertpl')
+        },
         handleClick() {
             this.handleSave().then(() => {
                 this.$message({
                     message: '操作成功',
                     type: 'success'
                 })
+                this.lbClosedialog() 
+                this.$store.state.envs.currDialog = 'lb-newsclass'
             })
-        },
+        }
     }
 }
 </script>

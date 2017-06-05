@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="row m-t">
-                        <lb-table :data="getTablesData()" stripe >
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column width="100" prop="data" label="学员" class="widthes">
                                 <template scope="scope">
                                     <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
@@ -34,10 +34,10 @@
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
                                     <span class="label bg-success ng-scope pull" ng-if="item.student.status > 0" width="100">已报读</span>
-                                 <div> &nbsp</div>
+                                    <div> &nbsp</div>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="沟通内容" >
+                            <lb-table-column prop="data" label="沟通内容">
                                 <template scope="scope">
                                     <pre class="ng-binding widths">{{ scope.row.detail}}</pre>
                                 </template>
@@ -81,18 +81,15 @@ pre {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 4px;
-  
 }
 
-.widths{
+.widths {
     max-width: 1090px;
 }
-.pull{
-   margin-bottom:10px !important; 
 
+.pull {
+    margin-bottom: 10px !important;
 }
-
-    
 </style>
 <script>
 export default {
@@ -134,32 +131,11 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['inquiry'],
-            selStudentAddInquiry: false
+            lb_tables: ['inquiry']
         }
     },
     computed: {
-        getSelectStudentName() {
-            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
-                if (this.$store.state.envs.currDialogResult) {
-                    if (this.selStudentAddInquiry) {
-                        this.$store.state.envs.currStudent = this.$store.state.envs.currDialogResult
-                        this.handleShowDialog('lb-addtrackmodal')
-                    } else {
-                        this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
-                        this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
-                        this.handleSearch()
-                    }
-                } else {
-                    if (!this.selStudentAddInquiry) {
-                        this.localdata.form.student_id = ''
-                        this.localdata.form.student_name = '学员'
-                        this.handleSearch()
-                    }
-                }
-            }
-            return this.localdata.form.student_name
-        },
+
     },
     watch: {},
     methods: {
@@ -225,11 +201,12 @@ export default {
                 }
             }
             filterObj.push({
-                    'key': 'lookup',
-                    'value': this.localdata.lookup,
-                    'type': 'lookup'
-                })
-                //console.log(filterObj)
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+
+            //console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }
