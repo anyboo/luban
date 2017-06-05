@@ -23,7 +23,7 @@
                             <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <lb-select v-model="localdata.form.classes_id" placeholder="请选择班级">
+                                    <lb-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
                                         <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                                         </lb-option>
                                     </lb-select>

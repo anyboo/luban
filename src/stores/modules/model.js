@@ -41,6 +41,9 @@ const state = {
         },
         selstudent:{
             data: []
+        },
+        order:{
+            data: []
         }
     },
     currentModel: {}

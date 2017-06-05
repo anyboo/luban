@@ -29,7 +29,10 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">课程:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-cascader placeholder="课程分类" :options="getreeData" v-model="localdata.form.cate_array" filterable change-on-select></lb-cascader>
+                                <lb-select v-model="localdata.form.course_id" filterable placeholder="请选择课程">
+                                    <lb-option v-for="item in getcourseData" :key="item._id" :label="item.lesson_name" :value="item._id">
+                                    </lb-option>
+                                </lb-select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -67,7 +70,7 @@
                             <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
+                                    <input type="number" ng-disabled="info.master_oe_id == 0" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -76,7 +79,7 @@
                             <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
+                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
                                     <span class="input-group-addon">小时</span>
                                 </div>
                             </div>
@@ -98,7 +101,7 @@ export default {
         let localdata = {
             'form': {
                 'class_name': '',
-                'cate_array': [],
+                'course_id': '',
                 'open_time': '',
                 'close_time': '',
                 'max_student_num': '',
@@ -135,6 +138,7 @@ export default {
         } else {
             this.title = '创建'
         }
+        this.getTableApidata('course')
     },
     computed: {
         changeSelectTeacher() {
@@ -150,32 +154,12 @@ export default {
                 }
                 result = true
             }
-            console.log(this.$store.state.envs.currDialog,this.localdata.form)
+            console.log(this.$store.state.envs.currDialog, this.localdata.form)
             return result
         },
-        getreeData() {
-            let cateData = this.$store.state.models.models.cate.data
-            let treeData = []
-            let treemap = {}
-            for (var item of cateData) {
-                treemap[item._id] = {
-                    value: item._id,
-                    label: item.name
-                }
-            }
-            for (var subitem of cateData) {
-                if (subitem.pid == '') {
-                    treeData.push(treemap[subitem._id])
-                } else {
-                    if (typeof treemap[subitem.pid] == 'object') {
-                        if (typeof treemap[subitem.pid].children !== 'object') {
-                            treemap[subitem.pid].children = []
-                        }
-                        treemap[subitem.pid].children.push(treemap[subitem._id])
-                    }
-                }
-            }
-            return treeData
+        getcourseData() {
+            let course = this.$store.state.models.models.course.data
+            return course
         }
     },
     watch: {},

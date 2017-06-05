@@ -42,15 +42,15 @@
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="ng-binding">阿诗丹顿 <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small></h4></div>
+                                        <h4 class="ng-binding">{{item.class_name}} <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small></h4></div>
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <label class="inline w-xs text-right">老师:</label><span class="ng-binding">张英乙</span></li>
+                                                <label class="inline w-xs text-right">老师:</label><span class="ng-binding">{{getLookUp(item.employee, 'name')}}</span></li>
                                             <li class="m-t-xs">
-                                                <label class="inline w-xs text-right">课程名称:</label><span class="ng-binding">1</span></li>
+                                                <label class="inline w-xs text-right">课程名称:</label><span class="ng-binding">{{getLookUp(item.course, 'lesson_name')}}</span></li>
                                             <li class="m-t-xs">
-                                                <label class="inline w-xs text-right">开课日期:</label><span class="ng-binding">2017-05-27</span></li>
+                                                <label class="inline w-xs text-right">开课日期:</label><span class="ng-binding">{{getDateFormat(item.open_time)}}</span></li>
                                             <li class="m-t-xs">
                                                 <label class="inline w-xs text-right">招生情况:</label>
                                                 <div class="inline w va-m">
@@ -133,15 +133,15 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="老师">
                                 <template scope="scope">
-                                    <span class="ng-binding">陈佳木</span>
+                                    <span class="ng-binding">{{getLookUp(scope.row.employee, 'name')}}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="课程名">
-                                <template scope="scope">吉他高级班</template>
+                                <template scope="scope">{{getLookUp(scope.row.course, 'lesson_name')}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="开课日期">
                                 <template scope="scope">
-                                    <span class="ng-binding">2017-05-05</span>
+                                    <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
                                     <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small>
                                 </template>
                             </lb-table-column>
@@ -236,7 +236,7 @@ export default {
                 'url': 'lb-openclassmodal',
                 'icon': 'icon-note',
                 'text': '编辑班级'
-            }, { 
+            }, {
                 'url': 'lb-inputstudentmodal',
                 'icon': 'fa fa-users',
                 'text': '批量报名'
@@ -275,6 +275,18 @@ export default {
                 }],
                 'search_key': 'class_name',
                 'search_value': '班级名'
+            },
+            'lookup': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
+            'teachlookup': {
+                'localField': 'course_id',
+                'from': 'course',
+                'foreignField': '_id',
+                'as': 'course'
             }
         }
         return {
@@ -309,6 +321,16 @@ export default {
                     'type': 'like'
                 })
             }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.teachlookup,
+                'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

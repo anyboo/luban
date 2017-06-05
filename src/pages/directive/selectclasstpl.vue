@@ -44,9 +44,9 @@
                     </div>
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope" ng-class="{'active':vm.is_selected(item)}" ng-click="vm.select(item)" ng-repeat="item in grid.data" ng-if="!loading">
+                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)" ng-repeat="item in grid.data" ng-if="!loading">
                                 <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                                <p class="list-group-item-text text-muted ng-binding">老师:陈佳木,已报人数:3/6,上课次数:0/60</p>
+                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
                             </li>
                         </template>
                         <div class="grid-data-result"></div>
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" ng-click="vm.confirm();">确定</button>
+                <button class="btn btn-primary ng-binding" @click="handleSelectClass">确定</button>
             </div>
         </div>
     </div>
@@ -96,6 +96,7 @@ export default {
         return {
             localdata,
             lb_tables: ['classes'],
+            currentRow: null
         }
     },
     computed: {
@@ -109,6 +110,28 @@ export default {
     },
     watch: {},
     methods: {
+        handleSelectClass() {
+            this.lbClosedialog()
+            this.$store.state.envs.currDialogResult = this.currentRow
+            this.$store.state.envs.currDialog = 'lb-selectclasstpl'
+        },
+        handleListChange(row) {
+            this.currentRow = row
+        },
+        getCheckRowClass(rowid) {
+            let classStr = ''
+            if (this.getCheckRow(rowid)) {
+                classStr = 'active'
+            }
+            return classStr
+        },
+        getCheckRow(rowid) {
+            let result = false
+            if (this.currentRow && this.currentRow._id == rowid) {
+                result = true
+            }
+            return result
+        },
         handleCommand(value) {
             this.localdata.search.search_key = value
             this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
