@@ -105,7 +105,8 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['student']
+            lb_tables: ['student'],
+            alias: 'trash'
         }
     },
     computed: {},
@@ -126,6 +127,7 @@ export default {
                     message: '操作成功',
                     type: 'success'
                 })
+                this.$store.state.envs.currDialog = 'lb-trash'
                 vm.handleSearch()
             })
         },
@@ -141,6 +143,7 @@ export default {
                         message: '删除成功',
                         type: 'success'
                     })
+                    this.$store.state.envs.currDialog = 'lb-trash'
                     vm.handleSearch()
                 })
             }).catch(() => {
@@ -166,7 +169,7 @@ export default {
                 'type': ''
             })
             let filterTxt = base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         }
     }
 }

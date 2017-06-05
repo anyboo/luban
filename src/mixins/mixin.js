@@ -141,6 +141,9 @@ export default {
             let tablaData = []
             if (this.lb_tables) {
                 let tablaName = this.lb_tables[0]
+                if (this.alias) {
+                    tablaName = this.alias
+                }
                 tablaData = this.$store.state.models.models[tablaName].data
                 this.pagination.total = this.$store.state.models.models[tablaName].count
             }
@@ -177,6 +180,7 @@ export default {
                     let table = {}
                     table.model = vm.lb_tables[0]
                     table.filter = filter
+                    table.alias = this.alias
                     table.prepage = this.pagination.pagesize
                     table.page = this.pagination.currentPage - 1
                     vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
@@ -202,7 +206,7 @@ export default {
             } else {
                 if (vm.lb_tables) {
                     vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
-                        this.getTablesData()
+                        //this.getTablesData()
                     })
                 }
             }

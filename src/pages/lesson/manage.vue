@@ -158,7 +158,7 @@ export default {
                 })
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         },
         handleCommand({
             action,

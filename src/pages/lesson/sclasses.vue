@@ -72,14 +72,9 @@
                             <template scope="scope">{{scope.row.teacher_name}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="开课日期">
-                            <template scope="scope">{{ scope.row.open_time }}</template>
+                            <template scope="scope">{{ getDateFormat(scope.row.open_time) }}</template>
                         </lb-table-column>
                     </lb-table>
-                    <div class="grid-data-result">
-                        <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
-                            <i class="fa fa-frown-o"></i>没有符合条件的班级!
-                        </p>
-                    </div>
                 </div>
                   <div class="panel-footer ">
                         <div class="row ">
@@ -173,7 +168,7 @@ export default {
             }
 
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         }
     }
 }

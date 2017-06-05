@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="table-responsive ng-scope " v-if="localdata.form.lb_view_mode == 'list'">
-                        <lb-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleCurrentChange">
+                        <lb-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleRowChange">
                             <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
                                     <input type="radio" name="selectid" :checked="getCheckRow(scope.row._id)">
@@ -90,7 +90,12 @@
                             </lb-table-column>
                         </lb-table>
                     </div>
-                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" items-per-page="grid.params.pagesize" max-size="grid.maxsize" boundary-links="true" rotate="false"></ul>
+                    <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
@@ -155,6 +160,7 @@ export default {
         return {
             localdata,
             lb_tables: ['student'],
+            alias: 'selstudent',
             makeImage: makeimage,
             currentRow: null
         }
@@ -193,7 +199,7 @@ export default {
             }).value
             this.handleSearch()
         },
-        handleCurrentChange(row) {
+        handleRowChange(row) {
             this.currentRow = row
         },
         handleSearch() {
@@ -214,8 +220,13 @@ export default {
                     'type': ''
                 })
             }
+            filterObj.push({
+                'key': 'isdel',
+                'value': false,
+                'type': ''
+            })
             let filterTxt = base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         }
     }
 }

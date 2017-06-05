@@ -34,7 +34,7 @@
                         <button class="btn btn-default ng-isolate-scope">
                             <i class="glyphicon glyphicon-export"></i>导出Excel
                         </button>
-                        <a @click="lbShowdialog($event,'lb-trash')">
+                        <a @click="lbShowdialog($event,'lb-trash')" :class="{result:refreshData}">
                             <i class="icon-lock"></i>已封存档案
                         </a>
                     </div>
@@ -246,7 +246,16 @@ export default {
             lb_tables: ['student'],
         }
     },
-    computed: {},
+    computed: {
+        refreshData() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-trash') {
+                this.handleSearch()
+                result = true
+            }
+            return result
+        },
+    },
     watch: {},
     methods: {
         getEmployeeName(item) {
@@ -291,7 +300,7 @@ export default {
                 'type': 'lookup'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         },
         handleRouter(event, item) {
             this.$router.push('/student/info/' + item._id)

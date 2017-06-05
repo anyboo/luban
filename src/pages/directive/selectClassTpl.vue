@@ -122,7 +122,7 @@ export default {
                 })
             }
             let filterTxt = base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt, 6, 0)
+            this.handleGetFilterTable(filterTxt)
         }
     }
 }
