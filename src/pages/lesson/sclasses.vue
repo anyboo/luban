@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.lb_params_is_end" v-model="localdata.form.lb_params_is_end"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.is_end" v-model="localdata.form.is_end"></lb-buttongroup>
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
                         </div>
                         <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="table-responsive m-t" style="min-height:400px">
+                <div class="table-responsive m-t" style="min-height:400px" :class='{result:changeTeacher}'>
                     <lb-table :data="getTablesData()" stripe>
                         <lb-table-column width="80" prop="data" label>
                             <template scope="scope">
@@ -55,9 +55,6 @@
                         <lb-table-column prop="data" label="名称">
                             <template scope="scope">{{ scope.row.short_name }}</template>
                         </lb-table-column>
-                        <lb-table-column prop="data" label="科目">
-                            <template scope="scope">{{ scope.row.sj_id }}</template>
-                        </lb-table-column>
                         <lb-table-column prop="data" label="级别">
                             <template scope="scope">66</template>
                         </lb-table-column>
@@ -68,7 +65,7 @@
                             <template scope="scope">1</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="教师">
-                            <template scope="scope">{{scope.row.teacher_name}}</template>
+                            <template scope="scope">{{ getLookUp(scope.row.employee,'name') }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="开课日期">
                             <template scope="scope">{{ getDateFormat(scope.row.open_time) }}</template>
@@ -91,12 +88,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_is_end': '',
-                'lb_params_oe_id': '',
+                'is_end': '',
+                'oe_id': '',
                 'lb_search_value': '',
-                'lb_params_status': ''
+                'status': ''
             },
-            'lb_params_is_end': [{
+            'is_end': [{
                 'value': '0',
                 'text': '未结课'
             }, {
@@ -131,14 +128,28 @@ export default {
                 'icon': 'fa fa-calendar',
                 'text': '结课'
             }],
-
+            'lookup': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            }
         }
         return {
             localdata,
             lb_tables: ['sclasses'],
+
         }
     },
-    computed: {},
+    computed: {
+        changeTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-newsclass') {
+                this.handleSearch()
+            }
+            return result
+        },
+    },
     watch: {},
     methods: {
         handleCommand(value) {
@@ -157,7 +168,7 @@ export default {
                     'type': 'like'
                 })
             }
-            let status = this.localdata.form.lb_params_status.trim()
+            let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'status',
@@ -165,7 +176,11 @@ export default {
                     'type': ''
                 })
             }
-
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
