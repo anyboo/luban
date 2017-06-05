@@ -1,10 +1,10 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="wrapper-xs ng-scope" xo-rest="classes" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="classes" loading-container=".list-class" loading-text="正在加载班级..." empty-text="没有符合条件的班级!">
+            <div class="wrapper-xs ng-scope">
                 <div class="panel panel-default">
                     <div class="row wrapper no-gutter">
-                        <div class="col-xs-12 col-md-4 m-t">
+                        <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
                             <div class="padder">
                                 <div class="input-group w-full">
                                     <div class="input-group">
@@ -30,22 +30,19 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-              
                             <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
-                       
                             <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
                             <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
                                 <i class="fa fa-plus "></i>开班
                             </a>
                         </div>
                     </div>
-                    <!-- hhhhh -->
                     <div class="row ng-scope " v-if="localdata.form.lb_view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="ng-binding">阿诗丹顿 <!-- ngIf: item.status == '1' --><small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small><!-- end ngIf: item.status == '1' --> <!-- ngIf: item.status == '0' --> <!-- ngIf: item.status == '2' --></h4></div>
+                                        <h4 class="ng-binding">阿诗丹顿 <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small></h4></div>
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
                                             <li>
@@ -194,7 +191,7 @@
                             </lb-table-column>
                         </lb-table>
                     </div>
-                      <div class="panel-footer ">
+                    <div class="panel-footer ">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -211,7 +208,6 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_grid_search_value': '',
                 'lb_params_status': '',
                 'lb_params_master_oe_id': '',
                 'lb_view_mode': 'list',
@@ -287,7 +283,15 @@ export default {
             lb_tables: ['classes']
         }
     },
-    computed: {},
+    computed: {
+        changeTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-openclass') {
+                this.handleSearch()
+            }
+            return result
+        },
+    },
     watch: {},
     methods: {
         handleMenuCommand(value) {

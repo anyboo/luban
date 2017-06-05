@@ -24,7 +24,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">主教老师：</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请选择主教老师" v-model="localdata.teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(false)"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="text" placeholder="请选择主教老师" v-model="teacher_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(false)"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -33,7 +33,7 @@
                                 <label class="i-switch m-t-xs m-r">
                                     <input type="checkbox" v-model="localdata.form.has_second_oe_id" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
                                 <div class="input-group ng-scope" v-if="localdata.form.has_second_oe_id">
-                                    <input type="text" placeholder="请选择助教老师" v-model="localdata.second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(true)"><i class="fa fa-user"></i>选择老师</button></span></div>
+                                    <input type="text" placeholder="请选择助教老师" v-model="second_teacher_name" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly"> <span class="input-group-btn"><button type="button" class="btn btn-default" @click="selectTeacher(true)"><i class="fa fa-user"></i>选择老师</button></span></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -107,18 +107,18 @@ export default {
             if (this.$store.state.envs.currDialog == 'lb-selectteachertpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     if (this.selSecondTeacher) {
-                        this.localdata.second_teacher_name = this.$store.state.envs.currDialogResult.name
+                        this.second_teacher_name = this.$store.state.envs.currDialogResult.name
                         this.localdata.form.second_teacher_id = this.$store.state.envs.currDialogResult._id
                     } else {
-                        this.localdata.teacher_name = this.$store.state.envs.currDialogResult.name
+                        this.teacher_name = this.$store.state.envs.currDialogResult.name
                         this.localdata.form.teacher_id = this.$store.state.envs.currDialogResult._id
                     }
                 } else {
                     if (this.selSecondTeacher) {
-                        this.localdata.form.second_teacher_name = '请选择老师'
+                        this.second_teacher_name = '请选择老师'
                         this.localdata.form.second_teacher_id = ''
                     } else {
-                        this.localdata.form.teacher_name = '请选择助教老师'
+                        this.teacher_name = '请选择助教老师'
                         this.localdata.form.teacher_id = ''
 
                     }

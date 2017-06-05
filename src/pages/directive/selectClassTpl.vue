@@ -1,8 +1,8 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header ng-scope">
-                <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                <button class="close" type="button" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
@@ -11,7 +11,7 @@
                 </h3>
             </div>
             <div class="modal-body ng-scope">
-                <div xo-rest="classes" xo-rest-ctrl="select_class_tpl" xo-rest-grid="{maxsize:5,params:vm.params}" loading-container=".list-group" loading-text="正在加载班级..." empty-text="没有符合条件的班级!" class="ng-scope">
+                <div class="ng-scope">
                     <div class="row">
                         <div class="col-xs-12 col-md-7">
                             <div class="input-group w-full">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <a ng-click="$util.open('tpl/app/lesson/classes/open_class.modal.html','md')" @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-primary btn-sm ng-click-active">
+                            <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-primary btn-sm ng-click-active">
                                 <i class="fa fa-plus"></i>新班级
                             </a>
                         </div>
@@ -72,7 +72,6 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_grid_search_value': '',
                 'search_value': '',
                 'status': '',
             },
@@ -86,11 +85,17 @@ export default {
                 }],
                 'search_key': 'class_name',
                 'search_value': '班级名称'
+            },
+            'lookup': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
             }
         }
         return {
             localdata,
-            lb_tables: ['team'],
+            lb_tables: ['sclasses'],
         }
     },
     computed: {},
@@ -121,6 +126,11 @@ export default {
                     'type': ''
                 })
             }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }

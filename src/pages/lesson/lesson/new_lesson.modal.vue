@@ -1,9 +1,9 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}" id="app">
-        <div class="modal-content" modal-transclude>
-            <div page-controller="new_lesson" class="ng-scope">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -223,7 +223,6 @@ export default {
             localdata,
             model: 'course',
             title: '创建',
-
         }
     },
     mounted() {
