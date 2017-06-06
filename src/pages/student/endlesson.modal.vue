@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer" ng-hide="step == 1">
                     <a ng-show="step > 1" class="btn btn-link" ng-click="go_step(1)">返回</a>
-                    <button class="btn btn-primary" ng-disabled="lesson.unpay_amount > 0 || saving" ng-click="do_ok()" disabled="disabled">确认结课</button>
+                    <button class="btn btn-primary"  >确认结课</button>
                     <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>

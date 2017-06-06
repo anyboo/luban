@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" placeholder="请给班级命名" ng-disabled="info.master_oe_id == 0" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="1" required v-model="localdata.form.class_name">
+                                  <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.class_name.errorStatus}" v-model="localdata.form.class_name" @change="validate('class_name')">
                             </div>
                         </div>
                         <div class="form-group">
@@ -117,7 +117,22 @@ export default {
                 'birth': {
                     'type': 'date',
                 }
-            }
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'class_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+
+                }
+            },
         }
         return {
             localdata,
@@ -150,7 +165,7 @@ export default {
                 }
                 result = true
             }
-            console.log(this.$store.state.envs.currDialog,this.localdata.form)
+            console.log(this.$store.state.envs.currDialog, this.localdata.form)
             return result
         },
         getreeData() {
