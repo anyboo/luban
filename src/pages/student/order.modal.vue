@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude>
-                <div oc-lazy-load="['js/modules/order.js?v=2','xeditable']" class="ng-scope"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="ng-scope"></div>
                 <div class="modal-header ng-scope">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -20,8 +20,6 @@
 </template>
 <script>
 import cc from './classclass.vue'
-import onetone from './onetone.vue'
-import ch from './classhours.vue'
 import storedValue from './storedvalue.vue'
 import miscellaneousFees from './miscellaneousfees.vue'
 import ordermain from './ordermain.vue'
@@ -45,8 +43,6 @@ export default {
     },
     components: {
         'lb-cc': cc,
-        'lb-onetone': onetone,
-        'lb-ch': ch,
         'lb-storedValue': storedValue,
         'lb-miscellaneousFees': miscellaneousFees,
         'lb-ordermain': ordermain
