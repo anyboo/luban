@@ -14,11 +14,6 @@
                     <i class="icon-wallet"></i>现场缴费
                 </button>
             </div>
-            <div class="col-xs-3 ng-scope" ng-if="order.order_amount > 0">
-                <button type="button" @click="handleShowDialog('lb-payregmodal',order)" class="btn btn-warning btn-block">
-                    <i class="icon-note"></i>缴费登记
-                </button>
-            </div>
             <div class="col-xs-2 pull-right">
                 <a class="btn btn-warning btn-block" ng-click="vm.dismiss()" @click="lbClosedialog($event)">
                     <i class="fa fa-sign-out"></i>关闭

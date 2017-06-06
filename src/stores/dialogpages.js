@@ -5,7 +5,6 @@ import page4 from '~/pages/lesson/lesson/new_lesson.modal.vue'
 import page5 from '~/pages/lesson/classes/open_class.modal.vue'
 import page6 from '~/pages/directive/selectstudenttpl.vue'
 import page7 from '~/pages/student/order/pay_now.modal.vue'
-import page8 from '~/pages/student/order/pay_reg.modal.vue'
 import page9 from '~/pages/student/order_unpay_clear.modal.vue'
 import page10 from '~/pages/public/feature.modal.vue'
 import page11 from '~/pages/directive/selectsclasstpl.vue'
@@ -21,7 +20,6 @@ import page21 from '~/pages/lesson/classes/end_class.modal.vue'
 import page22 from '~/pages/hours/reg_class_attendance.modal.vue'
 import page23 from '~/pages/hours/remove_class_attendance.modal.vue'
 import page25 from '~/pages/lesson/contracts/add_performance.modal.vue'
-import page26 from '~/pages/lesson/contract/edit.modal.vue'
 import page27 from '~/pages/lesson/contracts/lesson_arrange.modal.vue'
 import page28 from '~/pages/lesson/contracts/lesson_dispatch.modal.vue'
 import page29 from '~/pages/lesson/contracts/lesson_end.modal.vue'
@@ -72,7 +70,6 @@ pages['lb-newlessonmodal'] = page4
 pages['lb-openclassmodal'] = page5
 pages['lb-selectstudenttpl'] = page6
 pages['lb-paynowmodal'] = page7
-pages['lb-payregmodal'] = page8
 pages['lb-orderunpayclearmodal'] = page9
 pages['lb-featuremodal'] = page10
 pages['lb-selectsclasstpl'] = page11
@@ -88,7 +85,6 @@ pages['lb-endclassmodal'] = page21
 pages['lb-regclassattendancemodal'] = page22
 pages['lb-removeclassattendancemodal'] = page23
 pages['lb-addperformancemodal'] = page25
-pages['lb-editmodal'] = page26
 pages['lb-lessonarrangemodal'] = page27
 pages['lb-lessondispatchmodal'] = page28
 pages['lb-lessonendmodal'] = page29
