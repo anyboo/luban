@@ -38,23 +38,17 @@ export default [{
     menuTitle: '课程',
     menuIcon: 'fa-book',
     menu: [{
-        menuTitle: '班级设置',
+        menuTitle: '教室设置',
         to: '/lesson/sclasses'
     }, {
         menuTitle: '课程设置',
         to: '/lesson/manage'
-    }, {
+    },  {
+        menuTitle: '班级设置',
+        to: '/lesson/classes'
+    },{
         menuTitle: '订单',
         to: '/lesson/orders'
-    }, {
-        menuTitle: '班课',
-        to: '/lesson/classes'
-    }, {
-        menuTitle: '1对1',
-        to: '/lesson/contracts'
-    }, {
-        menuTitle: '课时包',
-        to: '/lesson/packages'
     }]
 }, {
     menuTitle: '学费',
