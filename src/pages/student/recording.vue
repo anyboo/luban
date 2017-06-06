@@ -46,15 +46,12 @@
                                 </template>
                             </tbody>
                         </table>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-sm-6 text-center"><small class="text-muted inline m-t-sm m-b-sm ng-binding" ng-bind-template="共 5 条赛事记录">共 5 条赛事记录</small></div>
-                                <div class="col-sm-6 text-right text-center-xs">
-                                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false">
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="panel-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
                         </div>
+                    </div>
                         <div class="grid-data-result">
                         </div>
                     </div>

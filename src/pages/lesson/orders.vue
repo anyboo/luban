@@ -8,14 +8,21 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm ng-pristine ng-untouched ng-valid" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
-                                            订单号
-                                            <span class="caret"></span>
-                                        </button>
+                                        <lb-dropdowns menu-align="start" @command="handleCommand">
+                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                {{localdata.search.search_value}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <template v-for="item in localdata.search.fields">
+                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                </template>
+                                            </lb-dropdown-menu>
+                                        </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
                                 </div>
                             </div>
@@ -24,55 +31,63 @@
                     <div class="col-xs-12 col-md-8 m-t">
                         <div class="inline w va-m">
                             <div class="input-group">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                                <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
                                 <span class="input-group-btn">
-                            <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                            <button class="btn btn-default"  @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                 <i class="icon-user"></i>
                             </button>
                         </span>
                             </div>
                         </div>
-                        <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status" @input="handleSearch"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <lb-table :data="getTableData" stripe>
+                    <lb-table :data="getTablesData()" stripe>
                         <lb-table-column prop="data" label="操作">
-                            <template scope="scope"></template>
+                            <template scope="scope">
+                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                        <i class="fa fa-cog ng-scope"></i>
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                </lb-dropdown>
+                            </template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="学员">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="类型">
                             <template scope="scope"></template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="订单号">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{scope.row.order_no}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="订单金额">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{scope.row.origin_amount}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="订单内容">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{scope.row.body}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="下单日期">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="付款情况">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{scope.row.pay_status}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="备注">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{scope.row.order_remark}}</template>
                         </lb-table-column>
                     </lb-table>
                     <div class="grid-data-result"></div>
                 </div>
-                  <div class="panel-footer ">
-                        <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
-                        </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
                     </div>
+                </div>
+                <br>
             </div>
         </div>
     </div>
@@ -83,9 +98,9 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_grid_search_value': '',
-                'lb_param_student_name': '',
-                'lb_params_pay_status': ''
+                'lb_search_value': '',
+                'pay_status': '',
+                'student_id': ''
             },
             'lb_params_lesson_type': [{
                 'value': '0',
@@ -102,7 +117,10 @@ export default {
                 'icon': 'fa fa-pencil-square',
                 'text': '编辑'
             }],
-            'lb_params_pay_status': [{
+            'pay_status': [{
+                'value': '',
+                'text': '所有'
+            }, {
                 'value': '0',
                 'text': '未付款订单'
             }, {
@@ -114,19 +132,86 @@ export default {
             }],
             'search': {
                 'fields': [{
-                    'name': 'oso_no',
+                    'name': 'order_no',
                     'value': '订单号'
                 }],
-                'search_key': 'oso_no',
-                'search_value': ''
+                'search_key': 'order_no',
+                'search_value': '订单号'
+            },
+            'lookup': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
             }
         }
         return {
             localdata,
+            lb_tables: ['order'],
+            student_name: ''
         }
     },
-    computed: {},
+    computed: {
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                    this.handleSearch()
+                } else {
+                    this.localdata.form.student_id = ''
+                    this.student_name = '学员'
+                    this.handleSearch()
+                }
+            }
+            return this.student_name
+        },
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleCommand(value) {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
+                'name': value
+            }).value
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.localdata.form.lb_search_value.trim()
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.localdata.search.search_key,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            let status = this.localdata.form.pay_status.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'status',
+                    'value': status,
+                    'type': ''
+                })
+            }
+
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            console.log(filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        },
+ 
+    }
 }
 </script>
