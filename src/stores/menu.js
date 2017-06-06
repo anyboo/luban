@@ -29,6 +29,10 @@ export default [{
     }, {
         menuTitle: '生日学员',
         to: '/student/birthdays'
+    },
+    {
+        menuTitle: '赛事记录',
+        to: '/student/recording'
     }]
 }, {
     menuTitle: '课程',

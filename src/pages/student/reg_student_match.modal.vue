@@ -18,7 +18,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="match_name" required v-model="localdata.form.lb_match_match_name">
+                                 
+                                      <input type="text" name="match_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.match_name.errorStatus}" v-model="localdata.form.match_name" @change="validate('match_name')">
                                 </div>
                             </div>
                         </div>
@@ -26,14 +27,15 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">参赛日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <lb-date-picker type="date" name="join_date" v-model="localdata.form.lb_match_join_date"></lb-date-picker>
+                                    <lb-date-picker type="date" name="join_date" v-model="localdata.form.join_date"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事成绩:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="result" required v-model="localdata.form.lb_match_result">
+                           
+                                  <input type="text" name="result" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.result.errorStatus}" v-model="localdata.form.result" @change="validate('result')">
                             </div>
                         </div>
                         <div class="panel panel-default no-border">
@@ -174,7 +176,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" disabled="disabled">登记</button>
+                    <button ng-disabled="form1.$invalid || saving" ng-click="do_ok()" class="btn btn-primary" @click="handleClick">登记</button>
                     <button ng-click="$dismiss()" class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
@@ -187,17 +189,49 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_match_match_name': '',
-                'lb_match_join_date': '',
-                'lb_match_result': ''
-            }
+                'match_name': '',
+                'join_date': '',
+                'result': ''
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'match_name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'result': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    }
+
+                }
+            },
         }
         return {
             localdata,
+            model: 'recording',
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleClick() {
+            this.handleSave().then(() => {
+                this.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+            })
+        }
+    }
 }
 </script>
