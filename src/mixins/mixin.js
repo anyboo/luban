@@ -33,6 +33,7 @@ export default {
         this.base64 = base64
         this.types = types
         this.pagination = {}
+        this.moment = moment
         this.pagination.currentPage = 1
         this.pagination.total = 0
         this.pagination.pagesize = 10

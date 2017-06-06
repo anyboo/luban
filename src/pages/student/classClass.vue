@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required" v-if="!order">
-                        <div class="form-group m-t">
+                        <!--<div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名班级:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
@@ -24,6 +24,19 @@
                                             </button>
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="form-group m-t">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
+                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="课程" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="localdata.form.lb_selected_lesson_name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
+                                            <i class="fa fa-book"></i>选择课程
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +92,7 @@
                                 <label class="i-switch m-t-xs m-r">
                                     <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" :disabled="localdata.form.class_id.length==0" v-model="localdata.form.has_present"><i></i></label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present"><span class="input-group-addon"><i class="fa fa-plus"></i></span>
-                                    <input type="number" name="present_times" ng-change="cacu_lesson_times()" ng-model="order.present_times" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">次</span></div>
+                                    <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">次</span></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -111,14 +124,14 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">0</span>
+                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.origin_times + this.localdata.form.present_times}}</span>
                                     <small>次</small>
                                 </p>
                             </div>
                         </div>
                         <div class="row no-gutter b-t m-t">
                             <div class="col-xs-8">
-                                <button type="button" class="btn btn-block btn-primary" @click="open()">
+                                <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="localdata.form.class_id.length==0">
                                     <i class="fa fa-save" ng-hide="saving"></i> 确定订单
                                 </button>
                             </div>
@@ -132,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <lb-orderandpay v-if="order"></lb-orderandpay>
+        <lb-orderandpay v-if="order" :order="currorder"></lb-orderandpay>
     </div>
 </template>
 <style>
@@ -158,8 +171,15 @@ export default {
                 'has_present': '',
                 'c_unit_price': '',
                 'order_remark': '',
+                'present_times': '',
                 'discount': 0,
-                'discount_amount': 0
+                'discount_amount': 0,
+                'order_amount': 0,
+                'unpay_amount': 0,
+                'pay_status': 0,
+                'student_id': '',
+                'order_no': '',
+                'body': ''
             }
         }
         return {
@@ -167,7 +187,14 @@ export default {
             order: false,
             class_name: '班级',
             model: 'order',
-            discount_caculator: false
+            discount_caculator: false,
+            currorder: null
+        }
+    },
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.localdata.form.student_id = this.$store.state.dialogs.dailogdata._id
+            console.log(this.localdata.form.student_id)
         }
     },
     components: {
@@ -197,6 +224,12 @@ export default {
         },
         cacu_order_amount() {
             this.localdata.form.origin_amount = this.localdata.form.origin_times * this.localdata.form.unit_price
+            let origin_times = Number(this.localdata.form.origin_times)
+            if (origin_times != 0) {
+                this.localdata.form.c_unit_price = (this.localdata.form.origin_amount - this.localdata.form.discount_amount) / origin_times
+            }
+            this.localdata.form.order_amount = this.localdata.form.origin_amount - this.localdata.form.discount_amount
+            this.localdata.form.unpay_amount = this.localdata.form.order_amount
         },
         switchPage(page) {
             if (this.$parent && this.$parent.switchPage) {
@@ -204,8 +237,13 @@ export default {
             }
         },
         open() {
-            this.handleSave().then(() => {
+            let count = this.localdata.form.origin_times + this.localdata.form.present_times
+            this.localdata.form.order_no = 'LB'+this.moment.format('YYYYMMDDssSSSS')
+            this.localdata.form.body = `班课[${this.class_name}]${count}次`
+            this.handleSave().then((data) => {
+                console.log(data)
                 this.order = true
+                this.currorder = data
             })
         }
     }

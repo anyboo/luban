@@ -37,7 +37,7 @@
                             <label class="control-label col-xs-12 col-md-2">缴费金额:</label>
                             <div class="col-xs-12 col-md-3">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" v-model="localdata.form.lb_pay_pay_amount">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid" name="pay_amount" v-model="localdata.form.pay_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">付款方式:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <select class="form-control w-xs ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="pay_type" ng-options="item.odi_id as item.text for item in $gv.dicts[2]" style="display: none;" v-model="localdata.form.lb_pay_pay_type">
+                                <select class="form-control w-xs ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="pay_type" ng-options="item.odi_id as item.text for item in $gv.dicts[2]" style="display: none;" v-model="localdata.form.pay_type">
                                     <option value class>请选择</option>
                                     <option value="0" selected="selected">现金</option>
                                     <option value="1">刷卡</option>
@@ -73,13 +73,13 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费日期:</label>
                             <div class="col-xs-12 col-md-4">
-                                <lb-date-picker type="datetime" name="pay_time" v-model="localdata.form.lb_pay_pay_time"></lb-date-picker>
+                                <lb-date-picker type="datetime" name="pay_time" v-model="localdata.form.pay_time"></lb-date-picker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-6">
-                                <input type="text" name="pay_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_pay_pay_note">
+                                <input type="text" name="pay_note" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.pay_note">
                             </div>
                         </div>
                         <div class="form-group">
@@ -113,10 +113,10 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_pay_pay_amount': '',
-                'lb_pay_pay_type': '',
-                'lb_pay_pay_time': '',
-                'lb_pay_pay_note': '',
+                'pay_amount': '',
+                'pay_type': '',
+                'pay_time': '',
+                'pay_note': '',
                 'lb_name': ''
             }
         }

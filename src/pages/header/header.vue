@@ -81,7 +81,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="http://v.xiao360.com/shortcut">
+                            <a href="/shortcut">
                                 <i class="fa fa-save"></i>保存到桌面
                             </a>
                         </li>
