@@ -248,7 +248,7 @@ export default {
         },
         open() {
             let count = this.localdata.form.origin_times + this.localdata.form.present_times
-            this.localdata.form.order_no = 'LB' + this.moment.format('YYYYMMDDssSSSS')
+            this.localdata.form.order_no = 'LB' + this.moment().format('YYYYMMDDssSSSS')
             this.localdata.form.body = `班课[${this.class_name}]${count}次`
             this.handleSave().then((data) => {
                 console.log(data)
