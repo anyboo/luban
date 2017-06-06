@@ -12,7 +12,20 @@
                         </div>
                     </div>
                     <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required" v-if="!order">
-                        <!--<div class="form-group m-t">
+                        <div class="form-group m-t">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
+                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="课程" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="localdata.form.lb_selected_lesson_name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
+                                            <i class="fa fa-book"></i>选择课程
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名班级:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
@@ -24,19 +37,6 @@
                                             </button>
                                         </span>
                                     </div>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="form-group m-t">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="input-group">
-                                    <input type="text" placeholder="课程" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="localdata.form.lb_selected_lesson_name">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                                            <i class="fa fa-book"></i>选择课程
-                                        </button>
-                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ export default {
         },
         open() {
             let count = this.localdata.form.origin_times + this.localdata.form.present_times
-            this.localdata.form.order_no = 'LB'+this.moment.format('YYYYMMDDssSSSS')
+            this.localdata.form.order_no = 'LB' + this.moment.format('YYYYMMDDssSSSS')
             this.localdata.form.body = `班课[${this.class_name}]${count}次`
             this.handleSave().then((data) => {
                 console.log(data)

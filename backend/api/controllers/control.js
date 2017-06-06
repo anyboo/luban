@@ -77,15 +77,14 @@ module.exports.all = function* all(name, next) {
         }
     }
     changeModelId(findObj)
-    var dbtable = wrap(db.get(name))
-    let count = yield dbtable.count(findObj)
+    let count = yield wrap(db.get(name)).count(findObj)
     options.push({ '$match': findObj })
     options.push({ '$sort': { '_id': -1 } })
     options.push({ '$skip': skip })
     options.push({ '$limit': limit })
     console.log(options, name)
-    let data = yield dbtable.aggregate(options)
-    this.body = {
+    let data = yield wrap(db.get(name)).aggregate(options)
+    this.body = yield {
         'data': data,
         'count': count,
         'name': name
@@ -128,7 +127,7 @@ module.exports.allold = function* allold(name, next) {
         'limit': limit,
         'sort': { '_id': -1 }
     })
-    this.body = {
+    this.body = yield {
         'data': data,
         'count': count,
         'name': name
@@ -150,7 +149,7 @@ module.exports.upload = function* upload(next) {
         part.pipe(stream)
         console.log('uploading %s -> %s', part.filename, stream.path)
     }
-    this.body = { success: 1, name: filename, url: 'http://www.bullstech.cn:9999/upload/' + filename }
+    this.body = yield { success: 1, name: filename, url: 'http://www.bullstech.cn:9999/upload/' + filename }
 }
 
 module.exports.fetch = function* fetch(name, id, next) {
@@ -170,6 +169,8 @@ module.exports.add = function* add(name, next) {
     })
     console.log(model)
     changeModelId(model)
+    let seqid = yield wrap(db.get('lb_seq_id')).findOneAndUpdate({ id: name }, { $inc: { seq: 1 } }, { upsert: true })
+    model.lbseqid = seqid.seq
     console.log(model)
     var inserted = yield wrap(db.get(name)).insert(model)
     if (!inserted) {
@@ -191,7 +192,7 @@ module.exports.modify = function* modify(name, id, next) {
         this.throw(404, 'model with _id = ' + id + ' was not found')
     }
     changeModelId(data)
-    var updated = wrap(db.get(name)).update(model[0], {
+    var updated = yield wrap(db.get(name)).update(model[0], {
         $set: data
     })
 
@@ -216,7 +217,7 @@ module.exports.remove = function* remove(name, id, next) {
     if (!removed) {
         this.throw(405, 'Unable to delete.')
     } else {
-        this.body = '{"success":1}'
+        this.body = yield '{"success":1}'
     }
 
 }
