@@ -69,6 +69,16 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
+                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                <label class="i-switch m-t-xs m-r">
+                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.lb_order_has_time_limited">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
