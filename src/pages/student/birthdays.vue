@@ -63,9 +63,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'date_start': '',
                 'daterange': '',
-                'date_end': '',
                 'duration': ''
             },
             'duration': [{
