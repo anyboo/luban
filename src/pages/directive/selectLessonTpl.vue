@@ -37,14 +37,14 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-5">
-                            <button ng-click="$util.open('tpl/app/lesson/lesson/new_lesson.modal.html','md',{})" @click="lbShowdialog($event,'lb-newlessonmodal')" class="btn btn-primary pull-right ng-click-active">
+                            <button @click="lbShowdialog($event,'lb-newlessonmodal')" class="btn btn-primary pull-right ng-click-active">
                                 <i class="fa fa-plus"></i>添加课程
                             </button>
                         </div>
                     </div>
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope">
+                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
                                 <h4 class="list-group-item-heading ng-binding">{{item.lesson_name}}<span class="label bg-warning pull-right ng-binding ng-scope" ng-if="item.lesson_type == '1'">1对1</span></h4>
                                 <p class="list-group-item-text text-muted ng-binding">课程编号:<span class="text-danger ng-binding">{{item.lesson_no}}</span>,课程售价:<span class="text-success ng-binding">{{item.price}}</span>,课程单价:8.00,总课次:123</p>
                             </li>
@@ -52,7 +52,7 @@
                         <div class="grid-data-result">
                         </div>
                     </ul>
-                  <div class="panel-footer ">
+                    <div class="panel-footer ">
                         <div class="row ">
                             <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </lb-pagination>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding">确定</button>
+                <button class="btn btn-primary ng-binding" @click="handleSelectLesson">确定</button>
             </div>
         </div>
     </div>
@@ -90,12 +90,35 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['course']
+            lb_tables: ['course'],
+            currentRow: null
         }
     },
     computed: {},
     watch: {},
     methods: {
+        handleSelectLesson() {
+            this.lbClosedialog()
+            this.$store.state.envs.currDialogResult = this.currentRow
+            this.$store.state.envs.currDialog = 'lb-selectlessontpl'
+        },
+        getCheckRowClass(rowid) {
+            let classStr = ''
+            if (this.getCheckRow(rowid)) {
+                classStr = 'active'
+            }
+            return classStr
+        },
+        handleListChange(row) {
+            this.currentRow = row
+        },
+        getCheckRow(rowid) {
+            let result = false
+            if (this.currentRow && this.currentRow._id == rowid) {
+                result = true
+            }
+            return result
+        },
         handleCommand(value) {
             this.localdata.search.search_key = value
             this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {

@@ -16,7 +16,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" placeholder="课程" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="localdata.form.lb_selected_lesson_name">
+                                    <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
                                             <i class="fa fa-book"></i>选择课程
@@ -174,6 +174,7 @@ export default {
         let localdata = {
             'form': {
                 'class_id': '',
+                'course_id': '',
                 'origin_times': '',
                 'unit_price': 0,
                 'origin_amount': 0,
@@ -189,13 +190,15 @@ export default {
                 'pay_status': 0,
                 'student_id': '',
                 'order_no': '',
+                'order_type': 1,
                 'body': ''
             }
         }
         return {
             localdata,
             order: false,
-            class_name: '班级',
+            class_name: '请选择班级',
+            lesson_name: '请选择老师',
             model: 'order',
             discount_caculator: false,
             currorder: null
@@ -219,8 +222,16 @@ export default {
                     this.localdata.form.origin_times = this.$store.state.envs.currDialogResult.total_times
                 } else {
                     this.localdata.form.class_id = ''
-                    this.class_name = '班级'
+                    this.class_name = '请选择班级'
                     this.localdata.form.origin_times = ''
+                }
+            } else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
+                    this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.lesson_name = '请选择老师'
+                    this.localdata.form.course_id = ''
                 }
             }
             return this.class_name

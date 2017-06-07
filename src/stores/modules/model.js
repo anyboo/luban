@@ -47,6 +47,9 @@ const state = {
         },
         recording: {
             data: []
+        },
+        pay: {
+            data: []
         }
     },
     currentModel: {}

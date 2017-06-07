@@ -212,12 +212,12 @@ module.exports.remove = function* remove(name, id, next) {
         this.throw(404, 'model with _id = ' + id + ' was not found')
     }
 
-    var removed = wrap(db.get(name)).remove(model[0])
+    var removed = yield wrap(db.get(name)).remove(model[0])
 
     if (!removed) {
         this.throw(405, 'Unable to delete.')
     } else {
-        this.body = yield '{"success":1}'
+        this.body = '{"success":1}'
     }
 
 }

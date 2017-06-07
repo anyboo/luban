@@ -29,16 +29,20 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">课程:</label>
                             <div class="col-md-10 col-xs-12">
-                                <lb-select v-model="localdata.form.course_id" filterable placeholder="请选择课程">
-                                    <lb-option v-for="item in getcourseData" :key="item._id" :label="item.lesson_name" :value="item._id">
-                                    </lb-option>
-                                </lb-select>
+                                <div class="input-group">
+                                    <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
+                                            <i class="fa fa-book"></i>选择课程
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">班级名称:</label>
                             <div class="col-md-10 col-xs-12">
-                                  <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.class_name.errorStatus}" v-model="localdata.form.class_name" @change="validate('class_name')">
+                                <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.class_name.errorStatus}" v-model="localdata.form.class_name" @change="validate('class_name')">
                             </div>
                         </div>
                         <div class="form-group">
@@ -142,9 +146,9 @@ export default {
             model: 'classes',
             title: '创建',
             teacher_name: '请选择老师',
+            lesson_name: '请选择课程'
         }
     },
-
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.title = '编辑'
@@ -162,14 +166,22 @@ export default {
                 if (this.$store.state.envs.currDialogResult) {
                     this.teacher_name = this.$store.state.envs.currDialogResult.name
                     this.localdata.form.teacher_id = this.$store.state.envs.currDialogResult._id
-
                 } else {
                     this.teacher_name = '请选择老师'
                     this.localdata.form.teacher_id = ''
                 }
                 result = true
             }
-            console.log(this.$store.state.envs.currDialog, this.localdata.form)
+            else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
+                    this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.lesson_name = '请选择老师'
+                    this.localdata.form.course_id = ''
+                }
+                result = true
+            }
             return result
         },
         getcourseData() {
