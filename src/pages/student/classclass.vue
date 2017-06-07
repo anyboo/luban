@@ -176,6 +176,7 @@ export default {
                 'class_id': '',
                 'course_id': '',
                 'origin_times': '',
+                'back_amount': 0,
                 'unit_price': 0,
                 'origin_amount': 0,
                 'has_discount': '',
