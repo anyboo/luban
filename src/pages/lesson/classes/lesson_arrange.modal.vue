@@ -8,7 +8,7 @@
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
-                    <lb-buttongroup :group-data="localdata.lb_arrange_type" v-model="localdata.form.lb_arrange_type"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.arrange_type" v-model="localdata.form.arrange_type"></lb-buttongroup>
                     <h3 class="modal-title">
                         <i class="fa fa-calendar"></i>为
                         <span class="label bg-info ng-binding">11</span>排课
@@ -62,12 +62,12 @@
                                     <li class="m-t-xs">
                                         <label class="va-m">开始日期:</label>
                                         <div class="inline w-xs va-m">
-                                            <lb-date-picker type="date" v-model="localdata.form.lb_week_loop_start"></lb-date-picker>
+                                            <lb-date-picker type="date" v-model="localdata.form.week_loop_start"></lb-date-picker>
                                         </div>
                                         <div class="m-l-xs inline w-xs va-m">
                                             <div class="input-group bootstrap-touchspin">
                                                 <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-                                                <input class="form-control ng-pristine ng-untouched ng-valid" ui-jq="TouchSpin" type="text" data-min="0" data-max="2" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down" style="display: block;" v-model="localdata.form.lb_week_loop_times">
+                                                <input class="form-control ng-pristine ng-untouched ng-valid" ui-jq="TouchSpin" type="text" data-min="0" data-max="2" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down" style="display: block;" v-model="localdata.form.week_loop_times">
                                                 <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
                                                 <span class="input-group-btn-vertical">
                                                     <button class="btn btn-default bootstrap-touchspin-up" type="button">
@@ -86,7 +86,7 @@
                                         <div class="inline va-t">
                                             <div class="m-b-xs ng-scope" ng-repeat="item in week_loops">
                                                 <div class="inline va-m w-xs">
-                                                    <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-options="w.value as w.name for w in week_days" v-model="localdata.form.lb_item_week">
+                                                    <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-options="w.value as w.name for w in week_days" v-model="localdata.form.item_week">
                                                         <option value class>每周</option>
                                                         <option value="0">周六</option>
                                                         <option value="1">周日</option>
@@ -98,9 +98,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="inline m-l-xs va-m">
-                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly" v-model="localdata.form.lb_item_int_start_hour"></lb-date-picker>
+                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="item.int_end_hour=fill_etime(item.int_start_hour)" readonly="readonly" v-model="localdata.form.item_int_start_hour"></lb-date-picker>
                                                     <span class="inline">~</span>
-                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.lb_item_int_end_hour"></lb-date-picker>
+                                                    <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.item_int_end_hour"></lb-date-picker>
                                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                             选择时间段
@@ -162,9 +162,9 @@
                                     <li class="m-t-xs">
                                         <label>上课时间：</label>
                                         <div class="inline">
-                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly" v-model="localdata.form.lb_default_int_start_hour"></lb-date-picker>
+                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" ng-change="default_int_end_hour=fill_etime(default_int_start_hour)" readonly="readonly" v-model="localdata.form.default_int_start_hour"></lb-date-picker>
                                             <span class="inline">~</span>
-                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.lb_default_int_end_hour"></lb-date-picker>
+                                            <lb-date-picker type="time" ng-readonly="true" style="width:70px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.default_int_end_hour"></lb-date-picker>
                                             <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                     选择时间段
@@ -225,7 +225,7 @@ export default {
     name: 'lesson_arrange',
     data() {
         let localdata = {
-            'lb_arrange_type': [{
+            'arrange_type': [{
                 'value': '0',
                 'text': '按规律排课'
             }, {
@@ -233,14 +233,14 @@ export default {
                 'text': '自由排课'
             }],
             'form': {
-                'lb_arrange_type': '',
-                'lb_week_loop_start': '',
-                'lb_week_loop_times': '',
-                'lb_item_week': '',
-                'lb_item_int_start_hour': '',
-                'lb_item_int_end_hour': '',
-                'lb_default_int_start_hour': '',
-                'lb_default_int_end_hour': ''
+                'arrange_type': '',
+                'week_loop_start': '',
+                'week_loop_times': '',
+                'item_week': '',
+                'item_int_start_hour': '',
+                'item_int_end_hour': '',
+                'default_int_start_hour': '',
+                'default_int_end_hour': ''
             },
             'dropDownMenu': [{
                 'text': '劳动节'

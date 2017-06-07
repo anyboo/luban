@@ -5,7 +5,7 @@
                 <div ng-if="vm.input.type == '0'" class="ng-scope">
                     <p>支出分类</p>
                     <div class="w-sm">
-                        <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.lb_info_odi_id">
+                        <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.info_odi_id">
                             <option value class>请选择</option>
                             <option value="0" selected="selected">日常支出</option>
                         </select>
@@ -39,7 +39,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_info_odi_id': ''
+                'info_odi_id': ''
             }
         }
         return {

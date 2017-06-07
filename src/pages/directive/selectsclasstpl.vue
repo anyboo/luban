@@ -22,7 +22,7 @@
                                             <span class="caret"></span>
                                         </button>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="关键字" v-model="localdata.form.lb_grid_search_value">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="关键字" v-model="localdata.form.grid_search_value">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                     </span>
@@ -53,7 +53,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_grid_search_value': ''
+                'grid_search_value': ''
             },
             'search': {
                 'fields': [{

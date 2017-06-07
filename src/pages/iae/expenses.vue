@@ -6,13 +6,13 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
-                                <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
                             <button class="btn btn-default ng-isolate-scope" export="expenses" export-params="params">
                                 <i class="glyphicon glyphicon-export"></i>导出
                             </button>
@@ -65,12 +65,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_daterange': '',
-                'lb_params_date_end': '',
-                'lb_duration': ''
+                'date_start': '',
+                'daterange': '',
+                'date_end': '',
+                'duration': ''
             },
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {

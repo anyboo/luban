@@ -6,15 +6,15 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -90,12 +90,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_params_date_end': '',
-                'lb_duration': '',
-                'lb_param_student_name': ''
+                'date_start': '',
+                'date_end': '',
+                'duration': '',
+                'student_name': ''
             },
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {

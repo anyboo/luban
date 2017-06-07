@@ -20,7 +20,7 @@
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                     </span>
@@ -109,8 +109,8 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_search_value': '',
-                'lb_params_status': ''
+                'search_value': '',
+                'status': ''
             },
             'dropDownMenu': [{
                 'url': 'lb-newlessonmodal',
@@ -135,7 +135,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['course']
+            tables: ['course']
         }
     },
     computed: {},
@@ -149,7 +149,7 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
                     'key': this.localdata.search.search_key,

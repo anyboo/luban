@@ -21,19 +21,19 @@
                             <lb-table-column class="text-center" prop="data" label="学员">
                                 <template scope="scope">
                                     <div class="inline w-xxs va-m">
-                                        <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="item.os_id" placeholder="姓名" required v-model="localdata.form.lb_item_name">
+                                        <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="item.os_id" placeholder="姓名" required v-model="localdata.form.item_name">
                                     </div>
                                     <div class="inline w-xs va-m">
-                                        <lb-buttongroup :group-data="localdata.lb_item_sex" v-model="localdata.form.lb_item_sex"></lb-buttongroup>
+                                        <lb-buttongroup :group-data="localdata.item_sex" v-model="localdata.form.item_sex"></lb-buttongroup>
                                     </div>
                                     <div class="inline w-xs va-m">
-                                        <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" placeholder="联系电话" ng-readonly="item.os_id" required v-model="localdata.form.lb_item_tel">
+                                        <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" placeholder="联系电话" ng-readonly="item.os_id" required v-model="localdata.form.item_tel">
                                     </div>
                                 </template>
                             </lb-table-column>
                             <lb-table-column class="text-center" width="100" prop="data" label="报名课次">
                                 <template scope="scope">
-                                    <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.lb_item_lesson_times">
+                                    <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.item_lesson_times">
                                 </template>
                             </lb-table-column>
                             <lb-table-column width="120" prop="data" label>
@@ -58,12 +58,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_item_name': '',
-                'lb_item_sex': '',
-                'lb_item_tel': '',
-                'lb_item_lesson_times': ''
+                'item_name': '',
+                'item_sex': '',
+                'item_tel': '',
+                'item_lesson_times': ''
             },
-            'lb_item_sex': [{
+            'item_sex': [{
                 'value': '1',
                 'iclass': 'fa fa-male',
                 'text': '男'

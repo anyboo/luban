@@ -72,7 +72,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_grid_search_value': '',
+                'grid_search_value': '',
                 'search_value': '',
                 'status': '',
             },
@@ -90,7 +90,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['course'],
+            tables: ['course'],
             currentRow: null
         }
     },

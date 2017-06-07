@@ -70,7 +70,7 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
                                     <div class="input-group ng-valid" ng-model="fee.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
-                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="localdata.form.lb_name">
+                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="localdata.form.name">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                 <i class="fa fa-user"></i>
@@ -115,7 +115,7 @@ export default {
                 'amount': '',
                 'odi_id': '',
                 'note': '',
-                'lb_name': '',
+                'name': '',
                 'create_time': ''
             }
         }

@@ -140,8 +140,8 @@ export default {
         },
         getTablesData() {
             let tablaData = []
-            if (this.lb_tables) {
-                let tablaName = this.lb_tables[0]
+            if (this.tables) {
+                let tablaName = this.tables[0]
                 if (this.alias) {
                     tablaName = this.alias
                 }
@@ -177,9 +177,9 @@ export default {
         handleGetFilterTable(filter) {
             let vm = this
             return new Promise((resolve, reject) => {
-                if (vm.lb_tables) {
+                if (vm.tables) {
                     let table = {}
-                    table.model = vm.lb_tables[0]
+                    table.model = vm.tables[0]
                     table.filter = filter
                     table.alias = this.alias
                     table.prepage = this.pagination.pagesize
@@ -205,8 +205,8 @@ export default {
             if (this.handleSearch) {
                 this.handleSearch()
             } else {
-                if (vm.lb_tables) {
-                    vm.$store.dispatch(types.GET_ARRAY_API, vm.lb_tables).then(() => {
+                if (vm.tables) {
+                    vm.$store.dispatch(types.GET_ARRAY_API, vm.tables).then(() => {
                         //this.getTablesData()
                     })
                 }
@@ -215,9 +215,9 @@ export default {
         handleDelete(id) {
             let vm = this
             return new Promise((resolve, reject) => {
-                if (vm.lb_tables) {
+                if (vm.tables) {
                     let table = {}
-                    table.model = vm.lb_tables[0]
+                    table.model = vm.tables[0]
                     table.id = id
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {

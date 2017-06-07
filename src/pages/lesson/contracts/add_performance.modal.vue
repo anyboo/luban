@@ -17,7 +17,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">测验名称:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w-md">
-                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" required v-model="localdata.form.lb_performance_exam_name">
+                                    <input type="text" class="form-control ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required" name="exam_name" required v-model="localdata.form.performance_exam_name">
                                 </div>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">科目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
-                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" required v-model="localdata.form.lb_performance_exam_course">
+                                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" name="exam_course" required v-model="localdata.form.performance_exam_course">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <lb-date-picker type="date" name="exam_date" v-model="localdata.form.lb_performance_exam_date"></lb-date-picker>
+                                    <lb-date-picker type="date" name="exam_date" v-model="localdata.form.performance_exam_date"></lb-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -63,9 +63,9 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_performance_exam_name': '',
-                'lb_performance_exam_course': '',
-                'lb_performance_exam_date': ''
+                'performance_exam_name': '',
+                'performance_exam_course': '',
+                'performance_exam_date': ''
             }
         }
         return {

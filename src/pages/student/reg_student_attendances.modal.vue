@@ -39,7 +39,7 @@
                                 <label class="control-label col-md-2 col-xs-12">授课日期:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w-sm">
-                                        <lb-date-picker type="date" name="teach_date" v-model="localdata.form.lb_att_teach_day"></lb-date-picker>
+                                        <lb-date-picker type="date" name="teach_date" v-model="localdata.form.att_teach_day"></lb-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -47,9 +47,9 @@
                                 <label class="control-label col-md-2 col-xs-12">上课时间:</label>
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline">
-                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="localdata.form.lb_att_teach_start_hour"></lb-date-picker>
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" ng-change="att.teach_end_hour=fill_etime(att.teach_start_hour)" readonly="readonly" v-model="localdata.form.att_teach_start_hour"></lb-date-picker>
                                         <span class="inline">~</span>
-                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.lb_att_teach_end_hour"></lb-date-picker>
+                                        <lb-date-picker type="time" ng-readonly="true" style="width:50px" datetimepicker-option="{step:15}" readonly="readonly" v-model="localdata.form.att_teach_end_hour"></lb-date-picker>
                                         <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
                                             <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-sm">
                                                 选择时间段
@@ -64,7 +64,7 @@
                                 <div class="col-md-5 col-xs-12">
                                     <div class="inline w">
                                         <div class="input-group ng-valid" ng-model="att.oe_id" value-field="oe_id" select-title="请选择授课老师" select-params="{ob_id:user.gv.ob_id,role_id:2}">
-                                            <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" readonly="readonly" v-model="localdata.form.lb_name">
+                                            <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" readonly="readonly" v-model="localdata.form.name">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择授课老师" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                     <i class="fa fa-user"></i>
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">考勤备注:</label>
                                 <div class="col-md-7 col-xs-12">
-                                    <input type="text" name="lesson_content" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_att_lesson_content">
+                                    <input type="text" name="lesson_content" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.att_lesson_content">
                                 </div>
                             </div>
                         </form>
@@ -98,11 +98,11 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_att_teach_day': '',
-                'lb_att_teach_start_hour': '',
-                'lb_att_teach_end_hour': '',
-                'lb_name': '',
-                'lb_att_lesson_content': ''
+                'att_teach_day': '',
+                'att_teach_start_hour': '',
+                'att_teach_end_hour': '',
+                'name': '',
+                'att_lesson_content': ''
             },
             'dropDownMenu': [{
                 'text': '班课 08:00 ~ 22:00'

@@ -5,14 +5,14 @@
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
-                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
-                            <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
+                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                            <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
-                        <lb-buttongroup :group-data="localdata.lb_params_lost_marked" v-model="localdata.form.lb_params_lost_marked"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lost_marked" v-model="localdata.form.lost_marked"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="row m-t">
@@ -64,20 +64,20 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_daterange': '',
-                'lb_params_date_end': '',
-                'lb_params_lost_marked': '',
-                'lb_duration': ''
+                'date_start': '',
+                'daterange': '',
+                'date_end': '',
+                'lost_marked': '',
+                'duration': ''
             },
-            'lb_params_lost_marked': [{
+            'lost_marked': [{
                 'value': '0',
                 'text': '准流失'
             }, {
                 'value': '1',
                 'text': '已确认流失'
             }],
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {

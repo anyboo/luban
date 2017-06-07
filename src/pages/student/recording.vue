@@ -52,7 +52,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            lb_tables: ['recording'],
+            tables: ['recording'],
         }
     },
     computed: {},

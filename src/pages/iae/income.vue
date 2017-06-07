@@ -6,17 +6,17 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
-                                <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
-                            <lb-buttongroup :group-data="localdata.lb_params_check_status" v-model="localdata.form.lb_params_check_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.check_status" v-model="localdata.form.check_status"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -95,14 +95,14 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_daterange': '',
-                'lb_params_date_end': '',
-                'lb_duration': '',
-                'lb_params_check_status': '',
-                'lb_param_student_name': ''
+                'date_start': '',
+                'daterange': '',
+                'date_end': '',
+                'duration': '',
+                'check_status': '',
+                'student_name': ''
             },
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {
@@ -112,7 +112,7 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'lb_params_check_status': [{
+            'check_status': [{
                 'value': '0',
                 'text': '未对账'
             }, {

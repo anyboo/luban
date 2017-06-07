@@ -87,7 +87,7 @@ export default {
         return {
             localdata,
             model: 'role',
-            lb_tables: ['role'],
+            tables: ['role'],
         }
     },
     computed: {},

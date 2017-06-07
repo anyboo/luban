@@ -21,7 +21,7 @@
                                                 </lb-dropdown-menu>
                                             </lb-dropdowns>
                                         </div>
-                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
+                                        <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                         <span class="input-group-btn">
                                         <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                     </span>
@@ -30,14 +30,14 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
-                            <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                             <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
                                 <i class="fa fa-plus "></i>开班
                             </a>
                         </div>
                     </div>
-                    <div class="row ng-scope " v-if="localdata.form.lb_view_mode == 'image'">
+                    <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
@@ -113,7 +113,7 @@
                         </template>
                     </div>
                     <!-- hhhhh -->
-                    <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.lb_view_mode == 'list'">
+                    <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
@@ -208,12 +208,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_status': '',
-                'lb_params_master_oe_id': '',
-                'lb_view_mode': 'list',
-                'lb_search_value': ''
+                'status': '',
+                'master_oe_id': '',
+                'view_mode': 'list',
+                'search_value': ''
             },
-            'lb_params_status': [{
+            'status': [{
                 'value': '1',
                 'text': '已开课'
             }, {
@@ -223,7 +223,7 @@ export default {
                 'value': '2',
                 'text': '已结课'
             }],
-            'lb_view_mode': [{
+            'view_mode': [{
                 'value': 'image',
                 'iclass': 'fa fa-image',
                 'text': '区块'
@@ -291,7 +291,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['classes']
+            tables: ['classes']
         }
     },
     computed: {
@@ -313,7 +313,7 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
                     'key': this.localdata.search.search_key,

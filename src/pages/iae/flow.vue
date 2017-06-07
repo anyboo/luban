@@ -6,14 +6,14 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.lb_params_date_start">
-                                <lb-date-picker v-model="localdata.form.lb_daterange" type="daterange"></lb-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.lb_params_date_end">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.lb_duration" v-model="localdata.form.lb_duration"></lb-buttongroup>
-                            <lb-buttongroup :group-data="localdata.lb_params_type" v-model="localdata.form.lb_params_type"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.type" v-model="localdata.form.type"></lb-buttongroup>
                             <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">
                                 <i class="glyphicon glyphicon-export"></i>导出Excel
                             </button>
@@ -67,7 +67,7 @@
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="经办人">
-                                <template scope="scope">{{scope.row.lb_name}}</template>
+                                <template scope="scope">{{scope.row.name}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="录入日期">
                                 <template scope="scope">{{scope.row.create_time}}</template>
@@ -92,13 +92,13 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_date_start': '',
-                'lb_daterange': '',
-                'lb_params_date_end': '',
-                'lb_duration': '',
-                'lb_params_type': ''
+                'date_start': '',
+                'daterange': '',
+                'date_end': '',
+                'duration': '',
+                'type': ''
             },
-            'lb_duration': [{
+            'duration': [{
                 'value': 'today',
                 'text': '今日'
             }, {
@@ -108,7 +108,7 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'lb_params_type': [{
+            'type': [{
                 'value': '0',
                 'text': '支出'
             }, {
@@ -118,7 +118,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['flow']
+            tables: ['flow']
         }
     },
     computed: {},

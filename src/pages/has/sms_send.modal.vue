@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="m-t ng-scope" ng-if="step==1">
-                        <lb-buttongroup :group-data="localdata.lb_send_to_type" v-model="localdata.form.lb_send_to_type"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.send_to_type" v-model="localdata.form.send_to_type"></lb-buttongroup>
                         <div class="m-t ng-scope" ng-if="send.to_type == 0">
                             <ul class="list-group"></ul>
                             <div class="wrapper ng-scope" ng-if="class_rest.$loaded && class_rest.$list.length == 0">
@@ -46,7 +46,7 @@ export default {
     name: 'sms_send',
     data() {
         let localdata = {
-            'lb_send_to_type': [{
+            'send_to_type': [{
                 'value': '0',
                 'text': '班级群发'
             }, {
@@ -57,7 +57,7 @@ export default {
                 'text': '内部员工'
             }],
             'form': {
-                'lb_send_to_type': ''
+                'send_to_type': ''
             }
         }
         return {

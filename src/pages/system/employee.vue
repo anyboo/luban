@@ -19,7 +19,7 @@
                                         </lb-dropdown-menu>
                                     </lb-dropdowns>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                     <button @click="lbShowdialog($event,'lb-employeeaddmodal')" class="btn btn-primary pull-right">
                         <i class="fa fa-plus"></i>添加
                     </button>
@@ -109,10 +109,10 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_search_value': '',
-                'lb_params_status': ''
+                'search_value': '',
+                'status': ''
             },
-            'lb_params_status': [{
+            'status': [{
                 'value': '1',
                 'text': '在职'
             }, {
@@ -150,7 +150,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['employee'],
+            tables: ['employee'],
         }
     },
     computed: {},
@@ -164,7 +164,7 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
                     'key': this.localdata.search.search_key,
@@ -172,8 +172,8 @@ export default {
                     'type': 'like'
                 })
             }
-            console.log(this.localdata.form.lb_params_status)
-            let status = this.localdata.form.lb_params_status.trim()
+            console.log(this.localdata.form.status)
+            let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'is_part_time',

@@ -57,7 +57,7 @@ export default {
         return {
             localdata,
             model: 'dictionary',
-            lb_tables: ['dictionary'],
+            tables: ['dictionary'],
             title: ''
         }
     },

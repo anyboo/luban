@@ -20,7 +20,7 @@
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status" @input="handleSearch"></lb-buttongroup>
-                        <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                         <button class="btn btn-default ng-isolate-scope">
                             <i class="glyphicon glyphicon-export"></i>导出Excel
                         </button>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class=" list-student ">
-                    <div class="row ng-scope" v-if="localdata.form.lb_view_mode == 'image'">
+                    <div class="row ng-scope" v-if="localdata.form.view_mode == 'image'">
                         <template v-for="item in getTablesData()">
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
                                 <div class="bg-white b-a r-2x list-student-item box-shadow">
@@ -69,7 +69,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="row ng-scope" v-if="localdata.form.lb_view_mode == 'list'">
+                    <div class="row ng-scope" v-if="localdata.form.view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
@@ -143,11 +143,11 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_search_value': '',
-                'lb_params_status': '',
-                'lb_view_mode': 'list'
+                'search_value': '',
+                'status': '',
+                'view_mode': 'list'
             },
-            'lb_params_status': [{
+            'status': [{
                 'value': '',
                 'text': '所有学员'
             }, {
@@ -157,7 +157,7 @@ export default {
                 'value': '1',
                 'text': '已报读学员'
             }],
-            'lb_view_mode': [{
+            'view_mode': [{
                 'value': 'image',
                 'iclass': 'fa fa-image',
                 'text': '头像'
@@ -243,7 +243,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['student'],
+            tables: ['student'],
         }
     },
     computed: {
@@ -273,7 +273,7 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let search_value = this.localdata.form.lb_search_value.trim()
+            let search_value = this.localdata.form.search_value.trim()
             if (search_value.length > 0) {
                 filterObj.push({
                     'key': this.localdata.search.search_key,
@@ -281,7 +281,7 @@ export default {
                     'type': 'like'
                 })
             }
-            let status = this.localdata.form.lb_params_status.trim()
+            let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
                     'key': 'status',

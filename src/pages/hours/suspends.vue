@@ -10,10 +10,10 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-6 m-t">
-                    <lb-buttongroup :group-data="localdata.lb_params_status" v-model="localdata.form.lb_params_status"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.lb_param_student_name">
+                            <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -75,7 +75,7 @@ export default {
     name: 'suspends',
     data() {
         let localdata = {
-            'lb_params_status': [{
+            'status': [{
                 'value': '',
                 'text': '所有'
             }, {
@@ -89,8 +89,8 @@ export default {
                 'text': '已复课'
             }],
             'form': {
-                'lb_params_status': '',
-                'lb_param_student_name': ''
+                'status': '',
+                'student_name': ''
             }
         }
         return {

@@ -14,10 +14,10 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <input class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-parse ng-touched" type="text" placeholder="科目名称" v-model="localdata.form.lb_new_subject_subject_name" required="">
+                                    <input class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-parse ng-touched" type="text" placeholder="科目名称" v-model="localdata.form.new_subject_subject_name" required="">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.lb_new_subject_sort" required="">
+                                    <input type="number" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.new_subject_sort" required="">
                                 </td>
                                 <td>
                                     <button class="btn btn-primary btn-xs" ng-click="add()" ng-disabled="saving">添加</button>
@@ -55,8 +55,8 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_new_subject_subject_name': '',
-                'lb_new_subject_sort': ''
+                'new_subject_subject_name': '',
+                'new_subject_sort': ''
             }
         }
         return {

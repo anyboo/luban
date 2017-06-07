@@ -177,7 +177,7 @@ export default {
         return {
             localdata,
             student: {},
-            lb_tables: ['student']
+            tables: ['student']
         }
     },
     computed: {

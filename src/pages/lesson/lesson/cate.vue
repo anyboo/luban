@@ -38,7 +38,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['cate']
+            tables: ['cate']
         }
     },
     computed: {

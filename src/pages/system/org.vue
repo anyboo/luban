@@ -88,7 +88,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_node_group_name': ''
+                'node_group_name': ''
             },
             'dropDownMenu': [{
                 'url': 'lb-addmodal',
@@ -102,7 +102,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['campus'],
+            tables: ['campus'],
            
         }
     },

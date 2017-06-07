@@ -109,7 +109,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['pay'],
+            tables: ['pay'],
             student_name: ''
         }
     },

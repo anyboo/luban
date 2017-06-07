@@ -4,7 +4,7 @@
             <div class=" wrapper panel panel-default bg-white ng-scope" page-controller="list2index">
                 <div class="row no-gutter">
                     <div class="col-xs-12 ">
-                        <lb-buttongroup :group-data="localdata.lb_lesson_type" v-model="localdata.form.lb_lesson_type"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.lesson_type" v-model="localdata.form.lesson_type"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="m-t ng-scope" xo-rest="class_end_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list21">
@@ -20,7 +20,7 @@
                                 </span>
                                 </div>
                             </div>
-                            <lb-buttongroup :group-data="localdata.lb_params_pay_status" v-model="localdata.form.lb_params_pay_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
                                     <lb-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
@@ -107,7 +107,7 @@ export default {
     name: 'list2',
     data() {
         let localdata = {
-            'lb_lesson_type': [{
+            'lesson_type': [{
                 'value': '0',
                 'text': '班课学员'
             }, {
@@ -118,13 +118,13 @@ export default {
                 'text': '课时包学员'
             }],
             'form': {
-                'lb_lesson_type': '',
-                'lb_params_pay_status': '',
-                'lb_params_oc_id': '',
+                'lesson_type': '',
+                'pay_status': '',
+                'oc_id': '',
                 'student_name': '学员',
                 'student_id': '',
             },
-            'lb_params_pay_status': [{
+            'pay_status': [{
                 'value': '2',
                 'text': '已缴清'
             }, {
@@ -137,7 +137,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['student']
+            tables: ['student']
         }
     },
     mounted() {

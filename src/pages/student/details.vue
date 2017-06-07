@@ -40,7 +40,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['recording'],
+            tables: ['recording'],
         }
     },
     computed: {},

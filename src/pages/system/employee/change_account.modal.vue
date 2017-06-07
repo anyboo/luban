@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-xs-12">新的登录账号:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="new_account" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_reset_account">
+                                <input type="text" name="new_account" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.reset_account">
                             </div>
                         </div>
                     </form>
@@ -42,7 +42,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_reset_account': ''
+                'reset_account': ''
             }
         }
         return {

@@ -95,7 +95,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['classes'],
+            tables: ['classes'],
             currentRow: null
         }
     },

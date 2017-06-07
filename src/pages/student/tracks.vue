@@ -131,7 +131,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['inquiry'],
+            tables: ['inquiry'],
             'student_name': '学员',
         }
     },

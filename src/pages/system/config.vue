@@ -8,7 +8,7 @@
                     </p>
                     <p>
                         报过名的学员，在课程结束后
-                        <input type="number" name="lost_days" class="form-control text-center input-xs no-padder inline w-xxs ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_params_lost_days"> 天没有继续报名，自动进入流失名单
+                        <input type="number" name="lost_days" class="form-control text-center input-xs no-padder inline w-xxs ng-pristine ng-untouched ng-valid" v-model="localdata.form.lost_days"> 天没有继续报名，自动进入流失名单
                     </p>
                 </div>
                 <div class="m-t b-b">
@@ -17,7 +17,7 @@
                     </p>
                     <p>
                         当剩余课次少于等于
-                        <input type="number" name="lost_days" class="form-control text-center input-xs no-padder inline w-xxs ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_params_lesson_warning_times"> 次，进入课时预警名单
+                        <input type="number" name="lost_days" class="form-control text-center input-xs no-padder inline w-xxs ng-pristine ng-untouched ng-valid" v-model="localdata.form.lesson_warning_times"> 次，进入课时预警名单
                     </p>
                 </div>
                 <div class="m-t b-b">
@@ -25,7 +25,7 @@
                         <strong>请假次数限制</strong>
                     </p>
                     <label class="i-switch m-t-xs m-r">
-                        <input name="leave_times_limit" type="checkbox" ng-true-value="1" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.lb_params_leave_times_limit">
+                        <input name="leave_times_limit" type="checkbox" ng-true-value="1" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.leave_times_limit">
                         <i></i>
                     </label>
                 </div>
@@ -35,7 +35,7 @@
                     </p>
                     <div class="m-b">
                         同一学员同一上课时间段登记考勤限制:
-                        <lb-buttongroup :group-data="localdata.lb_params_same_time_att_limit" v-model="localdata.form.lb_params_same_time_att_limit"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.same_time_att_limit" v-model="localdata.form.same_time_att_limit"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="m-t b-b">
@@ -44,7 +44,7 @@
                     </p>
                     <div class="m-b">
                         登记考勤时未勾选也未填写缺课原因:
-                        <lb-buttongroup :group-data="localdata.lb_params_no_reason_record_absence" v-model="localdata.form.lb_params_no_reason_record_absence"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.no_reason_record_absence" v-model="localdata.form.no_reason_record_absence"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="m-t b-b">
@@ -53,7 +53,7 @@
                     </p>
                     <div class="m-b">
                         是否显示剩余课次:
-                        <lb-buttongroup :group-data="localdata.lb_params_has_hide_lesson_times" v-model="localdata.form.lb_params_has_hide_lesson_times"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.has_hide_lesson_times" v-model="localdata.form.has_hide_lesson_times"></lb-buttongroup>
                         <p class="alert alert-info m-t-xs">此设置仅对课时包并且有时间限制的课时包课程有效</p>
                     </div>
                 </div>
@@ -72,28 +72,28 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_params_lost_days': '',
-                'lb_params_lesson_warning_times': '',
-                'lb_params_leave_times_limit': '',
-                'lb_params_same_time_att_limit': '',
-                'lb_params_no_reason_record_absence': '',
-                'lb_params_has_hide_lesson_times': ''
+                'lost_days': '',
+                'lesson_warning_times': '',
+                'leave_times_limit': '',
+                'same_time_att_limit': '',
+                'no_reason_record_absence': '',
+                'has_hide_lesson_times': ''
             },
-            'lb_params_same_time_att_limit': [{
+            'same_time_att_limit': [{
                 'value': '1',
                 'text': '无论如何只允许一次考勤记录'
             }, {
                 'value': '2',
                 'text': '不同班级相同时间段允许考勤'
             }],
-            'lb_params_no_reason_record_absence': [{
+            'no_reason_record_absence': [{
                 'value': '1',
                 'text': '记录缺课'
             }, {
                 'value': '2',
                 'text': '忽略,不记录缺课'
             }],
-            'lb_params_has_hide_lesson_times': [{
+            'has_hide_lesson_times': [{
                 'value': '0',
                 'text': '显示'
             }, {

@@ -19,7 +19,7 @@
                                                     <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
                                                         <i class="fa fa-minus-square-o" ng-class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                                                     </a>
-                                                    <input type="text" ng-if="!node.root" ng-change="node._editing=1" class="ng-pristine ng-untouched ng-valid ng-scope" v-model="localdata.form.lb_node_group_name">
+                                                    <input type="text" ng-if="!node.root" ng-change="node._editing=1" class="ng-pristine ng-untouched ng-valid ng-scope" v-model="localdata.form.node_group_name">
                                                     <a class="pull-right btn btn-danger btn-xs" ng-click="remove_group(this);" data-nodrag tooltip="删除">
                                                         <i class="fa fa-times"></i>
                                                     </a>
@@ -46,7 +46,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_node_group_name': ''
+                'node_group_name': ''
             }
         }
         return {

@@ -39,11 +39,11 @@
                             </div>
                             <br>
                             <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
-                            <lb-buttongroup :group-data="localdata.lb_view_mode" v-model="localdata.form.lb_view_mode"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                         </div>
                     </div>
                     <div class="wrapper list-student bg-light lter">
-                        <div class="row ng-scope text-center " v-if="localdata.form.lb_view_mode == 'image'">
+                        <div class="row ng-scope text-center " v-if="localdata.form.view_mode == 'image'">
                             <template v-for="item in getTablesData()">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b ng-scope">
                                     <div class="b-a r-2x list-student-item box-shadow" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
@@ -66,7 +66,7 @@
                             </template>
                         </div>
                     </div>
-                    <div class="table-responsive ng-scope " v-if="localdata.form.lb_view_mode == 'list'">
+                    <div class="table-responsive ng-scope " v-if="localdata.form.view_mode == 'list'">
                         <lb-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleRowChange">
                             <lb-table-column width="30" prop="data" label class="ng-scope">
                                 <template scope="scope">
@@ -115,7 +115,7 @@ export default {
             'form': {
                 'search_value': '',
                 'status': '',
-                'lb_view_mode': 'list'
+                'view_mode': 'list'
             },
             'status': [{
                 'value': '',
@@ -127,7 +127,7 @@ export default {
                 'value': '1',
                 'text': '已报读'
             }],
-            'lb_view_mode': [{
+            'view_mode': [{
                 'value': 'image',
                 'iclass': 'fa fa-image',
                 'text': '头像'
@@ -159,7 +159,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['student'],
+            tables: ['student'],
             alias: 'selstudent',
             makeImage: makeimage,
             currentRow: null

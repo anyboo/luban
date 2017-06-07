@@ -158,7 +158,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['student']
+            tables: ['student']
         }
     },
     mounted() {

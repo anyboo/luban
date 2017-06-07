@@ -28,7 +28,7 @@ t
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.lb_search_value" @change="handleSearch">
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -101,7 +101,7 @@ export default {
         }
         return {
             localdata,
-            lb_tables: ['employee'],
+            tables: ['employee'],
             currentRow: null
         }
     },
