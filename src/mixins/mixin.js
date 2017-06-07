@@ -37,7 +37,7 @@ export default {
         this.pagination.currentPage = 1
         this.pagination.total = 0
         this.pagination.pagesize = 10
-        this.pagination.pagesizes = [10, 20, 50, 100]
+        this.pagination.pagesizes = [5,10, 20, 50, 100]
     },
     mounted: function() {
         this.handleGetTable()

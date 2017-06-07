@@ -21697,3 +21697,7 @@ button.toast-close-button {
 .heights {
     margin-top: 9px;
 }
+.modal-body{
+    max-height: 400px !important;
+    overflow-y:auto;
+}
