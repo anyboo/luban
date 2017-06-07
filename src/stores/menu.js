@@ -57,9 +57,6 @@ export default [{
         menuTitle: '缴费明细',
         to: '/fee/list1'
     }, {
-        menuTitle: '预存明细',
-        to: '/fee/list2'
-    }, {
         menuTitle: '欠费明细',
         to: '/fee/list3'
     }, {

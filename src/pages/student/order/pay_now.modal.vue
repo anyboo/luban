@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button type="button" class="btn btn-primary" @click="do_pay()">确认缴费</button>
+                                <button type="button" class="btn btn-primary" @click="do_pay()" :disabled="localdata.form.pay_amount==0">确认缴费</button>
                                 <button type="button" class="btn btn-danger m-l" @click="lbClosedialog($event)">关闭</button>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ export default {
                 'student_id': '',
                 'class_id': '',
                 'pay_amount': '',
-                'pay_type': 0,
+                'pay_type': 0
             }
         }
         return {

@@ -1,41 +1,27 @@
 <template>
     <div>
-        <div class="modal-body ng-scope" ng-controller="OrderIndexCtrl" v-if="body">
+        <div class="modal-body ng-scope">
             <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
                 <div ng-controller="OrderCreateOtherCtrl" class="ng-scope">
-                    <div class="row no-gutter step1" ng-class="{'step1':step==1,'step2':step==2}">
-                        <div class="col-xs-6 bg-light lter bg-success" ng-class="{'bg-success':step==1}">
+                    <div class="row no-gutter" :class="{step2:order,step1:!order}">
+                        <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
                             <h4 class="padder heighs">1.创建订单</h4>
                         </div>
-                        <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==2}">
+                        <div class="col-xs-6 bg-light lter" :class="{'bg-success':order}">
                             <h4 class="padder heighs">2.缴费</h4>
                         </div>
                     </div>
-                    <form name="form1" class="form-horizontal ng-pristine ng-valid ng-valid-required">
+                    <form name="form1" class="form-horizontal ng-pristine ng-valid ng-valid-required" v-if="!order">
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费项目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[5]" required style="display: none;" v-model="localdata.form.lb_order_odi_id">
+                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="order_link_name">
                                         <option value class>请选择</option>
-                                        <option value="0">教材费</option>
-                                        <option value="1">赛事报名费</option>
-                                        <option value="2">服装费</option>
+                                        <option value="教材费">教材费</option>
+                                        <option value="赛事报名费">赛事报名费</option>
+                                        <option value="服装费">服装费</option>
                                     </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 120px;" title>
-                                        <a class="chosen-single" tabindex="-1">
-                                            <span>请选择</span>
-                                            <div>
-                                                <b></b>
-                                            </div>
-                                        </a>
-                                        <div class="chosen-drop">
-                                            <div class="chosen-search">
-                                                <input type="text" autocomplete="off">
-                                            </div>
-                                            <ul class="chosen-results"></ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +29,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" name="origin_amount" ng-change="order.order_amount = order.origin_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.lb_order_origin_amount">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.origin_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -51,36 +37,35 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" ng-disabled="order.oc_id == 0" placeholder="如有备注请输入" v-model="localdata.form.lb_order_order_remark">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">0</span>
+                                    <span class="text-bold text-danger ng-binding">{{localdata.form.origin_amount }}</span>
                                     <small>元</small>
                                 </p>
                             </div>
                         </div>
+                        <div class="row no-gutter b-t m-t">
+                            <div class="col-xs-8">
+                                <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="localdata.form.origin_amount==0">
+                                    <i class="fa fa-save" ng-hide="saving"></i>确定订单
+                                </button>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="button" class="btn btn-warning btn-block" @click="switchPage('lb-ordermain')">
+                                    <i class="fa fa-reply"></i>返回
+                                </button>
+                            </div>
+                        </div>
                     </form>
-                    <div class="row no-gutter b-t m-t">
-                        <div class="col-xs-8">
-                            <button type="button" class="btn btn-block btn-primary" @click="open()">
-                                <i class="fa fa-save" ng-hide="saving"></i>
-                                <i class="fa fa-spin fa-spinner ng-hide" ng-show="saving"></i>确定订单
-                            </button>
-                        </div>
-                        <div class="col-xs-4">
-                            <button type="button" class="btn btn-warning btn-block" ng-disabled="saving" ng-click="back_menu()" @click="switchPage('lb-ordermain')">
-                                <i class="fa fa-reply"></i>返回
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <lb-orderandpay v-if="order"></lb-orderandpay>
+        <lb-orderandpay v-if="order" :order="currorder"></lb-orderandpay>
     </div>
 </template>
 <script>
@@ -90,15 +75,33 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'lb_order_odi_id': '',
-                'lb_order_origin_amount': '',
-                'lb_order_order_remark': ''
+                'class_id': '',
+                'course_id': '',
+                'origin_times': '',
+                'unit_price': 0,
+                'origin_amount': 0,
+                'back_amount': 0,
+                'has_discount': '',
+                'has_present': '',
+                'c_unit_price': '',
+                'order_remark': '',
+                'present_times': '',
+                'discount': 0,
+                'discount_amount': 0,
+                'order_amount': 0,
+                'unpay_amount': 0,
+                'pay_status': 0,
+                'student_id': '',
+                'order_no': '',
+                'order_type': 2,
+                'body': ''
             }
         }
         return {
             localdata,
-            body: true,
-            order: false
+            order: false,
+            currorder: null,
+            order_link_name: ''
         }
     },
     components: {
@@ -113,8 +116,20 @@ export default {
             }
         },
         open() {
-            this.body = false
-            this.order = true
+            this.localdata.form.order_amount = this.localdata.form.origin_amount
+            this.localdata.form.unpay_amount = this.localdata.form.origin_amount
+            this.localdata.form.order_no = 'LB' + this.moment().format('YYYYMMDDssSSSS')
+            if (this.order_link_name.length > 0) {
+                this.localdata.form.body = '学杂费[' + this.order_link_name + ']'
+            } else {
+                this.localdata.form.body = '学杂费'
+            }
+
+            this.handleSave().then((data) => {
+                console.log(data)
+                this.order = true
+                this.currorder = data
+            })
         }
     }
 }
