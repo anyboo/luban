@@ -13,7 +13,7 @@
                     </h3>
                 </div>
                 <div class="modal-content">
-                    <ul class="list-group ng-scope"  v-if="getTablesData().length>0">
+                    <ul class="list-group ng-scope" v-if="getTablesData().length>0">
                         <template v-for="item in getTablesData()">
                             <li class="list-group-item ng-scope">
                                 <span class="pull-right label bg-info ng-binding">￥270.00</span>
@@ -27,24 +27,24 @@
                                     <span class="label bg-danger ng-binding ng-scope" ng-if="item.refund_status > 0">退款:30.00元</span>
                                 </p>
                                 <p class="m-t-xs">
-                                    <a  @click="lbShowdialog($event,'lb-orderrefundmodal')" class="btn btn-xs btn-default ng-click-active">
+                                    <a @click="lbShowdialog($event,'lb-orderrefundmodal')" class="btn btn-xs btn-default ng-click-active">
                                         <i class="fa fa-reply"></i>办理退款
                                     </a>
-                                    <a  @click="lbShowdialog($event,'lb-paynowmodal')" class="btn btn-xs btn-default ng-click-active">
-                                    <i class="fa fa-reply "></i>现场缴费
-                                </a>
+                                    <a @click="lbShowdialog($event,'lb-paynowmodal')" class="btn btn-xs btn-default ng-click-active">
+                                        <i class="fa fa-reply "></i>现场缴费
+                                    </a>
                                 </p>
-                            
                             </li>
-                        </template> 
+                        </template>
+                          <div class="row ng-scope wrapper">
+                        <lb-pagination class="pull-right el-pagination  el-pages" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </lb-pagination>
+                    </div>
                     </ul>
-                    <div class="wrapper ng-scope el-pages" ng-if="order_rest.$loaded &amp;&amp; order_rest.$list.length == 0" v-else>
+                    <div class="wrapper ng-scope" ng-if="order_rest.$loaded &amp;&amp; order_rest.$list.length == 0" v-else>
                         <p class="text-center text-2x"><i class="fa fa-frown-o"></i> 没有未付款订单!</p>
                     </div>
-                    <div class="row ng-scope">
-                        <lb-pagination class="pull-right el-pagination  el-pages" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </lb-pagination> 
-                    </div>
+                  
                     <div class="modal-footer text-center ng-scope ">
                         <button class="btn btn-primary ng-click-active" @click="lbClosedialog($event)">确定</button>
                     </div>
@@ -53,13 +53,6 @@
         </div>
     </div>
 </template>
-<style type="text/css">
-    .el-pages {
-    white-space: nowrap;
-    padding: 2px 23px;
-    color: #48576a;
-}
-</style>
 <script>
 export default {
     name: 'refund',
