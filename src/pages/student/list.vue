@@ -125,7 +125,6 @@
                             </lb-table-column>
                         </lb-table>
                     </div>
-                    <div class="grid-data-result"></div>
                 </div>
                 <div class="panel-footer ">
                     <div class="row ">
