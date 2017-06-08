@@ -49,7 +49,7 @@
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="日期">
-                                <template scope="scope">{{scope.row}}</template>
+                                <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="订单号">
                                 <template scope="scope">OB1161217050523032304926</template>

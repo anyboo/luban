@@ -11,7 +11,7 @@
                         <div class="col-xs-6 bg-light lter bg-success" ng-class="{'bg-success':step==1}">
                             <h4 class="padder manages">1.选择缴费记录</h4></div>
                         <div class="col-xs-6 bg-light lter" ng-class="{'bg-success':step==2}">
-                            <h4 class="padder">2.确认退款</h4></div>
+                            <h4 class="padder  manages">2.确认退款</h4></div>
                     </div>
                     <div class="m-t ng-scope" ng-if="step==1">
                         <ul class="list-group ng-scope" ng-if="pays_rest.$loaded &amp;&amp; pays_rest.$list.length > 0">

@@ -55,7 +55,7 @@ export default [{
     menuIcon: 'fa-money',
     menu: [{
         menuTitle: '缴费明细',
-        to: '/fee/list1'
+        to: '/fee/list1' 
     }, {
         menuTitle: '欠费明细',
         to: '/fee/list3'
@@ -67,10 +67,10 @@ export default [{
     menuTitle: '课时',
     menuIcon: 'icon-clock',
     menu: [{
-        menuTitle: '排课',
+        menuTitle: '课程表',
         to: '/hours/arrange'
     }, {
-        menuTitle: '课程表',
+        menuTitle: '排课',
         to: '/hours/schedule'
     }, {
         menuTitle: '考勤',

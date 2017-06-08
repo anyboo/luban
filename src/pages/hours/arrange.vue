@@ -265,6 +265,59 @@
         </div>
     </div>
 </template>
+<style>
+.table {
+    width: 100%;
+    text-align: center !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    border-spacing: 0;
+    text-align: center!important;
+    
+}
+.table>thead>tr>th {
+    padding: 8px 15px;
+    font-weight: normal;
+    color: #000;
+    background-color: #f4f5f9;
+    border-bottom: 0;
+    text-align: center}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    border: 1px solid #dddddd;
+}
+
+.scheduleByWeek {
+    display: table-row !important;
+}
+
+td {
+    text-align: left;
+    padding: 0 5px;
+    height: 64px !important;
+    border: 1px solid #dddddd;
+    text-align: center!important;
+     vertical-align: middle;
+    width: 200px;
+}
+
+.scheduleByWeek th {
+    border: 1px solid #dddddd;
+
+}
+.table>tbody>tr>td{
+     text-align: center!important;
+
+}
+#scheduleList2 td:first-child {
+    vertical-align: middle;
+    text-align: center!important;
+    font-size: 14px;
+}
+</style>
 <script>
 export default {
     name: 'arrange',
