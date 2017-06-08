@@ -21697,7 +21697,15 @@ button.toast-close-button {
 .heights {
     margin-top: 9px;
 }
-.modal-body{
-    max-height: 400px !important;
-    overflow-y:auto;
+
+.modal-body {
+    max-height: 700px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.el-pages {
+    white-space: nowrap;
+    padding: 2px 23px!important;
+    color: #48576a;
 }

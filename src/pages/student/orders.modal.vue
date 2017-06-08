@@ -27,9 +27,6 @@
                                 <a ng-click="$util.open('tpl/app/student/order/pay_now.modal.html','md',item)" @click="lbShowdialog($event,'lb-paynowmodal')" class="btn btn-xs btn-default ng-click-active">
                                     <i class="icon-wallet "></i>现场缴费
                                 </a>
-                                <a ng-click="$util.open('tpl/app/student/order/pay_reg.modal.html','md',item)" @click="lbShowdialog($event,'lb-payregmodal')" class="btn btn-xs btn-default ng-click-active">
-                                    <i class="icon-note "></i>缴费登记
-                                </a>
                             </p>
                         </li>
                     </ul>
@@ -45,6 +42,7 @@ export default {
         let localdata = {}
         return {
             localdata,
+            tables: ['order'],
         }
     },
     computed: {},

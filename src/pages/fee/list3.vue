@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTableData" stripe>
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
@@ -121,6 +121,8 @@ export default {
         }
         return {
             localdata,
+            tables: ['order']
+
         }
     },
     computed: {},

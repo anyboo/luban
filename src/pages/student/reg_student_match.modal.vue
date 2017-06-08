@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事成绩:</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">赛事成绩:</label> 
                             <div class="col-xs-12 col-sm-9 col-md-10">
                            
                                   <input type="text" name="result" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.result.errorStatus}" v-model="localdata.form.result" @change="validate('result')">
