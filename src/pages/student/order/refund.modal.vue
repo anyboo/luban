@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-calendar"></i>学员{{student.student_name}}
-                        <span class="label bg-info ng-binding"></span>订单退费 
+                        <span class="label bg-info ng-binding"></span>订单退费  
                     </h3>
                 </div>
                 <div class="modal-content">
@@ -27,11 +27,11 @@
                                     <span class="label bg-danger ng-binding ng-scope" ng-if="item.refund_status > 0">退款:30.00元</span>
                                 </p>
                                 <p class="m-t-xs">
-                                    <a @click="lbShowdialog($event,'lb-orderrefundmodal')" class="btn btn-xs btn-default ng-click-active">
-                                        <i class="fa fa-reply"></i>办理退款
+                                    <a @click="handleShowDialog('lb-refunds')"class="btn btn-xs btn-default ng-click-active">
+                                        <i ></i>办理退款
                                     </a>
                                     <a @click="lbShowdialog($event,'lb-paynowmodal')" class="btn btn-xs btn-default ng-click-active">
-                                        <i class="fa fa-reply "></i>现场缴费
+                                        <i ></i>现场缴费
                                     </a>
                                 </p>
                             </li>

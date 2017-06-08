@@ -78,7 +78,7 @@ export default {
             let treemap = {}
             for (var item of cateData) {
                 treemap[item._id] = {
-                    value: item._id,
+                    value: item._id, 
                     label: item.name
                 }
             }

@@ -49,7 +49,7 @@
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="日期">
-                                <template scope="scope">2017-05-05 15:23</template>
+                                <template scope="scope">{{scope.row}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="订单号">
                                 <template scope="scope">OB1161217050523032304926</template>

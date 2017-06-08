@@ -50,6 +50,9 @@ const state = {
         },
         pay: {
             data: []
+        },
+        announcement: {
+            data: []
         }
     },
     currentModel: {}

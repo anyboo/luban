@@ -61,6 +61,9 @@ import page67 from '~/pages/system/branch/add_modal.vue'
 import page68 from '~/pages/lesson/end_sclass_modal.vue'
 import page69 from '~/pages/lesson/sclasses/students_modal.vue'
 import page70 from '~/pages/student/details.vue'
+import page71 from '~/pages/has/announcement.vue'
+import page72 from '~/pages/student/order/refunds.vue'
+import page73 from '~/pages/student/order/refunds_two.vue'
 
 var pages = {}
 pages['lb-dialog'] = page1
@@ -127,4 +130,7 @@ pages['lb-addmodal'] = page67
 pages['lb-endsclassmodal'] = page68
 pages['lb-studentsmodal'] = page69
 pages['lb-details'] = page70
+pages['lb-announcement'] = page71
+pages['lb-refunds'] = page72
+pages['lb-refundstwo'] = page73
 export default pages
