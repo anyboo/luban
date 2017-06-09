@@ -21,7 +21,7 @@ import dialoglist from '../dialog/dialoglist.vue'
 import modalbackdrop from '../modal-backdrop/modalbackdrop.vue'
 import menu from '~/stores/menu'
 export default {
-    name: 'app',
+    name: 'app', 
     data() {
         let localdata = {}
         return {
