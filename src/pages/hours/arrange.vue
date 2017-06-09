@@ -1,5 +1,5 @@
 <template>
-    <div class="ng-scope">
+    <div class="ng-scope arrange">
         <div class="wrapper-xs ng-scope">
             <div class="wrapper panel panel-default bg-white ng-scope">
                 <div class="row">
@@ -39,10 +39,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="row  m-t">
-                    <table class="table">
+                <div class="row  m-t arrangeover">
+                    <table class="table ">
                         <thead>
-                            <tr class="scheduleByWeek">
+                            <tr class="fixedThead">
                                 <th width="100px">老师</th>
                                 <th width="60px">时段</th>
                                 <th width="200px">周一
@@ -68,10 +68,10 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="scheduleList2" class="notOnlyWeek">
+                        <tbody class="scrollTbody">
                             <tr>
-                                <td rowspan="3">aaa</td>
-                                <td class="scheduleWeek">上午</td>
+                                <td rowspan="3" width="100px">aaa</td>
+                                <td class="scheduleWeek" width="60px">上午</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -266,53 +266,65 @@
     </div>
 </template>
 <style>
-.table {
+.fixedThead {
+    display: block;
+    width: 100%;
+}
+
+.scrollTbody {
+    display: block;
+    height: 600px;
+    overflow: auto;
+    width: 100%;
+}
+
+.arrange .table {
     width: 100%;
     text-align: center !important;
     table-layout: fixed !important;
     border-collapse: collapse !important;
     border-spacing: 0;
     text-align: center!important;
-    
 }
-.table>thead>tr>th {
-    padding: 8px 15px;
+
+.arrange .table>thead>tr>th {
+   
     font-weight: normal;
     color: #000;
     background-color: #f4f5f9;
     border-bottom: 0;
-    text-align: center}
+    text-align: center
+}
 
-thead {
+.arrange thead {
     display: table-header-group;
     vertical-align: middle;
     border-color: inherit;
     border: 1px solid #dddddd;
 }
 
-.scheduleByWeek {
+.arrange .scheduleByWeek {
     display: table-row !important;
 }
 
-td {
+.arrange td {
     text-align: left;
-    padding: 0 5px;
+
     height: 64px !important;
     border: 1px solid #dddddd;
     text-align: center!important;
-     vertical-align: middle;
-    width: 200px;
+    vertical-align: middle;
 }
 
-.scheduleByWeek th {
+.arrange .scheduleByWeek th {
     border: 1px solid #dddddd;
-
 }
-.table>tbody>tr>td{
-     text-align: center!important;
 
+.arrange .table>tbody>tr>td {
+    text-align: center!important;
 }
-#scheduleList2 td:first-child {
+
+.arrange #scheduleList2 td:first-child {
     vertical-align: middle;
     text-align: center!important;
     font-size: 14px;
