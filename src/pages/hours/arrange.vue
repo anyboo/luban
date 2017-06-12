@@ -43,27 +43,27 @@
                     <table class="table ">
                         <thead>
                             <tr class="fixedThead">
-                                <th width="100px">老师</th>
-                                <th width="60px">时段</th>
-                                <th width="200px">周一
+                                <th width="120px">老师</th>
+                                <th width="119px">时段</th>
+                                <th width="120px">周一
                                     <label>(06/05)</label>
                                 </th>
-                                <th width="200px">周二
+                                <th width="120px">周二
                                     <label>(06/06)</label>
                                 </th>
-                                <th width="200px">周三
+                                <th width="120px">周三
                                     <label>(06/07)</label>
                                 </th>
-                                <th width="200px">周四
+                                <th width="120px">周四
                                     <label>(06/08)</label>
                                 </th>
-                                <th width="200px">周五
+                                <th width="120px">周五
                                     <label>(06/09)</label>
                                 </th>
-                                <th width="200px">周六
+                                <th width="120px">周六
                                     <label>(06/10)</label>
                                 </th>
-                                <th width="200px">周日
+                                <th width="120px">周日
                                     <label>(06/11)</label>
                                 </th>
                             </tr>
