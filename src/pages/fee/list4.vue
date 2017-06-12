@@ -68,7 +68,6 @@ export default {
                 'daterange': '',
                 'date_end': '',
                 'student_id': '',
-
                 'duration': '',
                 'student_name': ''
             },

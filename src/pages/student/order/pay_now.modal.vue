@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">学员:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">威锋</p>
+                                <p class="form-control-static ng-binding">{{ currStudent.student_name}}</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,11 +59,20 @@
                                 <p class="form-control-static ng-binding">{{order.unpay_amount}}元</p>
                             </div>
                         </div>
+                        <div class="form-group ng-scope" ng-if="os_balance_amount > 0 &amp;&amp; order.order_type != '2'">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">余额付款:</label>
+                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                <label class="i-switch m-t-xs m-r">
+                                    <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
+                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.use_balance">
+                                    <input type="number"  @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a"> <span class="input-group-addon">元</span></div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">现款缴费:</label>
                             <div class="col-xs-12 col-md-4">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" v-model="localdata.form.pay_amount">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" v-model="localdata.form.money_pay_amount">
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -74,7 +83,7 @@
                                 <ul class="list-group ng-scope">
                                     <li class="list-group-item ng-scope" @click="select_pay()">
                                         <img alt="现金支付" src="/assets/images/logo_cash.png">
-                                        <span class="text-success text-2x pull-right ng-scope" ng-if="item.pay_name == pay.pay_name"><i class="fa fa-check-circle"></i></span>
+                                        <span class="text-success text-2x pull-right ng-scope"><i class="fa fa-check-circle"></i></span>
                                     </li>
                                 </ul>
                                 <!--
@@ -103,15 +112,18 @@ export default {
                 'order_id': '',
                 'student_id': '',
                 'class_id': '',
-                'pay_amount': '',
-                'pay_type': 0
+                'money_pay_amount': '',
+                'pay_type': 0,
+                'use_balance':false,
+                'balance_pay_amount':0
             }
         }
         return {
             localdata,
             order: {},
             model: 'pay',
-            dopay: false
+            dopay: false,
+            currStudent: {}
         }
     },
     mounted() {
@@ -121,11 +133,19 @@ export default {
             this.localdata.form.student_id = this.order.student_id
             this.localdata.form.class_id = this.order.class_id
             this.localdata.form.money_pay_amount = this.order.unpay_amount
+            this.handleGetTableID('student', this.order.student_id).then((obj) => {
+                if (obj.data && obj.data.length > 0) {
+                    this.currStudent = obj.data[0]
+                }
+            })
         }
     },
     computed: {},
     watch: {},
     methods: {
+        cacu_money_amount(){
+            this.localdata.form.money_pay_amount =  this.order.order_amount  - this.localdata.form.balance_pay_amount
+        },
         select_pay() {
 
         },
