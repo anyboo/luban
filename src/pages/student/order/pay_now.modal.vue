@@ -59,13 +59,13 @@
                                 <p class="form-control-static ng-binding">{{order.unpay_amount}}元</p>
                             </div>
                         </div>
-                        <div class="form-group ng-scope" ng-if="os_balance_amount > 0 &amp;&amp; order.order_type != '2'">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">余额付款:</label>
+                        <div class="form-group ng-scope" v-if="this.currStudent.amount > 0 && this.order.order_type != 2">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">余额付款:{{currStudent.amount}}元</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
                                     <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.use_balance">
-                                    <input type="number"  @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a"> <span class="input-group-addon">元</span></div>
+                                    <input type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a"> <span class="input-group-addon">元</span></div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -114,8 +114,8 @@ export default {
                 'class_id': '',
                 'money_pay_amount': '',
                 'pay_type': 0,
-                'use_balance':false,
-                'balance_pay_amount':0
+                'use_balance': false,
+                'balance_pay_amount': 0
             }
         }
         return {
@@ -127,15 +127,26 @@ export default {
         }
     },
     mounted() {
-        if (this.$store.state.dialogs.dailogdata) {
-            this.order = this.$store.state.dialogs.dailogdata
-            this.localdata.form.order_id = this.order._id
-            this.localdata.form.student_id = this.order.student_id
-            this.localdata.form.class_id = this.order.class_id
-            this.localdata.form.money_pay_amount = this.order.unpay_amount
-            this.handleGetTableID('student', this.order.student_id).then((obj) => {
+        let vm = this
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.order = vm.$store.state.dialogs.dailogdata
+            vm.localdata.form.order_id = vm.order._id
+            vm.localdata.form.student_id = vm.order.student_id
+            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.money_pay_amount = vm.order.unpay_amount
+            vm.localdata.form.balance_pay_amount = 0
+
+
+            vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
-                    this.currStudent = obj.data[0]
+                    vm.currStudent = obj.data[0]
+                    if (this.order.order_type != 2) {
+                        vm.localdata.form.balance_pay_amount = Number(vm.currStudent.amount)
+                        if (vm.localdata.form.balance_pay_amount > vm.localdata.form.money_pay_amount) {
+                            vm.localdata.form.balance_pay_amount = vm.localdata.form.money_pay_amount
+                            vm.localdata.form.money_pay_amount = 0
+                        }
+                    }
                 }
             })
         }
@@ -143,16 +154,52 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        cacu_money_amount(){
-            this.localdata.form.money_pay_amount =  this.order.order_amount  - this.localdata.form.balance_pay_amount
+        cacu_money_amount() {
+            if (this.localdata.form.use_balance) {
+                this.localdata.form.money_pay_amount = this.order.unpay_amount - this.localdata.form.balance_pay_amount
+            } else {
+                this.localdata.form.money_pay_amount = this.order.unpay_amount
+            }
         },
         select_pay() {
 
         },
+        updateOrder() {
+            let unpay_amount = this.order.unpay_amount - this.localdata.form.money_pay_amount
+            if (this.localdata.form.use_balance) {
+                unpay_amount -= this.localdata.form.balance_pay_amount
+            }
+            let pay_status = 1
+            if (unpay_amount == 0) {
+                pay_status = 2
+            } else if (unpay_amount == this.order.order_amount) {
+                pay_status = 0
+            }
+            this.updateTeble('order', this.order._id, {
+                'pay_status': pay_status,
+                'unpay_amount': unpay_amount
+            }).then(() => {
+                this.$store.state.envs.currDialog = 'lb-paynow'
+                this.dopay = true
+            })
+        },
+        setStudentAmount() {
+            let amount = Number(this.currStudent.amount) + Number(this.order.back_amount) + Number(this.order.origin_amount)
+            this.updateTeble('student', this.currStudent._id, {
+                'amount': amount
+            }).then(() => {
+                this.dopay = true
+            })
+        },
         do_pay() {
             this.handleSave().then((data) => {
                 console.log(data)
-                this.dopay = true
+                if (this.order.order_type == 2) {
+                    this.setStudentAmount()
+                } else if (this.order.order_type == 1) {
+                    this.setStudentAmount()
+                }
+                this.updateOrder()
             })
         },
         print_bill() {

@@ -15,7 +15,7 @@
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" :placeholder="getSelectStudentName"  class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
+                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -41,7 +41,7 @@
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
                                             操作
                                             <span class="caret"></span>
@@ -50,22 +50,22 @@
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="日期">
-                                <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
+                                <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="订单号">
-                                <template scope="scope">OB1161217050523032304926</template>
+                                <template scope="scope">{{ scope.row.order_no}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="订单内容">
-                                <template scope="scope">班课[3期班]60次</template>
+                                <template scope="scope">{{ scope.row.body}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">3000.00</span>
+                                    <span class="badge bg-danger ng-binding">{{ scope.row.unpay_amount}}  </span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="总金额">
                                 <template scope="scope">
-                                    <span class="badge bg-info ng-binding">3000.00</span>
+                                    <span class="badge bg-info ng-binding">{{ scope.row.order_amount }}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
@@ -118,10 +118,6 @@ export default {
                 'icon': 'icon-wallet',
                 'text': '现场缴费'
             }, {
-                'url': 'lb-payregmodal',
-                'icon': 'icon-note',
-                'text': '缴费登记'
-            }, {
                 'url': 'lb-orderunpayclearmodal',
                 'icon': 'icon-ban',
                 'text': '欠费清除'
@@ -129,7 +125,7 @@ export default {
         }
         return {
             localdata,
-            tables: ['pay'],
+            tables: ['order'],
             student_name: ''
 
         }
@@ -187,6 +183,11 @@ export default {
                 'key': 'lookup',
                 'value': this.localdata.lookup,
                 'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'unpay_amount',
+                'value': 0,
+                'type': 'gt'
             })
 
             //console.log(filterObj)

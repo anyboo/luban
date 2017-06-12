@@ -53,6 +53,9 @@ const state = {
         },
         announcement: {
             data: []
+        },
+        refund: {
+            data: []
         }
     },
     currentModel: {}

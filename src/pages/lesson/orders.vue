@@ -58,7 +58,7 @@
                             <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="类型">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{getButtongroupText(localdata.order_type,scope.row.order_type)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="订单号">
                             <template scope="scope">{{scope.row.order_no}}</template>
@@ -73,7 +73,7 @@
                             <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="付款情况">
-                            <template scope="scope">{{scope.row.pay_status}}</template>
+                            <template scope="scope">{{ getButtongroupText(localdata.pay_status,scope.row.pay_status) }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="备注">
                             <template scope="scope">{{scope.row.order_remark}}</template>
@@ -99,7 +99,7 @@ export default {
         let localdata = {
             'form': {
                 'search_value': '',
-                'pay_status': '',
+                'pay_status': -1,
                 'student_id': ''
             },
             'lesson_type': [{
@@ -113,37 +113,44 @@ export default {
                 'text': '课时包'
             }],
             'dropDownMenu': [{
-                    'url': 'lb-editlessonmodal',
-                    'icon': 'icon-printer',
-                    'text': '打印收据'
-                }, {
-                    'url': 'lb-editlessonmodal',
-                    'icon': 'fa fa-reply',
-                    'text': '办理退款'
-                }, {
-                    'url': 'lb-editlessonmodal',
-                    'icon': 'icon-note',
-                    'text': '修改订单'
-                }, {
-                    'url': 'lb-editlessonmodal',
-                    'icon': 'fa fa-times',
-                    'text': '删除订单'
-                }
-
-
-            ],
+                'url': 'lb-editlessonmodal',
+                'icon': 'icon-printer',
+                'text': '打印收据'
+            }, {
+                'url': 'lb-editlessonmodal',
+                'icon': 'fa fa-reply',
+                'text': '办理退款'
+            }, {
+                'url': 'lb-editlessonmodal',
+                'icon': 'icon-note',
+                'text': '修改订单'
+            }, {
+                'url': 'lb-editlessonmodal',
+                'icon': 'fa fa-times',
+                'text': '删除订单'
+            }], 
+            'order_type': [{
+                'value': 1,
+                'text': '报名费'
+            }, {
+                'value': 2,
+                'text': '预交费'
+            }, {
+                'value': 3,
+                'text': '学杂费'
+            }],
             'pay_status': [{
-                'value': '',
+                'value': -1,
                 'text': '所有'
             }, {
-                'value': '0',
-                'text': '未付款订单'
+                'value': 0,
+                'text': '未付款'
             }, {
-                'value': '1',
-                'text': '部分付款订单'
+                'value': 1,
+                'text': '部分付款'
             }, {
-                'value': '2',
-                'text': '已付款订单'
+                'value': 2,
+                'text': '已付款'
             }],
             'search': {
                 'fields': [{
@@ -208,10 +215,10 @@ export default {
                     'type': ''
                 })
             }
-            let status = this.localdata.form.pay_status.trim()
-            if (status.length > 0) {
+            let status = this.localdata.form.pay_status
+            if (status != -1) {
                 filterObj.push({
-                    'key': 'status',
+                    'key': 'pay_status',
                     'value': status,
                     'type': ''
                 })

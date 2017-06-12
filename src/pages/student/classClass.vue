@@ -46,7 +46,7 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" :readonly="localdata.form.class_id.length==0" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" @change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" :readonly="localdata.form.class_id.length==0" v-model="localdata.form.unit_price">
+                                    <input type="number" @change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.unit_price">
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" :disabled="localdata.form.class_id.length==0" v-model="localdata.form.has_discount"><i></i>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.has_discount"><i></i>
                                 </label>
                                 <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
                                     <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
@@ -100,7 +100,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" :disabled="localdata.form.class_id.length==0" v-model="localdata.form.has_present"><i></i></label>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.has_present"><i></i></label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present"><span class="input-group-addon"><i class="fa fa-plus"></i></span>
                                     <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">次</span></div>
                             </div>
@@ -109,7 +109,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课耗单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :disabled="localdata.form.class_id.length==0" v-model="localdata.form.c_unit_price">
+                                    <input type="number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" v-model="localdata.form.c_unit_price">
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                                 <p class="alert alert-info no-padder m-t-xs">用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入）</p>
@@ -118,14 +118,14 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="如有备注请输入" :disabled="localdata.form.class_id.length==0" v-model="localdata.form.order_remark">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.origin_amount - this.localdata.form.discount_amount}}</span>
+                                    <span class="text-bold text-danger ng-binding">{{ Number(this.localdata.form.origin_amount) - Number(this.localdata.form.discount_amount)}}</span>
                                     <small>元</small>
                                 </p>
                             </div>
@@ -134,14 +134,14 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.origin_times + this.localdata.form.present_times}}</span>
+                                    <span class="text-bold text-danger ng-binding">{{ Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)}}</span>
                                     <small>次</small>
                                 </p>
                             </div>
                         </div>
                         <div class="row no-gutter b-t m-t">
                             <div class="col-xs-8">
-                                <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="localdata.form.class_id.length==0">
+                                <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="this.localdata.form.origin_amount - this.localdata.form.discount_amount==0">
                                     <i class="fa fa-save" ng-hide="saving"></i> 确定订单
                                 </button>
                             </div>
@@ -175,7 +175,8 @@ export default {
             'form': {
                 'class_id': '',
                 'course_id': '',
-                'origin_times': '',
+                'origin_times': 0,
+                'refund_status':0, 
                 'back_amount': 0,
                 'unit_price': 0,
                 'origin_amount': 0,
@@ -183,7 +184,7 @@ export default {
                 'has_present': '',
                 'c_unit_price': '',
                 'order_remark': '',
-                'present_times': '',
+                'present_times': 0,
                 'discount': 0,
                 'discount_amount': 0,
                 'order_amount': 0,
@@ -191,8 +192,8 @@ export default {
                 'pay_status': 0,
                 'student_id': '',
                 'order_no': '',
-                'order_type': 1,
-                'body': ''
+                'order_type': 1, 
+                'body': '' 
             }
         }
         return {
@@ -259,7 +260,7 @@ export default {
             }
         },
         open() {
-            let count = this.localdata.form.origin_times + this.localdata.form.present_times
+            let count = Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)
             this.localdata.form.order_no = 'LB' + this.moment().format('YYYYMMDDssSSSS')
             this.localdata.form.body = `班课[${this.class_name}]${count}次`
             this.handleSave().then((data) => {
