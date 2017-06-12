@@ -113,10 +113,25 @@ export default {
                 'text': '课时包'
             }],
             'dropDownMenu': [{
-                'url': 'lb-editlessonmodal',
-                'icon': 'fa fa-pencil-square',
-                'text': '编辑'
-            }],
+                    'url': 'lb-editlessonmodal',
+                    'icon': 'icon-printer',
+                    'text': '打印收据'
+                }, {
+                    'url': 'lb-editlessonmodal',
+                    'icon': 'fa fa-reply',
+                    'text': '办理退款'
+                }, {
+                    'url': 'lb-editlessonmodal',
+                    'icon': 'icon-note',
+                    'text': '修改订单'
+                }, {
+                    'url': 'lb-editlessonmodal',
+                    'icon': 'fa fa-times',
+                    'text': '删除订单'
+                }
+
+
+            ],
             'pay_status': [{
                 'value': '',
                 'text': '所有'
@@ -211,7 +226,7 @@ export default {
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
- 
+
     }
 }
 </script>
