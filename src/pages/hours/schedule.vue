@@ -1,243 +1,248 @@
 <template>
-    <div class="ng-scope arrange">
-        <div class="wrapper-xs ng-scope">
-            <div class="wrapper panel panel-default bg-white ng-scope">
-                <div class="row">
-                    <div class="col-xs-12 col-md-3 m-t " :class="{result:getSelectName}">
-                        <div class="inline">
-                            <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+    <div>
+        <div class="ng-scope arrange">
+            <div class="wrapper-xs ng-scope">
+                <div class="wrapper panel panel-default bg-white ng-scope">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-3 m-t " :class="{result:getSelectName}">
+                            <div class="inline">
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-md-7 m-t ">
-                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
-                        <div class="inline w-sm va-m m-l-xs">
-                            <div class="input-group">
-                                <input type="text" placeholder="请选择" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.select_name">
-                                <span class="input-group-btn">
+                        <div class="col-xs-12 col-md-7 m-t ">
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
+                            <div class="inline w-sm va-m m-l-xs">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请选择" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.select_name">
+                                    <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handleSelect">
                                        {{localdata.form.show_type}}
                                     </button>
                                 </span>
+                                </div>
+                            </div>
+                            <div class="inline w-sm va-m m-l-xs">
+                                <div class="input-group">
+                                    <select class="form-control" v-model="localdata.form.show_type" @change="selectShowType">
+                                        <template v-for="item in localdata.show_type">
+                                            <option :value="item.value">{{item.text}}</option>
+                                        </template>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="inline w-sm va-m m-l-xs">
-                            <div class="input-group">
-                                <select class="form-control" v-model="localdata.form.show_type" @change="selectShowType">
-                                    <template v-for="item in localdata.show_type">
-                                        <option :value="item.value">{{item.text}}</option>
-                                    </template>
-                                </select>
-                            </div>
+                        <div class="col-xs-12 col-md-2 m-t " v-model="localdata.form.show_list_type">
+                            <select class="form-control">
+                                <option value="-1">按列表显示</option>
+                                <option value="1">按月显示</option>
+                                <option value="2">按周显示</option>
+                                <option value="3">按天显示</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-2 m-t " v-model="localdata.form.show_list_type">
-                        <select class="form-control">
-                            <option value="-1">按列表显示</option>
-                            <option value="1">按月显示</option>
-                            <option value="2">按周显示</option>
-                            <option value="3">按天显示</option>
-                        </select>
+                    <div class="row  m-t arrangeover">
+                        <table class="table ">
+                            <thead>
+                                <tr class="fixedThead">
+                                    <th width="120px">星期</th>
+                                    <th width="119px">时间</th>
+                                    <th width="120pxpx">周一
+                                        <label>(06/05)</label>
+                                    </th>
+                                    <th width="120pxpx">周二
+                                        <label>(06/06)</label>
+                                    </th>
+                                    <th width="120px">周三
+                                        <label>(06/07)</label>
+                                    </th>
+                                    <th width="120px">周四
+                                        <label>(06/08)</label>
+                                    </th>
+                                    <th width="120px">周五
+                                        <label>(06/09)</label>
+                                    </th>
+                                    <th width="120px">周六
+                                        <label>(06/10)</label>
+                                    </th>
+                                    <th width="120px">周日
+                                        <label>(06/11)</label>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="scrollTbody ">
+                                <tr>
+                                    <td rowspan="15" width="100px" style="vertical-align:middle">一</td>
+                                    <td class="scheduleWeek" width="60px" style="background-color: rgb(255, 242, 240);">08:00</td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">09:00</td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">10:00</td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">11:00</td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">12:00</td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);"></td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                    <td style="background-color: rgb(255, 242, 240);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">13:00</td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">14:00</td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">15:00</td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">16:00</td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                    <td style="background-color: rgb(246, 250, 254);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">17:00</td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);">
+                                    </td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">18:00</td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);">
+                                    </td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">19:00</td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);">
+                                    </td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">20:00</td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);">
+                                    </td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                </tr>
+                                <tr>
+                                    <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">21:00</td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                    <td style="background-color: rgb(254, 254, 246);">
+                                    </td>
+                                    <td style="background-color: rgb(254, 254, 246);"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="row  m-t arrangeover">
-                    <table class="table " >
-                        <thead>
-                            <tr class="fixedThead">
-                                <th width="120px">星期</th>
-                                <th width="119px">时间</th>
-                                <th width="120pxpx">周一
-                                    <label>(06/05)</label>
-                                </th>
-                                <th width="120pxpx">周二
-                                    <label>(06/06)</label>
-                                </th>
-                                <th width="120px">周三
-                                    <label>(06/07)</label>
-                                </th>
-                                <th width="120px">周四
-                                    <label>(06/08)</label>
-                                </th>
-                                <th width="120px">周五
-                                    <label>(06/09)</label>
-                                </th>
-                                <th width="120px">周六
-                                    <label>(06/10)</label>
-                                </th>
-                                <th width="120px">周日
-                                    <label>(06/11)</label>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="scrollTbody ">
-                            <tr>
-                                <td rowspan="15" width="100px" style="vertical-align:middle">一</td>
-                                <td class="scheduleWeek" width="60px" style="background-color: rgb(255, 242, 240);">08:00</td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">09:00</td>
-                               <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">10:00</td>
-                            <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(255, 242, 240);">11:00</td>
-                              <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek"style="background-color: rgb(255, 242, 240);">12:00</td>
-                               <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);"></td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                                <td style="background-color: rgb(255, 242, 240);">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">13:00</td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">14:00</td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">15:00</td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(246, 250, 254);">16:00</td>
-                                 <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                                <td style="background-color: rgb(246, 250, 254);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">17:00</td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);">
-                                </td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">18:00</td>
-                               <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);">
-                                </td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">19:00</td>
-                                 <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);">
-                                </td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">20:00</td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);">
-                                </td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek" style="background-color: rgb(254, 254, 246);">21:00</td>
-                               <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                                <td style="background-color: rgb(254, 254, 246);">
-                                </td>
-                                <td style="background-color: rgb(254, 254, 246);"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="panlb-footer ">
-                    <div class="row ">
-                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </lb-pagination>
+                    <div class="panlb-footer ">
+                        <div class="row ">
+                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </lb-pagination>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+       
     </div>
 </template>
+
 <style>
 .fixedThead {
     display: block;
@@ -301,11 +306,11 @@
     text-align: center!important;
     font-size: 14px;
 }
-.fixedThead th{
+
+.fixedThead th {
     border: 1px solid #ddd;
     background-color: white !important;
 }
-
 
 </style>
 <script>

@@ -19,7 +19,7 @@
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
