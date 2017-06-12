@@ -16,27 +16,16 @@
                             <div class="btn-group">
                                 <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="news.ob_id" btn-radio="11158">当前校区</label>
                                 <label class="btn btn-default ng-pristine ng-untouched ng-valid" ng-model="news.ob_id" btn-radio="0" ng-hide="user.is_main != 1">所有校区</label>
-                            </div>
+                            </div> 
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="title" placeholder="标题" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" v-model="localdata.form.news_title" required="">
-                        </div>
+                        <div class="form-group ng-scope"><label class="control-label col-md-1 col-xs-12" style="padding-top: 7px;">标题:</label> <div class="col-md-11 col-xs-12" style="padding:2px"><div class="inline w-lg"  style="width: 440px;"><input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid "  v-model="localdata.form.news_title">
+
+                        </div></div></div>
+                     
+                  
+                     
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="edui-container" style="width: 100%; z-index: 999;">
-                                    <div class="edui-toolbar">
-                                        <div class="edui-dialog-container"></div>
-                                    </div>
-                                    <div class="edui-editor-body">
-                                        <div class="ng-pristine ng-untouched ng-valid ng-isolate-scope edui-body-container" contenteditable="true" style="width: 100%; min-height: 200px; z-index: 999;">
-                                            <p>
-                                                <br>
-                                            </p>
-                                        </div>
-                                        <textarea id="news-content"  class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-valid-parse" style="display: none;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="form-group"><label class="control-label col-md-1 col-xs-12" style="padding-top:13px;text-align: right;">备注:</label> <div class="col-md-11 col-xs-12"><div class="inline w-lg"><textarea name="note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"  v-model="localdata.form.news_content"></textarea></div></div></div>
                         </div>
                     </form>
                 </div>
@@ -49,6 +38,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
     name: 'announcement',
