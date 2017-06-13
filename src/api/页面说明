@@ -11,7 +11,7 @@
 	退费列表  ./order/refund.vue
 
 	预充值没有用  ./ordermain.vue
-学生结构
+student学生结构
 {
 	'student_name': '',     //姓名
 	'sex': '0',             //性别
@@ -32,7 +32,7 @@
 	'amount': 0,      //余额
 	'isdel': false   //是否归档
 }
-订单结构
+order订单结构
 {
 	'class_id': '',                //班级Id 
 	'course_id': '',     //课程ID
@@ -56,7 +56,7 @@
 	'order_type': 1, //订单类型 1订单  2 预交费  3学杂费
 	'body': ''  //订单内容
 }
-支付结构
+pay支付结构
 {
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
@@ -66,7 +66,7 @@
 'use_balance': false,  //是否余额支付
  'balance_pay_amount': //余额付款
 }
-退费结构
+refund退费结构
 {
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
@@ -79,7 +79,7 @@
 'times':0 ,    //扣减课次
 'note':''      //退费备注       
 }
-清除费用结构
+clear清除费用结构
 {
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
