@@ -5,8 +5,9 @@
                 <div class="col-xs-12 col-md-4 m-t"></div>
                 <div class="col-xs-12 col-md-8 m-t">
                     <div class="btn-group m-l">
-                        <label btn-radio="'0'" ng-model="params.type" class="btn btn-default ng-untouched ng-valid ng-dirty">内部</label>
-                        <label btn-radio="'1'" ng-model="params.type" class="btn btn-default ng-untouched ng-valid ng-dirty active ng-valid-parse">外部</label>
+                        <!--   <label btn-radio="'0'" ng-model="params.type" class="btn btn-default ng-untouched ng-valid ng-dirty">内部</label>
+                        <label btn-radio="'1'" ng-model="params.type" class="btn btn-default ng-untouched ng-valid ng-dirty active ng-valid-parse">外部</label> -->
+                        <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
                     </div><a class="btn btn-success pull-right" @click="handleShowDialog('lb-announcement')">发布</a></div>
             </div>
             <div class="table-responsive">
@@ -14,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>操作</th>
-                            <th>标题</th>
+                            <th>标题</th> 
                             <th width="150">校区</th>
                             <th width="140">时间</th>
                         </tr>
@@ -51,7 +52,22 @@
 export default {
     name: 'news',
     data() {
-        let localdata = {}
+        let localdata = {
+            'form': {
+                'track_type': '',
+              
+
+
+            },
+            'track_type': [{
+                'value': '0',
+                'text': '内部'
+            }, {
+                'value': '1',
+                'text': '外部'
+            }],
+       
+        }
         return {
             localdata,
             tables: ['announcement'],
@@ -69,6 +85,24 @@ export default {
                 this.handleGetTable()
             })
         },
+        handleSearch() {
+            let filterObj = []
+            let status = this.localdata.form.track_type.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'status',
+                    'value': status,
+                    'type': ''
+                })
+            }
+         
+
+       
+
+            //console.log(filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
     }
 }
 </script>

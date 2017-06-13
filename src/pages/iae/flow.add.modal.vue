@@ -117,7 +117,18 @@ export default {
                 'note': '',
                 'name': '',
                 'create_time': ''
-            }
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+
+                    'create_time': {
+                        'type': 'date',
+                    }
+                }
+            },
         }
         return {
             localdata,

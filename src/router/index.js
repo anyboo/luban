@@ -15,7 +15,7 @@ menu.forEach((item) => {
                     routes.push({
                         path: subitem.to,
                         component: req(`${to}`) //resolve => require([`${to}`], resolve)
-                    })
+                    }) 
                 } catch (err) {
                     console.log(to, err)
                 }
