@@ -16,7 +16,7 @@
                                             <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                 <template v-for="item in localdata.search.fields">
                                                     <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
-                                                </template> 
+                                                </template>
                                             </lb-dropdown-menu>
                                         </lb-dropdowns>
                                     </div>
@@ -29,11 +29,10 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.is_end" v-model="localdata.form.is_end"></lb-buttongroup>
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
                         </div>
                         <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
-                            <i class="fa fa-plus"></i>新建班级
+                            <i class="fa fa-plus"></i>新建教室
                         </a>
                     </div>
                 </div>
@@ -49,26 +48,11 @@
                                 </lb-dropdown>
                             </template>
                         </lb-table-column>
-                        <lb-table-column prop="data" label="简称">
+                        <lb-table-column prop="data" label="教室名称">
                             <template scope="scope">{{ scope.row.class_name }}</template>
                         </lb-table-column>
-                        <lb-table-column prop="data" label="名称">
-                            <template scope="scope">{{ scope.row.short_name }}</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="级别">
-                            <template scope="scope">66</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="已排课次数">
-                            <template scope="scope">1</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="已考勤次数">
-                            <template scope="scope">1</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="教师">
-                            <template scope="scope">{{ getLookUp(scope.row.employee,'name') }}</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="开课日期">
-                            <template scope="scope">{{ getDateFormat(scope.row.open_time) }}</template>
+                        <lb-table-column prop="data" label="最大人数">
+                            <template scope="scope">{{ scope.row.max_student_num }}</template>
                         </lb-table-column>
                     </lb-table>
                 </div>
@@ -88,52 +72,26 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'is_end': '',
-                'oe_id': '',
                 'search_value': '',
                 'status': ''
             },
-            'is_end': [{
-                'value': '0',
-                'text': '未结课'
-            }, {
-                'value': '1',
-                'text': '已结课'
-            }],
             'search': {
                 'fields': [{
                     'name': 'class_name',
-                    'value': '班级名'
-                }, {
-                    'name': 'short_name',
-                    'value': '班级简称'
+                    'value': '教室名'
                 }],
                 'search_key': 'class_name',
-                'search_value': '班级名'
+                'search_value': '教室名'
             },
             'dropDownMenu': [{
                 'url': 'lb-newsclassmodal',
                 'icon': 'fa icon-note',
-                'text': '编辑班级'
-            }, {
-                'url': 'lb-studentsmodal',
-                'icon': 'fa icon-user',
-                'text': '学员管理'
+                'text': '编辑教室'
             }, {
                 'action': 'delete',
                 'icon': 'fa fa-times',
                 'text': '删除'
-            }, {
-                'url': 'lb-endsclassmodal',
-                'icon': 'fa fa-calendar',
-                'text': '结课'
-            }],
-            'lookup': {
-                'localField': 'teacher_id',
-                'from': 'employee',
-                'foreignField': '_id',
-                'as': 'employee'
-            }
+            }]
         }
         return {
             localdata,
@@ -168,19 +126,7 @@ export default {
                     'type': 'like'
                 })
             }
-            let status = this.localdata.form.status.trim()
-            if (status.length > 0) {
-                filterObj.push({
-                    'key': 'status',
-                    'value': status,
-                    'type': ''
-                })
-            }
-            filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.lookup,
-                'type': 'lookup'
-            })
+   
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
@@ -189,7 +135,7 @@ export default {
             data
         }) {
             if (action == 'delete') {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
