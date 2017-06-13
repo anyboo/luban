@@ -7,12 +7,12 @@
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <button class="btn btn-default ng-isolate-scope" export="expenses" export-params="params">
                                 <i class="glyphicon glyphicon-export"></i>导出
                             </button>
@@ -30,9 +30,9 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTableData" stripe>
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="日期">
-                                <template scope="scope">2017-05-12 15:41</template>
+                                <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="金额">
                                 <template scope="scope">
@@ -68,7 +68,8 @@ export default {
                 'date_start': '',
                 'daterange': '',
                 'date_end': '',
-                'duration': ''
+                'duration': '',
+                'type':''
             },
             'duration': [{
                 'value': 'today',
@@ -83,10 +84,52 @@ export default {
         }
         return {
             localdata,
+            tables: ['flow'],
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        handleSearch() {
+            let filterObj = []
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+                    filterObj.push({
+                        'key': 'create_time',
+                        'value': startTime,
+                        'type': 'gt'
+                    })
+                    filterObj.push({
+                        'key': 'create_time',
+                        'value': endTime,
+                        'type': 'lt'
+                    })
+
+                }
+            }
+            let status = this.localdata.form.type.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        },
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        }
+    }
 }
 </script>

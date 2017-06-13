@@ -7,16 +7,16 @@
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <lb-buttongroup :group-data="localdata.check_status" v-model="localdata.form.check_status"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
+                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="icon-user"></i>
@@ -41,23 +41,23 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTableData" stripe>
+                        <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="学员">
-                                <template scope="scope">李岩</template>
+                                <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="付款日期">
-                                <template scope="scope">2017-05-11 20:07</template>
+                                <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">1000.00</span>
+                                    <span class="badge bg-success ng-binding">{{scope.row.amount}}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="付款方式">
                                 <template scope="scope">现金</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="备注">
-                                <template scope="scope">-</template>
+                                <template scope="scope">{{scope.row.note}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
@@ -69,7 +69,7 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'">核对</a>
+                                    <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'" @click="handleCommand">核对</a>
                                 </template>
                             </lb-table-column>
                         </lb-table>
@@ -100,7 +100,9 @@ export default {
                 'date_end': '',
                 'duration': '',
                 'check_status': '',
-                'student_name': ''
+                'param_student_name': '',
+                'type': '',
+                'student_id': ''
             },
             'duration': [{
                 'value': 'today',
@@ -118,14 +120,109 @@ export default {
             }, {
                 'value': '1',
                 'text': '已对账'
-            }]
+            }, ],
+            'lookup': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
+            }
+
         }
         return {
             localdata,
+            tables: ['flow'],
+            student_name: ''
         }
     },
-    computed: {},
+    computed: {
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                    this.handleSearch()
+                } else {
+                    this.localdata.form.student_id = ''
+                    this.student_name = '学员'
+                    this.handleSearch()
+                }
+            }
+            return this.student_name
+        },
+    },
     watch: {},
-    methods: {}
+    methods: {
+        handleSearch() {
+            let filterObj = []
+
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'creattime',
+                        'value': startTime,
+                        'type': 'gt'
+                    })
+                    filterObj.push({
+                        'key': 'creattime',
+                        'value': endTime,
+                        'type': 'lt'
+                    })
+                }
+            }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+
+            //console.log(filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        },
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
+        handleCommand() {
+            this.$confirm('是否要核对?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.handleDelete(data._id).then(() => {
+                    this.$message({
+                        message: '删除成功',
+                        type: 'success'
+                    })
+                    this.handleGetTable()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已确定核对'
+                })
+            })
+
+        }
+
+    }
 }
 </script>

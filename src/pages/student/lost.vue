@@ -6,22 +6,22 @@
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
                             <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                            <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                            <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
                             <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <lb-buttongroup :group-data="localdata.lost_marked" v-model="localdata.form.lost_marked"></lb-buttongroup>
                     </div>
                 </div>
                 <div class="row m-t">
-                    <lb-table :data="getTableData" stripe>
+                    <lb-table :data="getTablesData()" stripe>
                         <lb-table-column prop="data" label="学生姓名">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ scope.row.student_name }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="联系电话">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ scope.row.first_tel }}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="学校">
                             <template scope="scope"></template>
@@ -33,7 +33,7 @@
                             <template scope="scope"></template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="建档日期">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </lb-table-column>
                         <lb-table-column prop="data" label="最后课程">
                             <template scope="scope"></template>
@@ -68,7 +68,8 @@ export default {
                 'daterange': '',
                 'date_end': '',
                 'lost_marked': '',
-                'duration': ''
+                'duration': '',
+                'type':''
             },
             'lost_marked': [{
                 'value': '0',
@@ -90,10 +91,52 @@ export default {
         }
         return {
             localdata,
+            tables: ['student'],
         }
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+         handleSearch() {
+            let filterObj = []
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+                    filterObj.push({
+                        'key': 'creattime',
+                        'value': startTime,
+                        'type': 'gt'
+                    })
+                    filterObj.push({
+                        'key': 'creattime',
+                        'value': endTime,
+                        'type': 'lt'
+                    })
+
+                }
+            }
+            let status = this.localdata.form.type.trim()
+            if (status.length > 0) {
+                filterObj.push({
+                    'key': 'type',
+                    'value': status,
+                    'type': ''
+                })
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        },
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        }
+    }
 }
 </script>

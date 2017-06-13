@@ -5,7 +5,7 @@
                 <div class="col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4>机构基本信息</h4></div> 
+                            <h4>机构基本信息</h4></div>
                         <div class="panel-body">
                             <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-dirty ng-valid-parse">
                                 <div class="form-group">
@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">机构联系电话:</label>
-                                    <input type="text" placeholder=""  class="form-control  ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-model="org.org_tel">
+                                    <input type="text" placeholder="" class="form-control  ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-model="org.org_tel">
                                 </div>
                                 <div class="form-group ng-scope" ng-if="org.area_id != 0">
                                     <label class="control-label">所在地区:</label>
@@ -103,7 +103,7 @@ export default {
         return {
             localdata,
             tables: ['campus'],
-           
+
         }
     },
     mounted() {
