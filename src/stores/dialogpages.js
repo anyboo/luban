@@ -5,7 +5,6 @@ import page4 from '~/pages/lesson/lesson/new_lesson.modal.vue'
 import page5 from '~/pages/lesson/classes/open_class.modal.vue'
 import page6 from '~/pages/directive/selectstudenttpl.vue'
 import page7 from '~/pages/student/order/pay_now.modal.vue'
-import page10 from '~/pages/public/feature.modal.vue'
 import page11 from '~/pages/directive/selectsclasstpl.vue'
 import page12 from '~/pages/lesson/classes/lesson_arrange.modal.vue'
 import page13 from '~/pages/widget/attendance.modal.vue'
@@ -68,7 +67,6 @@ pages['lb-newlessonmodal'] = page4
 pages['lb-openclassmodal'] = page5
 pages['lb-selectstudenttpl'] = page6
 pages['lb-paynowmodal'] = page7
-pages['lb-featuremodal'] = page10
 pages['lb-selectsclasstpl'] = page11
 pages['lb-lessonarrangemodal'] = page12
 pages['lb-attendancemodal'] = page13
