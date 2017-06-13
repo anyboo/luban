@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
-                            <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                             <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                             <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
                                 <i class="fa fa-plus "></i>开班
@@ -42,7 +42,13 @@
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="ng-binding">{{item.class_name}} <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small></h4></div>
+                                        <h4 class="ng-binding">{{item.class_name}} 
+                                                <small class="label bg-success m-l ng-scope" v-if="getOpen(item,'open')">已开课</small>
+                                                <small class="label bg-red m-l ng-scope" v-if="getOpen(item,'')">未开课</small>
+                                                <small class="label bg-blue m-l ng-scope" v-if="getOpen(item,'close')">已结课</small>
+                                            
+                                        </h4>
+                                    </div>
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
                                             <li>
@@ -89,23 +95,13 @@
                                     </div>
                                     <div class="panel-footer text-center b-t"><a class="btn btn-xs pull-left btn-default" ng-class="{'btn-warning':item.$$selected,'btn-default':!item.$$selected}" ng-click="item.$$selected = !item.$$selected"><i class="fa fa-rmb"></i></a> <a class="btn btn-sm btn-default" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13311">班级详情</a>
                                         <div class="pull-right btn-group dropdown  btn-group dropdown " dropdown="" btn-class="btn-info btn-sm" btn-tooltip="操作" item="item">
-                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                                    <i class="fa fa-cog ng-scope"> 操作</i>
+                                                    <i class="fa fa-cog ng-scope"></i>
+                                                    <span class="ng-scope">操作</span>
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
                                             </lb-dropdown>
-                                            <ul class="dropdown-menu">
-                                                <li><a ng-click="$util.open('tpl/app/lesson/classes/edit_class.modal.html','md',item)" ui-per="class.edit"><i class="icon-note"></i> 编辑班级</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/lesson/classes/input_student.modal.html','md',item)" ui-per="class.input_student"><i class="fa fa-users"></i> 批量报名</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/lesson/classes/reg_performance.modal.html','md',item)" ui-per="class.regperformance"><i class="fa fa-edit"></i> 登记成绩</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/lesson/classes/lesson_arrange.modal.html','lg',item)" ui-per="class.arranges"><i class="fa fa-calendar text-info"></i> 排课</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/lesson/classes/lesson_dispatch.modal.html','md',item)" ui-per="class.dispatch"><i class="fa fa-calendar text-warning"></i> 调课</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/lesson/classes/end_class.modal.html','lg',item)" ui-per="class.end"><i class="fa fa-calendar text-danger"></i> 结课</a></li>
-                                                <li ng-hide="item.is_end == '1'"><a ng-click="$util.open('tpl/app/hours/reg_class_attendance.modal.html','lg',item)" ui-per="hours.attendance"><i class="fa fa-calendar"></i> 按排课考勤</a></li>
-                                                <li><a ng-click="$util.open('tpl/app/hours/remove_class_attendance.modal.html','lg',item)" ui-per="hours.attendance"><i class="icon-ban"></i> 撤销考勤</a></li>
-                                                <li><a ng-click="$util.open('tpl/app/lesson/classes/upgrade_class.modal.html','lg',item)" ui-per="class.upgrade"><i class="fa fa-wrench"></i> 升级</a></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +138,13 @@
                             <lb-table-column prop="data" label="开课日期">
                                 <template scope="scope">
                                     <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
-                                    <small class="label bg-success m-l ng-scope" ng-if="item.status == '1'">已开课</small>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column label="状态">
+                                <template scope="scope">
+                                    <small class="label bg-success m-l ng-scope" v-if="getOpen(scope.row,'open')">已开课</small>
+                                    <small class="label bg-red m-l ng-scope" v-if="getOpen(scope.row,'')">未开课</small>
+                                    <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="最后考勤">
@@ -241,10 +243,6 @@ export default {
                 'icon': 'fa fa-users',
                 'text': '批量报名'
             }, {
-                'url': 'lb-regperformancemodal',
-                'icon': 'fa fa-edit',
-                'text': '登记成绩'
-            }, {
                 'url': 'lb-lessonarrangemodal',
                 'icon': 'fa fa-calendar text-info',
                 'text': '排课'
@@ -270,7 +268,7 @@ export default {
                     'name': 'class_name',
                     'value': '班级名'
                 }, {
-                    'name': 'master',
+                    'name': 'employee.name',
                     'value': '老师姓名'
                 }],
                 'search_key': 'class_name',
@@ -305,6 +303,16 @@ export default {
     },
     watch: {},
     methods: {
+        getOpen(item, value) {
+            let opentime = new Date()
+            if (value == 'close') {
+                return item.status == 2
+            } else if (value == 'open') {
+                return item.open_time < opentime.getTime()
+            } else {
+                return item.open_time > opentime.getTime()
+            }
+        },
         handleMenuCommand(value) {
             this.localdata.search.search_key = value
             this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
@@ -331,9 +339,35 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
+            let status = this.localdata.form.status.trim()
+            if (status.length > 0) {
+                let opentime = new Date()
+                if (status == '1') {
+                    filterObj.push({
+                        'key': 'open_time',
+                        'value': opentime.getTime(),
+                        'type': 'lte'
+                    })
+                }
+                if (status == '0') {
+                    filterObj.push({
+                        'key': 'open_time',
+                        'value': opentime.getTime(),
+                        'type': 'gt'
+                    })
+                }
+                if (status == '2') {
+                    filterObj.push({
+                        'key': 'status',
+                        'value': 2,
+                        'type': ''
+                    })
+                }
+            }
+            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
-        },
-    }
+        }
+    },
 }
 </script>

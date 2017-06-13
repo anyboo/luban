@@ -47,16 +47,6 @@
                         <lb-buttongroup :group-data="localdata.no_reason_record_absence" v-model="localdata.form.no_reason_record_absence"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="m-t b-b">
-                    <p>
-                        <strong>学习管家设置</strong>
-                    </p>
-                    <div class="m-b">
-                        是否显示剩余课次:
-                        <lb-buttongroup :group-data="localdata.has_hide_lesson_times" v-model="localdata.form.has_hide_lesson_times"></lb-buttongroup>
-                        <p class="alert alert-info m-t-xs">此设置仅对课时包并且有时间限制的课时包课程有效</p>
-                    </div>
-                </div>
             </form>
             <div class="b-t padder-v">
                 <button type="submit" ng-disabled="form1.$invalid || saving" class="btn btn-primary" ng-click="save_config()">

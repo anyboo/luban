@@ -33,8 +33,11 @@
                                     <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
+                                </template>
+                            </lb-table-column>
+                            <lb-table-column width="100" prop="data" label="状态" class="widthes">
+                                <template scope="scope">
                                     <span class="label bg-success ng-scope pull" width="100">已报读</span>
-                                    <div> &nbsp</div>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="沟通内容">

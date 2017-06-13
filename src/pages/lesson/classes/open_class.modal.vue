@@ -136,8 +136,13 @@ export default {
                         'min': 1,
                         'max': 256,
                         'errorStatus': false
+                    },
+                    'open_time': {
+                        'type': 'date',
+                    },
+                    'close_time': {
+                        'type': 'date',
                     }
-
                 }
             },
         }
@@ -171,8 +176,7 @@ export default {
                     this.localdata.form.teacher_id = ''
                 }
                 result = true
-            }
-            else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
+            } else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
                     this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
