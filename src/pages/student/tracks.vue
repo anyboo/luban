@@ -1,7 +1,7 @@
 <template>
     <div ui-view class="ng-scope">
         <div class="wrapper-xs ng-scope">
-            <div class="ng-scope"> 
+            <div class="ng-scope">
                 <div class=" wrapper panel panel-default bg-white ng-scope">
                     <div class="row no-gutter ">
                         <div class="col-xs-12 col-md-4 m-t">
@@ -101,11 +101,9 @@ export default {
         let localdata = {
             'form': {
                 'daterange': '',
-                'date_start': '',
-                'date_end': '',
                 'duration': '',
                 'student_id': '',
-                
+
                 'track_type': ''
             },
             'duration': [{
@@ -157,6 +155,9 @@ export default {
                         this.handleSearch()
                     }
                 }
+            }
+            if (this.$store.state.envs.currDialog == 'lb-inquiry') {
+                this.handleSearch()
             }
             return this.student_name
         },

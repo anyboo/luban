@@ -11,7 +11,7 @@
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-8 m-t">
+                        <div class="col-xs-12 col-md-8 m-t"> 
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <lb-buttongroup :group-data="localdata.type" v-model="localdata.form.type" @input="handleSearch"></lb-buttongroup>
                             <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">

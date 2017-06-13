@@ -4,39 +4,64 @@
             <div class="wrapper-xs ng-scope">
                 <div class="panel panel-default">
                     <div class="panel-body ng-scope" ui-view="">
-                        <div xo-rest="students" xo-rest-url-param="[$stateParams.os_id,'match']" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="student_matches" loading-container=".table-responsive" loading-text="正在加载赛事记录..." empty-text="没有赛事记录!" class="ng-scope">
-                            <a class="btn btn-default m-b" @click="handleShowDialog('lb-regstudentmatchmodal')"><i class="fa fa-plus">                   
-                </i> 添加赛事记录</a>
-                            <div class="row">
-                                <lb-table :data="getTablesData()" stripe>
-                                    <lb-table-column prop="data" label="日期">
-                                        <template scope="scope">
-                                            {{scope.row.join_date}}
-                                        </template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="赛事名称">
-                                        <template scope="scope"> {{scope.row.match_name}}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="比赛成绩">
-                                        <template scope="scope"> {{scope.row.result}}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="录入时间">
-                                        <template scope="scope">
-                                            2017-06-06
-                                        </template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="操作">
-                                        <template scope="scope"><a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details')">查看详情</a> <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a></template>
-                                    </lb-table-column>
-                                </lb-table>
-                                <div class="panel-footer ">
-                                    <div class="row ">
-                                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                                        </lb-pagination>
+                        <div class="row no-gutter ">
+                            <div class="col-xs-12 col-md-4 m-t">
+                                <lb-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                            </div>
+                            <div class="col-xs-12 col-md-8 m-t">
+                                <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
+                                <div class="inline w-sm va-m m-l-xs">
+                                    <div class="input-group">
+                                        <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
+                                        <span class="input-group-btn">
+                                <button class="btn btn-default" @click="handSelectStudent(false)">
+                                    <i class="icon-user"></i>
+                                </button>
+                            </span>
                                     </div>
                                 </div>
-                                <div class="grid-data-result">
+                                <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
+                                <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
+                                    <i class="icon-plus"></i>添加赛事记录
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row m-t">
+                            <lb-table :data="getTablesData()" stripe>
+                                <lb-table-column width="100" prop="data" label="学员" class="widthes">
+                                    <template scope="scope">
+                                        <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
+                                            <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
+                                        </a>
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="日期">
+                                    <template scope="scope">
+                                        {{getDateFormat(scope.row.creattime)}}
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="赛事名称">
+                                    <template scope="scope"> {{scope.row.match_name}}</template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="比赛成绩">
+                                    <template scope="scope"> {{scope.row.result}}</template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="录入时间">
+                                    <template scope="scope">
+                                        2017-06-06
+                                    </template>
+                                </lb-table-column>
+                                <lb-table-column prop="data" label="操作">
+                                    <template scope="scope"><a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details',scope.row)">查看详情</a> <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a></template>
+                                </lb-table-column>
+                            </lb-table>
+                            <div class="panel-footer ">
+                                <div class="row ">
+                                    <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                                    </lb-pagination>
                                 </div>
+                            </div>
+                            <div class="grid-data-result">
                             </div>
                         </div>
                     </div>
@@ -49,13 +74,61 @@
 export default {
     name: 'recording',
     data() {
-        let localdata = {}
+        let localdata = {
+            'form': {
+                'daterange': '',
+                'duration': '',
+                'student_id': '',
+            },
+            'duration': [{
+                'value': 'day',
+                'text': '今日'
+            }, {
+                'value': 'week',
+                'text': '本周'
+            }, {
+                'value': 'month',
+                'text': '本月'
+            }],
+            'lookup': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
+            }
+        }
         return {
             localdata,
             tables: ['recording'],
+            'student_name': '学员',
         }
     },
-    computed: {},
+    computed: {
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    if (this.selStudentAddInquiry) {
+                        this.$store.state.envs.currStudent = this.$store.state.envs.currDialogResult
+                        this.handleShowDialog('lb-regstudentmatchmodal')
+                    } else {
+                        this.student_name = this.$store.state.envs.currDialogResult.student_name
+                        this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                        this.handleSearch()
+                    }
+                } else {
+                    if (!this.selStudentAddInquiry) {
+                        this.localdata.form.student_id = ''
+                        this.student_name = '学员'
+                        this.handleSearch()
+                    }
+                }
+            }
+            if (this.$store.state.envs.currDialog == 'lb-recording') {
+                this.handleSearch()
+            }
+            return this.student_name
+        },
+    },
     watch: {},
     methods: {
         handleDelClick(id) {
@@ -67,6 +140,70 @@ export default {
                 this.handleGetTable()
             })
         },
+        handleRouter(event, item) {
+            this.$router.push('/student/info/' + this.getLookUp(item, '_id'))
+            event.stopPropagation()
+        },
+        handSelectStudent(add) {
+            this.selStudentAddInquiry = add
+            if (add) {
+                this.$store.state.envs.currDialog = ''
+                this.$store.state.envs.currDialogResult = null
+            }
+            this.handleShowDialog('lb-selectstudenttpl')
+        },
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
+        handleAddTrack(item) {
+            this.$store.state.envs.currStudent = this.getLookUp(item)
+            this.handleShowDialog('lb-addtrackmodal')
+        },
+        handleSearch() {
+            let filterObj = []
+
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'join_date',
+                        'value': startTime,
+                        'type': 'gt'
+                    })
+                    filterObj.push({
+                        'key': 'join_date',
+                        'value': endTime,
+                        'type': 'lt'
+                    })
+                }
+            }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+
+            //console.log(filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
+        }
     }
 }
 </script>

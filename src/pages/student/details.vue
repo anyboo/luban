@@ -8,19 +8,21 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user"></i>编辑
-                        <span class="badge bg-info ng-binding">{{localdata.form.student_name }}</span>比赛 详情
+                        <i class="fa fa-user"></i>
+                        <span class="badge bg-info ng-binding"></span>{{ getLookUp(currrecord.student,'student_name') }}比赛 详情
                     </h3>
                 </div>
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item ng-binding">参赛日期:2017年00月DD日</li>
-                        <li class="list-group-item ng-binding" v-model="localdata.form.result">比赛成绩:999</li>
+                        <li class="list-group-item ng-binding">参赛日期:  {{getDateFormat(currrecord.creattime)}}</li>
+                        <li class="list-group-item ng-binding">赛事名称:{{currrecord.match_name}}</li>
+                        <li class="list-group-item ng-binding">比赛成绩:{{currrecord.result}}</li>
+                        <li class="list-group-item ng-binding">赛事详情:{{currrecord.info}}</li>
                     </ul>
                     <div class="wrapper ng-binding" ng-bind-html="vm.input.match.detail"></div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button class="btn btn-primary"  @click="lbClosedialog($event)">确定</button>
+                    <button class="btn btn-primary" @click="lbClosedialog($event)">确定</button>
                 </div>
             </div>
         </div>
@@ -31,19 +33,18 @@ export default {
     name: 'details',
     data() {
         let localdata = {
-            'form': {
-                'match_name': '',
-                'result': ''
-
-
-            },
         }
         return {
             localdata,
-            tables: ['recording'],
+            currrecord:{}
         }
     },
-    computed: {},
+    mounted() {
+        this.currrecord = this.$store.state.dialogs.dailogdata
+    },
+    computed: {
+
+    },
     watch: {},
     methods: {}
 }

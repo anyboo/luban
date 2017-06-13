@@ -80,7 +80,7 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="性别">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.sex|sex:1" class="ng-binding">{{ scope.row.sex }}</span>
+                                    <span class="ng-binding"> {{ getButtongroupText(localdata.sex,scope.row.sex)}}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="英文名">
@@ -117,6 +117,19 @@ export default {
                 'status': '',
                 'view_mode': 'list'
             },
+            'sex': [{
+                'value': '1',
+                'iclass': 'fa fa-male',
+                'text': '男'
+            }, {
+                'value': '2',
+                'iclass': 'fa fa-female',
+                'text': '女'
+            }, {
+                'value': '0',
+                'iclass': 'fa fa-question-circle',
+                'text': '待确定'
+            }],
             'status': [{
                 'value': '',
                 'text': '所有学员'

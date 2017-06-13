@@ -38,7 +38,7 @@
                                                     <lb-dropdown-item command="其他">其他</lb-dropdown-item>
                                                     <lb-dropdown-item command="面谈">面谈</lb-dropdown-item>
                                                     <lb-dropdown-item command="网络">网络</lb-dropdown-item>
-                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item>
+                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item> 
                                                 </lb-dropdown-menu>
                                             </lb-dropdowns>
                                         </div>
@@ -177,6 +177,7 @@ export default {
                         type: 'success'
                     })
                     vm.lbClosedialog()
+                    this.$store.state.envs.currDialog = 'lb-inquiry'
                 })
             })
         },
