@@ -187,7 +187,8 @@ export default {
                 'text': '登记考勤'
             }, {
                 'url': 'lb-changeclassmodal',
-                'icon': 'fa fa-exchange'
+                'icon': 'fa fa-exchange',
+                'text': '转班'
             }, {
                 'url': 'lb-wechatmodal',
                 'icon': 'fa fa-weixin',

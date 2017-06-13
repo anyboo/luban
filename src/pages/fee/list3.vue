@@ -118,7 +118,7 @@ export default {
                 'icon': 'icon-wallet',
                 'text': '现场缴费'
             }, {
-                'url': 'lb-orderunpayclearmodal',
+                'url': 'lb-unpayclearmodal',
                 'icon': 'icon-ban',
                 'text': '欠费清除'
             }]

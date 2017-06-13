@@ -5,7 +5,6 @@ import page4 from '~/pages/lesson/lesson/new_lesson.modal.vue'
 import page5 from '~/pages/lesson/classes/open_class.modal.vue'
 import page6 from '~/pages/directive/selectstudenttpl.vue'
 import page7 from '~/pages/student/order/pay_now.modal.vue'
-import page9 from '~/pages/student/order_unpay_clear.modal.vue'
 import page10 from '~/pages/public/feature.modal.vue'
 import page11 from '~/pages/directive/selectsclasstpl.vue'
 import page12 from '~/pages/lesson/classes/lesson_arrange.modal.vue'
@@ -55,7 +54,6 @@ import page62 from '~/pages/system/employee/reset_account.modal.vue'
 import page63 from '~/pages/system/employee/change_account.modal.vue'
 import page64 from '~/pages/lesson/classes/teacher_arranges.modal.vue'
 import page65 from '~/pages/lesson/package/add_subject.modal.vue'
-import page66 from '~/pages/lesson/order/order_refund.modal.vue'
 import page67 from '~/pages/system/branch/add_modal.vue'
 import page68 from '~/pages/lesson/end_sclass_modal.vue'
 import page69 from '~/pages/lesson/sclasses/students_modal.vue'
@@ -71,7 +69,6 @@ pages['lb-newlessonmodal'] = page4
 pages['lb-openclassmodal'] = page5
 pages['lb-selectstudenttpl'] = page6
 pages['lb-paynowmodal'] = page7
-pages['lb-orderunpayclearmodal'] = page9
 pages['lb-featuremodal'] = page10
 pages['lb-selectsclasstpl'] = page11
 pages['lb-lessonarrangemodal'] = page12
@@ -122,7 +119,6 @@ pages['lb-resetaccountmodal'] = page62
 pages['lb-changeaccountmodal'] = page63
 pages['lb-teacherarrangesmodal'] = page64
 pages['lb-addsubjectmodal'] = page65
-pages['lb-orderrefundmodal'] = page66
 pages['lb-addmodal'] = page67
 pages['lb-endsclassmodal'] = page68
 pages['lb-studentsmodal'] = page69

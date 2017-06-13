@@ -30,14 +30,14 @@
                             </lb-table-column>
                             <lb-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{scope.row.pay_amount}}</span>
+                                    <span class="badge bg-success ng-binding">{{scope.row.money_pay_amount}}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="付款方式">
-                                <template scope="scope">{{scope.row.pay_typ}}</template>
+                                <template scope="scope">现金</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="收据">
                                 <template scope="scope">
