@@ -123,7 +123,6 @@ export default {
                 'errorStatus': false,
                 'additional': true,
                 'fields': {
-
                     'create_time': {
                         'type': 'date',
                     }
