@@ -88,9 +88,5 @@ clear清除费用结构
 'amount': '',        //清除金额
 'note': ''           //清除备注
 }
-expenditure支出表
-{
- model: 'flow'
-	
-}
+
                
