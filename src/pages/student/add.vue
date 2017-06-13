@@ -196,7 +196,7 @@ export default {
                 'first_tel': '',
                 'first_rel_rel': '',
                 'first_rel_name': '',
-                'relations': [],
+                'relations': [],  
                 'track_from': '其他',
                 'nickname': '',
                 'birth': '',
@@ -207,6 +207,7 @@ export default {
                 'note': '',
                 'region_oe_id': '0',
                 'purpose': '0',
+                'amount': 0,  
                 'isdel': false
             },
             'validator': {

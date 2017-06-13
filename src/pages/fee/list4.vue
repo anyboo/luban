@@ -28,11 +28,11 @@
                     <div class="table-responsive">
                         <lb-table :data="getTablesData()" stripe>
                             <lb-table-column prop="data" label="日期">
-                                <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
+                                <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="退款金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">30.00</span>
+                                    <span class="badge bg-success ng-binding">{{scope.row.amount}}</span>
                                 </template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="学员">
@@ -90,7 +90,7 @@ export default {
         }
         return {
             localdata,
-            tables: ['pay'],
+            tables: ['refund'],
             student_name: ''
         }
     },
@@ -134,12 +134,12 @@ export default {
                     filterObj.push({
                         'key': 'creattime',
                         'value': startTime,
-                        'type': 'gt'
+                        'type': 'gte'
                     })
                     filterObj.push({
                         'key': 'creattime',
                         'value': endTime,
-                        'type': 'lt'
+                        'type': 'lte'
                     })
                 }
             }
@@ -149,7 +149,7 @@ export default {
                 'type': 'lookup'
             })
 
-            //console.log(filterObj)
+            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

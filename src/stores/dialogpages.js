@@ -32,7 +32,6 @@ import page37 from '~/pages/student/add_track.modal.vue'
 import page38 from '~/pages/student/import.vue'
 import page39 from '~/pages/directive/selectclasstpl.vue'
 import page40 from '~/pages/directive/selectlessontpl.vue'
-import page41 from '~/pages/student/orders.modal.vue'
 import page42 from '~/pages/student/trash.vue'
 import page43 from '~/pages/student/edit_info.modal.vue'
 import page44 from '~/pages/student/reg_student_attendances.modal.vue'
@@ -63,7 +62,6 @@ import page69 from '~/pages/lesson/sclasses/students_modal.vue'
 import page70 from '~/pages/student/details.vue'
 import page71 from '~/pages/has/announcement.vue'
 import page72 from '~/pages/student/order/refunds.vue'
-import page73 from '~/pages/student/order/refunds_two.vue'
 
 var pages = {}
 pages['lb-dialog'] = page1
@@ -101,7 +99,6 @@ pages['lb-addtrackmodal'] = page37
 pages['lb-import'] = page38
 pages['lb-selectclasstpl'] = page39
 pages['lb-selectlessontpl'] = page40
-pages['lb-ordersmodal'] = page41
 pages['lb-trash'] = page42
 pages['lb-editinfomodal'] = page43
 pages['lb-regstudentattendancesmodal'] = page44
@@ -132,5 +129,4 @@ pages['lb-studentsmodal'] = page69
 pages['lb-details'] = page70
 pages['lb-announcement'] = page71
 pages['lb-refunds'] = page72
-pages['lb-refundstwo'] = page73
 export default pages

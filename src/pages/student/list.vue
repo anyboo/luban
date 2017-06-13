@@ -178,7 +178,7 @@ export default {
                 'icon': 'fa fa-shopping-cart',
                 'text': '报名'
             }, {
-                'url': 'lb-ordersmodal',
+                'url': 'lb-refundmodal',
                 'icon': 'fa fa-money',
                 'text': '缴费'
             }, {

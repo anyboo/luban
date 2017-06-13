@@ -15,7 +15,7 @@
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">当前余额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
-                                <p class="form-control-static ng-binding">0.00</p>
+                                <p class="form-control-static ng-binding">{{amount}}</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,6 +89,7 @@ export default {
                 'origin_times': '',
                 'unit_price': 0,
                 'origin_amount': 0,
+                'refund_status': 0,
                 'back_amount': 0,
                 'has_discount': '',
                 'has_present': '',
@@ -109,12 +110,21 @@ export default {
         return {
             localdata,
             order: false,
-            currorder: null
+            currorder: null,
+            amount: 0,
+            model: 'order',
+            currStudent: null
         }
     },
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.localdata.form.student_id = this.$store.state.dialogs.dailogdata._id
+            this.handleGetTableID('student', this.localdata.form.student_id).then((obj) => {
+                if (obj.data && obj.data.length > 0) {
+                    this.currStudent = obj.data[0]
+                    this.amount = this.currStudent.amount
+                }
+            })
             console.log(this.localdata.form.student_id)
         }
     },
@@ -133,7 +143,7 @@ export default {
             this.localdata.form.order_amount = this.localdata.form.origin_amount
             this.localdata.form.unpay_amount = this.localdata.form.origin_amount
             this.localdata.form.order_no = 'LB' + this.moment().format('YYYYMMDDssSSSS')
-            this.localdata.form.body = '预交费'
+            this.localdata.form.body = '预交费[' + this.localdata.form.order_amount + '元]'
             this.handleSave().then((data) => {
                 console.log(data)
                 this.order = true

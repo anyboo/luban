@@ -80,6 +80,7 @@ export default {
                 'origin_times': '',
                 'unit_price': 0,
                 'origin_amount': 0,
+                'refund_status':0, 
                 'back_amount': 0,
                 'has_discount': '',
                 'has_present': '',
@@ -93,7 +94,7 @@ export default {
                 'pay_status': 0,
                 'student_id': '',
                 'order_no': '',
-                'order_type': 2,
+                'order_type': 3,
                 'body': ''
             }
         }
@@ -101,11 +102,17 @@ export default {
             localdata,
             order: false,
             currorder: null,
+            model: 'order',
             order_link_name: ''
         }
     },
     components: {
         'lb-orderandpay': orderandpay,
+    },
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.localdata.form.student_id = this.$store.state.dialogs.dailogdata._id
+        }
     },
     computed: {},
     watch: {},
