@@ -217,7 +217,7 @@ export default {
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
-                'foreignField': '_id',
+                'foreignField': '_id', 
                 'as': 'employee'
             },
             'search': {

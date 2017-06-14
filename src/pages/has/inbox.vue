@@ -1,76 +1,187 @@
 <template>
     <div>
-        <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-            <div class="modal-content" modal-transclude="">
-                <div page-controller="open_class" class="ng-scope">
+      
+        <!-- demo -->
+        <div ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}" class="modal-dialog">
+            <div modal-transclude="" class="modal-content">
+                <div page-controller="flow_add" class="ng-scope">
                     <div class="modal-header">
-                        <button class="close" type="button" ng-click="$dismiss()"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                        <h3 class="modal-title"><i class="fa fa-flag-checkered"></i>编辑</h3></div>
+                        <button type="button" ng-click="$dismiss()" class="close"><span aria-hidden="true">×</span> <span class="sr-only">关闭</span></button>
+                        <h3 class="modal-title"><i >编辑</i></h3></div>
                     <div class="modal-body">
-                        <form name="form1" class="form-validation form-horizontal m-t ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-pattern">
+                        <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">*班级：</label>
-                                <label class="control-label col-md-1 col-xs-12">123</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">校区：</label>
-                                <label class="control-label col-md-2 col-xs-12 text-right">总校</label>
-                            </div>
-                            <div class="form-group" >
-                                <label class="label-sm ">校区：</label>
-                                <div class=" lineHeight2">
-                                    总校
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">开课日期:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline w-sm">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="open_time" ng-model="info.open_time" datetimepicker="date" disabled="disabled">
+                                <span >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">班级:
+                                </label>
+                                </span>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <div class="btn-group ng-scope">
+                                      
+                                       <span style="position:relative;top:9px;">
+                                            <label class="ng-pristine ng-untouched ng-valid ng-binding ng-scope">
+                                           123
+                                        </label>
+                                       </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">预计结课:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline w-sm">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control input-sm ng-pristine ng-untouched ng-valid" name="close_time" ng-model="info.close_time" datetimepicker="date" disabled="disabled">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">额定人数:</label>
-                                <div class="col-md-3 col-xs-12">
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">校区:
+                                </label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
                                     <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" ng-model="info.max_student_num" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">人</span></div>
+                                       <span style="position:relative;top:7px;"><label class="ng-pristine ng-untouched ng-valid ng-binding ng-scope">
+                                           总校
+                                        </label></span></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">授课次数:</label>
-                                <div class="col-md-3 col-xs-12">
-                                    <div class="input-group w-sm">
-                                        <input type="number" ng-disabled="info.master_oe_id == 0" name="total_times" ng-pattern="/^[0-9]+$/" ng-model="info.total_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" disabled="disabled"> <span class="input-group-addon">次</span></div>
+                
+                               <span style="position:relative;top:16px;left:23px"> <label class=" ">任课老师：</label></span>
+                                  <span style="position:relative;top:15px;left:45px">廖小龙<a class="operation-link" style="margin-left: 20px;color: #0073B7;">查看空闲时间</a></span>
+                               <span style="float:right;position:relative;left:-53px;top:11px;">
+                                           <label>老师类别：</label>
+                                       
+                            <select style="width:176px;height:30px">
+                                <option style="display: none;" value="<无>">&lt;无&gt;</option>
+                                   <option style="display: none;" value="<无>">&lt;无&gt;</option>
+                            </select>
+                               </span>
+                         
+      
+                     </div>
+                              
+        
+                            <div class="form-group">
+                        <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="position:relative;top:23px;left:-4px">助教:</label>
+                      <div class="form-group"> <div class="col-xs-12 col-sm-9 col-md-10"><div class="input-group" style="float:right;width:462px;position:relative;right:-70px;"><input type="text" name="note" class="form-control ng-pristine ng-untouched ng-valid"></div></div></div>
+                            </div>
+
+
+
+
+
+
+
+                              <div class="form-group" >
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="position:relative;top;-23px;left:4px">上课时间：</label>
+                                 <div class="col-sm-9" style="width: 463px;border: 1px solid rgba(12,12,12,.12);height:70px;position:relative;left:15px;">
+                            <div class="form-group col-sm-12" style="padding-top: 0;margin-bottom: 0;margin-top:5px;">
+                                
+                                <div class="weekWidth" style="float:left">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="1"><span>星期一</span></label>
+                                </div>
+                                <div class=" weekWidth" style="float:left">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="2"><span>星期二</span></label>
+                                </div>
+                                <div class=" weekWidth" style="float:left">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="3"><span>星期三</span></label>
+                                </div>
+                                <div class="weekWidth" style="float:left">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="4"><span>星期四</span></label>
+                                </div>
+                                <div class=" weekWidth">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="5"><span>星期五</span></label>
+                                </div>
+                                 <div class=" weekWidth helpchoose" style="float:right;position:relative;top:-28px;display:1px solid #ddd;">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox"><span>工作日</span></label>
+                                </div>
+                               
+                            </div>
+                            <div class="form-group col-sm-12" style="margin-top: 5px;padding-top: 0;margin-bottom: 0;">
+                            
+                                <div class="weekWidth helpchoose" style="float:right;position:relative;top:-32px;left:-13px;">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox"><span>周末</span></label>
+                                </div>
+                                <div class=" weekWidth" style="float:left;position:relative;top:-28px ">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="6"><span>星期六</span></label>
+                                </div>
+                                <div class=" weekWidth" style="float:left;position:relative;top:-28px">
+                                    <label class="checkbox-inline checkbox-styled">
+                                        <input type="checkbox" value="7"><span>星期日</span></label>
                                 </div>
                             </div>
+                        </div>
+                            </div>
+                            
                             <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">单次课时:</label>
-                                <div class="col-md-3 col-xs-12">
-                                    <div class="input-group">
-                                        <input type="text" ng-disabled="info.master_oe_id == 0" name="unit_hours" ng-pattern="/^[0-9]+(\.[0-9]+)?$/" ng-model="info.unit_hours" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" disabled="disabled"> <span class="input-group-addon">小时</span></div>
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>开始时间:</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <select class="timeSelect">
+                    <option></option>
+
+                </select>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                         <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>上课时间:</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <select class="timeSelect">
+                    <option></option>
+
+                </select>
+                                </div>
+                            </div>
+     <div class="form-group">
+                              <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>结束时间:</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <select class="timeSelect">
+                    <option></option>
+
+                </select>
+                                </div>
+                            </div>
+                                 <div class="form-group">
+                              <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>上课教室:</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <select class="timeSelect">
+                    <option></option>
+
+                </select>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary">
-                            <!-- ngIf: saving -->确定</button>
-                        <button class="btn btn-warning" ng-click="vm.dismiss()">取消</button>
+                        <button ng-disabled="saving" ng-click="save_fee()" class="btn btn-primary">确定</button>
+                        <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+<style>
+.modal-header {
+    cursor: grab;
+    cursor: -webkit-grab;
+    padding: 7px 75px 7px 16px;
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    position: relative;
+    background: #1892d1;
+    border-radius: 6px 6px 0 0;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 40px;
+    min-height: 42px;
+}
+.timeSelect{
+    width: 160px;
+    height: 30px
+
+}
+</style>
 <script>
 export default {
     name: 'footer',
