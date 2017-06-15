@@ -49,13 +49,13 @@
                                 <p class="text-success ng-binding ng-scope" ng-if="profile.is_mobile_bind == '1'">已绑定手机号 15080555304</p>
                             </dd>
                         </dl>
-                        <dl class="dl-horizontal b-b padder-v">
+                        <dl class="dl-horizontal b-b padder-v" @click="status=5">
                             <dt><i class="fa fa-envelope"></i> 邮箱绑定</dt>
                             <dd>
                                 <p class="text-muted ng-scope" ng-if="profile.is_email_bind != '1'">未绑定邮箱 <a class="btn btn-success btn-sm pull-right" ng-click="bind_email()"><i class="fa fa-envelope"></i> 绑定邮箱</a></p>
                             </dd>
                         </dl>
-                        <dl class="dl-horizontal b-b padder-v">
+                        <dl class="dl-horizontal b-b padder-v" @click="status=6">
                             <dt><i class="fa fa-weixin"></i> 微信绑定</dt>
                             <dd>
                                 <p class="text-muted ng-scope" ng-if="profile.is_weixin_bind != '1'">未绑定微信号 <a class="btn btn-success btn-sm pull-right" ng-click="bind_weixin()"><i class="fa fa-weixin"></i> 绑定微信</a></p>
@@ -88,10 +88,49 @@
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button class="btn btn-primary" type="submit" ng-disabled="edit_pwd_form.$invalid || saving" ng-click="save_edit_pwd()" disabled="disabled">修改密码</button> <a class="link m-l" @click="status=0">返回</a></div>
+                                <button class="btn btn-primary" type="submit" >修改密码</button> <a class="link m-l" @click="status=0">返回</a></div>
                         </div>
                     </form>
                 </div>
+          
+                <div class="wrapper-md m-t" v-if="status==5">
+                    <form name="bind_email_form" class="form-horizontal form-validation ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-email" ng-switch-when="bind_email" novalidate="">
+                        <h4 class="b-b m-b padder-v">绑定邮箱</h4>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-md-2">电子邮箱:</label>
+                            <div class="col-xs-12 col-md-3">
+                                <div class="input-group">
+                                    <input type="email" ng-model="bind.email.email" placeholder="输入您的常用邮箱" class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" required=""> <span class="input-group-btn"><button ng-disabled="bind_email_form.email.$invalid || saving" class="btn btn-default ng-binding" ng-click="get_email_vcode()">获取验证码</button></span></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-md-2">验证码:</label>
+                            <div class="col-xs-12 col-md-3">
+                                <input type="text" ng-model="bind.email.vcode" placeholder="输入收到的验证码" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required="">
+                            </div>
+                        </div>
+                        <div class="form-group m-t">
+                            <div class="col-xs-12 col-md-offset-2">
+                                <button class="btn btn-primary" type="submit" ng-disabled="bind_email_form.$invalid || saving" ng-click="bind_do('email')" disabled="disabled">确认绑定</button> <a class="link m-l" @click="status=0">返回</a></div>
+                        </div>
+                    </form>
+                </div>
+              
+                <div class="wrapper-md m-t" ng-switch="$action" v-if="status==6">
+                
+                    <div class="wrapper ng-scope" ng-switch-when="bind_weixin">
+                        <h4 class="b-b m-b padder-v">微信绑定</h4><img class="center-block" ng-src="/qr/index?u=ogabind&amp;t=aa1543fce22a54a24bdea90a9ab45931" src="/assets/images/index.png" >
+                 
+                        <p class="text-center ng-scope" ng-if="bind_step == 0">
+                     
+                           <span ng-if="!app.isWeiXin" class="ng-scope">请使用微信扫一下二维码</span><a class="link m-l" @click="status=0">返回</a>
+                        
+                        </p>
+                     
+                    </div>
+                 
+                </div>
+           
                 <div class="wrapper-md m-t" v-if="status==1">
                     <form name="edit_name_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope ng-valid-required ng-valid-parse" ng-switch-when="edit_name" novalidate="">
                         <h4 class="b-b m-b padder-v">修改姓名</h4>
@@ -103,18 +142,18 @@
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button class="btn btn-primary" type="submit" ng-disabled="edit_name_form.$invalid || saving" ng-click="save_profile('name')">确认修改</button> <a class="link m-l" @click="status=0">返回</a></div>
+                                <button class="btn btn-primary" type="submit">确认修改</button> <a class="link m-l" @click="status=0">返回</a></div>
                         </div>
                     </form>
                 </div>
                 <div class="wrapper-md m-t" v-if="status==2">
-                    <form name="edit_birth_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope" ng-switch-when="edit_birth" novalidate="">
+                    <form name="edit_birth_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope">
                         <h4 class="b-b m-b padder-v">修改生日</h4>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">生日:</label>
                             <div class="col-xs-12 col-md-3">
                                 <div class="w-sm">
-                                    <input type="text" name="birth" class="form-control input-sm ng-pristine ng-untouched ng-valid" ng-model="edit.birth.birth" datetimepicker="date">
+                                    <input type="text" name="birth" class="form-control input-sm ng-pristine ng-untouched ng-valid">
                                 </div>
                             </div>
                         </div>

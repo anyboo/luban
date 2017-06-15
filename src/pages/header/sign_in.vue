@@ -1,7 +1,7 @@
 <template>
     <div class="modal-over bg-black ng-scope" style="z-index: 99999999;" ng-show="app.is_lock">
         <div class="modal-center animated fadeInUp text-center" style="width:200px;margin:-100px 0 0 -100px">
-            <div class="thumb-lg"><img class="img-circle" ng-src="img/a0.jpg" src="img/a0.jpg"></div>
+            <div class="thumb-lg"><img class="img-circle" ng-src="img/a0.jpg" src="/assets/images/a0.jpg"></div>
             <p class="h4 m-t m-b">
                 <span ng-if="user.name" class="ng-binding ng-scope">张英乙</span>
             </p>
