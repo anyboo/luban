@@ -1,5 +1,5 @@
 <template>
-    <div class="ng-scope arrange">
+    <div class="ng-scope schedule">
         <div class="wrapper-xs ng-scope">
             <div class="wrapper panel panel-default bg-white ng-scope">
                 <div class="row">
@@ -40,220 +40,70 @@
                     </div>
                 </div>
                 <div class="row  m-t arrangeover">
-                    <table class="table ">
-                        <thead>
-                            <tr class="fixedThead">
-                                <th width="120px">老师</th>
-                                <th width="119px">时段</th>
-                                <th width="120px">周一
-                                    <label>(06/05)</label>
-                                </th>
-                                <th width="120px">周二
-                                    <label>(06/06)</label>
-                                </th>
-                                <th width="120px">周三
-                                    <label>(06/07)</label>
-                                </th>
-                                <th width="120px">周四
-                                    <label>(06/08)</label>
-                                </th>
-                                <th width="120px">周五
-                                    <label>(06/09)</label>
-                                </th>
-                                <th width="120px">周六
-                                    <label>(06/10)</label>
-                                </th>
-                                <th width="120px">周日
-                                    <label>(06/11)</label>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="scrollTbody">
-                            <tr>
-                                <td rowspan="3" width="100px">aaa</td>
-                                <td class="scheduleWeek" width="60px">上午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="0" data-detai="{&quot;stime&quot;:&quot;11:30&quot;,&quot;etime&quot;:&quot;12:50&quot;,&quot;name&quot;:&quot;aaaaa&quot;,&quot;teachername&quot;:&quot;aaa&quot;,&quot;classroom&quot;:&quot;202&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:20&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">11:30-12:50 <span class="scheduleClassName">aaaaa</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="1" data-detai="{&quot;stime&quot;:&quot;11:30&quot;,&quot;etime&quot;:&quot;12:50&quot;,&quot;name&quot;:&quot;aaaaa&quot;,&quot;teachername&quot;:&quot;aaa&quot;,&quot;classroom&quot;:&quot;202&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:20&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">11:30-12:50 <span class="scheduleClassName">aaaaa</span></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">下午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">晚上</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td rowspan="3">陈星,3,开元舞蹈,清华优才</td>
-                                <td class="scheduleWeek">上午</td>
-                                <td>
-                                    <div class="schedule-course" data-index="2" data-detai="{&quot;stime&quot;:&quot;08:30&quot;,&quot;etime&quot;:&quot;17:00&quot;,&quot;name&quot;:&quot;JAVA201706全日制第三期&quot;,&quot;teachername&quot;:&quot;陈星,3,开元舞蹈,清华优才&quot;,&quot;classroom&quot;:&quot;201&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;08:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:30-17:00 <span class="scheduleClassName">JAVA201706全日制第三期</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="3" data-detai="{&quot;stime&quot;:&quot;08:30&quot;,&quot;etime&quot;:&quot;17:00&quot;,&quot;name&quot;:&quot;JAVA201706全日制第三期&quot;,&quot;teachername&quot;:&quot;陈星,3,开元舞蹈,清华优才&quot;,&quot;classroom&quot;:&quot;201&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;08:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:30-17:00 <span class="scheduleClassName">JAVA201706全日制第三期</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="4" data-detai="{&quot;stime&quot;:&quot;08:30&quot;,&quot;etime&quot;:&quot;17:00&quot;,&quot;name&quot;:&quot;JAVA201706全日制第三期&quot;,&quot;teachername&quot;:&quot;陈星,3,开元舞蹈,清华优才&quot;,&quot;classroom&quot;:&quot;201&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;08:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:30-17:00 <span class="scheduleClassName">JAVA201706全日制第三期</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="5" data-detai="{&quot;stime&quot;:&quot;08:30&quot;,&quot;etime&quot;:&quot;17:00&quot;,&quot;name&quot;:&quot;JAVA201706全日制第三期&quot;,&quot;teachername&quot;:&quot;陈星,3,开元舞蹈,清华优才&quot;,&quot;classroom&quot;:&quot;201&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;08:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:30-17:00 <span class="scheduleClassName">JAVA201706全日制第三期</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="6" data-detai="{&quot;stime&quot;:&quot;08:30&quot;,&quot;etime&quot;:&quot;17:00&quot;,&quot;name&quot;:&quot;JAVA201706全日制第三期&quot;,&quot;teachername&quot;:&quot;陈星,3,开元舞蹈,清华优才&quot;,&quot;classroom&quot;:&quot;201&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;08:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:30-17:00 <span class="scheduleClassName">JAVA201706全日制第三期</span></div>
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">下午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">晚上</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td rowspan="3">吴老师</td>
-                                <td class="scheduleWeek">上午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="7" data-detai="{&quot;stime&quot;:&quot;08:00&quot;,&quot;etime&quot;:&quot;10:00&quot;,&quot;name&quot;:&quot;GX01_正开&quot;,&quot;teachername&quot;:&quot;吴老师&quot;,&quot;classroom&quot;:&quot;教室6&quot;,&quot;studentCount&quot;:1,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;02:00&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">08:00-10:00 <span class="scheduleClassName">GX01_正开</span></div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">下午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="8" data-detai="{&quot;stime&quot;:&quot;13:00&quot;,&quot;etime&quot;:&quot;14:30&quot;,&quot;name&quot;:&quot;KC1小班&quot;,&quot;teachername&quot;:&quot;吴老师&quot;,&quot;classroom&quot;:&quot;123&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">13:00-14:30 <span class="scheduleClassName">KC1小班</span></div>
-                                </td>
-                                <td>
-                                    <div class="schedule-course" data-index="9" data-detai="{&quot;stime&quot;:&quot;13:00&quot;,&quot;etime&quot;:&quot;14:30&quot;,&quot;name&quot;:&quot;KC1小班&quot;,&quot;teachername&quot;:&quot;吴老师&quot;,&quot;classroom&quot;:&quot;123&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">13:00-14:30 <span class="scheduleClassName">KC1小班</span></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">晚上</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td rowspan="3">闻斯行</td>
-                                <td class="scheduleWeek">上午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="10" data-detai="{&quot;stime&quot;:&quot;10:10&quot;,&quot;etime&quot;:&quot;12:10&quot;,&quot;name&quot;:&quot;99春季数学一对一_ Aaron_测试学员107&quot;,&quot;teachername&quot;:&quot;闻斯行&quot;,&quot;classroom&quot;:&quot;教室11&quot;,&quot;studentCount&quot;:1,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;02:00&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;数学&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">10:10-12:10 <span class="scheduleClassName">99春季数学一对一_ Aaron_测试学员107（数学）</span></div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">下午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">晚上</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td rowspan="3">曹老师</td>
-                                <td class="scheduleWeek">上午</td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="11" data-detai="{&quot;stime&quot;:&quot;09:00&quot;,&quot;etime&quot;:&quot;10:30&quot;,&quot;name&quot;:&quot;周三上午1班&quot;,&quot;teachername&quot;:&quot;曹老师&quot;,&quot;classroom&quot;:&quot;智能钢琴教室&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">09:00-10:30 <span class="scheduleClassName">周三上午1班</span></div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="12" data-detai="{&quot;stime&quot;:&quot;09:00&quot;,&quot;etime&quot;:&quot;10:30&quot;,&quot;name&quot;:&quot;周三上午1班&quot;,&quot;teachername&quot;:&quot;曹老师&quot;,&quot;classroom&quot;:&quot;智能钢琴教室&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">09:00-10:30 <span class="scheduleClassName">周三上午1班</span></div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <div class="schedule-course" data-index="13" data-detai="{&quot;stime&quot;:&quot;09:00&quot;,&quot;etime&quot;:&quot;10:30&quot;,&quot;name&quot;:&quot;周三上午1班&quot;,&quot;teachername&quot;:&quot;曹老师&quot;,&quot;classroom&quot;:&quot;智能钢琴教室&quot;,&quot;studentCount&quot;:0,&quot;attendCount&quot;:0,&quot;time&quot;:&quot;01:30&quot;,&quot;status&quot;:&quot;未上课&quot;,&quot;IsClassFinished&quot;:0,&quot;Finished&quot;:0,&quot;subjectName&quot;:&quot;&quot;,&quot;campusName&quot;:&quot;总部&quot;,&quot;masterName&quot;:&quot;&quot;,&quot;showMasterNameRight&quot;:false}">09:00-10:30 <span class="scheduleClassName">周三上午1班</span></div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">下午</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="scheduleWeek">晚上</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-xs-12 col-md-12">
+                        <table class="scheduletable " width="1094">
+                            <thead class="scheduleThead" width="1080">
+                                <tr width="100%">
+                                    <th width="120">老师</th>
+                                    <th width="120">时段</th>
+                                    <th width="120">周一
+                                        <label>(06/05)</label>
+                                    </th>
+                                    <th width="120">周二
+                                        <label>(06/06)</label>
+                                    </th>
+                                    <th width="120">周三
+                                        <label>(06/07)</label>
+                                    </th>
+                                    <th width="120">周四
+                                        <label>(06/08)</label>
+                                    </th>
+                                    <th width="120">周五
+                                        <label>(06/09)</label>
+                                    </th>
+                                    <th width="120">周六
+                                        <label>(06/10)</label>
+                                    </th>
+                                    <th width="120">周日
+                                        <label>(06/11)</label>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="scheduleTbody" width="1094">
+                                <tr >
+                                    <td rowspan="3" width="120">aaa</td>
+                                    <td width="120">上午</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                </tr>
+                                <tr>
+                                    <td width="120">上午</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                </tr>
+                                <tr>
+                                    <td width="120">上午</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                    <td width="120">w</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="panlb-footer ">
                     <div class="row ">
@@ -265,71 +115,6 @@
         </div>
     </div>
 </template>
-<style>
-.fixedThead {
-    display: block;
-    width: 100%;
-}
-
-.scrollTbody {
-    display: block;
-    height: 600px;
-    overflow: auto;
-    width: 100%;
-}
-
-.arrange .table {
-    width: 100%;
-    text-align: center !important;
-    table-layout: fixed !important;
-    border-collapse: collapse !important;
-    border-spacing: 0;
-    text-align: center!important;
-}
-
-.arrange .table>thead>tr>th {
-   
-    font-weight: normal;
-    color: #000;
-    background-color: #f4f5f9;
-    border-bottom: 0;
-    text-align: center
-}
-
-.arrange thead {
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
-    border: 1px solid #dddddd;
-}
-
-.arrange .scheduleByWeek {
-    display: table-row !important;
-}
-
-.arrange td {
-    text-align: left;
-
-    height: 64px !important;
-    border: 1px solid #dddddd;
-    text-align: center!important;
-    vertical-align: middle;
-}
-
-.arrange .scheduleByWeek th {
-    border: 1px solid #dddddd;
-}
-
-.arrange .table>tbody>tr>td {
-    text-align: center!important;
-}
-
-.arrange #scheduleList2 td:first-child {
-    vertical-align: middle;
-    text-align: center!important;
-    font-size: 14px;
-}
-</style>
 <script>
 export default {
     name: 'arrange',
