@@ -29,8 +29,7 @@ export default [{
     }, {
         menuTitle: '生日学员',
         to: '/student/birthdays'
-    },
-    {
+    }, {
         menuTitle: '赛事记录',
         to: '/student/recording'
     }]
@@ -43,10 +42,10 @@ export default [{
     }, {
         menuTitle: '课程设置',
         to: '/lesson/manage'
-    },  {
+    }, {
         menuTitle: '班级设置',
         to: '/lesson/classes'
-    },{
+    }, {
         menuTitle: '订单',
         to: '/lesson/orders'
     }]
@@ -55,7 +54,7 @@ export default [{
     menuIcon: 'fa-money',
     menu: [{
         menuTitle: '缴费明细',
-        to: '/fee/list1' 
+        to: '/fee/list1'
     }, {
         menuTitle: '欠费明细',
         to: '/fee/list3'
@@ -151,7 +150,5 @@ export default [{
 }, {
     menuTitle: '系统状态',
     menuIcon: ' fa-dashboard',
-}, {
-    menuTitle: '系统帮助',
-    menuIcon: 'fa-question-circle',
+    to: '/header/system'
 }]

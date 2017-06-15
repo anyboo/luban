@@ -33,8 +33,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <lb-table :data="getTablesData()" stripe>
+                    <div class="table-responsive" >
+                        <lb-table :data="getTablesData()" stripe >
                             <lb-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
@@ -43,7 +43,7 @@
                                     <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="日期">
+                            <lb-table-column prop="data" label="日期" >
                                 <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
                             </lb-table-column>
                             <lb-table-column prop="data" label="金额">
@@ -51,7 +51,7 @@
                                     <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">{{scope.row.amount}}</span>
                                 </template>
                             </lb-table-column>
-                            <lb-table-column prop="data" label="类型">
+                            <lb-table-column prop="data" label="类型" >
                                 <template scope="scope">
                                     <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">{{scope.row.type}}</span>
                                 </template>

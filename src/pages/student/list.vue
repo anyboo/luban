@@ -76,7 +76,7 @@
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
-                                            <span class="caret"></span>
+                                            <span class="caret"></span> 
                                         </lb-dropdown-button>
                                     </lb-dropdown>
                                 </template>

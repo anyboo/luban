@@ -23,7 +23,7 @@ menu.forEach((item) => {
         })
     } else {
         if (item.to) {
-            var to = '.' + item.to + '.vue'
+            var to = '.' + item.to + '.vue' 
             try {
                 routes.push({
                     path: item.to,
@@ -32,13 +32,25 @@ menu.forEach((item) => {
             } catch (err) {
                 console.log(to, err)
             }
-        }
+        } 
     }
 })
 
 routes.push({
     path: '/student/info/:id',
     component: req('./student/info.vue') //resolve => require([`${to}`], resolve)
+})
+routes.push({
+    path: '/header/personal_information/',
+    component: req('./header/personal_information.vue') //resolve => require([`${to}`], resolve)
+})
+routes.push({
+    path: '/header/sign_in/',
+    component: req('./header/sign_in.vue') //resolve => require([`${to}`], resolve)
+})
+routes.push({
+    path: '/header/system/',
+    component: req('./header/system.vue') //resolve => require([`${to}`], resolve)
 })
 const router = new VueRouter({
     mode: 'history',
