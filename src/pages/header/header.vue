@@ -26,12 +26,12 @@
                     </a>
                 </li>
                 <li dropdown ng-if="user.gv.branchs.length > 0" class="dropdown ng-scope">
-                    <a dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
+                    <a dropdown-toggle class="dropdown-toggle clear">
                         <span class="ng-binding">福州三金书画培训</span>
                     </a>
                 </li>
-                <li dropdown class="dropdown " :class="{open:open}" @click="operating">
-                    <a href="#" dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="flase">
+                <li dropdown class="dropdown " :class="{open:open}">
+                    <a href="#" dropdown-toggle class="dropdown-toggle clear" @click="operating" @blur="blur">
                         <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                             <img src="/assets/images/a0.jpg" alt="...">
                         </span>
@@ -40,18 +40,18 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight w">
                         <li></li>
-                        <li @click="handleRouter($event,'/header/personal_information')">
+                        <li @click="handleRouter($event,'/header/personal_information')" @mouseout="menu=false" @mouseover="menu=true">
                             <a ui-sref="main.profile" href="#/main/profile">
                                 <i class="fa fa-user"></i>个人资料
                             </a>
                         </li>
                         <li @click="handleRouter($event,'/header/system')">
-                            <a ui-sref="main.system" ng-if="user.is_main == '1' || user.is_master == 1" class="ng-scope" href="#/main/system">
+                            <a @mouseout="menu=false" @mouseover="menu=true" class="ng-scope" href="#/main/system">
                                 <i class="fa fa-dashboard"></i>系统状态
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li @click="handleRouter($event,'/header/sign_in')">
+                        <li @click="handleRouter($event,'/header/sign_in')" @mouseout="menu=false" @mouseover="menu=true">
                             <a ng-click="app.is_lock=1">
                                 <i class="icon-lock"></i>锁屏
                             </a>
@@ -79,7 +79,8 @@ export default {
         }
         return {
             localdata,
-            open: false
+            open: false,
+            menu: false
         }
     },
     computed: {},
@@ -87,6 +88,9 @@ export default {
     methods: {
         sidebarCollapsed() {
             this.$emit('sidebarCollapsed')
+        },
+        blur() {
+            this.open = this.menu
         },
         operating() {
             this.open = !this.open
