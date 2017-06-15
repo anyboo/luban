@@ -18,15 +18,7 @@
                     <i class="fa fa-fw fa-dedent"></i>
                 </a>
             </div>
-            <ul class="nav navbar-nav ng-scope" ng-controller="UtilCtrl">
-                <li dropdown class="dropdown">
-                    <a href dropdown-toggle class="dropdown-toggle clear" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-user"></i>
-                        <span>我的</span>
-                        <b class="caret"></b>
-                    </a>
-                </li>
-            </ul>
+       
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">
                 <li class="hidden-xs">
                     <a ui-fullscreen class>

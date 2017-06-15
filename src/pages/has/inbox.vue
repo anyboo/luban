@@ -21,7 +21,7 @@
                                            123
                                         </label>
                                        </span>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                             <div class="form-group">
@@ -137,7 +137,7 @@
                     </div>
                     <div class="modal-footer">
                         <button ng-disabled="saving" ng-click="save_fee()" class="btn btn-primary">确定</button>
-                        <button ng-click="$dismiss()" class="btn btn-warning">关闭</button>
+                        <button  class="btn btn-warning"  @click="lbClosedialog($event)">关闭</button>
                     </div>
                 </div>
             </div>
