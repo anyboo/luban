@@ -26,7 +26,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            isvariety: true,
+            isvariety: false,
         }
     },
     components: {
