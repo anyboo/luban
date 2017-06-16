@@ -1,6 +1,6 @@
 <template>
-    <div class="app ng-scope app-header-fixed app-aside-fixed" :class="{'app-aside-folded':isSidebarCollapsed}">
-        <lb-header @sidebarcollapsed="sidebarCollapsed"></lb-header>
+    <div class="app ng-scope app-header-fixed app-aside-fixed" :class="{'app-aside-folded':isvariety}">
+        <lb-header @variety="variety"></lb-header>
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
             <div class="bg-light lter b-b wrapper-md" v-if="getCurrMenu.length>0">
@@ -26,7 +26,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            isSidebarCollapsed: false,
+            isvariety: true,
         }
     },
     components: {
@@ -71,8 +71,8 @@ export default {
         switchLang(lang) {
             this.$router.push(lang)
         },
-        sidebarCollapsed() {
-            this.isSidebarCollapsed = !this.isSidebarCollapsed
+        variety() {
+            this.isvariety = !this.isvariety
         },
         handleSelect(index) {
             console.log(index)
