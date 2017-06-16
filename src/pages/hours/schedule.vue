@@ -79,13 +79,13 @@
                                     </tr>
                                 </thead>
                                 <tbody class="scheduleTbody " width="1094">
-                                    <template v-for="classitem in  getTablesData()">
+                                    <template v-for="classitem in  getSClassesData">
                                         <template v-for="item,index in new Array(18)">
                                             <tr :class="getBgColor(index)">
                                                 <td width="120" v-if="index==0" rowspan="18" style="vertical-align:middle;background-color: rgb(255, 255, 255);">{{classitem.class_name}}({{classitem.max_student_num}}人)</td>
                                                 <td width="120">{{index+7}}:00</td>
                                                 <template v-for="dayitem in new Array(7)">
-                                                    <td width="120" :id="classitem._id" @drop="drop($event,index)" @dragover="allowDrop($event,index)" @dragleave="dragleave($event,index)" @dragenter="dragenter($event,index)">{{index}}</td>
+                                                    <td width="120" :id="classitem._id" @drop="drop($event,index,classitem,dayitem)" @dragover="allowDrop($event,index)" @dragleave="dragleave($event,index)" @dragenter="dragenter($event,index)">{{index}}</td>
                                                 </template>
                                             </tr>
                                         </template>
@@ -111,8 +111,12 @@
                                 </thead>
                                 <tbody class="scheduleTbody" width="180">
                                     <template v-for="classitem in  getClassesData">
-                                        <tr draggable :id="classitem._id" @dragstart="dragstart($event)" @dragend="dragend($event)">
-                                            <td width="180">{{classitem.class_name}}</td>
+                                        <tr draggable :id="classitem._id" @dragstart="dragstart($event,classitem)" @dragend="dragend($event)">
+                                            <td width="180">{{classitem.class_name}}
+                                                <a @click="handleShowDialog('lb-arrangeedit',{class:classitem})" class="btn btn-primary pull-right">
+                                                    <i class="fa fa-plus"></i>排课
+                                                </a>
+                                            </td>
                                         </tr>
                                     </template>
                                 </tbody>
@@ -241,14 +245,20 @@ export default {
         }
         return {
             localdata,
-            tables: ['sclasses'],
+            tables: ['arrange'],
+            currclass: {}
         }
     },
     mounted() {
         this.getTableApidata('classes')
+        this.getTableApidata('sclasses')
     },
     computed: {
         getClassesData() {
+            let classes = this.$store.state.models.models.classes.data
+            return classes
+        },
+        getSClassesData() {
             let classes = this.$store.state.models.models.classes.data
             return classes
         },
@@ -283,14 +293,22 @@ export default {
             ev.target.className = 'bg4'
             return true
         },
-        drop(ev, index) {
+        drop(ev, index, classitem, dayitem) {
+            let obj = {
+                'startTime': index + 7,
+                'startData': dayitem,
+                'class': this.currclass,
+                'sclasses': classitem
+            }
+            this.handleShowDialog('lb-arrangeedit', obj)
             console.log(ev.target.id, index)
             ev.preventDefault()
         },
-        dragend(ev){
+        dragend(ev) {
             ev.target.className = ''
         },
-        dragstart(ev) {
+        dragstart(ev, item) {
+            this.currclass = item
             ev.target.className = 'bg4'
             console.log(ev.target.id)
         },
