@@ -10,7 +10,7 @@
                 <br>
 
             <div class="input-group">
-                <input type="password" ng-model="app.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码解锁"> <span class="input-group-btn"><a ng-click="unlock()" class="btn btn-success btn-rounded no-border"><i class="fa fa-arrow-right"></i></a></span></div>
+                <input type="password" ng-model="app.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码解锁"> <span class="input-group-btn"><a ng-click="unlock()" class="btn btn-success btn-rounded no-border"style="height:34px"><i class="fa fa-arrow-right"></i></a></span></div>
         </div>
     </div>
 </template>
