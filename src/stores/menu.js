@@ -115,10 +115,7 @@ export default [{
     }, {
         menuTitle: '点评记录',
         to: '/has/comments'
-    }, {
-        menuTitle: '微信互动',
-        to: '/has/wechats'
-    }, {
+    },  {
         menuTitle: '校长信箱',
         to: '/has/inbox'
     }, {

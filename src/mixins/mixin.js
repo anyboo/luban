@@ -355,7 +355,7 @@ export default {
                     result = obj[0][key]
                 } else {
                     result = obj[0]
-                }
+                } 
             }
             return result
         },

@@ -88,11 +88,10 @@
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button class="btn btn-primary" type="submit" >修改密码</button> <a class="link m-l" @click="status=0">返回</a></div>
+                                <button class="btn btn-primary" type="submit">修改密码</button> <a class="link m-l" @click="status=0">返回</a></div>
                         </div>
                     </form>
                 </div>
-          
                 <div class="wrapper-md m-t" v-if="status==5">
                     <form name="bind_email_form" class="form-horizontal form-validation ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-email" ng-switch-when="bind_email" novalidate="">
                         <h4 class="b-b m-b padder-v">绑定邮箱</h4>
@@ -115,22 +114,14 @@
                         </div>
                     </form>
                 </div>
-              
                 <div class="wrapper-md m-t" ng-switch="$action" v-if="status==6">
-                
                     <div class="wrapper ng-scope" ng-switch-when="bind_weixin">
-                        <h4 class="b-b m-b padder-v">微信绑定</h4><img class="center-block" ng-src="/qr/index?u=ogabind&amp;t=aa1543fce22a54a24bdea90a9ab45931" src="/assets/images/index.png" >
-                 
+                        <h4 class="b-b m-b padder-v">微信绑定</h4><img class="center-block" ng-src="/qr/index?u=ogabind&amp;t=aa1543fce22a54a24bdea90a9ab45931" src="/assets/images/index.png">
                         <p class="text-center ng-scope" ng-if="bind_step == 0">
-                     
-                           <span ng-if="!app.isWeiXin" class="ng-scope">请使用微信扫一下二维码</span><a class="link m-l" @click="status=0">返回</a>
-                        
+                            <span ng-if="!app.isWeiXin" class="ng-scope">请使用微信扫一下二维码</span><a class="link m-l" @click="status=0">返回</a>
                         </p>
-                     
                     </div>
-                 
                 </div>
-           
                 <div class="wrapper-md m-t" v-if="status==1">
                     <form name="edit_name_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope ng-valid-required ng-valid-parse" ng-switch-when="edit_name" novalidate="">
                         <h4 class="b-b m-b padder-v">修改姓名</h4>

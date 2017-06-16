@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
                             <div class="padder">
                                 <div class="input-group w-full">
-                                    <div class="input-group">
+                                    <div class="input-group"> 
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleMenuCommand">
                                                 <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
