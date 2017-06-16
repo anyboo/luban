@@ -58,6 +58,7 @@ import page68 from '~/pages/lesson/end_sclass_modal.vue'
 import page70 from '~/pages/student/details.vue'
 import page71 from '~/pages/has/announcement.vue'
 import page72 from '~/pages/student/order/refunds.vue'
+import page73 from '~/pages/hours/arrangeedit.vue'
 
 var pages = {}
 pages['lb-dialog'] = page1
@@ -121,4 +122,5 @@ pages['lb-endsclassmodal'] = page68
 pages['lb-details'] = page70
 pages['lb-announcement'] = page71
 pages['lb-refunds'] = page72
+pages['lb-arrangeedit'] = page73
 export default pages

@@ -56,6 +56,9 @@ const state = {
         },
         refund: {
             data: []
+        },
+        arrange: {
+            data: []
         }
     },
     currentModel: {}

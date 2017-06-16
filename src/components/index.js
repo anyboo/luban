@@ -3,6 +3,7 @@ import buttongroup from './buttongroup/'
 import listtree from './listtree/'
 import {
     DatePicker,
+    TimePicker,
     Table,
     TableColumn,
     Dropdown,
@@ -18,6 +19,7 @@ import {
 } from 'element-ui'
 
 DatePicker.name = 'lb-date-picker'
+TimePicker.name = 'lb-time-picker'
 Table.name = 'lb-table'
 TableColumn.name = 'lb-table-column'
 Dropdown.name = 'lb-dropdowns'
@@ -28,6 +30,7 @@ Pagination.name = 'lb-pagination'
 Cascader.name = 'lb-cascader'
 Select.name = 'lb-select'
 Option.name = 'lb-option'
+
 const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
@@ -36,6 +39,7 @@ const components = [
     DropdownItem,
     buttongroup,
     DatePicker,
+    TimePicker,
     Table,
     TableColumn,
     Upload,
@@ -63,6 +67,7 @@ export default {
     dropdown,
     buttongroup,
     DatePicker,
+    TimePicker,
     Table,
     TableColumn,
     Upload,

@@ -70,7 +70,7 @@
                                 </tr>
                             </thead>
                             <tbody class="scheduleTbody" width="1094">
-                                <tr >
+                                <tr>
                                     <td rowspan="3" width="120">aaa</td>
                                     <td width="120">上午</td>
                                     <td width="120">w</td>
@@ -162,74 +162,16 @@ export default {
         }
         return {
             localdata,
-            tableData: [{
-                date: '林ming',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-02',
-                name: '下午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }],
-            tableData3: [{
-                date: '2016-05-03',
-                name: '晚上',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-02',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-04',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-01',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-08',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-06',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }, {
-                date: '2016-05-07',
-                name: '上午',
-                province: '上海',
-                city: '普陀区',
-                address: '上海市普陀区金沙江路 1518 弄',
-                zip: 200333
-            }]
         }
     },
+    mounted() {
+        this.getTableApidata('classes')
+    },
     computed: {
+        getClassesData() {
+            let classes = this.$store.state.models.models.classes.data
+            return classes
+        },
         getSelectName() {
             if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
                 if (this.$store.state.envs.currDialogResult) {
