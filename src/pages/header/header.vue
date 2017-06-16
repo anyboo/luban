@@ -92,6 +92,9 @@ export default {
         blur() {
             this.open = this.menu
         },
+        blur() {
+            this.open = this.menu
+        },
         operating() {
             this.open = !this.open
         },
