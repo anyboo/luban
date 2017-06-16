@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
                             <div class="padder">
                                 <div class="input-group w-full">
-                                    <div class="input-group">
+                                    <div class="input-group"> 
                                         <div class="input-group-btn">
                                             <lb-dropdowns menu-align="start" @command="handleMenuCommand">
                                                 <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
@@ -242,26 +242,6 @@ export default {
                 'url': 'lb-inputstudentmodal',
                 'icon': 'fa fa-users',
                 'text': '批量报名'
-            }, {
-                'url': 'lb-lessonarrangemodal',
-                'icon': 'fa fa-calendar text-info',
-                'text': '排课'
-            }, {
-                'url': 'lb-lessondispatchmodal',
-                'icon': 'fa fa-calendar text-warning',
-                'text': '调课'
-            }, {
-                'url': 'lb-endclassmodal',
-                'icon': 'fa fa-calendar text-danger',
-                'text': '结课'
-            }, {
-                'url': 'lb-regclassattendancemodal',
-                'icon': 'fa fa-calendar',
-                'text': '按排课考勤'
-            }, {
-                'url': 'lb-removeclassattendancemodal',
-                'icon': 'icon-ban',
-                'text': '撤销考勤'
             }],
             'search': {
                 'fields': [{
