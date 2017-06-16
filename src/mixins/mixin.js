@@ -174,6 +174,24 @@ export default {
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
+        handleGetFilterTableTable(model, filter) {
+            let vm = this
+            return new Promise((resolve, reject) => {
+                if (vm.tables) {
+                    let table = {}
+                    table.model = model
+                    table.filter = filter
+                    table.alias = this.alias
+                    table.prepage = this.pagination.pagesize
+                    table.page = this.pagination.currentPage - 1
+                    vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                        resolve(response)
+                    })
+                } else {
+                    reject()
+                }
+            })
+        },
         handleGetFilterTable(filter) {
             let vm = this
             return new Promise((resolve, reject) => {
@@ -355,7 +373,7 @@ export default {
                     result = obj[0][key]
                 } else {
                     result = obj[0]
-                } 
+                }
             }
             return result
         },

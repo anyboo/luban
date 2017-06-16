@@ -85,7 +85,11 @@
                                                 <td width="120" v-if="index==0" rowspan="18" style="vertical-align:middle;background-color: rgb(255, 255, 255);">{{classitem.class_name}}({{classitem.max_student_num}}人)</td>
                                                 <td width="120">{{index+7}}:00</td>
                                                 <template v-for="dayitem in new Array(7)">
-                                                    <td width="120" :id="classitem._id" @drop="drop($event,index,classitem,dayitem)" @dragover="allowDrop($event,index)" @dragleave="dragleave($event,index)" @dragenter="dragenter($event,index)">{{index}}</td>
+                                                    <td :class="{dayheight:dayitem!=0}" width="120" :id="classitem._id" @drop="drop($event,index,classitem,dayitem)" @dragover="allowDrop($event,index)" @dragleave="dragleave($event,index)" @dragenter="dragenter($event,index)">
+                                                        <div width="1080" class="bg0" v-if="index==0">
+                                                            {{getArrange}}sdf
+                                                        </div>
+                                                    </td>
                                                 </template>
                                             </tr>
                                         </template>
@@ -135,6 +139,13 @@
     </div>
 </template>
 <style>
+.bg0 {
+    background-color: red;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
 .bg1 {
     background-color: rgb(246, 250, 254);
 }
@@ -182,10 +193,19 @@
     border-bottom: 1px solid #dddddd;
 }
 
+.dayheight {
+    border-right: 1px solid #dddddd;
+    display: inline-block;
+    border-bottom: 1px solid #dddddd;
+    height: 34px;
+    padding: 0px !important;
+}
+
 .schedule .scheduletable td {
     border-right: 1px solid #dddddd;
     padding: 8px 15px;
     border-bottom: 1px solid #dddddd;
+    word-break: break-all;
 }
 
 .schedule .scheduletable th {
@@ -246,21 +266,25 @@ export default {
         return {
             localdata,
             tables: ['arrange'],
-            currclass: {}
+            currclass: {},
+            currsclass: {}
         }
     },
     mounted() {
-        this.getTableApidata('classes')
-        this.getTableApidata('sclasses')
+        let filterTxt = this.base64.encode(JSON.stringify({}))
+        this.handleGetFilterTableTable('classes', filterTxt).then(data => {
+            this.currclass = data.data.data
+        })
+        this.handleGetFilterTableTable('sclasses', filterTxt).then(data => {
+            this.currsclass = data.data.data
+        })
     },
     computed: {
         getClassesData() {
-            let classes = this.$store.state.models.models.classes.data
-            return classes
+            return this.currsclass
         },
         getSClassesData() {
-            let classes = this.$store.state.models.models.classes.data
-            return classes
+            return this.currclass
         },
         getSelectName() {
             if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
@@ -278,9 +302,19 @@ export default {
             }
             return true
         },
+        getArrange() {
+            let data = this.getTablesData()
+            console.log(data)
+            let result = ''
+                // for (var itme of data) {
+                //result = itme
+                //}
+            return ''
+        },
     },
     watch: {},
     methods: {
+
         allowDrop(ev) {
             ev.preventDefault()
         },

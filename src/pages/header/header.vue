@@ -20,7 +20,7 @@
             </div>
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">
                 <li class="hidden-xs">
-                    <a ui-fullscreen class>
+                    <a ui-fullscreen class @click="fullscreen">
                         <i class="fa fa-expand fa-fw text"></i>
                         <i class="fa fa-compress fa-fw text-active"></i>
                     </a>
@@ -80,12 +80,39 @@ export default {
         return {
             localdata,
             open: false,
-            menu: false
+            menu: false,
+            full: false
         }
     },
     computed: {},
     watch: {},
     methods: {
+        fullscreen() {
+            if (this.full) {
+                this.full = false
+                if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen()
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen()
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen()
+                }
+            } else {
+                this.full = true
+                var docElm = document.documentElement
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen()
+                } else if (docElm.msRequestFullscreen) {
+                    docElm.msRequestFullscreen()
+                } else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen()
+                } else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen()
+                }
+            }
+        },
         sidebarCollapsed() {
             this.$emit('sidebarCollapsed')
         },
