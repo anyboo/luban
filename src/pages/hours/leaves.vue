@@ -33,12 +33,7 @@
                                     <input type="hidden" name="tffield" value="int_day" ng-repeat="(key,value) in params" class="ng-scope">
                                 </form>
                             </div>
-                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-success">
-                                    <i class="icon-plus"></i>请假登记
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                            </lb-dropdown>
+                        
                         </div>
                     </div>
                     <div class="table-responsive">

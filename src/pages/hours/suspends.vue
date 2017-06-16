@@ -21,9 +21,7 @@
                             </span>
                         </div>
                     </div>
-                    <button class="btn btn-primary pull-right" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="student_suspend" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员进行停课登记" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                        <i class="icon-plus"></i>停课登记
-                    </button>
+                
                 </div>
             </div>
             <div class="table-responsive">

@@ -182,17 +182,9 @@ export default {
                 'icon': 'fa fa-money',
                 'text': '缴费'
             }, {
-                'url': 'lb-regstudentattendancesmodal',
-                'icon': 'fa fa-calendar-o',
-                'text': '登记考勤'
-            }, {
                 'url': 'lb-changeclassmodal',
                 'icon': 'fa fa-exchange',
                 'text': '转班'
-            }, {
-                'url': 'lb-wechatmodal',
-                'icon': 'fa fa-weixin',
-                'text': '微信对话'
             }, {
                 'url': 'lb-addtrackmodal',
                 'icon': 'fa fa-phone-square',

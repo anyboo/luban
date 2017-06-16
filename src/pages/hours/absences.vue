@@ -23,9 +23,6 @@
                             </span>
                         </div>
                     </div>
-                    <button ng-click="$util.open('tpl/app/widget/attendance.modal.html','lg',{})" @click="lbShowdialog($event,'lb-attendancemodal')" class="btn btn-primary pull-right ng-click-active">
-                        <i class="icon-plus"></i>考勤登记
-                    </button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -37,28 +34,21 @@
                             </span>李达康
                         </template>
                     </lb-table-column>
-                    <lb-table-column prop="data" label="课程/班级">
+                    <lb-table-column prop="data" label="缺课详情">
                         <template scope="scope">古典吉他初级</template>
                     </lb-table-column>
-                    <lb-table-column prop="data" label="上课老师">
+                    <lb-table-column prop="data" label="缺课原因">
                         <template scope="scope">陈佳木</template>
                     </lb-table-column>
-                    <lb-table-column prop="data" label="考勤时间">
+                    <lb-table-column prop="data" label="登记">
                         <template scope="scope">05-12 11:00</template>
                     </lb-table-column>
-                    <lb-table-column prop="data" label="出勤状态">
+                    <lb-table-column prop="data" label="补课安排">
                         <template scope="scope">
                             <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
                         </template>
                     </lb-table-column>
-                    <lb-table-column prop="data" label="考勤方式">
-                        <template scope="scope">
-                            <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
-                        </template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="登记时间">
-                        <template scope="scope">05-12 09:06</template>
-                    </lb-table-column>
+                   
                 </lb-table>
                 <div class="grid-data-result"></div>
             </div>

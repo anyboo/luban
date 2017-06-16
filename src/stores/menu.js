@@ -113,12 +113,6 @@ export default [{
         menuTitle: '短信通知',
         to: '/has/sms'
     }, {
-        menuTitle: '点评记录',
-        to: '/has/comments'
-    },  {
-        menuTitle: '校长信箱',
-        to: '/has/inbox'
-    }, {
         menuTitle: '公告发布',
         to: '/has/news'
     }]

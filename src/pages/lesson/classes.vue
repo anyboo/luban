@@ -242,26 +242,6 @@ export default {
                 'url': 'lb-inputstudentmodal',
                 'icon': 'fa fa-users',
                 'text': '批量报名'
-            }, {
-                'url': 'lb-lessonarrangemodal',
-                'icon': 'fa fa-calendar text-info',
-                'text': '排课'
-            }, {
-                'url': 'lb-lessondispatchmodal',
-                'icon': 'fa fa-calendar text-warning',
-                'text': '调课'
-            }, {
-                'url': 'lb-endclassmodal',
-                'icon': 'fa fa-calendar text-danger',
-                'text': '结课'
-            }, {
-                'url': 'lb-regclassattendancemodal',
-                'icon': 'fa fa-calendar',
-                'text': '按排课考勤'
-            }, {
-                'url': 'lb-removeclassattendancemodal',
-                'icon': 'icon-ban',
-                'text': '撤销考勤'
             }],
             'search': {
                 'fields': [{
