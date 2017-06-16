@@ -14,7 +14,7 @@
         </div>
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-info dker">
             <div class="nav navbar-nav hidden-xs">
-                <a @click="sidebarCollapsed" class="btn no-shadow navbar-btn">
+                <a @click="variety()" class="btn no-shadow navbar-btn">
                     <i class="fa fa-fw fa-dedent"></i>
                 </a>
             </div>
@@ -85,8 +85,8 @@ export default {
     computed: {},
     watch: {},
     methods: {
-        sidebarCollapsed() {
-            this.$emit('sidebarCollapsed')
+        variety() {
+            this.$emit('variety')
         },
         operating() {
             this.open = !this.open
