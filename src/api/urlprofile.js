@@ -1,19 +1,27 @@
-const apiUrl = 'http://www.bullstech.cn:9999/api/'
+const apiUrl = 'http://www.bullstech.cn:9999/'
+
+function getLoginUrl() {
+    return apiUrl + 'login/'
+}
+
+function getApiUrl() {
+    return apiUrl + 'api/'
+}
 
 function getUrl(model) {
-    return apiUrl + model + '/'
+    return getApiUrl() + model + '/'
 }
 
 function getUrlById(model, id) {
-    return apiUrl + model + '/' + id
+    return getApiUrl() + model + '/' + id
 }
 
 function getUrlField(model, fields) {
-    return apiUrl + model + '/?fields=' + encodeURIComponent(fields.join())
+    return getApiUrl() + model + '/?fields=' + encodeURIComponent(fields.join())
 }
 
 function getUrlFilter(model, filter, prepage, page) {
-    return apiUrl + model + '/?page=' + page + '&prepage=' + prepage + '&filter=' + filter
+    return getApiUrl() + model + '/?page=' + page + '&prepage=' + prepage + '&filter=' + filter
 }
 
 export default {
@@ -21,5 +29,6 @@ export default {
     getUrlField,
     getUrlById,
     apiUrl,
-    getUrlFilter
+    getUrlFilter,
+    getLoginUrl
 }

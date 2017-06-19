@@ -1,6 +1,6 @@
 <template>
     <div class="app ng-scope app-header-fixed app-aside-fixed" :class="{'app-aside-folded':isvariety}">
-        <lb-header @variety="variety"></lb-header>
+        <lb-header @variety="variety" :class="login"></lb-header>
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
             <div class="bg-light lter b-b wrapper-md" v-if="getCurrMenu.length>0">
@@ -26,7 +26,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            isvariety: true,
+            isvariety: false,
         }
     },
     components: {
@@ -37,6 +37,11 @@ export default {
         'lb-modalbackdrop': modalbackdrop
     },
     computed: {
+        login(){
+            if (!this.$store.state.models.login){
+                this.$router.push('/header/sign_in')
+            }
+        },
         getCurrMenu() {
             var menuName = this.$store.state.envs.currMenu
             if (this.$store.state.envs.currMenu.length == 0) {
