@@ -196,7 +196,6 @@
 .dayheight {
     border-right: 1px solid #dddddd;
     display: inline-block;
-    border-bottom: 1px solid #dddddd;
     height: 34px;
     padding: 0px !important;
 }
@@ -204,8 +203,11 @@
 .schedule .scheduletable td {
     border-right: 1px solid #dddddd;
     padding: 8px 15px;
-    border-bottom: 1px solid #dddddd;
     word-break: break-all;
+}
+
+.schedule .scheduletable tr {
+    border-bottom: 1px solid #dddddd;
 }
 
 .schedule .scheduletable th {
@@ -271,10 +273,13 @@ export default {
         }
     },
     mounted() {
-        let filterTxt = this.base64.encode(JSON.stringify({}))
-        this.handleGetFilterTableTable('classes', filterTxt).then(data => {
-            this.currclass = data.data.data
-        })
+        let filterTxt = this.base64.encode(JSON.stringify([]))
+        for (var i = 0; i < 100; i++) {
+            this.handleGetFilterTableTable('classes', filterTxt).then(data => {
+                this.currclass = data.data.data
+            })
+        }
+
         this.handleGetFilterTableTable('sclasses', filterTxt).then(data => {
             this.currsclass = data.data.data
         })
