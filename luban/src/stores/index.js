@@ -1,5 +1,7 @@
-Vue.use(Vuex)
+import system from './modules/system'
 
-export default new Vuex.Store({
-
-})
+export default {
+    modules: {
+        system
+    }
+}
