@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <div class="wallpaper">
-            <img class="wallpaper-image" src="/assets/wallpager/wood.jpg">
-            <img class="wallpaper-image-back">
-        </div>
+    <div class="wallpaper">
+        <img class="wallpaper-image" src="/assets/wallpager/wood.jpg"  @click="handleClick">
+        <img class="wallpaper-image-back">
     </div>
 </template>
 <style>
@@ -40,8 +38,12 @@ export default {
         let localdata = {}
         return {
             localdata,
-            isvariety: false,
         }
     },
+    methods: {
+        handleClick() {
+            this.$emit('dockhidden')
+        }
+    }
 }
 </script>

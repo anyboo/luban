@@ -1,10 +1,10 @@
 <template>
     <div class="taskbar">
         <div class="taskbar-action-left">
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
+            <div @click="handleClick('desktop')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
                 <span class="taskbar-action-icon icon-th-large"></span>
             </div>
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的HteOS">
+            <div @click="handleClick('my')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
                 <span class="taskbar-action-icon icon-user"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用管理">
@@ -35,10 +35,10 @@
             <div class="taskbar-action" style="width:5px;border-left:1px solid #ccc"></div>
         </div>
         <div class="taskbar-nav left">
-           
+    
         </div>
         <div class="taskbar-nav right">
-            
+    
         </div>
     </div>
 </template>
@@ -188,7 +188,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            time : '',
+            time: '',
         }
     },
     mounted() {
@@ -196,5 +196,10 @@ export default {
             this.time = moment().format("h:mm:ss");
         }, 1000)
     },
+    methods: {
+        handleClick(action){
+            this.$emit('action',action)
+        }
+    }
 }
 </script>
