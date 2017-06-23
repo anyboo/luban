@@ -4,7 +4,7 @@
             <div @click="handleClick('desktop')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
                 <span class="taskbar-action-icon icon-th-large"></span>
             </div>
-            <div @click="handleClick('my')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
+            <div @click="handleClick('dock','lb-login')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
                 <span class="taskbar-action-icon icon-user"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用管理">
@@ -16,10 +16,7 @@
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用市场">
                 <span class="taskbar-action-icon icon-folder-close"></span>
             </div>
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="即时通讯">
-                <span class="taskbar-action-icon icon-comment"></span>
-            </div>
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="个性化设置">
+            <div @click="handleClick('dock','lb-theme')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="个性化设置">
                 <span class="taskbar-action-icon icon-cog"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="示例">
@@ -197,8 +194,8 @@ export default {
         }, 1000)
     },
     methods: {
-        handleClick(action){
-            this.$emit('action',action)
+        handleClick(action,page){
+            this.$emit(action,page)
         }
     }
 }

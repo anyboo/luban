@@ -1,10 +1,10 @@
 <template>
     <div>
         <lb-header></lb-header>
-        <lb-taskbar @action="handleAction"></lb-taskbar>
-        <lb-wallpaper @dockhidden="handleHidden"></lb-wallpaper>
+        <lb-taskbar @dock="handleDock" @desktop="handleDesktop"></lb-taskbar>
+        <lb-wallpaper @dockhidden="handleDockHidden"></lb-wallpaper>
         <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
-            <lb-docklogin v-if="dockshow"></lb-docklogin>
+            <lb-dock v-if="dockshow" :view="dockview" @dockhidden="handleDockHidden"></lb-dock>
         </transition>
     </div>
 </template>
@@ -12,7 +12,8 @@
 import header from './header.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
-import docklogin from './docklogin.vue'
+import dock from '../dock/dock.vue'
+import management from './management.vue'
 export default {
     name: '',
     data() {
@@ -20,27 +21,28 @@ export default {
         return {
             localdata,
             dockshow: true,
+            dockview: 'lb-login'
         }
     },
     components: {
         'lb-wallpaper': wallpaper,
         'lb-taskbar': taskbar,
-        'lb-docklogin': docklogin,
-        'lb-header': header
+        'lb-dock': dock,
+        'lb-header': header,
+        'lb-management': management
     },
     methods: {
-        handleAction(action) {
-            if (action == 'my') {
-                this.dockshow = !this.dockshow
-            }
-            if (action == 'desktop') {
-                this.dockshow = false
-            }
+        handleDock(action) {
+            this.dockshow = this.dockview == action ? !this.dockshow : true
+            this.dockview = action
         },
-        handleHidden() {
+        handleDesktop() {
+            this.dockshow = false
+        },
+        handleDockHidden() {
             console.log('handleClick')
             this.dockshow = false
-        }
+        },
     }
 }
 </script>
