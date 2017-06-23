@@ -1,48 +1,44 @@
 <template>
-    <div class="col-md-3 col-xs-12 col-sm-6 hte-dock hte-side hte-dock-animate hte-dock-transform" style="z-index: 9999; transform: translate3d(0px, 0px, 0px); display: block;">
+    <div class="col-md-3 col-xs-12 col-sm-6 hte-dock hte-side hte-dock-animate hte-dock-transform" id="hte-dock-appmanager" style="z-index: 9999; transform: translate3d(0px, 0px, 0px);">
         <div class="hte-dock-inner">
             <header class="hte-dock-header">
                 <h3>
-                    <span>个性化设置</span>
+                    <span>应用管理</span>
                  
                 </h3>
             </header>
-           <div class="hte-dock-body"><div class="hte-settings-panel hte-webkit-scrollbar">
-	<div class="hte-settings-inner">
+            <div class="hte-dock-body">
+                <div class="hte-overview hte-webkit-scrollbar">
+                    <div class="hte-overview-inner">
+                        <input id="app-search-input" type="text" class="form-control" placeholder="输入关键字进行搜索">
+                       
+                            <div class="hte-overview-content">
+                                <div class="hte-overview-group hte-overview-item">{{itme}}</div>
+                                <div id="hte-overview-item-adf28bd452ff464a0152ff4ab9320000" data-app="adf28bd452ff464a0152ff4ab9320000" class="hte-overview-app hte-overview-item">
+                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd452ff464a0152ff4ab9320000.png"></div>
+                                    <div class="hte-overview-app-name">图片新闻</div>
+                                </div>
+                                <div id="hte-overview-item-adf28bd4530214450153070163890009" data-app="adf28bd4530214450153070163890009" class="hte-overview-app hte-overview-item">
+                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd4530214450153070163890009.png"></div>
+                                    <div class="hte-overview-app-name">应用市场</div>
+                                </div>
+                                <div id="hte-overview-item-adf28bd453021445015306eb38ce0000" data-app="adf28bd453021445015306eb38ce0000" class="hte-overview-app hte-overview-item">
+                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd453021445015306eb38ce0000.png"></div>
+                                    <div class="hte-overview-app-name">新浪滚动新闻</div>
+                                </div>
+                                <div id="hte-overview-item-adf28bd454b9af650154bf26774f0053" data-app="adf28bd454b9af650154bf26774f0053" class="hte-overview-app hte-overview-item">
+                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd454b9af650154bf26774f0053.png"></div>
+                                    <div class="hte-overview-app-name">有道词典</div>
+                                </div>
+                                </div>
+                        
+                        </div>
+                        </div>
 
-	<ul class="nav nav-tabs  nav-justified" >
-		<li class="active" style="height:47px;"@click=""><a href="#theme" data-toggle="tab" >
-				<h4 class="main" style="color:white;font-size:18px;border-bottom:2px solid white;	line-height:47px">主题</h4>
-		</a></li>
-		<li style="height:47px;"><a href="#wallpaper" data-toggle="tab">
-				<h4 class="main" style="color:white;font-size:18px;;border-bottom:2px solid white;line-height:47px">壁纸</h4>
-		</a></li>
-	</ul>
 
-	<div >
-		<div v-if="">
-			
-	
-		<ul class="list-group bgc">
-  <li class="list-group-item"style="background-color: rgb(31,91,183);"></li>
-  <li class="list-group-item"style="background-color: rgb(89,183,40);;"></li>
-    <li class="list-group-item"style="background-color: rgb(155,29,171);"></li>
-      <li class="list-group-item"style="background-color: rgb(204,53,53);"></li>
-        <li class="list-group-item"style="background-color: rgb(208, 150, 21);"></li>
-          <li class="list-group-item"style="background-color: rgb(84, 74, 74);"></li>
-            <li class="list-group-item"style="background-color: rgb(47, 128, 82);"></li>
-</ul>
-
-		</div>
-	
-			
-		</div>
-	</div>
-</div>
-</div>
-</div>
-        </div>
-    </div>
+                    </div>
+                </div>
+            </div>
 </template>
 <style>
 .hte-profile {
@@ -58,7 +54,7 @@
     width: 100%;
     overflow: auto;
     position: relative;
-	line-height:
+    line-height:
 }
 
 .hte-profile-footer {
@@ -143,7 +139,6 @@
     width: 100%;
     height: 100%;
     color: #fff;
-	
 }
 
 .hte-dock-header {
@@ -212,54 +207,111 @@ h3 {
 h3 {
     font-size: 24px;
 }
-.nav-tabs.nav-justified {
+
+.form-control {
+    display: block;
     width: 100%;
-    border-bottom: 0;
-}
-.nav {
-    padding-left: 0 !important;
-    margin-bottom: 0 !important;
-	margin-top:10px;
-
-
-}
-.nav-tabs.nav-justified>li {
-    float: none;
-}
-ol,ul li{
-	margin-left:90px;
-}
-ol, ul {
-    margin-top: 0;
-    margin-bottom: 10px;
-	border-bottom:1px solid pink;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow:
 }
 
-.active .h4 {
-    font-size: 118px !important;
-	
-	
-	}
-.bgc li{
-	margin-top:10px;
-	margin-left:10px;
-	margin-right:10px;
-	list-style-type:none;
-	height:60px;
-	border:2px solid white
+input,
+.btn,
+.form-control,
+.input-group-addon {
+    border-radius: 0px;
+}
 
-}	
+.hte-webkit-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hte-overview {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 10px 20px 30px 20px;
+}
+
+.hte-overview-inner {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hte-overview-group {
+    padding: 8px 5px;
+    font-size: 13pt;
+    cursor: default;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 5px;
+}
+
+.hte-overview-item {
+    width: 100%;
+    height: 40px;
+    vertical-align: top;
+}
+
+.hte-overview-app-name {
+    height: 100%;
+    width: 100%;
+    padding-left: 40px;
+    line-height: 32px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.hte-overview-app-icon {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    top: 100pxpx;
+    left: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.hte-overview-app-icon img {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 5px;
+    left: 5px;
+}
+
+.hte-overview-app {
+    padding: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    position: relative;
+}
 </style>
 <script>
+import menu from '~/stores/menu'
 export default {
-    name: 'docklogin',
+    name: 'management',
     data() {
         let localdata = {}
         return {
             localdata,
-            loginstaus: 0,    //1登录,0注册 2.用户信息
+            loginstaus: 0, //1登录,0注册 2.用户信息
         }
-    }
-}
+    },
 
+
+}
 </script>
+

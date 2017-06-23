@@ -4,7 +4,7 @@
             <ul class="nav nav-tabs  nav-justified">
                 <li class="active" style="height:47px;" @click="cut=0">
                     <a href="#theme" data-toggle="tab">
-                        <h4 class="main" style="color:white;font-size:18px;border-bottom:2px solid white;	line-height:47px">主题</h4>
+                        <h4 class="main" style="color:white;font-size:18px;border-bottom:2px solid white;line-height:47px">主题</h4>
                     </a>
                 </li>
                 <li style="height:47px;">
@@ -41,7 +41,7 @@
                 </div>
                 <div v-if="cut==0">
                     <ul class="list-group bgc">
-                        <li class="list-group-item" style="background-color: rgb(31,91,183);"></li>
+                        <li class="list-group-item" style="background-color: rgb(31,91,183);" ></li>
                         <li class="list-group-item" style="background-color: rgb(89,183,40);;"></li>
                         <li class="list-group-item" style="background-color: rgb(155,29,171);"></li>
                         <li class="list-group-item" style="background-color: rgb(204,53,53);"></li>
@@ -83,6 +83,37 @@
     overflow-y: scroll;
     height: 100%;
 }
+.bgc li{
+    height: 60px;
+
+
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    border:2px solid white;
+}
+.bgc{
+    margin-top: 20px;
+}
+.hte-settings-panel {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0px 20px 10px 20px;
+}
+.hte-settings-inner {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.nav-tabs.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+}
+.nav-justified li{
+    margin-left: 80px;
+}
+
 </style>
 <script>
 export default {
