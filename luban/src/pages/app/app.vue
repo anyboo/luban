@@ -4,7 +4,7 @@
             <i class="icon-repeat"></i> Reload</a>
         <lb-taskbar></lb-taskbar>
         <lb-wallpaper></lb-wallpaper>
-        <lb-docklogin></lb-docklogin>
+         <lb-personalise></lb-personalise>
         
     </div>
 </template>
@@ -12,6 +12,8 @@
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
 import docklogin from './docklogin.vue'
+import personalise from './personalise.vue'
+import management from './management.vue'
 export default {
     name: '',
     data() {
@@ -24,7 +26,9 @@ export default {
     components: {
         'lb-wallpaper': wallpaper,
         'lb-taskbar': taskbar,
-        'lb-docklogin': docklogin
+        'lb-docklogin': docklogin,
+        'lb-personalise':personalise,
+        'lb-management':management
     },
 }
 </script>
