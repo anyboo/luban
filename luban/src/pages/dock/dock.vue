@@ -76,6 +76,8 @@ import login from './login.vue'
 import theme from './theme.vue'
 import profile from './profile.vue'
 import reg from './reg.vue'
+import management from './management.vue'
+
 
 export default {
     name: 'dock',
@@ -92,12 +94,15 @@ export default {
         'lb-theme': theme,
         'lb-reg': reg,
         'lb-profile': profile,
+        'lb-management': management,
     },
     computed: {
         dockTitle() {
             let title = ''
             if (this.currentView == 'lb-theme') {
                 title = '个性化设置'
+            } else if (this.currentView == 'lb-management') {
+                title = '应用管理'
             } else {
                 title = '我的Luban'
             }
@@ -105,7 +110,7 @@ export default {
         }
     },
     watch: {
-        view: function (val) {
+        view: function(val) {
             this.currentView = val
         }
     },

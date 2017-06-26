@@ -7,7 +7,7 @@
             <div @click="handleClick('dock','lb-login')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
                 <span class="taskbar-action-icon icon-user"></span>
             </div>
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用管理">
+            <div @click="handleClick('dock','lb-management')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用管理" >
                 <span class="taskbar-action-icon icon-list"></span>
             </div>
         </div>
@@ -50,12 +50,10 @@
     z-index: 1;
     overflow: hidden;
     text-align: left;
-    -webkit-transition: all .25s;
-    -webkit-transition-delay: 0;
+
     transition: all .25s;
     transition-delay: 0;
-    -ms-transition: all .25s;
-    -ms-transition-delay: 0;
+
     background-color: rgba(208, 150, 21, 0.8);
 }
 
@@ -143,7 +141,7 @@
     height: 100%;
     line-height: 1.8;
     vertical-align: -10%;
-    font-size: 1.15em;
+    font-size: 18.5px;
 }
 
 .taskbar-action-left {

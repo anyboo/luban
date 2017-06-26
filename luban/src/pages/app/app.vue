@@ -13,7 +13,7 @@ import header from './header.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
 import dock from '../dock/dock.vue'
-import management from './management.vue'
+import management from '../dock/management.vue'
 export default {
     name: '',
     data() {
