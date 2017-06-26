@@ -2,7 +2,7 @@
     <div class="taskbar" :style="{'background-color': $store.state.system.theme}">
         <div class="taskbar-action-left">
             <div @click="handleClick('desktop')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
-                <span class="taskbar-action-icon icon-th-large"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-th-large"></span>
             </div>
             <div @click="handleClick('dock','lb-login')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
                 <span class="taskbar-action-icon icon-user"></span>
@@ -136,7 +136,7 @@
     height: 100%;
     line-height: 1.8;
     vertical-align: -10%;
-    font-size: 18.5px;
+    font-size: 15px;
 }
 
 .taskbar-action-left {
