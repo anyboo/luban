@@ -102,7 +102,7 @@ export default {
             if (this.currentView == 'lb-theme') {
                 title = '个性化设置'
             } else if (this.currentView == 'lb-management') {
-                title = '应用管理'
+                title = '工作台'
             } else {
                 title = '我的Luban'
             }
