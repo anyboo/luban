@@ -184,7 +184,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            wallpaper: ['10.jpg', '11.jpg', 'cloud.jpg', 'wood.jpg', 'Yuanye.jpg', 'wallpaper.jpg'],
+            wallpaper: ['10.jpg', '11.jpg', 'cloud.jpg', 'wood.jpg', 'yuanye.jpg', 'wallpaper.jpg'],
             theme: ['rgba(31, 91, 183, 0.8)', 'rgba(89, 183, 40,0.8)', 'rgba(155, 29, 171, 0.8)',
                 'rgba(204, 53, 53, 0.8)', 'rgba(208, 150, 21, 0.8)', 'rgba(84, 74, 74, 0.8)', 'rgba(47, 128, 82, 0.8)'],
             cut: 0
