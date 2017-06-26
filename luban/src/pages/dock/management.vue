@@ -2,12 +2,12 @@
     <div class="hte-dock-body">
         <div class="hte-overview hte-webkit-scrollbar">
             <div class="hte-overview-inner">
-                <div class="hte-overview-content">
+                <div class="hte-overview-content scrollbar">
                     <template v-for="item in menu">
                         <div class="hte-overview-group hte-overview-item">{{item.menuTitle}}</div>
                         <template v-for="sub in item.menu">
                             <div  class="hte-overview-app hte-overview-item">
-                                <div class="hte-overview-app-icon"> <i :class="sub.menuIcon" v-if="sub.menuIcon"></i></div>
+                                <div class="hte-overview-app-icon menuicons"> <i :class="sub.menuIcon" v-if="sub.menuIcon"></i></div>
                                 <div class="hte-overview-app-name">{{sub.menuTitle}}</div>
                             </div>
                         </template>
@@ -273,6 +273,21 @@ input,
     font-size: 13px;
     cursor: pointer;
     position: relative;
+}
+.menuicons i {
+    font-size: 20px;
+    margin-left: 6px;
+    margin-top: 4px;
+}
+.scrollbar{
+    padding-right: 10px;
+    position: relative;
+    width: 100%;
+    padding: 2px;
+    overflow-y: scroll;
+    height: 100%;
+
+
 }
 </style>
 <script>

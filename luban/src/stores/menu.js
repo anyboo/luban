@@ -4,135 +4,167 @@ export default [{
     menu: [{
         menuTitle: '档案录入',
         to: '/student/add',
-        menuIcon: 'icon-user',
+        menuIcon: 'fa fa-user-plus',
     }, {
         menuTitle: '学员管理',
         to: '/student/list',
-        menuIcon: 'icon-user',
+        menuIcon: 'fa fa-user-circle'
     }, {
         menuTitle: '在读学员',
         to: '/student/list1',
-        menuIcon: 'icon-user',
+        menuIcon: 'fa fa-user',
     }, {
         menuTitle: '已结课学员',
-        to: '/student/list2'
+        to: '/student/list2',
+        menuIcon: 'fa-address-book-o fa',
     }, {
         menuTitle: '咨询管理',
-        to: '/student/list0'
+        to: '/student/list0',
+        menuIcon: 'glyphicon glyphicon-list',
     }, {
         menuTitle: '流失名单',
-        to: '/student/lost'
+        to: '/student/lost',
+        menuIcon: 'fa fa-address-card-o',
     }, {
         menuTitle: '跟踪回访记录',
-        to: '/student/tracks'
+        to: '/student/tracks',
+        menuIcon: 'fa fa-drivers-license',
     }, {
         menuTitle: '生日学员',
-        to: '/student/birthdays'
+        to: '/student/birthdays',
+        menuIcon: 'fa fa-id-card-o',
     }, {
         menuTitle: '赛事记录',
-        to: '/student/recording'
+        to: '/student/recording',
+        menuIcon: 'fa fa-vcard-o',
     }]
 }, {
     menuTitle: '课程',
     menuIcon: 'fa-book',
     menu: [{
         menuTitle: '教室设置',
-        to: '/lesson/sclasses'
+        to: '/lesson/sclasses',
+        menuIcon: 'fa fa-certificate',
     }, {
         menuTitle: '课程设置',
-        to: '/lesson/manage'
+        to: '/lesson/manage',
+        menuIcon: 'fa fa-gears',
     }, {
         menuTitle: '班级设置',
-        to: '/lesson/classes'
+        to: '/lesson/classes',
+        menuIcon: 'fa fa-gear',
     }, {
         menuTitle: '订单',
-        to: '/lesson/orders'
+        to: '/lesson/orders',
+        menuIcon: 'fa fa-envelope-o',
     }]
 }, {
     menuTitle: '学费',
     menuIcon: 'fa-money',
     menu: [{
         menuTitle: '缴费明细',
-        to: '/fee/list1'
+        to: '/fee/list1',
+        menuIcon: 'fa fa-battery',
     }, {
         menuTitle: '欠费明细',
-        to: '/fee/list3'
+        to: '/fee/list3',
+        menuIcon: 'fa fa-battery-0',
     }, {
         menuTitle: '退费明细',
-        to: '/fee/list4'
+        to: '/fee/list4',
+        menuIcon: 'fa fa-battery-half',
     }]
 }, {
     menuTitle: '课时',
     menuIcon: 'icon-clock',
     menu: [{
         menuTitle: '课程表',
-        to: '/hours/arrange'
+        to: '/hours/arrange',
+        menuIcon: 'fa fa-file',
     }, {
         menuTitle: '排课',
-        to: '/hours/schedule'
+        to: '/hours/schedule',
+        menuIcon: 'fa fa-file-o',
     }, {
         menuTitle: '考勤',
-        to: '/hours/attendance'
+        to: '/hours/attendance',
+        menuIcon: 'fa fa-file-sound-o',
     }, {
         menuTitle: '教师课耗',
-        to: '/hours/teacher'
+        to: '/hours/teacher',
+        menuIcon: 'fa fa-file-zip-o',
     }, {
         menuTitle: '学员课耗',
-        to: '/hours/student'
+        to: '/hours/student',
+        menuIcon: 'fa fa-vcard',
     }, {
         menuTitle: '课时预警',
-        to: '/hours/warning'
+        to: '/hours/warning',
+        menuIcon: 'fa fa-heartbeat',
     }, {
         menuTitle: '缺课记录',
-        to: '/hours/absences'
+        to: '/hours/absences',
+        menuIcon: 'fa fa-book',
     }, {
         menuTitle: '请假管理',
-        to: '/hours/leaves'
+        to: '/hours/leaves',
+        menuIcon: 'fa fa-briefcase',
     }, {
         menuTitle: '停课管理',
-        to: '/hours/suspends'
+        to: '/hours/suspends',
+        menuIcon: 'fa fa-minus-square',
     }]
 }, {
     menuTitle: '收支',
     menuIcon: 'fa-tachometer',
     menu: [{
         menuTitle: '流水',
-        to: '/iae/flow'
+        to: '/iae/flow',
+        menuIcon: 'fa fa-google-wallet',
     }, {
         menuTitle: '收入明细',
-        to: '/iae/income'
+        to: '/iae/income',
+        menuIcon: 'fa fa-yen',
     }, {
         menuTitle: '支出明细',
-        to: '/iae/expenses'
+        to: '/iae/expenses',
+        menuIcon: 'fa fa-paypal',
     }]
 }, {
     menuTitle: '家校',
     menuIcon: 'fa-university',
     menu: [{
         menuTitle: '短信通知',
-        to: '/has/sms'
+        to: '/has/sms',
+        menuIcon: 'fa fa-file-text-o',
     }, {
         menuTitle: '公告发布',
-        to: '/has/news'
+        to: '/has/news',
+        menuIcon: 'fa fa-file',
     }]
 }, {
     menuTitle: '设置',
     menuIcon: 'fa-cog',
     menu: [{
         menuTitle: '参数配置',
-        to: '/system/config'
+        to: '/system/config',
+        menuIcon: 'fa fa-wrench',
     }, {
         menuTitle: '角色权限',
-        to: '/system/roles'
+        to: '/system/roles',
+        menuIcon: 'fa fa-unlock',
     }, {
         menuTitle: '员工管理',
-        to: '/system/employee'
+        to: '/system/employee',
+        menuIcon: 'fa fa-tasks',
     }, {
         menuTitle: '数据字典管理',
-        to: '/system/dict'
+        to: '/system/dict',
+        menuIcon: 'fa fa-keyboard-o',
     }, {
         menuTitle: '机构与校区设置',
-        to: '/system/org'
+        to: '/system/org',
+        menuIcon: 'fa fa-institution',
     }]
 }, {
     menuTitle: '日志',
