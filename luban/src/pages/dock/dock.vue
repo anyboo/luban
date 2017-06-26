@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-3 col-xs-12 col-sm-6 dock side" style="z-index: 9999; ">
+    <div class="col-md-3 col-xs-12 col-sm-6 dock side" :style="{'background-color': $store.state.system.theme}">
         <div class="dock-inner">
             <header class="dock-header">
                 <h3>
@@ -20,7 +20,6 @@
     top: 0px;
     right: 0px;
     height: 100%;
-    background-color: rgba(208, 150, 21, 0.98);
     z-index: 1000;
     overflow: hidden;
     padding: 0px;

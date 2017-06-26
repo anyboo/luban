@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :style="{'background-color': $store.state.system.theme}">
         <lb-header></lb-header>
         <lb-body></lb-body>
         <lb-taskbar @dock="handleDock" @desktop="handleDesktop"></lb-taskbar>

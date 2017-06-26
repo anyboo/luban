@@ -1,16 +1,20 @@
 const state = {
-    wallpaper: '/assets/wallpager/wood.jpg',
+    wallpaper: 'wood.jpg',
     id: '',
     name: '',
     face: '',
-    login: false
+    login: false,
+    theme: 'rgba(208, 150, 21, 0.8)'
 }
 const getters = {}
 const actions = {}
 
 const mutations = {
-    setWallpaper: (state, obj) => {
+    wallpaper: (state, obj) => {
         state.wallpaper = obj
+    },
+    theme: (state, obj) => {
+        state.theme = obj
     }
 }
 export default {
