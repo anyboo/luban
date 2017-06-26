@@ -4,11 +4,25 @@
         <lb-body></lb-body>
         <lb-taskbar @dock="handleDock" @desktop="handleDesktop"></lb-taskbar>
         <lb-wallpaper @dockhidden="handleDockHidden"></lb-wallpaper>
-        <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
-            <lb-dock v-if="dockshow" :view="dockview" @dockhidden="handleDockHidden"></lb-dock>
-        </transition>
+        <div class="col-md-3 col-xs-12 col-sm-6 dock" :style="{'background-color': $store.state.system.theme}"  v-show="dockshow">
+            <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
+                <lb-dock v-show="dockshow" :view="dockview" @dockhidden="handleDockHidden"></lb-dock>
+            </transition>
+        </div>
     </div>
 </template>
+<style>
+.dock {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    padding: 0px;
+    box-shadow: -2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+</style>
 <script>
 import header from './header.vue'
 import body from './body.vue'
