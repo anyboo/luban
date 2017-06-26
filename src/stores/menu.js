@@ -27,7 +27,7 @@ export default [{
         menuTitle: '跟踪回访记录',
         to: '/student/tracks'
     }, {
-        menuTitle: '生日学员',
+        menuTitle: '生日学员', 
         to: '/student/birthdays'
     }, {
         menuTitle: '赛事记录',

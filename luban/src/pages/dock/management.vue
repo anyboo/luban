@@ -1,44 +1,36 @@
 <template>
-    <div class="col-md-3 col-xs-12 col-sm-6 hte-dock hte-side hte-dock-animate hte-dock-transform" id="hte-dock-appmanager" style="z-index: 9999; transform: translate3d(0px, 0px, 0px);">
-        <div class="hte-dock-inner">
-            <header class="hte-dock-header">
-                <h3>
-                    <span>应用管理</span>
-                 
-                </h3>
-            </header>
-            <div class="hte-dock-body">
-                <div class="hte-overview hte-webkit-scrollbar">
-                    <div class="hte-overview-inner">
-                        <input id="app-search-input" type="text" class="form-control" placeholder="输入关键字进行搜索">
-                       
-                            <div class="hte-overview-content">
-                                <div class="hte-overview-group hte-overview-item">{{itme}}</div>
-                                <div id="hte-overview-item-adf28bd452ff464a0152ff4ab9320000" data-app="adf28bd452ff464a0152ff4ab9320000" class="hte-overview-app hte-overview-item">
-                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd452ff464a0152ff4ab9320000.png"></div>
-                                    <div class="hte-overview-app-name">图片新闻</div>
-                                </div>
-                                <div id="hte-overview-item-adf28bd4530214450153070163890009" data-app="adf28bd4530214450153070163890009" class="hte-overview-app hte-overview-item">
-                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd4530214450153070163890009.png"></div>
-                                    <div class="hte-overview-app-name">应用市场</div>
-                                </div>
-                                <div id="hte-overview-item-adf28bd453021445015306eb38ce0000" data-app="adf28bd453021445015306eb38ce0000" class="hte-overview-app hte-overview-item">
-                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd453021445015306eb38ce0000.png"></div>
-                                    <div class="hte-overview-app-name">新浪滚动新闻</div>
-                                </div>
-                                <div id="hte-overview-item-adf28bd454b9af650154bf26774f0053" data-app="adf28bd454b9af650154bf26774f0053" class="hte-overview-app hte-overview-item">
-                                    <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd454b9af650154bf26774f0053.png"></div>
-                                    <div class="hte-overview-app-name">有道词典</div>
-                                </div>
-                                </div>
-                        
-                        </div>
-                        </div>
+    <div class="hte-dock-body">
+        <div class="hte-overview hte-webkit-scrollbar">
+            <div class="hte-overview-inner">
+                <input id="app-search-input" type="text" class="form-control" placeholder="输入关键字进行搜索">
+                <div class="hte-overview-content">
+                    <template v-for="item in menu">
 
-
+                    <div class="hte-overview-group hte-overview-item"></div>
+                    <div id="hte-overview-item-adf28bd452ff464a0152ff4ab9320000" data-app="adf28bd452ff464a0152ff4ab9320000" class="hte-overview-app hte-overview-item">
+                        <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd452ff464a0152ff4ab9320000.png"></div>
+                        <div class="hte-overview-app-name">图片新闻</div>
                     </div>
+                    <div id="hte-overview-item-adf28bd4530214450153070163890009" data-app="adf28bd4530214450153070163890009" class="hte-overview-app hte-overview-item">
+                        <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd4530214450153070163890009.png"></div>
+                        <div class="hte-overview-app-name">应用市场</div>
+                    </div>
+                    <div id="hte-overview-item-adf28bd453021445015306eb38ce0000" data-app="adf28bd453021445015306eb38ce0000" class="hte-overview-app hte-overview-item">
+                        <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd453021445015306eb38ce0000.png"></div>
+                        <div class="hte-overview-app-name">新浪滚动新闻</div>
+                    </div>
+                    <div id="hte-overview-item-adf28bd454b9af650154bf26774f0053" data-app="adf28bd454b9af650154bf26774f0053" class="hte-overview-app hte-overview-item">
+                        <div class="hte-overview-app-icon"><img src="images/apps/icons/adf28bd454b9af650154bf26774f0053.png"></div>
+                        <div class="hte-overview-app-name">有道词典</div>
+                    </div>
+                    </template>
+
+
+
                 </div>
             </div>
+        </div>
+    </div>
 </template>
 <style>
 .hte-profile {
@@ -152,7 +144,7 @@
     height: 100%;
     width: 100%;
     position: relative;
-    padding-top: 50px;
+ 
 }
 
 .hte-dock-close-btn {
@@ -307,11 +299,11 @@ export default {
         let localdata = {}
         return {
             localdata,
-            loginstaus: 0, //1登录,0注册 2.用户信息
+            loginstaus: 0, 
+            menu
         }
     },
 
 
 }
 </script>
-

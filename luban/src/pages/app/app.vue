@@ -15,6 +15,8 @@ import body from './body.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
 import dock from '../dock/dock.vue'
+
+
 export default {
     name: '',
     data() {
