@@ -4,29 +4,29 @@
             <div @click="handleClick('desktop')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
                 <span class="taskbar-action-icon glyphicon glyphicon-th-large"></span>
             </div>
-            <div @click="handleClick('dock','lb-login')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
-                <span class="taskbar-action-icon icon-user"></span>
+            <div @click="handleClick('dock','lb-login')" class="taskbar-action taskbar-action-profile " data-toggle="tooltip" data-placement="top" data-original-title="我的鲁班">
+                <span class="taskbar-action-icon glyphicon glyphicon-user"></span>
             </div>
             <div @click="handleClick('dock','lb-management')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用管理" >
-                <span class="taskbar-action-icon icon-list"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-list"></span>
             </div>
         </div>
         <div class="taskbar-inner" style="left: 120px; right: 278px;"></div>
         <div class="taskbar-action-right">
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="应用市场">
-                <span class="taskbar-action-icon icon-folder-close"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-folder-close"></span>
             </div>
             <div @click="handleClick('dock','lb-theme')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="个性化设置">
-                <span class="taskbar-action-icon icon-cog"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-cog"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="示例">
-                <span class="taskbar-action-icon icon-book"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-book"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="反馈意见">
-                <span class="taskbar-action-icon icon-edit"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-edit"></span>
             </div>
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="关于Luban">
-                <span class="taskbar-action-icon icon-info-sign"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-info-sign"></span>
             </div>
             <div class="taskbar-action taskbar-action-time" data-toggle="tooltip" data-placement="top" data-original-title="2017-6-21">{{time}}</div>
             <div class="taskbar-action" style="width:5px;border-left:1px solid #ccc"></div>
@@ -136,7 +136,8 @@
     height: 100%;
     line-height: 1.8;
     vertical-align: -10%;
-    font-size: 15px;
+    font-size: 16px;
+    margin-top: 3px;
 }
 
 .taskbar-action-left {
