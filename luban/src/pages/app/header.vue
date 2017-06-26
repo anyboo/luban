@@ -5,7 +5,7 @@
             <a href="#">
                 <span class="segoe">Luban</span>-
                 <small>与众不同的
-                    <span class="segoe">机构平台</span>
+                    <span class="segoe">教育平台</span>
                 </small>
             </a>
         </div>

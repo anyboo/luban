@@ -3,7 +3,7 @@
         <header class="dock-header">
             <h3>
                 <span>{{dockTitle}}</span>
-                <span class="icon-circle-arrow-right smaller dock-close-btn" @click="handleClick('desktop')"></span>
+                <span class="fa fa-arrow-circle-right smaller dock-close-btn" @click="handleClick('desktop')"></span>
             </h3>
         </header>
         <div class="dock-body">
@@ -13,16 +13,7 @@
     </div>
 </template>
 <style>
-.dock {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    height: 100%;
-    z-index: 1000;
-    overflow: hidden;
-    padding: 0px;
-    box-shadow: -2px 2px 12px rgba(0, 0, 0, 0.2);
-}
+
 
 .dock-inner {
     position: relative;
