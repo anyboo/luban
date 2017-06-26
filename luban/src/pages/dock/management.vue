@@ -4,6 +4,7 @@
             <div class="hte-overview-inner">
                 <div class="hte-overview-content">
                     <template v-for="item in menu">
+<<<<<<< HEAD
                         <div class="hte-overview-group hte-overview-item">{{item.menuTitle}}</div>
                         <template v-for="sub in item.menu">
                             <div  class="hte-overview-app hte-overview-item">
@@ -11,6 +12,33 @@
                                 <div class="hte-overview-app-name">{{sub.menuTitle}}</div>
                             </div>
                         </template>
+=======
+                        <div class="hte-overview-group hte-overview-item"></div>
+                        <div id="hte-overview-item-adf28bd452ff464a0152ff4ab9320000" data-app="adf28bd452ff464a0152ff4ab9320000" class="hte-overview-app hte-overview-item">
+                            <div class="hte-overview-app-icon">
+                                <img src="images/apps/icons/adf28bd452ff464a0152ff4ab9320000.png">
+                            </div>
+                            <div class="hte-overview-app-name">图片新闻</div>
+                        </div>
+                        <div id="hte-overview-item-adf28bd4530214450153070163890009" data-app="adf28bd4530214450153070163890009" class="hte-overview-app hte-overview-item">
+                            <div class="hte-overview-app-icon">
+                                <img src="images/apps/icons/adf28bd4530214450153070163890009.png">
+                            </div>
+                            <div class="hte-overview-app-name">应用市场</div>
+                        </div>
+                        <div id="hte-overview-item-adf28bd453021445015306eb38ce0000" data-app="adf28bd453021445015306eb38ce0000" class="hte-overview-app hte-overview-item">
+                            <div class="hte-overview-app-icon">
+                                <img src="images/apps/icons/adf28bd453021445015306eb38ce0000.png">
+                            </div>
+                            <div class="hte-overview-app-name">新浪滚动新闻</div>
+                        </div>
+                        <div id="hte-overview-item-adf28bd454b9af650154bf26774f0053" data-app="adf28bd454b9af650154bf26774f0053" class="hte-overview-app hte-overview-item">
+                            <div class="hte-overview-app-icon">
+                                <img src="images/apps/icons/adf28bd454b9af650154bf26774f0053.png">
+                            </div>
+                            <div class="hte-overview-app-name">有道词典</div>
+                        </div>
+>>>>>>> 35b63ea579e15c035acb4a9620df8b6704a2f8ea
                     </template>
                 </div>
             </div>

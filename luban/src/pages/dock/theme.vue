@@ -2,49 +2,34 @@
     <div class="settings-panel lb-webkit-scrollbar">
         <div class="settings-inner">
             <ul class="nav nav-tabs messager-nav nav-justified">
-                <li class="">
-                    <a href="#"  @click="cut=0">
+                <li :class="{active:cut==0}">
+                    <a href="#" @click="cut=0">
                         <h4>主题</h4>
                     </a>
                 </li>
-                <li class="active">
+                <li :class="{active:cut==1}">
                     <a href="#" @click="cut=1">
                         <h4>壁纸</h4>
                     </a>
                 </li>
             </ul>
-            <div class="tab-content" style="height: 100%" >
-                <div class="tab-pane fade theme-list " :class="{active:cut==1}"   v-if="cut==1">
-                    <div class="hte-theme-item" style="background-color: rgb(31,91,183);" data-theme="blue"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(89,183,40);" data-theme="green"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(155,29,171);" data-theme="purple"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(204,53,53);" data-theme="red"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(208, 150, 21);" data-theme="orange"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(84, 74, 74);" data-theme="gray"></div>
-                    <div class="hte-theme-item" style="background-color: rgb(47, 128, 82);" data-theme="cyan"></div>
-                </div>
-                <div class="tab-pane fade wallpaper-list "  :class="{active:cut==0}"  v-if="cut==0">
-                    <ul>
-                        <li>
-                            <img src="/assetsimages/wallpaper/10.jpg">
-                        </li>
-                        <li>
-                            <img src="/assetsimages/wallpaper/11.jpg">
-                        </li>
-                        <li>
-                            <img src="/assetsimages/wallpaper/cloud.jpg">
-                        </li>
-                        <li>
-                            <img src="/assetsimages/wallpaper/wood.jpg">
-                        </li>
-                        <li>
-                            <img src="/assetsimages/wallpaper/Yuanye.jpg">
-                        </li>
-                        <li>
-                            <img src="/assetsimages/wallpaper.jpg">
-                        </li>
-                    </ul>
-                </div>
+            <div class="tab-content" style="height: 100%">
+                <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                    <div class=" theme-list " :class="{active:cut==1}" v-if="cut==0">
+                        <template v-for="item in theme">
+                            <div class="theme-item" :style="{'background-color': item}" @click="handleChangeTheme(item)"></div>
+                        </template>
+                    </div>
+                </transition>
+                <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                    <div class=" wallpaper-list" :class="{active:cut==0}" v-if="cut==1">
+                        <ul>
+                            <li v-for="item in wallpaper" @click="handleChangeWallpaper(item)">
+                                <img :src="'/assets/wallpaper/'+item">
+                            </li>
+                        </ul>
+                    </div>
+                </transition>
             </div>
         </div>
     </div>
@@ -53,13 +38,15 @@
 .lb-webkit-scrollbar ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
 .lb-webkit-scrollbar ::-webkit-scrollbar-thumb {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
 }
+
 .lb-webkit-scrollbar ::-webkit-scrollbar-track {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .wallpaper-list {
@@ -156,7 +143,7 @@
 
 .settings-panel .nav-tabs>li {
     display: table-cell;
-   
+    width: 1%;
 }
 
 .settings-panel .nav-tabs>li.active>a,
@@ -197,7 +184,18 @@ export default {
         let localdata = {}
         return {
             localdata,
+            wallpaper: ['10.jpg', '11.jpg', 'cloud.jpg', 'wood.jpg', 'yuanye.jpg', 'wallpaper.jpg'],
+            theme: ['rgba(31, 91, 183, 0.8)', 'rgba(89, 183, 40,0.8)', 'rgba(155, 29, 171, 0.8)',
+                'rgba(204, 53, 53, 0.8)', 'rgba(208, 150, 21, 0.8)', 'rgba(84, 74, 74, 0.8)', 'rgba(47, 128, 82, 0.8)'],
             cut: 0
+        }
+    },
+    methods: {
+        handleChangeTheme(item) {
+            this.$store.commit('theme', item)
+        },
+        handleChangeWallpaper(item) {
+            this.$store.commit('wallpaper', item)
         }
     }
 }

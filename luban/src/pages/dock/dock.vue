@@ -1,16 +1,14 @@
 <template>
-    <div class="col-md-3 col-xs-12 col-sm-6 dock side" style="z-index: 9999; ">
-        <div class="dock-inner">
-            <header class="dock-header">
-                <h3>
-                    <span>{{dockTitle}}</span>
-                    <span class="icon-circle-arrow-right smaller dock-close-btn" @click="handleClick('desktop')"></span>
-                </h3>
-            </header>
-            <div class="dock-body">
-                <component v-bind:is="currentView" @viewChange="handleviewChange">
-                </component>
-            </div>
+    <div class="dock-inner">
+        <header class="dock-header">
+            <h3>
+                <span>{{dockTitle}}</span>
+                <span class="icon-circle-arrow-right smaller dock-close-btn" @click="handleClick('desktop')"></span>
+            </h3>
+        </header>
+        <div class="dock-body">
+            <component v-bind:is="currentView" @viewChange="handleviewChange">
+            </component>
         </div>
     </div>
 </template>
@@ -20,7 +18,6 @@
     top: 0px;
     right: 0px;
     height: 100%;
-    background-color: rgba(208, 150, 21, 0.98);
     z-index: 1000;
     overflow: hidden;
     padding: 0px;
@@ -110,7 +107,7 @@ export default {
         }
     },
     watch: {
-        view: function(val) {
+        view: function (val) {
             this.currentView = val
         }
     },

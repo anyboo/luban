@@ -1,6 +1,6 @@
 <template>
     <div class="wallpaper" @click="handleClick" ondragstart="return false;">
-        <img class="wallpaper-image" src="/assets/wallpager/wood.jpg"  >
+        <img class="wallpaper-image" :src="'/assets/wallpaper/'+$store.state.system.wallpaper">
     </div>
 </template>
 <style>
@@ -10,7 +10,6 @@
     left: 0px;
     height: 100%;
     width: 100%;
-  
 }
 
 .wallpaper-image {
@@ -20,7 +19,6 @@
     width: 100%;
     height: 100%;
 }
-
 </style>
 <script>
 export default {

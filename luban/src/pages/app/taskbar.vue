@@ -1,5 +1,5 @@
 <template>
-    <div class="taskbar">
+    <div class="taskbar" :style="{'background-color': $store.state.system.theme}">
         <div class="taskbar-action-left">
             <div @click="handleClick('desktop')" class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="桌面">
                 <span class="taskbar-action-icon icon-th-large"></span>
@@ -25,7 +25,7 @@
             <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="反馈意见">
                 <span class="taskbar-action-icon icon-edit"></span>
             </div>
-            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="关于HteOS">
+            <div class="taskbar-action taskbar-action-profile" data-toggle="tooltip" data-placement="top" data-original-title="关于Luban">
                 <span class="taskbar-action-icon icon-info-sign"></span>
             </div>
             <div class="taskbar-action taskbar-action-time" data-toggle="tooltip" data-placement="top" data-original-title="2017-6-21">{{time}}</div>
@@ -50,11 +50,6 @@
     z-index: 1;
     overflow: hidden;
     text-align: left;
-
-    transition: all .25s;
-    transition-delay: 0;
-
-    background-color: rgba(208, 150, 21, 0.8);
 }
 
 .ie8 .taskbar {
@@ -192,8 +187,8 @@ export default {
         }, 1000)
     },
     methods: {
-        handleClick(action,page){
-            this.$emit(action,page)
+        handleClick(action, page) {
+            this.$emit(action, page)
         }
     }
 }
