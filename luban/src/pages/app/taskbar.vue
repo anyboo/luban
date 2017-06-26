@@ -50,14 +50,6 @@
     z-index: 1;
     overflow: hidden;
     text-align: left;
-<<<<<<< HEAD
-=======
-
-    transition: all .25s;
-    transition-delay: 0;
-
-    background-color: rgba(208, 150, 21, 0.8);
->>>>>>> afe5172b2ff82070479196b928c9a57200fb3d7e
 }
 
 .ie8 .taskbar {
