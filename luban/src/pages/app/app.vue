@@ -1,6 +1,7 @@
 <template>
     <div>
         <lb-header></lb-header>
+        <lb-body></lb-body>
         <lb-taskbar @dock="handleDock" @desktop="handleDesktop"></lb-taskbar>
         <lb-wallpaper @dockhidden="handleDockHidden"></lb-wallpaper>
         <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
@@ -10,10 +11,12 @@
 </template>
 <script>
 import header from './header.vue'
+import body from './body.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
 import dock from '../dock/dock.vue'
-import management from '../dock/management.vue'
+
+
 export default {
     name: '',
     data() {
@@ -21,7 +24,7 @@ export default {
         return {
             localdata,
             dockshow: true,
-            dockview: 'lb-login'
+            dockview: 'lb-theme'
         }
     },
     components: {
@@ -29,7 +32,7 @@ export default {
         'lb-taskbar': taskbar,
         'lb-dock': dock,
         'lb-header': header,
-        'lb-management': management
+        'lb-body': body
     },
     methods: {
         handleDock(action) {
@@ -40,7 +43,6 @@ export default {
             this.dockshow = false
         },
         handleDockHidden() {
-            console.log('handleClick')
             this.dockshow = false
         },
     }
