@@ -3,13 +3,16 @@ export default [{
     menuIcon: 'fa-users',
     menu: [{
         menuTitle: '档案录入',
-        to: '/student/add'
+        to: '/student/add',
+        menuIcon: 'icon-user',
     }, {
         menuTitle: '学员管理',
-        to: '/student/list'
+        to: '/student/list',
+        menuIcon: 'icon-user',
     }, {
         menuTitle: '在读学员',
-        to: '/student/list1'
+        to: '/student/list1',
+        menuIcon: 'icon-user',
     }, {
         menuTitle: '已结课学员',
         to: '/student/list2'
