@@ -1,7 +1,6 @@
 <template>
-    <div class="wallpaper">
-        <img class="wallpaper-image" src="/assets/wallpager/wood.jpg"  @click="handleClick">
-        <img class="wallpaper-image-back">
+    <div class="wallpaper" @click="handleClick" ondragstart="return false;">
+        <img class="wallpaper-image" src="/assets/wallpager/wood.jpg"  >
     </div>
 </template>
 <style>
@@ -11,7 +10,7 @@
     left: 0px;
     height: 100%;
     width: 100%;
-    z-index: -100;
+  
 }
 
 .wallpaper-image {
@@ -22,14 +21,6 @@
     height: 100%;
 }
 
-.wallpaper-image-back {
-    position: absolute;
-    display: none;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-}
 </style>
 <script>
 export default {
