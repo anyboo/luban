@@ -27,7 +27,11 @@ export default {
         let localdata = {}
         return {
             localdata,
+            movetime: 60,
+            engine: null
         }
+    },
+    mounted() {
     },
     methods: {
         handleClick() {
