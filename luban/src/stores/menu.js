@@ -165,12 +165,12 @@ export default [{
         menuTitle: '机构与校区设置',
         to: '/system/org',
         menuIcon: 'fa fa-institution',
+    }, {
+        menuTitle: '日志',
+        menuIcon: 'fa fa-picture-o',
+
+    }, {
+        menuTitle: '系统状态',
+        menuIcon: ' fa fa-th',
     }]
-}, {
-    menuTitle: '日志',
-    menuIcon: 'fa-file-archive-o',
-}, {
-    menuTitle: '系统状态',
-    menuIcon: ' fa-dashboard',
-    to: '/header/system'
-}]
+},]

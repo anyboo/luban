@@ -3,7 +3,7 @@
         <lb-header @variety="variety" :class="login"></lb-header>
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
-            <div class="bg-light lter b-b wrapper-md" v-if="getCurrMenu.length>0">
+            <div class="bg-light lter b-b wrapper-md" >
                 <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>
             </div>
             <router-view></router-view>
