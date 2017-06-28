@@ -13,8 +13,6 @@
     </div>
 </template>
 <style>
-
-
 .dock-inner {
     position: relative;
     width: 100%;

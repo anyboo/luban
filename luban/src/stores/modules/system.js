@@ -12,9 +12,16 @@ const actions = {}
 const mutations = {
     wallpaper: (state, obj) => {
         state.wallpaper = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
     },
     theme: (state, obj) => {
         state.theme = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    system: (state, obj) => {
+        console.log(obj.wallpaper, obj.theme)
+        state.wallpaper = obj.wallpaper
+        state.theme = obj.theme
     }
 }
 export default {

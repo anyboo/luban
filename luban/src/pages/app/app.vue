@@ -4,7 +4,7 @@
         <lb-body></lb-body>
         <lb-taskbar @dock="handleDock" @desktop="handleDesktop" @message="handleMessage"></lb-taskbar>
         <lb-wallpaper @dockhidden="handleDockHidden"></lb-wallpaper>
-        <div class="col-md-3 col-xs-12 col-sm-6 dock" :style="{'background-color': $store.state.system.theme}"  v-show="dockshow">
+        <div class="col-md-3 col-xs-12 col-sm-6 dock" :style="{'background-color': $store.state.system.theme}" v-show="dockshow">
             <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
                 <lb-dock v-show="dockshow" :view="dockview" @dockhidden="handleDockHidden"></lb-dock>
             </transition>
@@ -44,6 +44,12 @@ export default {
             messageview: 'lb-sysinfo'
         }
     },
+    beforeCreate() {
+        let system = JSON.parse(window.localStorage.getItem('system'))
+        if (system) {
+            this.$store.commit('system', system)
+        }
+    },
     components: {
         'lb-wallpaper': wallpaper,
         'lb-taskbar': taskbar,
@@ -67,7 +73,7 @@ export default {
         handleDockHidden() {
             this.dockshow = false
         },
-        handleMessageClose(){
+        handleMessageClose() {
             this.messageshow = false
         }
     }
