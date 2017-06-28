@@ -19,11 +19,15 @@
                     <el-tooltip content="示例" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
                         <span class="taskbar-action-icon glyphicon glyphicon-book"></span>
                     </el-tooltip>
-                    -->
+               
+
+                 -->
+            <el-tooltip content="全局模式" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
+                <span class="taskbar-action-icon fa fa-expand fa-fw text" @click="fullscreen"></span>
+            </el-tooltip>
             <el-tooltip content="个性化设置" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
                 <span class="taskbar-action-icon glyphicon glyphicon-cog" @click="handleClick('dock','lb-theme')"></span>
             </el-tooltip>
-    
             <el-tooltip content="反馈意见" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
                 <span class="taskbar-action-icon glyphicon glyphicon-edit" @click="handleClick('message','lb-feedback')"></span>
             </el-tooltip>
@@ -186,7 +190,35 @@ export default {
     methods: {
         handleClick(action, page) {
             this.$emit(action, page)
+        },
+          fullscreen() {
+        if (this.full) {
+            this.full = false
+            if (document.exitFullscreen) {
+                document.exitFullscreen()
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen()
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen()
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen()
+            }
+        } else {
+            this.full = true
+            var docElm = document.documentElement
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen()
+            } else if (docElm.msRequestFullscreen) {
+                docElm.msRequestFullscreen()
+            } else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen()
+            } else if (docElm.webkitRequestFullScreen) {
+                docElm.webkitRequestFullScreen()
+            }
         }
-    }
+    },
+    },
+
+  
 }
 </script>
