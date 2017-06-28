@@ -35,6 +35,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
+    bottom:16px;
 }
 
 .hte-overview-group {

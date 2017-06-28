@@ -253,6 +253,8 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
+   
+  
 }
 
 .hte-overview-content {
@@ -3371,4 +3373,4 @@ body {
     transition-delay: 0;
     -ms-transition: none;
     -ms-transition-delay: 0;
-}
+}hte-overview-inner

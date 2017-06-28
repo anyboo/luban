@@ -2,12 +2,12 @@
     <div class="messager-body">
         <p>感谢您关注HteOS，HteOS是一个全新的Web桌面应用开发框架！</p>
         <ul>
-            <li>全新UI设计、多套皮肤，使用动态磁贴技术灵活配置，完美适配PC端和移动端</li>
-            <li>模块化开发模式，使用SASS进行CSS皮肤设置，使用Grunt自动编译生成文档</li>
-            <li>磁贴和图标两种桌面模式，兼容Chrome、Firefox、Edge、IE8+等主流浏览器</li>
-            <li>纯前端框架，不依赖于后台语言，与Java、.NET、PHP等服务器平台无缝集成</li>
+            <li>专门针对教育培训机构运营管理研发的一套全流程信息化管理系统</li>
+            <li>涵盖招生、教务、财务、数据分析、家校互通、公众号管理六大模块</li>
+            <li>以“学员“为核心，链接老师、家长和培训机构，帮助培训机构科学管理</li>
+            <li>有效提升员工产能，降低运营成本，实现全流程可管理、可监控、可追溯的高质量信息化管理体系</li>
         </ul>
-        <p>如果您对HteOS有问题或者提出宝贵的意见，联系QQ：17692499
+        <p>如果您对HteOS有问题或者提出宝贵的意见，联系QQ：1234567
             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=17692499&amp;site=qq&amp;menu=yes">
                 <img border="0" src="http://wpa.qq.com/pa?p=2:17692499:52" alt="购买咨询" title="购买咨询">
             </a>
