@@ -41,7 +41,7 @@
     height: 35px;
     padding: 0 0px;
     width: 100%;
-    z-index: 1;
+    z-index: 9999;
     overflow: hidden;
     text-align: left;
 }
