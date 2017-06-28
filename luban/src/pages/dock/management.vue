@@ -1,8 +1,8 @@
 <template>
     <div class="hte-dock-body">
-        <div class="hte-overview hte-webkit-scrollbar">
+        <div class="hte-overview lb-webkit-scrollbar" @mouseout="handleMouseout" @mouseover="handleMouseove">
             <div class="hte-overview-inner">
-                <div class="hte-overview-content scrollbar">
+                <div class="hte-overview-content scrollbar" :style="getClientHeight">
                     <div class="bottoms">
                         <template v-for="(item, index) in menu">
                             <div class="hte-overview-group hte-overview-item " @click="show(index)">{{item.menuTitle}}
@@ -35,7 +35,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    bottom:16px;
+    bottom: 16px;
 }
 
 .hte-overview-group {
@@ -91,18 +91,18 @@
     margin-top: 4px;
 }
 
-.scrollbar {
+
+/*.scrollbar {
     padding-right: 10px;
     position: relative;
     width: 100%;
     padding: 2px;
     overflow-y: scroll;
     height: 100%;
-}
+}*/
 
 .bottoms {
     margin-bottom: 15px
-
 }
 </style>
 <script>
@@ -117,19 +117,41 @@ export default {
             menu,
             menuselected: [],
             lodash: _,
-        
+            overflowy: 'hidden',
+            clientHeight: '500px',
 
+
+        }
+    },
+    mounted() {
+        this.clientHeight = document.body.clientHeight + 'px'
+    },
+    computed: {
+        getClientHeight() {
+            return {
+                'max-height': this.clientHeight,
+                'overflow-y': this.overflowy
+            }
         }
     },
     methods: {
         show(index) {
             let findIndex = _.indexOf(this.menuselected, index)
             if (findIndex == -1) {
-                this.menuselected.push(index)              
+                this.menuselected.push(index)
             } else {
                 this.menuselected.splice(findIndex, 1)
             }
-        }
+        },
+        handleMouseout() {
+            this.clientHeight = document.body.clientHeight + 'px'
+            this.overflowy = 'hidden'
+        },
+        handleMouseove() {
+            this.clientHeight = document.body.clientHeight + 'px'
+            this.overflowy = 'auto'
+        },
+
     }
 }
 </script>
