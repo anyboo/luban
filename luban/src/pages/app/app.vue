@@ -10,6 +10,7 @@
             </transition>
         </div>
         <lb-messager v-if="messageshow" :view="messageview" @messageclose="handleMessageClose"></lb-messager>
+        <lb-window @windowclose="handleWindowClose"></lb-window>
     </div>
 </template>
 <style>
@@ -29,6 +30,7 @@ import header from './header.vue'
 import body from './body.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
+import windows from './window.vue'
 import dock from '../dock/dock.vue'
 import messager from '../message/messager.vue'
 
@@ -40,6 +42,7 @@ export default {
             localdata,
             dockshow: true,
             messageshow: false,
+            windowshow: false,
             dockview: 'lb-theme',
             messageview: 'lb-sysinfo'
         }
@@ -56,7 +59,8 @@ export default {
         'lb-dock': dock,
         'lb-header': header,
         'lb-body': body,
-        'lb-messager': messager
+        'lb-messager': messager,
+        'lb-window': windows
     },
     methods: {
         handleDock(action) {
@@ -75,6 +79,9 @@ export default {
         },
         handleMessageClose() {
             this.messageshow = false
+        },
+        handleWindowClose(id) {
+            this.windowshow = false
         }
     }
 }

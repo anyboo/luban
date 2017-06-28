@@ -35,20 +35,6 @@
     </div>
 </template>
 <style>
-.lb-webkit-scrollbar ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.lb-webkit-scrollbar ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.lb-webkit-scrollbar ::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
 .wallpaper-list {
     position: relative;
     padding-bottom: 60px;
