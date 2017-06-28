@@ -22,7 +22,6 @@
                
 
                  -->
-            fa-compress fa-expand
             <el-tooltip content="全屏模式" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
                 <span class="taskbar-action-icon fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" @click="fullscreen"></span>
             </el-tooltip>
@@ -205,7 +204,7 @@ export default {
                 } else if (document.webkitCancelFullScreen) {
                     document.webkitCancelFullScreen()
                 }
-                this.updown=false
+                this.updown = false
             } else {
                 this.full = true
                 var docElm = document.documentElement
@@ -218,7 +217,7 @@ export default {
                 } else if (docElm.webkitRequestFullScreen) {
                     docElm.webkitRequestFullScreen()
                 }
-                this.updown=true
+                this.updown = true
             }
         },
     },

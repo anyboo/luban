@@ -9,6 +9,7 @@
                 </small>
             </a>
         </div>
+        <lb-icon></lb-icon>
     </div>
 </template>
 <style>
@@ -100,12 +101,14 @@
         margin-right: 10px;
     }
 }
+
 .brand img {
     height: 22px;
     margin-top: -6px;
     margin-right: 10px;
     display: inline-block;
 }
+
 .ie8 .header {
     padding-right: 50px;
     padding-top: 15px;
@@ -117,6 +120,7 @@
 }
 </style>
 <script>
+import body from './body.vue'
 export default {
     name: 'header',
     data() {
@@ -124,6 +128,9 @@ export default {
         return {
             localdata,
         }
+    },
+    components: {
+        'lb-icon': body
     },
     methods: {
         handleClick() {
