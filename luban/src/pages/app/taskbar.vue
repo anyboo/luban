@@ -13,20 +13,22 @@
         </div>
         <div class="taskbar-inner" style="left: 120px; right: 278px;"></div>
         <div class="taskbar-action-right">
-            <el-tooltip content="应用市场" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
-                <span class="taskbar-action-icon glyphicon glyphicon-folder-close"></span>
-            </el-tooltip>
+            <!--<el-tooltip content="应用市场" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
+                    <span class="taskbar-action-icon glyphicon glyphicon-folder-close"></span>
+                    </el-tooltip>
+                    <el-tooltip content="示例" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
+                        <span class="taskbar-action-icon glyphicon glyphicon-book"></span>
+                    </el-tooltip>
+                    -->
             <el-tooltip content="个性化设置" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
                 <span class="taskbar-action-icon glyphicon glyphicon-cog" @click="handleClick('dock','lb-theme')"></span>
             </el-tooltip>
-            <el-tooltip content="示例" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
-                <span class="taskbar-action-icon glyphicon glyphicon-book"></span>
-            </el-tooltip>
+    
             <el-tooltip content="反馈意见" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
-                <span class="taskbar-action-icon glyphicon glyphicon-edit"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-edit" @click="handleClick('message','lb-feedback')"></span>
             </el-tooltip>
             <el-tooltip content="关于Luban" class="taskbar-action taskbar-action-profile" placement="top" effect="light">
-                <span class="taskbar-action-icon glyphicon glyphicon-info-sign"></span>
+                <span class="taskbar-action-icon glyphicon glyphicon-info-sign" @click="handleClick('message','lb-sysinfo')"></span>
             </el-tooltip>
             <div class="taskbar-action taskbar-action-time">{{time}}</div>
             <div class="taskbar-action" style="width:5px;border-left:1px solid #ccc"></div>

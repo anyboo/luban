@@ -2,13 +2,14 @@
     <div :style="{'background-color': $store.state.system.theme}">
         <lb-header></lb-header>
         <lb-body></lb-body>
-        <lb-taskbar @dock="handleDock" @desktop="handleDesktop"></lb-taskbar>
+        <lb-taskbar @dock="handleDock" @desktop="handleDesktop" @message="handleMessage"></lb-taskbar>
         <lb-wallpaper @dockhidden="handleDockHidden"></lb-wallpaper>
         <div class="col-md-3 col-xs-12 col-sm-6 dock" :style="{'background-color': $store.state.system.theme}"  v-show="dockshow">
             <transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
                 <lb-dock v-show="dockshow" :view="dockview" @dockhidden="handleDockHidden"></lb-dock>
             </transition>
         </div>
+        <lb-messager v-if="messageshow" :view="messageview" @messageclose="handleMessageClose"></lb-messager>
     </div>
 </template>
 <style>
@@ -29,7 +30,7 @@ import body from './body.vue'
 import taskbar from './taskbar.vue'
 import wallpaper from './wallpaper.vue'
 import dock from '../dock/dock.vue'
-
+import messager from '../message/messager.vue'
 
 export default {
     name: '',
@@ -38,7 +39,9 @@ export default {
         return {
             localdata,
             dockshow: true,
-            dockview: 'lb-theme'
+            messageshow: false,
+            dockview: 'lb-theme',
+            messageview: 'lb-sysinfo'
         }
     },
     components: {
@@ -46,7 +49,8 @@ export default {
         'lb-taskbar': taskbar,
         'lb-dock': dock,
         'lb-header': header,
-        'lb-body': body
+        'lb-body': body,
+        'lb-messager': messager
     },
     methods: {
         handleDock(action) {
@@ -56,9 +60,16 @@ export default {
         handleDesktop() {
             this.dockshow = false
         },
+        handleMessage(action) {
+            this.messageshow = this.messageview == action ? !this.messageshow : true
+            this.messageview = action
+        },
         handleDockHidden() {
             this.dockshow = false
         },
+        handleMessageClose(){
+            this.messageshow = false
+        }
     }
 }
 </script>
