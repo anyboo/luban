@@ -1,8 +1,14 @@
-const router = new VueRouter({
-    mode: 'history',
-    base: __dirname,
-    hashbang: false,
-    history: true,
+var routes = []
+import web from '~/pages/web/app/app.vue'
+import windowweb from '~/pages/window/app/app.vue'
+
+routes.push({
+    path: '/window',
+    component: windowweb
+})
+routes.push({
+    path: '/web',
+    component: web
 })
 
-export default router
+export default routes
