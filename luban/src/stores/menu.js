@@ -76,7 +76,8 @@ export default [{
     }]
 }, {
     menuTitle: '课时',
-    menuIcon: 'icon-clock',
+    menuIcon: 'fa-battery',
+    menuShow: 0,
     menu: [{
         menuTitle: '课程表',
         to: '/hours/arrange',
@@ -173,4 +174,4 @@ export default [{
         menuTitle: '系统状态',
         menuIcon: ' fa fa-th',
     }]
-},]
+}, ]
