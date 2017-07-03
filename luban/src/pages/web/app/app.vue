@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{'sidebar-collapsed':isvariety}">
         <lb-header></lb-header>
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
@@ -23,7 +23,8 @@ export default {
     data() {
         let localdata = {}
         return {
-            localdata
+            localdata,
+            isvariety:false
         }
     },
     components: {

@@ -3,7 +3,7 @@
         <div class="ng-scope schedule">
             <div class="wrapper-xs ng-scope">
                 <div class="wrapper panel panel-default bg-white ng-scope">
-                    <div class="row">
+                    <div class="row">  
                         <div class="col-xs-12 col-md-4 " :class="{result:getSelectName}">
                             <div class="input-group">
                                 <div class="input-group-btn">

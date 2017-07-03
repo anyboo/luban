@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="undefined pace-done"  @variety="variety">
         <p class="changemode">
             <router-link to="/web">web模式</router-link>
             <router-link to="/window">Window模式</router-link>
@@ -23,10 +23,10 @@ export default {
         let localdata = {}
         return {
             localdata,
+            isvariety: false,
         }
     },
-    computed: {
-    },
+    computed: {},
     watch: {
         '$route.path': {
             handler(val) {
@@ -35,6 +35,9 @@ export default {
         }
     },
     methods: {
+        variety() {
+            this.isvariety = !this.isvariety
+        },
     }
 }
 </script>

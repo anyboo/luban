@@ -3,7 +3,7 @@
         <lb-header @variety="variety" :class="login"></lb-header>
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
-            <div class="bg-light lter b-b wrapper-md" >
+            <div class="bg-light lter b-b wrapper-md">
                 <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>
             </div>
             <router-view></router-view>
@@ -21,7 +21,7 @@ import dialoglist from '../dialog/dialoglist.vue'
 import modalbackdrop from '../modal-backdrop/modalbackdrop.vue'
 import menu from '~/stores/menu'
 export default {
-    name: 'app', 
+    name: 'app',
     data() {
         let localdata = {}
         return {
@@ -37,8 +37,8 @@ export default {
         'lb-modalbackdrop': modalbackdrop
     },
     computed: {
-        login(){
-            if (!this.$store.state.models.login){
+        login() {
+            if (!this.$store.state.models.login) {
                 this.$router.push('/header/sign_in')
             }
         },
