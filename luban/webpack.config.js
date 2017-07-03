@@ -6,7 +6,11 @@ const publicPath = ''
 
 module.exports = (options = {}) => ({
     entry: {
+<<<<<<< HEAD
         vendor: './src/index.js'
+=======
+        vendor: './src/index.js',
+>>>>>>> 830b8d75c6731f0348663ab104d972f1bb1c0e19
     },
     output: {
         filename: 'bundle.js',
