@@ -1,7 +1,7 @@
 <template>
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
-            <div class="page-title">菜单</div>
+            <div class="page-title">菜单2</div>
         </div>
         <div class="clearfix"></div>
     </div>
