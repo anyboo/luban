@@ -1,6 +1,6 @@
 <template>
-    <div :class="{'sidebar-collapsed':isvariety}">
-        <lb-header></lb-header>
+    <div :class="{'sidebar-collapsed':isvariety}" >
+        <lb-header @variety="variety"></lb-header >
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
             <lb-body></lb-body>
@@ -26,7 +26,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            isvariety:false
+            isvariety: false
         }
     },
     components: {
@@ -37,7 +37,13 @@ export default {
     methods: {
         handleClick() {
             this.$emit('dockhidden')
+        },
+        variety() {
+            this.isvariety = !this.isvariety
+           
         }
+
+
     }
 }
 </script>

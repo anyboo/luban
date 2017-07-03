@@ -13,14 +13,14 @@
             </a>
         </div>
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-info dker">
-            <div class="nav navbar-nav hidden-xs">
-                <a @click="variety()" class="btn no-shadow navbar-btn">
+            <div >
+                <a @click="variety()" >
                     <i class="fa fa-fw fa-dedent"></i>
                 </a>
             </div>
             <ul ng-controller="NavCtrl" class="nav navbar-nav navbar-right ng-scope" ng-init="check_ft_comment()">
                 <li class="hidden-xs">
-                    <a ui-fullscreen class @click="fullscreen">
+                    <a class @click="fullscreen">
                         <i class="fa fa-expand fa-fw text"></i>
                         <i class="fa fa-compress fa-fw text-active"></i>
                     </a>
@@ -117,7 +117,8 @@ export default {
             this.$emit('sidebarCollapsed')
         },
         variety() {
-            this.$emit('variety')
+            // this.$emit('variety')
+            alert('hdd')
         },
         blur() {
             this.open = this.menu

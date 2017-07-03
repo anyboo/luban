@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side " @variety="variety" :class="{'sidebar-collapsed':isvariety}">
+    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side "  >
         <div class="sidebar-collapse menu-scroll" id="side-menu">
             <lb-menu>
                 <template v-for="menuItem of menuStore">
@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             menuStore,
-            isvariety: false,
+            
         }
     },
     components: {
@@ -39,9 +39,7 @@ export default {
         handleNodeClick(data) {
             console.log(data)
         },
-        variety() {
-            this.isvariety = !this.isvariety
-        },
+      
     },
 
     computed: {

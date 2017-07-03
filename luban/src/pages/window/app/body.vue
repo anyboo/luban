@@ -5,8 +5,9 @@
                 <div class="hte-shortcut-icon"><img src="/assets/images/logo.png"></div>
                 <div class="hte-shortcut-name">快递100</div>
             </div>
+        jjj
             {{item}}
-        </template>
+        </template> 
     </div>
 </template>
 <style>

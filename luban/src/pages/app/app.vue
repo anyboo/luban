@@ -1,5 +1,5 @@
 <template>
-    <div class="undefined pace-done"  @variety="variety">
+    <div class="undefined pace-done">
         <p class="changemode">
             <router-link to="/web">web模式</router-link>
             <router-link to="/window">Window模式</router-link>
@@ -35,9 +35,6 @@ export default {
         }
     },
     methods: {
-        variety() {
-            this.isvariety = !this.isvariety
-        },
     }
 }
 </script>
