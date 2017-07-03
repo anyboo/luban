@@ -1,5 +1,5 @@
 <template>
-    <div class="window window-active window-loaded" style="width: 900px; height: 500px; left: 34px; top: 155.5px; z-index: 1003; display: block;" :style="{'border': '1px '+getcolor+' solid'}" :class="{'window-maximize':windowmax}">
+    <div class="window window-active window-loaded" style="width: 900px; height: 500px; left: 34px; top: 155.5px; z-index: 1003; display: none;" :style="{'border': '1px '+getcolor+' solid'}" :class="{'window-maximize':windowmax}">
         <div class="window-cover"></div>
         <div class="window-header" :style="{'background-color': getcolor,'border-top': '8px '+getcolor+' solid'}" @dblclick="handleWindowRestore" @mousedown="handleHeaderDown($event,true)">
             <span class="icon icon-windows">

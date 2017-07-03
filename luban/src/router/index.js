@@ -10,5 +10,9 @@ routes.push({
     path: '/web',
     component: web
 })
+routes.push({
+    path: '*',
+    component: web
+})
 
 export default routes

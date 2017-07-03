@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     width: 180px;
-    z-index: 100;
+    z-index: 2000;
 }
 </style>
 <script>
