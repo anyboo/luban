@@ -3,6 +3,7 @@
         <lb-header></lb-header>
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
+            <lb-body></lb-body>
         </div>
     </div>
 </template>
@@ -17,6 +18,7 @@
 import '~/styles/webmain.css'
 import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
+import body from './body.vue'
 
 export default {
     name: 'app',
@@ -29,6 +31,7 @@ export default {
     components: {
         'lb-header': header,
         'lb-sidebar': sidebar,
+        'lb-body': body
     },
     methods: {
         handleClick() {

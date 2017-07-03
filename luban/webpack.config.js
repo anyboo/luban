@@ -6,7 +6,7 @@ const publicPath = ''
 
 module.exports = (options = {}) => ({
     entry: {
-        './src/index.js',
+        vendor: './src/index.js',
     },
     output: {
         filename: 'bundle.js',
