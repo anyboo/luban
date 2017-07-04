@@ -1,5 +1,5 @@
 <template>
-    <div class="undefined pace-done">
+    <div class="pace-done">
         <p class="changemode">
             <router-link to="/web">web模式</router-link>
             <router-link to="/window">Window模式</router-link>

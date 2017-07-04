@@ -1,10 +1,11 @@
 <template>
-    <div :class="{'sidebar-collapsed':isvariety}" >
-        <lb-header @variety="variety"></lb-header >
+    <div :class="{'sidebar-collapsed':isvariety}">
+        <lb-header @variety="variety"></lb-header>
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
             <lb-body></lb-body>
         </div>
+        <lb-footer></lb-footer>
     </div>
 </template>
 <style>
@@ -19,6 +20,7 @@ import '~/styles/webmain.css'
 import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
 import body from './body.vue'
+import footer from './footer.vue'
 
 export default {
     name: 'app',
@@ -32,7 +34,8 @@ export default {
     components: {
         'lb-header': header,
         'lb-sidebar': sidebar,
-        'lb-body': body
+        'lb-body': body,
+        'lb-footer': footer
     },
     methods: {
         handleClick() {
@@ -40,10 +43,7 @@ export default {
         },
         variety() {
             this.isvariety = !this.isvariety
-           
         }
-
-
     }
 }
 </script>
