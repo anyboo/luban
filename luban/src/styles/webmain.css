@@ -411,6 +411,7 @@ hr {
 #topbar .navbar-top-links li.open > a {
     background: #33485c !important;
     color: #ffffff !important;
+    height: 49px;
 }
 
 #topbar .navbar-top-links li.open > a:hover,
@@ -438,6 +439,10 @@ hr {
 #topbar .navbar-top-links li > a i {
     font-size: 16px;
     color: #ffffff;
+    position: relative;
+    top:6px;
+
+
 }
 
 #topbar .navbar-top-links li > a span.badge {
