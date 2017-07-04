@@ -4,7 +4,9 @@ const state = {
     name: '',
     face: '',
     login: false,
-    theme: 'rgba(208, 150, 21, 0.8)'
+    theme: 'rgba(208, 150, 21, 0.8)',
+    currMenu:''
+
 }
 const getters = {}
 const actions = {}

@@ -1,7 +1,7 @@
 <template>
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
-            <div class="page-title">dd</div>
+            <div class="page-title">{{getCurrMenu}}</div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -16,6 +16,30 @@ export default {
             localdata
         }
     },
+    computed: {
+        getCurrMenu() {
+            var menuName = this.$store.state.system.currMenu
+            if (this.$store.state.system.currMenu.length == 0) {
+                let to = this.$route.path
+                for (var item of menu) {
+                    if (item.to == to) {
+                        menuName = item.menuTitle
+                        break
+                    } else {
+                        if (item.menu) {
+                            for (var subitem of item.menu) {
+                                if (subitem.to == to) {
+                                    menuName = subitem.menuTitle
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return menuName
+        }
 
+    }
 }
 </script>
