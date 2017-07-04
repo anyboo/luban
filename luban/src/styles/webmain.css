@@ -426,11 +426,13 @@ hr {
     color: #ffffff;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+
 }
 
 #topbar .navbar-top-links li > a:hover,
 #topbar .navbar-top-links li > a:focus {
     background: #33485c !important;
+    height: 45px;
 }
 
 #topbar .navbar-top-links li > a i {

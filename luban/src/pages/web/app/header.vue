@@ -19,6 +19,7 @@
                         <a href="#" @click="fullscreen">
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
+                        
                     </li>
                     <li class="dropdown topbar-user open">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
@@ -57,7 +58,7 @@ export default {
         }
     },
     methods: {
-        sidebarCollapsed: function () {
+        sidebarCollapsed: function() {
             this.$emit('sidebarCollapsed')
         },
         cut() {
