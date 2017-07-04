@@ -62,6 +62,13 @@ export default {
         'lb-messager': messager,
         'lb-window': windows
     },
+    watch: {
+        '$route.path': {
+            handler(val) {
+                console.log('window', val)
+            }
+        }
+    },
     methods: {
         handleDock(action) {
             this.dockshow = this.dockview == action ? !this.dockshow : true
