@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'sidebar-collapsed':isvariety}">
+    <div id="web" :class="{'sidebar-collapsed':isvariety}">
         <lb-header @variety="variety"></lb-header>
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>

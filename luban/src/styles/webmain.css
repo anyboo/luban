@@ -10762,109 +10762,109 @@ ul.chats li.out .message {
 }
 
 
-.sidebar-collapsed #topbar .navbar-header {
+#web.sidebar-collapsed #topbar .navbar-header {
     width: 55px;
 }
-.sidebar-collapsed #topbar .navbar-header .logo-text {
+#web.sidebar-collapsed #topbar .navbar-header .logo-text {
     display: none !important;
 }
-.sidebar-collapsed #topbar .navbar-header .logo-text-icon {
+#web.sidebar-collapsed #topbar .navbar-header .logo-text-icon {
     display: block !important;
 }
-.sidebar-collapsed .navbar-static-side {
+#web.sidebar-collapsed .navbar-static-side {
     width: 55px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li.user-panel {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li.user-panel {
     display: none;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a {
     height: 45px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a span.menu-title {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a span.menu-title {
     display: block !important;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a span.submenu-title {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li:hover a span.submenu-title {
     display: block !important;
     margin-left: 0;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li:hover ul.nav-second-level {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li:hover ul.nav-second-level {
     display: block;
     position: absolute;
     top: 45px;
     left: 55px;
     width: 195px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li:hover ul.nav-second-level li a {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li:hover ul.nav-second-level li a {
     padding: 15px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li a span {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li a span {
     display: none;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li a i.fa {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li a i.fa {
     font-size: 18px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li a span.menu-title {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li a span.menu-title {
     position: absolute;
     top: 0;
     left: 55px;
     padding: 15px;
     margin-left: 0;
-    background: #dc6767;
+    background: #e74c3c;
     color: #ffffff;
     width: 195px;
     height: 45px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li a span.label {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li a span.label {
     display: block;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level {
     display: none;
     position: absolute;
     top: 50px;
     left: 55px;
     width: 195px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level li a i {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level li a i {
     display: none;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level li a span.label {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu li ul.nav-second-level li a span.label {
     position: absolute;
     top: 15px;
     right: 10px;
 }
-.sidebar-collapsed .navbar-static-side ul#side-menu > li > a span.label {
+#web.sidebar-collapsed .navbar-static-side ul#side-menu > li > a span.label {
     display: block !important;
     position: absolute;
     right: -10px;
     top: 0px;
     padding: 2px 4px;
 }
-.sidebar-collapsed #page-wrapper {
+#web.sidebar-collapsed #page-wrapper {
     margin: 0 0 0 55px;
 }
-.sidebar-collapsed.right .page-header-topbar #topbar .navbar-header {
+#web.sidebar-collapsed.right .page-header-topbar #topbar .navbar-header {
     float: right;
 }
-.sidebar-collapsed.right #wrapper #sidebar {
+#web.sidebar-collapsed.right #wrapper #sidebar {
     left: auto;
     right: 0;
 }
-.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li:hover a span.submenu-title {
+#web.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li:hover a span.submenu-title {
     margin-right: 0;
 }
-.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li:hover ul.nav-second-level {
+#web.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li:hover ul.nav-second-level {
     right: 55px;
     left: auto;
 }
-.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li a span.menu-title {
+#web.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li a span.menu-title {
     right: 55px;
     left: auto;
     margin-right: 0;
 }
-.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li ul.nav-second-level {
+#web.sidebar-collapsed.right #wrapper #sidebar ul#side-menu li ul.nav-second-level {
     right: 55px;
     left: auto;
 }
-.sidebar-collapsed.right #wrapper #page-wrapper {
+#web.sidebar-collapsed.right #wrapper #page-wrapper {
     margin: 0 55px 0 0;
 }

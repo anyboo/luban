@@ -1,5 +1,5 @@
 <template>
-    <ul class="nav" :class="classObject">
+    <ul id="side-menu" class="nav" :class="classObject">
         <slot>无菜单项</slot>
     </ul>
 </template>
