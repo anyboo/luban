@@ -4,12 +4,12 @@
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
             <div class="bg-light lter b-b wrapper-md">
-                <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>
+                <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>   
             </div>
             <router-view></router-view>
         </div>
         <lb-footer></lb-footer>
-        <lb-modalbackdrop></lb-modalbackdrop>
+        <lb-modalbackdrop></lb-modalbackdrop> 
         <lb-dialoglist></lb-dialoglist>
     </div>
 </template>
