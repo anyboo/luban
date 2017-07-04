@@ -19,7 +19,7 @@
                         <a href="#" @click="fullscreen">
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
-                        
+
                     </li>
                     <li class="dropdown topbar-user open">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
@@ -27,18 +27,18 @@
                             <span class="hidden-xs">林祖鑫</span>&nbsp;
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-user pull-right" v-if="hide">
+                        <ul class="dropdown-menu dropdown-user pull-right" v-if="hide" style="top:49px;">
                             <li @mouseout="menu=false" @mouseover="menu=true">
                                 <a href="extra-profile.html">
-                                    <i class="fa fa-user"></i>个人资料</a>
+                                    <i class="fa fa-user" style="top:1px;"></i>个人资料</a>
                             </li>
                             <li @mouseout="menu=false" @mouseover="menu=true">
                                 <a href="extra-lock-screen.html">
-                                    <i class="fa fa-lock"></i>锁屏</a>
+                                    <i class="fa fa-lock" style="top:1px;"></i>锁屏</a>
                             </li>
                             <li @mouseout="menu=false" @mouseover="menu=true">
                                 <a href="extra-signin.html">
-                                    <i class="fa fa-key"></i>退出</a>
+                                    <i class="fa fa-key" style="top:1px;"></i>退出</a>
                             </li>
                         </ul>
                     </li>
