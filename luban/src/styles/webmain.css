@@ -160,7 +160,7 @@ hr {
 @media (min-width: 768px) {
     #page-wrapper {
         position: relative;
-        margin: 0 0 0 250px;
+        margin: 0 0 0 180px;
         padding: 0;
     }
 }
@@ -176,7 +176,7 @@ hr {
 }
 
 #topbar .navbar-header {
-    width: 250px;
+    width: 180px;
     height: 100%;
     background: #2f4355;
     text-align: center;
@@ -492,7 +492,7 @@ hr {
 }
 
 #topbar .navbar-top-links ul.dropdown-alerts {
-    width: 250px;
+    width: 180px;
     min-width: 0;
 }
 
@@ -553,7 +553,7 @@ hr {
 }
 
 #topbar .navbar-top-links ul.dropdown-messages {
-    width: 250px;
+    width: 180px;
     min-width: 0;
 }
 
@@ -631,7 +631,7 @@ hr {
 }
 
 #topbar .navbar-top-links ul.dropdown-tasks {
-    width: 250px;
+    width: 180px;
     min-width: 0;
     margin-left: -59px;
 }
@@ -723,7 +723,7 @@ hr {
 }
 
 #topbar .navbar-top-links .dropdown-theme-setting {
-    width: 250px;
+    width: 180px;
     min-width: 0;
     background-color: #33485c;
 }
@@ -1072,7 +1072,7 @@ hr {
 }
 
 #chat-form #chat-box .chat-content {
-    height: 250px;
+    height: 180px;
 }
 
 #chat-form #chat-box ul.chat-box-body {
@@ -1080,7 +1080,7 @@ hr {
     margin: 0;
     padding: 0;
     overflow: auto;
-    height: 250px;
+    height: 180px;
 }
 
 #chat-form #chat-box ul.chat-box-body > li {
@@ -1419,7 +1419,7 @@ hr {
     .navbar-static-side {
         z-index: 1;
         position: absolute;
-        width: 250px;
+        width: 180px;
     }
 }
 
@@ -1434,7 +1434,7 @@ hr {
 }
 
 .right-sidebar #page-wrapper {
-    margin: 0 250px 0 0;
+    margin: 0 180px 0 0;
 }
 
 
@@ -1741,7 +1741,7 @@ figcaption.ratings a {
 ul.todo-list {
     overflow: hidden;
     width: auto;
-    height: 250px;
+    height: 180px;
     padding: 0;
 }
 

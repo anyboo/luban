@@ -5,7 +5,7 @@
                 <a id="logo" href="#" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
                     <img src="/assets/images/logo.png" alt="." style="height:20px;width:20px;">
-                    <span class="logo-text" style="font-size:18px; margin-left:-123px;margin-top:-19px;">鲁班 </span>
+                    <span class="logo-text" style="font-size:18px; margin-left:-58px;margin-top:-19px;">鲁班 </span>
                     <span style="display: none" class="logo-text-icon">
                     </span>
                 </a>
@@ -19,7 +19,6 @@
                         <a href="#" @click="fullscreen">
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
-
                     </li>
                     <li class="dropdown topbar-user open">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">

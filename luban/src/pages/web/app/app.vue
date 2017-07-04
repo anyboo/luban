@@ -1,8 +1,8 @@
 <template>
-    <div id="web" :class="{'sidebar-collapsed':isvariety}">
+    <div id="web" :class="{'sidebar-collapsed':isvariety}" >
         <lb-header @variety="variety"></lb-header>
         <div id="wrapper">
-            <lb-sidebar></lb-sidebar>
+            <lb-sidebar></lb-sidebar >
             <lb-body>
                 <router-view></router-view>
             </lb-body>

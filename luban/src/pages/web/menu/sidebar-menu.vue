@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side "  >
+    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side ">
         <div class="sidebar-collapse menu-scroll" id="side-menu">
             <lb-menu>
                 <template v-for="menuItem of menuStore">
@@ -18,6 +18,7 @@
         </div>
     </nav>
 </template>
+
 <script>
 import menu from '../menu/menu.vue'
 import menuitem from '../menu/menu-item.vue'
