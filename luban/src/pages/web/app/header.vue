@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <a id="logo" href="index.html" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
-                    <span class="logo-text">鲁班 </span>
+                    <span class="logo-text" style="font-size:18px">鲁班 </span>
                     <span style="display: none" class="logo-text-icon">
                     </span>
                 </a>
@@ -15,7 +15,7 @@
                 </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user open">
-                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut">
+                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" style="height:49px">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">林祖鑫</span>&nbsp;
                             <span class="caret"></span>

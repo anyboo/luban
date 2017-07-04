@@ -117,8 +117,8 @@ export default {
             this.$emit('sidebarCollapsed')
         },
         variety() {
-            // this.$emit('variety')
-            alert('hdd')
+            this.$emit('variety')
+            
         },
         blur() {
             this.open = this.menu
