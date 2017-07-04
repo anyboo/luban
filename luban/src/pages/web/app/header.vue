@@ -2,7 +2,7 @@
     <div id="" class="page-header-topbar">
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
-                <a id="logo" href="index.html" class="navbar-brand">
+                <a id="logo" href="#" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
                      <img src="/assets/images/logo.png" alt="." style="height:20px;width:20px;">
                     <span class="logo-text" style="font-size:18px; margin-left:-123px;margin-top:-19px;">鲁班 </span>
