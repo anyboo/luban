@@ -16,7 +16,7 @@
                 </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li>
-                        <a  href="#" @click="fullscreen">
+                        <a href="#" @click="fullscreen">
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
                     </li>

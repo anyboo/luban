@@ -3,7 +3,9 @@
         <lb-header @variety="variety"></lb-header>
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
-            <lb-body></lb-body>
+            <lb-body>
+                <router-view></router-view>
+            </lb-body>
         </div>
         <lb-footer></lb-footer>
     </div>
