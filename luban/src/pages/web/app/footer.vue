@@ -1,0 +1,24 @@
+<template>
+    <div id="footer">
+        <div class="copyright">2017 © bullstech</div>
+    </div>
+</template>
+<style>
+@media (max-width: 991px) and (min-width: 768px) {
+    #footer {
+        position: fixed;
+        bottom: 0px;
+    }
+}
+</style>
+<script>
+export default {
+    name: 'footer',
+    data() {
+        return {
+        }
+    },
+    methods: {},
+    computed: {},
+}
+</script>

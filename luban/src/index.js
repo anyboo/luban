@@ -7,10 +7,10 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-    mode: 'history',
+    //mode: 'history',
     base: __dirname,
-    hashbang: false,
-    history: true,
+    //hashbang: false,
+    //history: true,
     routes
 })
 

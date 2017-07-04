@@ -3,11 +3,11 @@
         <div class="sidebar-collapse menu-scroll" id="side-menu">
             <lb-menu>
                 <template v-for="menuItem of menuStore">
-                    <lb-menu-item v-if="menuItem.menuShow!=0" :to="menuItem.to" :menu-name="menuItem.menuName" :menu-title="menuItem.menuTitle" :menu-icon="menuItem.menuIcon">
+                    <lb-menu-item submenu="menu-title" v-if="menuItem.menuShow!=0" :to="menuItem.to" :menu-name="menuItem.menuName" :menu-title="menuItem.menuTitle" :menu-icon="menuItem.menuIcon">
                         <template v-if="menuItem.menu">
                             <lb-menu navlevel="1" collapse="true">
                                 <template v-for="menuItem1 of menuItem.menu">
-                                    <lb-menu-item :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
+                                    <lb-menu-item submenu="submenu-title" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
                                     </lb-menu-item>
                                 </template>
                             </lb-menu>

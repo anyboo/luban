@@ -4,7 +4,7 @@
             <i class="fa" :class="menuIcon">
                 <div class="icon-bg bg-orange" />
             </i>
-            <span class="menu-title">{{ menuTitle }}</span>
+            <span :class="submenu">{{ menuTitle }}</span>
             <span v-if="menuName" class="fa arrow"></span>
         </a>
         <slot></slot>
@@ -14,7 +14,7 @@
 export default {
     name: 'MenuItem',
     componentName: 'MenuItem',
-    props: ['menuName', 'menuTitle', 'menuIcon', 'to', 'component', 'componentData'],
+    props: ['menuName', 'menuTitle', 'menuIcon', 'to', 'component', 'componentData','submenu'],
     data() {
         return {
             isActive: false

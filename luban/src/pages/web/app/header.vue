@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <a id="logo" href="index.html" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
-                    <span class="logo-text">鲁班 </span>
+                    <span class="logo-text" style="font-size:18px">鲁班 </span>
                     <span style="display: none" class="logo-text-icon">
                     </span>
                 </a>
@@ -14,8 +14,13 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
+                    <li class="hidden-xs">
+                        <a class @click="fullscreen" style="height:45px;">
+                    <span class="taskbar-action-icon fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" @click="fullscreen" ></span>
+                        </a>
+                    </li>
                     <li class="dropdown topbar-user open">
-                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut">
+                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" style="height:49px">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">林祖鑫</span>&nbsp;
                             <span class="caret"></span>
@@ -23,32 +28,17 @@
                         <ul class="dropdown-menu dropdown-user pull-right" v-if="hide">
                             <li>
                                 <a href="extra-profile.html">
-                                    <i class="fa fa-user"></i>My Profile</a>
+                                    <i class="fa fa-user"></i>个人资料</a>
                             </li>
-                            <li>
-                                <a href="page-calendar.html">
-                                    <i class="fa fa-calendar"></i>My Calendar</a>sS
-                            </li>
-                            <li>
-                                <a href="email-inbox.html">
-                                    <i class="fa fa-envelope"></i>My Inbox
-                                    <span class="badge badge-danger">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-tasks"></i>My Tasks
-                                    <span class="badge badge-success">7</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
+                        
                             <li>
                                 <a href="extra-lock-screen.html">
-                                    <i class="fa fa-lock"></i>Lock Screen</a>
+                                    <i class="fa fa-lock"></i>锁屏</a>
                             </li>
+                          
                             <li>
                                 <a href="extra-signin.html">
-                                    <i class="fa fa-key"></i>Log Out</a>
+                                    <i class="fa fa-key"></i>退出</a>
                             </li>
                         </ul>
                     </li>
@@ -62,7 +52,8 @@ export default {
     name: 'Topbar',
     data() {
         return {
-            hide: false
+            hide: false,
+            updown: false
         }
     },
     methods: {
@@ -74,6 +65,34 @@ export default {
         },
         variety() {
             this.$emit('variety')
+        },
+        fullscreen() {
+            if (this.full) {
+                this.full = false
+                if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen()
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen()
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen()
+                }
+                this.updown = false
+            } else {
+                this.full = true
+                var docElm = document.documentElement
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen()
+                } else if (docElm.msRequestFullscreen) {
+                    docElm.msRequestFullscreen()
+                } else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen()
+                } else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen()
+                }
+                this.updown = true
+            }
         },
 
     },
