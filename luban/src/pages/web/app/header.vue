@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <a id="logo" href="#" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
-                     <img src="/assets/images/logo.png" alt="." style="height:20px;width:20px;">
+                    <img src="/assets/images/logo.png" alt="." style="height:20px;width:20px;">
                     <span class="logo-text" style="font-size:18px; margin-left:-123px;margin-top:-19px;">鲁班 </span>
                     <span style="display: none" class="logo-text-icon">
                     </span>
@@ -15,13 +15,13 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
-                    <li class="hidden-xs">
-                        <a class @click="fullscreen" style="height:45px;">
-                            <span class="taskbar-action-icon fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" @click="fullscreen"></span>
+                    <li>
+                        <a  href="#" @click="fullscreen">
+                            <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
                     </li>
                     <li class="dropdown topbar-user open">
-                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" style="height:49px" @blur="blur">
+                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">林祖鑫</span>&nbsp;
                             <span class="caret"></span>
@@ -57,7 +57,7 @@ export default {
         }
     },
     methods: {
-        sidebarCollapsed: function() {
+        sidebarCollapsed: function () {
             this.$emit('sidebarCollapsed')
         },
         cut() {

@@ -423,8 +423,6 @@ hr {
 }
 
 #topbar .navbar-top-links li > a {
-    padding: 15px 20px;
-    height: 100%;
     color: #ffffff;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
@@ -476,10 +474,6 @@ hr {
 
 #topbar .navbar-top-links li .dropdown-menu li a.btn {
     color: #FFFFFF;
-}
-
-#topbar .navbar-top-links li.topbar-user a {
-    padding: 12px 15px 11px;
 }
 
 #topbar .navbar-top-links li.topbar-user a img {
