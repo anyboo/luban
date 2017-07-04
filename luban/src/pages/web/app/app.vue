@@ -4,7 +4,8 @@
         <div id="wrapper">
             <lb-sidebar></lb-sidebar >
             <lb-body>
-                <router-view></router-view>
+                <component v-bind:is="getCurrentView">
+                </component>
             </lb-body>
         </div>
         <lb-footer></lb-footer>
@@ -23,6 +24,12 @@ import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
 import body from './body.vue'
 import footer from './footer.vue'
+import pages from '~/stores/page.js'
+
+pages['lb-header'] = header
+pages['lb-sidebar'] = sidebar
+pages['lb-body'] = body
+pages['lb-footer'] = footer
 
 export default {
     name: 'app',
@@ -30,14 +37,25 @@ export default {
         let localdata = {}
         return {
             localdata,
+            currentView: '',
             isvariety: false
         }
     },
-    components: {
-        'lb-header': header,
-        'lb-sidebar': sidebar,
-        'lb-body': body,
-        'lb-footer': footer
+    components: pages,
+    watch: {
+        '$route.path': {
+            handler(val) {
+                
+                console.log('web', val)
+            }
+        }
+    },
+    computed: {
+        getCurrentView(){
+            let to = this.$route.path
+            this.currentView = 'lb-studentadd'
+            return 'lb-studentadd'
+        }
     },
     methods: {
         handleClick() {

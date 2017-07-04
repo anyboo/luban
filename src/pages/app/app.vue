@@ -4,12 +4,12 @@
         <lb-sidebarmenu></lb-sidebarmenu>
         <div class="app-content ng-scope">
             <div class="bg-light lter b-b wrapper-md">
-                <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>   
+                <h1 class="m-n font-thin h3 ng-binding">{{getCurrMenu}}</h1>
             </div>
             <router-view></router-view>
         </div>
         <lb-footer></lb-footer>
-        <lb-modalbackdrop></lb-modalbackdrop> 
+        <lb-modalbackdrop></lb-modalbackdrop>
         <lb-dialoglist></lb-dialoglist>
     </div>
 </template>
@@ -43,20 +43,18 @@ export default {
             }
         },
         getCurrMenu() {
-            var menuName = this.$store.state.envs.currMenu
-            if (this.$store.state.envs.currMenu.length == 0) {
-                let to = this.$route.path
-                for (var item of menu) {
-                    if (item.to == to) {
-                        menuName = item.menuTitle
-                        break
-                    } else {
-                        if (item.menu) {
-                            for (var subitem of item.menu) {
-                                if (subitem.to == to) {
-                                    menuName = subitem.menuTitle
-                                    break
-                                }
+            var menuName = ''
+            let to = this.$route.path
+            for (var item of menu) {
+                if (item.to == to) {
+                    menuName = item.menuTitle
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                menuName = subitem.menuTitle
+                                break
                             }
                         }
                     }
@@ -81,7 +79,7 @@ export default {
         },
         handleSelect(index) {
             console.log(index)
-                /**/
+            /**/
         },
     }
 }
