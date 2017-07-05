@@ -183,6 +183,11 @@
         </form>
     </div>
 </template>
+<style>
+    .wrapper {
+    padding: 15px;
+}
+</style>
 <script>
 export default {
     name: 'add',
