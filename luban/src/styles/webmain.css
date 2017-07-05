@@ -11072,3 +11072,6 @@ ul.chats li.out .message {
     top: 50%;
     left: 50%;
 }
+.thumb-lg img{
+    width: 96px;
+}

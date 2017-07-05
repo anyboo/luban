@@ -6,23 +6,16 @@
                 <span ng-if="user.name" class="ng-binding ng-scope">张英乙</span>
             </p>
             <div class="input-group">
-                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border ng-pristine ng-untouched ng-valid" placeholder="请输入账号" style="width:198px;    border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-right-radius: 50px;border-bottom-left-radius: 50px;"> <span class="input-group-btn "></span></div>
+                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border ng-pristine ng-untouched ng-valid" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;"> <span class="input-group-btn "></span></div>
             <br>
             <div class="input-group">
-                <input type="password" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码解锁"> <span class="input-group-btn"><a @click="login" class="btn btn-success btn-rounded no-border"style="height:34px"><i class="fa fa-arrow-right"></i></a></span></div>
+                <input type="password" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码解锁" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;"> <span class="input-group-btn circles" ><a @click="login" class="btn btn-success btn-rounded no-border"style="height:34px ;  border-top-left-radius : 0px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 0px !important;"><i class="fa fa-arrow-right"></i></a></span></div>
         </div>
     </div>
 </template>
 <style >
-    .modal-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-.bg-black {
-    color: #7793a7;
-    background-color: #1c2b36;
-}
+
+
 </style>
 <script>
 export default {
