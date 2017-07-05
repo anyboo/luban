@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="ng-scope">
                 <div class=" wrapper panel panel-default bg-white ng-scope">
@@ -14,14 +14,14 @@
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
                                     <span class="input-group-btn">
                                 <button class="btn btn-default" @click="handSelectStudent(false)">
-                                    <i class="icon-user"></i>
+                                  <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                 </button>
                             </span>
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
                             <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
-                                <i class="icon-plus"></i>跟踪回访登记
+                                <i class="icon-plus glyphicon glyphicon-user"></i>跟踪回访登记
                             </button>
                         </div>
                     </div>

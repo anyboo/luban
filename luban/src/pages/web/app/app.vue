@@ -45,13 +45,16 @@ export default {
     watch: {
         '$route.path': {
             handler(val) {
-
                 console.log('web', val)
             }
         }
     },
     computed: {
         getCurrentView() {
+            if (!this.$store.state.models.login) {
+                this.$router.push('/system/sign_in')
+            }
+
             let to = this.$route.path
             let view = 'lb-studentadd'
             if (to == '/' || to == '/web') {

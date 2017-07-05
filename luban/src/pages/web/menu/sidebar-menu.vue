@@ -28,8 +28,7 @@ export default {
     name: 'SidebarMenu',
     data() {
         return {
-            menuStore,
-            
+            menuStore     
         }
     },
     components: {
@@ -40,11 +39,6 @@ export default {
         handleNodeClick(data) {
             console.log(data)
         },
-      
-    },
-
-    computed: {
-
-    },
+    }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="ng-scope">
+    <div class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="wrapper panel panel-default bg-white ng-scope">
                 <div class="row no-gutter">
@@ -15,7 +15,7 @@
                                 <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handleSelectStudent">
-                                        <i class="icon-user"></i>
+                                        <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                     </button>
                                 </span>
                             </div>
@@ -36,7 +36,7 @@
                                 </lb-dropdown>
                             </template>
                         </el-table-column>
-                        <el-table-column width="100" prop="data" label="学dd员">
+                        <el-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
                                 <a class="link ng-binding" @click="handleRouter($event,scope.row)">
                                     <span class="ng-binding">
