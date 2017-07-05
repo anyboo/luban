@@ -216,6 +216,7 @@
 .col-md-12 {
     float: left;
 }
+
 .text-muted {
     color: #98a6ad;
 }
@@ -290,6 +291,68 @@
 .b-r {
     border-right: 1px solid #dee5e7;
 }
+
+.w-lg {
+    width: 285px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.w-xs {
+    width: 90px;
+}
+
+.m-l-xs {
+    margin-left: 5px;
+}
+
+.inline {
+    display: inline-block!important;
+}
+
+.va-m {
+    vertical-align: middle;
+}
+.btn-group>.btn, .btn-group-vertical>.btn {
+    position: relative;
+    float: left;
+}
+
+.btn-default {
+    color: #58666e!important;
+    background-color: #fcfdfd;
+    background-color: #fff;
+    border-color: #dee5e7;
+    border-bottom-color: #d8e1e3;
+    -webkit-box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+    box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+}
+
+.btn {
+    font-weight: 500;
+    border-radius: 1px;
+    outline: 0!important;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+
 </style>
 <script>
 export default {
