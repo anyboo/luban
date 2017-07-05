@@ -1,6 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
-        <div class="wrapper-xs ng-scope">
+        <div class="wrapper">
             <div class=" wrapper panel panel-default ng-scope">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
@@ -8,17 +7,17 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <lb-dropdowns menu-align="start" @command="handleCommand">
+                                        <el-dropdown menu-align="start" @command="handleCommand">
                                             <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
                                                 {{localdata.search.search_value}}
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                 <template v-for="item in localdata.search.fields">
-                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
                                                 </template>
-                                            </lb-dropdown-menu>
-                                        </lb-dropdowns>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
@@ -58,12 +57,12 @@
                                         </a>
                                     </div>
                                     <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
-                                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
-                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                        <el-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                            <el-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                                 <i class="fa fa-cog ng-scope"></i>
                                                 <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                        </lb-dropdown>
+                                            </el-dropdown-button>
+                                        </el-dropdown>
                                     </div>
                                 </div>
                             </div>
@@ -73,12 +72,12 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
-                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <el-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                                        <el-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
                                             <span class="caret"></span> 
-                                        </lb-dropdown-button>
-                                    </lb-dropdown>
+                                        </el-dropdown-button>
+                                    </el-dropdown>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
@@ -134,7 +133,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 <script>
 export default {

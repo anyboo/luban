@@ -1,18 +1,18 @@
 <template>
-    <lb-dropdowns @command="handleCommand" menu-align="start">
+    <el-dropdown @command="handleCommand" menu-align="start">
         <div>
             <slot name="buttonslot"></slot>
         </div>
-        <lb-dropdown-menu slot="dropdown">
+        <el-dropdown-menu slot="dropdown">
             <template v-for="item in dropMenuData">
-                <lb-dropdown-item :command="getItemCommand(item)">
+                <el-dropdown-item :command="getItemCommand(item)">
                     <a :id="id">
                         <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
                     </a>
-                </lb-dropdown-item>
+                </el-dropdown-item>
             </template>
-        </lb-dropdown-menu>
-    </lb-dropdowns>
+        </el-dropdown-menu>
+    </el-dropdown>
 </template>
 <script>
 export default {
