@@ -43,20 +43,18 @@ export default {
             }
         },
         getCurrMenu() {
-            var menuName = this.$store.state.envs.currMenu
-            if (this.$store.state.envs.currMenu.length == 0) {
-                let to = this.$route.path
-                for (var item of menu) {
-                    if (item.to == to) {
-                        menuName = item.menuTitle
-                        break
-                    } else {
-                        if (item.menu) {
-                            for (var subitem of item.menu) {
-                                if (subitem.to == to) {
-                                    menuName = subitem.menuTitle
-                                    break
-                                }
+            var menuName = ''
+            let to = this.$route.path
+            for (var item of menu) {
+                if (item.to == to) {
+                    menuName = item.menuTitle
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                menuName = subitem.menuTitle
+                                break
                             }
                         }
                     }
@@ -81,7 +79,7 @@ export default {
         },
         handleSelect(index) {
             console.log(index)
-                /**/
+            /**/
         },
     }
 }

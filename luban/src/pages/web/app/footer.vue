@@ -4,11 +4,9 @@
     </div>
 </template>
 <style>
-@media (max-width: 991px) and (min-width: 768px) {
-    #footer {
-        position: fixed;
-        bottom: 0px;
-    }
+#footer {
+    position: fixed;
+    bottom: 0px;
 }
 </style>
 <script>

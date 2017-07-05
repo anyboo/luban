@@ -5,6 +5,7 @@ const state = {
     face: '',
     login: false,
     theme: 'rgba(208, 150, 21, 0.8)'
+
 }
 const getters = {}
 const actions = {}

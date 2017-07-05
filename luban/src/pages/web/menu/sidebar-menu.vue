@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side "  >
+    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side ">
         <div class="sidebar-collapse menu-scroll" id="side-menu">
             <lb-menu>
                 <template v-for="menuItem of menuStore">
@@ -7,7 +7,7 @@
                         <template v-if="menuItem.menu">
                             <lb-menu navlevel="1" collapse="true">
                                 <template v-for="menuItem1 of menuItem.menu">
-                                    <lb-menu-item submenu="submenu-title" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
+                                    <lb-menu-item v-if="menuItem1.menuShow!=0" submenu="submenu-title" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
                                     </lb-menu-item>
                                 </template>
                             </lb-menu>
@@ -18,6 +18,7 @@
         </div>
     </nav>
 </template>
+
 <script>
 import menu from '../menu/menu.vue'
 import menuitem from '../menu/menu-item.vue'

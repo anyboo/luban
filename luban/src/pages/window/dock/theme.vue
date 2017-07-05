@@ -3,17 +3,17 @@
         <div class="settings-inner">
             <ul class="nav nav-tabs messager-nav nav-justified">
                 <li :class="{active:cut==0}">
-                    <a href="#" @click="cut=0">
+                    <a @click="cut=0">
                         <h4>主题</h4>
                     </a>
                 </li>
                 <li :class="{active:cut==1}">
-                    <a href="#" @click="cut=1">
+                    <a @click="cut=1">
                         <h4>壁纸</h4>
                     </a>
                 </li>
             </ul>
-            <div class="tab-content" style="height: 100%">
+            <div style="height: 100%">
                 <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
                     <div class=" theme-list " :class="{active:cut==1}" v-if="cut==0">
                         <template v-for="item in theme">
@@ -112,7 +112,6 @@
     opacity: 0.7;
 }
 
-
 .settings-panel {
     position: relative;
     height: 100%;
@@ -174,7 +173,8 @@ export default {
             localdata,
             wallpaper: ['10.jpg', '11.jpg', 'cloud.jpg', 'wood.jpg', 'yuanye.jpg', 'wallpaper.jpg'],
             theme: ['rgba(31, 91, 183, 0.8)', 'rgba(89, 183, 40,0.8)', 'rgba(155, 29, 171, 0.8)',
-                'rgba(204, 53, 53, 0.8)', 'rgba(208, 150, 21, 0.8)', 'rgba(84, 74, 74, 0.8)', 'rgba(47, 128, 82, 0.8)'],
+                'rgba(204, 53, 53, 0.8)', 'rgba(208, 150, 21, 0.8)', 'rgba(84, 74, 74, 0.8)', 'rgba(47, 128, 82, 0.8)'
+            ],
             cut: 0
         }
     },
@@ -187,5 +187,4 @@ export default {
         }
     }
 }
-
 </script>

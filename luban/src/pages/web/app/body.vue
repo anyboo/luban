@@ -2,6 +2,7 @@
     <div id="page-wrapper">
         <lb-breadcrumb>
         </lb-breadcrumb>
+        <slot></slot>
     </div>
 </template>
 <script>

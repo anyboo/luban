@@ -13,10 +13,12 @@ export default [{
         menuTitle: '在读学员',
         to: '/student/list1',
         menuIcon: 'fa fa-user',
+        menuShow: 0,
     }, {
         menuTitle: '已结课学员',
         to: '/student/list2',
         menuIcon: 'fa-address-book-o fa',
+        menuShow: 0,
     }, {
         menuTitle: '咨询管理',
         to: '/student/list0',
@@ -25,6 +27,7 @@ export default [{
         menuTitle: '流失名单',
         to: '/student/lost',
         menuIcon: 'fa fa-address-card-o',
+        menuShow: 0,
     }, {
         menuTitle: '跟踪回访记录',
         to: '/student/tracks',
@@ -134,6 +137,7 @@ export default [{
 }, {
     menuTitle: '家校',
     menuIcon: 'fa-university',
+    menuShow: 0,
     menu: [{
         menuTitle: '短信通知',
         to: '/has/sms',
@@ -150,10 +154,12 @@ export default [{
         menuTitle: '参数配置',
         to: '/system/config',
         menuIcon: 'fa fa-wrench',
+        menuShow: 0,
     }, {
         menuTitle: '角色权限',
         to: '/system/roles',
         menuIcon: 'fa fa-unlock',
+        menuShow: 0,
     }, {
         menuTitle: '员工管理',
         to: '/system/employee',
@@ -163,15 +169,17 @@ export default [{
         to: '/system/dict',
         menuIcon: 'fa fa-keyboard-o',
     }, {
-        menuTitle: '机构与校区设置',
+        menuTitle: '机构校区设置',
         to: '/system/org',
         menuIcon: 'fa fa-institution',
     }, {
         menuTitle: '日志',
         menuIcon: 'fa fa-picture-o',
+        menuShow: 0,
 
     }, {
         menuTitle: '系统状态',
         menuIcon: ' fa fa-th',
+        menuShow: 0,
     }]
 }, ]
