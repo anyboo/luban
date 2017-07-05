@@ -14,7 +14,7 @@
                                 <div class="input-group">
                                     <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                <button class="btn btn-default" @click="lbShowdialog($event,'el-selectstudenttpl')">
                                     <i class="icon-user"></i>
                                 </button>
                             </span>
@@ -23,10 +23,10 @@
                             <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <lb-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
+                                    <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
                                         <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                                         </lb-option>
-                                    </lb-select>
+                                    </el-select>
                                 </div>
                             </div>
                             <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_students" export-params="params">

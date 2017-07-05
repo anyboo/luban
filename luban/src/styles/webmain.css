@@ -11037,4 +11037,22 @@ ul.chats li.out .message {
     background-color: #fff;
     border-color: #ccc;
 }
+.input-group-btn {
+    position: relative;
+    font-size: 0;
+    white-space: nowrap;
+}
 
+.input-group-addon, .input-group-btn {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group-addon, .input-group-btn, .input-group .form-control {
+    display: table-cell;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}

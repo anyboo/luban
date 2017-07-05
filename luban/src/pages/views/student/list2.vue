@@ -23,10 +23,10 @@
                             <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
                             <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <lb-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
+                                    <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
                                         <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                                         </lb-option>
-                                    </lb-select>
+                                    </el-select>
                                 </div>
                             </div>
                             <button class="btn btn-default m-l-xs ng-isolate-scope" export="class_end_students" export-params="params">
@@ -149,7 +149,7 @@ export default {
             return classes
         },
         getSelectStudentName() {
-            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+            if (this.$store.state.envs.currDialog == 'el-selectstudenttpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
                     this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
@@ -167,7 +167,7 @@ export default {
         handleSelectStudent() {
             //this.$store.state.envs.currDialog = ''
             //this.$store.state.envs.currDialogResult = null
-            this.handleShowDialog('lb-selectstudenttpl')
+            this.handleShowDialog('el-selectstudenttpl')
         },
         handleRouter(event, item) {
             this.$router.push('/student/info/' + item._id)
