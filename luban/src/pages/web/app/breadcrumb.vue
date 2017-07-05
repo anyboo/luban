@@ -20,6 +20,7 @@ export default {
         getCurrMenu() {
             var menuName = ''
             let to = this.$route.path
+            console.log(to)
             for (var item of menu) {
                 if (item.to == to) {
                     menuName = item.menuTitle
@@ -34,6 +35,9 @@ export default {
                         }
                     }
                 }
+            }
+            if (to=='/'||to=='/web'){
+                menuName = '档案录入'
             }
             return menuName
         }
