@@ -45,7 +45,6 @@ export default {
     watch: {
         '$route.path': {
             handler(val) {
-
                 console.log('web', val)
             }
         }
@@ -53,7 +52,6 @@ export default {
     computed: {
         getCurrentView() {
             if (!this.$store.state.models.login) {
-                
                 this.$router.push('/system/sign_in')
             }
 

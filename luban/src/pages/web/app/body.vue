@@ -1,10 +1,13 @@
 <template>
-    <div id="page-wrapper">
+    <div id="page-wrapper" >
         <lb-breadcrumb>
         </lb-breadcrumb>
         <slot></slot>
     </div>
 </template>
+<style>
+
+</style>
 <script>
 import breadcrumb from './breadcrumb.vue'
 
