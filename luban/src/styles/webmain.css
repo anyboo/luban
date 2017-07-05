@@ -7355,7 +7355,7 @@ a.list-group-item.active > .badge,
     margin-left: 10px;
 }
 
-.panel > .panel-footer {
+.panel > {
     font-size: 18px;
     padding: 7px 15px;
     border-bottom-right-radius: 0 !important;
@@ -7385,7 +7385,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-primary > .panel-footer {
+.panel.panel-primary > {
     color: #FFFFFF;
     background: #e74c3c;
     border-color: #e74c3c !important;
@@ -7414,7 +7414,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-red > .panel-footer {
+.panel.panel-red > {
     color: #FFFFFF;
     background: #bf4346;
     border-color: #bf4346 !important;
@@ -7443,7 +7443,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-orange > .panel-footer {
+.panel.panel-orange > {
     color: #FFFFFF;
     background: #e9662c;
     border-color: #e9662c !important;
@@ -7472,7 +7472,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-green > .panel-footer {
+.panel.panel-green > {
     color: #FFFFFF;
     background: #488c6c;
     border-color: #488c6c !important;
@@ -7501,7 +7501,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-yellow > .panel-footer {
+.panel.panel-yellow > {
     color: #FFFFFF;
     background: #f2994b;
     border-color: #f2994b !important;
@@ -7530,7 +7530,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-blue > .panel-footer {
+.panel.panel-blue > {
     color: #FFFFFF;
     background: #0a819c;
     border-color: #0a819c !important;
@@ -7559,7 +7559,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-pink > .panel-footer {
+.panel.panel-pink > {
     color: #FFFFFF;
     background: #bf3773;
     border-color: #bf3773 !important;
@@ -7588,7 +7588,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-violet > .panel-footer {
+.panel.panel-violet > {
     color: #FFFFFF;
     background: #9351ad;
     border-color: #9351ad !important;
@@ -7617,7 +7617,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-grey > .panel-footer {
+.panel.panel-grey > {
     color: #FFFFFF;
     background: #4b5d67;
     border-color: #4b5d67 !important;
@@ -7646,7 +7646,7 @@ a.list-group-item.active > .badge,
     color: #f9f9f9;
 }
 
-.panel.panel-dark > .panel-footer {
+.panel.panel-dark > {
     color: #FFFFFF;
     background: #594857;
     border-color: #594857 !important;
@@ -7666,7 +7666,7 @@ a.list-group-item.active > .badge,
     color: #BBBBBB;
 }
 
-.panel.panel-white > .panel-footer {
+.panel.panel-white > {
     border-top: 1px solid #faf9fb;
     color: #777777;
     background: #FFFFFF;
@@ -8495,6 +8495,7 @@ fieldset[disabled] .btn-white.active {
     border: 1px solid #e5e5e5 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
+    height: 34px !important;
 }
 
 .input-group .input-group-btn .btn.btn-primary {

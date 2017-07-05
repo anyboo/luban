@@ -13,15 +13,15 @@
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
                                             <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                <template v-for="item in localdata.search.fields">
-                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
+                                                <template v-for="item in localdata.search.fields" >
+                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item >
                                                 </template>
                                             </el-dropdown-menu>
                                         </el-dropdown>
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch" >搜索</button>
                             </span>
                                 </div>
                             </div>
@@ -30,9 +30,7 @@
                     <div class="col-xs-12 col-md-8 m-t">
                         <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                         <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
-                        <button class="btn btn-default ng-isolate-scope">
-                            <i class="glyphicon glyphicon-export"></i>导出Excel
-                        </button>
+                       
                         <a @click="lbShowdialog($event,'lb-trash')" :class="{result:refreshData}">
                             <i class="icon-lock"></i>已封存档案
                         </a>

@@ -184,8 +184,16 @@
     </div>
 </template>
 <style>
+.panel-footer {
+    background-color: #fff;
+    border-color: #edf1f2;
+    border-radius: 0 0 1px 1px;
+}
 
-
+.panel-footer .btn {
+    margin-left: 22%;
+    margin-top: 10px;
+}
 </style>
 <script>
 export default {
