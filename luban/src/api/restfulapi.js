@@ -1,8 +1,4 @@
 import urlUtil from './urlprofile'
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-
-Vue.use(VueResource)
 
 function httpAuth() {
     let token = window.localStorage.getItem('token')

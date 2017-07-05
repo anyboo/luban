@@ -8,6 +8,7 @@ import mixin from './mixins/mixin'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 const router = new VueRouter({
     //mode: 'history',

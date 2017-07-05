@@ -1,8 +1,8 @@
 <template>
-    <div id="web" :class="{'sidebar-collapsed':isvariety}" >
+    <div id="web" :class="{'sidebar-collapsed':isvariety}">
         <lb-header @variety="variety"></lb-header>
         <div id="wrapper">
-            <lb-sidebar></lb-sidebar >
+            <lb-sidebar></lb-sidebar>
             <lb-body>
                 <component v-bind:is="getCurrentView">
                 </component>
@@ -45,16 +45,22 @@ export default {
     watch: {
         '$route.path': {
             handler(val) {
-                
+
                 console.log('web', val)
             }
         }
     },
     computed: {
-        getCurrentView(){
+        getCurrentView() {
             let to = this.$route.path
-            this.currentView = 'lb-studentadd'
-            return 'lb-studentadd'
+            let view = 'lb-studentadd'
+            if (to == '/' || to == '/web') {
+                view = 'lb-studentadd'
+            } else {
+                view = 'lb-'+to.replace(/\//g,'')
+            }
+            console.log(view)
+            return view
         }
     },
     methods: {
