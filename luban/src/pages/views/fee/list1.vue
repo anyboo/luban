@@ -24,47 +24,47 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-talbe :data="getTablesData()" stripe>
-                            <el-talbe-column prop="data" label="日期">
+                        <el-table :data="getTablesData()" stripe>
+                            <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="金额">
                                 <template scope="scope">
                                     <span class="badge bg-success ng-binding">{{scope.row.money_pay_amount}}</span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="学员">
+                            </el-table-column>
+                            <el-table-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="付款方式">
+                            </el-table-column>
+                            <el-table-column prop="data" label="付款方式">
                                 <template scope="scope">现金</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="收据">
+                            </el-table-column>
+                            <el-table-column prop="data" label="收据">
                                 <template scope="scope">
                                     <div class="inline ng-scope" ng-if="item.orb_id == '0'">
                                         <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
                                     </div>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="课程/班级">
+                            </el-table-column>
+                            <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">
                                     <span ng-if="item.lesson_type == '0'" class="ng-scope">
                                 <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">{{scope.row.class_id}}</a>
                             </span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="校区">
+                            </el-table-column>
+                            <el-table-column prop="data" label="校区">
                                 <template scope="scope">
                                     <label class="badge bg-info badge-xm">福州布尔培训</label>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="备注">
+                            </el-table-column>
+                            <el-table-column prop="data" label="备注">
                                 <template scope="scope">{{scope.row.order_remark}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="经办人">
+                            </el-table-column>
+                            <el-table-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
-                            </el-talbe-column>
-                        </el-talbe>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">

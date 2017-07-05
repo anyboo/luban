@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t" style="min-height:400px" :class='{result:changeTeacher}'>
-                    <el-talbe :data="getTablesData()" stripe>
-                        <el-talbe-column width="80" prop="data" label>
+                    <el-table :data="getTablesData()" stripe>
+                        <el-table-column width="80" prop="data" label>
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu" class="btn btn-info btn-xs">
@@ -47,14 +47,14 @@
                                     </lb-dropdown-button>
                                 </lb-dropdown>
                             </template>
-                        </el-talbe-column>
-                        <el-talbe-column prop="data" label="教室名称">
+                        </el-table-column>
+                        <el-table-column prop="data" label="教室名称">
                             <template scope="scope">{{ scope.row.class_name }}</template>
-                        </el-talbe-column>
-                        <el-talbe-column prop="data" label="最大人数">
+                        </el-table-column>
+                        <el-table-column prop="data" label="最大人数">
                             <template scope="scope">{{ scope.row.max_student_num }}</template>
-                        </el-talbe-column>
-                    </el-talbe>
+                        </el-table-column>
+                    </el-table>
                 </div>
                 <div class="panel-footer ">
                     <div class="row ">

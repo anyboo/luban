@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-talbe :data="getTablesData()" stripe>
-                            <el-talbe-column prop="data" label="操作">
+                        <el-table :data="getTablesData()" stripe>
+                            <el-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
@@ -48,30 +48,30 @@
                                         </lb-dropdown-button>
                                     </lb-dropdown>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="日期">
+                            </el-table-column>
+                            <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="订单号">
+                            </el-table-column>
+                            <el-table-column prop="data" label="订单号">
                                 <template scope="scope">{{ scope.row.order_no}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="订单内容">
+                            </el-table-column>
+                            <el-table-column prop="data" label="订单内容">
                                 <template scope="scope">{{ scope.row.body}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="欠费金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
                                     <span class="badge bg-danger ng-binding">{{ scope.row.unpay_amount}}  </span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="总金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="总金额">
                                 <template scope="scope">
                                     <span class="badge bg-info ng-binding">{{ scope.row.order_amount }}</span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="学员">
+                            </el-table-column>
+                            <el-table-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </el-talbe-column>
-                        </el-talbe>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">

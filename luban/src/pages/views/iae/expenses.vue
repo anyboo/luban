@@ -30,22 +30,22 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-talbe :data="getTablesData()" stripe>
-                            <el-talbe-column prop="data" label="日期">
+                        <el-table :data="getTablesData()" stripe>
+                            <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="金额">
                                 <template scope="scope">
                                     <span class="badge bg-danger ng-binding">-30.00</span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="备注">
+                            </el-table-column>
+                            <el-table-column prop="data" label="备注">
                                 <template scope="scope">李哥订单退款,订单号:OB1161217170444033750849</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="经办人">
+                            </el-table-column>
+                            <el-table-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
-                            </el-talbe-column>
-                        </el-talbe>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">

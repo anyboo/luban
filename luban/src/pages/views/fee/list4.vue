@@ -26,25 +26,25 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-talbe :data="getTablesData()" stripe>
-                            <el-talbe-column prop="data" label="日期">
+                        <el-table :data="getTablesData()" stripe>
+                            <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="退款金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="退款金额">
                                 <template scope="scope">
                                     <span class="badge bg-success ng-binding">{{scope.row.amount}}</span>
                                 </template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="学员">
+                            </el-table-column>
+                            <el-table-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="班级/课程">
+                            </el-table-column>
+                            <el-table-column prop="data" label="班级/课程">
                                 <template scope="scope">1班</template>
-                            </el-talbe-column>
-                            <el-talbe-column prop="data" label="经办人">
+                            </el-table-column>
+                            <el-table-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
-                            </el-talbe-column>
-                        </el-talbe>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">

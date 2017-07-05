@@ -39,8 +39,8 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t">
-                    <el-talbe :data="getTablesData()" stripe>
-                        <el-talbe-column prop="data" label="操作">
+                    <el-table :data="getTablesData()" stripe>
+                        <el-table-column prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
@@ -49,16 +49,16 @@
                                     </lb-dropdown-button>
                                 </lb-dropdown>
                             </template>
-                        </el-talbe-column>
-                        <el-talbe-column width="300" prop="data" label="课程">
+                        </el-table-column>
+                        <el-table-column width="300" prop="data" label="课程">
                             <template scope="scope">
                                 <p>
                                     <span class="label bg-danger">班课</span>{{scope.row.lesson_name}}
                                     <small class="label bg-info m-l">{{scope.row.lesson_no}}</small>
                                 </p>
                             </template>
-                        </el-talbe-column>
-                        <el-talbe-column prop="data" label="定价">
+                        </el-table-column>
+                        <el-table-column prop="data" label="定价">
                             <template scope="scope">
                                 <p>
                                     <span>按期收费</span>,课程单价:{{scope.row.unit_price}}元/次
@@ -68,8 +68,8 @@
                                     <span class="label bg-info">{{scope.row.price}}</span>元
                                 </p>
                             </template>
-                        </el-talbe-column>
-                        <el-talbe-column prop="data" label="内容">
+                        </el-table-column>
+                        <el-table-column prop="data" label="内容">
                             <template scope="scope">
                                 <p>
                                     <label>单次课时长:</label>
@@ -81,8 +81,8 @@
                                     <span class="label bg-info">{{scope.row.inc_hours}}</span>课时
                                 </p>
                             </template>
-                        </el-talbe-column>
-                        <el-talbe-column prop="data">
+                        </el-table-column>
+                        <el-table-column prop="data">
                             <template scope="scope">
                                 <p>
                                     <span>
@@ -90,8 +90,8 @@
                                     </span>
                                 </p>
                             </template>
-                        </el-talbe-column>
-                    </el-talbe>
+                        </el-table-column>
+                    </el-table>
                 </div>
                    <div class="panel-footer ">
                         <div class="row ">

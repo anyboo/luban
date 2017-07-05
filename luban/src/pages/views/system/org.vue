@@ -45,8 +45,8 @@
                             <h4 class="manages">校区管理</h4></div>
                         <div class="panel-body no-padder">
                             <div class="table-responsive">
-                                <el-talbe :data="getTablesData()" stripe>
-                                    <el-talbe-column width="100" prop="data" label="操作">
+                                <el-table :data="getTablesData()" stripe>
+                                    <el-table-column width="100" prop="data" label="操作">
                                         <template scope="scope">
                                             <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
@@ -55,23 +55,23 @@
                                                 </lb-dropdown-button>
                                             </lb-dropdown>
                                         </template>
-                                    </el-talbe-column>
-                                    <el-talbe-column prop="data" label="校区简称">
+                                    </el-table-column>
+                                    <el-table-column prop="data" label="校区简称">
                                         <template scope="scope">{{ scope.row.short_name }}</template>
-                                    </el-talbe-column>
-                                    <el-talbe-column prop="data" label="校区全称">
+                                    </el-table-column>
+                                    <el-table-column prop="data" label="校区全称">
                                         <template scope="scope">{{ scope.row.branch_name }}</template>
-                                    </el-talbe-column>
-                                    <el-talbe-column prop="data" label="所在地区">
+                                    </el-table-column>
+                                    <el-table-column prop="data" label="所在地区">
                                         <template scope="scope">{{ scope.row.short_name }}</template>
-                                    </el-talbe-column>
-                                    <el-talbe-column prop="data" label="地址">
+                                    </el-table-column>
+                                    <el-table-column prop="data" label="地址">
                                         <template scope="scope">{{scope.row.branch_address}}</template>
-                                    </el-talbe-column>
-                                    <el-talbe-column prop="data" label="联系电话">
+                                    </el-table-column>
+                                    <el-table-column prop="data" label="联系电话">
                                         <template scope="scope">{{ scope.row.branch_tel }}</template>
-                                    </el-talbe-column>
-                                </el-talbe>
+                                    </el-table-column>
+                                </el-table>
                             </div>
                         </div>
                         <div class="panel-footer ">
