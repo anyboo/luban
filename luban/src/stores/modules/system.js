@@ -20,7 +20,7 @@ const mutations = {
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
-        console.log(obj.wallpaper, obj.theme)
+        /* console.log(obj.wallpaper, obj.theme)*/
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme
     }

@@ -8,12 +8,14 @@
 </template>
  <style>
 .shortcut-icon {
+    box-sizing: border-box;
     width: 80px;
     height: 80px;
-    padding: 10px;
+    padding-top: 10px;
     line-height: 35px;
     position: absolute;
-    border: 1px solid transparent
+    border: 1px solid transparent;
+    overflow-y: hidden;
 }
 
 div.shortcut-icon:hover {
@@ -29,7 +31,7 @@ div.shortcut-icon:hover {
     margin-top: 4px;
     text-align: center;
     color: #fff;
-    font-size: 18px;
+    font-size: 15px;
 }
 </style>
  <script>
@@ -44,6 +46,15 @@ export default {
             disx: 0,
             disy: 0,
         }
+    },
+    mounted() {
+        let height = this.$parent.$el.clientHeight
+        let index = this.icondata.index
+        let col = Math.floor(height / 80)
+        let iconcol = index % col
+        let iconrow = Math.floor(index / col)
+        this.$el.style.left = Math.max(iconrow * 80, 0) + 'px'
+        this.$el.style.top = Math.max(iconcol * 80, 0) + 'px'
     },
     methods: {
         addListener(element, e, fn) {

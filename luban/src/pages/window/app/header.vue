@@ -1,6 +1,6 @@
 <template>
-    <div class="navbar navbar-default header">
-        <div class="navbar-brand brand">
+    <div class="navbar header">
+        <div class=" brand">
             <img src="/assets/images/logo.png">
             <a href="#">
                 <span class="segoe">Luban</span>-
@@ -20,47 +20,44 @@
     text-align: center;
     line-height: 27.5px;
 }
-
-.navbar-brand>a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+.brand>a {
     text-decoration: none;
     color: #fff;
     text-shadow: 0 3px 7px rgba(0, 0, 0, 0.37);
     font-size: 20px;
 }
 
-.navbar-brand>a {
+.brand>a {
     font-size: 24px;
 }
 
-.header .navbar-nav>li>a {
+.header .navbar>li>a {
     font-size: 20px;
     color: #fff;
     -webkit-text-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     text-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
-.header .navbar-nav>.active>a {
+.header .navbar>.active>a {
     background-color: !important;
     color: #777 !important;
 }
 
-.header .navbar-nav>li>.dropdown-menu {
+.header .navbar>li>.dropdown-menu {
     margin-top: -1px;
     right: -1px;
     z-index: -1;
 }
 
 .header {
-    background-color: transparent;
-    border: none;
+  
+  
     z-index: 10;
     padding-right: 0px;
     padding-left: 0px;
     width: 100%;
     margin-bottom: 0px;
-    background-color: rgba(208, 150, 21, 0.5);
+  
 }
 
 @media screen and (min-width:680px) {
@@ -91,6 +88,7 @@
         text-align: left;
     }
     .brand {
+        display: block;
         float: left;
         margin-left: 60px;
         text-align: left;
