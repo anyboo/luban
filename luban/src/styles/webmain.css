@@ -10872,6 +10872,8 @@ ul.chats li.out .message {
 
 .wrapper {
     padding: 15px;
+    overflow-y: auto;
+    height: 100%
 }
 
 .form-horizontal .form-group {
