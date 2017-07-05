@@ -18,4 +18,5 @@ pages['lb-studentbirthdays'] = studentbirthdays
 pages['lb-studentrecording'] = studentrecording
 pages['lb-studentlost'] = studentlost
 pages['lb-studenttracks'] = studenttracks
+
 export default pages
