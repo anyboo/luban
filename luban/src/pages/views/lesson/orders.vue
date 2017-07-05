@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="panel panel-default ng-scope" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
                 <div class="row wrapper">

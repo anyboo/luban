@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="ng-scope">
+        <div class="ng-scope wrapper ">
             <div class="wrapper-xs ng-scope">
                 <div class="wrapper panel panel-default bg-white ng-scope">
                     <div class="row ng-scope">

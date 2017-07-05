@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div ui-view class="ng-scope">
                 <div class="panel panel-default ng-scope" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">

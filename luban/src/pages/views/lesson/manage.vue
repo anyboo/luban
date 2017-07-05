@@ -1,5 +1,5 @@
-<template>
-    <div ui-view>
+ <template>
+    <div ui-view class="wrapper ">
         <div class="wrapper-xs" xo-rest="lessons" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="lesson" loading-container=".list-lesson" loading-text="正在加载课程列表..." empty-text="没有符合条件的课程!">
             <div class="panel panel-default">
                 <div class="row wrapper">

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper wrapper ">
         <div class="wrapper panel panel-default bg-white ng-scope">
             <div class="ng-scope">
                 <div class="row wrapper">

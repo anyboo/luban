@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper ">
         <div ui-butterbar="" class="butterbar hide"><span class="bar"></span></div>
         <a href="" class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
         <div class="app-content-body fade-in-up ng-scope" ui-view="">

@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class=" wrapper panel panel-default bg-white ng-scope" page-controller="list2index">
                 <div class="row no-gutter">

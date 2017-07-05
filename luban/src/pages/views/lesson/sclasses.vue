@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="panel panel-default">
                 <div class="row wrapper no-gutter">
