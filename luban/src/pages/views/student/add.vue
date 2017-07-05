@@ -184,8 +184,111 @@
     </div>
 </template>
 <style>
-    .wrapper {
+.wrapper {
     padding: 15px;
+}
+
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.col-md-2 {
+    width: 16.66666667%;
+}
+
+.col-md-10 {
+    width: 83.33333333%;
+}
+
+.col-md-10,
+.col-md-11,
+.col-md-12 {
+    float: left;
+}
+.text-muted {
+    color: #98a6ad;
+}
+
+.w-sm {
+    width: 120px;
+}
+
+.inline {
+    display: inline-block!important;
+}
+
+.va-m {
+    vertical-align: middle;
+}
+
+.btn-group,
+.btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.w {
+    width: 200px;
+}
+
+.btn-primary {
+    color: #fff!important;
+    background-color: #44b549;
+    border-color: #44b549;
+}
+
+.btn {
+    font-weight: 500;
+    border-radius: 1px;
+    outline: 0!important;
+}
+
+.m-b {
+    margin-bottom: 15px;
+}
+
+.m-t {
+    margin-top: 15px;
+}
+
+.b-t {
+    border-top: 1px solid #dee5e7;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.w {
+    width: 200px;
+}
+
+.r-b {
+    border-radius: 0 0 1px 1px;
+}
+
+.b-l {
+    border-left: 1px solid #dee5e7;
+}
+
+.b-b {
+    border-bottom: 1px solid #dee5e7;
+}
+
+.b-r {
+    border-right: 1px solid #dee5e7;
 }
 </style>
 <script>
