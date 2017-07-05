@@ -57,12 +57,12 @@
                                         </a>
                                     </div>
                                     <div class="tel m-t"><i class="fa fa-phone"></i><span class="ng-binding">{{ item.first_tel }}</span>
-                                        <el-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
-                                            <el-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                                 <i class="fa fa-cog ng-scope"></i>
                                                 <span class="caret"></span>
-                                            </el-dropdown-button>
-                                        </el-dropdown>
+                                            </lb-dropdown-button>
+                                        </lb-dropdown>
                                     </div>
                                 </div>
                             </div>
@@ -72,12 +72,12 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <el-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
-                                        <el-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
                                             <span class="caret"></span> 
-                                        </el-dropdown-button>
-                                    </el-dropdown>
+                                        </lb-dropdown-button>
+                                    </lb-dropdown>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">

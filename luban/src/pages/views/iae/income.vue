@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
@@ -41,44 +41,44 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column prop="data" label="学员">
+                        <el-talbe :data="getTablesData()" stripe>
+                            <el-talbe-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="付款日期">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="付款日期">
                                 <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="金额">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="金额">
                                 <template scope="scope">
                                     <span class="badge bg-success ng-binding">{{scope.row.amount}}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="付款方式">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="付款方式">
                                 <template scope="scope">现金</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="备注">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="备注">
                                 <template scope="scope">{{scope.row.note}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="经办人">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="对账状态">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="对账状态">
                                 <template scope="scope">
                                     <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="操作">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="操作">
                                 <template scope="scope">
                                     <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'" @click="handleCommand">核对</a>
                                 </template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-talbe-column>
+                        </el-talbe>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                     <div class="float-btn-box" ng-class="{'float-btn-box-show':have_selected()}">

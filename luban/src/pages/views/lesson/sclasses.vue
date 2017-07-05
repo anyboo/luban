@@ -8,17 +8,17 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <lb-dropdowns menu-align="start" @command="handleCommand">
+                                        <el-dropdown menu-align="start" @command="handleCommand">
                                             <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
                                                 {{localdata.search.search_value}}
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                 <template v-for="item in localdata.search.fields">
-                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
                                                 </template>
-                                            </lb-dropdown-menu>
-                                        </lb-dropdowns>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t" style="min-height:400px" :class='{result:changeTeacher}'>
-                    <lb-table :data="getTablesData()" stripe>
-                        <lb-table-column width="80" prop="data" label>
+                    <el-talbe :data="getTablesData()" stripe>
+                        <el-talbe-column width="80" prop="data" label>
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu" class="btn btn-info btn-xs">
@@ -47,19 +47,19 @@
                                     </lb-dropdown-button>
                                 </lb-dropdown>
                             </template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="教室名称">
+                        </el-talbe-column>
+                        <el-talbe-column prop="data" label="教室名称">
                             <template scope="scope">{{ scope.row.class_name }}</template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="最大人数">
+                        </el-talbe-column>
+                        <el-talbe-column prop="data" label="最大人数">
                             <template scope="scope">{{ scope.row.max_student_num }}</template>
-                        </lb-table-column>
-                    </lb-table>
+                        </el-talbe-column>
+                    </el-talbe>
                 </div>
                 <div class="panel-footer ">
                     <div class="row ">
-                        <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </lb-pagination>
+                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </el-pagination>
                     </div>
                 </div>
             </div>

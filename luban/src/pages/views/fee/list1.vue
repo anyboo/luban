@@ -6,7 +6,7 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
@@ -24,53 +24,53 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column prop="data" label="日期">
+                        <el-talbe :data="getTablesData()" stripe>
+                            <el-talbe-column prop="data" label="日期">
                                 <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="金额">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="金额">
                                 <template scope="scope">
                                     <span class="badge bg-success ng-binding">{{scope.row.money_pay_amount}}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="学员">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="付款方式">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="付款方式">
                                 <template scope="scope">现金</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="收据">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="收据">
                                 <template scope="scope">
                                     <div class="inline ng-scope" ng-if="item.orb_id == '0'">
                                         <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
                                     </div>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="课程/班级">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="课程/班级">
                                 <template scope="scope">
                                     <span ng-if="item.lesson_type == '0'" class="ng-scope">
                                 <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">{{scope.row.class_id}}</a>
                             </span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="校区">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="校区">
                                 <template scope="scope">
                                     <label class="badge bg-info badge-xm">福州布尔培训</label>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="备注">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="备注">
                                 <template scope="scope">{{scope.row.order_remark}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="经办人">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-talbe-column>
+                        </el-talbe>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>

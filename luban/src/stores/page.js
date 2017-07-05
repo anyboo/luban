@@ -7,6 +7,7 @@ import studentlost from '~/pages/views/student/lost.vue'
 import studenttracks from '~/pages/views/student/tracks.vue'
 
 import systemsign_in from '~/pages/views/system/sign_in.vue'
+import systememployee from '~/pages/views/system/employee.vue'
 
 var pages = {}
 pages['lb-studentadd'] = studentadd
@@ -18,5 +19,6 @@ pages['lb-studentlost'] = studentlost
 pages['lb-studenttracks'] = studenttracks
 
 pages['lb-systemsign_in'] = systemsign_in
+pages['lb-systememployee'] = systememployee
 
 export default pages

@@ -8,17 +8,17 @@
                             <div class="input-group w-full">
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <lb-dropdowns menu-align="start" @command="handleMenuCommand">
+                                        <el-dropdown menu-align="start" @command="handleMenuCommand">
                                             <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
                                                 {{localdata.search.search_value}}
                                                 <span class="caret"></span>
                                             </lb-dropdown-button>
-                                            <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                 <template v-for="item in localdata.search.fields">
-                                                    <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
                                                 </template>
-                                            </lb-dropdown-menu>
-                                        </lb-dropdowns>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
@@ -39,8 +39,8 @@
                     </div>
                 </div>
                 <div class="table-responsive m-t">
-                    <lb-table :data="getTablesData()" stripe>
-                        <lb-table-column prop="data" label="操作">
+                    <el-talbe :data="getTablesData()" stripe>
+                        <el-talbe-column prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
@@ -49,16 +49,16 @@
                                     </lb-dropdown-button>
                                 </lb-dropdown>
                             </template>
-                        </lb-table-column>
-                        <lb-table-column width="300" prop="data" label="课程">
+                        </el-talbe-column>
+                        <el-talbe-column width="300" prop="data" label="课程">
                             <template scope="scope">
                                 <p>
                                     <span class="label bg-danger">班课</span>{{scope.row.lesson_name}}
                                     <small class="label bg-info m-l">{{scope.row.lesson_no}}</small>
                                 </p>
                             </template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="定价">
+                        </el-talbe-column>
+                        <el-talbe-column prop="data" label="定价">
                             <template scope="scope">
                                 <p>
                                     <span>按期收费</span>,课程单价:{{scope.row.unit_price}}元/次
@@ -68,8 +68,8 @@
                                     <span class="label bg-info">{{scope.row.price}}</span>元
                                 </p>
                             </template>
-                        </lb-table-column>
-                        <lb-table-column prop="data" label="内容">
+                        </el-talbe-column>
+                        <el-talbe-column prop="data" label="内容">
                             <template scope="scope">
                                 <p>
                                     <label>单次课时长:</label>
@@ -81,8 +81,8 @@
                                     <span class="label bg-info">{{scope.row.inc_hours}}</span>课时
                                 </p>
                             </template>
-                        </lb-table-column>
-                        <lb-table-column prop="data">
+                        </el-talbe-column>
+                        <el-talbe-column prop="data">
                             <template scope="scope">
                                 <p>
                                     <span>
@@ -90,13 +90,13 @@
                                     </span>
                                 </p>
                             </template>
-                        </lb-table-column>
-                    </lb-table>
+                        </el-talbe-column>
+                    </el-talbe>
                 </div>
                    <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
             </div>

@@ -9,17 +9,17 @@
                                 <div class="input-group w-full">
                                     <div class="input-group"> 
                                         <div class="input-group-btn">
-                                            <lb-dropdowns menu-align="start" @command="handleMenuCommand">
+                                            <el-dropdown menu-align="start" @command="handleMenuCommand">
                                                 <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
                                                     {{localdata.search.search_value}}
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
-                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <el-dropdown-menu slot="dropdown" style="z-index:3000;">
                                                     <template v-for="item in localdata.search.fields">
-                                                        <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                        <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
                                                     </template>
-                                                </lb-dropdown-menu>
-                                            </lb-dropdowns>
+                                                </el-dropdown-menu>
+                                            </el-dropdown>
                                         </div>
                                         <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                         <span class="input-group-btn">
@@ -110,8 +110,8 @@
                     </div>
                     <!-- hhhhh -->
                     <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column prop="data" label="操作">
+                        <el-talbe :data="getTablesData()" stripe>
+                            <el-talbe-column prop="data" label="操作">
                                 <template scope="scope">
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
@@ -121,41 +121,41 @@
                                         </lb-dropdown-button>
                                     </lb-dropdown>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="班级名">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="班级名">
                                 <template scope="scope">
                                     <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">{{scope.row.class_name}}</a>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="老师">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="老师">
                                 <template scope="scope">
                                     <span class="ng-binding">{{getLookUp(scope.row.employee, 'name')}}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="课程名">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="课程名">
                                 <template scope="scope">{{getLookUp(scope.row.course, 'lesson_name')}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="开课日期">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="开课日期">
                                 <template scope="scope">
                                     <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column label="状态">
+                            </el-talbe-column>
+                            <el-talbe-column label="状态">
                                 <template scope="scope">
                                     <small class="label bg-success m-l ng-scope" v-if="getOpen(scope.row,'open')">已开课</small>
                                     <small class="label bg-red m-l ng-scope" v-if="getOpen(scope.row,'')">未开课</small>
                                     <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="最后考勤">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="最后考勤">
                                 <template scope="scope">-</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="所在校区">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="所在校区">
                                 <template scope="scope">
                                     <span class="label bg-info ng-binding">福州布尔培训</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="招生情况">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="招生情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                         <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
@@ -163,8 +163,8 @@
                                         </div>
                                     </div>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="排课情况">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="排课情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.is_arrange" type="warning">
                                         <div class="progress-bar progress-bar-warning" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="60" ng-style="{width: percent + '%'}" aria-valuetext="3%" ng-transclude style="width: 3.33%;">
@@ -172,8 +172,8 @@
                                         </div>
                                     </div>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="考勤情况">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="考勤情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.teach_times" type="success">
                                         <div class="progress-bar progress-bar-success" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="60" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude style="width: 0%;">
@@ -181,8 +181,8 @@
                                         </div>
                                     </div>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="缴费情况">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="缴费情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
                                         <div class="progress-bar progress-bar-danger" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude>
@@ -190,13 +190,13 @@
                                         </div>
                                     </div>
                                 </template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-talbe-column>
+                        </el-talbe>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>

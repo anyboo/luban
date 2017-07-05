@@ -45,8 +45,8 @@
                             <h4 class="manages">校区管理</h4></div>
                         <div class="panel-body no-padder">
                             <div class="table-responsive">
-                                <lb-table :data="getTablesData()" stripe>
-                                    <lb-table-column width="100" prop="data" label="操作">
+                                <el-talbe :data="getTablesData()" stripe>
+                                    <el-talbe-column width="100" prop="data" label="操作">
                                         <template scope="scope">
                                             <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
@@ -55,29 +55,29 @@
                                                 </lb-dropdown-button>
                                             </lb-dropdown>
                                         </template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="校区简称">
+                                    </el-talbe-column>
+                                    <el-talbe-column prop="data" label="校区简称">
                                         <template scope="scope">{{ scope.row.short_name }}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="校区全称">
+                                    </el-talbe-column>
+                                    <el-talbe-column prop="data" label="校区全称">
                                         <template scope="scope">{{ scope.row.branch_name }}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="所在地区">
+                                    </el-talbe-column>
+                                    <el-talbe-column prop="data" label="所在地区">
                                         <template scope="scope">{{ scope.row.short_name }}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="地址">
+                                    </el-talbe-column>
+                                    <el-talbe-column prop="data" label="地址">
                                         <template scope="scope">{{scope.row.branch_address}}</template>
-                                    </lb-table-column>
-                                    <lb-table-column prop="data" label="联系电话">
+                                    </el-talbe-column>
+                                    <el-talbe-column prop="data" label="联系电话">
                                         <template scope="scope">{{ scope.row.branch_tel }}</template>
-                                    </lb-table-column>
-                                </lb-table>
+                                    </el-talbe-column>
+                                </el-talbe>
                             </div>
                         </div>
                         <div class="panel-footer ">
                             <div class="row ">
-                                <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                                </lb-pagination>
+                                <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                                </el-pagination>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column prop="data" label="操作">
+                        <el-talbe :data="getTablesData()" stripe>
+                            <el-talbe-column prop="data" label="操作">
                                 <template scope="scope">
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default">
@@ -48,36 +48,36 @@
                                         </lb-dropdown-button>
                                     </lb-dropdown>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="日期">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="日期">
                                 <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="订单号">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="订单号">
                                 <template scope="scope">{{ scope.row.order_no}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="订单内容">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="订单内容">
                                 <template scope="scope">{{ scope.row.body}}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="欠费金额">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="欠费金额">
                                 <template scope="scope">
                                     <span class="badge bg-danger ng-binding">{{ scope.row.unpay_amount}}  </span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="总金额">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="总金额">
                                 <template scope="scope">
                                     <span class="badge bg-info ng-binding">{{ scope.row.order_amount }}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="学员">
+                            </el-talbe-column>
+                            <el-talbe-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-talbe-column>
+                        </el-talbe>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>
