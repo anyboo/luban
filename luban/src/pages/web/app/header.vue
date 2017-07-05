@@ -32,11 +32,11 @@
                                     <i class="fa fa-user" style="top:1px;"></i>个人资料</a>
                             </li>
                             <li @mouseout="menu=false" @mouseover="menu=true">
-                                <a  @click="changeView('/system/sign_in')">
+                                <a @click="changeView('/system/sign_in')">
                                     <i class="fa fa-lock" style="top:1px;"></i>锁屏</a>
                             </li>
                             <li @mouseout="menu=false" @mouseover="menu=true">
-                                <a  @click="changeView('/system/sign_in')">
+                                <a @click="changeView('/system/sign_in')">
                                     <i class="fa fa-key" style="top:1px;"></i>退出</a>
                             </li>
                         </ul>
@@ -97,8 +97,9 @@ export default {
         blur() {
             this.hide = this.menu
         },
-        changeView(view){
-             this.$router.push(view)
+        changeView(view) {
+            this.$router.push(view)
+            this.hide = false
         }
 
     },
