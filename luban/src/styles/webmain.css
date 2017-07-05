@@ -11056,3 +11056,19 @@ ul.chats li.out .message {
     display: table;
     border-collapse: separate;
 }
+.bg-black {
+    color: #7793a7;
+    background-color: #1c2b36;
+}
+.modal-over {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.modal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

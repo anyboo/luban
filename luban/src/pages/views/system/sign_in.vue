@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-over bg-black ng-scope" style="z-index: 99999999;">
+    <div class="modal-over bg-black ng-scope" style="z-index: 99999999;    margin: -100px 0px 0px -100px;">
         <div class="modal-center animated fadeInUp text-center" style="width:200px;margin:-100px 0 0 -100px">
             <div class="thumb-lg"><img class="img-circle" src="/assets/images/a0.jpg"></div>
             <p class="h4 m-t m-b">
@@ -13,6 +13,17 @@
         </div>
     </div>
 </template>
+<style >
+    .modal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.bg-black {
+    color: #7793a7;
+    background-color: #1c2b36;
+}
+</style>
 <script>
 export default {
     name: 'signIn',
