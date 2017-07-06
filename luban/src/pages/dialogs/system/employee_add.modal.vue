@@ -8,7 +8,7 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-user"></i>添加员工
+                        <i class="fa fa-user"></i>{{title}}员工
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -89,11 +89,13 @@ export default {
         }
         return {
             localdata,
-            model: 'employee'
+            model: 'employee',
+            title:'添加'
         }
     },
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
+            this.title = '编辑'
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
             this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
         }

@@ -14,11 +14,11 @@
                 </div>
                 <div class="modal-body">
                     <form name="form1" class="form form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-parse ng-valid-number" novalidate>
-                        <lb-table :data="getTableData" stripe>
-                            <lb-table-column class="text-center" width="40" prop="data" label="No.">
+                        <el-table :data="getTableData" stripe>
+                            <el-table-column class="text-center" width="40" prop="data" label="No.">
                                 <template scope="scope">1</template>
-                            </lb-table-column>
-                            <lb-table-column class="text-center" prop="data" label="学员">
+                            </el-table-column>
+                            <el-table-column class="text-center" prop="data" label="学员">
                                 <template scope="scope">
                                     <div class="inline w-xxs va-m">
                                         <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" ng-readonly="item.os_id" placeholder="姓名" required v-model="localdata.form.item_name">
@@ -30,18 +30,18 @@
                                         <input type="text" class="form-control input-sm no-padder text-center ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-parse" placeholder="联系电话" ng-readonly="item.os_id" required v-model="localdata.form.item_tel">
                                     </div>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column class="text-center" width="100" prop="data" label="报名课次">
+                            </el-table-column>
+                            <el-table-column class="text-center" width="100" prop="data" label="报名课次">
                                 <template scope="scope">
                                     <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.item_lesson_times">
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column width="120" prop="data" label>
+                            </el-table-column>
+                            <el-table-column width="120" prop="data" label>
                                 <template scope="scope">
                                     <a class="btn btn-danger btn-xs" ng-click="input.students.splice($index,1)">删除</a>
                                 </template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-table-column>
+                        </el-table>
                     </form>
                 </div>
                 <div class="modal-footer text-center">

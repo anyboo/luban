@@ -1,7 +1,7 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
-            <div page-controller="rest_account" class="ng-scope">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="ng-scope">
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-user"></i>重置
-                        <span class="badge bg-info ng-binding">陈佳木</span>的账号密码
+                        <span class="badge bg-info ng-binding">{{name}}</span>的账号密码
                     </h3>
                 </div>
                 <div class="modal-body">
@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录账号</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="mobile" class="form-control" value="13609598376" readonly="true">
+                                <input type="text" name="mobile" class="form-control" :value="username" readonly="true">
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,10 +52,15 @@ export default {
         }
         return {
             localdata,
+            name: '',
+            username: ''
         }
     },
-    computed: {},
-    watch: {},
-    methods: {}
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.name = this.$store.state.dialogs.dailogdata.name
+            this.username = this.$store.state.dialogs.dailogdata.tel
+        }
+    },
 }
 </script>

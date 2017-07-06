@@ -25,7 +25,6 @@ import page51 from '~/pages/dialogs/student/region_set.modal.vue'
 import page50 from '~/pages/dialogs/student/change_branch.modal.vue'
 import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
-import page63 from '~/pages/dialogs/system/change_account.modal.vue'
 import page67 from '~/pages/dialogs/system/add_modal.vue'
 
 var pages = {}
@@ -57,7 +56,6 @@ pages['lb-regionsetmodal'] = page51
 pages['lb-changebranchmodal'] = page50
 pages['lb-purposesetmodal'] = page52
 pages['lb-resetaccountmodal'] =page62
-pages['lb-changeaccountmodal'] = page63
 pages['lb-addmodal'] = page67
 
 export default pages

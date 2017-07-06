@@ -26,39 +26,39 @@
                             </div>
                         </p>
                         <div class="table-responsive">
-                            <lb-table :data="getTableData" stripe>
-                                <lb-table-column prop="data" label="学员">
+                            <el-table :data="getTableData" stripe>
+                                <el-table-column prop="data" label="学员">
                                     <template scope="scope">小兵</template>
-                                </lb-table-column>
-                                <lb-table-column prop="data" label="上课时间">
+                                </el-table-column>
+                                <el-table-column prop="data" label="上课时间">
                                     <template scope="scope">
                                         05-12 11:00
                                         <span class="bg-info label ng-binding">周五</span>
                                         <br>
                                         <span class="badge bg-success ng-binding">1.00小时</span>
                                     </template>
-                                </lb-table-column>
-                                <lb-table-column prop="data" label="班级">
+                                </el-table-column>
+                                <el-table-column prop="data" label="班级">
                                     <template scope="scope">
                                         班课
                                         <br>
                                         <span class="label bg-info ng-binding">3期班</span>
                                     </template>
-                                </lb-table-column>
-                                <lb-table-column prop="data" label="课程金额/老师">
+                                </el-table-column>
+                                <el-table-column prop="data" label="课程金额/老师">
                                     <template scope="scope">
                                         陈佳木
                                         <br>
                                         <span class="label bg-info ng-binding">￥0.00</span>
                                     </template>
-                                </lb-table-column>
-                                <lb-table-column prop="data" label="登记">
+                                </el-table-column>
+                                <el-table-column prop="data" label="登记">
                                     <template scope="scope">
                                         2017-05-12 09:05
                                         <br> 陈佳木
                                     </template>
-                                </lb-table-column>
-                            </lb-table>
+                                </el-table-column>
+                            </el-table>
                             <div class="grid-data-result"></div>
                         </div>
                         <div class="panel-footer">

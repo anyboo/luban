@@ -50,34 +50,18 @@
                                                 </div>
                                             </a>
                                             <h4 class="text-center ng-binding">{{item.name}}</h4>
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <i class="fa fa-phone"></i>
-                                                    <span class="ng-binding">{{item.tel.length>0?item.tel:'未填写'}}</span>
-                                                </li>
-                                            </ul>
                                         </div>
                                         <div class="media-body">
                                             <p>
                                                 <label>账号:</label>
-                                                <span class="m-l-xs ng-binding ng-scope" ng-if="item.oa_id>0">
-                                                    <i class="fa fa-user ng-scope"></i>1360959837
+                                                <span class="m-l-xs ng-binding ng-scope">
+                                                    <i class="fa fa-user ng-scope"></i>{{item.tel.length>0?item.tel:'未填写'}}
                                                 </span>
                                             </p>
                                             <p>
                                                 <label>类型:</label>
                                                 <span class="label bg-info ng-scope">{{ item.is_part_time == '0' ? '全职':'兼职' }}</span>
                                             </p>
-                                            <p>
-                                                <label>角色:</label>
-                                                <span class="ng-binding">
-                                                    <label class="label bg-info m-l-xs">校长</label>
-                                                    <label class="label bg-info m-l-xs">教师</label>
-                                                    <label class="label bg-info m-l-xs">前台</label>
-                                                    <label class="label bg-info m-l-xs">管理员</label>
-                                                </span>
-                                            </p>
-                                            <p></p>
                                             <p>
                                                 <label>邮箱:</label>
                                                 <span class="ng-binding">{{item.email.length>0?item.tel:'未填写'}}</span>
@@ -124,21 +108,17 @@ export default {
                 'text': '离职'
             }],
             'dropDownMenu': [{
-                'url': 'lb-employeeeditmodal',
+                'url': 'lb-employeeaddmodal',
                 'icon': 'fa fa-pencil',
                 'text': '编辑资料'
-            }, {
+            }/*, {
                 'url': 'lb-lockmodal',
                 'icon': 'fa fa-lock',
                 'text': '离职封存'
-            }, {
+            }*/, {
                 'url': 'lb-resetaccountmodal',
                 'icon': 'fa fa-key',
                 'text': '重置密码'
-            }, {
-                'url': 'lb-changeaccountmodal',
-                'icon': 'fa fa-user-md',
-                'text': '更换登录账号'
             }],
             'search': {
                 'fields': [{
@@ -184,7 +164,6 @@ export default {
                     'type': 'like'
                 })
             }
-            console.log(this.localdata.form.status)
             let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({

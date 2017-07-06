@@ -36,22 +36,22 @@
                         </div>
                     </div>
                     <div class="table-responsive m-t">
-                        <lb-table :data="getTablesData()" stripe>
-                            <lb-table-column prop="data" label="学生姓名">
+                        <el-table :data="getTablesData()" stripe>
+                            <el-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
                                     <span class="ng-binding">
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
                                 </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="联系电话">
+                            </el-table-column>
+                            <el-table-column prop="data" label="联系电话">
                                 <template scope="scope">{{ scope.row.first_tel }}</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="建档日期">
+                            </el-table-column>
+                            <el-table-column prop="data" label="建档日期">
                                 <template scope="scope">2017-05-13</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="操作">
+                            </el-table-column>
+                            <el-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <a class="link" @click="do_recover(scope.row._id)">
                                         <i class="icon-lock-open"></i>恢复
@@ -60,14 +60,14 @@
                                         <i class="fa fa-times"></i>删除
                                     </a>
                                 </template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>

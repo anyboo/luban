@@ -43,8 +43,8 @@
                             </li>
                         </template>
                         <div class="row ng-scope wrapper">
-                            <lb-pagination class="pull-right el-pagination  el-pages" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right el-pagination  el-pages" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </ul>
                     <div class="wrapper ng-scope" v-else>
