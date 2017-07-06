@@ -5,12 +5,10 @@
                 <div class="panel-heading">
                     <i class="fa fa-user"></i>学员档案录入
                     <a @click="lbShowdialog($event,'lb-import')">
-                        <i class="glyphicon glyphicon-import"></i>从Excel导入
                     </a>
                 </div>
                 <div class="panel-body">
                     <div class="wrapper-xs ng-scope">
-                        <p class="text-muted ng-scope">注意:“确认”按钮默认是禁用的，只有所有输入项都合法完整后才可以点击,请注意选择性别.</p>
                         <div class="form-group ng-scope">
                             <label class="col-xs-12 col-md-2 control-label">
                                 <span class="text-danger">*</span>姓名:
