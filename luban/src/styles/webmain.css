@@ -6,6 +6,7 @@
     animation: spin 2s infinite linear;
 }
 
+
 .no-border-radius {
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
@@ -11075,4 +11076,7 @@ ul.chats li.out .message {
 }
 .thumb-lg img{
     width: 96px;
+}
+.el-table .cell{
+    font-size: 14px !important;
 }

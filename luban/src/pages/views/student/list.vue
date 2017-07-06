@@ -68,7 +68,7 @@
                     </div>
                     <div class="row ng-scope" v-if="localdata.form.view_mode == 'list'">
                         <el-table :data="getTablesData()" stripe>
-                            <el-table-column prop="data" label="操作">
+                            <el-table-column prop="data" label="操作" style="font-size:10px;">
                                 <template scope="scope">
                                     <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
