@@ -36,8 +36,7 @@
                                 <i class="fa fa-plus "></i>开班
                             </a>
                         </div>
-                    </div>
-                    <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
+                        
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
                                 <div class="panel panel-default">
@@ -147,14 +146,7 @@
                                     <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="最后考勤">
-                                <template scope="scope">-</template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="所在校区">
-                                <template scope="scope">
-                                    <span class="label bg-info ng-binding">福州布尔培训</span>
-                                </template>
-                            </el-table-column>
+                           
                             <el-table-column prop="data" label="招生情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
@@ -164,24 +156,8 @@
                                     </div>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="排课情况">
-                                <template scope="scope">
-                                    <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.is_arrange" type="warning">
-                                        <div class="progress-bar progress-bar-warning" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="60" ng-style="{width: percent + '%'}" aria-valuetext="3%" ng-transclude style="width: 3.33%;">
-                                            <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">2 / 60</span>
-                                        </div>
-                                    </div>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="考勤情况">
-                                <template scope="scope">
-                                    <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.teach_times" type="success">
-                                        <div class="progress-bar progress-bar-success" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="60" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude style="width: 0%;">
-                                            <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 60</span>
-                                        </div>
-                                    </div>
-                                </template>
-                            </el-table-column>
+                          
+                          
                             <el-table-column prop="data" label="缴费情况">
                                 <template scope="scope">
                                     <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">

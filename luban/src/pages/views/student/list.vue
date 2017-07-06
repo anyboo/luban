@@ -98,11 +98,7 @@
                                     <span class="ng-binding ng-scope">{{ fromNow(scope.row.birth) }}</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="微信绑定">
-                                <template scope="scope">
-                                    <span ng-if="item.wb_id == 0" class="ng-scope">未绑定</span>
-                                </template>
-                            </el-table-column>
+                          
                             <!--<el-table-column prop="data" label="考勤卡号">
                                 <template scope="scope"></template>
                             </el-table-column>

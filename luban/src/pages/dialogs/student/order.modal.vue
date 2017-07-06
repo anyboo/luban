@@ -18,6 +18,108 @@
         </div>
     </div>
 </template>
+<style >
+
+.modal-body {
+    max-height: 700px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal-body {
+    position: relative;
+    padding: 5px;
+}
+.padder-v {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.block {
+    display: block;
+}
+
+.bg-warning {
+    color: #fffffe;
+    background-color: #faa937;
+}
+
+.item {
+    position: relative;
+}
+
+.panel {
+    border-radius: 1px;
+}
+
+
+.font-thin {
+    font-weight: 300;
+}
+
+.block {
+    display: block;
+}
+
+.text-white {
+    color: #fff;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bg-warning .text-muted {
+    color: #fbe9cf!important;
+}
+.no-gutter [class*="col"] {
+    padding: 0;
+}
+
+.col-xs-4 {
+    width: 33.33333333%;
+}
+.padder-v {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.block {
+    display: block;
+}
+
+.bg-olive {
+    background-color: #3d9970!important;
+}
+.padder-v {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.block {
+    display: block;
+}
+
+.bg-orange {
+    background-color: #ff851b!important;
+}
+.padder-v {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.block {
+    display: block;
+}
+
+.bg-warning {
+    color: #fffffe;
+    background-color: #faa937;
+}
+</style>
 <script>
 import cc from './classclass.vue'
 import storedValue from './storedvalue.vue'
