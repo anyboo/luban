@@ -13,9 +13,6 @@
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
-                            <button class="btn btn-default ng-isolate-scope" export="expenses" export-params="params">
-                                <i class="glyphicon glyphicon-export"></i>导出
-                            </button>
                             <div id="fct-expenses" style="display:none;">
                                 <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
@@ -69,7 +66,7 @@ export default {
                 'daterange': '',
                 'date_end': '',
                 'duration': '',
-                'type':''
+                'type': ''
             },
             'duration': [{
                 'value': 'today',

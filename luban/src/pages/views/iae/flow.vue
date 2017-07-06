@@ -11,12 +11,9 @@
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-8 m-t"> 
+                        <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <lb-buttongroup :group-data="localdata.type" v-model="localdata.form.type" @input="handleSearch"></lb-buttongroup>
-                            <button class="btn btn-default ng-isolate-scope" export="flow" export-params="params">
-                                <i class="glyphicon glyphicon-export"></i>导出Excel
-                            </button>
                             <div id="fct-flow" style="display:none;">
                                 <form name="export_form_flow" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
@@ -33,8 +30,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="table-responsive" >
-                        <el-table :data="getTablesData()" stripe >
+                    <div class="table-responsive">
+                        <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
@@ -43,7 +40,7 @@
                                     <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="日期" >
+                            <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
@@ -51,7 +48,7 @@
                                     <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">{{scope.row.amount}}</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="类型" >
+                            <el-table-column prop="data" label="类型">
                                 <template scope="scope">
                                     <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">{{scope.row.type}}</span>
                                 </template>

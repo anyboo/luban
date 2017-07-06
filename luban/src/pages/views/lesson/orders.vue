@@ -34,7 +34,7 @@
                                 <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                 <span class="input-group-btn">
                             <button class="btn btn-default"  @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                <i class="icon-user"></i>
+                                 <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                             </button>
                         </span>
                             </div>
