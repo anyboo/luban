@@ -3,7 +3,7 @@ body {
 }
 
 body {
-    overflow-x:hidden;
+    overflow:hidden;
     margin: 0px;
     scrollbar-base-color: #CCCCCC;
     scrollbar-arrow-color: #000000;
