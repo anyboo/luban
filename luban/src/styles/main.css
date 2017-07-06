@@ -3,7 +3,7 @@ body {
 }
 
 body {
-    overflow: hidden;
+    overflow-x:hidden;
     margin: 0px;
     scrollbar-base-color: #CCCCCC;
     scrollbar-arrow-color: #000000;
@@ -18,7 +18,7 @@ body {
     -khtml-user-select: none;
     user-select: none;
     -webkit-user-select: none;
-    width: 100%;
+    /*width: 100%;*/
     height: 100%;
 }
 

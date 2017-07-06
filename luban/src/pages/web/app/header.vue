@@ -10,7 +10,7 @@
                     </span>
                 </a>
             </div>
-            <div class="topbar-main">
+            <div class="topbar-main" style="position:relative;">
                 <a id="menu-toggle" href="#" class="hidden-xs" @click="variety()">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -20,7 +20,7 @@
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
                     </li>
-                    <li class="dropdown topbar-user open">
+                    <li class="dropdown topbar-user open"style="position:relative;">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">林祖鑫</span>&nbsp;
@@ -46,6 +46,9 @@
         </nav>
     </div>
 </template>
+<style>
+    
+</style>
 <script>
 export default {
     name: 'Topbar',
@@ -54,6 +57,7 @@ export default {
             hide: false,
             updown: false,
             menu: false,
+
         }
     },
     methods: {
