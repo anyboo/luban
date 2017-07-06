@@ -11,7 +11,6 @@ import systememployee from '~/pages/views/system/employee.vue'
 import systemdict from '~/pages/views/system/dict.vue'
 import systemorg from '~/pages/views/system/org.vue'
 
-
 import lessonsclasses from '~/pages/views/lesson/sclasses.vue'
 import lessonmanage from '~/pages/views/lesson/manage.vue'
 import lessonclasses from '~/pages/views/lesson/classes.vue'

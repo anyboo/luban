@@ -23,7 +23,7 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function() {
+    created: function () {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = _
@@ -37,7 +37,7 @@ export default {
         this.pagination.pagesize = 10
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
-    mounted: function() {
+    mounted: function () {
         this.handleGetTable()
     },
     computed: {
@@ -149,10 +149,11 @@ export default {
             return tablaData
         },
         handleShowDialog(url, menuData) {
-            console.log(menuData)
+            console.log(url, menuData)
             this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {
+            console.log(url)
             if (event) event.preventDefault()
             this.$store.commit('pushdialog', { url })
         },

@@ -9,6 +9,8 @@
             </lb-body>
         </div>
         <lb-footer></lb-footer>
+        <lb-modalbackdrop></lb-modalbackdrop>
+        <lb-dialoglist></lb-dialoglist>
     </div>
 </template>
 <style>
@@ -24,12 +26,16 @@ import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
 import body from './body.vue'
 import footer from './footer.vue'
-import pages from '~/stores/page.js'
+import pages from '~/stores/viewpages.js'
+import dialoglist from '../dialog/dialoglist.vue'
+import modalbackdrop from '../dialog/modalbackdrop.vue'
 
 pages['lb-header'] = header
 pages['lb-sidebar'] = sidebar
 pages['lb-body'] = body
 pages['lb-footer'] = footer
+pages['lb-dialoglist'] = dialoglist
+pages['lb-modalbackdrop'] = modalbackdrop
 
 export default {
     name: 'app',
@@ -60,7 +66,7 @@ export default {
             if (to == '/' || to == '/web') {
                 view = 'lb-studentadd'
             } else {
-                view = 'lb-'+to.replace(/\//g,'')
+                view = 'lb-' + to.replace(/\//g, '')
             }
             console.log(view)
             return view
