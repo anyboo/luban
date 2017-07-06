@@ -8,9 +8,9 @@
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
-                    <h3 class="modal-title">
+                    <h3 class="modal-title" style="font-size:16px;position: relative;top: -6px;">
                         <i class="fa fa-shopping-cart"></i>学员
-                        <span class="label bg-info ng-binding">{{localdata.form.student_name }}</span>报名&缴费
+                        <span class="label  ng-binding">{{localdata.form.student_name }}</span>报名&缴费
                     </h3>
                 </div>
                 <component v-bind:is="currentView"></component>
@@ -19,6 +19,19 @@
     </div>
 </template>
 <style >
+.modal-header {
+    cursor: grab;
+    cursor: -webkit-grab;
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    position: relative;
+    background: #1892d1;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 40px;
+    min-height: 42px;
+    height: 0px;
+}
 
 .modal-body {
     max-height: 700px !important;
@@ -31,8 +44,8 @@
     padding: 5px;
 }
 .padder-v {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
 
 .block {
@@ -82,10 +95,7 @@
 .col-xs-4 {
     width: 33.33333333%;
 }
-.padder-v {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
+
 
 .block {
     display: block;
@@ -106,10 +116,7 @@
 .bg-orange {
     background-color: #ff851b!important;
 }
-.padder-v {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
+
 
 .block {
     display: block;
