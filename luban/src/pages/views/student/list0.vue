@@ -46,7 +46,7 @@
                                 </a>
                             </template>
                         </el-table-column>
-                        <el-table-column width="120" prop="data" label="联系电话">
+                        <el-table-column width="150" prop="data" label="联系电话">
                             <template scope="scope">{{ scope.row.first_tel }}</template>
                         </el-table-column>
                         <el-table-column width="120" prop="data" label="学员归属">

@@ -51,7 +51,7 @@
                             <el-table-column prop="data" label="接洽人" width="100">
                                 <template scope="scope">{{scope.row.op_name}}</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="沟通时间" width="110">
+                            <el-table-column prop="data" label="沟通时间" width="130">
                                 <template scope="scope">{{getDateFormat(scope.row.track_time)}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型" width="80">

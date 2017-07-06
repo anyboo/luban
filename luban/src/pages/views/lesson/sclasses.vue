@@ -38,7 +38,7 @@
                 </div>
                 <div class="table-responsive m-t" style="min-height:400px" :class='{result:changeTeacher}'>
                     <el-table :data="getTablesData()" stripe>
-                        <el-table-column width="80" prop="data" label>
+                        <el-table-column width="80" prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu" class="btn btn-info btn-xs">
