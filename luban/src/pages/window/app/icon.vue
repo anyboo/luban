@@ -38,25 +38,33 @@ div.shortcut-icon:hover {
 
 export default {
     name: 'icon',
-    props: ['icondata'],
+    props: ['icondata','index'],
     data() {
         let localdata = {}
         return {
             localdata,
             disx: 0,
-            disy: 0,
+            disy: 0
+        }
+    },
+    watch: {
+        index: function (val) {
+            this.changePos()
         }
     },
     mounted() {
-        let height = this.$parent.$el.clientHeight
-        let index = this.icondata.index
-        let col = Math.floor(height / 80)
-        let iconcol = index % col
-        let iconrow = Math.floor(index / col)
-        this.$el.style.left = Math.max(iconrow * 80, 0) + 'px'
-        this.$el.style.top = Math.max(iconcol * 80, 0) + 'px'
+        this.changePos()
     },
     methods: {
+        changePos() {
+            let height = this.$parent.$el.clientHeight
+            let index = this.index
+            let col = Math.floor(height / 80)
+            let iconcol = index % col
+            let iconrow = Math.floor(index / col)
+            this.$el.style.left = Math.max(iconrow * 80, 0) + 'px'
+            this.$el.style.top = Math.max(iconcol * 80, 0) + 'px'
+        },
         addListener(element, e, fn) {
             element.addEventListener ? element.addEventListener(e, fn, false) : element.attachEvent("on" + e, fn)
         },
@@ -64,7 +72,6 @@ export default {
             element.removeEventListener ? element.removeEventListener(e, fn, false) : element.detachEvent("on" + e, fn)
         },
         handleMousedown: function (ev) {
-            console.log('handleMousedown')
             this.disx = ev.clientX - this.$el.offsetLeft || 0
             this.disy = ev.clientY - this.$el.offsetTop || 0
             this.addListener(window, 'blur', this.handleMouseUp)
@@ -72,17 +79,20 @@ export default {
             this.addListener(document, 'mouseup', this.handleMouseUp)
         },
         handleMouseMove(ev) {
-            console.log('handleMouseMove')
             let i_x = ev.clientX - this.disx
             let i_y = ev.clientY - this.disy
             this.$el.style.left = Math.max(i_x, 0) + 'px'
             this.$el.style.top = Math.max(i_y, 0) + 'px'
         },
         handleMouseUp(ev) {
-            console.log('handleMouseUp')
             this.removeListener(document, 'mousemove', this.handleMouseMove)
             this.removeListener(document, 'mouseup', this.handleMouseUp)
             this.removeListener(window, "blur", this.handleMouseUp)
+            this.$emit('iconmove', {
+                'left': this.$el.style.left,
+                'top': this.$el.style.top,
+                'iconindex': this.index
+            })
         },
     }
 }
