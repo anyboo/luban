@@ -3,7 +3,8 @@
         <div class="ng-scope">
             <div class="row no-gutter ng-scope">
                 <div class="col-xs-4 text-center" @click="switchPage('lb-cc')">
-                    <a class="block panel padder-v bg-warning item">
+                    <a class="block panel padder-v bg-warning item" style="cursor: grab;
+                     cursor: -webkit-grab;">
                         <span class="text-white font-thin h1 block">
                             <i class="fa fa-users"></i>报名
                         </span>
@@ -11,7 +12,8 @@
                     </a>
                 </div>
                 <div class="col-xs-4 text-center" @click="switchPage('lb-storedValue')">
-                    <a class="block panel padder-v bg-olive item">
+                    <a class="block panel padder-v bg-olive item" style="cursor: grab;
+                      cursor: -webkit-grab;">
                         <span class="text-white font-thin h1 block">
                             <i class="fa fa-rmb"></i>预充值
                         </span>
@@ -19,7 +21,8 @@
                     </a>
                 </div>
                 <div class="col-xs-4 text-center" @click="switchPage('lb-miscellaneousFees')">
-                    <a class="block panel padder-v bg-orange item">
+                    <a class="block panel padder-v bg-orange item" style="cursor: grab;
+                       cursor: -webkit-grab;">
                         <span class="text-white font-thin h1 block">
                             <i class="fa fa-money"></i>杂费
                         </span>

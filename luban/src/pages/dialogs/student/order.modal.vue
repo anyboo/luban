@@ -20,8 +20,6 @@
 </template>
 <style >
 .modal-header {
-    cursor: grab;
-    cursor: -webkit-grab;
     border-bottom: 1px solid #eee;
     color: #fff;
     position: relative;
@@ -52,10 +50,7 @@
     display: block;
 }
 
-.bg-warning {
-    color: #fffffe;
-    background-color: #faa937;
-}
+
 
 .item {
     position: relative;
@@ -87,31 +82,23 @@
 }
 .bg-warning .text-muted {
     color: #fbe9cf!important;
+      cursor: grab;
+    cursor: -webkit-grab;
 }
 .no-gutter [class*="col"] {
     padding: 0;
 }
 
-.col-xs-4 {
-    width: 33.33333333%;
-}
 
 
-.block {
-    display: block;
-}
+
+
 
 .bg-olive {
     background-color: #3d9970!important;
 }
-.padder-v {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
 
-.block {
-    display: block;
-}
+
 
 .bg-orange {
     background-color: #ff851b!important;
