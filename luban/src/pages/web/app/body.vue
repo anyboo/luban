@@ -2,11 +2,22 @@
     <div id="page-wrapper" >
         <lb-breadcrumb>
         </lb-breadcrumb>
-        <slot></slot>
+        <div class="fatherContaiter">
+            <div class="bottoms">
+                <slot></slot>
+            </div>
+        </div>
+        
     </div>
 </template>
 <style>
-
+.fatherContaiter{
+    overflow: auto;
+    height: 100%;
+}
+.bottoms{
+    margin-bottom: 100px;
+}
 </style>
 <script>
 import breadcrumb from './breadcrumb.vue'
