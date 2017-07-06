@@ -76,7 +76,6 @@
     </div>
 </template>
 <script>
-import lodash from 'lodash'
 import base64 from '~/api/base64.js'
 export default {
     name: 'trash',
@@ -114,7 +113,7 @@ export default {
     methods: {
         handleCommand(value) {
             this.localdata.search.search_key = value
-            this.localdata.search.search_value = lodash.find(this.localdata.search.fields, {
+            this.localdata.search.search_value = _.find(this.localdata.search.fields, {
                 'name': value
             }).value
         },

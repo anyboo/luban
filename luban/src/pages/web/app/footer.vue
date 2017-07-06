@@ -7,6 +7,7 @@
 #footer {
     position: fixed;
     bottom: 0px;
+    z-index:100;
 }
 </style>
 <script>

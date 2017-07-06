@@ -78,9 +78,6 @@
                             </el-pagination>
                         </div>
                     </div>
-                    <div class="float-btn-box" ng-class="{'float-btn-box-show':have_selected()}">
-                        <button class="btn btn-info btn-rounded ng-binding" ng-disabled="saving" ng-click="bat_check_pay()">确定(0)</button>
-                    </div>
                 </div>
             </div>
         </div>
