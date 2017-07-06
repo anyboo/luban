@@ -40,7 +40,7 @@
                             <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                             <div class="col-md-5 col-xs-12">
                                 <div class="w-sm">
-                                    <lb-date-picker type="date" name="birth_date" v-model="localdata.form.birth"></lb-date-picker>
+                                    <el-date-picker type="date" name="birth_date" v-model="localdata.form.birth"></el-date-picker>
                                 </div>
                             </div>
                         </div>

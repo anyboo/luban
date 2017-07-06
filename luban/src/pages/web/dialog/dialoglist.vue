@@ -27,8 +27,6 @@ export default {
             console.log(this.$store.state.dialogs.dailoglist)
             return this.$store.state.dialogs.dailoglist
         }
-    },
-    watch: {},
-    methods: {}
+    }
 }
 </script>

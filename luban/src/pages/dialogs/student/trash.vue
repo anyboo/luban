@@ -16,17 +16,17 @@
                         <div class="input-group w-full">
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <lb-dropdowns menu-align="start" @command="handleCommand">
+                                    <el-dropdown menu-align="start" @command="handleCommand">
                                         <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
                                             {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
                                             <template v-for="item in localdata.search.fields">
-                                                <lb-dropdown-item :command="item.name">{{item.value}}</lb-dropdown-item>
+                                                <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
                                             </template>
-                                        </lb-dropdown-menu>
-                                    </lb-dropdowns>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
                                 <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">

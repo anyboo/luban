@@ -29,18 +29,18 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.track_way.errorStatus}" v-model.trim.lazy="localdata.form.track_way" @change="validate('track_way')">
                                         <div class="input-group-btn">
-                                            <lb-dropdowns menu-align="start" @command="handleCommand">
+                                            <el-dropdown menu-align="start" @command="handleCommand">
                                                 <lb-dropdown-button button-class="btn btn-default">
                                                     选择
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
-                                                <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                    <lb-dropdown-item command="其他">其他</lb-dropdown-item>
-                                                    <lb-dropdown-item command="面谈">面谈</lb-dropdown-item>
-                                                    <lb-dropdown-item command="网络">网络</lb-dropdown-item>
-                                                    <lb-dropdown-item command="电话">电话</lb-dropdown-item> 
-                                                </lb-dropdown-menu>
-                                            </lb-dropdowns>
+                                                <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                    <el-dropdown-item command="其他">其他</el-dropdown-item>
+                                                    <el-dropdown-item command="面谈">面谈</el-dropdown-item>
+                                                    <el-dropdown-item command="网络">网络</el-dropdown-item>
+                                                    <el-dropdown-item command="电话">电话</el-dropdown-item> 
+                                                </el-dropdown-menu>
+                                            </el-dropdown>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                 </label>
                                 <div class="col-md-10 col-xs-9">
                                     <div class="w-sm">
-                                        <lb-date-picker type="datetime" v-model="localdata.form.track_time"></lb-date-picker>
+                                        <el-date-picker type="datetime" v-model="localdata.form.track_time"></el-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                         <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}"></i>下次回访提醒
                                     </span>
                                     <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
-                                        <lb-date-picker type="datetime" v-model="localdata.form.next_time"></lb-date-picker>
+                                        <el-date-picker type="datetime" v-model="localdata.form.next_time"></el-date-picker>
                                     </div>
                                 </div>
                             </div>
@@ -160,8 +160,6 @@ export default {
             this.$store.state.envs.currStudent = this.$store.state.dialogs.dailogdata
         }
     },
-    computed: {},
-    watch: {},
     methods: {
         handleCommand(value) {
             this.localdata.form.track_way = value

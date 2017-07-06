@@ -17,8 +17,6 @@ export default {
         modalIndex() {
             return this.$store.state.dialogs.modalbackdropzindex
         }
-    },
-    watch: {},
-    methods: {}
+    }
 }
 </script>

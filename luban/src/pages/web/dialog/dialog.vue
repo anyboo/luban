@@ -8,13 +8,8 @@ export default {
     name: 'dialog',
     props: ['zindex'],
     data() {
-        let localdata = {}
         return {
-            localdata,
         }
-    },
-    computed: {},
-    watch: {},
-    methods: {}
+    }
 }
 </script>

@@ -45,18 +45,18 @@
                                     <div class="col-md-9 col-xs-12">
                                         <div class="input-group">
                                             <div class="input-group-btn">
-                                                <lb-dropdowns menu-align="start" @command="handleCommand">
+                                                <el-dropdown menu-align="start" @command="handleCommand">
                                                     <lb-dropdown-button button-class="btn btn-default">
                                                         选择
                                                         <span class="caret"></span>
                                                     </lb-dropdown-button>
-                                                    <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                        <lb-dropdown-item command="30">1个月</lb-dropdown-item>
-                                                        <lb-dropdown-item command="90">1个季度</lb-dropdown-item>
-                                                        <lb-dropdown-item command="180">半年</lb-dropdown-item>
-                                                        <lb-dropdown-item command="365">1年</lb-dropdown-item>
-                                                    </lb-dropdown-menu>
-                                                </lb-dropdowns>
+                                                    <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                        <el-dropdown-item command="30">1个月</el-dropdown-item>
+                                                        <el-dropdown-item command="90">1个季度</el-dropdown-item>
+                                                        <el-dropdown-item command="180">半年</el-dropdown-item>
+                                                        <el-dropdown-item command="365">1年</el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
                                             </div>
                                             <input type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lesson_days">
                                             <span class="input-group-addon">天</span>
@@ -124,18 +124,18 @@
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group m-b">
                                             <div class="input-group-btn">
-                                                <lb-dropdowns menu-align="start" @command="handleTimeCommand">
+                                                <el-dropdown menu-align="start" @command="handleTimeCommand">
                                                     <lb-dropdown-button button-class="btn btn-default">
                                                         选择
                                                         <span class="caret"></span>
                                                     </lb-dropdown-button>
-                                                    <lb-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                        <lb-dropdown-item command="0.75">45分钟</lb-dropdown-item>
-                                                        <lb-dropdown-item command="1.00">1个小时</lb-dropdown-item>
-                                                        <lb-dropdown-item command="1.50">1个半小时</lb-dropdown-item>
-                                                        <lb-dropdown-item command="2.00">2小时</lb-dropdown-item>
-                                                    </lb-dropdown-menu>
-                                                </lb-dropdowns>
+                                                    <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                        <el-dropdown-item command="0.75">45分钟</el-dropdown-item>
+                                                        <el-dropdown-item command="1.00">1个小时</el-dropdown-item>
+                                                        <el-dropdown-item command="1.50">1个半小时</el-dropdown-item>
+                                                        <el-dropdown-item command="2.00">2小时</el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
                                             </div>
                                             <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.unit_hours" @change="changeTimeInc">
                                             <span class="input-group-addon">小时</span>

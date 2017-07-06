@@ -84,7 +84,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <lb-date-picker type="datetime" name="create_time" v-model="localdata.form.create_time"></lb-date-picker>
+                                    <el-date-picker type="datetime" name="create_time" v-model="localdata.form.create_time"></el-date-picker>
                                 </div>
                             </div>
                         </div>

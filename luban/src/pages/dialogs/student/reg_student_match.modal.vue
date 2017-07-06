@@ -26,7 +26,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">参赛日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <lb-date-picker type="date" name="join_date" v-model="localdata.form.join_date"></lb-date-picker>
+                                    <el-date-picker type="date" name="join_date" v-model="localdata.form.join_date"></el-date-picker>
                                 </div>
                             </div>
                         </div>

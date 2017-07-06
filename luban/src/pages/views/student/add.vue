@@ -282,7 +282,7 @@ export default {
             vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
             vm.handleSave().then((response) => {
                 vm.$store.state.envs.currStudent = response
-                vm.handleShowDialog('lb-finishadd')
+                vm.handleShowDialog('lb-finishadd',response)
             }, (e) => {
                 console.log(e)
             })
