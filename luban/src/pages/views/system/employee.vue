@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8">
+                    <div class="col-xs-12 col-md-8" :class="{result:refreshData}">
                         <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                         <button @click="lbShowdialog($event,'lb-employeeaddmodal')" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"></i>添加
@@ -157,8 +157,16 @@ export default {
             tables: ['employee'],
         }
     },
-    computed: {},
-    watch: {},
+    computed: {
+        refreshData() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-employee') {
+                this.handleSearch()
+                result = true
+            }
+            return result
+        },
+    },
     methods: {
         handleCommand(value) {
             this.localdata.search.search_key = value

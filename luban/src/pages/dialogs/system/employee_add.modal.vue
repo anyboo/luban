@@ -26,17 +26,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">角色:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="ui-select-multiple ui-select-bootstrap dropdown form-control ng-valid ng-dirty" ng-class="{open: $select.open}" multiple="multiple" ng-model="employee.or_ids" theme="bootstrap">
-                                    <div>
-                                        <span class="ui-select-match" placeholder="选择角色..."></span>
-                                        <input type="text" class="ui-select-search input-xs ng-pristine ng-untouched ng-valid" placeholder="选择角色..." style="width: 469px;" v-model="localdata.form.roles">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">类型:</label>
                             <div class="col-md-10 col-xs-12">
                                 <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
@@ -103,8 +92,12 @@ export default {
             model: 'employee'
         }
     },
-    computed: {},
-    watch: {},
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
+            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
+        }
+    },
     methods: {
         handleClick() {
             this.handleSave().then(() => {
@@ -113,6 +106,8 @@ export default {
                     type: 'success'
                 })
                 this.lbClosedialog()
+                this.$store.state.envs.currDialogResult = this.currentRow
+                this.$store.state.envs.currDialog = 'lb-employee'
             }, (e) => {
                 console.log(e)
             })

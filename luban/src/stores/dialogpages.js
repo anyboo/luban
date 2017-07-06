@@ -24,7 +24,6 @@ import page49 from '~/pages/dialogs/student/endlesson.modal.vue'
 import page51 from '~/pages/dialogs/student/region_set.modal.vue'
 import page50 from '~/pages/dialogs/student/change_branch.modal.vue'
 import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
-import page60 from '~/pages/dialogs/system/employee_edit.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page63 from '~/pages/dialogs/system/change_account.modal.vue'
 import page67 from '~/pages/dialogs/system/add_modal.vue'
@@ -57,7 +56,6 @@ pages['lb-endlessonmodal'] = page49
 pages['lb-regionsetmodal'] = page51
 pages['lb-changebranchmodal'] = page50
 pages['lb-purposesetmodal'] = page52
-pages['lb-employeeeditmodal'] = page60
 pages['lb-resetaccountmodal'] =page62
 pages['lb-changeaccountmodal'] = page63
 pages['lb-addmodal'] = page67
