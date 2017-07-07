@@ -5,10 +5,10 @@
                 <div class="ng-scope">
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
-                            <h4 class="padder heighs">1.创建订单</h4>
+                            <h4 class="padder ">1.创建订单</h4>
                         </div>
                         <div class="col-xs-6 bg-light lter" :class="{'bg-success':order}">
-                            <h4 class="padder heighs">2.缴费</h4>
+                            <h4 class="padder ">2.缴费</h4>
                         </div>
                     </div>
                     <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required" v-if="!order">
@@ -83,7 +83,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.has_discount"><i></i>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid i-switch m-t-xs m-r" v-model="localdata.form.has_discount"><i></i>
                                 </label>
                                 <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
                                     <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
@@ -100,7 +100,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid" v-model="localdata.form.has_present"><i></i></label>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid " v-model="localdata.form.has_present"><i></i></label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present"><span class="input-group-addon"><i class="fa fa-plus"></i></span>
                                     <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">次</span></div>
                             </div>

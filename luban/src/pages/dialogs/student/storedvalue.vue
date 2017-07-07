@@ -5,10 +5,10 @@
                 <div class="ng-scope">
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
-                            <h4 class="padder heighs">1.创建订单</h4>
+                            <h4 class="padder ">1.创建订单</h4>
                         </div>
                         <div class="col-xs-6 bg-light lter" :class="{'bg-success':order}">
-                            <h4 class="padder heighs">2.缴费</h4>
+                            <h4 class="padder">2.缴费</h4>
                         </div>
                     </div>
                     <form name="form1" class="form-horizontal ng-pristine ng-valid" v-if="!order">
