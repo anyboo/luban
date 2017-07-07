@@ -93,14 +93,14 @@
                             <div class="form-group">
                                 <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                                 <div class="col-xs-12 col-md-10">
-                                    <div class="inline w-sm">
+                                    <div class="inline w-sm" >
                                         <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="localdata.form.nickname">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">出生日期:</label>
-                                <div class="col-md-10 col-xs-12">
+                                <div class="col-md-10 col-xs-12" style="margin-left:-12px !important;">
                                     <div class="inline w-sm">
                                         <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
                                     </div>
