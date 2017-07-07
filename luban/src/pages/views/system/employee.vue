@@ -42,14 +42,17 @@
                                 <div class="bg-white wrapper b-a m-t box-shadow">
                                     <div class="meida">
                                         <div class="media-left">
-                                            <a @click="lbShowdialog($event,'lb-photomodal')">
-                                                <div class="w-xs ng-scope" ng-if="!item.avatar">
-                                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
-                                                        <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
-                                                    </div>
+                                            <div class="w-xs ng-scope" ng-if="!item.avatar">
+                                                <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
+                                                    <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
                                                 </div>
-                                            </a>
-                                            <h4 class="text-center ng-binding">{{item.name}}</h4>
+                                            </div>
+                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" @command="handleMenuCommand" class="text-center ">
+                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="item.name">
+                                                    <i class="fa fa-cog"></i>{{item.name}}
+                                                    <span class="caret"></span>
+                                                </lb-dropdown-button>
+                                            </lb-dropdown>
                                         </div>
                                         <div class="media-body">
                                             <p>
@@ -63,17 +66,13 @@
                                                 <span class="label bg-info ng-scope">{{ item.is_part_time == '0' ? '全职':'兼职' }}</span>
                                             </p>
                                             <p>
+                                                <label>生日:</label>
+                                                <span class="ng-binding">{{ getDateFormat(item.birth)}}</span>
+                                            </p>
+                                            <p>
                                                 <label>邮箱:</label>
                                                 <span class="ng-binding">{{item.email.length>0?item.tel:'未填写'}}</span>
                                             </p>
-                                            <p></p>
-                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" @command="handleMenuCommand">
-                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="操作">
-                                                    <i class="fa fa-cog"></i>操作
-                                                    <span class="caret"></span>
-                                                </lb-dropdown-button>
-                                            </lb-dropdown>
-                                            <p></p>
                                         </div>
                                     </div>
                                 </div>

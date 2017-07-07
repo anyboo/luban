@@ -19,6 +19,20 @@
                                 <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" required v-model="localdata.form.name">
                             </div>
                         </div>
+                        <div class="error ng-hide" v-if="localdata.validator.fields.name.errorStatus">
+                            <span class="text-warning">姓名必须填写</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-xs-12">
+                                账号(手机):
+                            </label>
+                            <div class="col-md-10 col-xs-12">
+                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.tel">
+                            </div>
+                        </div>
+                        <div class="error ng-hide" v-if="localdata.validator.fields.tel.errorStatus">
+                            <span class="text-warning">手机号必须填写且为11位</span>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">性别:</label>
                             <div class="col-md-10 col-xs-12">
@@ -31,12 +45,13 @@
                                 <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
                             </div>
                         </div>
+    
                         <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">
-                                <i class="fa fa-phone"></i>电话:
-                            </label>
+                            <label class="control-label col-md-2 col-xs-12">出生日期:</label>
                             <div class="col-md-10 col-xs-12">
-                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.tel">
+                                <div class="inline w-sm">
+                                    <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,7 +84,31 @@ export default {
                 'is_part_time': '0',
                 'tel': '',
                 'email': '',
-                'lock':false
+                'lock': false,
+                'birth': ''
+            },
+            'validator': {
+                'type': 'object',
+                'errorStatus': false,
+                'additional': true,
+                'fields': {
+                    'name': {
+                        'type': 'string',
+                        'required': true,
+                        'min': 1,
+                        'max': 256,
+                        'errorStatus': false
+                    },
+                    'tel': {
+                        'type': 'string',
+                        'len': 11,
+                        'required': true,
+                        'errorStatus': false
+                    },
+                    'birth': {
+                        'type': 'date',
+                    }
+                }
             },
             'sex': [{
                 'value': '1',
@@ -91,7 +130,7 @@ export default {
         return {
             localdata,
             model: 'employee',
-            title:'添加'
+            title: '添加'
         }
     },
     mounted() {
@@ -105,7 +144,7 @@ export default {
         handleClick() {
             this.handleSave().then(() => {
                 this.$message({
-                    message: this.title+'成功',
+                    message: this.title + '成功',
                     type: 'success'
                 })
                 this.lbClosedialog()
