@@ -27,6 +27,7 @@ import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page67 from '~/pages/dialogs/system/add_modal.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
+import page69 from '~/pages/dialogs/system/dict_items.vue'
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -59,5 +60,6 @@ pages['lb-purposesetmodal'] = page52
 pages['lb-resetaccountmodal'] =page62
 pages['lb-addmodal'] = page67
 pages['lb-details'] = page68
+pages['lb-dictitems'] = page69
 
 export default pages
