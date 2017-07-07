@@ -1979,7 +1979,7 @@ ol.list-indicators li.active {
 /* begin Carousel */
 
 .row-icons {
-    padding: 15px 0;
+    padding: row 0;
     margin: 0;
 }
 
@@ -2034,7 +2034,7 @@ ol.list-indicators li.active {
 }
 
 .closeTab {
-    font-size: 15px;
+    font-size: row;
 }
 
 #error-page {
@@ -2128,7 +2128,7 @@ ol.list-indicators li.active {
 }
 
 .page-form .header-content {
-    padding: 15px 20px;
+    padding: row 20px;
     background: #e9e9e9;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -11314,4 +11314,15 @@ ul.chats li.out .message {
 .bg-white {
     color: #58666e;
     background-color: #fff;
+}
+.el-table--fit {
+    border-right: 0;
+    margin-top: 12px;
+}
+.m-t-t{
+    margin-top: 0px !important;
+
+}
+.employee-t-t{
+    margin-top: 12px !important;
 }

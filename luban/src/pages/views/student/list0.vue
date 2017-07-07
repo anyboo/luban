@@ -23,7 +23,7 @@
                         <lb-buttongroup :group-data="localdata.region_oe_id" v-model="localdata.form.region_oe_id" @input="handleRegion"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="row m-t"> 
+                <div class="row m-t m-t-t"> 
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column width="90" prop="data" label="操作">
                             <template scope="scope">

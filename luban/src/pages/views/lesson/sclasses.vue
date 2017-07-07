@@ -36,7 +36,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="table-responsive m-t" style="min-height:400px" :class='{result:changeTeacher}'>
+                <div class="table-responsive m-t m-t-t" style="min-height:400px" :class='{result:changeTeacher}'>
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column width="80" prop="data" label="操作">
                             <template scope="scope">

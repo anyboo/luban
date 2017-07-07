@@ -38,7 +38,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="table-responsive m-t">
+                <div class="table-responsive m-t m-t-t">
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column prop="data" label="操作">
                             <template scope="scope">
