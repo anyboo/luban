@@ -170,7 +170,7 @@ export default {
     },
     computed: {
         getSelectStudentName() {
-            if (this.$store.state.envs.currDialog == 'el-selectstudenttpl') {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
                     this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
@@ -188,7 +188,7 @@ export default {
         handleSelectStudent() {
             //this.$store.state.envs.currDialog = ''
             //this.$store.state.envs.currDialogResult = null
-            this.handleShowDialog('el-selectstudenttpl')
+            this.handleShowDialog('lb-selectstudenttpl')
         },
         getEmployeeName(item) {
             let name = '未设定'

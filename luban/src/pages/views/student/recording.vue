@@ -105,7 +105,7 @@ export default {
     },
     computed: {
         getSelectStudentName() {
-            if (this.$store.state.envs.currDialog == 'el-selectstudenttpl') {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     if (this.selStudentAddInquiry) {
                         this.$store.state.envs.currStudent = this.$store.state.envs.currDialogResult
@@ -150,7 +150,7 @@ export default {
                 this.$store.state.envs.currDialog = ''
                 this.$store.state.envs.currDialogResult = null
             }
-            this.handleShowDialog('el-selectstudenttpl')
+            this.handleShowDialog('lb-selectstudenttpl')
         },
         handleDuration() {
             let duration = this.localdata.form.duration.trim()
