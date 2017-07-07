@@ -27,8 +27,8 @@
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>账号密码</dt>
-                            <dd>********* <a class="link pull-right" @click="status=3">修改密码</a>
-                                <p class="text-muted">修改密码请点击右边"修改密码"链接</p>
+                            <dd>********* <a class="link pull-right" @click="status=3">修改密码 </a>
+                                <p class="text-muted">修改密码请点击右边"修改密码"链接</p> 
                             </dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">

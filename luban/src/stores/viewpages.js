@@ -7,6 +7,7 @@ import studentlost from '~/pages/views/student/lost.vue'
 import studenttracks from '~/pages/views/student/tracks.vue'
 
 import systemsign_in from '~/pages/views/system/sign_in.vue'
+import systempersonal_information from '~/pages/views/system/personal_information.vue'
 import systememployee from '~/pages/views/system/employee.vue'
 import systemdict from '~/pages/views/system/dict.vue'
 import systemorg from '~/pages/views/system/org.vue'
@@ -34,6 +35,7 @@ pages['lb-studentrecording'] = studentrecording
 pages['lb-studentlost'] = studentlost
 pages['lb-studenttracks'] = studenttracks
 
+pages['lb-systempersonal_information'] = systempersonal_information
 pages['lb-systemsign_in'] = systemsign_in
 pages['lb-systememployee'] = systememployee
 pages['lb-systemdict'] = systemdict

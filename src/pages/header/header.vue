@@ -22,7 +22,7 @@
                 <li class="hidden-xs">
                     <a class @click="fullscreen">
                         <i class="fa fa-expand fa-fw text"></i>
-                        <i class="fa fa-compress fa-fw text-active"></i>
+                        <i class="fa fa-compress fa-fw text-active"></i> 
                     </a>
                 </li>
                 <li dropdown ng-if="user.gv.branchs.length > 0" class="dropdown ng-scope">
