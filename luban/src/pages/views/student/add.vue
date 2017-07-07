@@ -62,15 +62,15 @@
                                     </div>
                                     <div class="inline va-m m-l-xs ng-hide">
                                         <a @click="localdata.form.relations.splice(index, 1)">
-                                            <i class="icon-close"></i>
+                                            <i class="fa fa-minus-square-o"></i>
                                         </a>
                                     </div>
                                 </div>
-                                <div>
-                                    <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
-                                        <i class="icon-plus"></i>增加联系方式
-                                    </a>
-                                </div>
+                                  <div>
+                                        <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
+                                            <i class="fa fa-plus-square-o"></i>增加联系方式
+                                        </a>
+                                    </div>
                             </div>
                         </div>
                         <div class="form-group ng-scope">

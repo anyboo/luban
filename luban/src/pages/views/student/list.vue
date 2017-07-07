@@ -127,6 +127,15 @@
         </div>
     </div>
 </template>
+<style >
+
+.col-md-4 {
+    width: 33.33333333%;
+}
+.col-md-12 {
+    width: 33.33333333%;
+}
+</style>
 <script>
 export default {
     name: 'list',
