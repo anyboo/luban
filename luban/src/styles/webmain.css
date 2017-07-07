@@ -11341,3 +11341,119 @@ ul.chats li.out .message {
 .wrapper {
     padding: 15px;
 }
+a.link {
+    color: #4d90fe;
+}
+a {
+    color: #363f44;
+    text-decoration: none;
+    cursor: pointer;
+}
+ul.list-unstyled li>label {
+    display: inline-block;
+    width: 90px;
+    color: #999;
+    text-align: right;
+}
+label {
+    font-weight: normal;
+}
+.text-2x {
+    font-size: 2em;
+}
+.m-b {
+    margin-bottom: 15px;
+}
+
+.col-md-3 {
+    width: 25%;
+}
+.list-student .list-student-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 2px;
+}
+
+
+.r-2x {
+    border-radius: 2px;
+}
+
+.b-a {
+    border: 1px solid #dee5e7;
+}
+
+.box-shadow {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.bg-white {
+    color: #58666e;
+    background-color: #fff;
+}
+.list-student .list-student-item>.face {
+    position: relative;
+    width: 80px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.list-student .list-student-item>div {
+    text-align: center;
+}
+.list-student .list-student-item>div {
+    text-align: center;
+}
+.list-student .list-student-item>div {
+    text-align: center;
+}
+
+.m-t {
+    margin-top: 15px;
+}
+.panel-default>.panel-heading, .panel-default>.panel-footer {
+    border-color: #edf1f2;
+}
+.panel-body {
+    padding: 15px;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+.progress {
+    background-color: #edf1f2;
+}
+.progress .progress-bar {
+    color: #000;
+    text-align: center;
+}
+.m-l {
+    margin-left: 15px;
+}
+
+.bg-success {
+    color: #c4e7c9;
+    background-color: #35aa47;
+}
+
+.badge, .label {
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 1px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.panel-footer .btn {
+    margin-left: 9% !important;
+    margin-top: 10px;
+}

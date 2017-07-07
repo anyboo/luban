@@ -109,9 +109,7 @@
                                     </ul>
                                 </div>
                                 <div class="panel-footer text-center b-t">
-                                    <a class="btn btn-xs pull-left btn-default" ng-class="{'btn-warning':item.$$selected,'btn-default':!item.$$selected}" ng-click="item.$$selected = !item.$$selected">
-                                        <i class="fa fa-rmb"></i>
-                                    </a>
+                                    
                                     <a class="btn btn-sm btn-default" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13311">班级详情</a>
                                     <div class="pull-right btn-group dropdown  btn-group dropdown " dropdown="" btn-class="btn-info btn-sm" btn-tooltip="操作" item="item">
                                         <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item">
