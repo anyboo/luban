@@ -67,7 +67,7 @@
                                                 <span class="ng-binding">{{item.email.length>0?item.tel:'未填写'}}</span>
                                             </p>
                                             <p></p>
-                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item">
+                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" @command="handleMenuCommand">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="操作">
                                                     <i class="fa fa-cog"></i>操作
                                                     <span class="caret"></span>
@@ -98,7 +98,7 @@ export default {
         let localdata = {
             'form': {
                 'search_value': '',
-                'status': ''
+                'status': '1'
             },
             'status': [{
                 'value': '1',
@@ -110,15 +110,30 @@ export default {
             'dropDownMenu': [{
                 'url': 'lb-employeeaddmodal',
                 'icon': 'fa fa-pencil',
-                'text': '编辑资料'
-            }/*, {
-                'url': 'lb-lockmodal',
+                'text': '编辑资料',
+
+            }, {
+                'action': 'unlock',
+                'icon': 'fa fa-unlock',
+                'text': '账号解封',
+                'menuctrl': 'lock',
+                'menuvalue': true
+            }, {
+                'action': 'lock',
                 'icon': 'fa fa-lock',
-                'text': '离职封存'
-            }*/, {
+                'text': '离职封存',
+                'menuctrl': 'lock',
+                'menuvalue': false
+            }, {
                 'url': 'lb-resetaccountmodal',
                 'icon': 'fa fa-key',
                 'text': '重置密码'
+            }, {
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除',
+                'menuctrl': 'lock',
+                'menuvalue': true
             }],
             'search': {
                 'fields': [{
@@ -167,14 +182,70 @@ export default {
             let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
-                    'key': 'is_part_time',
-                    'value': status,
+                    'key': 'lock',
+                    'value': status == '0',
                     'type': ''
                 })
             }
 
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
+        },
+        handleMenuCommand({
+            action,
+            data
+        }) {
+            if (action == 'delete') {
+                this.$confirm('此操作将永久删除员工, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.handleDelete(data._id).then(() => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.handleGetTable()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
+            if (action == 'lock' || action == 'unlock') {
+                let info = '离职封存适用于员工离职之后，封存之后该账号对应的历史记录保留在系统，但是不能再登陆系统, 是否继续?'
+                let infomessage = '封存成功'
+                let lock = true
+                if (action == 'unlock') {
+                    info = '您确定要解封 ' + data.name + ' 的资料吗?'
+                    infomessage = '解封成功'
+                    lock = false
+                }
+
+                this.$confirm(info, '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.updateTeble('employee', data._id, {
+                        'lock': lock
+                    }).then(() => {
+                        this.$message({
+                            message: infomessage,
+                            type: 'success'
+                        })
+                        this.handleSearch()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
         }
     }
 }

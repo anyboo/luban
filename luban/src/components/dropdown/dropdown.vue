@@ -5,11 +5,13 @@
         </div>
         <el-dropdown-menu slot="dropdown">
             <template v-for="item in dropMenuData">
-                <el-dropdown-item :command="getItemCommand(item)">
-                    <a :id="id">
-                        <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
-                    </a>
-                </el-dropdown-item>
+                <template v-if="getShowStatus(item)">
+                    <el-dropdown-item :command="getItemCommand(item)">
+                        <a :id="id">
+                            <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
+                        </a>
+                    </el-dropdown-item>
+                </template>
             </template>
         </el-dropdown-menu>
     </el-dropdown>
@@ -24,6 +26,13 @@ export default {
         }
     },
     methods: {
+        getShowStatus(item) {
+            let result = true
+            if (item.menuctrl) {
+                result = this.menuData[item.menuctrl] == item.menuvalue
+            }
+            return result
+        },
         handleCommand(common) {
             if (common.indexOf('u:') >= 0) {
                 let url = common.replace('u:', '')

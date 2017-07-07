@@ -68,7 +68,8 @@ export default {
                 'roles': '',
                 'is_part_time': '0',
                 'tel': '',
-                'email': ''
+                'email': '',
+                'lock':false
             },
             'sex': [{
                 'value': '1',
@@ -104,7 +105,7 @@ export default {
         handleClick() {
             this.handleSave().then(() => {
                 this.$message({
-                    message: '添加成功',
+                    message: this.title+'成功',
                     type: 'success'
                 })
                 this.lbClosedialog()
