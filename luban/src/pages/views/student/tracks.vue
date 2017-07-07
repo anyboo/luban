@@ -25,7 +25,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row m-t">
+                    <div class="row m-t m-t-t">
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column width="100" prop="data" label="学员" class="widthes">
                                 <template scope="scope">

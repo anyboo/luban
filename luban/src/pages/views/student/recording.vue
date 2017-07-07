@@ -4,7 +4,7 @@
             <div class="wrapper-xs ng-scope">
                 <div class="panel panel-default">
                     <div class="panel-body ng-scope" ui-view="">
-                        <div class="row no-gutter ">
+                        <div class="row no-gutter " style="margin-top:-14px;">
                             <div class="col-xs-12 col-md-4 m-t">
                                 <el-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                             </div>
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row m-t">
+                        <div class="row m-t m-t-t">
                             <el-table :data="getTablesData()" stripe>
                                 <el-table-column width="100" prop="data" label="学员" class="widthes">
                                     <template scope="scope">

@@ -1,9 +1,9 @@
-<template>
+ <template>
     <div>
         <div class="ng-scope wrapper ">
             <div class="wrapper-xs ng-scope">
                 <div class="wrapper panel panel-default bg-white ng-scope">
-                    <div class="row ng-scope">
+                    <div class="row ng-scope" style="margin-top:14px;">
                         <div class="col-xs-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
