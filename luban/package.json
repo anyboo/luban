@@ -13,6 +13,7 @@
   "dependencies": {
     "async-validate": "^1.0.1",
     "cropperjs": "^1.0.0-rc.2",
+    "js-md5": "^0.4.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "vue": "^2.3.4",

@@ -23,25 +23,25 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录密码</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" ng-minlength="6" required v-model="localdata.form.reset_password">
+                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" minlength="6" required v-model.trim="localdata.form.reset_password">
                             </div>
                             <div class="col-md-5 col-xs-12">
-                                <a href="javascript:;" class="btn btn-default btn-xs m-l" ng-click="reset.password=$util.random(6)">随机</a>
-                                <a href="javascript:;" class="btn btn-default btn-xs m-l" ng-click="reset.password='123456'">123456</a>
-                                <a href="javascript:;" class="btn btn-default btn-xs m-l" ng-click="reset.password='888888'">6个8</a>
+                                <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='123456'">123456</a>
+                                <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='888888'">6个8</a>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="do_reset_account()" disabled="disabled">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
+                    <button class="btn btn-primary" @click="do_reset_account()" :disabled="localdata.form.reset_password<6">确定</button>
+                    <button class="btn btn-warning" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+import md5 from 'js-md5'
 export default {
     name: 'reset_account',
     data() {
@@ -53,14 +53,29 @@ export default {
         return {
             localdata,
             name: '',
-            username: ''
+            username: '',
+            uid: ''
         }
     },
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.name = this.$store.state.dialogs.dailogdata.name
             this.username = this.$store.state.dialogs.dailogdata.tel
+            this.uid = this.$store.state.dialogs.dailogdata._id
         }
     },
+    methods: {
+        do_reset_account() {
+            this.updateTeble('employee', this.uid, {
+                'pwd': md5(this.localdata.form.reset_password)
+            }).then(() => {
+                this.$message({
+                    message: '设置成功！',
+                    type: 'success'
+                })
+                this.lbClosedialog()
+            })
+        }
+    }
 }
 </script>
