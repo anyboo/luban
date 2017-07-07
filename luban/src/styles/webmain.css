@@ -11323,6 +11323,21 @@ ul.chats li.out .message {
     margin-top: 0px !important;
 
 }
-.employee-t-t{
-    margin-top: 12px !important;
+.padder {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.el-input__icon+.el-input__inner {
+    padding-right: 35px;
+    margin-left: 12px;
+}
+.meida{
+    margin-left: 30px;
+
+}
+.b-a {
+    border: 1px solid #dee5e7;
+}
+.wrapper {
+    padding: 15px;
 }

@@ -2,7 +2,7 @@
     <div class="=wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="wrapper panel panel-default bg-white ng-scope">
-                <div class="panel panel-default ng-scope">
+                <div class="panel panel-default ng-scope" style="margin-top:14px;">
                     <div class="panel-heading">字典列表</div>
                     <ul class="list-group">
                         <li class="list-group-item clear ng-scope" v-for="(item, index) in localdata.dict">

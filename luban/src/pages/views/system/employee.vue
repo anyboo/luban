@@ -2,7 +2,7 @@
     <div class="wrapper wrapper ">
         <div class="wrapper panel panel-default bg-white ng-scope">
             <div class="ng-scope">
-                <div class="row wrapper" style="margin-top:30px;">
+                <div class="row wrapper" >
                     <div class="col-xs-12 col-md-4">
                         <div class="padder">
                             <div class="input-group w-full">
@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <div class="row list-employee " style="margin-top:30px;">
+                    <div class="row list-employee " >
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-md-6 ng-scope">
                                 <div class="bg-white wrapper b-a m-t box-shadow">
-                                    <div class="meida">
+                                    <div class="meida" >
                                         <div class="media-left">
                                             <a @click="lbShowdialog($event,'lb-photomodal')">
                                                 <div class="w-xs ng-scope" ng-if="!item.avatar">
