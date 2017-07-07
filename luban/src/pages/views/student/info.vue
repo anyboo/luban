@@ -59,12 +59,6 @@
                                 <div class="panel-body">
                                     <div class="row no-gutter">
                                         <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">校区:</label>
-                                            <span ng-bind-html="student.ob_id|branch_name" class="ng-binding">
-                                                <label class="badge bg-info badge-xm">呵呵</label>
-                                            </span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">住址:</label>
                                             <span class="ng-binding">{{ student.home_address }}</span>
                                         </div>
@@ -211,7 +205,13 @@ export default {
         return {
             localdata,
             student: {},
-            tables: ['student']
+            tables: ['student'],
+            uid: ''
+        }
+    },
+    mounted() {
+        if (this.$store.state.envs.currStudent) {
+            this.uid = this.$store.state.envs.currStudent._id
         }
     },
     computed: {
@@ -254,7 +254,7 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-            let student_id = this.$route.params.id
+            let student_id = this.uid
             if (student_id.length > 0) {
                 filterObj.push({
                     'key': '_id',
@@ -267,7 +267,7 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
-            console.log(this.$route.params.id, filterObj)
+            console.log(this.uid, filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then(() => {
                 console.log(this.$store.state.models.models.student.data)

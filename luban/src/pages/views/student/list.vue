@@ -294,7 +294,8 @@ export default {
             this.handleGetFilterTable(filterTxt)
         },
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + item._id)
+            this.$store.state.envs.currStudent = item
+            this.$router.push('/student/info/')
             event.stopPropagation()
         }
     }

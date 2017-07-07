@@ -14,10 +14,10 @@
                                 <div class="input-group">
                                     <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="icon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="icon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
@@ -49,8 +49,8 @@
                                 <template scope="scope">
                                     <a class="link ng-binding" @click="handleRouter($event,scope.row)">
                                         <span class="ng-binding">
-                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
-                                </span>{{ scope.row.student_name }}
+                                            <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                        </span>{{ scope.row.student_name }}
                                         <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                                     </a>
                                 </template>
@@ -96,7 +96,9 @@
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员归属">
-                                <template scope="scope"> <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span></template>
+                                <template scope="scope">
+                                    <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
+                                </template>
                             </el-table-column>
                             <el-table-column prop="data" label="建档日期">
                                 <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
@@ -173,7 +175,8 @@ export default {
     watch: {},
     methods: {
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + item._id)
+            this.$store.state.envs.currStudent = item
+            this.$router.push('/student/info/')
             event.stopPropagation()
         },
         getEmployeeName(item) {

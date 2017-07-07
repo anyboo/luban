@@ -5,6 +5,7 @@ import studentbirthdays from '~/pages/views/student/birthdays.vue'
 import studentrecording from '~/pages/views/student/recording.vue'
 import studentlost from '~/pages/views/student/lost.vue'
 import studenttracks from '~/pages/views/student/tracks.vue'
+import studentinfo from '~/pages/views/student/info.vue'
 
 import systemsign_in from '~/pages/views/system/sign_in.vue'
 import systempersonal_information from '~/pages/views/system/personal_information.vue'
@@ -34,6 +35,7 @@ pages['lb-studentbirthdays'] = studentbirthdays
 pages['lb-studentrecording'] = studentrecording
 pages['lb-studentlost'] = studentlost
 pages['lb-studenttracks'] = studenttracks
+pages['lb-studentinfo'] = studentinfo
 
 pages['lb-systempersonal_information'] = systempersonal_information
 pages['lb-systemsign_in'] = systemsign_in

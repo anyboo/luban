@@ -141,7 +141,8 @@ export default {
             })
         },
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + this.getLookUp(item, '_id'))
+            this.$store.state.envs.currStudent = item
+            this.$router.push('/student/info/')
             event.stopPropagation()
         },
         handSelectStudent(add) {

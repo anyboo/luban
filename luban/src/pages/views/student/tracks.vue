@@ -13,10 +13,10 @@
                                 <div class="input-group">
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" @click="handSelectStudent(false)">
-                                  <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" @click="handSelectStudent(false)">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
@@ -29,7 +29,9 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column width="100" prop="data" label="学员" class="widthes">
                                 <template scope="scope">
-                                    <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录"><i class="fa fa-plus"></i></a>
+                                    <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
                                     <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
@@ -165,7 +167,8 @@ export default {
     watch: {},
     methods: {
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + this.getLookUp(item, '_id'))
+            this.$store.state.envs.currStudent = item
+            this.$router.push('/student/info/')
             event.stopPropagation()
         },
         handSelectStudent(add) {

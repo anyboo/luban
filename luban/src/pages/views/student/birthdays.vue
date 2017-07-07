@@ -18,8 +18,8 @@
                             <template scope="scope">
                                 <a class="link ng-binding" @click="handleRouter($event,scope.row)">
                                     <span class="ng-binding">
-                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
-                                </span>{{ scope.row.student_name }}
+                                        <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                    </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
@@ -84,7 +84,8 @@ export default {
     watch: {},
     methods: {
         handleRouter(event, item) {
-            this.$router.push('/student/info/' + item._id)
+            this.$store.state.envs.currStudent = item
+            this.$router.push('/student/info/')
             event.stopPropagation()
         },
         handleDuration() {
