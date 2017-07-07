@@ -159,11 +159,7 @@
     </div>
 </template>
 <style>
-.heighs {
-    height: 39px;
-    font-size: 18px;
-    line-height: 39px;
-}
+
 </style>
 <script>
 import orderandpay from './orderandpay2.vue'

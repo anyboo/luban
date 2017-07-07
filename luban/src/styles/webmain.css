@@ -11115,8 +11115,6 @@ ul.chats li.out .message {
     font-size: 14px !important;
 }
 
-
-
 .modal-header>h3 {
     font-size: 16px;
     position: relative;
@@ -11145,21 +11143,27 @@ ul.chats li.out .message {
 .block {
     display: block;
 }
+
 .item {
     position: relative;
 }
+
 .panel {
     border-radius: 1px;
 }
+
 .font-thin {
     font-weight: 300;
 }
+
 .block {
     display: block;
 }
+
 .text-white {
     color: #fff;
 }
+
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -11168,25 +11172,32 @@ ul.chats li.out .message {
     text-rendering: auto;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .bg-warning .text-muted {
     color: #fbe9cf!important;
 }
+
 .no-gutter [class*="col"] {
     padding: 0;
 }
+
 .bg-olive {
     background-color: #3d9970!important;
 }
+
 .bg-orange {
     background-color: #ff851b!important;
 }
+
 .block {
     display: block;
 }
+
 .bg-warning {
     color: #fffffe;
     background-color: #faa937;
 }
+
 .modal-header {
     border-bottom: 1px solid #eee;
     color: #fff;
@@ -11198,8 +11209,8 @@ ul.chats li.out .message {
     min-height: 42px;
     height: 0px;
     border-radius: 6px 6px 0 0;
-
 }
+
 .modal-content {
     position: relative;
     background-color: #fff;
@@ -11211,8 +11222,81 @@ ul.chats li.out .message {
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5) !important;
     background-clip: padding-box;
 }
+
 .modal .modal-dialog .modal-content {
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 6px !important;
+}
+
+.row.no-gutter {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.bg-success.lter,
+.bg-success .lter {
+    background-color: #51c162;
+}
+
+.bg-light.lter,
+.bg-light .lter {
+    background-color: #f6f8f8;
+}
+
+.no-gutter [class*="col"] {
+    padding: 0;
+}
+
+.bg-success {
+    color: #c4e7c9;
+    background-color: #35aa47;
+}
+
+.bg-light {
+    color: #58666e;
+    background-color: #edf1f2;
+}
+
+.col-xs-6 {
+    width: 50%;
+}
+
+.padder {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.step1 .bg-success:after {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    z-index: 2;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: solid 20px rgba(0, 0, 0, 0);
+    border-bottom: solid 20px rgba(0, 0, 0, 0);
+    border-left: solid 10px #51c162;
+    content: ' ';
+}
+
+.bg-light {
+    color: #58666e;
+    background-color: #edf1f2;
+}
+
+.col-xs-6 {
+    width: 50%;
+}
+
+.bg-success.lter,
+.bg-success .lter {
+    background-color: #51c162;
+}
+.alert {
+     padding: 0px !important; 
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
