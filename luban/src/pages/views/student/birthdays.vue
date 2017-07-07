@@ -10,9 +10,6 @@
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
                         <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
-                        <button class="btn btn-default ng-isolate-scope" export="birthday_students" export-params="params">
-                            <i class="glyphicon glyphicon-export"></i>导出
-                        </button>
                     </div>
                 </div>
                 <div class="table-responsive">
