@@ -11452,8 +11452,16 @@ label {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
+    position: relative;
+    top: -2px;
 }
 .panel-footer .btn {
     margin-left: 9% !important;
     margin-top: 10px;
+}
+.panel > .panel-heading {
+    padding: 7px 15px;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-color: #e5e5e5 !important;
 }
