@@ -181,11 +181,11 @@ export default {
                 'url': 'lb-refundmodal',
                 'icon': 'fa fa-money',
                 'text': '缴费'
-            }, {
+            }/*, {
                 'url': 'lb-changeclassmodal',
                 'icon': 'fa fa-exchange',
                 'text': '转班'
-            }, {
+            }*/, {
                 'url': 'lb-addtrackmodal',
                 'icon': 'fa fa-phone-square',
                 'text': '跟踪回访'
@@ -201,11 +201,11 @@ export default {
                 'url': 'lb-endlessonmodal',
                 'icon': 'fa fa-stop',
                 'text': '结课'
-            }, {
+            },/* {
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
-            }],
+            }*/],
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',

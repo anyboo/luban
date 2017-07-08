@@ -151,30 +151,23 @@ export default {
                 'url': 'lb-editinfomodal',
                 'icon': 'fa fa-pencil',
                 'text': '修改资料'
-            }, {
+            }/*, {
                 'url': 'lb-editphotomodal',
                 'icon': 'fa fa-image',
                 'text': '更换头像'
-            }, {
+            }*/, {
                 'url': 'lb-ordermodal',
                 'icon': 'fa fa-shopping-cart',
                 'text': '报名'
             }, {
-                'url': 'lb-ordersmodal',
+                'url': 'lb-refundmodal',
                 'icon': 'fa fa-money',
                 'text': '缴费'
-            }, {
-                'url': 'lb-regstudentattendancesmodal',
-                'icon': 'fa fa-calendar-o',
-                'text': '登记考勤'
-            }, {
+            }/*, {
                 'url': 'lb-changeclassmodal',
-                'icon': 'fa fa-exchange'
-            }, {
-                'url': 'lb-wechatmodal',
-                'icon': 'fa fa-weixin',
-                'text': '微信对话'
-            }, {
+                'icon': 'fa fa-exchange',
+                'text': '转班'
+            }*/, {
                 'url': 'lb-addtrackmodal',
                 'icon': 'fa fa-phone-square',
                 'text': '跟踪回访'
@@ -190,11 +183,11 @@ export default {
                 'url': 'lb-endlessonmodal',
                 'icon': 'fa fa-stop',
                 'text': '结课'
-            }, {
+            }/* {
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
-            }],
+            }*/],
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',

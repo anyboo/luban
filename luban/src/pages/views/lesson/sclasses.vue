@@ -85,8 +85,8 @@ export default {
             },
             'dropDownMenu': [{
                 'url': 'lb-newsclassmodal',
-                'icon': 'fa icon-note',
-                'text': '编辑教室'
+               'icon': 'fa fa-pencil',
+                'text': '编辑'
             }, {
                 'action': 'delete',
                 'icon': 'fa fa-times',

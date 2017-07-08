@@ -119,8 +119,6 @@ export default {
             lodash: _,
             overflowy: 'hidden',
             clientHeight: '500px',
-
-
         }
     },
     mounted() {

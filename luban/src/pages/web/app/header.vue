@@ -23,7 +23,7 @@
                     <li class="dropdown topbar-user open">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
-                            <span class="hidden-xs">林祖鑫</span>&nbsp;
+                            <span class="hidden-xs">{{$store.state.system.name}}</span>&nbsp;
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user pull-right" v-if="hide" style="top:49px;">
@@ -36,7 +36,7 @@
                                     <i class="fa fa-lock" style="top:1px;"></i>锁屏</a>
                             </li>
                             <li @mouseout="menu=false" @mouseover="menu=true">
-                                <a @click="changeView('/system/sign_in')">
+                                <a @click="accountexit()">
                                     <i class="fa fa-key" style="top:1px;"></i>退出</a>
                             </li>
                         </ul>
@@ -57,7 +57,7 @@ export default {
         }
     },
     methods: {
-        sidebarCollapsed: function() {
+        sidebarCollapsed: function () {
             this.$emit('sidebarCollapsed')
         },
         cut() {
@@ -65,6 +65,10 @@ export default {
         },
         variety() {
             this.$emit('variety')
+        },
+        accountexit() {
+            this.$store.commit('user', { name: '', tel: '', _id: '' })
+            this.changeView('/system/sign_in')
         },
         fullscreen() {
             if (this.full) {

@@ -6,10 +6,10 @@
                 <div class="w-sm">
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">
-                            <lb-select v-model="localdata.form.region_oe_id" placeholder="请选择">
-                                <lb-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
-                                </lb-option>
-                            </lb-select>
+                            <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
+                                <el-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
+                                </el-option>
+                            </el-select> 
                         </div>
                     </div>
                 </div>

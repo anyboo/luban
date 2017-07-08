@@ -1,194 +1,167 @@
 <template>
     <div class="wrapper ng-scope">
-        <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default">
-                <div class="row wrapper no-gutter">
-                    <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
-                        <div class="padder">
-                            <div class="input-group w-full">
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <el-dropdown menu-align="start" @command="handleMenuCommand">
-                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                {{localdata.search.search_value}}
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                <template v-for="item in localdata.search.fields">
-                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
-                                                </template>
-                                            </el-dropdown-menu>
-                                        </el-dropdown>
-                                    </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                                    </span>
+        <div class="panel panel-default">
+            <div class="row wrapper no-gutter">
+                <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
+                    <div class="padder">
+                        <div class="input-group w-full">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <el-dropdown menu-align="start" @command="handleMenuCommand">
+                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                            {{localdata.search.search_value}}
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <template v-for="item in localdata.search.fields">
+                                                <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
+                                            </template>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8 m-t">
-                        <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
-                        <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
-                        <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
-                            <i class="fa fa-plus "></i>开班
-                        </a>
-                    </div>
                 </div>
-                <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
-                    <template v-for="item in getTablesData()">
-                        <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="ng-binding">{{item.class_name}}
-                                        <small class="label bg-success m-l ng-scope" v-if="getOpen(item,'open')">已开课</small>
-                                        <small class="label bg-red m-l ng-scope" v-if="getOpen(item,'')">未开课</small>
-                                        <small class="label bg-blue m-l ng-scope" v-if="getOpen(item,'close')">已结课</small>
+                <div class="col-xs-12 col-md-8 m-t">
+                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
+                    <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
+                    <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
+                        <i class="fa fa-plus "></i>开班
+                    </a>
+                </div>
+            </div>
+            <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
+                <template v-for="item in getTablesData()">
+                    <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="ng-binding">{{item.class_name}}
+                                    <small class="label bg-success m-l ng-scope" v-if="getOpen(item,'open')">已开课</small>
+                                    <small class="label bg-red m-l ng-scope" v-if="getOpen(item,'')">未开课</small>
+                                    <small class="label bg-blue m-l ng-scope" v-if="getOpen(item,'close')">已结课</small>
     
-                                    </h4>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <label class="inline w-xs text-right">老师:</label>
-                                            <span class="ng-binding">{{getLookUp(item.employee, 'name')}}</span>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">课程名称:</label>
-                                            <span class="ng-binding">{{getLookUp(item.course, 'lesson_name')}}</span>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">开课日期:</label>
-                                            <span class="ng-binding">{{getDateFormat(item.open_time)}}</span>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">招生情况:</label>
-                                            <div class="inline w va-m">
-                                                <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
-                                                    <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 6</span>
-                                                    </div>
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <label class="inline w-xs text-right">老师:</label>
+                                        <span class="ng-binding">{{getLookUp(item.employee, 'name')}}</span>
+                                    </li>
+                                    <li class="m-t-xs">
+                                        <label class="inline w-xs text-right">课程名称:</label>
+                                        <span class="ng-binding">{{getLookUp(item.course, 'lesson_name')}}</span>
+                                    </li>
+                                    <li class="m-t-xs">
+                                        <label class="inline w-xs text-right">开课日期:</label>
+                                        <span class="ng-binding">{{getDateFormat(item.open_time)}}</span>
+                                    </li>
+                                    <li class="m-t-xs">
+                                        <label class="inline w-xs text-right">招生情况:</label>
+                                        <div class="inline w va-m">
+                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
+                                                <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
+                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 6</span>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">排课情况:</label>
-                                            <div class="inline w va-m">
-                                                <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.is_arrange" type="warning">
-                                                    <div class="progress-bar progress-bar-warning" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 5</span>
-                                                    </div>
+                                        </div>
+                                    </li>
+                                    <li class="m-t-xs">
+                                        <label class="inline w-xs text-right">缴费情况:</label>
+                                        <div class="inline w va-m">
+                                            <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
+                                                <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
+                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
                                                 </div>
                                             </div>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">考勤情况:</label>
-                                            <div class="inline w va-m">
-                                                <div class="progress ng-isolate-scope" style="margin:0" max="item.total_times" value="item.teach_times" type="success">
-                                                    <div class="progress-bar progress-bar-success" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 5</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">缴费情况:</label>
-                                            <div class="inline w va-m">
-                                                <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
-                                                    <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
-                                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="m-t-xs">
-                                            <label class="inline w-xs text-right">所在校区:</label>
-                                            <span class="label bg-info ng-binding">呵呵</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="panel-footer text-center b-t">
-                                    
-                                    <a class="btn btn-sm btn-default" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13311">班级详情</a>
-                                    <div class="pull-right btn-group dropdown  btn-group dropdown " dropdown="" btn-class="btn-info btn-sm" btn-tooltip="操作" item="item">
-                                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item">
-                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                                <i class="fa fa-cog ng-scope"></i>
-                                                <span class="ng-scope">操作</span>
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                        </lb-dropdown>
-                                    </div>
-                                </div>
+                                        </div>
+                                    </li>
+                                    <li class="m-t-xs">
+                                        <label class="inline w-xs text-right">操作:</label>
+                                        <span class="label bg-info ng-binding">
+                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" @command="handleCommand">
+                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                                    <i class="fa fa-cog ng-scope"></i>
+                                                    <span class="ng-scope">操作</span>
+                                                    <span class="caret"></span>
+                                                </lb-dropdown-button>
+                                            </lb-dropdown>
+                                        </span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </template>
-                </div>
-                <!-- hhhhh -->
-                <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
-                    <el-table :data="getTablesData()" stripe>
-                        <el-table-column prop="data" label="操作">
-                            <template scope="scope">
-                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                </lb-dropdown>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="班级名">
-                            <template scope="scope">
-                                <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">{{scope.row.class_name}}</a>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="老师">
-                            <template scope="scope">
-                                <span class="ng-binding">{{getLookUp(scope.row.employee, 'name')}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="课程名">
-                            <template scope="scope">{{getLookUp(scope.row.course, 'lesson_name')}}</template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="开课日期">
-                            <template scope="scope">
-                                <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="状态">
-                            <template scope="scope">
-                                <small class="label bg-success m-l ng-scope" v-if="getOpen(scope.row,'open')">已开课</small>
-                                <small class="label bg-red m-l ng-scope" v-if="getOpen(scope.row,'')">未开课</small>
-                                <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="招生情况">
-                            <template scope="scope">
-                                <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
-                                    <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
-                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">3 / 6</span>
-                                    </div>
-                                </div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="缴费情况">
-                            <template scope="scope">
-                                <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
-                                    <div class="progress-bar progress-bar-danger" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude>
-                                        <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
-                                    </div>
-                                </div>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-                <div class="panel-footer ">
-                    <div class="row ">
-                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </el-pagination>
                     </div>
+                </template>
+            </div>
+            <!-- hhhhh -->
+            <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
+                <el-table :data="getTablesData()" stripe>
+                    <el-table-column prop="data" label="操作">
+                        <template scope="scope">
+                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog ng-scope"></i>
+                                    <span class="ng-scope">操作</span>
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="班级名">
+                        <template scope="scope">
+                            <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">{{scope.row.class_name}}</a>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="老师">
+                        <template scope="scope">
+                            <span class="ng-binding">{{getLookUp(scope.row.employee, 'name')}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="课程名">
+                        <template scope="scope">{{getLookUp(scope.row.course, 'lesson_name')}}</template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="开课日期">
+                        <template scope="scope">
+                            <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="状态">
+                        <template scope="scope">
+                            <small class="label bg-success m-l ng-scope" v-if="getOpen(scope.row,'open')">已开课</small>
+                            <small class="label bg-red m-l ng-scope" v-if="getOpen(scope.row,'')">未开课</small>
+                            <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="招生情况">
+                        <template scope="scope">
+                            <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
+                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">3 / 6</span>
+                                </div>
+                            </div>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="data" label="缴费情况">
+                        <template scope="scope">
+                            <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
+                                <div class="progress-bar progress-bar-danger" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude>
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
+                                </div>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div class="panel-footer ">
+                <div class="row ">
+                    <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                    </el-pagination>
                 </div>
             </div>
         </div>
@@ -226,12 +199,12 @@ export default {
             }],
             'dropDownMenu': [{
                 'url': 'lb-openclassmodal',
-                'icon': 'icon-note',
-                'text': '编辑班级'
+                'icon': 'fa fa-pencil',
+                'text': '编辑'
             }, {
-                'url': 'lb-inputstudentmodal',
-                'icon': 'fa fa-users',
-                'text': '批量报名'
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除'
             }],
             'search': {
                 'fields': [{
@@ -337,6 +310,31 @@ export default {
             console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
+        },
+        handleCommand({
+            action,
+            data
+        }) {
+            if (action == 'delete') {
+                this.$confirm('此操作将永久删除该班级, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.handleDelete(data._id).then(() => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.handleGetTable()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
         }
     },
 }

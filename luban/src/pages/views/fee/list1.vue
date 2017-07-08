@@ -53,11 +53,6 @@
                             </span>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="校区">
-                                <template scope="scope">
-                                    <label class="badge bg-info badge-xm">福州布尔培训</label>
-                                </template>
-                            </el-table-column>
                             <el-table-column prop="data" label="备注">
                                 <template scope="scope">{{scope.row.order_remark}}</template>
                             </el-table-column>

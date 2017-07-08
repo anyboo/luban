@@ -51,13 +51,19 @@ export default {
     watch: {
         '$route.path': {
             handler(val) {
-                console.log('web', val)
+
             }
+        }
+    },
+    beforeCreate() {
+        let system = JSON.parse(window.localStorage.getItem('system'))
+        if (system) {
+            this.$store.commit('system', system)
         }
     },
     computed: {
         getCurrentView() {
-            if (!this.$store.state.models.login) {
+            if (this.$store.state.system.name.length == 0) {
                 this.$router.push('/system/sign_in')
             }
 

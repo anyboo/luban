@@ -6,10 +6,10 @@
                 <div class="w-sm">
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">
-                            <lb-select v-model="localdata.form.purpose" placeholder="请选择">
-                                <lb-option v-for="item in localdata.purpose" :key="item.value" :label="item.text" :value="item.value">
-                                </lb-option>
-                            </lb-select>
+                            <el-select v-model="localdata.form.purpose" placeholder="请选择">
+                                <el-option v-for="item in localdata.purpose" :key="item.value" :label="item.text" :value="item.value">
+                                </el-option>
+                            </el-select> 
                         </div>
                     </div>
                 </div>
