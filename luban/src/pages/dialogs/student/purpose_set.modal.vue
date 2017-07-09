@@ -9,7 +9,7 @@
                             <el-select v-model="localdata.form.purpose" placeholder="请选择">
                                 <el-option v-for="item in localdata.purpose" :key="item.value" :label="item.text" :value="item.value">
                                 </el-option>
-                            </el-select> 
+                            </el-select>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export default {
         this.localdata.form.student_name = this.$store.state.dialogs.dailogdata.student_name
     },
     computed: {
-        getStudentName(){
+        getStudentName() {
             return this.localdata.form.student_name
         }
     },
@@ -64,8 +64,9 @@ export default {
         handleClick() {
             let vm = this
             vm.handleSave().then((data) => {
-                this.$store.state.dialogs.dailogdata.purpose = data.purpose
+                //this.$store.state.dialogs.dailogdata.purpose = data.purpose
                 vm.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-changestudent'
             })
         }
     }

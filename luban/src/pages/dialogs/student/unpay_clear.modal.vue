@@ -167,7 +167,6 @@ export default {
         },
         do_save() {
             this.handleSave().then((data) => {
-                console.log(data)
                 this.updateOrder()
             })
         }

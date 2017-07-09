@@ -11,17 +11,17 @@
                 </a>
             </div>
             <div class="topbar-main">
-                <a id="menu-toggle" href="#" class="hidden-xs" @click="variety()">
+                <a id="menu-toggle" class="hidden-xs" @click="variety()">
                     <i class="fa fa-bars"></i>
                 </a>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li>
-                        <a href="#" @click="fullscreen">
+                        <a @click="fullscreen">
                             <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}"></i>
                         </a>
                     </li>
                     <li class="dropdown topbar-user open">
-                        <a data-hover="dropdown" href="#" class="dropdown-toggle" @click="cut" @blur="blur">
+                        <a data-hover="dropdown" class="dropdown-toggle" @click="cut" @blur="blur">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">{{$store.state.system.name}}</span>&nbsp;
                             <span class="caret"></span>

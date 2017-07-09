@@ -193,7 +193,6 @@ export default {
         },
         do_pay() {
             this.handleSave().then((data) => {
-                console.log(data)
                 if (this.order.order_type == 2) {
                     this.setStudentAmount()
                 } else if (this.order.order_type == 1) {

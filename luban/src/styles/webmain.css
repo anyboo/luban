@@ -11450,3 +11450,7 @@ label {
     border-top-left-radius: 0 !important;
     border-color: #e5e5e5 !important;
 }
+.bg-gray {
+    background-color: #cfcfcf;
+    color: #fff;
+}

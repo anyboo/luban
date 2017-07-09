@@ -168,7 +168,7 @@ export default {
     methods: {
         handleRouter(event, item) {
             this.$store.state.envs.currStudent = item
-            this.$router.push('/student/info/')
+            this.$router.push('/student/info')
             event.stopPropagation()
         },
         handSelectStudent(add) {
@@ -234,7 +234,6 @@ export default {
                 'type': 'lookup'
             })
 
-            //console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }

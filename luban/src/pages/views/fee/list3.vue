@@ -95,7 +95,7 @@ export default {
                 'student_id': ''
             },
             'duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',
@@ -187,7 +187,6 @@ export default {
                 'type': 'gt'
             })
 
-            //console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

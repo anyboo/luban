@@ -48,22 +48,22 @@ export default {
         }
     },
     components: pages,
-    watch: {
-        '$route.path': {
-            handler(val) {
-
-            }
-        }
-    },
     beforeCreate() {
         let system = JSON.parse(window.localStorage.getItem('system'))
         if (system) {
             this.$store.commit('system', system)
         }
     },
+    mounted() {
+        if (this.$store.state.models.login) {
+            this.getTableApidata('dictionary')
+        }
+    },
     computed: {
         getCurrentView() {
-            if (this.$store.state.system.name.length == 0) {
+            if (!this.$store.state.models.login) {
+                this.$router.push('/system/sign_in')
+            } else if (this.$store.state.system.name.length == 0) {
                 this.$router.push('/system/sign_in')
             }
 
@@ -74,7 +74,6 @@ export default {
             } else {
                 view = 'lb-' + to.replace(/\//g, '')
             }
-            console.log(view)
             return view
         }
     },

@@ -6,6 +6,8 @@ const components = [
     dropdown.LbDropdown,
     dropdown.LbDropdownButton,
     buttongroup,
+    listtree.LbListTree,
+    listtree.LbListtreeItem,
 ]
 
 const install = function(Vue) {
@@ -21,4 +23,5 @@ export default {
     install,
     dropdown,
     buttongroup,
+    listtree
 }

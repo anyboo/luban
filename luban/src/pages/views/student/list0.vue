@@ -23,7 +23,7 @@
                         <lb-buttongroup :group-data="localdata.region_oe_id" v-model="localdata.form.region_oe_id" @input="handleRegion"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="row m-t m-t-t"> 
+                <div class="row m-t m-t-t">
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column width="90" prop="data" label="操作">
                             <template scope="scope">
@@ -40,8 +40,8 @@
                             <template scope="scope">
                                 <a class="link ng-binding" @click="handleRouter($event,scope.row)">
                                     <span class="ng-binding">
-                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
-                                </span>{{ scope.row.student_name }}
+                                        <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                    </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
@@ -115,7 +115,7 @@ export default {
                 'text': '未归属'
             }],
             'duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',
@@ -180,6 +180,9 @@ export default {
                 }
                 this.handleSearch()
             }
+            if (this.$store.state.envs.currDialog == 'lb-changestudent') {
+                this.handleSearch()
+            }
             return this.localdata.form.student_name
         },
     },
@@ -199,7 +202,7 @@ export default {
         },
         handleRouter(event, item) {
             this.$store.state.envs.currStudent = item
-            this.$router.push('/student/info/')
+            this.$router.push('/student/info')
             event.stopPropagation()
         },
         handleDuration() {
@@ -211,7 +214,6 @@ export default {
         },
         handleRegion(value) {
             this.handleSearch()
-            console.log(value, this.localdata.form.region_oe_id)
         },
         handleSearch() {
             let filterObj = []
@@ -235,11 +237,11 @@ export default {
                 let endTime = this.getDatetime(this.localdata.form.daterange[1])
                 if (startTime > 0) {
                     if (startTime == endTime) {
-                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                        startTime = this.getDatetimeStartOf('day')
+                        endTime = this.getDatetimeStartOf('day', true)
                     }
-
                     filterObj.push({
-                        'key': 'creattime',
+                        'key': 'inquiry.track_time',
                         'value': startTime,
                         'type': 'gte'
                     })

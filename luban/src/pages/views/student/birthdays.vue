@@ -85,7 +85,7 @@ export default {
     methods: {
         handleRouter(event, item) {
             this.$store.state.envs.currStudent = item
-            this.$router.push('/student/info/')
+            this.$router.push('/student/info')
             event.stopPropagation()
         },
         handleDuration() {

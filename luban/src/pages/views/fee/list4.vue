@@ -72,7 +72,7 @@ export default {
                 'student_name': ''
             },
             'duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',
@@ -149,7 +149,6 @@ export default {
                 'type': 'lookup'
             })
 
-            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

@@ -380,7 +380,6 @@ export default {
     watch: {},
     methods: {
         handlePreview(file) {
-            console.log(file)
         },
         handleChange(file) {
             let vm = this

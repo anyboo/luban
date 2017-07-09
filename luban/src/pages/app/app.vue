@@ -30,7 +30,6 @@ export default {
     watch: {
         '$route.path': {
             handler(val) {
-                console.log(val)
             }
         }
     },

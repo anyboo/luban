@@ -133,7 +133,6 @@ export default {
             }
 
             this.handleSave().then((data) => {
-                console.log(data)
                 this.order = true
                 this.currorder = data
             })

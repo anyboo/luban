@@ -24,7 +24,6 @@ export default {
             return this.$store.state.dialogs.modalbackdrop
         },
         getDialog() {
-            console.log(this.$store.state.dialogs.dailoglist)
             return this.$store.state.dialogs.dailoglist
         }
     }

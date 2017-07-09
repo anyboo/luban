@@ -125,7 +125,6 @@ export default {
                     this.amount = this.currStudent.amount
                 }
             })
-            console.log(this.localdata.form.student_id)
         }
     },
     components: {
@@ -145,7 +144,6 @@ export default {
             this.localdata.form.order_no = 'LB' + this.moment().format('YYYYMMDDssSSSS')
             this.localdata.form.body = '预交费[' + this.localdata.form.order_amount + '元]'
             this.handleSave().then((data) => {
-                console.log(data)
                 this.order = true
                 this.currorder = data
             })

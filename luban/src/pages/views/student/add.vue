@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-12">出生日期:</label>
-                                <div class="col-md-10 col-xs-12" style="margin-left:-12px !important;">
+                                <div class="col-md-10 col-xs-12">
                                     <div class="inline w-sm">
                                         <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
                                     </div>
@@ -173,7 +173,7 @@
                 <div class="m-t m-b panel-footer">
                     <div class="form-group">
                         <div class="col-xs-12 col-md-10 col-md-offset-2">
-                            <button type="button" class="btn btn-primary w" ng-disabled="form1.$invalid || form_invalid() || saving" @click="handleClick">确认</button>
+                            <button type="button" class="btn btn-primary w"  @click="handleClick">确认</button>
                         </div>
                     </div>
                 </div>
@@ -284,7 +284,6 @@ export default {
                 vm.$store.state.envs.currStudent = response
                 vm.handleShowDialog('lb-finishadd',response)
             }, (e) => {
-                console.log(e)
             })
         }
     }

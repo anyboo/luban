@@ -89,49 +89,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="btn btn-xs btn-default pull-right" ui-per="student.edit" ng-click="$util.open('tpl/app/student/add_contact.modal.html','sm',student)">
-                                        <i class="fa fa-plus"></i> 添加联系人</a>
-                                    <i class="icon-users"></i> 联系人</div>
-                                <table class="table table-striped m-b-none">
-                                    <thead>
-                                        <tr>
-                                            <th>电话</th>
-                                            <th class="hidden-xs">称呼</th>
-                                            <th class="hidden-xs">姓名</th>
-                                            <th class="hidden-xs">学习管家账号</th>
-                                            <th class="hidden-xs">微信绑定</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="item in student.relations" class="ng-scope">
-                                            <td class="ng-binding">
-                                                <i class="fa fa-star text-warning ng-scope" tooltip="第1联系人" ng-if="item.is_main == '1'"></i>11111111111</td>
-                                            <td class="hidden-xs ng-binding">爸爸</td>
-                                            <td class="hidden-xs ng-binding">未填写</td>
-                                            <td class="hidden-xs">
-                                                <span class="label bg-info ng-scope" ng-if="item.ou_id != '0'">已开通</span>
-                                            </td>
-                                            <td class="hidden-xs">
-                                                <span class="badge bg-gray ng-scope" ng-if="item.wb_id == '0'">未绑定</span>
-                                            </td>
-                                            <td>
-                                                <a ng-disabled="item.is_main == '1'" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
-                                                    <i class="icon-close"></i>
-                                                </a>
-                                                <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" tooltip="编辑">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                                <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/wxbind_qrcode.modal.html','md',{student:student,contact:item})" tooltip="微信绑定二维码">
-                                                    <i class="fa fa-qrcode"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,11 +136,11 @@ export default {
                 'url': 'lb-refundmodal',
                 'icon': 'fa fa-reply',
                 'text': '退费'
-            }, {
+            }/*, {
                 'url': 'lb-endlessonmodal',
                 'icon': 'fa fa-stop',
                 'text': '结课'
-            }/* {
+            },{
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
@@ -260,10 +217,8 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
-            console.log(this.uid, filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then(() => {
-                console.log(this.$store.state.models.models.student.data)
                 this.student = this.$store.state.models.models.student.data[0]
             })
         },

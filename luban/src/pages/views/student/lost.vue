@@ -79,7 +79,7 @@ export default {
                 'text': '已确认流失'
             }],
             'duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',

@@ -10,6 +10,11 @@ export default [{
         to: '/student/list',
         menuIcon: 'fa fa-user-circle'
     }, {
+        menuTitle: '学员信息',
+        to: '/student/info',
+        menuIcon: 'fa fa-user-circle',
+        menuShow: 0
+    }, {
         menuTitle: '在读学员',
         to: '/student/list1',
         menuIcon: 'fa fa-user',
@@ -182,4 +187,4 @@ export default [{
         menuIcon: ' fa fa-th',
         menuShow: 0,
     }]
-}, ]
+},]

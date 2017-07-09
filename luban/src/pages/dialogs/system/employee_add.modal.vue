@@ -151,7 +151,6 @@ export default {
                 this.$store.state.envs.currDialogResult = this.currentRow
                 this.$store.state.envs.currDialog = 'lb-employee'
             }, (e) => {
-                console.log(e)
             })
         }
     }

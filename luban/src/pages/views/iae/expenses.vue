@@ -69,7 +69,7 @@ export default {
                 'type': ''
             },
             'duration': [{
-                'value': 'today',
+                'value': 'day',
                 'text': '今日'
             }, {
                 'value': 'week',

@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-xs-12">课程分类:</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <lb-cascader placeholder="课程分类" :options="getreeData" v-model="localdata.form.cate_array" filterable change-on-select></lb-cascader>
+                                        <el-cascader placeholder="课程分类" :options="getreeData" v-model="localdata.form.cate_array" filterable change-on-select></el-cascader>
                                     </div>
                                 </div>
                                 <div class="form-group">

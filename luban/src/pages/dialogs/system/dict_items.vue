@@ -90,7 +90,6 @@ export default {
                 this.clearForm()
                 this.handleSearch()
             }, (e) => {
-                console.log(e)
             })
         },
         handleDelClick(id) {
@@ -109,7 +108,6 @@ export default {
                 'value': this.localdata.form.type,
                 'type': ''
             })
-            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         }

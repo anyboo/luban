@@ -59,10 +59,13 @@ const state = {
         },
         arrange: {
             data: []
+        },
+        org: {
+            data: []
         }
     },
     currentModel: {},
-    login: false
+    login: true
 }
 
 // getters
@@ -81,8 +84,7 @@ const actions = {
                     commit(types.GET_API, { tableName, response })
                     resolve()
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -96,8 +98,7 @@ const actions = {
                     commit(types.GET_API, { 'tableAlias': obj.alias, 'tableName': obj.model, response })
                     resolve(response)
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -106,7 +107,7 @@ const actions = {
     },
     [types.GET_ARRAY_API]({ commit }, tableName) {
         let tableArray = []
-        tableName.forEach(function(item) {
+        tableName.forEach(function (item) {
             tableArray.push(restfulapi.httpGetApi(item))
         })
 
@@ -118,8 +119,7 @@ const actions = {
                     })
                     resolve()
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -134,8 +134,7 @@ const actions = {
                     commit(types.GET_API, { id, response })
                     resolve(response)
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -147,12 +146,13 @@ const actions = {
             restfulapi.httpLoginApi(obj)
                 .then((response) => {
                     if (response.status == 200 && response.data && response.data.code == 0) {
-                        commit(types.LOGIN_API, { login: true, data: response.data.token })
+                        commit(types.LOGIN_API, { login: true, data: response.data.token, nowtime: response.data.nowtime })
+                    } else {
+                        commit(types.LOGIN_API, { login: false, data: '' })
                     }
                     resolve(response.data)
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
 
                 })
         })
@@ -163,8 +163,7 @@ const actions = {
                 .then((response) => {
                     resolve(response.data)
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -179,8 +178,7 @@ const actions = {
                     //commit(types.APPEND_API, { tableName, response })
                     resolve(response.data)
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -194,8 +192,7 @@ const actions = {
                     //commit(types.APPEND_API, { tableName, response })
                     resolve()
                 })
-                .catch(function(response) {
-                    console.info(response)
+                .catch(function (response) {
                     if (response.status == 401) {
                         commit(types.LOGIN_API, { login: false, data: '' })
                     }
@@ -203,9 +200,12 @@ const actions = {
         })
     },
 }
-    // mutations
+// mutations
 const mutations = {
     [types.GET_API](state, { tableAlias, tableName, response }) {
+        if (response.nowtime) {
+            window.localStorage.setItem('tokentime', response.nowtime)
+        }
         if (tableAlias) {
             state.models[tableAlias] = response.data
         } else {
@@ -215,6 +215,7 @@ const mutations = {
     },
     [types.LOGIN_API](state, obj) {
         state.login = obj.login
+        window.localStorage.setItem('tokentime', obj.nowtime)
         window.localStorage.setItem('token', obj.data)
     },
     [types.GET_CURRENT_API](state, tableName) {

@@ -9,7 +9,7 @@
                             <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
                                 <el-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
                                 </el-option>
-                            </el-select> 
+                            </el-select>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ export default {
             let employeeData = this.$store.state.models.models.employee.data
             return employeeData
         },
-        getStudentName(){
+        getStudentName() {
             return this.localdata.form.student_name
         }
     },
@@ -57,8 +57,9 @@ export default {
         handleClick() {
             let vm = this
             vm.handleSave().then((data) => {
-                this.$store.state.dialogs.dailogdata.region_oe_id = data.region_oe_id
+                //this.$store.state.dialogs.dailogdata.region_oe_id = data.region_oe_id
                 vm.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-changestudent'
             })
         },
     }

@@ -49,7 +49,7 @@
                                     </a>
                                 </div>
                                 <div class="name m-t">
-                                    <a class="link ng-binding">
+                                    <a class="link ng-binding" @click="handleRouter($event,item)">
                                         <span class="ng-binding">
                                             <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
                                         </span>{{ item.student_name }}
@@ -107,7 +107,7 @@
                         </el-table-column>
                         <el-table-column prop="data" label="学员归属">
                             <template scope="scope">
-                                <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
+                                <span class="" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="档案备注">
@@ -197,11 +197,11 @@ export default {
                 'url': 'lb-refundmodal',
                 'icon': 'fa fa-reply',
                 'text': '退费'
-            }, {
+            },/* {
                 'url': 'lb-endlessonmodal',
                 'icon': 'fa fa-stop',
                 'text': '结课'
-            },/* {
+            }, {
                 'url': 'lb-changebranchmodal',
                 'icon': 'icon-shuffle',
                 'text': '转校区'
@@ -295,7 +295,7 @@ export default {
         },
         handleRouter(event, item) {
             this.$store.state.envs.currStudent = item
-            this.$router.push('/student/info/')
+            this.$router.push('/student/info')
             event.stopPropagation()
         }
     }
