@@ -1,12 +1,15 @@
-import urlUtil from './urlprofile'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import urlUtil from './urlprofile'
 
 Vue.use(VueResource)
 
+
 function httpAuth() {
     let token = window.localStorage.getItem('token')
-    Vue.http.headers.common['Authorization'] = token
+    let tokentime = window.localStorage.getItem('tokentime')
+    Vue.http.headers.common['authorization'] = token
+    Vue.http.headers.common['authtime'] = tokentime
 }
 
 function httpGetFieldsApi(model, fields) {

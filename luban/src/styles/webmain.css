@@ -11454,3 +11454,38 @@ label {
     background-color: #cfcfcf;
     color: #fff;
 }
+
+.tree-node-content {
+    margin: 5px;
+}
+.tree-node {
+    border: 1px solid #dae2ea;
+    background: #f8faff;
+    color: #7c9eb2;
+}
+.angular-ui-tree-handle {
+    cursor: move;
+    text-decoration: none;
+    font-weight: 700;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 20px;
+    line-height: 20px;
+}
+.angular-ui-tree-node, .angular-ui-tree-placeholder {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    line-height: 20px;
+}
+.angular-ui-tree-nodes .angular-ui-tree-nodes {
+    padding-left: 20px;
+}
+.angular-ui-tree-nodes {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

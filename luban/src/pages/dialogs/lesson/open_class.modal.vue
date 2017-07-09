@@ -33,7 +33,7 @@
                                     <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                                            <i class="fa fa-book"></i>选择课程
+                                            <i class="fa fa-book"></i>选择
                                         </button>
                                     </span>
                                 </div>

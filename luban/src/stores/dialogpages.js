@@ -28,6 +28,10 @@ import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page67 from '~/pages/dialogs/system/add_modal.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
+import page39 from '~/pages/dialogs/directive/selectclasstpl.vue'
+import page40 from '~/pages/dialogs/directive/selectlessontpl.vue'
+import page2 from '~/pages/dialogs/directive/selectteachertpl.vue'
+import page11 from '~/pages/dialogs/directive/selectsclasstpl.vue'
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -61,5 +65,9 @@ pages['lb-resetaccountmodal'] =page62
 pages['lb-addmodal'] = page67
 pages['lb-details'] = page68
 pages['lb-dictitems'] = page69
+pages['lb-selectteachertpl'] = page2
+pages['lb-selectsclasstpl'] = page11
+pages['lb-selectclasstpl'] = page39
+pages['lb-selectlessontpl'] = page40
 
 export default pages

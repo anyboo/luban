@@ -36,7 +36,7 @@ export default {
             collapsed: false,
             change: this.treeItem.save ? !this.treeItem.save : true,
             model: 'cate',
-            lb_tables: ['cate']
+            tables: ['cate']
         }
     },
     methods: {
