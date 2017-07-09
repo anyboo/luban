@@ -19,7 +19,7 @@
                                     <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                                            <i class="fa fa-book"></i>选择课程
+                                            <i class="fa fa-book"></i>选择
                                         </button>
                                     </span>
                                 </div>
@@ -33,7 +33,7 @@
                                         <input type="text" :placeholder="getSelectClassName" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required readonly="readonly" v-model="class_name">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default" @click="lbShowdialog($event,'lb-selectclasstpl')">
-                                                <i class="fa fa-flag"></i>选择班级
+                                                <i class="fa fa-flag"></i>选择
                                             </button>
                                         </span>
                                     </div>
@@ -196,7 +196,7 @@ export default {
             localdata,
             order: false,
             class_name: '请选择班级',
-            lesson_name: '请选择老师',
+            lesson_name: '请选择课程',
             model: 'order',
             discount_caculator: false,
             currorder: null

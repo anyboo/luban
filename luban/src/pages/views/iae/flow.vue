@@ -32,14 +32,16 @@
                     </div>
                     <div class="table-responsive">
                         <el-table :data="getTablesData()" stripe>
-                            <el-table-column prop="data" label="操作">
-                                <template scope="scope">
-                                    <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
-                                        <i class="fa fa-reply"></i>撤销
-                                    </a>
-                                    <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
-                                </template>
-                            </el-table-column>
+                            <!--
+                                <el-table-column prop="data" label="操作">
+                                    <template scope="scope">
+                                        <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-action="do_delete(item)" confirm-text="确定要撤销流水账吗?" ui-per="iae.delete">
+                                            <i class="fa fa-reply"></i>撤销
+                                        </a>
+                                        <a ng-click="$util.open('tpl/app/iae/set_odi.modal.html','sm',item)" @click="lbShowdialog($event,'lb-setodimodal')">设置分类</a>
+                                    </template>
+                                </el-table-column>
+                                   -->
                             <el-table-column prop="data" label="日期">
                                 <template scope="scope">{{ getDateFormat(scope.row.create_time) }}</template>
                             </el-table-column>

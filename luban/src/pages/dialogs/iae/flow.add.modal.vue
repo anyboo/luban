@@ -32,6 +32,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -56,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
