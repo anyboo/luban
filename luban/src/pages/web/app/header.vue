@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="dropdown topbar-user open">
-                        <a data-hover="dropdown" class="dropdown-toggle" @click="cut" @blur="blur">
+                        <a href="javascript:void(0)" data-hover="dropdown" class="dropdown-toggle" @click="cut" @blur="blur">
                             <img src="/assets/images/a0.jpg" alt="" class="img-responsive img-circle">&nbsp;
                             <span class="hidden-xs">{{$store.state.system.name}}</span>&nbsp;
                             <span class="caret"></span>
@@ -99,6 +99,7 @@ export default {
             }
         },
         blur() {
+            console.log('blur')
             this.hide = this.menu
         },
         changeView(view) {
