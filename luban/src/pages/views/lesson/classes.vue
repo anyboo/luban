@@ -114,8 +114,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="班级名">
-                        <template scope="scope">
-                            <a class="link ng-binding" ui-per="lesson.class" ui-sref="lesson.class({oc_id:item.oc_id})" href="#/lesson/class/13148">{{scope.row.class_name}}</a>
+                        <template scope="scope">{{scope.row.class_name}}
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="老师">

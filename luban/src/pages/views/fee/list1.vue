@@ -15,11 +15,11 @@
                                 <div class="input-group">
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                     <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
-                                </div> 
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -39,6 +39,7 @@
                             <el-table-column prop="data" label="付款方式">
                                 <template scope="scope">现金</template>
                             </el-table-column>
+                            <!--
                             <el-table-column prop="data" label="收据">
                                 <template scope="scope">
                                     <div class="inline ng-scope" ng-if="item.orb_id == '0'">
@@ -46,18 +47,16 @@
                                     </div>
                                 </template>
                             </el-table-column>
+                            -->
                             <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">
-                                    <span ng-if="item.lesson_type == '0'" class="ng-scope">
-                                <a class="link ng-binding" ng-click="params.oc_id=item.oc_id">{{scope.row.class_id}}</a>
-                            </span>
+                                    <span class="ng-scope">
+                                        <a class="link ng-binding">{{ getLookUp(scope.row.classes,'class_name') }}</a>
+                                    </span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="备注">
                                 <template scope="scope">{{scope.row.order_remark}}</template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="经办人">
-                                <template scope="scope">陈佳木</template>
                             </el-table-column>
                         </el-table>
                         <div class="grid-data-result"></div>
@@ -94,12 +93,18 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
-            }, ],
+            },],
             'lookup': {
                 'localField': 'student_id',
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
+            },
+            'classeslookup': {
+                'localField': 'class_id',
+                'from': 'classes',
+                'foreignField': '_id',
+                'as': 'classes'
             }
         }
         return {
@@ -160,6 +165,11 @@ export default {
             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+             filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.classeslookup,
                 'type': 'lookup'
             })
 
