@@ -36,19 +36,21 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span ng-if="item.amount < 0" class="badge bg-warning ng-binding ng-scope">{{scope.row.amount}}</span>
+                                    <span class="badge bg-warning ng-binding ng-scope">{{scope.row.amount}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型">
                                 <template scope="scope">
-                                    <span ng-if="item.type == '0'" class="badge bg-warning ng-scope">{{getButtongroupText(localdata.type,scope.row.type)}}</span>
+                                    <span  class="badge bg-warning ng-scope">{{getButtongroupText(localdata.type,scope.row.type)}}</span>
                                 </template>
                             </el-table-column>
+                            <!--
                             <el-table-column prop="data" label="分类">
                                 <template scope="scope">
                                     <span ng-if="item.type == '0'" class="label bg-info ng-binding ng-scope">未设置</span>
                                 </template>
                             </el-table-column>
+                            -->
                             <el-table-column prop="data" label="备注">
                                 <template scope="scope">
                                     <span ng-bind-html="item.note" class="ng-binding">{{scope.row.note}}</span>

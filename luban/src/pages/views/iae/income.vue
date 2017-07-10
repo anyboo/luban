@@ -61,12 +61,14 @@
                             </el-table-column>
                             <el-table-column prop="data" label="对账状态">
                                 <template scope="scope">
-                                    <span ng-if="item.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
+                                    <span v-if="scope.row.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
+                                    <span v-if="scope.row.check_status == '0'" class="badge bg-success ng-scope">未对账</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <a class="btn btn-xs btn-default" ng-class="{'btn-primary':item.$checked||item.check_status=='1'}" ng-click="toggle_check(item)" ng-disabled="item.check_status=='1'" @click="handleCommand">核对</a>
+                                    <a  v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default"  @click="handleCommand">核对</a>
+                                    <span v-if="scope.row.check_status == '1'" class="info bg-success ng-scope">已核对</span>
                                 </template>
                             </el-table-column>
                         </el-table>
