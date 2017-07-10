@@ -11489,3 +11489,10 @@ label {
     padding: 0;
     list-style: none;
 }
+.panel-footer {
+    padding: 10px 15px;
+     background-color: #fff  !important; 
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
