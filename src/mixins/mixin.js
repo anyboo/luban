@@ -167,7 +167,7 @@ export default {
             let filterObj = []
             filterObj.push({
                 'key': 'lookup',
-                'value': this.localdata.lookup,
+                'value': this.localdata.lookup, 
                 'type': 'lookup'
             })
 
