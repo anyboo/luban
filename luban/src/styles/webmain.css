@@ -11513,3 +11513,20 @@ label {
 ::before, ::after {
     box-sizing: border-box;
 }
+.step2 .bg-success::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    display: block;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-top: 20px solid rgba(0, 0, 0, 0);
+    border-bottom: 20px solid rgba(0, 0, 0, 0);
+    border-left: 10px solid rgb(246, 248, 248);
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
