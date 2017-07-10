@@ -4,6 +4,7 @@ const state = {
     name: '',
     tel: '',
     face: '',
+    birth:'',
     login: false,
     theme: 'rgba(208, 150, 21, 0.8)'
 }
@@ -23,6 +24,7 @@ const mutations = {
         state.name = obj.name
         state.id = obj._id
         state.tel = obj.tel
+        state.birth = obj.birth
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
@@ -31,6 +33,7 @@ const mutations = {
         state.name = obj.name
         state.id = obj.id
         state.tel = obj.tel
+        state.birth = obj.birth
     }
 }
 export default {
