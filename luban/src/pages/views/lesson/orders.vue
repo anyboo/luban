@@ -45,7 +45,7 @@
                 <el-table :data="getTablesData()" stripe>
                     <el-table-column prop="data" label="操作">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row"  @command="handleMenuCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog ng-scope"></i>
                                     <span class="caret"></span>
@@ -112,20 +112,16 @@ export default {
             }],
             'dropDownMenu': [{
                 'url': 'lb-editlessonmodal',
-                'icon': 'icon-printer',
-                'text': '打印收据'
-            }, {
-                'url': 'lb-editlessonmodal',
                 'icon': 'fa fa-reply',
-                'text': '办理退款'
+                'text': '办理退款',
+                'menuctrl': 'pay_status',
+                'menuvalue': [1, 2]
             }, {
-                'url': 'lb-editlessonmodal',
-                'icon': 'icon-note',
-                'text': '修改订单'
-            }, {
-                'url': 'lb-editlessonmodal',
+                'action': 'delete',
                 'icon': 'fa fa-times',
-                'text': '删除订单'
+                'text': '删除',
+                'menuctrl': 'pay_status',
+                'menuvalue': 0
             }],
             'order_type': [{
                 'value': 1,
@@ -230,7 +226,31 @@ export default {
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
-
+        handleMenuCommand({
+            action,
+            data
+        }) {
+            if (action == 'delete') {
+                this.$confirm('订单删除, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.handleDelete(data._id).then(() => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.handleGetTable()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
+        }
     }
 }
 </script>
