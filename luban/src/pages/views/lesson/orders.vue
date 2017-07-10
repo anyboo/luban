@@ -78,7 +78,6 @@
                         <template scope="scope">{{scope.row.order_remark}}</template>
                     </el-table-column>
                 </el-table>
-                <div class="grid-data-result"></div>
             </div>
             <div class="panel-footer ">
                 <div class="row ">
@@ -111,7 +110,7 @@ export default {
                 'text': '课时包'
             }],
             'dropDownMenu': [{
-                'url': 'lb-editlessonmodal',
+                'url': 'lb-refunds',
                 'icon': 'fa fa-reply',
                 'text': '办理退款',
                 'menuctrl': 'pay_status',
