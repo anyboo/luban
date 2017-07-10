@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="inline va-m w-xs m-l-xs ng-scope">
                                     <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.class">
-                                        <option value class>年级</option>
+                                        <option value class>班级</option>
                                         <option value="0">1</option>
                                         <option value="1">2</option>
                                         <option value="2">3</option>

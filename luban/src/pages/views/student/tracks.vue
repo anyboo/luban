@@ -71,7 +71,6 @@
             </div>
         </div>
     </div>
-    </div>
 </template>
 <style type="text/css">
 pre {
@@ -105,7 +104,6 @@ export default {
                 'daterange': '',
                 'duration': '',
                 'student_id': '',
-
                 'track_type': ''
             },
             'duration': [{
@@ -143,8 +141,9 @@ export default {
             if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     if (this.selStudentAddInquiry) {
-                        this.$store.state.envs.currStudent = this.$store.state.envs.currDialogResult
-                        this.handleShowDialog('lb-addtrackmodal')
+                        let student = this.$store.state.envs.currDialogResult
+                        this.$store.state.envs.currStudent = student
+                        this.handleShowDialog('lb-addtrackmodal', student)
                     } else {
                         this.student_name = this.$store.state.envs.currDialogResult.student_name
                         this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
@@ -187,8 +186,9 @@ export default {
             this.handleSearch()
         },
         handleAddTrack(item) {
-            this.$store.state.envs.currStudent = this.getLookUp(item)
-            this.handleShowDialog('lb-addtrackmodal')
+            let student = this.getLookUp(item)
+            this.$store.state.envs.currStudent = student
+            this.handleShowDialog('lb-addtrackmodal', student)
         },
         handleSearch() {
             let filterObj = []

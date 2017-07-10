@@ -104,7 +104,7 @@ export default {
                 'track_time': '',
                 'next_time': '',
                 'detail': '',
-                'student_id': this.getStudentId()
+                'student_id': ''
             },
             'track_type': [{
                 'value': '0',
@@ -158,6 +158,7 @@ export default {
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.$store.state.envs.currStudent = this.$store.state.dialogs.dailogdata
+            this.localdata.form.student_id = this.$store.state.dialogs.dailogdata._id
         }
     },
     methods: {
