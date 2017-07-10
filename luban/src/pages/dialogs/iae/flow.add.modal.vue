@@ -33,31 +33,31 @@
                             </div>
                         </div>
                         <!--
-                        <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
-                                        <option value class>请选择</option>
-                                        <option value="0">日常支出</option>
-                                    </select>
-                                    <div class="chosen-container chosen-container-single" style="width: 120px;" title>
-                                        <a class="chosen-single" tabindex="-1">
-                                            <span>请选择</span>
-                                            <div>
-                                                <b></b>
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
+                                        <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
+                                            <option value class>请选择</option>
+                                            <option value="0">日常支出</option>
+                                        </select>
+                                        <div class="chosen-container chosen-container-single" style="width: 120px;" title>
+                                            <a class="chosen-single" tabindex="-1">
+                                                <span>请选择</span>
+                                                <div>
+                                                    <b></b>
+                                                </div>
+                                            </a>
+                                            <div class="chosen-drop">
+                                                <div class="chosen-search">
+                                                    <input type="text" autocomplete="off">
+                                                </div>
+                                                <ul class="chosen-results"></ul>
                                             </div>
-                                        </a>
-                                        <div class="chosen-drop">
-                                            <div class="chosen-search">
-                                                <input type="text" autocomplete="off">
-                                            </div>
-                                            <ul class="chosen-results"></ul>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>-->
+                            </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -69,11 +69,11 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">经办人</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="inline w">
-                                    <div class="input-group ng-valid" ng-model="fee.op_name" select-title="请选择经办人" select-params="{ob_id:user.gv.ob_id}">
-                                        <input type="text" name="name" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="valueField != 'name'" v-model="localdata.form.name">
+                                <div class="inline w" :class="{result:changeSelectTeacher}">
+                                    <div class="input-group ng-valid">
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly v-model="teacher_name">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default " select-tpl="tpl/directive/selectTeacherTpl.html" select-id-field="oe_id" select-title="请选择经办人" on-selected="set_user" select-params="selectParams" @click="lbShowdialog($event,'lb-selectteachertpl')">
+                                            <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                                 <i class="fa fa-user"></i>
                                             </button>
                                         </span>
@@ -116,7 +116,7 @@ export default {
                 'amount': '',
                 'odi_id': '',
                 'note': '',
-                'name': '',
+                'teacher_id':'',
                 'create_time': ''
             },
             'validator': {
@@ -132,15 +132,36 @@ export default {
         }
         return {
             localdata,
-            model: 'flow'
+            model: 'flow',
+            teacher_name:'请选择老师',
         }
     },
-    computed: {},
+    computed: {
+        changeSelectTeacher() {
+            let result = false
+            if (this.$store.state.envs.currDialog == 'lb-selectteachertpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.teacher_name = this.$store.state.envs.currDialogResult.name
+                    this.localdata.form.teacher_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.teacher_name = '请选择老师'
+                    this.localdata.form.teacher_id = ''
+                }
+                result = true
+            } 
+            return result
+        },
+    },
     watch: {},
     methods: {
         handleClick() {
             this.handleSave().then(() => {
-                alert('数据已经提交数据库了')
+                this.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-flow'
             })
         },
     }

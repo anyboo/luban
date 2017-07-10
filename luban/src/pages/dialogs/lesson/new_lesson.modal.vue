@@ -116,7 +116,9 @@
                                     <label class="control-label col-md-3 col-xs-12">授课次数:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
-                                            <input type="number" v-model="localdata.form.inc_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-parse" @change="changeTimeInc"> <span class="input-group-addon">次</span></div>
+                                            <input type="number" v-model="localdata.form.inc_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-parse" @change="changeTimeInc">
+                                            <span class="input-group-addon">次</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -296,6 +298,8 @@ export default {
                     message: '操作成功',
                     type: 'success'
                 })
+                this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-lesson'
             })
         }
 
