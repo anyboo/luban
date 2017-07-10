@@ -11496,3 +11496,20 @@ label {
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+.step1 .bg-success::after {
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    z-index: 2;
+    display: block;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-top: 20px solid rgba(0, 0, 0, 0);
+    border-bottom: 20px solid rgba(0, 0, 0, 0);
+    border-left: 10px solid rgb(81, 193, 98);
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
