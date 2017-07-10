@@ -203,8 +203,8 @@ const actions = {
 // mutations
 const mutations = {
     [types.GET_API](state, { tableAlias, tableName, response }) {
-        if (response.nowtime) {
-            window.localStorage.setItem('tokentime', response.nowtime)
+        if (response.data.nowtime) {
+            window.localStorage.setItem('tokentime', response.data.nowtime)
         }
         if (tableAlias) {
             state.models[tableAlias] = response.data
