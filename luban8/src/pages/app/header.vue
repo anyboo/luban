@@ -1,13 +1,13 @@
 <template>
- <div class="item2">
-            <div class="item2_contaier">
-                <div class="frist">          
+ <div class="lbHeader">
+            <div class="lbHeader_container">
+                <div class="firstModule">          
                     <i class="fa fa-bars" @click='variety()'></i>
                     <div class='menu' @click='handleClickShow()'>
                        <img src="/assets/images/a0.jpg">&nbsp;
                        <b>luban</b>
                        <i class="fa fa-sort-desc"></i>
-                       <ul class="show" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
+                       <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
                            <li>
                               <i class="fa fa-user"></i> 
                                个人资料
@@ -23,22 +23,26 @@
                        </ul>
                     </div>
                 </div>
-                <div class="secend">22</div>
+                <div class="bodyTitle">22</div>
             </div>
         </div>
 </template>
 <style>
-.item2 .item2_contaier{
+.lbHeader_container{
           display: grid;
           width:100%;
           height: 100%;
           grid-template-rows:1fr 1fr;
           grid-gap:1px;
         }
-        .item2_contaier .frist{
+         .bodyTitle {
+     background: #ffffff;
+     border-bottom: 1px solid rgb(217, 219, 222);
+ }
+        .firstModule{
         background: rgb(42,59,76);
         }
-        .item2_contaier .frist .fa-bars{
+         .fa-bars{
             font-size: 18px;
             margin-top: 3px;
             overflow: hidden;
@@ -51,11 +55,11 @@
                 -webkit-transition: all 0.3s;
     transition: all 0.3s;
         }
-        .item2_contaier .frist .fa-bars:hover{
+        .fa-bars:hover{
             color:#e74c3c;
 
         }
-        .item2_contaier .frist .menu{
+        .menu{
             display: inline-block;
             width: 92px;
             height: 30px;
@@ -66,16 +70,16 @@
             cursor: pointer;
 
         }
-       .item2_contaier .frist div.menu:hover {
+       div.menu:hover {
             background: #33485c;
         }
-        .item2_contaier .frist div.menu img{
+         div.menu img{
             width: 25px;
             height: 25px;
             border-radius: 50%;
             
         }
-        .item2_contaier .frist div.menu b{
+         div.menu b{
             display: inline-block;
             background: rgb(42,59,76);
             font-weight: 900;
@@ -83,28 +87,28 @@
            position: relative;
            top:-6px;left:-5px;         
         }
-        .item2_contaier .frist div.menu .fa-sort-desc{
+         .fa-sort-desc{
             padding:0  1px 4px 0;
        position: relative;
            top:-8px;left:-5px;
            margin:0;
               color: white
         }
-       .item2_contaier .frist div.menu:hover b{
+         div.menu:hover b{
              background: #33485c;
         }
-        .item2_contaier .frist div.menu:hover .fa-sort-desc{
+         div.menu:hover .fa-sort-desc{
               background: #33485c;
            ;
         }
-        .item2_contaier .frist div.menu .show{
+         .menuShow{
             width: 160px;
             height: 114px;
             position: absolute;
             top:51px;right: 0px;
             margin:0;
             padding:0;
-            list-style: none;
+            
             background-color:white;
              box-shadow: 0 6px 12px rgba(0, 0, 0, .175); 
             
@@ -116,14 +120,14 @@
         .displayNone{
             display:none;
         }
-        .item2_contaier .frist div.menu li{
+         div.menu li{
              width:100%;
                 height:18px;
                 padding:10px;
                 font-size:13px;
                 color: #777777;
         }
-       .item2_contaier .frist div.menu li:hover{
+       div.menu li:hover{
                 background:#f7f7f8;
         }
     
