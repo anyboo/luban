@@ -70,15 +70,15 @@
                             </div>
                         </div>
                         <!--
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
-                                    <div class="col-xs-12 col-sm-9 col-md-10">
-                                        <label class="i-switch m-t-xs m-r">
-                                            <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.order_has_time_limited">
-                                            <i></i>
-                                        </label>
-                                    </div>
-                                </div>-->
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
+                                        <div class="col-xs-12 col-sm-9 col-md-10">
+                                            <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.order_has_time_limited">
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                    </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -89,7 +89,7 @@
                                 <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
                                     <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
                                 </a>
-                                <div v-if="discount_caculator" class="ng-scope">
+                                <div v-if="discount_caculator&&localdata.form.has_discount" class="ng-scope">
                                     <div class="input-group">
                                         <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
                                         <span class="input-group-btn">
@@ -259,16 +259,17 @@ export default {
             this.cacu_order_amount()
         },
         cacu_order_amount() {
-            if (!this.has_discount) {
-                this.localdata.form.discount_amount = 0
+            let discount_amount = 0
+            if (this.localdata.form.has_discount) {
+                discount_amount = this.localdata.form.discount_amount
             }
             this.localdata.form.origin_amount = this.localdata.form.origin_times * this.localdata.form.unit_price
             let origin_times = Number(this.localdata.form.origin_times)
             if (origin_times != 0) {
-                this.localdata.form.c_unit_price = (this.localdata.form.origin_amount - this.localdata.form.discount_amount) / origin_times
+                this.localdata.form.c_unit_price = (this.localdata.form.origin_amount - discount_amount) / origin_times
             }
 
-            this.localdata.form.order_amount = this.localdata.form.origin_amount - this.localdata.form.discount_amount
+            this.localdata.form.order_amount = this.localdata.form.origin_amount - discount_amount
 
             this.localdata.form.unpay_amount = this.localdata.form.order_amount
         },

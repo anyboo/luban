@@ -13,7 +13,7 @@
             </div>
             <br>
             <div class="input-group">
-                <input type="password" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
+                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
                 <span class="input-group-btn circles">
                     <a @click="login" class="btn btn-success btn-rounded no-border" style="height:34px ;  border-top-left-radius : 0px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 0px !important;">
                         <i class="fa fa-arrow-right"></i>
