@@ -223,8 +223,11 @@ export default {
         },
         do_refund() {
             this.handleSave().then((data) => {
-                console.log(data)
-                
+                this.$message({
+                    message: '退款成功',
+                    type: 'success'
+                })
+                this.lbClosedialog()
             })
         },
         handleSearch() {
