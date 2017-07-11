@@ -70,39 +70,57 @@
                             </div>
                         </div>
                         <!--
-                        <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
-                                <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.order_has_time_limited">
-                                    <i></i>
-                                </label>
-                            </div>
-                        </div>-->
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
+                                    <div class="col-xs-12 col-sm-9 col-md-10">
+                                        <label class="i-switch m-t-xs m-r">
+                                            <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.order_has_time_limited">
+                                            <i></i>
+                                        </label>
+                                    </div>
+                                </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid i-switch m-t-xs m-r" v-model="localdata.form.has_discount"><i></i>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid i-switch m-t-xs m-r" v-model="localdata.form.has_discount">
+                                    <i></i>
                                 </label>
                                 <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
                                     <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
                                 </a>
                                 <div v-if="discount_caculator" class="ng-scope">
                                     <div class="input-group">
-                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5"> <span class="input-group-btn"><a class="btn btn-info" @click="cacu_discount_amount()"><i class="icon-calculator"></i> 计算</a></span></div>
+                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-info" @click="cacu_discount_amount()">
+                                                <i class="icon-calculator"></i> 计算</a>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_discount"><span class="input-group-addon"><i class="fa fa-minus"></i></span>
-                                    <input type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">元</span></div>
+                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_discount">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-minus"></i>
+                                    </span>
+                                    <input type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control ng-pristine ng-valid ng-touched">
+                                    <span class="input-group-addon">元</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid " v-model="localdata.form.has_present"><i></i></label>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present"><span class="input-group-addon"><i class="fa fa-plus"></i></span>
-                                    <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched"> <span class="input-group-addon">次</span></div>
+                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid " v-model="localdata.form.has_present">
+                                    <i></i>
+                                </label>
+                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched">
+                                    <span class="input-group-addon">次</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,7 +143,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ Number(this.localdata.form.origin_amount) - Number(this.localdata.form.discount_amount)}}</span>
+                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.order_amount }}</span>
                                     <small>元</small>
                                 </p>
                             </div>
@@ -172,7 +190,7 @@ export default {
                 'class_id': '',
                 'course_id': '',
                 'origin_times': 0,
-                'refund_status':0, 
+                'refund_status': 0,
                 'back_amount': 0,
                 'unit_price': 0,
                 'origin_amount': 0,
@@ -188,8 +206,8 @@ export default {
                 'pay_status': 0,
                 'student_id': '',
                 'order_no': '',
-                'order_type': 1, 
-                'body': '' 
+                'order_type': 1,
+                'body': ''
             }
         }
         return {
@@ -241,12 +259,17 @@ export default {
             this.cacu_order_amount()
         },
         cacu_order_amount() {
+            if (!this.has_discount) {
+                this.localdata.form.discount_amount = 0
+            }
             this.localdata.form.origin_amount = this.localdata.form.origin_times * this.localdata.form.unit_price
             let origin_times = Number(this.localdata.form.origin_times)
             if (origin_times != 0) {
                 this.localdata.form.c_unit_price = (this.localdata.form.origin_amount - this.localdata.form.discount_amount) / origin_times
             }
+
             this.localdata.form.order_amount = this.localdata.form.origin_amount - this.localdata.form.discount_amount
+
             this.localdata.form.unpay_amount = this.localdata.form.order_amount
         },
         switchPage(page) {
