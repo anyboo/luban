@@ -70,16 +70,16 @@
             cursor: pointer;
 
         }
-       div.menu:hover {
+       .menu:hover {
             background: #33485c;
         }
-         div.menu img{
+         .menu img{
             width: 25px;
             height: 25px;
             border-radius: 50%;
             
         }
-         div.menu b{
+        .menu b{
             display: inline-block;
             background: rgb(42,59,76);
             font-weight: 900;
@@ -94,10 +94,10 @@
            margin:0;
               color: white
         }
-         div.menu:hover b{
+         .menu:hover b{
              background: #33485c;
         }
-         div.menu:hover .fa-sort-desc{
+         .menu:hover .fa-sort-desc{
               background: #33485c;
            ;
         }
@@ -120,14 +120,14 @@
         .displayNone{
             display:none;
         }
-         div.menu li{
+         .menu li{
              width:100%;
                 height:18px;
                 padding:10px;
                 font-size:13px;
                 color: #777777;
         }
-       div.menu li:hover{
+       .menu li:hover{
                 background:#f7f7f8;
         }
     

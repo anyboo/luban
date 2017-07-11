@@ -25,11 +25,11 @@
      padding: 0px;
  }
  
- .contaierb {
+ .contaierUnfold {
      grid-template-columns: 180px auto;
  }
  
- .contaierc {
+ .containerRetraction {
      grid-template-columns: 50px auto;
  }
  
@@ -37,7 +37,7 @@
      background: #33485c;
  }
  
- .item1 {
+ .lbSdebar {
      grid-row: 1/3;
  }
  
@@ -45,24 +45,24 @@
      height: 100px;
  }
  
- .container .item3 {
+ .container .lbBody {
      background: rgb(240, 242, 245);
      padding: 15px;
  }
  
- .item3_contaier {
+ .lbBody_container {
      width: 100%;
      height: 100%;
      background: pink;
  }
  
- .container .item4 {
+ .container .lbFooter {
      grid-column: 1/3;
      background: #2a3b4c;
      box-sizing: border-box;
  }
  
- .container .item4 .copyright {
+ .container .lbFooter .copyright {
      width: 100%;
      height: 100%;
      text-align: right;

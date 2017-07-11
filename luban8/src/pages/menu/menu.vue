@@ -14,9 +14,6 @@
     </li>
 </ul>
 </template>
-<style>
-
-</style>
 <script>
 export default{
     name:'menu',

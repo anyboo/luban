@@ -1,5 +1,5 @@
 <template>
-<div class="item4">
+<div class="lbFooter">
     <div class="copyright">2017 © bullstech</div>
 </div>
 </template>

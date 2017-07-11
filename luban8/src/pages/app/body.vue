@@ -1,6 +1,6 @@
 <template>
-<div class="item3">
-            <div class="item3_contaier">
+<div class="lbBody">
+            <div class="lbBody_container">
             </div>
         </div>
 </template>
