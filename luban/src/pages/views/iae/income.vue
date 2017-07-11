@@ -18,10 +18,10 @@
                                 <div class="input-group">
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                     <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                             <div id="fct-bills" style="display:none;">
@@ -57,7 +57,7 @@
                                 <template scope="scope">{{scope.row.note}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="经办人">
-                                <template scope="scope">陈佳木</template>
+                                <template scope="scope">{{getLookUp(scope.row.employee, 'name')}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="对账状态">
                                 <template scope="scope">
@@ -67,7 +67,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <a  v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default"  @click="handleCommand">核对</a>
+                                    <a v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default" @click="handleCommand">核对</a>
                                     <span v-if="scope.row.check_status == '1'" class="info bg-success ng-scope">已核对</span>
                                 </template>
                             </el-table-column>
@@ -116,13 +116,19 @@ export default {
             }, {
                 'value': '1',
                 'text': '已对账'
-            }, ],
+            },],
             'lookup': {
                 'localField': 'student_id',
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
-            }
+            },
+            'teacherlookup': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
 
         }
         return {
@@ -183,6 +189,11 @@ export default {
             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.teacherlookup,
                 'type': 'lookup'
             })
 
