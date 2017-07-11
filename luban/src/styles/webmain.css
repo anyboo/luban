@@ -1,4 +1,4 @@
-.icon-spin {
+    .icon-spin {
     display: inline-block;
     -moz-animation: spin 2s infinite linear;
     -o-animation: spin 2s infinite linear;
@@ -10893,8 +10893,6 @@ ul.chats li.out .message {
     margin: 0 55px 0 0;
 }
 
-
-
 .form-horizontal .form-group {
     margin-right: -15px;
     margin-left: -15px;
@@ -11292,12 +11290,14 @@ ul.chats li.out .message {
 .bg-success .lter {
     background-color: #51c162;
 }
+
 .alert {
-     padding: 0px !important; 
+    padding: 0px !important;
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
 }
+
 .el-table__empty-block {
     position: relative;
     min-height: 60px;
@@ -11305,61 +11305,75 @@ ul.chats li.out .message {
     width: 100%;
     height: 0!important;
 }
+
 .wrapper-lg {
     padding: 30px;
 }
+
 .bg-white-opacity {
     background-color: rgba(255, 255, 255, 0.5);
 }
+
 .bg-white {
     color: #58666e;
     background-color: #fff;
 }
+
 .el-table--fit {
     border-right: 0;
     margin-top: 12px;
 }
-.m-t-t{
-    margin-top: 0px !important;
 
+.m-t-t {
+    margin-top: 0px !important;
 }
+
 .padder {
     padding-right: 15px;
     padding-left: 15px;
 }
+
 .el-input__icon+.el-input__inner {
     padding-right: 35px;
 }
-.meida{
-    margin-left: 30px;
 
+.meida {
+    margin-left: 30px;
 }
+
 .b-a {
     border: 1px solid #dee5e7;
 }
+
 .wrapper {
     padding: 15px;
 }
+
 a.link {
     color: #4d90fe;
 }
+
 a {
     color: #363f44;
     text-decoration: none;
     cursor: pointer;
 }
+
 ul.list-unstyled li>label {
     display: inline-block;
     width: 90px;
     color: #999;
     text-align: right;
 }
+
 label {
     font-weight: normal;
 }
+
 .text-2x {
     font-size: 2em;
 }
+
 .m-b {
     margin-bottom: 15px;
 }
@@ -11367,12 +11381,12 @@ label {
 .col-md-3 {
     width: 25%;
 }
+
 .list-student .list-student-item {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 2px;
 }
-
 
 .r-2x {
     border-radius: 2px;
@@ -11390,18 +11404,22 @@ label {
     color: #58666e;
     background-color: #fff;
 }
+
 .list-student .list-student-item>.face {
     position: relative;
     width: 80px;
     margin: 0 auto;
     cursor: pointer;
 }
+
 .list-student .list-student-item>div {
     text-align: center;
 }
+
 .list-student .list-student-item>div {
     text-align: center;
 }
+
 .list-student .list-student-item>div {
     text-align: center;
 }
@@ -11409,23 +11427,30 @@ label {
 .m-t {
     margin-top: 15px;
 }
-.panel-default>.panel-heading, .panel-default>.panel-footer {
+
+.panel-default>.panel-heading,
+.panel-default>.panel-footer {
     border-color: #edf1f2;
 }
+
 .panel-body {
     padding: 15px;
 }
+
 .list-unstyled {
     padding-left: 0;
     list-style: none;
 }
+
 .progress {
     background-color: #edf1f2;
 }
+
 .progress .progress-bar {
     color: #000;
     text-align: center;
 }
+
 .m-l {
     margin-left: 15px;
 }
@@ -11435,7 +11460,8 @@ label {
     background-color: #35aa47;
 }
 
-.badge, .label {
+.badge,
+.label {
     font-weight: bold;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
@@ -11444,12 +11470,14 @@ label {
     margin-left: 9% !important;
     margin-top: 10px;
 }
+
 .panel > .panel-heading {
     padding: 7px 15px;
     border-top-right-radius: 0 !important;
     border-top-left-radius: 0 !important;
     border-color: #e5e5e5 !important;
 }
+
 .bg-gray {
     background-color: #cfcfcf;
     color: #fff;
@@ -11458,11 +11486,13 @@ label {
 .tree-node-content {
     margin: 5px;
 }
+
 .tree-node {
     border: 1px solid #dae2ea;
     background: #f8faff;
     color: #7c9eb2;
 }
+
 .angular-ui-tree-handle {
     cursor: move;
     text-decoration: none;
@@ -11473,26 +11503,240 @@ label {
     min-height: 20px;
     line-height: 20px;
 }
-.angular-ui-tree-node, .angular-ui-tree-placeholder {
+
+.angular-ui-tree-node,
+.angular-ui-tree-placeholder {
     position: relative;
     margin: 0;
     padding: 0;
     min-height: 20px;
     line-height: 20px;
 }
+
 .angular-ui-tree-nodes .angular-ui-tree-nodes {
     padding-left: 20px;
 }
+
 .angular-ui-tree-nodes {
     position: relative;
     margin: 0;
     padding: 0;
     list-style: none;
 }
+
 .panel-footer {
     padding: 10px 15px;
-     background-color: #fff  !important; 
+    background-color: #fff !important;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
+}
+
+.step1 .bg-success::after {
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    z-index: 2;
+    display: block;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-top: 20px solid rgba(0, 0, 0, 0);
+    border-bottom: 20px solid rgba(0, 0, 0, 0);
+    border-left: 10px solid rgb(81, 193, 98);
+}
+
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+.step2 .bg-success::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    display: block;
+    width: 0px;
+    height: 0px;
+    content: " ";
+    border-top: 20px solid rgba(0, 0, 0, 0);
+    border-bottom: 20px solid rgba(0, 0, 0, 0);
+    border-left: 10px solid rgb(246, 248, 248);
+}
+
+@media (min-width: 992px)
+
+.col-md-10 {
+    width: 83.3333%;
+}
+.m-r {
+    margin-right: 15px;
+}
+
+.m-t-xs {
+    margin-top: 5px;
+}
+
+.i-switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    cursor: pointer;
+    background-color: rgb(53, 170, 71);
+    margin: 0px;
+    border-radius: 30px;
+}
+
+label {
+    font-weight: normal;
+}
+.i-switch input {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin: 4px 0px 0px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+button, input, optgroup, option, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0px;
+}
+.i-switch i::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    background-color: rgb(255, 255, 255);
+    content: "";
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    border-radius: 30px;
+    transition: all 0.2s;
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
+
+.i-switch i::after {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    width: 18px;
+    background-color: rgb(255, 255, 255);
+    content: "";
+    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
+    border-radius: 50%;
+    transition: margin-left 0.3s;
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
+.m-r {
+    margin-right: 15px;
+}
+
+.m-t-xs {
+    margin-top: 5px;
+}
+
+.i-switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+    cursor: pointer;
+    background-color: rgb(53, 170, 71);
+    margin: 0px;
+    border-radius: 30px;
+}
+
+label {
+    font-weight: normal;
+}
+.i-switch input {
+    position: absolute;
+    opacity: 0;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin: 4px 0px 0px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+button, input, optgroup, option, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    outline: 0px;
+}
+.i-switch input:checked + i::before {
+    top: 50%;
+    right: 5px;
+    bottom: 50%;
+    left: 50%;
+    border-width: 0px;
+    border-radius: 5px;
+}
+
+.i-switch i::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    background-color: rgb(255, 255, 255);
+    content: "";
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    border-radius: 30px;
+    transition: all 0.2s;
+}
+
+::before, ::after {
+    box-sizing: border-box;
+}
+.i-switch input:checked + i::after {
+    margin-left: 16px;
+}
+<style>…</style>
+.i-switch i::after {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    width: 18px;
+    background-color: rgb(255, 255, 255);
+    content: "";
+    box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 3px;
+    border-radius: 50%;
+    transition: margin-left 0.3s;
+}
+<style>…</style>
+::before, ::after {
+    box-sizing: border-box;
 }

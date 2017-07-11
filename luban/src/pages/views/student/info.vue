@@ -160,8 +160,10 @@ export default {
         }
     },
     mounted() {
+        console.log(this.$store.state.envs.currStudent)
         if (this.$store.state.envs.currStudent) {
             this.uid = this.$store.state.envs.currStudent._id
+            this.handleSearch()
         }
     },
     computed: {
@@ -203,24 +205,26 @@ export default {
 
         },
         handleSearch() {
-            let filterObj = []
-            let student_id = this.uid
-            if (student_id.length > 0) {
+            if (this.uid&&this.uid.length > 0) {
+                let filterObj = []
+                let student_id = this.uid
+                if (student_id.length > 0) {
+                    filterObj.push({
+                        'key': '_id',
+                        'value': student_id,
+                        'type': ''
+                    })
+                }
                 filterObj.push({
-                    'key': '_id',
-                    'value': student_id,
-                    'type': ''
+                    'key': 'lookup',
+                    'value': this.localdata.lookup,
+                    'type': 'lookup'
+                })
+                let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                this.handleGetFilterTable(filterTxt).then(() => {
+                    this.student = this.$store.state.models.models.student.data[0]
                 })
             }
-            filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.lookup,
-                'type': 'lookup'
-            })
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt).then(() => {
-                this.student = this.$store.state.models.models.student.data[0]
-            })
         },
     }
 }

@@ -33,14 +33,14 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">-30.00</span>
+                                    <span class="badge bg-danger ng-binding">-{{scope.row.amount}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="备注">
-                                <template scope="scope">李哥订单退款,订单号:OB1161217170444033750849</template>
+                                <template scope="scope">{{scope.row.note}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="经办人">
-                                <template scope="scope">陈佳木</template>
+                                <template scope="scope">{{getLookUp(scope.row.employee, 'name')}}</template>
                             </el-table-column>
                         </el-table>
                         <div class="grid-data-result"></div>
@@ -77,7 +77,13 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
-            }]
+            }],
+            'teacherlookup': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
         }
         return {
             localdata,
@@ -117,6 +123,12 @@ export default {
                     'type': ''
                 })
             }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.teacherlookup,
+                'type': 'lookup'
+            })
+
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
