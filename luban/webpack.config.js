@@ -9,8 +9,9 @@ module.exports = (options = {}) => ({
         vendor: './src/index.js'
     },
     output: {
-        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        filename: options.dev ? 'bundle.js' : 'bundle.js?[chunkhash]',
+        chunkFilename: '[id].js?[chunkhash]',
     },
     externals: [
         'vue',
