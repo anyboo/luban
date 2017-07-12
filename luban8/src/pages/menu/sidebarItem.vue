@@ -1,31 +1,18 @@
 <template>
-    <ul class='lbSdebarUlStyle'>
-            <li>
-                <i class="fa fa-users"></i>
-                <span>学员</span>
-                <lb-menu class="lbSdebarMenu lbSdebarMenuF"> </lb-menu>
-            </li>
-            <li>
-                <i class="fa fa-book"></i>
-                <span>课程</span>
-                <lb-menu class="lbSdebarMenu  lbSdebarMenuF"> </lb-menu>
-            </li>
-            <li>
-                <i class="fa fa-money"></i>
-                <span>学费</span>
-                <lb-menu class="lbSdebarMenu"> </lb-menu>
-            </li>
-            <li>
-                <i class="fa fa-tachometer"></i>
-                <span>收支</span>
-                <lb-menu class="lbSdebarMenu"> </lb-menu>
-            </li>
-            <li>
-                <i class="fa fa-cog"></i>
-                <span>设置</span>
-                <lb-menu class="lbSdebarMenu"> </lb-menu>
-            </li>
-        </ul>
+    <lb-sidebarMenu class='lbSdebarUlStyle'>
+            <template v-for='menuItem of menuStore'>
+                <lb-sidebarMenuItem  css-style="lbSdebarMenu" v-if='menuItem.menuShow!=0' :to="menuItem.to" :menu-name="menuItem.menuName" :menu-title="menuItem.menuTitle" :menu-icon="menuItem.menuIcon">
+                    <template v-if="menuItem.menu">
+                        <lb-sidebarMenu navlevel="1" collapse="true">
+                                    <template v-for="menuItem1 of menuItem.menu">
+                                         <lb-sidebarMenuItem  css-style='lbSdebarMenuItem' v-if="menuItem1.menuShow!=0" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
+                                        </lb-sidebarMenuItem>    
+                                    </template>
+                        </lb-sidebarMenu>
+                    </template>
+                </lb-sidebarMenuItem>
+            </template>
+        </lb-sidebarMenu>
 </template>
 <style>
 .lbSdebarUlStyle {
@@ -33,56 +20,37 @@
     padding: 0px;
     margin: 0px;
 }
-.lbSdebarUlStyle li {
+.lbSdebarUlStyle a {
+    display:inline-block;
     width: 100%;
     padding-top: 12px;
     color: white;
     border-bottom: 1px solid #374d63;
     cursor: pointer;
 }
-.lbSdebarUlStyle li:hover {
-    background: #e74c3c;
-    transition: 0.3s all ease-in-out;
-}
-.lbSdebarUlStyle li i {
+.lbSdebarUlStyle a i {
     margin-left: 15px;
 }
-.lbSdebarUlStyle li span {
+.lbSdebarUlStyle a span {
     display: inline-block;
     margin-left: 10px;
     padding-bottom: 12px;
 }
-.lbSdebarMenu {
-    padding: 0;
-    margin: 0;
-    background: #2a3b4c;
-}
-.lbSdebarMenuT {
-    display: block;
-}
-.lbSdebarMenuF {
-    display: none;
-}
-.lbSdebarMenu li {
-    padding-bottom: 12px;
-}
-.lbSdebarMenu li i {
-    margin-left: 45px;
-}
-.lbSdebarMenu li span {
-    padding: 1.5px 0;
-}
 </style>
 <script>
-import menu from '../menu/menu.vue'
+import menuStore from '~/stores/menu'
+import sidebarMenu from './sidebarMenu.vue'
+import sidebarMenuItem from './sidebarMenuItem.vue'
 export default {
-    name: 'mensidebarItem',
+    name: 'sidebarItem',
     data() {
         return {
+            menuStore,
         }
     },
     components: {
-        'lb-menu': menu,
+        'lb-sidebarMenu': sidebarMenu,
+        'lb-sidebarMenuItem': sidebarMenuItem
     },
     methods: {
     }
