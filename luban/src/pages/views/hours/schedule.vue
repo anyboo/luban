@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-3">
-                            <lb-date-picker v-model="localdata.form.daterange" type="date" @change="handleSearch"></lb-date-picker>
+                            <el-date-picker v-model="localdata.form.daterange" type="date" @change="handleSearch"></el-date-picker>
                         </div>
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
@@ -129,8 +129,8 @@
                     </div>
                     <div class="panlb-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>

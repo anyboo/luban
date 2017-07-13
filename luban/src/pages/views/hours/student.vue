@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
@@ -60,49 +60,49 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTableData" stripe>
-                            <lb-table-column prop="data" label="学员">
+                        <el-table :data="getTableData" stripe>
+                            <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <a class="link ng-binding" ng-click="params.os_id=item.os_id">李达康</a>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="上课时间">
+                            </el-table-column>
+                            <el-table-column prop="data" label="上课时间">
                                 <template scope="scope">2017-05-12 11:00</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="时长">
+                            </el-table-column>
+                            <el-table-column prop="data" label="时长">
                                 <template scope="scope">
                                     <span class="badge bg-success ng-binding">1.00小时</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="类型">
+                            </el-table-column>
+                            <el-table-column prop="data" label="类型">
                                 <template scope="scope">1对1</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="班级/课程">
+                            </el-table-column>
+                            <el-table-column prop="data" label="班级/课程">
                                 <template scope="scope">
                                     <span class="label bg-info ng-binding">古典吉他初级</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="课程金额">
+                            </el-table-column>
+                            <el-table-column prop="data" label="课程金额">
                                 <template scope="scope">
                                     <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="授课老师">
+                            </el-table-column>
+                            <el-table-column prop="data" label="授课老师">
                                 <template scope="scope">陈佳木</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="登记时间">
+                            </el-table-column>
+                            <el-table-column prop="data" label="登记时间">
                                 <template scope="scope">2017-05-12 09:06</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="登记人">
+                            </el-table-column>
+                            <el-table-column prop="data" label="登记人">
                                 <template scope="scope">陈佳木</template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>

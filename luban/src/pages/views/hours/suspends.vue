@@ -25,32 +25,32 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <lb-table :data="getTableData" stripe>
-                    <lb-table-column prop="data" label="操作">
+                <el-table :data="getTableData" stripe>
+                    <el-table-column prop="data" label="操作">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="停课学员">
+                    </el-table-column>
+                    <el-table-column prop="data" label="停课学员">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="停课时间">
+                    </el-table-column>
+                    <el-table-column prop="data" label="停课时间">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="复课时间">
+                    </el-table-column>
+                    <el-table-column prop="data" label="复课时间">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="停课课程">
+                    </el-table-column>
+                    <el-table-column prop="data" label="停课课程">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="停课原因">
+                    </el-table-column>
+                    <el-table-column prop="data" label="停课原因">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="停课状态">
+                    </el-table-column>
+                    <el-table-column prop="data" label="停课状态">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                    <lb-table-column prop="data" label="登记时间">
+                    </el-table-column>
+                    <el-table-column prop="data" label="登记时间">
                         <template scope="scope"></template>
-                    </lb-table-column>
-                </lb-table>
+                    </el-table-column>
+                </el-table>
                 <div class="grid-data-result">
                     <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
                         <i class="fa fa-frown-o"></i>无相关数据!

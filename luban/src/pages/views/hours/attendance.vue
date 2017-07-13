@@ -7,7 +7,7 @@
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
@@ -26,43 +26,43 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <lb-table :data="getTableData" stripe>
-                            <lb-table-column prop="data" label="学员">
+                        <el-table :data="getTableData" stripe>
+                            <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
                                 <i class="fa fa-male"></i>
                             </span>李达康
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="课程/班级">
+                            </el-table-column>
+                            <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">古典吉他初级</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="上课老师">
+                            </el-table-column>
+                            <el-table-column prop="data" label="上课老师">
                                 <template scope="scope">陈佳木</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="考勤时间">
+                            </el-table-column>
+                            <el-table-column prop="data" label="考勤时间">
                                 <template scope="scope">05-12 11:00</template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="出勤状态">
+                            </el-table-column>
+                            <el-table-column prop="data" label="出勤状态">
                                 <template scope="scope">
                                     <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="考勤方式">
+                            </el-table-column>
+                            <el-table-column prop="data" label="考勤方式">
                                 <template scope="scope">
                                     <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
                                 </template>
-                            </lb-table-column>
-                            <lb-table-column prop="data" label="登记时间">
+                            </el-table-column>
+                            <el-table-column prop="data" label="登记时间">
                                 <template scope="scope">05-12 09:06</template>
-                            </lb-table-column>
-                        </lb-table>
+                            </el-table-column>
+                        </el-table>
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
-                            <lb-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </lb-pagination>
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
                         </div>
                     </div>
                 </div>
