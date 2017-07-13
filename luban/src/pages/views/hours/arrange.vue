@@ -63,9 +63,17 @@ export default {
             aspectRatio: 1.8,
             scrollTime: '00:00',
             header: {
-                left: 'today prev,next',
+                left: 'arrange today prev,next',
                 center: 'title',
-                right: 'timelineDay,timelineWeek,timelineMonth,basicWeek,agendaWeek,listWeek'
+                right: 'timelineDay,timelineWeek,timelineMonth,listWeek'
+            },
+            customButtons: {
+                arrange: {
+                    text: '添加排课',
+                    click: function () {
+                       
+                    }
+                }
             },
             defaultView: 'timelineDay',
             views: {
