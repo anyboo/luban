@@ -63,9 +63,17 @@ export default {
             aspectRatio: 1.8,
             scrollTime: '00:00',
             header: {
-                left: 'tody today prev,next',
+                left: 'arrange today prev,next',
                 center: 'title',
-                right: 'timelineDay,timelineWeek,timelineMonth,basicWeek,agendaWeek,listWeek'
+                right: 'timelineDay,timelineWeek,timelineMonth,listWeek'
+            },
+            customButtons: {
+                arrange: {
+                    text: '添加排课',
+                    click: function() {
+                        vm.handleShowDialog('lb-arrangeedit')
+                    }
+                }
             },
             defaultView: 'timelineDay',
             views: {
@@ -77,8 +85,8 @@ export default {
             navLinks: true,
             resourceAreaWidth: '20%',
             resourceLabelText: '教室',
-            resources: function (callback) {
-                vm.getTableApidata('sclasses').then(function (obj) {
+            resources: function(callback) {
+                vm.getTableApidata('sclasses').then(function(obj) {
                     let res = []
                     for (var item of obj.data.data) {
                         let resitem = {}
@@ -89,13 +97,37 @@ export default {
                     callback(res)
                 })
             },
-            events: [
-                { id: '1', resourceId: '59643edb3c6f25461ae7f289', start: '2017-05-07T02:00:00', end: '2017-05-07T07:00:00', title: 'event 1' },
-                { id: '2', resourceId: 'c', start: '2017-05-07T05:00:00', end: '2017-05-07T22:00:00', title: 'event 2' },
-                { id: '3', resourceId: 'd', start: '2017-05-06', end: '2017-05-08', title: 'event 3' },
-                { id: '4', resourceId: 'e', start: '2017-05-07T03:00:00', end: '2017-05-07T08:00:00', title: 'event 4' },
-                { id: '5', resourceId: 'f', start: '2017-05-07T00:30:00', end: '2017-05-07T02:30:00', title: 'event 5' }
-            ]
+            events: [{
+                id: '1',
+                resourceId: '59643edb3c6f25461ae7f289',
+                start: '2017-05-07T02:00:00',
+                end: '2017-05-07T07:00:00',
+                title: 'event 1'
+            }, {
+                id: '2',
+                resourceId: 'c',
+                start: '2017-05-07T05:00:00',
+                end: '2017-05-07T22:00:00',
+                title: 'event 2'
+            }, {
+                id: '3',
+                resourceId: 'd',
+                start: '2017-05-06',
+                end: '2017-05-08',
+                title: 'event 3'
+            }, {
+                id: '4',
+                resourceId: 'e',
+                start: '2017-05-07T03:00:00',
+                end: '2017-05-07T08:00:00',
+                title: 'event 4'
+            }, {
+                id: '5',
+                resourceId: 'f',
+                start: '2017-05-07T00:30:00',
+                end: '2017-05-07T02:30:00',
+                title: 'event 5'
+            }]
         })
 
 
@@ -139,7 +171,7 @@ export default {
             let start = this.getDatetimeStartOf(duration)
             const end = this.getDatetimeStartOf('day', true)
             this.localdata.form.daterange = [start, end]
-            //this.handleSearch()
+                //this.handleSearch()
         },
         handleSearch() {
             //let filterObj = []

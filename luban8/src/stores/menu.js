@@ -19,7 +19,7 @@ export default [{
         to: '/student/list1',
         menuIcon: 'fa fa-user',
         menuShow: 0,
-    },{
+    }, {
         menuTitle: '已结课学员',
         to: '/student/list2',
         menuIcon: 'fa-address-book-o fa',
@@ -27,7 +27,7 @@ export default [{
     }, {
         menuTitle: '咨询管理',
         to: '/student/list0',
-        menuIcon: 'glyphicon glyphicon-list',
+        menuIcon: 'fa fa-address-card-o',
     }, {
         menuTitle: '流失名单',
         to: '/student/lost',
@@ -164,7 +164,7 @@ export default [{
         menuTitle: '个人信息',
         to: '/system/personal_information',
         menuIcon: 'fa-address-book-o fa',
-    },{
+    }, {
         menuTitle: '角色权限',
         to: '/system/roles',
         menuIcon: 'fa fa-unlock',
@@ -191,4 +191,4 @@ export default [{
         menuIcon: ' fa fa-th',
         menuShow: 0,
     }]
-},]
+}, ]
