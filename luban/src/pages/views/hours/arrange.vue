@@ -63,7 +63,7 @@ export default {
             aspectRatio: 1.8,
             scrollTime: '00:00',
             header: {
-                left: 'today prev,next',
+                left: 'tody today prev,next',
                 center: 'title',
                 right: 'timelineDay,timelineWeek,timelineMonth,basicWeek,agendaWeek,listWeek'
             },
