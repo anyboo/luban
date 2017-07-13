@@ -20,7 +20,7 @@ export default [{
         menuIcon: 'fa fa-user',
         menuShow: 0,
     },{
-        menuTitle: '已结课学员',
+        menuTitle: '已结课学员', 
         to: '/student/list2',
         menuIcon: 'fa-address-book-o fa',
         menuShow: 0,

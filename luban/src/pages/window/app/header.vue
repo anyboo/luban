@@ -3,7 +3,7 @@
         <div class=" brand">
             <img src="/assets/images/logo.png">
             <a href="#">
-                <span class="segoe">Luban</span>-
+                <span class="segoe">Lubadn</span>-
                 <small>与众不同的
                     <span class="segoe">教育平台</span>
                 </small>
