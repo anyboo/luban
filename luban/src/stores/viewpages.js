@@ -26,6 +26,15 @@ import iaeflow from '~/pages/views/iae/flow.vue'
 import iaeincome from '~/pages/views/iae/income.vue'
 import iaeexpenses from '~/pages/views/iae/expenses.vue'
 
+import hoursarrange from '~/pages/views/hours/arrange.vue'
+import hourssuspends from '~/pages/views/hours/suspends.vue'
+import hoursleaves from '~/pages/views/hours/leaves.vue'
+import hoursabsences from '~/pages/views/hours/absences.vue'
+import hourswarning from '~/pages/views/hours/warning.vue'
+import hoursstudent from '~/pages/views/hours/student.vue'
+import hoursteacher from '~/pages/views/hours/teacher.vue'
+import hoursattendance from '~/pages/views/hours/attendance.vue'
+import hoursschedule from '~/pages/views/hours/schedule.vue'
 
 var pages = {}
 pages['lb-studentadd'] = studentadd
@@ -43,7 +52,6 @@ pages['lb-systememployee'] = systememployee
 pages['lb-systemdict'] = systemdict
 pages['lb-systemorg'] = systemorg 
 
-
 pages['lb-lessonsclasses'] = lessonsclasses
 pages['lb-lessonmanage'] = lessonmanage
 pages['lb-lessonclasses'] = lessonclasses
@@ -56,5 +64,15 @@ pages['lb-feelist4'] = feelist4
 pages['lb-iaeflow'] = iaeflow
 pages['lb-iaeincome'] = iaeincome 
 pages['lb-iaeexpenses'] = iaeexpenses 
+
+pages['lb-hoursarrange'] = hoursarrange 
+pages['lb-hourssuspends'] = hourssuspends
+pages['lb-hoursleaves'] = hoursleaves
+pages['lb-hoursabsences'] = hoursabsences
+pages['lb-hourswarning'] = hourswarning
+pages['lb-hoursstudent'] = hoursstudent 
+pages['lb-hoursteacher'] = hoursteacher
+pages['lb-hoursattendance'] = hoursattendance
+pages['lb-hoursschedule '] = hoursschedule     
 
 export default pages

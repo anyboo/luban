@@ -20,7 +20,7 @@ export default [{
         menuIcon: 'fa fa-user',
         menuShow: 0,
     },{
-        menuTitle: '已结课学员',
+        menuTitle: '已结课学员', 
         to: '/student/list2',
         menuIcon: 'fa-address-book-o fa',
         menuShow: 0,
@@ -85,15 +85,10 @@ export default [{
 }, {
     menuTitle: '课时',
     menuIcon: 'fa-battery',
-    menuShow: 0,
     menu: [{
-        menuTitle: '课程表',
+        menuTitle: '排课',
         to: '/hours/arrange',
         menuIcon: 'fa fa-file',
-    }, {
-        menuTitle: '排课',
-        to: '/hours/schedule',
-        menuIcon: 'fa fa-file-o',
     }, {
         menuTitle: '考勤',
         to: '/hours/attendance',
