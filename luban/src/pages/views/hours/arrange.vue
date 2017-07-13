@@ -63,7 +63,7 @@ export default {
             aspectRatio: 1.8,
             scrollTime: '00:00',
             header: {
-                left: 'arrange today prev,next',
+                left: 'arrange today gotoDate,prev,next',
                 center: 'title',
                 right: 'timelineDay,timelineWeek,timelineMonth,listWeek'
             },
