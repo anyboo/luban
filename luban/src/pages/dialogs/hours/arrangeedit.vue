@@ -23,16 +23,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">校区:
-                            </label>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="input-group w-sm">
-                                    <span style="position:relative;top:7px;"><label class="ng-pristine ng-untouched ng-valid ng-binding ng-scope">
-                                           总校
-                                        </label></span></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <span style="position:relative;top:16px;left:23px"> <label class=" ">任课老师：</label></span>
                             <span style="position:relative;top:15px;left:45px">廖小龙</span>
                         </div>
@@ -84,23 +74,23 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>上课日期:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <lb-date-picker v-model="localdata.form.daterange" type="daterange" placeholder="选择日期"></lb-date-picker>
+                                <el-date-picker v-model="localdata.form.daterange" type="daterange" placeholder="选择日期"></el-date-picker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>上课时间:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <lb-time-picker v-model="localdata.form.timerange" placeholder="选择时间" is-range>
-                                </lb-time-picker>
+                                <el-time-picker v-model="localdata.form.timerange" placeholder="选择时间" is-range>
+                                </el-time-picker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style="color: #fa846f;font-weight: 700;">*</span>上课教室:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <lb-select v-model="localdata.form.classes_id" filterable placeholder="请选择教室">
-                                    <lb-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
-                                    </lb-option>
-                                </lb-select>
+                                <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择教室">
+                                    <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
+                                    </el-option>
+                                </el-select>
                             </div>
                         </div>
                     </form>
@@ -162,9 +152,9 @@ export default {
         }
     },
     mounted() {
-        this.obj = this.$store.state.dialogs.dailogdata
-        console.log(this.obj)
-        this.localdata.form.classes_id = this.obj.class._id
+        //this.obj = this.$store.state.dialogs.dailogdata
+        //console.log(this.obj)
+        //this.localdata.form.classes_id = this.obj.class._id
         this.getTableApidata('classes')
     },
     computed: {
