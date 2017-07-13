@@ -1,4 +1,4 @@
-const apiUrl = 'http://www.bullstech.cn:9999/'
+const apiUrl = 'http://app.bullstech.cn:9999/'
 
 function getLoginUrl() {
     return apiUrl + 'login/'
