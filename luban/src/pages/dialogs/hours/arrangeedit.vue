@@ -4,7 +4,7 @@
             <div class="ng-scope">
                 <div class="modal-header">
                     <button type="button" @click="lbClosedialog($event)" class="close  "><span class="text-right" style="float:right">×</span> <span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i >编辑</i></h3></div>
+                    <h3 class="modal-title"><i >排课</i></h3></div>
                 <div class="modal-body">
                     <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
                         <div class="form-group">
@@ -16,15 +16,11 @@
                                 <div class="btn-group ng-scope">
                                     <span style="position:relative;top:9px;">
                                             <label class="ng-pristine ng-untouched ng-valid ng-binding ng-scope">
-                                           {{obj.class.class_name}}
+                                           高中一班
                                         </label>
                                        </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <span style="position:relative;top:16px;left:23px"> <label class=" ">任课老师：</label></span>
-                            <span style="position:relative;top:15px;left:45px">廖小龙</span>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label" style="position:relative;top;-23px;left:4px">上课时间：</label>

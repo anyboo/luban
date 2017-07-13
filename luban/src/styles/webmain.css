@@ -11724,7 +11724,7 @@ button, input, optgroup, option, select, textarea {
 .i-switch input:checked + i::after {
     margin-left: 16px;
 }
-<style>…</style>
+
 .i-switch i::after {
     position: absolute;
     top: 1px;
@@ -11736,7 +11736,13 @@ button, input, optgroup, option, select, textarea {
     border-radius: 50%;
     transition: margin-left 0.3s;
 }
-<style>…</style>
+
 ::before, ::after {
     box-sizing: border-box;
+}
+.form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 21px;
 }
