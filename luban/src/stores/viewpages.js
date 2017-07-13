@@ -26,6 +26,7 @@ import iaeflow from '~/pages/views/iae/flow.vue'
 import iaeincome from '~/pages/views/iae/income.vue'
 import iaeexpenses from '~/pages/views/iae/expenses.vue'
 
+import hoursarrange from '~/pages/views/hours/arrange.vue'
 
 var pages = {}
 pages['lb-studentadd'] = studentadd
@@ -56,5 +57,7 @@ pages['lb-feelist4'] = feelist4
 pages['lb-iaeflow'] = iaeflow
 pages['lb-iaeincome'] = iaeincome 
 pages['lb-iaeexpenses'] = iaeexpenses 
+
+pages['lb-hoursarrange'] = hoursarrange 
 
 export default pages

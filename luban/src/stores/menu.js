@@ -85,7 +85,6 @@ export default [{
 }, {
     menuTitle: '课时',
     menuIcon: 'fa-battery',
-    menuShow: 0,
     menu: [{
         menuTitle: '课程表',
         to: '/hours/arrange',
