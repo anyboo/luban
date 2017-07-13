@@ -6,6 +6,7 @@
 </template>
 <style>
 .lbSdebarHeader {
+  
     width: 100%;
     height: 26px;
     padding: 12px 0;
@@ -15,8 +16,9 @@
 .lbSdebarHeader img {
     width: 20px;
     height: 20px;
-    margin-left: 15px;
+    margin-left: 17px;
 }
+
 .logo-text {
     font-size: 18px;
     color: white;

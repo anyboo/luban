@@ -1,18 +1,20 @@
 <template>
-    <lb-sidebarMenu class='lbSdebarUlStyle'>
-            <template v-for='menuItem of menuStore'>
-                <lb-sidebarMenuItem  css-style="lbSdebarMenu" v-if='menuItem.menuShow!=0' :to="menuItem.to" :menu-name="menuItem.menuName" :menu-title="menuItem.menuTitle" :menu-icon="menuItem.menuIcon">
+    <div class='lbSdebarUlStyle'>
+        <lb-sidebarMenu>
+            <template v-for='menuItem of menu'>
+                <lb-sidebarMenuItem class="line1" @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem" >
                     <template v-if="menuItem.menu">
-                        <lb-sidebarMenu navlevel="1" collapse="true">
-                                    <template v-for="menuItem1 of menuItem.menu">
-                                         <lb-sidebarMenuItem  css-style='lbSdebarMenuItem' v-if="menuItem1.menuShow!=0" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
-                                        </lb-sidebarMenuItem>    
-                                    </template>
+                        <lb-sidebarMenu>
+                            <template v-for="menuItem1 of menuItem.menu">
+                                <lb-sidebarMenuItem class="line2" @menuchange='menuchange' v-if="menuItem1.menuShow!=0" :menu="menuItem1" >
+                                </lb-sidebarMenuItem>
+                            </template>
                         </lb-sidebarMenu>
                     </template>
                 </lb-sidebarMenuItem>
             </template>
         </lb-sidebarMenu>
+    </div>
 </template>
 <style>
 .lbSdebarUlStyle {
@@ -20,17 +22,20 @@
     padding: 0px;
     margin: 0px;
 }
+
 .lbSdebarUlStyle a {
-    display:inline-block;
+    display: inline-block;
     width: 100%;
     padding-top: 12px;
     color: white;
     border-bottom: 1px solid #374d63;
     cursor: pointer;
 }
+
 .lbSdebarUlStyle a i {
     margin-left: 15px;
 }
+
 .lbSdebarUlStyle a span {
     display: inline-block;
     margin-left: 10px;
@@ -45,14 +50,52 @@ export default {
     name: 'sidebarItem',
     data() {
         return {
-            menuStore,
+            menu: [],
         }
     },
     components: {
         'lb-sidebarMenu': sidebarMenu,
         'lb-sidebarMenuItem': sidebarMenuItem
     },
+    mounted() {
+        let index = 0
+        for (var item of menuStore) {
+            let menuitem = {}
+            Object.assign(menuitem,item)
+            menuitem.cssStyle = 'lbSdebarMenu'
+            menuitem.isActive = false
+            menuitem.index = ++index
+            if (menuitem.menu) {
+                for (var subitem of menuitem.menu) {
+                    subitem.cssStyle = 'lbSdebarMenuItem'
+                    subitem.isActive = false
+                    subitem.index = ++index
+                }
+            }
+            this.menu.push(menuitem)
+        }
+    },
     methods: {
+        menuchange(index) {
+            for (var item of this.menu) {
+                if (item.index == index) {
+                    item.isActive = !item.isActive
+                } else {
+                    let childSel = false
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.index == index){
+                                subitem.isActive = true
+                                childSel = true
+                            }else{
+                                 subitem.isActive = false
+                            }
+                        }
+                    }
+                    item.isActive = childSel
+                }
+            }
+        }
     }
 }
 </script>
