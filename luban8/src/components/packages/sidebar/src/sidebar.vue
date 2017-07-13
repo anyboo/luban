@@ -5,10 +5,10 @@
     </div>
 </template>
 <script>
-import sidebarHeader from '../menu/sidebarHeader.vue'
-import sidebarItem from '../menu/sidebarItem.vue'
+import sidebarHeader from './sidebarHeader.vue'
+import sidebarItem from './sidebarItem.vue'
 export default {
-    name: 'sidebar',
+    name: 'LbSidebar',
     data() {
         return {
             isToUl: false

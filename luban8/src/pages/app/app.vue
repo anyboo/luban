@@ -10,7 +10,7 @@
 import header from './header.vue'
 import body from './body.vue'
 import footer from './footer.vue'
-import sidebar from './sidebar.vue'
+
 export default{
     name:'app',
     data(){
@@ -22,7 +22,7 @@ export default{
         'lb-header':header,
         'lb-body':body,
         'lb-footer':footer,
-        'lb-sidebar':sidebar
+    
     },
     methods:{
         variety(){

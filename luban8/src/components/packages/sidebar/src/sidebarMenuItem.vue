@@ -1,7 +1,7 @@
 <template>
     <li :class="getMenuClass" >
         <a @click="handleClick">
-        <i class="fa " :class="menuIcon"></i>
+        <i class="fa" :class="menuIcon"></i>
         <span >{{menuTitle}}</span>
         </a>
         <slot></slot>
@@ -75,7 +75,6 @@ export default{
                 child.isActive=false
             })
             this.isActive = !isActives
-         
           }     
     }
 }
