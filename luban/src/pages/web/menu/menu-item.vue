@@ -5,7 +5,7 @@
                 <div class="icon-bg bg-orange" />
             </i>
             <span :class="submenu">{{ menuTitle }}</span>
-            <span v-if="menuName" class="fa arrow"></span>
+            <span v-if="submenu=='menu-title'" class="fa arrow"></span>
         </a>
         <slot></slot>
     </li>

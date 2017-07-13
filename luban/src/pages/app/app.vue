@@ -1,9 +1,5 @@
 <template>
     <div class="pace-done">
-        <p class="changemode">
-            <router-link to="/web">web模式</router-link>
-            <router-link to="/window">Window模式</router-link>
-        </p>
         <router-view></router-view>
     </div>
 </template>
