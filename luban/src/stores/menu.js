@@ -86,13 +86,9 @@ export default [{
     menuTitle: '课时',
     menuIcon: 'fa-battery',
     menu: [{
-        menuTitle: '课程表',
+        menuTitle: '排课',
         to: '/hours/arrange',
         menuIcon: 'fa fa-file',
-    }, {
-        menuTitle: '排课',
-        to: '/hours/schedule',
-        menuIcon: 'fa fa-file-o',
     }, {
         menuTitle: '考勤',
         to: '/hours/attendance',

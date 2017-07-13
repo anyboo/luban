@@ -82,7 +82,7 @@ const actions = {
             restfulapi.httpGetApi(tableName)
                 .then(response => {
                     commit(types.GET_API, { tableName, response })
-                    resolve()
+                    resolve(response)
                 })
                 .catch(function (response) {
                     if (response.status == 401) {

@@ -222,11 +222,13 @@ export default {
         },
         getTableApidata(table) {
             let vm = this
-            if (table) {
-                vm.$store.dispatch(types.GET_API, table).then(() => {
-
-                })
-            }
+            return new Promise((resolve) => {
+                if (table) {
+                    vm.$store.dispatch(types.GET_API, table).then((response) => {
+                        resolve(response)
+                    })
+                }
+            })
         },
         handleGetTable() {
             let vm = this
