@@ -20,7 +20,7 @@ module.exports = (options = {}) => ({
         'vue-router',
         'moment',
         'lodash',
-        'jquery',
+        'jquery'
     ],
     module: {
         rules: [{
