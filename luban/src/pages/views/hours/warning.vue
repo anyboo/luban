@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper">
         <div class="wrapper-xs ng-scope">
             <div ui-view class="ng-scope">
                 <div class="wrapperpanel panel-default bg-white ng-scope" page-controller="hours_warning_index">
