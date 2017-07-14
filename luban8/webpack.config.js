@@ -1,15 +1,28 @@
-var path = require('path');
+var path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const url = require('url')
+const publicPath = ''
 
-module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+module.exports = (options = {}) => ({
+    entry: {
+        vendor: './src/index.js'
     },
-     module: {
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: options.dev ? 'bundle.js' : 'bundle.js?[chunkhash]',
+        chunkFilename: '[id].js?[chunkhash]',
+    },
+    externals: [
+        'vue',
+        'vuex',
+        'vue-resource',
+        'vue-router',
+        'moment',
+        'lodash',
+        'jquery',
+    ],
+    module: {
         rules: [{
             test: /\.vue$/,
             use: ['vue-loader']
@@ -26,15 +39,13 @@ module.exports = {
                     attrs: ['img:src', 'link:href']
                 }
             }]
-        }, 
-        {
+        }, {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: 'css-loader'
             })
-        }, 
-        {
+        }, {
             test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
             exclude: /favicon\.png$/,
             use: [{
@@ -68,7 +79,9 @@ module.exports = {
                 }
             }
         },
-   
-    }
-}
-
+        historyApiFallback: {
+            index: url.parse(options.dev ? '/assets/' : publicPath).pathname
+        }
+    },
+    devtool: options.dev ? 'module-source-map' : '#source-map'
+})
