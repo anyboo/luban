@@ -57,6 +57,7 @@ export default {
                     this.$store.commit('user', data.account)
                     this.$router.push('/web')
                 } else {
+                    this.$store.commit('user', { name: '', tel: '', _id: '' })
                     this.$message({
                         message: '用户或密码错误！',
                         type: 'error'

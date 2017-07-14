@@ -5,9 +5,7 @@
         <div class="panel panel-default ng-scope" xo-rest="suspends" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="suspends">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-3 m-t">
-                    <a class="link ng-scope" ng-if="!show_time_filter" ng-click="show_filter()">
-                        <i class="glyphicon glyphicon-calendar"></i>按时间过滤
-                    </a>
+                    <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
                 </div>
                 <div class="col-xs-12 col-md-9 m-t">
                     <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
