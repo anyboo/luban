@@ -33,9 +33,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-default ng-isolate-scope" export="teacher_amount" export-params="params">
-                                <i class="glyphicon glyphicon-export"></i>按老师汇总导出
-                            </button>
                             <div id="fct-teacher_amount" style="display:none;">
                                 <form name="export_form_teacher_amount" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
@@ -47,9 +44,6 @@
                                     <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
                                 </form>
                             </div>
-                            <button class="btn btn-default ng-isolate-scope" export="teacher_hours" export-params="params">
-                                <i class="glyphicon glyphicon-export"></i>按课次导出
-                            </button>
                             <div id="fct-teacher_hours" style="display:none;">
                                 <form name="export_form_teacher_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">

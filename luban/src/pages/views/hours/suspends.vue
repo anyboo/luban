@@ -4,19 +4,19 @@
     <div ui-view class="ng-scope">
         <div class="panel panel-default ng-scope" xo-rest="suspends" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="suspends">
             <div class="row wrapper">
-                <div class="col-xs-12 col-md-6 m-t">
+                <div class="col-xs-12 col-md-3 m-t">
                     <a class="link ng-scope" ng-if="!show_time_filter" ng-click="show_filter()">
                         <i class="glyphicon glyphicon-calendar"></i>按时间过滤
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-6 m-t">
+                <div class="col-xs-12 col-md-9 m-t">
                     <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
                             <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="icon-user"></i>
+                                   <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                 </button>
                             </span>
                         </div>
