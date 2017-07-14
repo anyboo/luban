@@ -8,7 +8,7 @@ var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
 
-var dbstr = 'mongodb://localhost/luban'
+var dbstr = 'mongodb://localhost/lubandemo'
 
 function checkId(id) {
     let result = false
