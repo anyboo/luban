@@ -29,6 +29,6 @@ app.use(serve(path.join(__dirname, 'public')))
 app.use(compress())
 
 if (!module.parent) {
-    app.listen(9999)
-    console.log('listening on port 9999')
+    app.listen(8888)
+    console.log('listening on port 8888')
 }
