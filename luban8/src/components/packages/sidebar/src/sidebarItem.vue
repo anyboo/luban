@@ -2,11 +2,11 @@
     <div class='lbSdebarUlStyle'>
         <lb-sidebarMenu>
             <template v-for='menuItem of menu'>
-                <lb-sidebarMenuItem class="line1" @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem" >
+                <lb-sidebarMenuItem  @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem" >
                     <template v-if="menuItem.menu">
                         <lb-sidebarMenu>
                             <template v-for="menuItem1 of menuItem.menu">
-                                <lb-sidebarMenuItem class="line2" @menuchange='menuchange' v-if="menuItem1.menuShow!=0" :menu="menuItem1" >
+                                <lb-sidebarMenuItem  @menuchange='menuchange' v-if="menuItem1.menuShow!=0" :menu="menuItem1" >
                                 </lb-sidebarMenuItem>
                             </template>
                         </lb-sidebarMenu>

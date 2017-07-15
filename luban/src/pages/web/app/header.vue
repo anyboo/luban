@@ -26,7 +26,7 @@
                             <span class="hidden-xs">{{$store.state.system.name}}</span>&nbsp;
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu dropdown-user pull-right" v-if="hide" style="top:49px;">
+                        <ul class="dropdown-menu dropdown-user pull-right" v-show="hide" style="top:49px;">
                             <li @mouseout="menu=false" @mouseover="menu=true">
                                 <a @click="changeView('/system/personal_information')">
                                     <i class="fa fa-user" style="top:1px;"></i>个人资料</a>

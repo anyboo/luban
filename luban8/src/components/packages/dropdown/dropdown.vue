@@ -1,0 +1,62 @@
+<template>
+    <el-dropdown @command="handleCommand" menu-align="start">
+        <div>
+            <slot name="buttonslot"></slot>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+            <template v-for="item in dropMenuData">
+                <template v-if="getShowStatus(item)">
+                    <el-dropdown-item :command="getItemCommand(item)">
+                        <a :id="id">
+                            <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
+                        </a>
+                    </el-dropdown-item>
+                </template>
+            </template>
+        </el-dropdown-menu>
+    </el-dropdown>
+</template>
+<script>
+export default {
+    name: 'LbDropdown',
+    props: ['dropMenuData', 'id', 'menuData'],
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        getShowStatus(item) {
+            let result = true
+            if (item.menuctrl) {
+                if (_.isArray(item.menuvalue)) {
+                    result = item.menuvalue.indexOf(this.menuData[item.menuctrl])!=-1
+                } else {
+                    result = this.menuData[item.menuctrl] == item.menuvalue
+                }
+            }
+            return result
+        },
+        handleCommand(common) {
+            if (common.indexOf('u:') >= 0) {
+                let url = common.replace('u:', '')
+                this.handleShowDialog(url, this.menuData)
+            } else {
+                let action = common.replace('a:', '')
+                this.$emit('command', {
+                    'action': action,
+                    'data': this.menuData
+                })
+            }
+        },
+        getItemCommand(item) {
+            let result = 'u:' + item.url
+            if (item.action) {
+                result = 'a:' + item.action
+            }
+            return result
+        }
+    },
+    computed: {},
+}
+</script>
