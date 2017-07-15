@@ -57,7 +57,11 @@ a {
 
 .lbBody_lbcontainer {
     width: 100%;
-    overflow-y: hidden;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 15px;
+    background: #ffffff;
 }
 
 .lbcontainer .lbFooter {
