@@ -1,5 +1,4 @@
 import './style/index.css'
-import './style/css/font-awesome.min.css'
 import App from './pages/app/app.vue'
 import lbCom from './components/src'
 import stores from './stores'
