@@ -43,6 +43,7 @@ export default {
                     view = 'lb-' + to.replace(/\//g, '')
                 }
             }
+            console.log(this.$store.state.system.router)
             return view
         }
     },

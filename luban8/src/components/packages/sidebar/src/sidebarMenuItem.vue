@@ -85,7 +85,7 @@ export default {
         handleClick() {
             this.$emit('menuchange', this.menu.index)
             if (this.menu.to) {
-                this.$router.push(this.menu.to)
+                this.$store.commit('router',this.menu.to)
             }
         }
     }
