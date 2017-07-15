@@ -48,7 +48,7 @@
                                 </lb-dropdown>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="data" label="教室名称">
+                        <el-table-column prop="data" label="教室名称" class="modalClass-header">
                             <template scope="scope">{{ scope.row.class_name }}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="最大人数">
@@ -66,6 +66,32 @@
         </div>
     </div>
 </template>
+<style>
+.modal-header{
+       background: #1892d1;
+       border-radius: 5px 5px 0 0;
+       padding:9px 15px;
+     
+}
+.modal-header>.modal-title{
+    font-size: 1.17em;
+    
+    color:#ffffff;
+}
+.modal-body{
+    padding:5px;
+    height: 97px;
+}
+.modal-body .form-group{
+    margin-bottom: 5px;
+
+
+}
+.control-label{
+    font-weight: normal;
+    text-align :left;
+}
+</style>
 <script>
 export default {
     name: 'sclasses',
