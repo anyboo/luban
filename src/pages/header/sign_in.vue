@@ -27,7 +27,7 @@
 
 </style>
 <script>
-import md5 from 'js-md5'
+import md5 from '~/api/md5.min.js'
 
 export default {
     name: 'signIn',

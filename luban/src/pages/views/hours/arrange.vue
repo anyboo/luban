@@ -65,12 +65,12 @@ export default {
             header: {
                 left: 'arrange today,prev,next',
                 center: 'title',
-                right: 'timelineDay,timelineWeek,timelineMonth,listWeek'
+                right: 'agendaDay,agendaWeek,timelineDay,timelineWeek,timelineMonth,listWeek'
             },
             customButtons: {
                 arrange: {
                     text: '添加排课',
-                    click: function() {
+                    click: function () {
                         vm.handleShowDialog('lb-arrangeedit')
                     }
                 }
@@ -85,8 +85,8 @@ export default {
             navLinks: true,
             resourceAreaWidth: '20%',
             resourceLabelText: '教室',
-            resources: function(callback) {
-                vm.getTableApidata('sclasses').then(function(obj) {
+            resources: function (callback) {
+                vm.getTableApidata('sclasses').then(function (obj) {
                     let res = []
                     for (var item of obj.data.data) {
                         let resitem = {}
@@ -97,7 +97,25 @@ export default {
                     callback(res)
                 })
             },
-            events: [{
+            events: function (start, end, timezone, callback) {
+                vm.getTableApidata('arrange').then(function (obj) {
+                    console.log(obj.data.data)
+                    let eve = []
+                    for (var item of obj.data.data) {
+                        let evnitem = {}
+                        evnitem.id = item._id
+                        evnitem.resourceId = item.sclasses_id
+                        evnitem.title = '老师：林祖鑫 班级：音乐五班 教室:wwwwww'//item.classes_id
+                        evnitem.start = '2017-05-07T14:40:00'
+                        evnitem.end = '2017-05-07T16:00:00'
+                        evnitem.description = 'This is a cool event'
+                        eve.push(evnitem)
+                    }
+                    console.log(eve)
+                    callback(eve)
+                })
+            }
+            /* [{
                 id: '1',
                 resourceId: '59643edb3c6f25461ae7f289',
                 start: '2017-05-07T02:00:00',
@@ -127,7 +145,7 @@ export default {
                 start: '2017-05-07T00:30:00',
                 end: '2017-05-07T02:30:00',
                 title: 'event 5'
-            }]
+            }]*/
         })
 
 
@@ -171,7 +189,7 @@ export default {
             let start = this.getDatetimeStartOf(duration)
             const end = this.getDatetimeStartOf('day', true)
             this.localdata.form.daterange = [start, end]
-                //this.handleSearch()
+            //this.handleSearch()
         },
         handleSearch() {
             //let filterObj = []

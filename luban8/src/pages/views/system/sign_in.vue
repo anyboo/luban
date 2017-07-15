@@ -1,0 +1,105 @@
+<template>
+    <div class="login">
+        <div class="modal-center animated fadeInUp text-center">
+            <div class="thumb-lg">
+                <img class="img-circle" src="/assets/images/a0.jpg">
+            </div>
+            <p class="h4 m-t m-b">
+                <span v-if="$store.state.system.name.length>0">{{$store.state.system.name}}</span>
+            </p>
+            <div class="input-group" v-if="$store.state.system.name.length==0">
+                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
+                <span class="input-group-btn "></span>
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border" placeholder="请输入密码" style="border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
+                <span class="input-group-btn circles">
+                    <a @click="login" class="btn btn-success btn-rounded no-border loginbtn">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</template>
+<style >
+.modal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    margin: -100px 0px 0px -100px;
+}
+
+.login {
+    z-index: 100;
+    margin: -100px 0px 0px -100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: #7793a7;
+    background-color: #1c2b36;
+}
+
+.thumb-lg img {
+    width: 96px;
+}
+.loginbtn
+{
+    height: 34px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
+    border-bottom-left-radius: 0px !important;
+}
+</style>
+<script>
+import md5 from '~/api/md5.min.js'
+
+export default {
+    name: 'signIn',
+    data() {
+        let localdata = {
+            form: {
+                user: '',
+                pwd: ''
+            }
+        }
+        return {
+            localdata,
+        }
+    },
+    computed: {},
+    watch: {},
+    methods: {
+        login() {
+            let vm = this
+            if (this.$store.state.system.name.length > 0) {
+                this.localdata.form.user = this.$store.state.system.tel
+            }
+            this.localdata.form.pwd = md5(this.localdata.form.pwd)
+            let account = { user: this.localdata.form.user, pwd: this.localdata.form.pwd }
+            vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
+                if (data.code == 0) {
+                    this.$store.commit('user', data.account)
+                    this.$store.commit('router', '')
+                    //this.$router.push('/web')
+                } else {
+                    this.$store.commit('user', { name: '', tel: '', _id: '' })
+                    this.$message({
+                        message: '用户或密码错误！',
+                        type: 'error'
+                    })
+                }
+            })
+            this.localdata.form = {
+                user: '',
+                pwd: ''
+            }
+        }
+    }
+}
+</script>

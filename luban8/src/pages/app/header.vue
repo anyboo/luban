@@ -4,9 +4,9 @@
             <div class="firstModule">
                 <i class="fa fa-bars" @click='variety()'></i>
                 <div class='menu' @click='handleClickShow()'>
-                    <img src="/assets/images/a0.jpg">&nbsp;
+                    <img src="/assets/images/a0.jpg">
                     <b>luban</b>
-                    <i class="fa fa-sort-desc"></i>
+                    <span class="cart"></span>
                     <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
                         <li>
                             <i class="fa fa-user"></i>
@@ -42,6 +42,7 @@
 
 .firstModule {
     background: rgb(42, 59, 76);
+    height: 49px;
 }
 
 .fa-bars {
@@ -64,13 +65,12 @@
 
 .menu {
     display: inline-block;
-    width: 92px;
-    height: 30px;
     padding: 10px 15px;
     float: right;
     border: 0;
     background: rgb(42, 59, 76);
     cursor: pointer;
+    color: white;
 }
 
 .menu:hover {
@@ -81,47 +81,42 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    margin-right: 5px;
 }
 
 .menu b {
     display: inline-block;
     background: rgb(42, 59, 76);
-    font-weight: 900;
-    color: #ffffff;
     position: relative;
-    top: -6px;
-    left: -5px;
 }
 
-.fa-sort-desc {
-    padding: 0 1px 4px 0;
-    position: relative;
-    top: -8px;
-    left: -5px;
-    margin: 0;
-    color: white
+.cart {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
 }
 
 .menu:hover b {
     background: #33485c;
 }
 
-.menu:hover .fa-sort-desc {
-    background: #33485c;
-    ;
-}
-
 .menuShow {
     width: 160px;
     height: 114px;
     position: absolute;
-    top: 51px;
+    top: 49px;
     right: 0px;
     margin: 0;
     padding: 0;
-
     background-color: white;
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    z-index: 1;
 }
 
 .dispalyShow {
@@ -134,10 +129,13 @@
 
 .menu li {
     width: 100%;
-    height: 18px;
-    padding: 10px;
-    font-size: 13px;
+    padding: 8px;
     color: #777777;
+    font-size: 13px;
+}
+
+.menu li i {
+    width: 16px;
 }
 
 .menu li:hover {

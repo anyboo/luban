@@ -1,5 +1,5 @@
 <template>
-    <div class="container" :class="{'contaierUnfold':isvariety,'containerRetraction':!isvariety}">
+    <div class="lbcontainer" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}">
         <lb-sidebar></lb-sidebar>
         <lb-header @variety="variety"></lb-header>
         <lb-body></lb-body>

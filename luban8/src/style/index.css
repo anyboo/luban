@@ -18,7 +18,7 @@ a {
     margin: 0;
 }
 
-.container {
+.lbcontainer {
     width: 100%;
     height: 100%;
     display: grid;
@@ -31,46 +31,42 @@ a {
     grid-template-columns: 180px auto;
 }
 
-.containerRetraction {
+.lbcontainerRetraction {
     grid-template-columns: 55px auto;
 }
 
-.container i {
+.lbcontainer i {
     font-size: 16px;
-}
-
-.container>div {
-    background: #33485c;
 }
 
 .lbSdebar {
     grid-row: 1/3;
+    background: #33485c;
+    z-index: 5
 }
 
 .headerSecond {
     height: 100px;
 }
 
-.container .lbBody {
+.lbcontainer .lbBody {
     background: rgb(240, 242, 245);
     padding: 15px;
     overflow-y: auto;
 }
 
-.lbBody_container {
+.lbBody_lbcontainer {
     width: 100%;
-    /* height: 100%; */
-    background: pink;
     overflow-y: hidden;
 }
 
-.container .lbFooter {
+.lbcontainer .lbFooter {
     grid-column: 1/3;
     background: #2a3b4c;
     box-sizing: border-box;
 }
 
-.container .lbFooter .copyright {
+.lbcontainer .lbFooter .copyright {
     width: 100%;
     text-align: right;
     box-sizing: border-box;
@@ -79,35 +75,35 @@ a {
     color: #ffffff;
 }
 
-.containerRetraction i.fa {
+.lbcontainerRetraction i.fa {
     font-size: 18px;
 }
 
-.containerRetraction a {
+.lbcontainerRetraction a {
     padding: 12px 0;
 }
 
-.containerRetraction .lbSdebarHeader span {
+.lbcontainerRetraction .lbSdebarHeader span {
     display: none;
 }
 
-.containerRetraction .lbSdebarUlStyle li a span {
+.lbcontainerRetraction .lbSdebarUlStyle li a span {
     display: none;
 }
 
-containerRetraction .lbSdebarUlStyle li:hover a span {
+lbcontainerRetraction .lbSdebarUlStyle li:hover a span {
     display: block;
 }
 
-.containerRetraction .lbSdebarUlStyle .lbSdebarMenu {
+.lbcontainerRetraction .lbSdebarUlStyle .lbSdebarMenu {
     position: relative;
 }
 
-.containerRetraction .lbSdebarUlStyle li ul li a i {
+.lbcontainerRetraction .lbSdebarUlStyle li ul li a i {
     display: none;
 }
 
-.containerRetraction .lbSdebarUlStyle li.lbSdebarMenu:hover>a>span {
+.lbcontainerRetraction .lbSdebarUlStyle li.lbSdebarMenu:hover>a>span {
     display: block;
     position: absolute;
     top: 0;
@@ -121,7 +117,7 @@ containerRetraction .lbSdebarUlStyle li:hover a span {
     box-sizing: border-box;
 }
 
-.containerRetraction .lbSdebarUlStyle li ul {
+.lbcontainerRetraction .lbSdebarUlStyle li ul {
     display: none;
     position: absolute;
     top: 42px;
@@ -129,15 +125,15 @@ containerRetraction .lbSdebarUlStyle li:hover a span {
     width: 195px;
 }
 
-.containerRetraction .lbSdebarUlStyle li:hover ul {
+.lbcontainerRetraction .lbSdebarUlStyle li:hover ul {
     display: block;
 }
 
-.containerRetraction .lbSdebarUlStyle li.lbSdebarMenu ul li.lbSdebarMenuItem a {
+.lbcontainerRetraction .lbSdebarUlStyle li.lbSdebarMenu ul li.lbSdebarMenuItem a {
     padding-bottom: 0px;
 }
 
-.containerRetraction .lbSdebarUlStyle li.lbSdebarMenu ul li.lbSdebarMenuItem a span {
+.lbcontainerRetraction .lbSdebarUlStyle li.lbSdebarMenu ul li.lbSdebarMenuItem a span {
     margin-left: 15px;
     display: block !important;
 }
