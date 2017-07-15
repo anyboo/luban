@@ -141,3 +141,9 @@ lbcontainerRetraction .lbSdebarUlStyle li:hover a span {
     margin-left: 15px;
     display: block !important;
 }
+
+.modal-body {
+    max-height: 700px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
