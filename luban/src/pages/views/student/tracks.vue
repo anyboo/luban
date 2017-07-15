@@ -23,7 +23,7 @@
                             <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
                                 <i class="icon-plus glyphicon glyphicon-user"></i>跟踪回访登记
                             </button>
-                        </div>
+                        </div> 
                     </div>
                     <div class="row m-t m-t-t">
                         <el-table :data="getTablesData()" stripe>

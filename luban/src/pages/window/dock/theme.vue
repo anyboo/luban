@@ -16,7 +16,7 @@
             <div style="height: 100%">
                 <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
                     <div class=" theme-list " :class="{active:cut==1}" v-if="cut==0">
-                        <template v-for="item in theme">
+                        <template v-for="item in theme"> 
                             <div class="theme-item" :style="{'background-color': item}" @click="handleChangeTheme(item)"></div>
                         </template>
                     </div>
@@ -24,7 +24,7 @@
                 <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
                     <div class=" wallpaper-list" :class="{active:cut==0}" v-if="cut==1">
                         <ul>
-                            <li v-for="item in wallpaper" @click="handleChangeWallpaper(item)">
+                            <li v-for="item in wallpaper" @click="handleChangeWallpaper(item)"> 
                                 <img :src="'/assets/wallpaper/'+item">
                             </li>
                         </ul>

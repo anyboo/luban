@@ -19,7 +19,7 @@
                                            高中一班
                                         </label>
                                        </span>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                         <div class="form-group">
