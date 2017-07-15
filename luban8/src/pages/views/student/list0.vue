@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="wrapper panel panel-default bg-white ng-scope">
@@ -273,3 +274,8 @@ export default {
     }
 }
 </script>
+=======
+  <div class="wrapper">
+  </div>
+</template>
+>>>>>>> 5af10c40d09de39488b0e477c56dec55ad048f1a
