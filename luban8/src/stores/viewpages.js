@@ -1,14 +1,11 @@
 import studentadd from '~/pages/views/student/add.vue'
 import studentlist from '~/pages/views/student/list.vue'
 import studentlist0 from '~/pages/views/student/list0.vue'
-<<<<<<< HEAD
 import studentbirthdays from '~/pages/views/student/birthdays.vue'
 import studentrecording from '~/pages/views/student/recording.vue'
 import studentlost from '~/pages/views/student/lost.vue'
 import studenttracks from '~/pages/views/student/tracks.vue'
 import studentinfo from '~/pages/views/student/info.vue'
-=======
->>>>>>> 5af10c40d09de39488b0e477c56dec55ad048f1a
 
 import systemsign_in from '~/pages/views/system/sign_in.vue'
 import systempersonal_information from '~/pages/views/system/personal_information.vue'
@@ -43,7 +40,6 @@ var pages = {}
 pages['lb-studentadd'] = studentadd
 pages['lb-studentlist'] = studentlist
 pages['lb-studentlist0'] = studentlist0
-<<<<<<< HEAD
 pages['lb-studentbirthdays'] = studentbirthdays
 pages['lb-studentrecording'] = studentrecording
 pages['lb-studentlost'] = studentlost
@@ -78,7 +74,5 @@ pages['lb-hoursstudent'] = hoursstudent
 pages['lb-hoursteacher'] = hoursteacher
 pages['lb-hoursattendance'] = hoursattendance
 pages['lb-hoursschedule '] = hoursschedule     
-=======
->>>>>>> 5af10c40d09de39488b0e477c56dec55ad048f1a
 
 export default pages
