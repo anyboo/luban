@@ -62,6 +62,9 @@ const state = {
         },
         org: {
             data: []
+        },
+        lbtable:{
+            data: []
         }
     },
     currentModel: {},

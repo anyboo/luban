@@ -24,7 +24,22 @@
     </div>
 </template>
 <style >
-
+.modal-over {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.bg-black {
+    color: #7793a7;
+    background-color: #1c2b36;
+}
+.modal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
 </style>
 <script>
 import md5 from '~/api/md5.min.js'
@@ -55,7 +70,7 @@ export default {
             vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                 if (data.code == 0) {
                     this.$store.commit('user', data.account)
-                    this.$router.push('/web')
+                    this.$store.commit('router', 'lb-studentadd')
                 } else {
                     this.$store.commit('user', { name: '', tel: '', _id: '' })
                     this.$message({

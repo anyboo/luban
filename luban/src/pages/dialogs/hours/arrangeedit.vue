@@ -21,11 +21,20 @@
                             </span>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="btn-group ng-scope">
+<<<<<<< HEAD
+                                    <span style="position:relative;top:9px;">
+                                            <label class="ng-pristine ng-untouched ng-valid ng-binding ng-scope">
+                                           高中一班
+                                        </label>
+                                       </span>
+                                </div> 
+=======
                                     <el-select v-model="localdata.form.sclasses_id" filterable placeholder="请选择班级">
                                         <el-option v-for="item in getsClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                                         </el-option>
                                     </el-select>
                                 </div>
+>>>>>>> 967569acf8046174b1ef94af40056c87c92b333a
                             </div>
                         </div>
                         <div class="form-group">
