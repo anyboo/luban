@@ -8,12 +8,10 @@
 </template>
 <script>
 import pages from '~/stores/viewpages.js'
-
 export default {
     name: 'body',
     data() {
         return {
-
         }
     },
     components: pages,
