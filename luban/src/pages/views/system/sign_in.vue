@@ -27,7 +27,7 @@
 
 </style>
 <script>
-import md5 from 'js-md5'
+import md5 from '~/api/md5.min.js'
 
 export default {
     name: 'signIn',
@@ -57,6 +57,7 @@ export default {
                     this.$store.commit('user', data.account)
                     this.$router.push('/web')
                 } else {
+                    this.$store.commit('user', { name: '', tel: '', _id: '' })
                     this.$message({
                         message: '用户或密码错误！',
                         type: 'error'

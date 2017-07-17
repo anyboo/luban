@@ -1,5 +1,5 @@
 <template>
-    <div ui-view class="ng-scope">
+    <div ui-view class="ng-scope wrapper">
         <div class="wrapper-xs ng-scope">
             <div ui-view class="ng-scope">
                 <div class="panel panel-default ng-scope" xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_hours">
@@ -17,10 +17,10 @@
                                 <div class="input-group">
                                     <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                             <div class="inline w-md m-l-xs">
@@ -57,14 +57,14 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-table :data="getTableData" stripe>
+                        <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <a class="link ng-binding" ng-click="params.os_id=item.os_id">李达康</a>
+                                    <a class="link ng-binding">{{scope.row.student_name}}</a>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="上课时间">
-                                <template scope="scope">2017-05-12 11:00</template>
+                                <template scope="scope">f</template>
                             </el-table-column>
                             <el-table-column prop="data" label="时长">
                                 <template scope="scope">
@@ -94,6 +94,7 @@
                                 <template scope="scope">陈佳木</template>
                             </el-table-column>
                         </el-table>
+    
                         <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
@@ -133,6 +134,7 @@ export default {
         }
         return {
             localdata,
+            tables: ['student'],
         }
     },
     computed: {},

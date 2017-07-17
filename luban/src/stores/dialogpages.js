@@ -34,6 +34,8 @@ import page2 from '~/pages/dialogs/directive/selectteachertpl.vue'
 import page11 from '~/pages/dialogs/directive/selectsclasstpl.vue'
 import page72 from '~/pages/dialogs/student/refunds.vue'
 import page73 from '~/pages/dialogs/hours/arrangeedit.vue'
+import page74 from '~/pages/dialogs/hours/leaveshours.vue'
+import page75 from '~/pages/dialogs/hours/suspendshours.vue'
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -73,5 +75,7 @@ pages['lb-selectclasstpl'] = page39
 pages['lb-selectlessontpl'] = page40
 pages['lb-refunds'] = page72
 pages['lb-arrangeedit'] = page73
+pages['lb-leaveshours'] = page74
+pages['lb-suspendshours'] = page75
 
 export default pages

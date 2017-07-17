@@ -6,13 +6,13 @@
 </template>
 <style>
 .lbSdebarHeader {
-  
     width: 100%;
-    height: 26px;
     padding: 12px 0;
+    height: 49px;
     background: #2f4355;
     line-height: 20px;
 }
+
 .lbSdebarHeader img {
     width: 20px;
     height: 20px;
@@ -25,7 +25,6 @@
     font-weight: 700;
     position: relative;
     left: 4px;
-    top: -4px;
 }
 </style>
 <script>

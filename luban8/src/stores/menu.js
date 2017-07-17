@@ -27,7 +27,7 @@ export default [{
     }, {
         menuTitle: '咨询管理',
         to: '/student/list0',
-        menuIcon: 'fa fa-address-card-o',
+        menuIcon: 'glyphicon glyphicon-list',
     }, {
         menuTitle: '流失名单',
         to: '/student/lost',
@@ -85,15 +85,11 @@ export default [{
 }, {
     menuTitle: '课时',
     menuIcon: 'fa-battery',
-    menuShow: 0,
+    // menuShow: 0,
     menu: [{
-        menuTitle: '课程表',
+        menuTitle: '排课',
         to: '/hours/arrange',
         menuIcon: 'fa fa-file',
-    }, {
-        menuTitle: '排课',
-        to: '/hours/schedule',
-        menuIcon: 'fa fa-file-o',
     }, {
         menuTitle: '考勤',
         to: '/hours/attendance',
@@ -191,4 +187,4 @@ export default [{
         menuIcon: ' fa fa-th',
         menuShow: 0,
     }]
-}, ]
+},]

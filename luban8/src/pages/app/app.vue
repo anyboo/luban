@@ -1,31 +1,37 @@
 <template>
-<div class="container" :class="{'contaierUnfold':isvariety,'containerRetraction':!isvariety}">
-      <lb-sidebar></lb-sidebar>
-       <lb-header @variety="variety"></lb-header>
-      <lb-body></lb-body>
-      <lb-footer></lb-footer>
-  </div>      
+    <div class="lbcontainer" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}">
+        <lb-sidebar></lb-sidebar>
+        <lb-header @variety="variety"></lb-header>
+        <lb-body></lb-body>
+        <lb-footer></lb-footer>
+        <lb-modalbackdrop></lb-modalbackdrop>
+        <lb-dialoglist></lb-dialoglist>
+    </div>
 </template>
 <script>
 import header from './header.vue'
 import body from './body.vue'
 import footer from './footer.vue'
+import dialoglist from './dialoglist.vue'
+import modalbackdrop from './modalbackdrop.vue'
 
-export default{
-    name:'app',
-    data(){
+let pages = {}
+pages['lb-dialoglist'] = dialoglist
+pages['lb-modalbackdrop'] = modalbackdrop
+pages['lb-header'] = header
+pages['lb-body'] = body
+pages['lb-footer'] = footer
+
+export default {
+    name: 'app',
+    data() {
         return {
-            isvariety:true
+            isvariety: true
         }
     },
-    components:{
-        'lb-header':header,
-        'lb-body':body,
-        'lb-footer':footer,
-    
-    },
-    methods:{
-        variety(){
+    components: pages,
+    methods: {
+        variety() {
             this.isvariety = !this.isvariety
         }
     }
