@@ -22,8 +22,8 @@
                                     </div>
                                     <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                     <span class="input-group-btn">
-                                <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                            </span>
+                                        <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -67,29 +67,30 @@
     </div>
 </template>
 <style>
-.modal-header{
-       background: #1892d1;
-       border-radius: 5px 5px 0 0;
-       padding:9px 15px;
-     
+.modal-header {
+    background: #1892d1;
+    border-radius: 5px 5px 0 0;
+    padding: 9px 15px;
 }
-.modal-header>.modal-title{
+
+.modal-header>.modal-title {
     font-size: 1.17em;
-    
-    color:#ffffff;
+
+    color: #ffffff;
 }
-.modal-body{
-    padding:5px;
+
+.modal-body {
+    padding: 5px;
     height: 97px;
 }
-.modal-body .form-group{
+
+.modal-body .form-group {
     margin-bottom: 5px;
-
-
 }
-.control-label{
+
+.control-label {
     font-weight: normal;
-    text-align :left;
+    text-align: left;
 }
 </style>
 <script>
@@ -111,7 +112,7 @@ export default {
             },
             'dropDownMenu': [{
                 'url': 'lb-newsclassmodal',
-               'icon': 'fa fa-pencil',
+                'icon': 'fa fa-pencil',
                 'text': '编辑'
             }, {
                 'action': 'delete',
@@ -152,7 +153,7 @@ export default {
                     'type': 'like'
                 })
             }
-   
+
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

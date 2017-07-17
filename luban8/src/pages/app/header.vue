@@ -23,7 +23,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="bodyTitle">22</div>
+            <div class="bodyTitle">
+                {{getCurrMenu}}
+            </div>
         </div>
     </div>
 </template>
@@ -38,6 +40,8 @@
 .bodyTitle {
     background: #ffffff;
     border-bottom: 1px solid rgb(217, 219, 222);
+    padding: 5 20px;
+    font-size: 25px;
 }
 
 .firstModule {
@@ -143,13 +147,39 @@
 }
 </style>
 <script>
-
+import menu from '~/stores/menu.js'
 export default {
     name: 'header',
     data() {
         return {
             toShow: false
         }
+    },
+    computed: {
+        getCurrMenu() {
+            var menuName = ''
+            let to = this.$store.state.system.router
+            for (var item of menu) {
+                if (item.to == to) {
+                    menuName = item.menuTitle
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                menuName = subitem.menuTitle
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            if (to == '/' || to == '/web') {
+                menuName = '档案录入'
+            }
+            return menuName
+        }
+
     },
     methods: {
         variety() {
