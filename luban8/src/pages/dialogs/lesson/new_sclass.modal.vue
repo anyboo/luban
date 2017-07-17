@@ -112,20 +112,6 @@ export default {
                 resource: '',
                 desc: ''
             },
-            'validator': {
-                'type': 'object',
-                'errorStatus': false,
-                'additional': true,
-                'fields': {
-                    'class_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    }
-                }
-            },
         }
         return {
             localdata,
@@ -146,6 +132,7 @@ export default {
     watch: {},
     methods: {
         handleClick() {
+            console.log(this.localdata.form)
             this.handleSave().then(() => {
                 this.$message({
                     message: '操作成功',

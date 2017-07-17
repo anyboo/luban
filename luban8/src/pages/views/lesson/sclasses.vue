@@ -9,10 +9,10 @@
             </div>
         </div>
         <div class="row " v-if="localdata.form.view_mode == 'list'">
-            <el-table :data="getTableData" style="width: 100%">
-                <el-table-column prop="date" label="日期" width="180">
+            <el-table :data="getTablesData()" style="width: 100%">
+                <el-table-column prop="table" label="表单" width="180">
                 </el-table-column>
-                <el-table-column prop="name" label="姓名" width="180">
+                <el-table-column prop="name" label="名称" width="180">
                 </el-table-column>
                 <el-table-column prop="address" label="地址">
                 </el-table-column>
