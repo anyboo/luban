@@ -1,6 +1,5 @@
 
 <template>
-<<<<<<< HEAD
     <div ui-view class="ng-scope wrapper ">
         <div class="wrapper-xs ng-scope">
             <div class="panel panel-default">
@@ -64,14 +63,6 @@
                         </el-pagination>
                     </div>
                 </div>
-=======
-    <div class="wrapper">
-        <div class="row wrapper">
-            <div class="col-xs-12 col-md-8 m-t">
-                <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i>新建教室
-                </a>
->>>>>>> 3ba0ff0224a5902735938e465ea031afc2d03cc8
             </div>
         </div>
         <div class="row " v-if="localdata.form.view_mode == 'list'">
@@ -90,7 +81,6 @@
         </div>
     </div>
 </template>
-<<<<<<< HEAD
 <style>
 .modal-header {
     background: #1892d1;
@@ -116,32 +106,6 @@
 .control-label {
     font-weight: normal;
     text-align: left;
-=======
-<style >
-.footer-panels {
-    padding: 10px 15px;
-}
-
-.bg-gray {
-    background-color: #cfcfcf;
-    color: #ffffff;
-}
-
-.cell {
-    font-size: 14px;
-}
-
-div.row.wrapper {
-    padding: 0 15px 15px 15px;
-}
-
-.col-md-4 {
-    width: 33.33333333%;
-}
-
-.col-md-12 {
-    width: 33.33333333%;
->>>>>>> 3ba0ff0224a5902735938e465ea031afc2d03cc8
 }
 </style>
 <script>
@@ -237,7 +201,6 @@ export default {
                     'name': 'card_no',
                     'value': '学员卡号'
                 }],
-<<<<<<< HEAD
                 'search_key': 'class_name',
                 'search_value': '教室名'
             },
@@ -250,11 +213,6 @@ export default {
                 'icon': 'fa fa-times',
                 'text': '删除'
             }]
-=======
-                'search_key': 'student_name',
-                'search_value': '姓名'
-            }
->>>>>>> 3ba0ff0224a5902735938e465ea031afc2d03cc8
         }
         return {
             localdata,
