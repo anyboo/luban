@@ -1,61 +1,60 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header ng-scope" :class='{result:changeTeacher}'>
+            <div class="modal-header" :class='{result:changeTeacher}'>
                 <button class="close" type="button" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
-                <h3 class="modal-title ng-binding">
+                <h3 class="modal-title">
                     <i class="fa fa-flag"></i>请选择班级
                 </h3>
             </div>
-            <div class="modal-body ng-scope">
-                <div class="ng-scope">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-7">
-                            <div class="input-group w-full">
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <el-dropdown menu-align="start" @command="handleCommand">
-                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                {{localdata.search.search_value}}
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                <template v-for="item in localdata.search.fields">
-                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
-                                                </template>
-                                            </el-dropdown-menu>
-                                        </el-dropdown>
-                                    </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
-                                    <span class="input-group-btn">
-                                            <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                                        </span>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-7">
+                        <div class="input-group w-full">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <el-dropdown menu-align="start" @command="handleCommand">
+                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                            {{localdata.search.search_value}}
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <template v-for="item in localdata.search.fields">
+                                                <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
+                                            </template>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
+                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                </span>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-5">
-                            <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-primary btn-sm ng-click-active">
-                                <i class="fa fa-plus"></i>新班级
-                            </a>
-                        </div>
                     </div>
-                    <ul class="list-group m-t">
-                        <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
-                            </li>
-                        </template>
-                        <div class="grid-data-result"></div>
-                    </ul>
-                    <div class="panel-footer">
-                        <div class="row ">
-                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </el-pagination>
-                        </div>
+                    <!--
+                    <div class="col-xs-12 col-md-5">
+                        <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-primary btn-sm ng-click-active">
+                            <i class="fa fa-plus"></i>新班级
+                        </a>
+                    </div>
+                    -->
+                </div>
+                <ul class="list-group m-t">
+                    <template v-for="item in getTablesData()">
+                        <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
+                            <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
+                            <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
+                        </li>
+                    </template>
+                </ul>
+                <div class="panel-footer">
+                    <div class="row ">
+                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </el-pagination>
                     </div>
                 </div>
             </div>
@@ -80,7 +79,7 @@ export default {
                     'name': 'class_name',
                     'value': '班级名称'
                 }, {
-                    'name': 'master',
+                    'name': 'employee.name',
                     'value': '老师姓名'
                 }],
                 'search_key': 'class_name',

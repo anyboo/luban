@@ -12,18 +12,19 @@
             <div class="modal-body">
                 <div>
                     <el-form ref="form" :model="localdata.form" label-width="80px">
-                        <el-form-item label="表单">
-                            <el-input v-model="localdata.form.tabelname"></el-input>
-                        </el-form-item>
                         <el-form-item label="表单名称">
+                            <el-input v-model="localdata.form.tablename"></el-input>
+                        </el-form-item>
+                        <el-form-item label="字段名称">
                             <el-input v-model="localdata.form.name"></el-input>
                         </el-form-item>
-                        <el-form-item label="表单字段">
+                        <el-form-item label="字段名">
                             <el-input v-model="localdata.form.field"></el-input>
                         </el-form-item>
                         <el-form-item label="默认值">
                             <el-input v-model="localdata.form.defalvue"></el-input>
                         </el-form-item>
+                        <!--
                         <el-form-item label="添加类型">
                             <el-select v-model="localdata.form.addtype" placeholder="请选择类型">
                                 <el-option label="text" value="text"></el-option>
@@ -74,9 +75,9 @@
                                 <el-option label="datetime" value="datetime"></el-option>
                                 <el-option label="keyinput" value="keyinput"></el-option>
                             </el-select>
-                        </el-form-item>
+                        </el-form-item>-->
                         <el-form-item label="关联表单">
-                            <el-input v-model="localdata.form.linktabel"></el-input>
+                            <el-input v-model="localdata.form.linktable"></el-input>
                         </el-form-item>
                         <el-form-item label="关联字段">
                             <el-input v-model="localdata.form.linkfield"></el-input>
@@ -100,16 +101,12 @@ export default {
     data() {
         let localdata = {
             'form': {
-                tabelname: '',
+                tablename: '',
                 name: '',
                 field: '',
                 linkfield: '',
                 linktable: '',
-                defvalue: false,
-                addtype: '',
-                edittype: '',
-                listtype: '',
-                resource: '',
+                defvalue: '',
                 desc: ''
             },
         }

@@ -42,8 +42,8 @@
                             <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                         </div>
                     </div>
-                    <div class="wrapper list-student bg-light lter">
-                        <div class="row ng-scope text-center " v-if="localdata.form.view_mode == 'image'">
+                    <div class="wrapper list-student bg-light lter" v-if="localdata.form.view_mode == 'image'">
+                        <div class="row ng-scope text-center " >
                             <template v-for="item in getTablesData()">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b ng-scope">
                                     <div class="b-a r-2x list-student-item box-shadow" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">

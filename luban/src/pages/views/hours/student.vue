@@ -23,37 +23,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="inline w-md m-l-xs">
-                                <select class="form-control input-sm ng-pristine ng-untouched ng-valid" ui-jq="chosen" name="oe_id" ng-options="item.oe_id as item.name for item in teacher_rest.$list" style="display: none;" v-model="localdata.form.oe_id">
-                                    <option value class>选择老师</option>
-                                    <option value="0">陈佳木</option>
-                                </select>
-                                <div class="chosen-container chosen-container-single" style="width: 240px;" title>
-                                    <a class="chosen-single" tabindex="-1">
-                                        <span>选择老师</span>
-                                        <div>
-                                            <b></b>
-                                        </div>
-                                    </a>
-                                    <div class="chosen-drop">
-                                        <div class="chosen-search">
-                                            <input type="text" autocomplete="off">
-                                        </div>
-                                        <ul class="chosen-results"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="fct-student_hours" style="display:none;">
-                                <form name="export_form_student_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                                    <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
-                                    <input type="hidden" name="resource" value="student_hours">
-                                    <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="date_start" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
-                                </form>
-                            </div>
                         </div>
                     </div>
                     <div class="table-responsive">

@@ -1,5 +1,4 @@
 import './styles/main.css'
-import './styles/css/font-awesome.min.css'
 import './styles/scheduler.min.css'
 import LbCom from './components/'
 import App from './pages/app/app.vue'

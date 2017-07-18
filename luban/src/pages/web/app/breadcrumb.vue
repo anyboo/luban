@@ -20,7 +20,6 @@ export default {
         getCurrMenu() {
             var menuName = ''
             let to = this.$route.path
-            console.log(to)
             for (var item of menu) {
                 if (item.to == to) {
                     menuName = item.menuTitle

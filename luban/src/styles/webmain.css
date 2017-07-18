@@ -11736,8 +11736,9 @@ End Header Option Page
         border-top: 0px solid #e5e5e5 !important;
         background: #f4f5f9;
     }
-    
-    .el-date-editor.el-input {
-        width: 193px;
-        margin-top: -8px;
-    }
+label {
+    margin-bottom: 0px; 
+}
+ .el-switch {
+    margin-top: 8px;
+ }

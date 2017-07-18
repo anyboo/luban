@@ -69,14 +69,12 @@
                                 </div>
                             </div>
                         </form>
-    
                         <div class="modal-footer">
-                            <a ng-show="step > 1" class="btn btn-link ng-hide" @click="status=0" v-if="status==3">返回</a>
+                            <a class="btn btn-link ng-hide" @click="status=0" v-if="status==3">返回</a>
                             <button class="btn btn-primary ng-hide" v-if="status==3" @click="handleClick">
                                 登记停课</button>
                             <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
                         </div>
-    
                     </div>
                 </div>
             </div>

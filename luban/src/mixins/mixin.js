@@ -69,6 +69,17 @@ export default {
             }
             return datetime.toDate().getTime()
         },
+        getDatetimeStartEndOf(value, end) {
+            let datetime = moment(value)
+            if (datetime.isValid()) {
+                if (end) {
+                    datetime = datetime.endOf('month')
+                }else{
+                    datetime = datetime.startOf('month')
+                }
+            }
+            return datetime.toDate().getTime()
+        },
         getDatetimeEndOf(value) {
             let datetime = moment(value)
             if (datetime.isValid()) {
@@ -101,6 +112,19 @@ export default {
                 datetimestr = dateTemp.toDate().getTime()
             }
             return datetimestr
+        },
+        getDate2timeFormat(datestring,timestring) {
+            let dateTemp = moment(datestring)
+            let timeTemp = moment(timestring)
+            let datetimestr = ''
+            let timestr = ''
+            if (dateTemp.isValid()) {
+                datetimestr = dateTemp.format('YYYY-MM-DD')
+            }
+            if (timeTemp.isValid()) {
+                timestr = timeTemp.format(' H:mm')
+            }
+            return datetimestr+timestr
         },
         getDatetimeFormat(datestring) {
             let dateTemp = moment(datestring)
@@ -149,11 +173,11 @@ export default {
             return tablaData
         },
         handleShowDialog(url, menuData) {
-            console.log(url, menuData)
+            //console.log(url, menuData)
             this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {
-            console.log(url)
+            //console.log(url)
             if (event) event.preventDefault()
             this.$store.commit('pushdialog', { url })
         },
@@ -251,11 +275,11 @@ export default {
                     table.id = id
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {
-                        console.log('handleDelete')
+                        //console.log('handleDelete')
                         resolve()
                     }).catch((error) => {
                         reject()
-                        console.log(error, 'Promise error')
+                        //console.log(error, 'Promise error')
                     })
 
                 } else {
@@ -314,7 +338,7 @@ export default {
                         console.log(error, 'Promise error')
                     })
                 }
-                console.log(modalform, vm.modalsType)
+                //console.log(modalform, vm.modalsType)
             })
         },
         changeFormDateTime(modalform) {

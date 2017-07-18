@@ -11,18 +11,23 @@
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-8 m-t">
+                        <div class="col-xs-12 col-md-4 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
                                     <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                     <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 m-t">
+                            <button class="btn btn-primary pull-right" @click="handleShowDialog('lb-attendance')">
+                                <i class="icon-plus glyphicon glyphicon-user"></i>考勤
+                            </button>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -30,8 +35,8 @@
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                <i class="fa fa-male"></i>
-                            </span>李达康
+                                        <i class="fa fa-male"></i>
+                                    </span>李达康
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="课程/班级">

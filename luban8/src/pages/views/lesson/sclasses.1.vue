@@ -8,8 +8,8 @@
                 <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
                     <i class="fa fa-plus"></i>新建表单
                 </a>
-                <a @click="lbShowdialog($event,'lb-newsclassmodal1')" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i>新建表单
+                <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus"></i>新建视图
                 </a>
             </div>
             <div class="row " v-if="localdata.form.view_mode == 'list'">
@@ -24,9 +24,10 @@
                             </lb-dropdown>
                         </template>
                     </el-table-column>
+                    
                     <el-table-column prop="data" label="表单名称" width="180">
                         <template scope="scope">
-                            {{ scope.row.tablename }}
+                            {{ scope.row.tabelname }}
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="字段名称" width="180">
@@ -37,16 +38,6 @@
                     <el-table-column prop="data" label="字段名">
                         <template scope="scope">
                             {{ scope.row.field }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="关联名称" width="180">
-                        <template scope="scope">
-                            {{ scope.row.linktable }}
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="关联字段">
-                        <template scope="scope">
-                            {{ scope.row.linkfield }}
                         </template>
                     </el-table-column>
                 </el-table>
@@ -148,7 +139,18 @@ export default {
         return {
             localdata,
             tables: ['lbtable'],
+            lbtable,
+            view: 'student',
+            tableheader: []
         }
+    },
+    mounted() {
+        this.getTableApidata('lbtable').then((obj) => {
+            this.lbtable = obj.data.data
+        })
+        this.getTableApidata('lbstudentTHeader').then((obj) => {
+            this.tableheader = obj.data.data
+        })
     },
     computed: {
         changeTeacher() {

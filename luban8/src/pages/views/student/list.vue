@@ -33,58 +33,37 @@
                 </a>
             </div>
         </div>
-            <div class="row " v-if="localdata.form.view_mode == 'list'">
-                <el-table :data="getTablesData()" stripe>
-                    <el-table-column prop="data" label="操作">
+        <div class="row " v-if="localdata.form.view_mode == 'list'">
+            <el-table :data="getTablesData()" stripe>
+                <el-table-column prop="data" label="操作">
+                    <template scope="scope">
+                        <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
+                                <i class="fa fa-cog "></i>
+                                <span class="caret"></span>
+                            </lb-dropdown-button>
+                        </lb-dropdown>
+                    </template>
+                </el-table-column>
+                <template v-for="item in tableheader">
+                    <el-table-column prop="data" :label="item.title">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog "></i>
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                            </lb-dropdown>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="学员">
-                        <template scope="scope">
-                            <a  @click="handleRouter($event,scope.row)">
-                                <span >
+                            <a @click="handleRouter($event,scope.row)">
+                                <span>
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                 </span>{{ scope.row.student_name }}
-                                <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
+                                <span v-if="scope.row.nickname != ''">{{ scope.row.nickname }}</span>
                             </a>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="data" label="联系电话">
-                        <template scope="scope">
-                            <span >{{ scope.row.first_tel }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="年龄">
-                        <template scope="scope">
-                            <span >{{ fromNow(scope.row.birth) }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="住址">
-                        <template scope="scope">{{ scope.row.home_address }}</template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="学员归属">
-                        <template scope="scope">
-                            <span class="" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data" label="档案备注">
-                        <template scope="scope">
-                            <p >{{ scope.row.note }}</p>
-                        </template>
-                    </el-table-column>
-                </el-table>
-            </div>
-            <div class="row  footer-panels">
-                <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                </el-pagination>
-            </div>
+                </template>
+            </el-table>
         </div>
+        <div class="row ">
+            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+            </el-pagination>
+        </div>
+    </div>
 </template>
 <style >
 .footer-panels {
@@ -212,7 +191,18 @@ export default {
         return {
             localdata,
             tables: ['student'],
+            lbtable: [],
+            tableheader: []
+
         }
+    },
+    mounted() {
+        this.getTableApidata('lbtable').then((obj) => {
+            this.lbtable = obj.data.data
+        })
+        this.getTableApidata('lbstudentTHeader').then((obj) => {
+            this.tableheader = obj.data.data
+        })
     },
     computed: {
         refreshData() {
