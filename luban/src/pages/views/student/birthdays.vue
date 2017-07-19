@@ -118,8 +118,8 @@ export default {
                 }
             }
             filterObj.push({
-                'key': 'birth',
-                'value': false,
+                'key': 'birthstr',
+                'value': -1,
                 'type': 'sort'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
