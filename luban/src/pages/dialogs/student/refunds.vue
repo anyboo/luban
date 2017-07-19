@@ -222,13 +222,22 @@ export default {
             return result
         },
         do_refund() {
+               /*   let orders = parseInt(this.order.order_amount)
+                let pays = parseInt(this.currentRow.money_pay_amount)
+                let froms = parseInt(this.localdata.from.amount)
+                if(orders<=0){
+                    alert('订单金额错误，不可退款')
+                }else if(pays<froms){
+                    alert('缴费金额不足以退款')
+                }else{  */
             this.handleSave().then((data) => {
-                this.$message({
+                     this.$message({
                     message: '退款成功',
                     type: 'success'
                 })
-                this.lbClosedialog()
+                this.lbClosedialog() 
             })
+          /*   }  */
         },
         handleSearch() {
             if (this.order._id) {

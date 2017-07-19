@@ -25,20 +25,7 @@ export default {
         }
     },
     methods: {
-        addRoot() {
-            let vm = this
-            vm.modalsType = vm.types.APPEND_API
-            vm.localdata.form =  {
-                name: '',
-                pid: '',
-                save: false
-            }
-            vm.handleSave().then(() => {
-                vm.handleGetTable()
-            }, (e) => {
-                console.log(e)
-            })
-        },
+ 
     },
     computed: {
         getTreeData() {
