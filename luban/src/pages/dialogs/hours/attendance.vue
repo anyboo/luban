@@ -46,7 +46,7 @@
                         <template v-for="item in getTablesData()">
                             <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
                                 <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
+                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:{{item.order.length}}/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
                             </li>
                         </template>
                     </ul>
@@ -142,6 +142,12 @@ export default {
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
+            },
+            'orderlookup': {
+                'localField': '_id',
+                'from': 'order',
+                'foreignField': 'class_id',
+                'as': 'order'
             }
         }
         return {
@@ -371,8 +377,15 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.orderlookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj)=>{   
+                console.log(obj)     
+            })
         }
     }
 }
