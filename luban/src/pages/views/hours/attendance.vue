@@ -126,6 +126,7 @@ export default {
     methods: {
         handleSearch() {
             let filterObj = []
+          
             filterObj.push({
                 'key': 'student',
                 'value': '$student',
@@ -141,11 +142,12 @@ export default {
                 'value': this.localdata.lookuparrange,
                 'type': 'lookup'
             })
+             /*
             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookupstudent,
                 'type': 'lookup'
-            })
+            })*/
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
                 console.log(obj)
