@@ -14,11 +14,21 @@
             </div>
             <div class="modal-body ng-scope">
                 <div class="wrapper bg-light b-a m-t-xs ng-scope" v-if="dopay">
-                    <p class="m-t m-b text-success text-2x"><i class="fa fa-check-circle-o"></i> 订单缴费成功！</p>
-                    <p>订单编号:<span class="text-info ng-binding">{{order.order_no}}</span>，应缴金额:<span class="text-success ng-binding">{{order.unpay_amount}}</span>元,本次缴费:<span class="text-success ng-binding">{{localdata.form.money_pay_amount}}</span>元,请选择接下来的操作.</p>
+                    <p class="m-t m-b text-success text-2x">
+                        <i class="fa fa-check-circle-o"></i> 订单缴费成功！</p>
+                    <p>订单编号:
+                        <span class="text-info ng-binding">{{order.order_no}}</span>，应缴金额:
+                        <span class="text-success ng-binding">{{order.unpay_amount}}</span>元,本次缴费:
+                        <span class="text-success ng-binding">{{localdata.form.money_pay_amount}}</span>元,请选择接下来的操作.</p>
                     <div class="row no-gutter m-t">
-                        <div class="col-xs-6"><a class="btn btn-primary btn-block" @click="print_bill()"><i class="icon-printer"></i> 打印收据</a></div>
-                        <div class="col-xs-6"><a class="btn btn-warning btn-block" @click="lbClosedialog($event)"><i class="fa fa-sign-out"></i> 结束缴费</a></div>
+                        <div class="col-xs-6">
+                            <a class="btn btn-primary btn-block" @click="print_bill()">
+                                <i class="icon-printer"></i> 打印收据</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a class="btn btn-warning btn-block" @click="lbClosedialog($event)">
+                                <i class="fa fa-sign-out"></i> 结束缴费</a>
+                        </div>
                     </div>
                 </div>
                 <div v-if="!dopay" class="ng-scope">
@@ -63,9 +73,13 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">余额付款:{{currStudent.amount}}元</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class="ng-valid ng-dirty ng-valid-parse ng-touched"> <i></i></label>
+                                    <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class="ng-valid ng-dirty ng-valid-parse ng-touched">
+                                    <i></i>
+                                </label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.use_balance">
-                                    <input type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a"> <span class="input-group-addon">元</span></div>
+                                    <input type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a">
+                                    <span class="input-group-addon">元</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,12 +97,14 @@
                                 <ul class="list-group ng-scope">
                                     <li class="list-group-item ng-scope" @click="select_pay()">
                                         <img alt="现金支付" src="/assets/images/logo_cash.png">
-                                        <span class="text-success text-2x pull-right ng-scope"><i class="fa fa-check-circle"></i></span>
+                                        <span class="text-success text-2x pull-right ng-scope">
+                                            <i class="fa fa-check-circle"></i>
+                                        </span>
                                     </li>
                                 </ul>
                                 <!--
-                                <p class="alert alert-danger ng-scope" ng-if="payment_rest.$list.length == 1">您还没有开通微信支付,可在【系统设置】》【支付设置】申请开通微信支付!</p>
-                                -->
+                                    <p class="alert alert-danger ng-scope" ng-if="payment_rest.$list.length == 1">您还没有开通微信支付,可在【系统设置】》【支付设置】申请开通微信支付!</p>
+                                    -->
                             </div>
                         </div>
                         <div class="form-group m-t">
@@ -183,6 +199,15 @@ export default {
                 this.dopay = true
             })
         },
+        setStudentAmountOrder() {
+            let amount = Number(this.currStudent.amount) - Number(this.localdata.form.balance_pay_amount) 
+            console.log('setStudentAmountOrder',amount)
+            this.updateTeble('student', this.currStudent._id, {
+                'amount': amount
+            }).then(() => {
+                this.dopay = true
+            })
+        },
         setStudentAmount() {
             let amount = Number(this.currStudent.amount) + Number(this.order.back_amount) + Number(this.order.origin_amount)
             this.updateTeble('student', this.currStudent._id, {
@@ -196,7 +221,7 @@ export default {
                 if (this.order.order_type == 2) {
                     this.setStudentAmount()
                 } else if (this.order.order_type == 1) {
-                    this.setStudentAmount()
+                    this.setStudentAmountOrder()
                 }
                 this.updateOrder()
             })
