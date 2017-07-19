@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-calendar"></i>学员{{student.student_name}}
-                        <span class="label bg-info ng-binding"></span>订单缴/退／清费  
+                        <span class="label bg-info ng-binding"></span>订单缴/退／清费
                     </h3>
                 </div>
                 <div class="modal-content">
@@ -17,20 +17,20 @@
                     <ul class="list-group ng-scope" v-if="getTablesData().length>0">
                         <template v-for="item in getTablesData()">
                             <li class="list-group-item ng-scope">
-                                <span class="pull-right label bg-info ng-binding">￥{{item.order_amount}}</span>
+                                <span class="pull-right label bg-info ng-binding">￥{{Number(item.order_amount)-Number(item.back_amount)}}</span>
                                 <h4 class="list-group-item-heading ng-binding">{{item.body}}</h4>
                                 <p class="list-group-item-text ng-binding">
                                     订单编号:{{item.order_no}}
                                     <span class="ng-binding">
-                                    <span class="badge bg-danger" v-if="item.pay_status==0">未付款</span>
-                                    <span class="badge bg-warning" v-if="item.pay_status==1">部分付款</span>
-                                    <span class="badge bg-green" v-if="item.pay_status==2">支付完成</span>
+                                        <span class="badge bg-danger" v-if="item.pay_status==0">未付款</span>
+                                        <span class="badge bg-warning" v-if="item.pay_status==1">部分付款</span>
+                                        <span class="badge bg-green" v-if="item.pay_status==2">支付完成</span>
                                     </span>
-                                    <span v-if="item.pay_status == '1'" class="ng-binding ng-scope">已付款:{{item.order_amount-item.unpay_amount}}元</span>
-                                    <span class="label bg-danger ng-binding ng-scope" v-if="item.refund_status > 0">退款:{{item.back_amount}}元</span>
+                                    <span class="ng-binding ng-scope">已付款:{{item.order_amount-item.unpay_amount}}元</span>
+                                    <span class="label bg-danger ng-binding ng-scope">退款:{{item.back_amount}}元</span>
                                 </p>
                                 <p class="m-t-xs">
-                                    <a @click="handleShowDialog('lb-refunds',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.refund_status != '2'&&item.pay_status != '0'">
+                                    <a @click="handleShowDialog('lb-refunds',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.refund_status != '2'&&item.pay_status != '0'||item.back_amount!=item.order_amount-item.unpay_amount">
                                         <i></i>办理退款
                                     </a>
                                     <a @click="handleShowDialog('lb-unpayclearmodal',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.pay_status == '1'">
@@ -48,7 +48,8 @@
                         </div>
                     </ul>
                     <div class="wrapper ng-scope" v-else>
-                        <p class="text-center text-2x"><i class="fa fa-frown-o"></i> 没有相关订单!</p>
+                        <p class="text-center text-2x">
+                            <i class="fa fa-frown-o"></i> 没有相关订单!</p>
                     </div>
                     <div class="modal-footer text-center ng-scope ">
                         <button class="btn btn-primary ng-click-active" @click="lbClosedialog($event)">确定</button>
@@ -86,7 +87,7 @@ export default {
             student: {},
         }
     },
-    mounted: function() {
+    mounted: function () {
         this.pagination.pagesize = 5
         this.student = this.$store.state.dialogs.dailogdata
         this.handleSearch()
@@ -122,7 +123,7 @@ export default {
                     'value': 0,
                     'type': 'gt'
                 })
-              
+
             }
             if (this.student._id) {
                 let student_id = this.student._id.trim()
