@@ -74,7 +74,7 @@
                             <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" ng-disabled="info.master_oe_id == 0" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
+                                    <input type="number" min="0" step="1" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                             <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" ng-disabled="info.master_oe_id == 0" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
                                     <span class="input-group-addon">小时</span>
                                 </div>
                             </div>

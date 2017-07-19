@@ -73,8 +73,6 @@
                         开始时间：{{arrangestart}}
                         <br>结束时间：{{arrangeend}}
                         <br>{{arrangetitle}}
-                        <br>
-                        <button class="btn btn-primary">全选学员</button>
                     </div>
                     <div class=" row  m-t ">
                         <el-table :data="orderdata" border tooltip-effect="dark" style="width: 100%">
@@ -89,7 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleSelectClass(false)" :disabled="steps==1">上一步</button>
-                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">{{steps==3?'确定':'下一步'}}</button>
+                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">{{steps==3?'签到':'下一步'}}</button>
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
             </div>
         </div>
@@ -166,24 +164,6 @@ export default {
     updated() {
         if (this.steps == 2) {
             this.getArrange()
-        } else if (this.steps == 3) {
-            let filterObj = []
-            filterObj.push({
-                'key': 'class_id',
-                'value': this.currentRow._id,
-                'type': ''
-            })
-            filterObj.push({
-                'key': 'order_type',
-                'value': 1,
-                'type': ''
-            })
-          
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTableTable('order', filterTxt).then(function (obj) {
-                this.orderdata = obj.data.data
-                console.log( this.orderdata )
-            })
         }
     },
     methods: {
@@ -293,8 +273,35 @@ export default {
         },
         handleSelectClass(add) {
             if (add) {
-                this.steps++
+                if (this.steps == 3) {
 
+                } else {
+                    this.steps++
+                    if (this.steps == 3) {
+                        let filterObj = []
+                        filterObj.push({
+                            'key': 'class_id',
+                            'value': this.currentRow._id,
+                            'type': ''
+                        })
+                        filterObj.push({
+                            'key': 'order_type',
+                            'value': 1,
+                            'type': ''
+                        })
+                        filterObj.push({
+                            'key': 'lookup',
+                            'value': this.localdata.lookupstudent,
+                            'type': 'lookup'
+                        })
+                        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                        this.handleGetFilterTableTable('order', filterTxt).then((obj) => {
+
+                            this.orderdata = obj.data.data
+                            console.log(this.orderdata)
+                        })
+                    }
+                }
             } else {
                 this.steps--
                 this.arrangeid = ''
