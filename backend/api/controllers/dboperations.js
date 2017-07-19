@@ -125,6 +125,7 @@ module.exports.all = function* all(name, next) {
     let filter = query.filter
     let findObj = {}
     let sortObj = {}
+    let findsort = false
     let options = []
     console.log(filter)
     if (filter) {
@@ -136,6 +137,7 @@ module.exports.all = function* all(name, next) {
                     let type = item.type
                     let key = item.key
                     if (type == 'sort') {
+                        findsort = true
                         sortObj[key] = Number(value)
                     }else if (type == 'like') {
                         let like = new RegExp(value)
@@ -169,7 +171,7 @@ module.exports.all = function* all(name, next) {
         }
     }
     changeModelId(findObj)
-    if (sortObj.length>0){
+    if (!findsort){
         sortObj =  { '_id': -1 }
     }
     let count = yield table.count(findObj)
