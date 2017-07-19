@@ -66,7 +66,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 6</span>
+                                                     <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0/ 6</span> 
                                                 </div>
                                             </div>
                                         </div>
@@ -140,9 +140,10 @@
                     <el-table-column prop="data" label="招生情况">
                         <template scope="scope">
                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
-                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
-                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">3 / 6</span>
-                                </div>
+                           <!-- <el-progress :text-inside="true" :stroke-width="18" @percentage="getPercentage(scope.row.order.length,scope.row.max_student_num)" status="exception"></el-progress> -->
+                                 <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{scope.row.order.length}}/{{scope.row.max_student_num}} </span>
+                                </div> 
                             </div>
                         </template>
                     </el-table-column>
@@ -227,7 +228,14 @@ export default {
                 'from': 'course',
                 'foreignField': '_id',
                 'as': 'course'
+            },
+            'orderlookup': {
+                'localField': '_id',
+                'from': 'order',
+                'foreignField': 'class_id',
+                'as': 'order'
             }
+            
         }
         return {
             localdata,
@@ -242,6 +250,10 @@ export default {
             }
             return result
         },
+        getPercentage(hasStudent,maxStudent){
+            let percentage=hasStudent/maxStudent
+            return percentage
+        }
     },
     watch: {},
     methods: {
@@ -281,6 +293,16 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
+            filterObj.push({
+                'key': 'order.order_type',
+                'value': 1,
+                'type': ''
+            })
+             filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.orderlookup,
+                'type': 'lookup'
+            })
             let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 let opentime = new Date()
@@ -307,7 +329,10 @@ export default {
                 }
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj)=>{   
+
+                console.log(obj)     
+            })
         },
         handleCommand({
             action,
