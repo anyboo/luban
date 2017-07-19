@@ -1,7 +1,11 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
 import listtree from './listtree/'
+<<<<<<< HEAD
 import numberinput from './numberinput/'
+=======
+import progress from './progress/'
+>>>>>>> e313092cb237d11500fbd8e4e6a61262153cd9ed
 
 const components = [
     dropdown.LbDropdown,
@@ -9,7 +13,11 @@ const components = [
     buttongroup,
     listtree.LbListTree,
     listtree.LbListtreeItem,
+<<<<<<< HEAD
     numberinput
+=======
+    progress
+>>>>>>> e313092cb237d11500fbd8e4e6a61262153cd9ed
 ]
 
 const install = function(Vue) {
@@ -26,5 +34,9 @@ export default {
     dropdown,
     buttongroup,
     listtree,
+<<<<<<< HEAD
     numberinput
+=======
+    progress
+>>>>>>> e313092cb237d11500fbd8e4e6a61262153cd9ed
 }
