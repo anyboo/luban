@@ -30,7 +30,7 @@
                                     <span class="label bg-danger ng-binding ng-scope">退款:{{item.back_amount}}元</span>
                                 </p>
                                 <p class="m-t-xs">
-                                    <a @click="handleShowDialog('lb-refunds',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.refund_status != '2'&&item.pay_status != '0'">
+                                    <a @click="handleShowDialog('lb-refunds',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.refund_status != '2'&&item.pay_status != '0'||item.back_amount!=item.order_amount-item.unpay_amount">
                                         <i></i>办理退款
                                     </a>
                                     <a @click="handleShowDialog('lb-unpayclearmodal',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.pay_status == '1'">
