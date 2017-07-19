@@ -66,7 +66,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0 / 6</span>
+                                                     <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0/ 6</span> 
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                         <template scope="scope">
                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                 <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
-                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">3 / 6</span>
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0/ 6</span>
                                 </div>
                             </div>
                         </template>
