@@ -58,8 +58,13 @@
                     </div>
                 </div>
                 <div class="wrapper panel panel-default" v-if="steps==2">
+                    <div class=" row  m-t " v-if="arrangetitle.length>0">
+                        当前选择
+                        <br>开始时间：{{arrangestart}}
+                        <br>结束时间：{{arrangeend}}
+                        <br>{{arrangetitle}}
+                    </div>
                     <div class=" row  m-t ">
-                        {{arrangetitle}}
                         <div id='calendar'></div>
                     </div>
                 </div>
@@ -123,6 +128,8 @@ export default {
             currentRow: null,
             arrangeid: '',
             arrangetitle: '',
+            arrangestart: '',
+            arrangeend: '',
             steps: 1,
             localdata
         }
@@ -156,7 +163,9 @@ export default {
                 eventClick: function (calEvent, jsEvent, view) {
                     console.log(calEvent)
                     vm.arrangeid = calEvent.id
-                    vm.arrangetitle = '当前选择:' + calEvent.title
+                    vm.arrangetitle = calEvent.title
+                    vm.arrangestart = calEvent.start._i
+                    vm.arrangeend = calEvent.end._i
                 },
                 events: function (start, end, timezone, callback) {
                     let filterObj = []
@@ -247,6 +256,8 @@ export default {
                 this.steps--
                 this.arrangeid = ''
                 this.arrangetitle = ''
+                this.arrangestart = ''
+                this.arrangeend = ''
             }
             //this.lbClosedialog()
             //this.$store.state.envs.currDialogResult = this.currentRow
