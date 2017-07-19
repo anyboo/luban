@@ -4,21 +4,30 @@
             <div class="ng-scope"></div>
             <div class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" @click="lbClosedialog($event)"><span>×</span><span class="sr-only">关闭</span></button>
-                    <h3 class="modal-title"><i class="icon-note"></i>为订单号 <span class="label bg-info ng-binding">{{order.order_no}}</span> 办理退款</h3></div>
+                    <button class="close" type="button" @click="lbClosedialog($event)">
+                        <span>×</span>
+                        <span class="sr-only">关闭</span>
+                    </button>
+                    <h3 class="modal-title">
+                        <i class="icon-note"></i>为订单号
+                        <span class="label bg-info ng-binding">{{order.order_no}}</span> 办理退款</h3>
+                </div>
                 <div class="modal-body">
                     <div class="row no-gutter " :class="{'step1':step==1,'step2':step==2}">
                         <div class="col-xs-6 bg-light lter" :class="{'bg-success':step==1}">
-                            <h4 class="padder manages">1.选择缴费记录</h4></div>
+                            <h4 class="padder manages">1.选择缴费记录</h4>
+                        </div>
                         <div class="col-xs-6 bg-light lter" :class="{'bg-success':step==2}">
-                            <h4 class="padder  manages">2.确认退款</h4></div>
+                            <h4 class="padder  manages">2.确认退款</h4>
+                        </div>
                     </div>
                     <div class="m-t ng-scope" v-if="step==1">
                         <ul class="list-group ng-scope">
                             <template v-for="item in getTablesData()">
                                 <li class="list-group-item ng-scope ng-click-active" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
                                     <h4 class="list-group-item-heading ng-binding">缴费日期:{{getDatetimeFormat(item.creattime)}}</h4>
-                                    <p class="list-group-item-text ng-binding">缴费金额:<span class="text-danger ng-binding">{{item.money_pay_amount}}元</span>,缴费方式:现金
+                                    <p class="list-group-item-text ng-binding">缴费金额:
+                                        <span class="text-danger ng-binding">{{item.money_pay_amount}}元</span>,缴费方式:现金
                                     </p>
                                 </li>
                             </template>
@@ -47,8 +56,8 @@
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static ng-binding">{{order.body}}
                                         <!--
-                                        <span class="text-danger ng-binding ng-scope" ng-if="oph.remain_times > -1">剩余 5 次</span>
-                                        -->
+                                                <span class="text-danger ng-binding ng-scope" ng-if="oph.remain_times > -1">剩余 5 次</span>
+                                                -->
                                     </p>
                                 </div>
                             </div>
@@ -72,6 +81,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-xs-12 col-md-2">已退金额:</label>
+                                <div class="col-xs-12 col-md-5">
+                                    <p class="form-control-static ng-binding">{{order.back_amount}}元
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">缴费日期:</label>
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static ng-binding">{{getDatetimeFormat(currentRow.creattime)}}</p>
@@ -81,7 +97,9 @@
                                 <label class="control-label col-xs-12 col-md-2">退款金额:</label>
                                 <div class="col-xs-12 col-md-3">
                                     <div class="input-group">
-                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount"> <span class="input-group-addon">元</span></div>
+                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount">
+                                        <span class="input-group-addon">元</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group ng-hide">
@@ -106,8 +124,13 @@
                                     <div class="btn-group">
                                         <lb-buttongroup :group-data="localdata.times_policy" v-model="localdata.form.times_policy" @input="handleTimes_policy"></lb-buttongroup>
                                     </div>
-                                    <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.times_policy == 3"><span class="input-group-addon"><i class="fa fa-minus"></i></span>
-                                        <input type="number" @model="localdata.form.times" class="form-control ng-pristine ng-untouched ng-valid"> <span class="input-group-addon">次</span></div>
+                                    <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.times_policy == 3">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-minus"></i>
+                                        </span>
+                                        <input type="number" @model="localdata.form.times" class="form-control ng-pristine ng-untouched ng-valid">
+                                        <span class="input-group-addon">次</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -221,13 +244,30 @@ export default {
             }
             return result
         },
+        refundOrder() {
+            let back_amount = Number(this.localdata.form.amount) + Number(this.order.back_amount)
+            let refund_status = 1
+            if (back_amount == 0) {
+                refund_status = 0
+            } else if (back_amount == this.order.order_amount) {
+                refund_status = 2
+            }
+            this.updateTeble('order', this.order._id, {
+                'refund_status': refund_status,
+                'back_amount': back_amount
+            }).then(() => {
+                this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-paynow'
+                this.dopay = true
+            })
+        },
         do_refund() {
             this.handleSave().then((data) => {
                 this.$message({
                     message: '退款成功',
                     type: 'success'
                 })
-                this.lbClosedialog()
+                this.refundOrder()
             })
         },
         handleSearch() {
