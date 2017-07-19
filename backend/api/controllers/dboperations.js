@@ -77,10 +77,21 @@ function changeModelId(model) {
             if (item.indexOf('_id') >= 0) {
                 try {
                     console.log('-----', item, model[item])
-                    if (checkId(model[item])) {
-                        let monkid = ObjectID(model[item])
-                        model[item] = monkid
+                    if (typeof model === 'object') {
+                        for (var iditem of model) {
+                            if (checkId(iditem)) {
+                                let monkid = ObjectID(iditem)
+                                iditem = monkid
+                            }
+                        }
+
+                    } else {
+                        if (checkId(model[item])) {
+                            let monkid = ObjectID(model[item])
+                            model[item] = monkid
+                        }
                     }
+
                 } catch (e) {
                     console.log(e)
                 }
@@ -144,7 +155,7 @@ module.exports.all = function* all(name, next) {
                         findObj[key] = like
                     } else if (type == 'unwind') {
                         options.push({ '$unwind': value })
-                    }else if (type == 'lookup') {
+                    } else if (type == 'lookup') {
                         options.push({ '$lookup': value })
                     } else if (type == 'lt') {
                         findObj[key] = findObj[key] || {}

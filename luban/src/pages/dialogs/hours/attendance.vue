@@ -359,9 +359,9 @@ export default {
             console.log(this.arrangestart)
             form.arrangestart = this.getDatetime(this.arrangestart)
             form.arrangeend = this.getDatetime(this.arrangeend)
-            form.student = []
+            form.student_id = []
             for (var item of this.multipleSelection) {
-                form.student.push(item.student_id)
+                form.student_id.push(item.student_id)
             }
             this.handleSave(form).then(() => {
                 this.$message({

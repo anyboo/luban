@@ -110,10 +110,10 @@ export default {
                 'as': 'classes'
             },
             'lookupstudent': {
-                'localField': 'student',
+                'localField': 'student_id',
                 'from': 'student',
                 'foreignField': '_id',
-                'as': 'studentlist'
+                'as': 'student'
             }
         }
         return {
@@ -126,10 +126,9 @@ export default {
     methods: {
         handleSearch() {
             let filterObj = []
-          
             filterObj.push({
                 'key': 'student',
-                'value': '$student',
+                'value': '$student_id',
                 'type': 'unwind'
             })
             filterObj.push({
@@ -142,12 +141,11 @@ export default {
                 'value': this.localdata.lookuparrange,
                 'type': 'lookup'
             })
-             /*
             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.lookupstudent,
                 'type': 'lookup'
-            })*/
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
                 console.log(obj)
