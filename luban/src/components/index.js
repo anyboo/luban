@@ -1,6 +1,7 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
 import listtree from './listtree/'
+import progress from './progress/'
 
 const components = [
     dropdown.LbDropdown,
@@ -8,6 +9,7 @@ const components = [
     buttongroup,
     listtree.LbListTree,
     listtree.LbListtreeItem,
+    progress
 ]
 
 const install = function(Vue) {
@@ -23,5 +25,6 @@ export default {
     install,
     dropdown,
     buttongroup,
-    listtree
+    listtree,
+    progress
 }
