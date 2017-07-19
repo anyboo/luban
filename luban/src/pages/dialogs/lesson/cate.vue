@@ -38,6 +38,7 @@ export default {
         }
         return {
             localdata,
+              model: 'cate',
             tables: ['cate']
         }
     },
@@ -49,7 +50,18 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            this.$refs.listtree.addRoot()
+            let vm = this
+            vm.modalsType = vm.types.APPEND_API
+            vm.localdata.form = {
+                name: '默认分类',
+                pid: '',
+                save: false
+            }
+            vm.handleSave().then(() => {
+                vm.handleGetTable()
+            }, (e) => {
+                console.log(e)
+            })
         }
     }
 }
