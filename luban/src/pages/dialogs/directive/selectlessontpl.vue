@@ -36,11 +36,13 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="col-xs-12 col-md-5">
                             <button @click="lbShowdialog($event,'lb-newlessonmodal')" class="btn btn-primary pull-right ng-click-active">
                                 <i class="fa fa-plus"></i>添加课程
                             </button>
                         </div>
+                        -->
                     </div>
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">

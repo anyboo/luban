@@ -11,53 +11,62 @@
                 </h3>
             </div>
             <div class="modal-body">
-                <el-steps :center="true" :active="1" finish-status="success">
+                <el-steps :center="true" :active="steps" finish-status="success">
                     <el-step title="选择班级"></el-step>
                     <el-step title="选择排课"></el-step>
                     <el-step title="考勤"></el-step>
                 </el-steps>
-                <div class="row">
-                    <div class="col-xs-12 col-md-7">
-                        <div class="input-group w-full">
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <el-dropdown menu-align="start" @command="handleCommand">
-                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                            {{localdata.search.search_value}}
-                                            <span class="caret"></span>
-                                        </lb-dropdown-button>
-                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                            <template v-for="item in localdata.search.fields">
-                                                <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
-                                            </template>
-                                        </el-dropdown-menu>
-                                    </el-dropdown>
+                <div class="panel panel-default" v-if="steps==1">
+                    <div class="row wrapper">
+                        <div class="col-xs-12 col-md-7">
+                            <div class="input-group w-full">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <el-dropdown menu-align="start" @command="handleCommand">
+                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                                {{localdata.search.search_value}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                            <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                                <template v-for="item in localdata.search.fields">
+                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
+                                                </template>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
+                                    </div>
+                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                    </span>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                                </span>
                             </div>
                         </div>
                     </div>
+                    <ul class="list-group m-t">
+                        <template v-for="item in getTablesData()">
+                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
+                                <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
+                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="panel-footer">
+                        <div class="row ">
+                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                            </el-pagination>
+                        </div>
+                    </div>
                 </div>
-                <ul class="list-group m-t">
-                    <template v-for="item in getTablesData()">
-                        <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                            <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                            <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
-                        </li>
-                    </template>
-                </ul>
-                <div class="panel-footer">
-                    <div class="row ">
-                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </el-pagination>
+                <div class="wrapper panel panel-default" v-if="steps==2">
+                    <div class=" row  m-t ">
+                        {{arrangetitle}}
+                        <div id='calendar'></div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" @click="handleSelectClass" :disabled="currentRow==null">下一步</button>
+                <button class="btn btn-primary" @click="handleSelectClass(false)" :disabled="steps==1">上一步</button>
+                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">下一步</button>
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
             </div>
         </div>
@@ -88,12 +97,33 @@ export default {
                 'from': 'employee',
                 'foreignField': '_id',
                 'as': 'employee'
+            },
+            'lookupclasses': {
+                'localField': 'classes_id',
+                'from': 'classes',
+                'foreignField': '_id',
+                'as': 'classes'
+            },
+            'lookupsclasses': {
+                'localField': 'sclasses_id',
+                'from': 'sclasses',
+                'foreignField': '_id',
+                'as': 'sclasses'
+            },
+            'lookuptech': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
             }
         }
         return {
             status: 0,
             tables: ['classes'],
             currentRow: null,
+            arrangeid: '',
+            arrangetitle: '',
+            steps: 1,
             localdata
         }
     },
@@ -101,8 +131,123 @@ export default {
     watch: {
 
     },
+    updated() {
+        if (this.steps == 2) {
+            this.getArrange()
+        }
+    },
     methods: {
-        handleSelectClass() {
+        getArrange() {
+            let vm = this
+            $('#calendar').fullCalendar({
+                schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+                nowIndicator: true,
+                editable: false,
+                aspectRatio: 1.8,
+                scrollTime: '07:00',
+                header: {
+                    left: 'today,prev,next',
+                    center: 'title',
+                    right: ''
+                },
+                allDaySlot: false,
+                defaultView: 'listMonth',
+                navLinks: true,
+                eventClick: function (calEvent, jsEvent, view) {
+                    console.log(calEvent)
+                    vm.arrangeid = calEvent.id
+                    vm.arrangetitle = '当前选择:' + calEvent.title
+                },
+                events: function (start, end, timezone, callback) {
+                    let filterObj = []
+                    let startTime = vm.getDatetimeStartEndOf(start._d)
+                    let endTime = vm.getDatetimeStartEndOf(end._d, end)
+                    let id = ''
+                    if (vm.currentRow) {
+                        id = vm.currentRow._id
+                    }
+                    filterObj.push({
+                        'key': 'classes_id',
+                        'value': id,
+                        'type': ''
+                    })
+
+                    filterObj.push({
+                        'key': 'daterange2',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'lookup',
+                        'value': vm.localdata.lookupclasses,
+                        'type': 'lookup'
+                    })
+                    filterObj.push({
+                        'key': 'lookup',
+                        'value': vm.localdata.lookupsclasses,
+                        'type': 'lookup'
+                    })
+                    filterObj.push({
+                        'key': 'lookup',
+                        'value': vm.localdata.lookuptech,
+                        'type': 'lookup'
+                    })
+                    let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+                    vm.handleGetFilterTableTable('arrange', filterTxt).then(function (obj) {
+                        let eve = []
+                        for (var item of obj.data.data) {
+                            let evnitem = {}
+                            evnitem.id = item._id
+                            evnitem.resourceId = item.sclasses_id
+                            evnitem.title = ''
+                            if (item.employee && item.employee.length > 0) {
+                                evnitem.title = '老师：' + item.employee[0].name
+                            }
+                            if (item.classes && item.classes.length > 0) {
+                                evnitem.title += ' 班级：' + item.classes[0].class_name
+                            }
+                            if (item.sclasses && item.sclasses.length > 0) {
+                                evnitem.title += ' 教室：' + item.sclasses[0].class_name
+                            }
+                            if (item.dayloop) {
+                                let loopdatastart = item.daterange1
+                                let loopdataend = item.daterange2
+                                let loopcount = 0
+                                while (loopdatastart <= loopdataend) {
+                                    if (loopcount > 1000) {
+                                        break
+                                    }
+                                    let days = vm.moment(loopdatastart).days()
+                                    if (item['day_' + days]) {
+                                        evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
+                                        evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
+                                        let evncpitem = {}
+                                        Object.assign(evncpitem, evnitem)
+                                        eve.push(evncpitem)
+                                    }
+                                    loopdatastart = vm.moment(loopdatastart).add(1, 'days').toDate().getTime()
+                                    loopcount++
+                                }
+                            } else {
+                                evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
+                                evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                                eve.push(evnitem)
+                            }
+                        }
+                        callback(eve)
+                    })
+                }
+            })
+        },
+        handleSelectClass(add) {
+            if (add) {
+                this.steps++
+
+            } else {
+                this.steps--
+                this.arrangeid = ''
+                this.arrangetitle = ''
+            }
             //this.lbClosedialog()
             //this.$store.state.envs.currDialogResult = this.currentRow
             //this.$store.state.envs.currDialog = 'lb-selectclasstpl'
