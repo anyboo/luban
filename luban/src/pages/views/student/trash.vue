@@ -42,14 +42,14 @@
                                     <span class="ng-binding">
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
                                 </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''">{{ scope.row.nickname }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="联系电话">
                                 <template scope="scope">{{ scope.row.first_tel }}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="建档日期">
-                                <template scope="scope">2017-05-13</template>
+                                <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">

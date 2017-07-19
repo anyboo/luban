@@ -130,7 +130,7 @@ export default {
             let dateTemp = moment(datestring)
             let datetimestr = ''
             if (dateTemp.isValid()) {
-                datetimestr = dateTemp.format('YYYY-MM-DD h:mm')
+                datetimestr = dateTemp.format('YYYY-MM-DD H:mm')
             }
             return datetimestr
         },

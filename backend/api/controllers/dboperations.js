@@ -139,10 +139,12 @@ module.exports.all = function* all(name, next) {
                     if (type == 'sort') {
                         findsort = true
                         sortObj[key] = Number(value)
-                    }else if (type == 'like') {
+                    } else if (type == 'like') {
                         let like = new RegExp(value)
                         findObj[key] = like
-                    } else if (type == 'lookup') {
+                    } else if (type == 'unwind') {
+                        options.push({ '$unwind': value })
+                    }else if (type == 'lookup') {
                         options.push({ '$lookup': value })
                     } else if (type == 'lt') {
                         findObj[key] = findObj[key] || {}
@@ -171,8 +173,8 @@ module.exports.all = function* all(name, next) {
         }
     }
     changeModelId(findObj)
-    if (!findsort){
-        sortObj =  { '_id': -1 }
+    if (!findsort) {
+        sortObj = { '_id': -1 }
     }
     let count = yield table.count(findObj)
     options.push({ '$match': findObj })

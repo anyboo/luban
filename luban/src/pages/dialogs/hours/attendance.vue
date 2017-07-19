@@ -354,7 +354,7 @@ export default {
         Save() {
             let form = {}
             form.classes_id = this.currentRow._id
-            form.arrangeid = this.arrangeid
+            form.arrange_id = this.arrangeid
             form.arrangetitle = this.arrangetitle
             console.log(this.arrangestart)
             form.arrangestart = this.getDatetime(this.arrangestart)

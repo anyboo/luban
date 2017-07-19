@@ -40,7 +40,7 @@
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="班级">
-                                <template scope="scope">古典吉他初级</template>
+                                <template scope="scope">{{getLookUp(scope.row.classes, 'class_name')}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="上课老师">
                                 <template scope="scope">陈佳木</template>
@@ -50,11 +50,11 @@
                             </el-table-column>
                             <el-table-column prop="data" label="出勤状态">
                                 <template scope="scope">
-                                    <span class="label bg-success" ng-if="item.is_in == '1'">正常出勤</span>
+                                    <span class="label bg-success">正常出勤</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="登记时间">
-                                <template scope="scope">{{getDatetimeFormat(scope.row.create_time)}}</template>
+                                <template scope="scope">{{getDatetimeFormat(scope.row.creattime)}}</template>
                             </el-table-column>
                         </el-table>
                     </div>
@@ -90,7 +90,31 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
-            }]
+            }],
+            'lookup': {
+                'localField': 'arrange.teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            },
+            'lookuparrange': {
+                'localField': 'arrange_id',
+                'from': 'arrange',
+                'foreignField': '_id',
+                'as': 'arrange'
+            },
+            'lookupclasses': {
+                'localField': 'classes_id',
+                'from': 'classes',
+                'foreignField': '_id',
+                'as': 'classes'
+            },
+            'lookupstudent': {
+                'localField': 'student',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'studentlist'
+            }
         }
         return {
             localdata,
@@ -102,8 +126,30 @@ export default {
     methods: {
         handleSearch() {
             let filterObj = []
+            filterObj.push({
+                'key': 'student',
+                'value': '$student',
+                'type': 'unwind'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupclasses,
+                'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookuparrange,
+                'type': 'lookup'
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupstudent,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                console.log(obj)
+            })
         },
     }
 }
