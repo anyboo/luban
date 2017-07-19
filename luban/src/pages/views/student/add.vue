@@ -12,6 +12,8 @@
                         <div class="form-group ng-scope">
                             <label class="col-xs-12 col-md-2 control-label">
                                 <span class="text-danger">*</span>姓名:
+                               
+                               
                             </label>
                             <div class="col-xs-12 col-md-10">
                                 <div class="inline va-m w-sm">
@@ -21,7 +23,7 @@
                                 <div class="error ng-hide" v-if="localdata.validator.fields.student_name.errorStatus">
                                     <span class="text-warning">学员姓名必须填写</span>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                         <div class="form-group ng-scope">
                             <label class="col-xs-12 col-md-2 control-label">

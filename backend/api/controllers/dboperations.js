@@ -124,6 +124,8 @@ module.exports.all = function* all(name, next) {
     let skip = Number.parseInt(query.page || 0) * limit
     let filter = query.filter
     let findObj = {}
+    let sortObj = {}
+    let findsort = false
     let options = []
     console.log(filter)
     if (filter) {
@@ -134,7 +136,10 @@ module.exports.all = function* all(name, next) {
                     let value = item.value
                     let type = item.type
                     let key = item.key
-                    if (type == 'like') {
+                    if (type == 'sort') {
+                        findsort = true
+                        sortObj[key] = Number(value)
+                    }else if (type == 'like') {
                         let like = new RegExp(value)
                         findObj[key] = like
                     } else if (type == 'lookup') {
@@ -166,9 +171,12 @@ module.exports.all = function* all(name, next) {
         }
     }
     changeModelId(findObj)
+    if (!findsort){
+        sortObj =  { '_id': -1 }
+    }
     let count = yield table.count(findObj)
     options.push({ '$match': findObj })
-    options.push({ '$sort': { '_id': -1 } })
+    options.push({ '$sort': sortObj })
     options.push({ '$skip': skip })
     options.push({ '$limit': limit })
     console.log(options, name, count)

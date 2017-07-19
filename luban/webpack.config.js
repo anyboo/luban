@@ -1,4 +1,5 @@
 var path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const url = require('url')
@@ -57,6 +58,9 @@ module.exports = (options = {}) => ({
         }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+           LUBANDEV: JSON.stringify(options.dev)
+        }),
         new HtmlWebpackPlugin({
             template: 'index.html'
         }),

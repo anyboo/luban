@@ -1,0 +1,87 @@
+
+
+
+//buttonList
+{buttonLists:[{
+    tracks:[{
+        buttonList:'跟踪回访登记',
+        buttonIcon:'fa-users'
+    }],
+    employee:[{
+        buttonList:'新建教室',
+        buttonIcon:'fa-plus'
+    }],
+    recording:[{
+        buttonList:'添加赛事记录'
+    }],
+    flow:[{
+        buttonList:'记一笔',
+        buttonIcon:'fa-pencil'
+
+    }],
+    employee:[{
+        buttonList:'添加',
+        buttonIcon:'fa-plus'
+    }],
+}]
+}
+
+//sreachList
+{sreachLists:[{
+    buttonText:'搜索',
+    inputPlaceholder:'关键字',
+    selectText:'selectContent'
+}]
+}
+{selectContent:[{
+    optionOne:'option1'
+}]}
+{option1:[{
+        text_name:'姓名',
+        text_number:'手机号',
+        text_add:'地址',
+        text_Ename:'英文名',
+        text_studentCard:'学员卡号',
+    }]
+}
+//groupButton
+{groupButton:[{
+        groupButtonOne:'groupButton1',
+        groupButtonTwo:'groupButton2',
+        groupButtonThree:'groupButton3',
+        groupButtonFour:'groupButton4',
+        groupButtonFive:'groupButton5',
+        groupButtonSix:'groupButton6',
+        groupButtonSeven:'groupButton7'
+}]
+}
+{groupButton1:[{
+        student_all:'所有学员',
+        student_unread:'未报读学员',
+        student_ready:'以报读学员'
+}]
+}
+{groupButton2:[{
+        text_tou:'头像',
+        icon_photo:'fa-image',
+        text_list:'列表',
+        icon_list:'fa-list'
+}]
+}
+{groupButton3:[{
+       date_nowday:'今日',
+       date_nowweek:'本周',
+       date_month:'本月'
+}]
+}
+{groupButton4:[{
+        list0_all:'所有',
+        list0_never:'为归属'
+}]
+}
+//inputList
+{inputList:[{
+    input_value:'学员',
+    input_state:'disbled',
+    input:'btn-default'
+}]}

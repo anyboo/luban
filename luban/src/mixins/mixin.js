@@ -302,9 +302,9 @@ export default {
                 })
             })
         },
-        handleSave() {
+        handleSave(form) {
             let vm = this
-            let modalform = vm.localdata.form
+            let modalform = form?form:vm.localdata.form
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)

@@ -39,7 +39,7 @@
             </div>
             <div class="table-responsive m-t m-t-t">
                 <el-table :data="getTablesData()" stripe>
-                    <el-table-column prop="data" label="操作">
+                    <el-table-column prop="data" label="操作" width="100">
                         <template scope="scope">
                             <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu">
@@ -49,7 +49,7 @@
                             </lb-dropdown>
                         </template>
                     </el-table-column>
-                    <el-table-column width="300" prop="data" label="课程">
+                    <el-table-column  prop="data" label="课程" width="250">
                         <template scope="scope">
                             <p>
                                 <span class="label bg-danger">{{getButtongroupText(localdata.lesson_type,scope.row.lesson_type)}}</span>{{scope.row.lesson_name}}
@@ -57,10 +57,10 @@
                             </p>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="data" label="定价">
+                    <el-table-column prop="data" label="定价" width="180"> 
                         <template scope="scope">
                             <p>
-                                <span>按期收费</span>,课程单价:{{scope.row.unit_price}}元/次
+                                课程单价:{{scope.row.unit_price}}元/次
                             </p>
                             <p>
                                 <label>课程售价:</label>
@@ -72,21 +72,14 @@
                         <template scope="scope">
                             <p>
                                 <label>单次课时长:</label>
-                                <span class="label bg-info">1.00</span>时
+                                <span class="label bg-info">{{scope.row.unit_hours}}</span>时
                             </p>
                             <p>
                                 <label>课程包含:</label>
-                                <span class="label bg-info">{{scope.row.inc_times}}</span>
+                                <template v-if="scope.row.lesson_type=='0'">
+                                    <span class="label bg-info">{{scope.row.inc_times}} </span>次
+                                </template>
                                 <span class="label bg-info">{{scope.row.inc_hours}}</span>课时
-                            </p>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="data">
-                        <template scope="scope">
-                            <p>
-                                <span>
-                                    <label class="xlabel"></label>
-                                </span>
                             </p>
                         </template>
                     </el-table-column>
