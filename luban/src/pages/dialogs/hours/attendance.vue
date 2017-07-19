@@ -68,10 +68,28 @@
                         <div id='calendar'></div>
                     </div>
                 </div>
+                <div class="wrapper panel panel-default" v-if="steps==3">
+                    <div class=" row  m-t " v-if="arrangetitle.length>0">
+                        开始时间：{{arrangestart}}
+                        <br>结束时间：{{arrangeend}}
+                        <br>{{arrangetitle}}
+                        <br>
+                        <button class="btn btn-primary">全选学员</button>
+                    </div>
+                    <div class=" row  m-t ">
+                        <el-table v-for="item in orderdata" border tooltip-effect="dark" style="width: 100%">
+                            <el-table-column type="selection" width="55">
+                            </el-table-column>
+                            <el-table-column label="学生">
+                                <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleSelectClass(false)" :disabled="steps==1">上一步</button>
-                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">下一步</button>
+                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">{{steps==3?'确定':'下一步'}}</button>
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
             </div>
         </div>
@@ -120,6 +138,12 @@ export default {
                 'from': 'employee',
                 'foreignField': '_id',
                 'as': 'employee'
+            },
+            'lookupstudent': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
             }
         }
         return {
@@ -131,7 +155,8 @@ export default {
             arrangestart: '',
             arrangeend: '',
             steps: 1,
-            localdata
+            localdata,
+            orderdata: []
         }
     },
     computed: {},
@@ -141,6 +166,28 @@ export default {
     updated() {
         if (this.steps == 2) {
             this.getArrange()
+        } else if (this.steps == 3) {
+            let filterObj = []
+            filterObj.push({
+                'key': 'class_id',
+                'value': this.currentRow._id,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'order_type',
+                'value': 1,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupstudent,
+                'type': 'lookup'
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTableTable('order', filterTxt).then(function (obj) {
+                this.orderdata = obj.data.data
+                console.log( this.orderdata )
+            })
         }
     },
     methods: {
