@@ -35,8 +35,8 @@
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>李达康
+                                         <i class="fa" :class="{'fa-female':getLookUp(scope.row.student,'sex')=='2','fa-male':getLookUp(scope.row.student,'sex')=='1'}"></i>
+                                    </span>{{ getLookUp(scope.row.student,'student_name') }}
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="班级">
