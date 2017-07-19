@@ -118,9 +118,9 @@ export default {
                 }
             }
             filterObj.push({
-                'key': 'isdel',
+                'key': 'birth',
                 'value': false,
-                'type': ''
+                'type': 'sort'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
