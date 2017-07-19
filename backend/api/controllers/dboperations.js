@@ -76,12 +76,13 @@ function changeModelId(model) {
         if (typeof item == 'string') {
             if (item.indexOf('_id') >= 0) {
                 try {
-                    console.log('-----', item, model[item])
+                    console.log('-----', item, model[item],typeof model[item])
                     if (typeof model[item] === 'object') {
                         for (var iditem of model[item]) {
                             if (checkId(iditem)) {
                                 let monkid = ObjectID(iditem)
                                 iditem = monkid
+                                console.log('-----', iditem,monkid)
                             }
                         }
 
