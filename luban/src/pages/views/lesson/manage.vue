@@ -57,7 +57,7 @@
                             </p>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="data" label="定价">
+                    <el-table-column prop="data" label="定价" width="280"> 
                         <template scope="scope">
                             <p>
                                 <span>按期收费</span>,课程单价:{{scope.row.unit_price}}元/次
@@ -72,11 +72,11 @@
                         <template scope="scope">
                             <p>
                                 <label>单次课时长:</label>
-                                <span class="label bg-info">1.00</span>时
+                                <span class="label bg-info">{{scope.row.unit_hours}}</span>时
                             </p>
                             <p>
                                 <label>课程包含:</label>
-                                <span class="label bg-info">{{scope.row.inc_times}}</span>
+                                <span class="label bg-info">{{scope.row.inc_times}} </span>次
                                 <span class="label bg-info">{{scope.row.inc_hours}}</span>课时
                             </p>
                         </template>

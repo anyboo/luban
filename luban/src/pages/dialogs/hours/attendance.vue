@@ -77,7 +77,7 @@
                         <button class="btn btn-primary">全选学员</button>
                     </div>
                     <div class=" row  m-t ">
-                        <el-table v-for="item in orderdata" border tooltip-effect="dark" style="width: 100%">
+                        <el-table :data="orderdata" border tooltip-effect="dark" style="width: 100%">
                             <el-table-column type="selection" width="55">
                             </el-table-column>
                             <el-table-column label="学生">
@@ -178,11 +178,7 @@ export default {
                 'value': 1,
                 'type': ''
             })
-            filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.lookupstudent,
-                'type': 'lookup'
-            })
+          
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTableTable('order', filterTxt).then(function (obj) {
                 this.orderdata = obj.data.data
