@@ -1,6 +1,7 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
 import listtree from './listtree/'
+import numberinput from './numberinput/'
 
 const components = [
     dropdown.LbDropdown,
@@ -8,6 +9,7 @@ const components = [
     buttongroup,
     listtree.LbListTree,
     listtree.LbListtreeItem,
+    numberinput
 ]
 
 const install = function(Vue) {
@@ -23,5 +25,6 @@ export default {
     install,
     dropdown,
     buttongroup,
-    listtree
+    listtree,
+    numberinput
 }
