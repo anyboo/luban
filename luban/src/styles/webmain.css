@@ -1173,7 +1173,9 @@
     #sidebar {
         background: #33485c;
     }
-    
+    .navbar-static-side ul {
+        z-index:200
+    }
     .navbar-static-side ul li {
         border-bottom: 1px solid #374d63;
     }
@@ -10731,6 +10733,7 @@ End Header Option Page
     
     #web.sidebar-collapsed .navbar-static-side {
         width: 55px;
+        z-index: 5
     }
     
     #web.sidebar-collapsed .navbar-static-side ul#side-menu li.user-panel {

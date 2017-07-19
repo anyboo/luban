@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
                     <el-form-item label="班级" prop="classes_id" required>
-                        <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择" @change="getTechName" style="width: 100%;">
+                        <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择" @change="getTechName">
                             <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                             </el-option>
                         </el-select>
@@ -22,22 +22,38 @@
                         {{techName}}
                     </el-form-item>
                     <el-form-item label="上课教室" prop="sclasses_id" required>
-                        <el-select v-model="localdata.form.sclasses_id" filterable placeholder="请选择" style="width: 100%;">
+                        <el-select v-model="localdata.form.sclasses_id" filterable placeholder="请选择">
                             <el-option v-for="item in getsClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="开始日期" prop="daterange1" required>
-                        <el-date-picker @change="date1change" type="date" placeholder="选择日期" v-model="localdata.form.daterange1" style="width: 100%;"></el-date-picker>
+                    <el-form-item label="开始时间" required>
+                        <el-col :span="11">
+                            <el-form-item prop="daterange1">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="localdata.form.daterange1" style="width: 100%;"></el-date-picker>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="2"></el-col>
+                        <el-col :span="11">
+                            <el-form-item prop="timerange1">
+                                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="localdata.form.timerange1" style="width: 100%;"></el-time-picker>
+                            </el-form-item>
+                        </el-col>
                     </el-form-item>
-                    <el-form-item label="上课时间" prop="timerange" required>
-                        <el-time-picker v-model="localdata.form.timerange" placeholder="选择时间" is-range style="width: 100%;">
-                        </el-time-picker>
+                    <el-form-item label="结束时间" required>
+                        <el-col :span="11">
+                            <el-form-item prop="daterange2">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="localdata.form.daterange2" style="width: 100%;"></el-date-picker>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="2"></el-col>
+                        <el-col :span="11">
+                            <el-form-item prop="timerange2">
+                                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="localdata.form.timerange2" style="width: 100%;"></el-time-picker>
+                            </el-form-item>
+                        </el-col>
                     </el-form-item>
-                    <el-form-item label="结束日期" prop="daterange2" :required="localdata.form.dayloop">
-                        <el-date-picker type="date" placeholder="选择日期" v-model="localdata.form.daterange2" style="width: 100%;"></el-date-picker>
-                    </el-form-item>
-                    <el-form-item label="周期">
+                    <el-form-item label="周期" prop="dayloop">
                         <el-switch on-text="" off-text="" v-model="localdata.form.dayloop"></el-switch>
                     </el-form-item>
                     <el-form-item label="上课周期" v-if="localdata.form.dayloop">
@@ -132,8 +148,7 @@ export default {
                 sclasses_id: '',
                 teacher_id: '',
                 timerange1: '',
-                timerange2: '',
-                timerange: ''
+                timerange2: ''
             }
         }
         var validateDatatime = (rule, value, callback) => {
@@ -142,25 +157,6 @@ export default {
             } else {
                 if (value.length != 2) {
                     callback(new Error(rule.message))
-                } else {
-                    callback()
-                }
-            }
-        }
-        var validateDate = (rule, value, callback) => {
-            if (value === '') {
-                if (this.localdata.form.dayloop) {
-                    callback(new Error('请选择日期'))
-                } else {
-                    callback()
-                }
-            } else {
-                if (this.localdata.form.dayloop) {
-                    if (this.getDatetime(this.localdata.form.daterange1) > this.getDatetime(this.localdata.form.daterange2)) {
-                        callback(new Error('结束日期要大于开始日期'))
-                    } else {
-                        callback()
-                    }
                 } else {
                     callback()
                 }
@@ -178,11 +174,14 @@ export default {
                 daterange1: [
                     { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
                 ],
-                daterange2: [
-                    { validator: validateDate, trigger: 'blur' }
+                timerange1: [
+                    { type: 'date', required: true, message: '请选择时间', trigger: 'blur' }
                 ],
-                timerange: [
-                    { validator: validateDatatime, message: '请选择时间', trigger: 'blur' }
+                daterange2: [
+                    { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+                ],
+                timerange2: [
+                    { type: 'date', required: true, message: '请选择时间', trigger: 'blur' }
                 ]
             },
             model: 'arrange',
@@ -234,11 +233,6 @@ export default {
     },
     watch: {},
     methods: {
-        date1change(){
-            if (!this.localdata.form.dayloop){
-                this.localdata.form.daterange2 = this.localdata.form.daterange1
-            }
-        },
         getTechName() {
             let vm = this
             let teach = _.find(vm.classes, { _id: vm.localdata.form.classes_id })
@@ -290,10 +284,8 @@ export default {
                     }
                     vm.localdata.form.daterange1 = vm.getDatetime(vm.localdata.form.daterange1)
                     vm.localdata.form.daterange2 = vm.getDatetime(vm.localdata.form.daterange2)
-                    vm.localdata.form.timerange1 = vm.getDatetime(vm.localdata.form.timerange[0])
-                    vm.localdata.form.timerange2 = vm.getDatetime(vm.localdata.form.timerange[1])
-                    vm.localdata.form.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
-                    vm.localdata.form.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
+                    vm.localdata.form.timerange1 = vm.getDatetime(vm.localdata.form.timerange1)
+                    vm.localdata.form.timerange2 = vm.getDatetime(vm.localdata.form.timerange2)
                     vm.handleSave().then(() => {
                         vm.$message({
                             message: '操作成功',

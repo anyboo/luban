@@ -52,7 +52,7 @@
                     <el-table-column width="300" prop="data" label="课程">
                         <template scope="scope">
                             <p>
-                                <span class="label bg-danger">班课</span>{{scope.row.lesson_name}}
+                                <span class="label bg-danger">{{getButtongroupText(localdata.lesson_type,scope.row.lesson_type)}}</span>{{scope.row.lesson_name}}
                                 <small class="label bg-info m-l">{{scope.row.lesson_no}}</small>
                             </p>
                         </template>
@@ -129,7 +129,17 @@ export default {
                 }],
                 'search_key': 'lesson_name',
                 'search_value': '课程名'
-            }
+            },
+            'lesson_type': [{
+                'value': '0',
+                'text': '班课'
+            }, {
+                'value': '1',
+                'text': '1对1'
+            }, {
+                'value': '2',
+                'text': '课时包'
+            }],
         }
         return {
             localdata,

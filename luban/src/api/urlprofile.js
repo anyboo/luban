@@ -1,4 +1,10 @@
-const apiUrl = 'http://app.bullstech.cn:8888/'
+const apiUrl2 = 'http://app.bullstech.cn:8888/'
+const apiUrl1 = 'http://app.bullstech.cn:9999/'
+
+let apiUrl = apiUrl1
+if (LUBANDEV){
+    apiUrl = apiUrl2
+}
 
 function getLoginUrl() {
     return apiUrl + 'login/'
