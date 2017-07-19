@@ -77,8 +77,8 @@ function changeModelId(model) {
             if (item.indexOf('_id') >= 0) {
                 try {
                     console.log('-----', item, model[item])
-                    if (typeof model === 'object') {
-                        for (var iditem of model) {
+                    if (typeof model[item] === 'object') {
+                        for (var iditem of model[item]) {
                             if (checkId(iditem)) {
                                 let monkid = ObjectID(iditem)
                                 iditem = monkid
