@@ -50,7 +50,7 @@
                                 <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
                                     <el-option v-for="item in getEmployeeData" :key="item._id" :label="item.name" :value="item._id">
                                     </el-option>
-                                </el-select> 
+                                </el-select>
                             </div>
                         </div>
                         <div class="form-group ng-scope" ng-if="have_field('home_address')">
@@ -134,7 +134,8 @@ export default {
                 'school': '',
                 'grade': '',
                 'class': '',
-                'note': ''
+                'note': '',
+                'region_oe_id':'0'
             },
             'sex': [{
                 'value': '1',
@@ -179,7 +180,11 @@ export default {
     },
     computed: {
         getEmployeeData() {
-            let employeeData = this.$store.state.models.models.employee.data
+            let employeeData = [{ name: '请选择', _id: '0' }]
+
+            for (var item of this.$store.state.models.models.employee.data) {
+                employeeData.push({ name: item.name, _id: item._id })
+            }
             return employeeData
         },
     },
