@@ -343,8 +343,24 @@ export default {
             }).value
             this.handleSearch()
         },
+
         handleClick() {
             this.handleSave().then(() => {
+
+        Save() {
+            let form = {}
+            form.classes_id = this.currentRow._id
+            form.arrange_id = this.arrangeid
+            form.arrangetitle = this.arrangetitle
+            console.log(this.arrangestart)
+            form.arrangestart = this.getDatetime(this.arrangestart)
+            form.arrangeend = this.getDatetime(this.arrangeend)
+            form.student_id = []
+            for (var item of this.multipleSelection) {
+                form.student_id.push(item.student_id)
+            }
+            this.handleSave(form).then(() => {
+
                 this.$message({
                     message: '操作成功',
                     type: 'success'

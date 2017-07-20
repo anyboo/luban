@@ -76,11 +76,24 @@ function changeModelId(model) {
         if (typeof item == 'string') {
             if (item.indexOf('_id') >= 0) {
                 try {
-                    console.log('-----', item, model[item])
-                    if (checkId(model[item])) {
-                        let monkid = ObjectID(model[item])
-                        model[item] = monkid
+                    console.log('-----', item, model[item],typeof model[item])
+                    if (typeof model[item] === 'object') {
+                        let iditem = model[item]
+                        for (var idindex in iditem) {
+                            if (checkId(iditem[idindex])) {
+                                let monkid = ObjectID(iditem[idindex])
+                                iditem[idindex] = monkid
+                                console.log('-----', iditem[idindex],monkid)
+                            }
+                        }
+
+                    } else {
+                        if (checkId(model[item])) {
+                            let monkid = ObjectID(model[item])
+                            model[item] = monkid
+                        }
                     }
+
                 } catch (e) {
                     console.log(e)
                 }
@@ -139,9 +152,11 @@ module.exports.all = function* all(name, next) {
                     if (type == 'sort') {
                         findsort = true
                         sortObj[key] = Number(value)
-                    }else if (type == 'like') {
+                    } else if (type == 'like') {
                         let like = new RegExp(value)
                         findObj[key] = like
+                    } else if (type == 'unwind') {
+                        options.push({ '$unwind': value })
                     } else if (type == 'lookup') {
                         options.push({ '$lookup': value })
                     } else if (type == 'lt') {
@@ -171,8 +186,8 @@ module.exports.all = function* all(name, next) {
         }
     }
     changeModelId(findObj)
-    if (!findsort){
-        sortObj =  { '_id': -1 }
+    if (!findsort) {
+        sortObj = { '_id': -1 }
     }
     let count = yield table.count(findObj)
     options.push({ '$match': findObj })
