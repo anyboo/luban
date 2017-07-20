@@ -47,7 +47,7 @@
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">
                             <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                <h4 class="list-group-item-heading ng-binding">{{item.lesson_name}}<span class="label bg-warning pull-right ng-binding ng-scope" ng-if="item.lesson_type == '1'">1对1</span></h4>
+                                <h4 class="list-group-item-heading ng-binding">{{item.lesson_name}}<span class="label bg-warning pull-right ng-binding ng-scope" ng-if="item.lesson_type == '1'">{{getButtongroupText(localdata.lesson_type,item.lesson_type)}}</span></h4>
                                 <p class="list-group-item-text text-muted ng-binding">课程编号:<span class="text-danger ng-binding">{{item.lesson_no}}</span>,课程售价:<span class="text-success ng-binding">{{item.price}}</span>,课程单价:8.00,总课次:123</p>
                             </li>
                         </template>
@@ -88,7 +88,17 @@ export default {
                 }],
                 'search_key': 'lesson_name',
                 'search_value': '课程名'
-            }
+            },
+            'lesson_type': [{
+                'value': '0',
+                'text': '班课'
+            }, {
+                'value': '1',
+                'text': '1对1'
+            }, {
+                'value': '2',
+                'text': '课时包'
+            }]
         }
         return {
             localdata,
