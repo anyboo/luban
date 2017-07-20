@@ -152,6 +152,7 @@ export default {
         }
         return {
             status: 0,
+            model: 'attendance',
             tables: ['classes'],
             currentRow: null,
             arrangeid: '',
