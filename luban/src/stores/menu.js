@@ -168,7 +168,6 @@ export default [{
         menuTitle: '角色权限',
         to: '/system/roles',
         menuIcon: 'fa fa-unlock',
-        menuShow: 0,
     }, {
         menuTitle: '员工管理',
         to: '/system/employee',
@@ -191,4 +190,4 @@ export default [{
         menuIcon: ' fa fa-th',
         menuShow: 0,
     }]
-},]
+}, ]

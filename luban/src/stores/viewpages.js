@@ -12,6 +12,7 @@ import systempersonal_information from '~/pages/views/system/personal_informatio
 import systememployee from '~/pages/views/system/employee.vue'
 import systemdict from '~/pages/views/system/dict.vue'
 import systemorg from '~/pages/views/system/org.vue'
+import systemroles from '~/pages/views/system/roles.vue'
 
 import lessonsclasses from '~/pages/views/lesson/sclasses.vue'
 import lessonmanage from '~/pages/views/lesson/manage.vue'
@@ -50,7 +51,8 @@ pages['lb-systempersonal_information'] = systempersonal_information
 pages['lb-systemsign_in'] = systemsign_in
 pages['lb-systememployee'] = systememployee
 pages['lb-systemdict'] = systemdict
-pages['lb-systemorg'] = systemorg 
+pages['lb-systemorg'] = systemorg
+pages['lb-systemroles'] = systemroles
 
 pages['lb-lessonsclasses'] = lessonsclasses
 pages['lb-lessonmanage'] = lessonmanage
@@ -62,17 +64,17 @@ pages['lb-feelist3'] = feelist3
 pages['lb-feelist4'] = feelist4
 
 pages['lb-iaeflow'] = iaeflow
-pages['lb-iaeincome'] = iaeincome 
-pages['lb-iaeexpenses'] = iaeexpenses 
+pages['lb-iaeincome'] = iaeincome
+pages['lb-iaeexpenses'] = iaeexpenses
 
-pages['lb-hoursarrange'] = hoursarrange 
+pages['lb-hoursarrange'] = hoursarrange
 pages['lb-hourssuspends'] = hourssuspends
 pages['lb-hoursleaves'] = hoursleaves
 pages['lb-hoursabsences'] = hoursabsences
 pages['lb-hourswarning'] = hourswarning
-pages['lb-hoursstudent'] = hoursstudent 
+pages['lb-hoursstudent'] = hoursstudent
 pages['lb-hoursteacher'] = hoursteacher
 pages['lb-hoursattendance'] = hoursattendance
-pages['lb-hoursschedule '] = hoursschedule     
+pages['lb-hoursschedule '] = hoursschedule
 
 export default pages

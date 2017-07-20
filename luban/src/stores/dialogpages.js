@@ -25,6 +25,9 @@ import page51 from '~/pages/dialogs/student/region_set.modal.vue'
 import page50 from '~/pages/dialogs/student/change_branch.modal.vue'
 import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
+import page77 from '~/pages/dialogs/system/authority.vue'
+
+
 import page67 from '~/pages/dialogs/system/add_modal.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
@@ -37,6 +40,7 @@ import page73 from '~/pages/dialogs/hours/arrangeedit.vue'
 import page74 from '~/pages/dialogs/hours/leaveshours.vue'
 import page75 from '~/pages/dialogs/hours/suspendshours.vue'
 import page76 from '~/pages/dialogs/hours/attendance.vue'
+
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -66,7 +70,7 @@ pages['lb-endlessonmodal'] = page49
 pages['lb-regionsetmodal'] = page51
 pages['lb-changebranchmodal'] = page50
 pages['lb-purposesetmodal'] = page52
-pages['lb-resetaccountmodal'] =page62
+pages['lb-resetaccountmodal'] = page62
 pages['lb-addmodal'] = page67
 pages['lb-details'] = page68
 pages['lb-dictitems'] = page69
@@ -79,5 +83,6 @@ pages['lb-arrangeedit'] = page73
 pages['lb-leaveshours'] = page74
 pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
+pages['lb-authority'] = page77
 
 export default pages

@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
-                            <lb-buttongroup :group-data="localdata.check_status" v-model="localdata.form.check_status"></lb-buttongroup>
+                            <lb-buttongroup :group-data="localdata.check_status" v-model="localdata.form.check_status" @input="handleSearch"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
@@ -98,7 +98,8 @@ export default {
                 'check_status': '',
                 'param_student_name': '',
                 'type': '',
-                'student_id': ''
+                'student_id': '',
+                'status': ''
             },
             'duration': [{
                 'value': 'day',
@@ -157,12 +158,19 @@ export default {
     methods: {
         handleSearch() {
             let filterObj = []
-
             let student_id = this.localdata.form.student_id.trim()
             if (student_id.length > 0) {
                 filterObj.push({
                     'key': 'student_id',
                     'value': student_id,
+                    'type': ''
+                })
+            }
+            let check_status = this.localdata.form.check_status.trim()
+            if (check_status.length > 0) {
+                filterObj.push({
+                    'key': 'check_status',
+                    'value': Number(check_status),
                     'type': ''
                 })
             }
@@ -185,6 +193,7 @@ export default {
                         'type': 'lt'
                     })
                 }
+                
             }
             filterObj.push({
                 'key': 'lookup',
@@ -214,7 +223,7 @@ export default {
                 type: 'warning',
             }).then(() => {
                 this.updateTeble('flow', id, {
-                    'check_status': '1'
+                    'check_status': 1
                 }).then(() => {
                     this.$message({
                         message: '核对成功',
