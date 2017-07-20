@@ -39,7 +39,7 @@
                             <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="已报课程数">
-                            <template scope="scope">{{ scope.row.order.length }}</template>
+                            <template scope="scope">{{ scope.row.order?scope.row.order.length:0 }}</template>
                         </el-table-column>
                     </el-table>
                     <div class="grid-data-result"></div>
@@ -135,7 +135,6 @@ export default {
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
-                console.log(obj)
             })
         }
     }
