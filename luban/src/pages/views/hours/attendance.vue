@@ -4,15 +4,11 @@
             <div ui-view class="ng-scope">
                 <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
                     <div class="row wrapper">
-                        <div class="col-xs-12 col-md-4 m-t">
-                            <div class="inline" :class="{result:getdialog}">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
-                                <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
-                            </div>
+                        <div class="col-xs-12 col-md-4 m-t" :class="{result:getdialog}">
+                            <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                         </div>
-                        <div class="col-xs-12 col-md-4 m-t">
-                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
+                        <div class="col-xs-12 col-md-5 m-t">
+                            <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
                                     <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
@@ -79,7 +75,8 @@ export default {
                 'daterange': '',
                 'date_end': '',
                 'duration': '',
-                'student_name': ''
+                'student_name': '',
+                'student_id': ''
             },
             'duration': [{
                 'value': 'today',
@@ -125,14 +122,58 @@ export default {
         getdialog() {
             if (this.$store.state.envs.currDialog == 'lb-attendance') {
                 this.handleSearch()
+            } else if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
+                } else {
+                    this.localdata.form.student_id = ''
+                    this.localdata.form.student_name = '学员'
+                }
+                this.handleSearch()
             }
             return true
         },
     },
     watch: {},
     methods: {
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
         handleSearch() {
             let filterObj = []
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'arrangestart',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'arrangestart',
+                        'value': endTime,
+                        'type': 'lte'
+                    })
+                }
+            }
             filterObj.push({
                 'key': 'student',
                 'value': '$student_id',
@@ -161,7 +202,7 @@ export default {
 
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
-              
+
             })
         },
     }

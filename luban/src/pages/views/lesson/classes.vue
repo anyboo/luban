@@ -66,7 +66,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" style="width: 0%;">
-                                                     <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{item.order.length}}/{{item.max_student_num}}</span> 
+                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{getPressageText(item)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,16 +139,12 @@
                     </el-table-column>
                     <el-table-column prop="data" label="招生情况">
                         <template scope="scope">
-                             <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row.order.length,scope.row.max_student_num)" :text="scope.row.order.length+'/'+scope.row.max_student_num"></lb-progress>
+                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row.order,scope.row.max_student_num)" :text="getPressageText(scope.row)"></lb-progress>
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="缴费情况">
                         <template scope="scope">
-                            <div class="progress ng-isolate-scope" style="margin:0" >
-                                <div class="progress-bar progress-bar-danger">
-                                    <span style="white-space:nowrap;padding-left:20px">￥ {{getPayAmout(scope.row.order)}}/￥ {{getTotalAmout(scope.row.order)}}</span>
-                                </div>
-                            </div>
+                            ￥ {{getPayAmout(scope.row.order)}}/￥ {{getTotalAmout(scope.row.order)}}
                         </template>
                     </el-table-column>
                 </el-table>
@@ -230,11 +226,11 @@ export default {
                 'foreignField': 'class_id',
                 'as': 'order'
             }
-            
+
         }
         return {
             localdata,
-            totalAmount:'',
+            totalAmount: '',
             tables: ['classes']
         }
     },
@@ -246,33 +242,43 @@ export default {
             }
             return result
         },
-        
-        
     },
     watch: {},
     methods: {
-        getTotalAmout(orders){
-            var totalamount=0
-            for(var item of orders){
-                totalamount+=Number(item.order_amount)
+        getPressageText(row) {
+            let count = row.order ? row.order.length : 0
+            return count + '/' + row.max_student_num
+        },
+        getTotalAmout(orders) {
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
             }
             return totalamount
         },
-        getPayAmout(orders){
-            var payamount=0
-            var totalamount=0
-            for(var item of orders){
-                totalamount+=Number(item.order_amount)
+        getPayAmout(orders) {
+            var payamount = 0
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+                for (var item of orders) {
+                    payamount += Number(item.unpay_amount)
+                }
             }
-            for(var item of orders){
-                payamount+=Number(item.unpay_amount)
-            }
-            return totalamount-payamount
+            return totalamount - payamount
         },
-        getPercentage(hasStudent,maxStudent){
+        getPercentage(order, maxStudent) {
             let percentage = 100
-            if (maxStudent>0){
-                percentage = Number(hasStudent)*100/Number(maxStudent)
+            let ordercount = 0
+            if (order) {
+                ordercount = order.length
+            }
+            if (maxStudent > 0) {
+                percentage = Number(ordercount) * 100 / Number(maxStudent)
             }
             return percentage
         },
@@ -313,11 +319,6 @@ export default {
                 'type': 'lookup'
             })
             filterObj.push({
-                'key': 'order.order_type',
-                'value': 1,
-                'type': ''
-            })
-             filterObj.push({
                 'key': 'lookup',
                 'value': this.localdata.orderlookup,
                 'type': 'lookup'
@@ -348,8 +349,8 @@ export default {
                 }
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt).then((obj)=>{   
-                  
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+
             })
         },
         handleCommand({
