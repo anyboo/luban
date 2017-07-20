@@ -46,7 +46,7 @@
                         <template v-for="item in getTablesData()">
                             <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
                                 <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:3/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
+                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:{{item.order.length}}/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
                             </li>
                         </template>
                     </ul>
@@ -75,7 +75,7 @@
                         <br>{{arrangetitle}}
                     </div>
                     <div class=" row  m-t ">
-                        <el-table @selection-change="handleSelectionChange" :data="orderdata" border tooltip-effect="dark" style="width: 100%">
+                        <el-table :data="orderdata" border tooltip-effect="dark" style="width: 100%">
                             <el-table-column type="selection" width="55">
                             </el-table-column>
                             <el-table-column label="学生">
@@ -87,7 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleSelectClass(false)" :disabled="steps==1">上一步</button>
-                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="getNextButtonDisable">{{steps==3?'签到':'下一步'}}</button>
+                <button class="btn btn-primary" @click="handleSelectClass(true)" :disabled="(steps==1&&currentRow==null)||(steps==2&&arrangeid.length==0)">{{steps==3?'签到':'下一步'}}</button>
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
             </div>
         </div>
@@ -142,11 +142,16 @@ export default {
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
+            },
+            'orderlookup': {
+                'localField': '_id',
+                'from': 'order',
+                'foreignField': 'class_id',
+                'as': 'order'
             }
         }
         return {
             status: 0,
-            model: 'attendance',
             tables: ['classes'],
             currentRow: null,
             arrangeid: '',
@@ -155,25 +160,10 @@ export default {
             arrangeend: '',
             steps: 1,
             localdata,
-            orderdata: [],
-            multipleSelection: []
+            orderdata: []
         }
     },
-    computed: {
-        getNextButtonDisable() {
-            let result = false
-            if (this.steps == 1 && this.currentRow == null) {
-                result = true
-            }
-            if (this.steps == 2 && this.arrangeid.length == 0) {
-                result = true
-            }
-            if (this.steps == 3 && this.multipleSelection.length == 0) {
-                result = true
-            }
-            return result
-        }
-    },
+    computed: {},
     watch: {
 
     },
@@ -183,9 +173,6 @@ export default {
         }
     },
     methods: {
-        handleSelectionChange(val) {
-            this.multipleSelection = val
-        },
         getArrange() {
             let vm = this
             $('#calendar').fullCalendar({
@@ -293,7 +280,7 @@ export default {
         handleSelectClass(add) {
             if (add) {
                 if (this.steps == 3) {
-                    this.Save()
+
                 } else {
                     this.steps++
                     if (this.steps == 3) {
@@ -315,7 +302,9 @@ export default {
                         })
                         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                         this.handleGetFilterTableTable('order', filterTxt).then((obj) => {
+
                             this.orderdata = obj.data.data
+                            console.log(this.orderdata)
                         })
                     }
                 }
@@ -326,6 +315,9 @@ export default {
                 this.arrangestart = ''
                 this.arrangeend = ''
             }
+            //this.lbClosedialog()
+            //this.$store.state.envs.currDialogResult = this.currentRow
+            //this.$store.state.envs.currDialog = 'lb-selectclasstpl'
         },
         handleListChange(row) {
             this.currentRow = row
@@ -351,6 +343,10 @@ export default {
             }).value
             this.handleSearch()
         },
+
+        handleClick() {
+            this.handleSave().then(() => {
+
         Save() {
             let form = {}
             form.classes_id = this.currentRow._id
@@ -365,12 +361,13 @@ export default {
                 form.student_id.push(item.student_id)
             }
             this.handleSave(form).then(() => {
+
                 this.$message({
                     message: '操作成功',
                     type: 'success'
                 })
                 this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-attendance'
+                this.$store.state.envs.currDialog = 'lb-suspendshours'
             })
         },
         handleSearch() {
@@ -397,8 +394,15 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.orderlookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj)=>{   
+                console.log(obj)     
+            })
         }
     }
 }
