@@ -27,6 +27,7 @@ export default {
                 this.numbervalue = 0
             }
             this.$emit('input', this.numbervalue)
+            this.$emit('change', this.numbervalue)
         }
     },
 

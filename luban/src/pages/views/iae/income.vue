@@ -62,12 +62,12 @@
                             <el-table-column prop="data" label="对账状态">
                                 <template scope="scope">
                                     <span v-if="scope.row.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                                    <span v-if="scope.row.check_status == '0'" class="badge bg-success ng-scope">未对账</span>
+                                    <span v-if="scope.row.check_status == '1'" class="badge bg-success ng-scope">已对账</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
-                                    <a v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default" @click="handleCommand">核对</a>
+                                    <a v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default" @click="handleCommand(scope.row._id)">核对</a>
                                     <span v-if="scope.row.check_status == '1'" class="info bg-success ng-scope">已核对</span>
                                 </template>
                             </el-table-column>
@@ -207,26 +207,28 @@ export default {
             this.localdata.form.daterange = [start, end]
             this.handleSearch()
         },
-        handleCommand() {
+        handleCommand(id) {
             this.$confirm('是否要核对?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
-                type: 'warning'
+                type: 'warning',
             }).then(() => {
-                this.handleDelete(data._id).then(() => {
+                this.updateTeble('flow', id, {
+                    'check_status': '1'
+                }).then(() => {
                     this.$message({
-                        message: '删除成功',
+                        message: '核对成功',
                         type: 'success'
                     })
-                    this.handleGetTable()
+                    this.handleSearch()
                 })
             }).catch(() => {
                 this.$message({
                     type: 'info',
                     message: '已确定核对'
                 })
-            })
-
+            }
+                )
         }
 
     }

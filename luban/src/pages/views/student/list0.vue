@@ -228,7 +228,7 @@ export default {
             if (this.localdata.form.region_oe_id == '0') {
                 filterObj.push({
                     'key': 'region_oe_id',
-                    'value': '',
+                    'value': '0',
                     'type': ''
                 })
             }

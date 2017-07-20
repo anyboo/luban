@@ -76,7 +76,7 @@
                             </p>
                             <p>
                                 <label>课程包含:</label>
-                                <template v-if="scope.row.lesson_type=='0'">
+                                <template v-if="scope.row.lesson_type=='0'&&scope.row.price_model=='0'">
                                     <span class="label bg-info">{{scope.row.inc_times}} </span>次
                                 </template>
                                 <span class="label bg-info">{{scope.row.inc_hours}}</span>课时

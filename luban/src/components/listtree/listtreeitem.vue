@@ -101,7 +101,6 @@ export default {
         },
         addItem() {
             let vm = this
-
             if (vm.treeItem && vm.treeItem._id) {
                 vm.modalsType = vm.types.APPEND_API
                 vm.localdata.form = {
