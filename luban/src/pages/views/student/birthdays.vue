@@ -39,7 +39,7 @@
                             <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="已报课程数">
-                            <template scope="scope">{{ scope.row.order?scope.row.order.length:0 }}</template>
+                            <template scope="scope">{{ scope.row.lesson?scope.row.lesson.length:0 }}</template>
                         </el-table-column>
                     </el-table>
                     <div class="grid-data-result"></div>
@@ -73,11 +73,11 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'orderlookup': {
+            'lessonlookup': {
                 'localField': '_id',
                 'from': 'order',
                 'foreignField': 'student_id',
-                'as': 'order'
+                'as': 'lesson'
             }
         }
         return {
@@ -130,7 +130,7 @@ export default {
             })
             filterObj.push({
                 'key': 'lookup',
-                'value': this.localdata.orderlookup,
+                'value': this.localdata.lessonlookup,
                 'type': 'lookup'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
