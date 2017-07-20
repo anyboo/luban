@@ -13,6 +13,9 @@ export default {
     watch:{
         value:function(val){
             this.numbervalue = val
+             if (Number(this.numbervalue) < 0) {
+                this.numbervalue = 0
+            }
         }
     },
     methods: {
