@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-4 m-t">
+                        <div class="col-xs-12 col-md-3 m-t">
                             <button class="btn btn-primary pull-right" @click="handleShowDialog('lb-attendance')">
                                 <i class="icon-plus glyphicon glyphicon-user"></i>考勤
                             </button>
