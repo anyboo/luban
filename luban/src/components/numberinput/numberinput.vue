@@ -10,6 +10,11 @@ export default {
             numbervalue: this.value
         }
     },
+    watch:{
+        value:function(val){
+            this.numbervalue = val
+        }
+    },
     methods: {
         changeNum() {
             this.numbervalue = Number(this.numbervalue)

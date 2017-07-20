@@ -21,7 +21,7 @@
                         <label class="control-label col-md-2 col-xs-12">最大人数:</label>
                         <div class="col-md-3 col-xs-12">
                             <div class="input-group w-sm">
-                                <lb-numberinput type="number" class="form-control" v-model="localdata.form.max_student_num">
+                                <lb-numberinput class="form-control" v-model="localdata.form.max_student_num">
                                 </lb-numberinput>
                                 <span class="input-group-addon">人</span>
                             </div>
