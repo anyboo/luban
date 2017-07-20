@@ -27,9 +27,11 @@
                 </div>
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>
+                        <!--
                         <el-table-column prop="data" label="操作">
                             <template scope="scope">hello</template>
                         </el-table-column>
+                        -->
                         <el-table-column prop="data" label="停课学员">
                             <template scope="scope">张三</template>
                         </el-table-column>
