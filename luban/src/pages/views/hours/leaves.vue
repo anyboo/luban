@@ -9,8 +9,8 @@
                     <div class="col-xs-12 col-md-5 m-t">
                         <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <!--
-                                                                        <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
-                                                                   -->
+                                                                                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                                                                               -->
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
                                 <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" :placeholder="localdata.form.student_name">
@@ -30,11 +30,6 @@
                 </div>
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>
-    
-                        <!-- <el-table-column prop="data" label="操作">
-                                                <template scope="scope">hello</template>
-                                            </el-table-column> -->
-    
                         <el-table-column width="80" prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
@@ -45,7 +40,6 @@
                                 </lb-dropdown>
                             </template>
                         </el-table-column>
-    
                         <el-table-column prop="data" label="请假学员">
                             <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </el-table-column>

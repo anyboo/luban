@@ -30,12 +30,6 @@
                 </div>
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>
-                        <!--
-                                                    <el-table-column prop="data" label="操作">
-                                                        <template scope="scope">hello</template>
-                                                    </el-table-column>
-                                                    -->
-    
                         <el-table-column width="80" prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
@@ -46,7 +40,6 @@
                                 </lb-dropdown>
                             </template>
                         </el-table-column>
-    
                         <el-table-column prop="data" label="停课学员">
                             <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </el-table-column>
