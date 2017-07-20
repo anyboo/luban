@@ -309,7 +309,6 @@ export default {
         },
         getArrange() {
             let data = this.getTablesData()
-            console.log(data)
             let result = ''
                 // for (var itme of data) {
                 //result = itme

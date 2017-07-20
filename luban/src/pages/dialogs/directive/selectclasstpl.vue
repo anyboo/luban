@@ -116,7 +116,6 @@ export default {
     watch: {},
     methods: {
         getText(orders){
-            console.log(orders)
         },
         handleSelectClass() {
             this.lbClosedialog()
@@ -177,7 +176,7 @@ export default {
             })
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj)=>{   
-                console.log(obj)     
+                 
             })
         }
     }

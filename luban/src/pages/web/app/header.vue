@@ -99,7 +99,6 @@ export default {
             }
         },
         blur() {
-            console.log('blur')
             this.hide = this.menu
         },
         changeView(view) {

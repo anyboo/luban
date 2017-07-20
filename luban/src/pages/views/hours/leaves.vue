@@ -1,101 +1,61 @@
 <template>
     <div ui-view class="ng-scope wrapper">
         <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="leaves" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="leaves">
-                    <div class="row wrapper" :class="{result:getSelectStudentName}">
-                        <div class="col-xs-12 col-md-6 m-t">
-                            <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
-                        </div>
-                        <div class="col-xs-12 col-md-2 m-t">
-                            <div class="inline w-sm va-m m-l-xs">
-                                <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
-                                    <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                    <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
-                                </div>
-                            </div>
-                            <div id="fct-leaves" style="display:none;">
-                                <form name="export_form_leaves" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
-                                    <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
-                                    <input type="hidden" name="resource" value="leaves">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="tffield" value="int_day" ng-repeat="(key,value) in params" class="ng-scope">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-4 m-t">
-                            <div>
-                                <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
-                                    <i class="icon-plus glyphicon glyphicon-user"></i>请假登记
-                                </button>
+            <div class="panel panel-default ng-scope" :class="{result:getSelectStudentName}">
+                <div class="row wrapper">
+                    <div class="col-xs-12 col-md-3 m-t">
+                        <el-date-picker v-model="localdata.form.daterange" type="daterange"  @change="handleSearch"></el-date-picker>
+                    </div>
+                    <div class="col-xs-12 col-md-5 m-t">
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
+                        <!--
+                                                <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                                           -->
+                        <div class="inline w-sm va-m m-l-xs">
+                            <div class="input-group">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" :placeholder="localdata.form.student_name">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" @click="handSelectStudent(false)">
+                                        <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                    </button>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <el-table :data="getTableData" stripe>
-                            <el-table-column prop="data" label="请假学员">
-                                <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                <i class="fa fa-male"></i>
-                            </span>李哥
-                                    <p>
-                                        <a class="btn btn-danger btn-xs ng-isolate-scope" confirm-text="确认要删除该请假信息吗?" confirm-action="remove_leave(item)">
-                                            <i class="icon-ban" ng-disabled="saving"></i>删除
-                                        </a>
-                                    </p>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="请假信息">
-                                <template scope="scope">
-                                    <ul class="list-unstyled w4">
-                                        <li class="ng-binding">
-                                            <label>上课日期:</label>2017-05-19
-                                        </li>
-                                        <li>
-                                            <label>上课时间:</label>
-                                            <span class="ng-binding">11:00</span>-
-                                            <span class="ng-binding">12:00</span>
-                                        </li>
-                                        <li class="ng-binding">
-                                            <label>请假原因:</label>病假
-                                        </li>
-                                    </ul>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="关联排课">
-                                <template scope="scope">
-                                    <ul class="list-unstyled w6 ng-scope" ng-if="item.ota_id > 0">
-                                        <li>
-                                            <label>课程/班级:</label>
-                                            <span class="ng-binding">3期班</span>
-                                        </li>
-                                        <li>
-                                            <label>授课老师:</label>
-                                            <span class="ng-binding">陈佳木</span>
-                                        </li>
-                                    </ul>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="登记时间">
-                                <template scope="scope">
-                                    2017-05-12 15:59
-                                    <br>
-                                    <span class="label bg-warning ng-scope" ng-if="item.create_from == 0">机构登记</span>
-                                </template>
-                            </el-table-column>
-                        </el-table>
+                    <div class="col-xs-12 col-md-4 m-t">
+                        <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
+                            <i class="icon-plus glyphicon glyphicon-user"></i>请假登记
+                        </button>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
-                            <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                            </el-pagination>
-                        </div>
+                </div>
+                <div class="table-responsive">
+                    <el-table :data="getTablesData()" stripe>
+                        <!--
+                                                <el-table-column prop="data" label="操作">
+                                                    <template scope="scope">hello</template>
+                                                </el-table-column>
+                                                -->
+                        <el-table-column prop="data" label="请假学员">
+                            <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
+                        </el-table-column>
+                        <el-table-column prop="data" label="请假时间">
+                            <template scope="scope">{{ getDateFormat(scope.row.daterange1) }}</template>
+                        </el-table-column>
+                        <el-table-column prop="data" label="复课时间">
+                            <template scope="scope">{{ getDateFormat(scope.row.daterange2) }}</template>
+                        </el-table-column>
+                        <el-table-column prop="data" label="请假原因">
+                            <template scope="scope">{{ scope.row.reason }} </template>
+                        </el-table-column>
+                        <el-table-column prop="data" label="登记时间">
+                            <template scope="scope">{{ getDateFormat(scope.row.createtime) }}</template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <div class="panel-footer ">
+                    <div class="row ">
+                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                        </el-pagination>
                     </div>
                 </div>
             </div>
@@ -104,15 +64,48 @@
 </template>
 <script>
 export default {
-    name: 'leaves',
+    name: 'leavess',
     data() {
         let localdata = {
+            'duration': [{
+                'value': 'day',
+                'text': '今日'
+            }, {
+                'value': 'week',
+                'text': '本周'
+            }, {
+                'value': 'month',
+                'text': '本月'
+            }],
+            'status': [{
+                'value': '',
+                'text': '所有'
+            }, {
+                'value': '1',
+                'text': '请假中'
+            }, {
+                'value': '0',
+                'text': '待请假'
+            }, {
+                'value': '2',
+                'text': '已复课'
+            }],
             'form': {
-                'student_name': ''
+                'status': '',
+                'student_name': '学员',
+                'student_id': '',
+                'daterange': '',
+            },
+            'lookupstudent': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
             }
         }
         return {
             localdata,
+            tables: ['leaves'],
         }
     },
     computed: {
@@ -122,28 +115,35 @@ export default {
                     if (this.selStudentAddInquiry) {
                         let student = this.$store.state.envs.currDialogResult
                         this.$store.state.envs.currStudent = student
-                        this.handleShowDialog('lb-leaveshours', student)
+                        this.handleShowDialog('lb-leavesshours', student)
                     } else {
-                        this.student_name = this.$store.state.envs.currDialogResult.student_name
+                        this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
                         this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
                         this.handleSearch()
                     }
                 } else {
                     if (!this.selStudentAddInquiry) {
                         this.localdata.form.student_id = ''
-                        this.student_name = '学员'
-                        // this.handleSearch()
+                        this.localdata.form.student_name = '学员'
+                        this.handleSearch()
                     }
                 }
             }
-            if (this.$store.state.envs.currDialog == 'lb-inquiry') {
-                // this.handleSearch()
+            if (this.$store.state.envs.currDialog == 'lb-leavesshours') {
+                this.handleSearch()
             }
             return true
         },
     },
     watch: {},
     methods: {
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
         handSelectStudent(add) {
             this.selStudentAddInquiry = add
             if (add) {
@@ -151,6 +151,46 @@ export default {
                 this.$store.state.envs.currDialogResult = null
             }
             this.handleShowDialog('lb-selectstudenttpl')
+        },
+        handleSearch() {
+            let filterObj = []
+
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupstudent,
+                'type': 'lookup'
+            })
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': endTime,
+                        'type': 'lte'
+                    })
+                }
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+            })
         },
     }
 }

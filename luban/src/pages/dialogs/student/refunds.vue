@@ -283,7 +283,6 @@ export default {
                         'type': ''
                     })
                 }
-                console.log(filterObj)
                 let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                 this.handleGetFilterTable(filterTxt)
             }

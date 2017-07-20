@@ -219,12 +219,12 @@ export default {
                     filterObj.push({
                         'key': 'track_time',
                         'value': startTime,
-                        'type': 'gt'
+                        'type': 'gte'
                     })
                     filterObj.push({
                         'key': 'track_time',
                         'value': endTime,
-                        'type': 'lt'
+                        'type': 'lte'
                     })
                 }
             }

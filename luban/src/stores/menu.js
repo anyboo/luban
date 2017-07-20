@@ -118,12 +118,10 @@ export default [{
         menuTitle: '请假管理',
         to: '/hours/leaves',
         menuIcon: 'fa fa-briefcase',
-        menuShow: 0,
     }, {
         menuTitle: '停课管理',
         to: '/hours/suspends',
         menuIcon: 'fa fa-minus-square',
-        menuShow: 0,
     }]
 }, {
     menuTitle: '收支',

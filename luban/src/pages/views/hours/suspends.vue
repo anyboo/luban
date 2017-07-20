@@ -4,15 +4,18 @@
             <div class="panel panel-default ng-scope" :class="{result:getSelectStudentName}">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-3 m-t">
-                        <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
+                        <el-date-picker v-model="localdata.form.daterange" type="daterange"  @change="handleSearch"></el-date-picker>
                     </div>
                     <div class="col-xs-12 col-md-5 m-t">
-                        <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                        <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
+                        <!--
+                                                <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                                           -->
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
-                                <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" :placeholder="localdata.form.student_name">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                    <button class="btn btn-default" @click="handSelectStudent(false)">
                                         <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                     </button>
                                 </span>
@@ -28,30 +31,24 @@
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>
                         <!--
-                        <el-table-column prop="data" label="操作">
-                            <template scope="scope">hello</template>
-                        </el-table-column>
-                        -->
+                                                <el-table-column prop="data" label="操作">
+                                                    <template scope="scope">hello</template>
+                                                </el-table-column>
+                                                -->
                         <el-table-column prop="data" label="停课学员">
-                            <template scope="scope">张三</template>
+                            <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="停课时间">
-                            <template scope="scope">{{ scope.row.value1 }}</template>
+                            <template scope="scope">{{ getDateFormat(scope.row.daterange1) }}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="复课时间">
-                            <template scope="scope">{{ scope.row.value2 }}</template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="停课课程">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ getDateFormat(scope.row.daterange2) }}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="停课原因">
-                            <template scope="scope">{{ scope.row.suspend_reason }} </template>
-                        </el-table-column>
-                        <el-table-column prop="data" label="停课状态">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ scope.row.reason }} </template>
                         </el-table-column>
                         <el-table-column prop="data" label="登记时间">
-                            <template scope="scope"></template>
+                            <template scope="scope">{{ getDateFormat(scope.row.createtime) }}</template>
                         </el-table-column>
                     </el-table>
                 </div>
@@ -70,6 +67,16 @@ export default {
     name: 'suspends',
     data() {
         let localdata = {
+            'duration': [{
+                'value': 'day',
+                'text': '今日'
+            }, {
+                'value': 'week',
+                'text': '本周'
+            }, {
+                'value': 'month',
+                'text': '本月'
+            }],
             'status': [{
                 'value': '',
                 'text': '所有'
@@ -85,7 +92,15 @@ export default {
             }],
             'form': {
                 'status': '',
-                'student_name': ''
+                'student_name': '学员',
+                'student_id': '',
+                'daterange': '',
+            },
+            'lookupstudent': {
+                'localField': 'student_id',
+                'from': 'student',
+                'foreignField': '_id',
+                'as': 'student'
             }
         }
         return {
@@ -102,26 +117,33 @@ export default {
                         this.$store.state.envs.currStudent = student
                         this.handleShowDialog('lb-suspendshours', student)
                     } else {
-                        this.student_name = this.$store.state.envs.currDialogResult.student_name
+                        this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
                         this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
                         this.handleSearch()
                     }
                 } else {
                     if (!this.selStudentAddInquiry) {
                         this.localdata.form.student_id = ''
-                        this.student_name = '学员'
-                        // this.handleSearch()
+                        this.localdata.form.student_name = '学员'
+                        this.handleSearch()
                     }
                 }
             }
-            if (this.$store.state.envs.currDialog == 'lb-inquiry') {
-                // this.handleSearch()
+            if (this.$store.state.envs.currDialog == 'lb-suspendshours') {
+                this.handleSearch()
             }
             return true
         },
     },
     watch: {},
     methods: {
+        handleDuration() {
+            let duration = this.localdata.form.duration.trim()
+            let start = this.getDatetimeStartOf(duration)
+            const end = this.getDatetimeStartOf('day', true)
+            this.localdata.form.daterange = [start, end]
+            this.handleSearch()
+        },
         handSelectStudent(add) {
             this.selStudentAddInquiry = add
             if (add) {
@@ -129,6 +151,47 @@ export default {
                 this.$store.state.envs.currDialogResult = null
             }
             this.handleShowDialog('lb-selectstudenttpl')
+        },
+        handleSearch() {
+            let filterObj = []
+
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookupstudent,
+                'type': 'lookup'
+            })
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': endTime,
+                        'type': 'lte'
+                    })
+                }
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                
+            })
         },
     }
 }

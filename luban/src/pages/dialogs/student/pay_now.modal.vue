@@ -203,7 +203,6 @@ export default {
         },
         setStudentAmountOrder() {
             let amount = Number(this.currStudent.amount) - Number(this.localdata.form.balance_pay_amount)
-            console.log('setStudentAmountOrder', amount)
             this.updateTeble('student', this.currStudent._id, {
                 'amount': amount
             }).then(() => {

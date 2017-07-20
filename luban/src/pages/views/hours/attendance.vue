@@ -161,7 +161,7 @@ export default {
 
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
-                console.log(obj)
+              
             })
         },
     }
