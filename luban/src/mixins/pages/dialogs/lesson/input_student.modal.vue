@@ -33,7 +33,8 @@
                             </el-table-column>
                             <el-table-column class="text-center" width="100" prop="data" label="报名课次">
                                 <template scope="scope">
-                                    <input type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.item_lesson_times">
+                                    <lb-numberinput type="number" class="form-control input-sm w-xxs no-padder text-center ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.item_lesson_times">
+                                    </lb-numberinput>
                                 </template>
                             </el-table-column>
                             <el-table-column width="120" prop="data" label>

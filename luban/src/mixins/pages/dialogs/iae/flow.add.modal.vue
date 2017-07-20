@@ -27,37 +27,38 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group w-sm">
-                                    <input type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="localdata.form.amount">
+                                    <lb-numberinput type="number" name="amount" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required v-model="localdata.form.amount">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
                         </div>
                         <!--
-                                    <div class="form-group">
-                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
-                                        <div class="col-xs-12 col-sm-9 col-md-10">
-                                            <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
-                                                <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
-                                                    <option value class>请选择</option>
-                                                    <option value="0">日常支出</option>
-                                                </select>
-                                                <div class="chosen-container chosen-container-single" style="width: 120px;" title>
-                                                    <a class="chosen-single" tabindex="-1">
-                                                        <span>请选择</span>
-                                                        <div>
-                                                            <b></b>
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
+                                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                                <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
+                                                    <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
+                                                        <option value class>请选择</option>
+                                                        <option value="0">日常支出</option>
+                                                    </select>
+                                                    <div class="chosen-container chosen-container-single" style="width: 120px;" title>
+                                                        <a class="chosen-single" tabindex="-1">
+                                                            <span>请选择</span>
+                                                            <div>
+                                                                <b></b>
+                                                            </div>
+                                                        </a>
+                                                        <div class="chosen-drop">
+                                                            <div class="chosen-search">
+                                                                <input type="text" autocomplete="off">
+                                                            </div>
+                                                            <ul class="chosen-results"></ul>
                                                         </div>
-                                                    </a>
-                                                    <div class="chosen-drop">
-                                                        <div class="chosen-search">
-                                                            <input type="text" autocomplete="off">
-                                                        </div>
-                                                        <ul class="chosen-results"></ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>-->
+                                        </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">备注</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -85,7 +86,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">日期</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
-                                    <el-date-picker type="datetime"  v-model="localdata.form.create_time"></el-date-picker>
+                                    <el-date-picker type="datetime" v-model="localdata.form.create_time"></el-date-picker>
                                 </div>
                             </div>
                         </div>
