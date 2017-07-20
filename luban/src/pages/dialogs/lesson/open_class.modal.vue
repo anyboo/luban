@@ -65,7 +65,8 @@
                             <label class="control-label col-md-2 col-xs-12">额定人数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.max_student_num">
+                                    <lb-numberinput type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.max_student_num">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">人</span>
                                 </div>
                             </div>
@@ -74,7 +75,8 @@
                             <label class="control-label col-md-2 col-xs-12">授课次数:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group w-sm">
-                                    <input type="number" min="0" step="1" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
+                                    <lb-numberinput type="number" min="0" step="1" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -83,7 +85,8 @@
                             <label class="control-label col-md-2 col-xs-12">单次课时:</label>
                             <div class="col-md-3 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
+                                    <lb-numberinput type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">小时</span>
                                 </div>
                             </div>

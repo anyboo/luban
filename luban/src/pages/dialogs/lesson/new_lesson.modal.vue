@@ -58,7 +58,8 @@
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
                                             </div>
-                                            <input type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lesson_days">
+                                            <lb-numberinput type="text" name="lesson_days" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.lesson_days">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">天</span>
                                         </div>
                                     </div>
@@ -79,7 +80,8 @@
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon">￥</span>
-                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid" @change="changeTimePrice" v-model="localdata.form.unit_price">
+                                            <lb-numberinput type="text" class="form-control ng-pristine ng-untouched ng-valid" @change="changeTimePrice" v-model="localdata.form.unit_price">
+                                            </lb-numberinput>
                                             <span v-if="localdata.form.price_model=='1'" class="input-group-addon ng-scope">元/次</span>
                                             <span v-if="localdata.form.price_model=='0'" class="input-group-addon ng-scope">期/次</span>
                                         </div>
@@ -89,11 +91,13 @@
                                     <label class="control-label col-md-3 col-xs-12">总共:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group ng-scope" v-if="localdata.form.price_model=='1'">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_timesprice" @change="changeTimePrice">
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_timesprice" @change="changeTimePrice">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">次</span>
                                         </div>
                                         <div class="input-group ng-scope" v-if="localdata.form.price_model=='0'">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_period" @change="changeTimePrice">
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_period" @change="changeTimePrice">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">期</span>
                                         </div>
                                     </div>
@@ -102,7 +106,8 @@
                                     <label class="control-label col-md-3 col-xs-12">售价:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.price">
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.price">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
@@ -116,7 +121,8 @@
                                     <label class="control-label col-md-3 col-xs-12">授课次数:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
-                                            <input type="number" v-model="localdata.form.inc_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-parse" @change="changeTimeInc">
+                                            <lb-numberinput type="number" v-model="localdata.form.inc_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-parse" @change="changeTimeInc">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">次</span>
                                         </div>
                                     </div>
@@ -139,7 +145,8 @@
                                                     </el-dropdown-menu>
                                                 </el-dropdown>
                                             </div>
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.unit_hours" @change="changeTimeInc">
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.unit_hours" @change="changeTimeInc">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">小时</span>
                                         </div>
                                     </div>
@@ -148,7 +155,8 @@
                                     <label class="control-label col-md-3 col-xs-12">课程总时长:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_hours">
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_hours">
+                                            </lb-numberinput>
                                             <span class="input-group-addon">小时</span>
                                         </div>
                                     </div>
