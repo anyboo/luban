@@ -2,7 +2,7 @@
     <div ui-view class="ng-scope wrapper">
         <div class="wrapper-xs ng-scope">
             <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
+                <div class="panel panel-default ng-scope" xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_hours">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -11,7 +11,7 @@
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-4 m-t">
+                        <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
@@ -24,39 +24,47 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-4 m-t">
-                            <button class="btn btn-primary pull-right" @click="handleShowDialog('lb-attendance')">
-                                <i class="icon-plus glyphicon glyphicon-user"></i>考勤
-                            </button>
-                        </div>
                     </div>
                     <div class="table-responsive">
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                        <i class="fa fa-male"></i>
-                                    </span>李达康
+                                    <a class="link ng-binding">{{scope.row.student_name}}</a>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="班级">
-                                <template scope="scope">古典吉他初级</template>
+                            <el-table-column prop="data" label="上课时间">
+                                <template scope="scope">f</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="上课老师">
+                            <el-table-column prop="data" label="时长">
+                                <template scope="scope">
+                                    <span class="badge bg-success ng-binding">1.00小时</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="类型">
+                                <template scope="scope">1对1</template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="班级/课程">
+                                <template scope="scope">
+                                    <span class="label bg-info ng-binding">古典吉他初级</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="课程金额">
+                                <template scope="scope">
+                                    <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="授课老师">
                                 <template scope="scope">陈佳木</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="考勤时间">
-                                <template scope="scope">{{getDatetimeFormat(scope.row.arrangestart)}}</template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="出勤状态">
-                                <template scope="scope">
-                                    <span class="label bg-success" ng-if="item.is_in == '1'">正常出勤</span>
-                                </template>
-                            </el-table-column>
                             <el-table-column prop="data" label="登记时间">
-                                <template scope="scope">{{getDatetimeFormat(scope.row.create_time)}}</template>
+                                <template scope="scope">2017-05-12 09:06</template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="登记人">
+                                <template scope="scope">陈佳木</template>
                             </el-table-column>
                         </el-table>
+    
+                        <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
@@ -71,7 +79,7 @@
 </template>
 <script>
 export default {
-    name: 'attendance',
+    name: 'student',
     data() {
         let localdata = {
             'form': {
@@ -79,7 +87,8 @@ export default {
                 'daterange': '',
                 'date_end': '',
                 'duration': '',
-                'student_name': ''
+                'student_name': '',
+                'oe_id': ''
             },
             'duration': [{
                 'value': 'today',
@@ -94,17 +103,11 @@ export default {
         }
         return {
             localdata,
-            tables: ['attendance']
+            tables: ['student'],
         }
     },
     computed: {},
     watch: {},
-    methods: {
-        handleSearch() {
-            let filterObj = []
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
-        },
-    }
+    methods: {}
 }
 </script>

@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <el-table :data="getTablesData()" stripe>
+                        <el-table :data="getTableData" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
@@ -39,24 +39,30 @@
                                     </span>李达康
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="班级">
+                            <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">古典吉他初级</template>
                             </el-table-column>
                             <el-table-column prop="data" label="上课老师">
                                 <template scope="scope">陈佳木</template>
                             </el-table-column>
                             <el-table-column prop="data" label="考勤时间">
-                                <template scope="scope">{{getDatetimeFormat(scope.row.arrangestart)}}</template>
+                                <template scope="scope">05-12 11:00</template>
                             </el-table-column>
                             <el-table-column prop="data" label="出勤状态">
                                 <template scope="scope">
-                                    <span class="label bg-success" ng-if="item.is_in == '1'">正常出勤</span>
+                                    <span class="label bg-success ng-scope" ng-if="item.is_in == '1'">正常出勤</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="data" label="考勤方式">
+                                <template scope="scope">
+                                    <span class="label bg-info ng-scope" ng-if="item.att_way == '0'">后台登记</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="登记时间">
-                                <template scope="scope">{{getDatetimeFormat(scope.row.create_time)}}</template>
+                                <template scope="scope">05-12 09:06</template>
                             </el-table-column>
                         </el-table>
+                        <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
@@ -94,17 +100,10 @@ export default {
         }
         return {
             localdata,
-            tables: ['attendance']
         }
     },
     computed: {},
     watch: {},
-    methods: {
-        handleSearch() {
-            let filterObj = []
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
-        },
-    }
+    methods: {}
 }
 </script>

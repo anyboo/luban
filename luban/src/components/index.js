@@ -1,6 +1,7 @@
 import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
 import listtree from './listtree/'
+import numberinput from './numberinput/'
 import progress from './progress/'
 
 const components = [
@@ -9,9 +10,9 @@ const components = [
     buttongroup,
     listtree.LbListTree,
     listtree.LbListtreeItem,
+    numberinput,
     progress
 ]
-
 const install = function(Vue) {
     if (install.installed) return
 
@@ -19,12 +20,13 @@ const install = function(Vue) {
         Vue.component(component.name, component)
     })
 }
-
 export default {
     version: '1.0.1',
     install,
     dropdown,
     buttongroup,
     listtree,
+    numberinput,
     progress
+
 }

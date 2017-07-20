@@ -66,7 +66,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="0%" ng-transclude="" style="width: 0%;">
-                                                     <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{item.order.length}}/{{item.max_student_num}}</span> 
+                                                     <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0/ 6</span> 
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
                                                 <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥{{getPayAmout(item.order)}} / ￥{{getTotalAmout(item.order)}}</span>
+                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,21 +132,26 @@
                     </el-table-column>
                     <el-table-column label="状态">
                         <template scope="scope">
-                            <small class="label bg-success" v-if="getOpen(scope.row,'open')">已开课</small>
-                            <small class="label bg-red" v-if="getOpen(scope.row,'')">未开课</small>
-                            <small class="label bg-blue" v-if="getOpen(scope.row,'close')">已结课</small>
+                            <small class="label bg-success m-l ng-scope" v-if="getOpen(scope.row,'open')">已开课</small>
+                            <small class="label bg-red m-l ng-scope" v-if="getOpen(scope.row,'')">未开课</small>
+                            <small class="label bg-blue m-l ng-scope" v-if="getOpen(scope.row,'close')">已结课</small>
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="招生情况">
                         <template scope="scope">
-                             <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row.order.length,scope.row.max_student_num)" :text="scope.row.order.length+'/'+scope.row.max_student_num"></lb-progress>
+                            <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
+                           <!-- <el-progress :text-inside="true" :stroke-width="18" @percentage="getPercentage(scope.row.order.length,scope.row.max_student_num)" status="exception"></el-progress> -->
+                                 <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{scope.row.order.length}}/{{scope.row.max_student_num}} </span>
+                                </div> 
+                            </div>
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="缴费情况">
                         <template scope="scope">
-                            <div class="progress ng-isolate-scope" style="margin:0" >
-                                <div class="progress-bar progress-bar-danger">
-                                    <span style="white-space:nowrap;padding-left:20px">￥ {{getPayAmout(scope.row.order)}}/￥ {{getTotalAmout(scope.row.order)}}</span>
+                            <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
+                                <div class="progress-bar progress-bar-danger" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude>
+                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥0.00 / ￥0.00</span>
                                 </div>
                             </div>
                         </template>
@@ -234,7 +239,6 @@ export default {
         }
         return {
             localdata,
-            totalAmount:'',
             tables: ['classes']
         }
     },
@@ -246,36 +250,13 @@ export default {
             }
             return result
         },
-        
-        
+        getPercentage(hasStudent,maxStudent){
+            let percentage=hasStudent/maxStudent
+            return percentage
+        }
     },
     watch: {},
     methods: {
-        getTotalAmout(orders){
-            var totalamount=0
-            for(var item of orders){
-                totalamount+=Number(item.order_amount)
-            }
-            return totalamount
-        },
-        getPayAmout(orders){
-            var payamount=0
-            var totalamount=0
-            for(var item of orders){
-                totalamount+=Number(item.order_amount)
-            }
-            for(var item of orders){
-                payamount+=Number(item.unpay_amount)
-            }
-            return totalamount-payamount
-        },
-        getPercentage(hasStudent,maxStudent){
-            let percentage = 100
-            if (maxStudent>0){
-                percentage = Number(hasStudent)*100/Number(maxStudent)
-            }
-            return percentage
-        },
         getOpen(item, value) {
             let opentime = new Date()
             if (value == 'close') {
@@ -349,6 +330,7 @@ export default {
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj)=>{   
+
                 console.log(obj)     
             })
         },
