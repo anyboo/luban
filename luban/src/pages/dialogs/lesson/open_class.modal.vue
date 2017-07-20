@@ -161,7 +161,7 @@ export default {
         let data = this.$store.state.dialogs.dailogdata
         if (data) {
             this.title = '编辑'
-            this.setEditModle(data,['_id'])
+            this.setEditModle(data['_id'])
             this.teacher_name = this.getLookUp(data.employee, 'name')
             this.lesson_name = this.getLookUp(data.course, 'lesson_name')
             this.localdata.form = this.lodash.assign(this.localdata.form, data)
