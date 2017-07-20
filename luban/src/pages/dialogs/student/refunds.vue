@@ -56,8 +56,8 @@
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static ng-binding">{{order.body}}
                                         <!--
-                                                <span class="text-danger ng-binding ng-scope" ng-if="oph.remain_times > -1">剩余 5 次</span>
-                                                -->
+                                                    <span class="text-danger ng-binding ng-scope" ng-if="oph.remain_times > -1">剩余 5 次</span>
+                                                    -->
                                     </p>
                                 </div>
                             </div>
@@ -97,7 +97,8 @@
                                 <label class="control-label col-xs-12 col-md-2">退款金额:</label>
                                 <div class="col-xs-12 col-md-3">
                                     <div class="input-group">
-                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount">
+                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount">
+                                        </lb-numberinput>
                                         <span class="input-group-addon">元</span>
                                     </div>
                                 </div>
@@ -128,7 +129,8 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-minus"></i>
                                         </span>
-                                        <input type="number" @model="localdata.form.times" class="form-control ng-pristine ng-untouched ng-valid">
+                                        <lb-numberinput type="number" @model="localdata.form.times" class="form-control ng-pristine ng-untouched ng-valid">
+                                        </lb-numberinput>
                                         <span class="input-group-addon">次</span>
                                     </div>
                                 </div>
@@ -263,11 +265,11 @@ export default {
         },
         do_refund() {
             this.handleSave().then((data) => {
-                     this.$message({
+                this.$message({
                     message: '退款成功',
                     type: 'success'
                 })
-                this.lbClosedialog() 
+                this.lbClosedialog()
             })
         },
         handleSearch() {

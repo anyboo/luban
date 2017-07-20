@@ -77,7 +77,8 @@
                                     <i></i>
                                 </label>
                                 <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.use_balance">
-                                    <input type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a">
+                                    <lb-numberinput type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -86,7 +87,8 @@
                             <label class="control-label col-xs-12 col-md-2">现款缴费:</label>
                             <div class="col-xs-12 col-md-4">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" v-model="localdata.form.money_pay_amount">
+                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" v-model="localdata.form.money_pay_amount">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -103,8 +105,8 @@
                                     </li>
                                 </ul>
                                 <!--
-                                    <p class="alert alert-danger ng-scope" ng-if="payment_rest.$list.length == 1">您还没有开通微信支付,可在【系统设置】》【支付设置】申请开通微信支付!</p>
-                                    -->
+                                        <p class="alert alert-danger ng-scope" ng-if="payment_rest.$list.length == 1">您还没有开通微信支付,可在【系统设置】》【支付设置】申请开通微信支付!</p>
+                                        -->
                             </div>
                         </div>
                         <div class="form-group m-t">
@@ -200,8 +202,8 @@ export default {
             })
         },
         setStudentAmountOrder() {
-            let amount = Number(this.currStudent.amount) - Number(this.localdata.form.balance_pay_amount) 
-            console.log('setStudentAmountOrder',amount)
+            let amount = Number(this.currStudent.amount) - Number(this.localdata.form.balance_pay_amount)
+            console.log('setStudentAmountOrder', amount)
             this.updateTeble('student', this.currStudent._id, {
                 'amount': amount
             }).then(() => {

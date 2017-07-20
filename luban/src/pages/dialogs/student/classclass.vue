@@ -46,7 +46,8 @@
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
+                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -55,7 +56,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" @change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.unit_price">
+                                    <lb-numberinput type="number" @change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.unit_price">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                             </div>
@@ -64,7 +66,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid" readonly v-model="localdata.form.origin_amount">
+                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" readonly v-model="localdata.form.origin_amount">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -91,7 +94,8 @@
                                 </a>
                                 <div v-if="discount_caculator&&localdata.form.has_discount" class="ng-scope">
                                     <div class="input-group">
-                                        <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
+                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
+                                            </lb-numberinput>
                                         <span class="input-group-btn">
                                             <a class="btn btn-info" @click="cacu_discount_amount()">
                                                 <i class="icon-calculator"></i> 计算</a>
@@ -102,7 +106,8 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-minus"></i>
                                     </span>
-                                    <input type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control ng-pristine ng-valid ng-touched">
+                                    <lb-numberinput type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control ng-pristine ng-valid ng-touched">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -118,7 +123,8 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-plus"></i>
                                     </span>
-                                    <input type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched">
+                                    <lb-numberinput type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -127,7 +133,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课耗单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" v-model="localdata.form.c_unit_price">
+                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" v-model="localdata.form.c_unit_price">
+                                        </lb-numberinput>
                                     <span class="input-group-addon">元/次</span>
                                 </div>
                                 <p class="alert alert-info no-padder m-t-xs">用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入）</p>

@@ -29,7 +29,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.origin_amount">
+                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.origin_amount">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
@@ -80,7 +81,7 @@ export default {
                 'origin_times': '',
                 'unit_price': 0,
                 'origin_amount': 0,
-                'refund_status':0, 
+                'refund_status': 0,
                 'back_amount': 0,
                 'has_discount': '',
                 'has_present': '',
