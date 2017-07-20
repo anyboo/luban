@@ -35,7 +35,7 @@
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
                                     <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
-                                         <i class="fa" :class="{'fa-female':getLookUp(scope.row.student,'sex')=='2','fa-male':getLookUp(scope.row.student,'sex')=='1'}"></i>
+                                        <i class="fa" :class="{'fa-female':getLookUp(scope.row.student,'sex')=='2','fa-male':getLookUp(scope.row.student,'sex')=='1'}"></i>
                                     </span>{{ getLookUp(scope.row.student,'student_name') }}
                                 </template>
                             </el-table-column>
@@ -43,7 +43,7 @@
                                 <template scope="scope">{{getLookUp(scope.row.classes, 'class_name')}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="上课老师">
-                                <template scope="scope">陈佳木</template>
+                                <template scope="scope">{{getLookUp(scope.row.employee, 'name')}}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="考勤时间">
                                 <template scope="scope">{{getDatetimeFormat(scope.row.arrangestart)}}</template>
@@ -92,7 +92,7 @@ export default {
                 'text': '本月'
             }],
             'lookup': {
-                'localField': 'arrange.teacher_id',
+                'localField': 'teacher_id',
                 'from': 'employee',
                 'foreignField': '_id',
                 'as': 'employee'
@@ -146,6 +146,12 @@ export default {
                 'value': this.localdata.lookupstudent,
                 'type': 'lookup'
             })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.lookup,
+                'type': 'lookup'
+            })
+            
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
                 console.log(obj)

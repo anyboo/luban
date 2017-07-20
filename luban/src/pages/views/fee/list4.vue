@@ -38,14 +38,15 @@
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                             </el-table-column>
+                            <!--
                             <el-table-column prop="data" label="班级/课程">
                                 <template scope="scope">1班</template>
                             </el-table-column>
                             <el-table-column prop="data" label="经办人">
                                 <template scope="scope">陈佳木</template>
                             </el-table-column>
+                            -->
                         </el-table>
-                        <div class="grid-data-result"></div>
                     </div>
                     <div class="panel-footer ">
                         <div class="row ">
