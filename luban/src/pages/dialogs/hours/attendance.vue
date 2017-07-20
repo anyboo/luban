@@ -75,7 +75,7 @@
                         <br>{{arrangetitle}}
                     </div>
                     <div class=" row  m-t ">
-                        <el-table :data="orderdata" border tooltip-effect="dark" style="width: 100%">
+                        <el-table @selection-change="handleSelectionChange" :data="orderdata" border tooltip-effect="dark" style="width: 100%">
                             <el-table-column type="selection" width="55">
                             </el-table-column>
                             <el-table-column label="学生">
@@ -152,6 +152,7 @@ export default {
         }
         return {
             status: 0,
+            model: 'attendance',
             tables: ['classes'],
             currentRow: null,
             arrangeid: '',
@@ -160,10 +161,25 @@ export default {
             arrangeend: '',
             steps: 1,
             localdata,
-            orderdata: []
+             orderdata: [],
+            multipleSelection: []
         }
     },
-    computed: {},
+    computed: {
+        getNextButtonDisable() {
+            let result = false
+            if (this.steps == 1 && this.currentRow == null) {
+                result = true
+            }
+            if (this.steps == 2 && this.arrangeid.length == 0) {
+                result = true
+            }
+            if (this.steps == 3 && this.multipleSelection.length == 0) {
+                result = true
+            }
+            return result
+        }
+    },
     watch: {
 
     },
@@ -173,6 +189,9 @@ export default {
         }
     },
     methods: {
+      handleSelectionChange(val) {
+            this.multipleSelection = val
+        },
         getArrange() {
             let vm = this
             $('#calendar').fullCalendar({
@@ -280,7 +299,7 @@ export default {
         handleSelectClass(add) {
             if (add) {
                 if (this.steps == 3) {
-
+                    this.Save()
                 } else {
                     this.steps++
                     if (this.steps == 3) {
@@ -343,14 +362,11 @@ export default {
             }).value
             this.handleSearch()
         },
-
-        handleClick() {
-            this.handleSave().then(() => {
-
         Save() {
             let form = {}
             form.classes_id = this.currentRow._id
             form.arrange_id = this.arrangeid
+            form.teacher_id = this.currentRow.teacher_id
             form.arrangetitle = this.arrangetitle
             console.log(this.arrangestart)
             form.arrangestart = this.getDatetime(this.arrangestart)
@@ -360,13 +376,12 @@ export default {
                 form.student_id.push(item.student_id)
             }
             this.handleSave(form).then(() => {
-
                 this.$message({
                     message: '操作成功',
                     type: 'success'
                 })
                 this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-suspendshours'
+                this.$store.state.envs.currDialog = 'lb-attendance'
             })
         },
         handleSearch() {
@@ -399,8 +414,8 @@ export default {
                 'type': 'lookup'
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt).then((obj)=>{   
-                console.log(obj)     
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                console.log(obj)
             })
         }
     }
