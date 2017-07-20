@@ -17,7 +17,7 @@
                             <label class="control-label col-md-2 col-xs-12">授课老师:</label>
                             <div class="col-md-10 col-xs-12">
                                 <div class="input-group">
-                                    <input type="text" class="form-control ng-pristine ng-valid ng-touched" readonly="true" v-model="teacher_name">
+                                    <input type="text" class="form-control ng-pristine ng-valid ng-touched" readonly="true" :placeholder="teacher_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
                                             <i class="fa fa-user"></i>选择

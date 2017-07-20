@@ -115,7 +115,7 @@ export default {
                     if (this.selStudentAddInquiry) {
                         let student = this.$store.state.envs.currDialogResult
                         this.$store.state.envs.currStudent = student
-                        this.handleShowDialog('lb-leavesshours', student)
+                        this.handleShowDialog('lb-leaveshours', student)
                     } else {
                         this.localdata.form.student_name = this.$store.state.envs.currDialogResult.student_name
                         this.localdata.form.student_id = this.$store.state.envs.currDialogResult._id
@@ -129,7 +129,7 @@ export default {
                     }
                 }
             }
-            if (this.$store.state.envs.currDialog == 'lb-leavesshours') {
+            if (this.$store.state.envs.currDialog == 'lb-leaveshours') {
                 this.handleSearch()
             }
             return true

@@ -75,7 +75,7 @@ export default {
                             type: 'success'
                         })
                         this.lbClosedialog()
-                        this.$store.state.envs.currDialog = 'lb-leavesshours'
+                        this.$store.state.envs.currDialog = 'lb-leaveshours'
                     })
                 } else {
                     return false
