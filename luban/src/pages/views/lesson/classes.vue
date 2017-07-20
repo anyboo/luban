@@ -139,15 +139,7 @@
                     </el-table-column>
                     <el-table-column prop="data" label="招生情况">
                         <template scope="scope">
-<<<<<<< HEAD
-                            <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
-                                <div class="progress-bar progress-bar-info" ng-class="type && 'progress-bar-' + type" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="6" ng-style="{width: percent + '%'}" aria-valuetext="50%" ng-transclude style="width: 50%;">
-                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">0/ 6</span>
-                                </div>
-                            </div>
-=======
                              <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row.order.length,scope.row.max_student_num)" :text="scope.row.order.length+'/'+scope.row.max_student_num"></lb-progress>
->>>>>>> f3d77f1f542416110604c425fc4e8f0007da0123
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="缴费情况">
