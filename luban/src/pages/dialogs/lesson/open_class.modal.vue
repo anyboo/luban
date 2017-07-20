@@ -158,10 +158,13 @@ export default {
         }
     },
     mounted() {
-        if (this.$store.state.dialogs.dailogdata) {
+        let data = this.$store.state.dialogs.dailogdata
+        if (data) {
             this.title = '编辑'
-            this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
-            this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
+            this.setEditModle(data,['_id'])
+            this.teacher_name = this.getLookUp(data.employee, 'name')
+            this.lesson_name = this.getLookUp(data.course, 'lesson_name')
+            this.localdata.form = this.lodash.assign(this.localdata.form, data)
         } else {
             this.title = '创建'
         }
