@@ -4,13 +4,13 @@
             <div class="panel panel-default ng-scope" :class="{result:getSelectStudentName}">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-3 m-t">
-                        <el-date-picker v-model="localdata.form.daterange" type="daterange"  @change="handleSearch"></el-date-picker>
+                        <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                     </div>
                     <div class="col-xs-12 col-md-5 m-t">
                         <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <!--
-                                                <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
-                                           -->
+                                                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status"></lb-buttongroup>
+                                               -->
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
                                 <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" :placeholder="localdata.form.student_name">
@@ -31,10 +31,22 @@
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>
                         <!--
-                                                <el-table-column prop="data" label="操作">
-                                                    <template scope="scope">hello</template>
-                                                </el-table-column>
-                                                -->
+                                                    <el-table-column prop="data" label="操作">
+                                                        <template scope="scope">hello</template>
+                                                    </el-table-column>
+                                                    -->
+    
+                        <el-table-column width="80" prop="data" label="操作">
+                            <template scope="scope">
+                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu" class="btn btn-info btn-xs">
+                                        <i class="fa fa-cog"></i>操作
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                </lb-dropdown>
+                            </template>
+                        </el-table-column>
+    
                         <el-table-column prop="data" label="停课学员">
                             <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                         </el-table-column>
@@ -101,7 +113,12 @@ export default {
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
-            }
+            },
+            'dropDownMenu': [{
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除'
+            }]
         }
         return {
             localdata,
@@ -137,6 +154,37 @@ export default {
     },
     watch: {},
     methods: {
+        handleCommand(value) {
+            this.localdata.search.search_key = value
+            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
+                'name': value
+            }).value
+        },
+        handleCommand({
+        action,
+            data
+    }) {
+            if (action == 'delete') {
+                this.$confirm('此操作将永久删除该学员, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.handleDelete(data._id).then(() => {
+                        this.$message({
+                            message: '删除成功',
+                            type: 'success'
+                        })
+                        this.handleGetTable()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            }
+        },
         handleDuration() {
             let duration = this.localdata.form.duration.trim()
             let start = this.getDatetimeStartOf(duration)
@@ -190,7 +238,7 @@ export default {
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
-                
+
             })
         },
     }
