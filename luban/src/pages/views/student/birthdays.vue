@@ -38,8 +38,8 @@
                         <el-table-column prop="data" label="建档日期">
                             <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
                         </el-table-column>
-                        <el-table-column prop="data" label="在读课程数">
-                            <template scope="scope">2</template>
+                        <el-table-column prop="data" label="已报课程数">
+                            <template scope="scope">{{ scope.row.order.length }}</template>
                         </el-table-column>
                     </el-table>
                     <div class="grid-data-result"></div>
@@ -72,7 +72,13 @@ export default {
             }, {
                 'value': 'month',
                 'text': '本月'
-            }]
+            }],
+            'orderlookup': {
+                'localField': '_id',
+                'from': 'order',
+                'foreignField': 'student_id',
+                'as': 'order'
+            }
         }
         return {
             localdata,
@@ -122,8 +128,15 @@ export default {
                 'value': -1,
                 'type': 'sort'
             })
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.orderlookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                console.log(obj)
+            })
         }
     }
 }
