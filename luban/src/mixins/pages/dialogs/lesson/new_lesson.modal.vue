@@ -89,11 +89,12 @@
                                     <label class="control-label col-md-3 col-xs-12">总共:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group ng-scope" v-if="localdata.form.price_model=='1'">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_timesprice" @change="changeTimePrice">
+                                             <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_timesprice" @change="changeTimePrice">
+                                                  <lb-numberinput>
                                             <span class="input-group-addon">次</span>
                                         </div>
                                         <div class="input-group ng-scope" v-if="localdata.form.price_model=='0'">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_period" @change="changeTimePrice">
+                                             <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_period" @change="changeTimePrice">
                                             <span class="input-group-addon">期</span>
                                         </div>
                                     </div>
@@ -102,7 +103,7 @@
                                     <label class="control-label col-md-3 col-xs-12">售价:</label>
                                     <div class="col-md-5 col-xs-12">
                                         <div class="input-group">
-                                            <input type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.price">
+                                             <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.price">
                                             <span class="input-group-addon">元</span>
                                         </div>
                                     </div>
