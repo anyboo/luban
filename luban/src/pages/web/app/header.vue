@@ -1,5 +1,5 @@
 <template>
-    <div id="" class="page-header-topbar">
+    <div id="" class="page-header-topbar zIndexs">
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <a id="logo" href="#" class="navbar-brand">

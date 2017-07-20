@@ -4431,6 +4431,10 @@
         z-index: 9999;
         width: 100%;
     }
+    .zIndexs{
+        position: relative;
+        z-index: 100
+    }
     
     .header-fixed .news-ticker {
         display: none;
