@@ -5,7 +5,7 @@
                 <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
-                            <div class="inline">
+                            <div class="inline" :class="{result:getdialog}">
                                 <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                                 <el-date-picker v-model="localdata.form.daterange" type="daterange"></el-date-picker>
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
@@ -121,7 +121,14 @@ export default {
             tables: ['attendance']
         }
     },
-    computed: {},
+    computed: {
+        getdialog() {
+            if (this.$store.state.envs.currDialog == 'lb-attendance') {
+                this.handleSearch()
+            }
+            return true
+        },
+    },
     watch: {},
     methods: {
         handleSearch() {
@@ -151,7 +158,7 @@ export default {
                 'value': this.localdata.lookup,
                 'type': 'lookup'
             })
-            
+
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then((obj) => {
                 console.log(obj)
