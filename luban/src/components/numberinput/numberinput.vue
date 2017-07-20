@@ -7,13 +7,13 @@ export default {
     name: 'LbNumberinput',
     data() {
         return {
-            numbervalue: this.value
+            numbervalue: Number(this.value)
         }
     },
-    watch:{
-        value:function(val){
-            this.numbervalue = val
-             if (Number(this.numbervalue) < 0) {
+    watch: {
+        value: function (val) {
+            this.numbervalue = Number(val)
+            if (this.numbervalue < 0) {
                 this.numbervalue = 0
             }
         }
