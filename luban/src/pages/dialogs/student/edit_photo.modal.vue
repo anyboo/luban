@@ -16,11 +16,11 @@
                     <div class="text-muted m-t m-b-sm">只能上传jpg/png文件，且不超过2MB</div>
                     <div class="hbox hbox-auto-xs">
                         <div class="col">
-                            <lb-upload class="avatar-uploader" :show-file-list="false" action="/upload" :auto-upload="false" :on-preview="handlePreview" :on-change="handleChange">
+                            <el-upload class="avatar-uploader" :show-file-list="false" action="/upload" :auto-upload="false" :on-preview="handlePreview" :on-change="handleChange">
                                 <button class="btn btn-default m-b ng-isolate-scope">
                                     <span class="ng-scope">选择图片</span>
                                 </button>
-                            </lb-upload>
+                            </el-upload>
                             <div class="wrapper-sm b-a bg-white m-r m-b-xs" style="height:320px">
                                 <div class="img-container" style="height:320px">
                                     <img alt="Picture" class="cropper-hidden" id="image">
