@@ -247,7 +247,7 @@ export default {
                     totalamount += Number(item.order_amount)
                 }
             }
-            return totalamount
+            return parseFloat(totalamount).toFixed(2) 
         },
         getPayAmout(orders) {
             var payamount = 0
@@ -260,7 +260,7 @@ export default {
                     payamount += Number(item.unpay_amount)
                 }
             }
-            return totalamount - payamount
+            return parseFloat(totalamount - payamount).toFixed(2) 
         },
         getPercentage(order, maxStudent) {
             let percentage = 100

@@ -23,7 +23,7 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function () {
+    created: function() {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = _
@@ -37,7 +37,7 @@ export default {
         this.pagination.pagesize = 10
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
-    mounted: function () {
+    mounted: function() {
         this.handleGetTable()
     },
     computed: {
@@ -62,6 +62,9 @@ export default {
         }
     },
     methods: {
+        getToFixed(amount) {
+            return parseFloat(amount).toFixed(2)
+        },
         getDatetimeStartOf(value, end) {
             let datetime = moment().startOf(value)
             if (end) {
@@ -74,7 +77,7 @@ export default {
             if (datetime.isValid()) {
                 if (end) {
                     datetime = datetime.endOf('month')
-                }else{
+                } else {
                     datetime = datetime.startOf('month')
                 }
             }
@@ -113,7 +116,7 @@ export default {
             }
             return datetimestr
         },
-        getDate2timeFormat(datestring,timestring) {
+        getDate2timeFormat(datestring, timestring) {
             let dateTemp = moment(datestring)
             let timeTemp = moment(timestring)
             let datetimestr = ''
@@ -124,7 +127,7 @@ export default {
             if (timeTemp.isValid()) {
                 timestr = timeTemp.format(' H:mm')
             }
-            return datetimestr+timestr
+            return datetimestr + timestr
         },
         getDatetimeFormat(datestring) {
             let dateTemp = moment(datestring)
@@ -279,7 +282,7 @@ export default {
                         resolve()
                     }).catch((error) => {
                         reject()
-                        //console.log(error, 'Promise error')
+                            //console.log(error, 'Promise error')
                     })
 
                 } else {
@@ -304,7 +307,7 @@ export default {
         },
         handleSave(form) {
             let vm = this
-            let modalform = form?form:vm.localdata.form
+            let modalform = form ? form : vm.localdata.form
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
