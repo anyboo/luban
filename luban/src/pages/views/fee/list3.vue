@@ -57,12 +57,12 @@
                             </el-table-column>
                             <el-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">{{ parseFloat(scope.row.unpay_amount).toFixed(2)}}  </span>
+                                    <span class="badge bg-danger ng-binding">{{ getToFixed(scope.row.unpay_amount)}}  </span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="总金额">
                                 <template scope="scope">
-                                    <span class="badge bg-info ng-binding">{{ parseFloat(scope.row.order_amount).toFixed(2) }}</span>
+                                    <span class="badge bg-info ng-binding">{{ getToFixed(scope.row.order_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">

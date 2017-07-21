@@ -32,7 +32,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="退款金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{parseFloat(scope.row.amount).toFixed(2)}}</span>
+                                    <span class="badge bg-success ng-binding">{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">

@@ -60,11 +60,11 @@
                     <el-table-column prop="data" label="定价" width="180"> 
                         <template scope="scope">
                             <p>
-                                课程单价:{{parseFloat(scope.row.unit_price).toFixed(2)}}元/次
+                                课程单价:{{getToFixed(scope.row.unit_price)}}元/次
                             </p>
                             <p>
                                 <label>课程售价:</label>
-                                <span class="label bg-info">{{parseFloat(scope.row.price).toFixed(2)}}</span>元
+                                <span class="label bg-info">{{getToFixed(scope.row.price)}}</span>元
                             </p>
                         </template>
                     </el-table-column>

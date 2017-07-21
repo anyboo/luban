@@ -63,7 +63,7 @@
                         <template scope="scope">{{scope.row.order_no}}</template>
                     </el-table-column>
                     <el-table-column prop="data" label="订单金额">
-                        <template scope="scope">{{parseFloat(scope.row.origin_amount).toFixed(2)}}</template>
+                        <template scope="scope">{{getToFixed(scope.row.origin_amount)}}</template>
                     </el-table-column>
                     <el-table-column prop="data" label="订单内容">
                         <template scope="scope">{{scope.row.body}}</template>

@@ -36,7 +36,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-warning ng-binding ng-scope">{{parseFloat(scope.row.amount).toFixed(2)}}</span>
+                                    <span class="badge bg-warning ng-binding ng-scope">{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型">
