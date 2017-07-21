@@ -28,13 +28,17 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <lb-buttongroup class="btn-group m-l"></lb-buttongroup>
-                    <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
-                        <i class="fa fa-list"></i>课程分类
-                    </button>
-                    <button class="btn btn-primary pull-right" @click="lbShowdialog($event,'lb-newlessonmodal')">
-                        <i class="fa fa-plus"></i>添加课程
-                    </button>
+                     <lb-buttongroup class="btn-group m-l"></lb-buttongroup> 
+                    <template v-if="getActionOption('lessonmanageles')">
+                        <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
+                            <i class="fa fa-list"></i>课程分类
+                        </button>
+                    </template>
+                    <template v-if="getActionOption('lessonmanageadd')">
+                        <button class="btn btn-primary pull-right" @click="lbShowdialog($event,'lb-newlessonmodal')">
+                            <i class="fa fa-plus"></i>添加课程
+                        </button>
+                    </template>
                 </div>
             </div>
             <div class="table-responsive m-t m-t-t">

@@ -30,9 +30,11 @@
                 <div class="col-xs-12 col-md-8 m-t">
                     <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                     <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
-                    <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
-                        <i class="fa fa-plus "></i>开班
-                    </a>
+                    <template v-if="getActionOption('lessonclasses')">
+                        <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
+                            <i class="fa fa-plus "></i>开班
+                        </a>
+                    </template>
                 </div>
             </div>
             <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
