@@ -30,9 +30,11 @@
                     </div>
                     <div class="col-xs-12 col-md-8" :class="{result:refreshData}">
                         <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
+                        <template v-if="getActionOption('systememployeeadd')">
                         <button @click="lbShowdialog($event,'lb-employeeaddmodal')" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"></i>添加
                         </button>
+                         </template>
                     </div>
                 </div>
                 <div class="wrapper">
