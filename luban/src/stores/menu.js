@@ -57,6 +57,11 @@ export default [{
                             'text': '转校区'
                         }*/
         ],
+        action: [{
+            'text': '已封存档案',
+            'action': 'studentlist'
+        }]
+
     }, {
         menuTitle: '学员信息',
         to: '/student/info',
@@ -157,6 +162,10 @@ export default [{
         menuTitle: '赛事记录',
         to: '/student/recording',
         menuIcon: 'fa fa-vcard-o',
+        action: [{
+            'text': '添加赛事记录',
+            'action': 'studentrecording'
+        }]
     }]
 }, {
     menuTitle: '课程',

@@ -21,9 +21,11 @@
                                     </div>
                                 </div>
                                 <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
-                                <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
-                                    <i class="icon-plus"></i>添加赛事记录
-                                </button>
+                                <template v-if="getActionOption('studentrecording')">
+                                    <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
+                                        <i class="icon-plus"></i>添加赛事记录
+                                    </button>
+                                </template>
                             </div>
                         </div>
                         <div class="row m-t m-t-t">
