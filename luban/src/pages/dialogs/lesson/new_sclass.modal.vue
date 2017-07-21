@@ -10,24 +10,18 @@
                     <i class="fa fa-flag-checkered"></i>{{title}}教室</h3>
             </div>
             <div class="modal-body">
-                <form name="form1" class="form-validation form-horizontal">
-                    <div class="form-group">
-                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">教室名称：</label>
-                        <div class="col-xs-12 col-sm-9 col-md-10">
-                            <input type="text" name="class_name" class="form-control" v-model="localdata.form.class_name" @change="validate('class_name')">
+                <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-position="left" label-width="100px">
+                    <el-form-item label="教室名称" prop="class_name">
+                        <el-input v-model="localdata.form.class_name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="最大人数">
+                        <div class="input-group w-sm">
+                            <lb-numberinput class="form-control" v-model="localdata.form.max_student_num">
+                            </lb-numberinput>
+                            <span class="input-group-addon">人</span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2 col-xs-12">最大人数:</label>
-                        <div class="col-md-3 col-xs-12">
-                            <div class="input-group w-sm">
-                                <lb-numberinput class="form-control" v-model="localdata.form.max_student_num">
-                                </lb-numberinput>
-                                <span class="input-group-addon">人</span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </el-form-item>
+                </el-form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleClick">确定</button>
@@ -43,27 +37,19 @@ export default {
         let localdata = {
             'form': {
                 'class_name': '',
-                'max_student_num': '',
-            },
-            'validator': {
-                'type': 'object',
-                'errorStatus': false,
-                'additional': true,
-                'fields': {
-                    'class_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    }
-                }
-            },
+                'max_student_num': ''
+            }
         }
         return {
             localdata,
             model: 'sclasses',
             title: '创建',
+            rules: {
+                class_name: [
+                    { required: true, message: '请输入教室名称', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -79,13 +65,21 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            this.handleSave().then(() => {
-                this.$message({
-                    message: '操作成功',
-                    type: 'success'
-                })
-                this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-newsclass'
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.handleSave().then(() => {
+                        this.$message({
+                            message: '操作成功',
+                            type: 'success'
+                        })
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialog = 'lb-newsclass'
+                    }, (e) => {
+                        console.log(e)
+                    })
+                } else {
+                    return false;
+                }
             })
         }
     }
