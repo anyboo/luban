@@ -10,7 +10,7 @@
                     <i class="fa fa-flag-checkered"></i>{{title}}教室</h3>
             </div>
             <div class="modal-body">
-                <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-position="left" label-width="100px">
+                <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
                     <el-form-item label="教室名称" prop="class_name">
                         <el-input v-model="localdata.form.class_name"></el-input>
                     </el-form-item>

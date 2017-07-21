@@ -1,102 +1,79 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="ng-scope">
-                <div class="modal-header">
-                    <button class="close" type="button" @click="lbClosedialog($event)">
-                        <span aria-hidden="true">×</span>
-                        <span class="sr-only">关闭</span>
-                    </button>
-                    <h3 class="modal-title">
-                        <i class="fa fa-flag-checkered"></i>{{title}}班级信息
-                    </h3>
-                </div>
-                <div class="modal-body" :class="{result:changeSelectTeacher}">
-                    <form name="form1" class="form-validation form-horizontal m-t ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-pattern">
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">授课老师:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="input-group">
-                                    <input type="text" class="form-control ng-pristine ng-valid ng-touched" readonly="true" :placeholder="teacher_name">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
-                                            <i class="fa fa-user"></i>选择
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
+            <div class="modal-header">
+                <button class="close" type="button" @click="lbClosedialog($event)">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa fa-flag-checkered"></i>{{title}}班级信息
+                </h3>
+            </div>
+            <div class="modal-body" :class="{result:changeSelectTeacher}">
+                <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
+                    <el-form-item label="授课老师" prop="teacher_id">
+                        <div class="input-group">
+                            <el-input :disabled="true" :placeholder="teacher_name"></el-input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectteachertpl')">
+                                    <i class="fa fa-user"></i>选择
+                                </button>
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">课程:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="input-group">
-                                    <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                                            <i class="fa fa-book"></i>选择
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
+                    </el-form-item>
+                    <el-form-item label="课程" prop="course_id">
+                        <div class="input-group">
+                            <el-input :disabled="true" :placeholder="lesson_name"></el-input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
+                                    <i class="fa fa-book"></i>选择
+                                </button>
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">班级名称:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <input type="text" name="class_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.class_name.errorStatus}" v-model="localdata.form.class_name" @change="validate('class_name')">
-                            </div>
+                    </el-form-item>
+                    <el-form-item label="班级名称" prop="class_name">
+                        <el-input v-model="localdata.form.class_name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="开课日期">
+                        <el-date-picker type="date" v-model="localdata.form.open_time" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="预计结课">
+                        <el-date-picker type="date" v-model="localdata.form.close_time" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="额定人数">
+                        <div class="input-group">
+                            <lb-numberinput type="number" class="form-control" v-model="localdata.form.max_student_num">
+                            </lb-numberinput>
+                            <span class="input-group-addon">人</span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">开课日期:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="inline w-sm">
-                                    <el-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="open_time" v-model="localdata.form.open_time"></el-date-picker>
-                                </div>
-                            </div>
+                    </el-form-item>
+                    <el-form-item label="额定人数">
+                        <div class="input-group">
+                            <lb-numberinput type="number" class="form-control" v-model="localdata.form.max_student_num">
+                            </lb-numberinput>
+                            <span class="input-group-addon">人</span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">预计结课:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="inline w-sm">
-                                    <el-date-picker type="date" ng-disabled="info.master_oe_id == 0" name="close_time" v-model="localdata.form.close_time"></el-date-picker>
-                                </div>
-                            </div>
+                    </el-form-item>
+                    <el-form-item label="授课次数">
+                        <div class="input-group">
+                            <lb-numberinput type="number" class="form-control" v-model="localdata.form.total_times">
+                            </lb-numberinput>
+                            <span class="input-group-addon">次</span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">额定人数:</label>
-                            <div class="col-md-3 col-xs-12">
-                                <div class="input-group w-sm">
-                                    <lb-numberinput type="number" ng-disabled="info.master_oe_id == 0" name="max_student_num" ng-pattern="/^[0-9]+$/" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.max_student_num">
-                                    </lb-numberinput>
-                                    <span class="input-group-addon">人</span>
-                                </div>
-                            </div>
+                    </el-form-item>
+                    <el-form-item label="单次课时">
+                        <div class="input-group">
+                            <lb-numberinput type="text" class="form-control" v-model="localdata.form.unit_hours">
+                            </lb-numberinput>
+                            <span class="input-group-addon">小时</span>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">授课次数:</label>
-                            <div class="col-md-3 col-xs-12">
-                                <div class="input-group w-sm">
-                                    <lb-numberinput type="number" min="0" step="1" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.total_times">
-                                    </lb-numberinput>
-                                    <span class="input-group-addon">次</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">单次课时:</label>
-                            <div class="col-md-3 col-xs-12">
-                                <div class="input-group">
-                                    <lb-numberinput type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" ng-change="auto_etime()" v-model="localdata.form.unit_hours">
-                                    </lb-numberinput>
-                                    <span class="input-group-addon">小时</span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" @click="handleClick">确定</button>
-                    <button class="btn btn-warning" @click="lbClosedialog($event)">取消</button>
-                </div>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" @click="handleClick">确定</button>
+                <button class="btn btn-warning" @click="lbClosedialog($event)">取消</button>
             </div>
         </div>
     </div>
@@ -111,35 +88,16 @@ export default {
                 'course_id': '',
                 'open_time': '',
                 'close_time': '',
-                'max_student_num': '',
-                'total_times': '',
-                'unit_hours': '',
+                'max_student_num': 0,
+                'total_times': 0,
+                'unit_hours': 0,
                 'teacher_id': ''
-            },
-            'fields': {
-                'detail': {
-                    'type': 'string',
-                    'required': true,
-                    'min': 1,
-                    'max': 256,
-                    'errorStatus': false
-                },
-                'birth': {
-                    'type': 'date',
-                }
             },
             'validator': {
                 'type': 'object',
                 'errorStatus': false,
                 'additional': true,
                 'fields': {
-                    'class_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
                     'open_time': {
                         'type': 'date',
                     },
@@ -154,7 +112,20 @@ export default {
             model: 'classes',
             title: '创建',
             teacher_name: '请选择老师',
-            lesson_name: '请选择课程'
+            lesson_name: '请选择课程',
+            rules: {
+                teacher_id: [
+                    { required: true, message: '请选择授课老师', trigger: 'blur' }
+                ],
+                course_id: [
+                    { required: true, message: '请输入课程', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+                class_name: [
+                    { required: true, message: '请班级名称', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ]
+            }
         }
     },
     mounted() {
@@ -187,7 +158,7 @@ export default {
                     this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
                     this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
                 } else {
-                    this.lesson_name = '请选择老师'
+                    this.lesson_name = '请选择课程'
                     this.localdata.form.course_id = ''
                 }
                 result = true
@@ -202,13 +173,21 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            this.handleSave().then(() => {
-                this.$message({
-                    message: '操作成功',
-                    type: 'success'
-                })
-                this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-openclass'
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.handleSave().then(() => {
+                        this.$message({
+                            message: '操作成功',
+                            type: 'success'
+                        })
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialog = 'lb-openclass'
+                    }, (e) => {
+                        console.log(e)
+                    })
+                } else {
+                    return false;
+                }
             })
         },
 
