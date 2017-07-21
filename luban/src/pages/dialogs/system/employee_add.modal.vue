@@ -19,11 +19,8 @@
                         <el-form-item label="账号(手机)" prop="tel">
                             <el-input v-model="localdata.form.tel"></el-input>
                         </el-form-item>
-                        <el-form-item label="性别" prop="sex">
-                            <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
-                        </el-form-item>
-                        <el-form-item label="类型" prop="is_part_time">
-                            <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
+                        <el-form-item label="Email" prop="email">
+                            <el-input v-model="localdata.form.email"></el-input>
                         </el-form-item>
                         <el-form-item label="角色" prop="roles_id">
                             <el-select v-model="localdata.form.roles_id" multiple placeholder="请选择">
@@ -32,10 +29,13 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="出生日期" prop="birth">
-                            <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
+                            <el-date-picker type="date" v-model="localdata.form.birth"></el-date-picker>
                         </el-form-item>
-                        <el-form-item label="Email" prop="email">
-                            <el-input v-model="localdata.form.email"></el-input>
+                        <el-form-item label="性别" prop="sex">
+                            <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
+                        </el-form-item>
+                        <el-form-item label="类型" prop="is_part_time">
+                            <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
                         </el-form-item>
                     </el-form>
                 </div>
