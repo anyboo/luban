@@ -111,13 +111,24 @@ export default {
             this.localdata.form = this.lodash.assign(this.localdata.form, item)
         },
         handleDelClick(id) {
-            this.handleDelete(id).then(() => {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                this.handleDelete(id).then(() => {
                 this.$message({
                     message: '删除成功',
                     type: 'success'
                 })
                 this.handleGetTable()
             })
+           }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
         },
         handleClick() {
             this.handleSave().then(() => {
