@@ -36,32 +36,56 @@ export default {
     },
     computed: {
         authoritymenu() {
-            let treedata = []      
-            let obj = {}
-            obj.id = '0'
-            obj.label = '菜单权限'
-            obj.children = []    
-            treedata.push(obj) 
-            this.gettreedata(obj.children, menus)
-            let option={}
-            option.id = '0'
-            option.label = '功能权限'
-            option.children = []
-            treedata.push(option)   
-            return treedata 
+            let treedata = []
+            let menudata = {}
+            menudata.id = '0'
+            menudata.label = '菜单权限'
+            menudata.children = []
+            treedata.push(menudata)
+
+            let optdata = {}
+            optdata.id = '0'
+            optdata.label = '功能权限'
+            optdata.children = []
+            treedata.push(optdata)
+
+            this.gettreedata(menudata.children,optdata.children, menus)
+
+
+            return treedata
         }
     },
     watch: {},
     methods: {
-        gettreedata(treedata, menus) {
+        getoptdata(optdata,dropDownMenu){
+             dropDownMenu.forEach((item) => {
+                let optitem = {}
+                if (item.url){
+                    optitem.id = item.url
+                }else if (item.action){
+                    optitem.id = item.action
+                }
+                optitem.label = item.text
+                optdata.push(optitem)
+             })
+        },
+        gettreedata(menudata,optdata,menus) {
             if (menus) {
                 menus.forEach((element) => {
                     let obj = {}
                     obj.id = element.to
                     obj.label = element.menuTitle
                     obj.children = []
-                    this.gettreedata(obj.children, element.menu)
-                    treedata.push(obj)
+                    if (element.dropDownMenu){
+                        let optitem = {}
+                        optitem.id = element.to
+                        optitem.label = element.menuTitle
+                        optitem.children = []
+                        this.getoptdata(optitem.children,element.dropDownMenu)
+                        optdata.push(optitem)
+                    }
+                    this.gettreedata(obj.children,optdata, element.menu)
+                    menudata.push(obj)
                 })
             }
         },
