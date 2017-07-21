@@ -49,7 +49,7 @@ export default {
             optdata.children = []
             treedata.push(optdata)
 
-            this.gettreedata(menudata.children,optdata.children, menus)
+            this.gettreedata(menudata.children, optdata.children, menus)
 
 
             return treedata
@@ -57,34 +57,39 @@ export default {
     },
     watch: {},
     methods: {
-        getoptdata(optdata,dropDownMenu){
-             dropDownMenu.forEach((item) => {
+        getoptdata(optdata, dropDownMenu) {
+            dropDownMenu.forEach((item) => {
                 let optitem = {}
-                if (item.url){
+                if (item.url) {
                     optitem.id = item.url
-                }else if (item.action){
+                } else if (item.action) {
                     optitem.id = item.action
                 }
                 optitem.label = item.text
                 optdata.push(optitem)
-             })
+            })
         },
-        gettreedata(menudata,optdata,menus) {
+        gettreedata(menudata, optdata, menus) {
             if (menus) {
                 menus.forEach((element) => {
                     let obj = {}
                     obj.id = element.to
                     obj.label = element.menuTitle
                     obj.children = []
-                    if (element.dropDownMenu){
+                    if (element.dropDownMenu || element.action) {
                         let optitem = {}
                         optitem.id = element.to
                         optitem.label = element.menuTitle
                         optitem.children = []
-                        this.getoptdata(optitem.children,element.dropDownMenu)
+                        if (element.dropDownMenu) {
+                            this.getoptdata(optitem.children, element.dropDownMenu)
+                        }
+                        if (element.action) {
+                            this.getoptdata(optitem.children, element.action)
+                        }
                         optdata.push(optitem)
                     }
-                    this.gettreedata(obj.children,optdata, element.menu)
+                    this.gettreedata(obj.children, optdata, element.menu)
                     menudata.push(obj)
                 })
             }

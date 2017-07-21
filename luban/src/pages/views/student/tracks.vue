@@ -20,18 +20,22 @@
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type" @input="handleSearch"></lb-buttongroup>
-                            <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
-                                <i class="icon-plus glyphicon glyphicon-user"></i>跟踪回访登记
-                            </button>
-                        </div> 
+                            <template v-if="getActionOption('studenttracksadd')">
+                                <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
+                                    <i class="icon-plus glyphicon glyphicon-user"></i>跟踪回访登记
+                                </button>
+                            </template>
+                        </div>
                     </div>
                     <div class="row m-t m-t-t">
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column width="100" prop="data" label="学员" class="widthes">
                                 <template scope="scope">
-                                    <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
+                                    <template v-if="getActionOption('studenttracksadd')">
+                                        <a class="link" @click="handleAddTrack(scope.row.student)" tooltip="新增记录">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </template>
                                     <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
                                         <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>

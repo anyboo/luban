@@ -68,6 +68,9 @@ export default {
         }
     },
     methods: {
+        getActionOption(key) {
+            return true
+        },
         getToFixed(amount) {
             return parseFloat(amount).toFixed(2)
         },

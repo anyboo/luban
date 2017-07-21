@@ -11,42 +11,42 @@ export default [{
         to: '/student/list',
         menuIcon: 'fa fa-user-circle',
         dropDownMenu: [{
-                'url': 'lb-editinfomodal',
-                'icon': 'fa fa-pencil',
-                'text': '修改资料'
-            }
+            'url': 'lb-editinfomodal',
+            'icon': 'fa fa-pencil',
+            'text': '修改资料'
+        }
             /*, {
                             'url': 'lb-editphotomodal',
                             'icon': 'fa fa-image',
                             'text': '更换头像'
                         }*/
             , {
-                'url': 'lb-ordermodal',
-                'icon': 'fa fa-shopping-cart',
-                'text': '报名'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-money',
-                'text': '缴费'
-            }
+            'url': 'lb-ordermodal',
+            'icon': 'fa fa-shopping-cart',
+            'text': '报名'
+        }, {
+            'url': 'lb-refundmodal',
+            'icon': 'fa fa-money',
+            'text': '缴费'
+        }
             /*, {
                             'url': 'lb-changeclassmodal',
                             'icon': 'fa fa-exchange',
                             'text': '转班'
                         }*/
             , {
-                'url': 'lb-addtrackmodal',
-                'icon': 'fa fa-phone-square',
-                'text': '跟踪回访'
-            }, {
-                'url': 'lb-regstudentmatchmodal',
-                'icon': 'fa fa-flag-o',
-                'text': '登记赛事记录'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-reply',
-                'text': '退费'
-            },
+            'url': 'lb-addtrackmodal',
+            'icon': 'fa fa-phone-square',
+            'text': '跟踪回访'
+        }, {
+            'url': 'lb-regstudentmatchmodal',
+            'icon': 'fa fa-flag-o',
+            'text': '登记赛事记录'
+        }, {
+            'url': 'lb-refundmodal',
+            'icon': 'fa fa-reply',
+            'text': '退费'
+        },
             /* {
                             'url': 'lb-endlessonmodal',
                             'icon': 'fa fa-stop',
@@ -63,42 +63,42 @@ export default [{
         menuIcon: 'fa fa-user-circle',
         menuShow: 0,
         dropDownMenu: [{
-                'url': 'lb-editinfomodal',
-                'icon': 'fa fa-pencil',
-                'text': '修改资料'
-            }
+            'url': 'lb-editinfomodal',
+            'icon': 'fa fa-pencil',
+            'text': '修改资料'
+        }
             /*, {
                             'url': 'lb-editphotomodal',
                             'icon': 'fa fa-image',
                             'text': '更换头像'
                         }*/
             , {
-                'url': 'lb-ordermodal',
-                'icon': 'fa fa-shopping-cart',
-                'text': '报名'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-money',
-                'text': '缴费'
-            }
+            'url': 'lb-ordermodal',
+            'icon': 'fa fa-shopping-cart',
+            'text': '报名'
+        }, {
+            'url': 'lb-refundmodal',
+            'icon': 'fa fa-money',
+            'text': '缴费'
+        }
             /*, {
                             'url': 'lb-changeclassmodal',
                             'icon': 'fa fa-exchange',
                             'text': '转班'
                         }*/
             , {
-                'url': 'lb-addtrackmodal',
-                'icon': 'fa fa-phone-square',
-                'text': '跟踪回访'
-            }, {
-                'url': 'lb-regstudentmatchmodal',
-                'icon': 'fa fa-flag-o',
-                'text': '登记赛事记录'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-reply',
-                'text': '退费'
-            }
+            'url': 'lb-addtrackmodal',
+            'icon': 'fa fa-phone-square',
+            'text': '跟踪回访'
+        }, {
+            'url': 'lb-regstudentmatchmodal',
+            'icon': 'fa fa-flag-o',
+            'text': '登记赛事记录'
+        }, {
+            'url': 'lb-refundmodal',
+            'icon': 'fa fa-reply',
+            'text': '退费'
+        }
             /*, {
                             'url': 'lb-endlessonmodal',
                             'icon': 'fa fa-stop',
@@ -135,7 +135,7 @@ export default [{
             'url': 'lb-addtrackmodal',
             'icon': 'fa fa-phone-square',
             'text': '跟踪回访'
-        }],
+        }]
     }, {
         menuTitle: '流失名单',
         to: '/student/lost',
@@ -145,6 +145,10 @@ export default [{
         menuTitle: '跟踪回访记录',
         to: '/student/tracks',
         menuIcon: 'fa fa-drivers-license',
+        action: [{
+            'text': '跟踪回访登记',
+            'action': 'studenttracksadd'
+        }]
     }, {
         menuTitle: '生日学员',
         to: '/student/birthdays',
@@ -394,4 +398,4 @@ export default [{
         menuIcon: ' fa fa-th',
         menuShow: 0,
     }]
-}, ]
+},]
