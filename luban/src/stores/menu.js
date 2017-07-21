@@ -255,6 +255,10 @@ export default [{
         menuTitle: '考勤',
         to: '/hours/attendance',
         menuIcon: 'fa fa-file-sound-o',
+         action: [{
+            'text': '考勤',
+            'action': 'hoursattendance'
+        }]
     }, {
         menuTitle: '教师课耗',
         to: '/hours/teacher',
@@ -279,6 +283,10 @@ export default [{
         menuTitle: '请假管理',
         to: '/hours/leaves',
         menuIcon: 'fa fa-briefcase',
+        action: [{
+            'text': '请假登记',
+            'action': 'hoursleaves'
+        }],
         dropDownMenu: [{
             'action': 'delete',
             'icon': 'fa fa-times',
@@ -288,6 +296,10 @@ export default [{
         menuTitle: '停课管理',
         to: '/hours/suspends',
         menuIcon: 'fa fa-minus-square',
+        action: [{
+            'text': '停课管理',
+            'action': 'hourssuspends'
+        }],
         dropDownMenu: [{
             'action': 'delete',
             'icon': 'fa fa-times',
@@ -301,6 +313,10 @@ export default [{
         menuTitle: '流水',
         to: '/iae/flow',
         menuIcon: 'fa fa-google-wallet',
+        action: [{
+            'text': '记一笔',
+            'action': 'iaeflow'
+        }]
     }, {
         menuTitle: '收入明细',
         to: '/iae/income',
