@@ -6,18 +6,23 @@
                     <button class="close" type="button" @click="lbClosedialog($event)"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h3 class="modal-title"><i class="icon-plus"></i> {{title}}新校区</h3></div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation ng-invalid ng-invalid-required ng-valid-minlength ng-dirty ng-valid-parse">
-                        <p>*校区名:</p>
-                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.branch_name" ng-minlength="2" required="">
-                        <p class="m-t">校区简称:</p>
-                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.short_name" ng-minlength="1" required="">
-                        <p class="m-t">联系电话:</p>
-                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.branch_tel">
-                        <p class="m-t">所在地区:</p>
-                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.group_name">
-                        <p class="m-t">详细地址(有长度限制最少5个字符):</p>
-                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.branch_address">
-                    </form>
+                     <el-form :model="localdata.form" :rules="rules" label-width="95px" ref="ruleForm">
+                            <el-form-item label="校区名:" prop="branch_name">
+                                <el-input v-model="localdata.form.branch_name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="校区简称:" prop="short_name">
+                                <el-input v-model="localdata.form.short_name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系电话:" prop="branch_tel">
+                                <el-input v-model="localdata.form.branch_tel"></el-input>
+                            </el-form-item>
+                            <el-form-item label="所在地区:" prop="group_name">
+                                <el-input v-model="localdata.form.group_name"></el-input>
+                            </el-form-item>
+                              <el-form-item label="详细地址" prop="address">
+                                <el-input v-model="localdata.form.branch_address"></el-input>
+                            </el-form-item>
+                        </el-form>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" @click="handleClick">
@@ -39,7 +44,6 @@ export default {
                 'branch_tel': '',
                 'city': '',
                 'branch_address': ''
-
             },
             'validator': {
                 'type': 'object',
@@ -60,6 +64,12 @@ export default {
             localdata,
             model: 'campus',
             title: '创建',
+             rules: {
+                branch_name: [
+                    { required: true, message: '请输入校区名', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -100,12 +110,17 @@ export default {
     watch: {},
     methods: {
         handleClick() {
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
             this.handleSave().then(() => {
                 this.$message({
                     message: '操作成功',
                     type: 'success'
                 })
+                 this.lbClosedialog()
             })
+                }
+             })
         }
     }
 }
