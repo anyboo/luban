@@ -45,6 +45,15 @@
                                 <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-xs-12">角色:</label>
+                            <div class="col-md-10 col-xs-12">
+                                <el-select v-model="localdata.form.roles_id" multiple placeholder="请选择">
+                                    <el-option v-for="item in getroleData" :key="item._id" :label="item.name" :value="item._id">
+                                    </el-option>
+                                </el-select>
+                            </div>
+                        </div>
     
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">出生日期:</label>
@@ -80,7 +89,7 @@ export default {
             'form': {
                 'name': '',
                 'sex': '1',
-                'roles': '',
+                'roles_id': [],
                 'is_part_time': '0',
                 'tel': '',
                 'email': '',
@@ -139,6 +148,13 @@ export default {
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
             this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
         }
+        this.getTableApidata('role')
+    },
+    computed: {
+        getroleData() {
+            let role = this.$store.state.models.models.role.data
+            return role
+        },
     },
     methods: {
         handleClick() {

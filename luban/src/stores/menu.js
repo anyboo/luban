@@ -5,7 +5,6 @@ export default [{
         menuTitle: '档案录入',
         to: '/student/add',
         menuIcon: 'fa fa-user-plus',
-
     }, {
         menuTitle: '学员管理',
         to: '/student/list',
