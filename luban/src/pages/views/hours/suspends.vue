@@ -107,11 +107,7 @@ export default {
                 'foreignField': '_id',
                 'as': 'student'
             },
-            'dropDownMenu': [{
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除'
-            }]
+          
         }
         return {
             localdata,

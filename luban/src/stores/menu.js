@@ -5,15 +5,110 @@ export default [{
         menuTitle: '档案录入',
         to: '/student/add',
         menuIcon: 'fa fa-user-plus',
+
     }, {
         menuTitle: '学员管理',
         to: '/student/list',
-        menuIcon: 'fa fa-user-circle'
+        menuIcon: 'fa fa-user-circle',
+        dropDownMenu: [{
+                'url': 'lb-editinfomodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改资料'
+            }
+            /*, {
+                            'url': 'lb-editphotomodal',
+                            'icon': 'fa fa-image',
+                            'text': '更换头像'
+                        }*/
+            , {
+                'url': 'lb-ordermodal',
+                'icon': 'fa fa-shopping-cart',
+                'text': '报名'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-money',
+                'text': '缴费'
+            }
+            /*, {
+                            'url': 'lb-changeclassmodal',
+                            'icon': 'fa fa-exchange',
+                            'text': '转班'
+                        }*/
+            , {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
+            }, {
+                'url': 'lb-regstudentmatchmodal',
+                'icon': 'fa fa-flag-o',
+                'text': '登记赛事记录'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-reply',
+                'text': '退费'
+            },
+            /* {
+                            'url': 'lb-endlessonmodal',
+                            'icon': 'fa fa-stop',
+                            'text': '结课'
+                        }, {
+                            'url': 'lb-changebranchmodal',
+                            'icon': 'icon-shuffle',
+                            'text': '转校区'
+                        }*/
+        ],
     }, {
         menuTitle: '学员信息',
         to: '/student/info',
         menuIcon: 'fa fa-user-circle',
-        menuShow: 0
+        menuShow: 0,
+        dropDownMenu: [{
+                'url': 'lb-editinfomodal',
+                'icon': 'fa fa-pencil',
+                'text': '修改资料'
+            }
+            /*, {
+                            'url': 'lb-editphotomodal',
+                            'icon': 'fa fa-image',
+                            'text': '更换头像'
+                        }*/
+            , {
+                'url': 'lb-ordermodal',
+                'icon': 'fa fa-shopping-cart',
+                'text': '报名'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-money',
+                'text': '缴费'
+            }
+            /*, {
+                            'url': 'lb-changeclassmodal',
+                            'icon': 'fa fa-exchange',
+                            'text': '转班'
+                        }*/
+            , {
+                'url': 'lb-addtrackmodal',
+                'icon': 'fa fa-phone-square',
+                'text': '跟踪回访'
+            }, {
+                'url': 'lb-regstudentmatchmodal',
+                'icon': 'fa fa-flag-o',
+                'text': '登记赛事记录'
+            }, {
+                'url': 'lb-refundmodal',
+                'icon': 'fa fa-reply',
+                'text': '退费'
+            }
+            /*, {
+                            'url': 'lb-endlessonmodal',
+                            'icon': 'fa fa-stop',
+                            'text': '结课'
+                        },{
+                            'url': 'lb-changebranchmodal',
+                            'icon': 'icon-shuffle',
+                            'text': '转校区'
+                        }*/
+        ],
     }, {
         menuTitle: '在读学员',
         to: '/student/list1',
@@ -28,6 +123,32 @@ export default [{
         menuTitle: '咨询管理',
         to: '/student/list0',
         menuIcon: 'glyphicon glyphicon-list',
+        dropDownMenu: [{
+            'url': 'lb-regionsetmodal',
+            'icon': 'icon-rocket',
+            'text': '学员归属设定'
+        }, {
+            'url': 'lb-purposesetmodal',
+            'icon': 'icon-heart',
+            'text': '意向程度设置'
+        }, {
+            'url': 'lb-addtrackmodal',
+            'icon': 'fa fa-phone-square',
+            'text': '跟踪回访'
+        }],
+        'purpose': [{
+            'value': '0',
+            'text': '请选择'
+        }, {
+            'value': '1',
+            'text': '没有意向'
+        }, {
+            'value': '2',
+            'text': '初步意向'
+        }, {
+            'value': '3',
+            'text': '意向强烈'
+        }],
     }, {
         menuTitle: '流失名单',
         to: '/student/lost',
@@ -53,6 +174,15 @@ export default [{
         menuTitle: '教室设置',
         to: '/lesson/sclasses',
         menuIcon: 'fa fa-certificate',
+        dropDownMenu: [{
+            'url': 'lb-newsclassmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }]
     }, {
         menuTitle: '课程设置',
         to: '/lesson/manage',
@@ -61,10 +191,32 @@ export default [{
         menuTitle: '班级设置',
         to: '/lesson/classes',
         menuIcon: 'fa fa-gear',
+        dropDownMenu: [{
+            'url': 'lb-openclassmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }],
     }, {
         menuTitle: '订单',
         to: '/lesson/orders',
         menuIcon: 'fa fa-envelope-o',
+        dropDownMenu: [{
+            'url': 'lb-refunds',
+            'icon': 'fa fa-reply',
+            'text': '办理退款',
+            'menuctrl': 'pay_status',
+            'menuvalue': [1, 2]
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除',
+            'menuctrl': 'pay_status',
+            'menuvalue': 0
+        }],
     }]
 }, {
     menuTitle: '学费',
@@ -73,6 +225,15 @@ export default [{
         menuTitle: '缴费明细',
         to: '/fee/list1',
         menuIcon: 'fa fa-battery',
+        dropDownMenu: [{
+            'url': 'lb-paynowmodal',
+            'icon': 'icon-wallet',
+            'text': '现场缴费'
+        }, {
+            'url': 'lb-unpayclearmodal',
+            'icon': 'icon-ban',
+            'text': '欠费清除'
+        }]
     }, {
         menuTitle: '欠费明细',
         to: '/fee/list3',
@@ -118,10 +279,20 @@ export default [{
         menuTitle: '请假管理',
         to: '/hours/leaves',
         menuIcon: 'fa fa-briefcase',
+        dropDownMenu: [{
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }]
     }, {
         menuTitle: '停课管理',
         to: '/hours/suspends',
         menuIcon: 'fa fa-minus-square',
+        dropDownMenu: [{
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }]
     }]
 }, {
     menuTitle: '收支',
@@ -172,6 +343,34 @@ export default [{
         menuTitle: '员工管理',
         to: '/system/employee',
         menuIcon: 'fa fa-tasks',
+        dropDownMenu: [{
+            'url': 'lb-employeeaddmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑资料',
+
+        }, {
+            'action': 'unlock',
+            'icon': 'fa fa-unlock',
+            'text': '账号解封',
+            'menuctrl': 'lock',
+            'menuvalue': true
+        }, {
+            'action': 'lock',
+            'icon': 'fa fa-lock',
+            'text': '离职封存',
+            'menuctrl': 'lock',
+            'menuvalue': false
+        }, {
+            'url': 'lb-resetaccountmodal',
+            'icon': 'fa fa-key',
+            'text': '重置密码'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除',
+            'menuctrl': 'lock',
+            'menuvalue': true
+        }],
     }, {
         menuTitle: '数据字典管理',
         to: '/system/dict',
@@ -180,6 +379,15 @@ export default [{
         menuTitle: '机构校区设置',
         to: '/system/org',
         menuIcon: 'fa fa-institution',
+        dropDownMenu: [{
+            'url': 'lb-addmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }],
     }, {
         menuTitle: '日志',
         menuIcon: 'fa fa-picture-o',

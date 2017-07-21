@@ -83,20 +83,10 @@ export default {
                 'search_key': 'class_name',
                 'search_value': '教室名'
             },
-            'dropDownMenu': [{
-                'url': 'lb-newsclassmodal',
-                'icon': 'fa fa-pencil',
-                'text': '编辑'
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除'
-            }]
         }
         return {
             localdata,
             tables: ['sclasses'],
-
         }
     },
     computed: {

@@ -109,16 +109,7 @@ export default {
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
-            },
-            'dropDownMenu': [{
-                'url': 'lb-paynowmodal',
-                'icon': 'icon-wallet',
-                'text': '现场缴费'
-            }, {
-                'url': 'lb-unpayclearmodal',
-                'icon': 'icon-ban',
-                'text': '欠费清除'
-            }]
+            },        
         }
         return {
             localdata,

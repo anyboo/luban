@@ -2,7 +2,7 @@
     <div class="wrapper wrapper ">
         <div class="wrapper panel panel-default bg-white ng-scope">
             <div class="ng-scope">
-                <div class="row wrapper" >
+                <div class="row wrapper">
                     <div class="col-xs-12 col-md-4">
                         <div class="padder">
                             <div class="input-group w-full">
@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <div class="row list-employee " >
+                    <div class="row list-employee ">
                         <template v-for="item in getTablesData()">
                             <div class="col-xs-12 col-md-6 ng-scope">
                                 <div class="bg-white wrapper b-a m-t box-shadow">
-                                    <div class="meida" >
+                                    <div class="meida">
                                         <div class="media-left">
                                             <div class="w-xs ng-scope" ng-if="!item.avatar">
                                                 <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
@@ -105,34 +105,6 @@ export default {
             }, {
                 'value': '0',
                 'text': '离职'
-            }],
-            'dropDownMenu': [{
-                'url': 'lb-employeeaddmodal',
-                'icon': 'fa fa-pencil',
-                'text': '编辑资料',
-
-            }, {
-                'action': 'unlock',
-                'icon': 'fa fa-unlock',
-                'text': '账号解封',
-                'menuctrl': 'lock',
-                'menuvalue': true
-            }, {
-                'action': 'lock',
-                'icon': 'fa fa-lock',
-                'text': '离职封存',
-                'menuctrl': 'lock',
-                'menuvalue': false
-            }, {
-                'url': 'lb-resetaccountmodal',
-                'icon': 'fa fa-key',
-                'text': '重置密码'
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除',
-                'menuctrl': 'lock',
-                'menuvalue': true
             }],
             'search': {
                 'fields': [{

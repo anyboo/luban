@@ -109,19 +109,7 @@ export default {
                 'value': '10',
                 'text': '课时包'
             }],
-            'dropDownMenu': [{
-                'url': 'lb-refunds',
-                'icon': 'fa fa-reply',
-                'text': '办理退款',
-                'menuctrl': 'pay_status',
-                'menuvalue': [1, 2]
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除',
-                'menuctrl': 'pay_status',
-                'menuvalue': 0
-            }],
+          
             'order_type': [{
                 'value': 1,
                 'text': '报名费'

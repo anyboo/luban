@@ -36,9 +36,19 @@ export default {
     },
     computed: {
         authoritymenu() {
-            let treedata = []
-            this.gettreedata(treedata, menus)
-            return treedata
+            let treedata = []      
+            let obj = {}
+            obj.id = '0'
+            obj.label = '菜单权限'
+            obj.children = []    
+            treedata.push(obj) 
+            this.gettreedata(obj.children, menus)
+            let option={}
+            option.id = '0'
+            option.label = '功能权限'
+            option.children = []
+            treedata.push(option)   
+            return treedata 
         }
     },
     watch: {},

@@ -124,32 +124,7 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'dropDownMenu': [{
-                'url': 'lb-regionsetmodal',
-                'icon': 'icon-rocket',
-                'text': '学员归属设定'
-            }, {
-                'url': 'lb-purposesetmodal',
-                'icon': 'icon-heart',
-                'text': '意向程度设置'
-            }, {
-                'url': 'lb-addtrackmodal',
-                'icon': 'fa fa-phone-square',
-                'text': '跟踪回访'
-            }],
-            'purpose': [{
-                'value': '0',
-                'text': '请选择'
-            }, {
-                'value': '1',
-                'text': '没有意向'
-            }, {
-                'value': '2',
-                'text': '初步意向'
-            }, {
-                'value': '3',
-                'text': '意向强烈'
-            }],
+           
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',

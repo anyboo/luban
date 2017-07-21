@@ -188,15 +188,7 @@ export default {
                 'iclass': 'fa fa-list',
                 'text': '列表'
             }],
-            'dropDownMenu': [{
-                'url': 'lb-openclassmodal',
-                'icon': 'fa fa-pencil',
-                'text': '编辑'
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除'
-            }],
+           
             'search': {
                 'fields': [{
                     'name': 'class_name',
@@ -226,7 +218,6 @@ export default {
                 'foreignField': 'class_id',
                 'as': 'order'
             }
-
         }
         return {
             localdata,

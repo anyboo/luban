@@ -91,15 +91,6 @@ export default {
                 'tel': '',
                 'address': ''
             },
-            'dropDownMenu': [{
-                'url': 'lb-addmodal',
-                'icon': 'fa fa-pencil',
-                'text': '编辑'
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除'
-            }],
         }
         return {
             localdata,
