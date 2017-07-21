@@ -31,9 +31,11 @@
                     <div class="col-xs-12 col-md-8 m-t">
                         <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
                         </div>
-                        <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
-                            <i class="fa fa-plus"></i>新建表单
-                        </a>
+                        <template v-if="getActionOption('lessonsclasses')">
+                            <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
+                                <i class="fa fa-plus"></i>新建表单
+                            </a>
+                        </template>
                     </div>
                 </div>
                 <div class="table-responsive m-t m-t-t" style="min-height:400px" :class='{result:changeTeacher}'>

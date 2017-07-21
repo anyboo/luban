@@ -57,6 +57,11 @@ export default [{
                             'text': '转校区'
                         }*/
         ],
+        action: [{
+            'text': '已封存档案',
+            'action': 'studentlist'
+        }]
+
     }, {
         menuTitle: '学员信息',
         to: '/student/info',
@@ -157,6 +162,10 @@ export default [{
         menuTitle: '赛事记录',
         to: '/student/recording',
         menuIcon: 'fa fa-vcard-o',
+        action: [{
+            'text': '添加赛事记录',
+            'action': 'studentrecording'
+        }]
     }]
 }, {
     menuTitle: '课程',
@@ -173,6 +182,10 @@ export default [{
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除'
+        }],
+        action: [{
+            'text': '新建表单',
+            'action': 'lessonsclasses'
         }]
     }, {
         menuTitle: '课程设置',
@@ -187,6 +200,13 @@ export default [{
             'icon': 'fa fa-times',
             'text': '删除'
         }],
+        action: [{
+            'text': '添加课程',
+            'action': 'lessonmanageadd'
+        }, {
+            'text': '课程分类',
+            'action': 'lessonmanageles'
+        }]
     }, {
         menuTitle: '班级设置',
         to: '/lesson/classes',
@@ -200,6 +220,10 @@ export default [{
             'icon': 'fa fa-times',
             'text': '删除'
         }],
+        action: [{
+            'text': '开班',
+            'action': 'lessonclasses'
+        }]
     }, {
         menuTitle: '订单',
         to: '/lesson/orders',
