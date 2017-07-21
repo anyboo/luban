@@ -103,15 +103,6 @@ export default {
                 'search_value': '',
                 'status': ''
             },
-            'dropDownMenu': [{
-                'url': 'lb-newlessonmodal',
-                'icon': 'fa fa-pencil',
-                'text': '编辑'
-            }, {
-                'action': 'delete',
-                'icon': 'fa fa-times',
-                'text': '删除'
-            }],
             'search': {
                 'fields': [{
                     'name': 'lesson_name',

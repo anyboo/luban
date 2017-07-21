@@ -136,19 +136,6 @@ export default [{
             'icon': 'fa fa-phone-square',
             'text': '跟踪回访'
         }],
-        'purpose': [{
-            'value': '0',
-            'text': '请选择'
-        }, {
-            'value': '1',
-            'text': '没有意向'
-        }, {
-            'value': '2',
-            'text': '初步意向'
-        }, {
-            'value': '3',
-            'text': '意向强烈'
-        }],
     }, {
         menuTitle: '流失名单',
         to: '/student/lost',
@@ -187,6 +174,15 @@ export default [{
         menuTitle: '课程设置',
         to: '/lesson/manage',
         menuIcon: 'fa fa-gears',
+        dropDownMenu: [{
+            'url': 'lb-newlessonmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }],
     }, {
         menuTitle: '班级设置',
         to: '/lesson/classes',

@@ -124,7 +124,20 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-           
+            'purpose': [{
+                'value': '0',
+                'text': '请选择'
+            }, {
+                'value': '1',
+                'text': '没有意向'
+            }, {
+                'value': '2',
+                'text': '初步意向'
+            }, {
+                'value': '3',
+                'text': '意向强烈'
+            }],
+
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
