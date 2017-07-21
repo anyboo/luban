@@ -8,16 +8,15 @@
                             <div class="panel-heading">角色列表</div>
                             <ul class="list-group">
                                 <template v-for="item in getTablesData()">
-                                    <li class="list-group-item ng-scope" ng-class="{active:item.or_id == edit_handler.or_id}">
-                                        <label class="badge badge-sm bg-info pull-right ng-binding">{{item.role_id}}</label>
-                                        <h4 class="list-group-item-head ng-binding text-danger">{{item.role_name}}</h4>
-                                        <p class="list-grpup-item-text text-muted ng-binding">{{item.role_desc}}</p>
+                                    <li class="list-group-item ng-scope">
+                                        <h4 class="list-group-item-head text-danger">{{item.name}}</h4>
+                                        <p class="list-grpup-item-text text-muted ng-binding">{{item.desc}}</p>
                                         <p class="list-group-item-text">
-                                            <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
+                                            <a class="btn btn-xs btn-default" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
                                                 <i class="fa fa-times"></i>删除
                                             </a>
                                             <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
-                                            <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority')" >权限设置</button>
+                                            <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority')">权限设置</button>
                                         </p>
                                     </li>
                                 </template>
@@ -27,25 +26,23 @@
                     <div class="col-xs-12 col-sm-5 col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <span ng-if="action!='edit'" class="ng-scope">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
+                                <span>{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
                                 <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                             <div class="panel-body">
-                                <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
-                                    <p>*角色ID:(仅限2个字符)</p>
-                                    <input type="text" name="role_id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" :class="{'ng-dirty':localdata.validator.fields.role_id.errorStatus}" v-model="localdata.form.role_id" @change="validate('role_id')">
-                                    <p>*角色名称:</p>
-                                    <input type="text" name="role_name" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" v-model="localdata.form.role_name" :class="{'ng-dirty':localdata.validator.fields.role_id.errorStatus}" @change="validate('role_name')">
-                                    <p>角色描述:</p>
-                                    <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.role_desc">
-                                    <div class="m-t m-b">
-                                        <button type='button' class="btn btn-primary" @click="handleClick">
-                                            保存
-                                        </button>
-                                    </div>
-                                </form>
+                                <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-position="top" label-width="100px">
+                                    <el-form-item label="角色名称" prop="name">
+                                        <el-input v-model="localdata.form.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="角色描述" prop="desc">
+                                        <el-input v-model="localdata.form.desc"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label-width="100px">
+                                        <el-button type="primary" @click="handleClick"> 保存</el-button>
+                                    </el-form-item>
+                                </el-form>
                             </div>
                         </div>
                     </div>
@@ -61,37 +58,20 @@ export default {
         let localdata = {
             'form': {
                 'og_id': '',
-                'role_id': '',
-                'role_name': '',
-                'role_desc': ''
-            },
-            'validator': {
-                'type': 'object',
-                'errorStatus': false,
-                'additional': true,
-                'fields': {
-                    'role_id': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
-                    'role_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    }
-
-                }
+                'name': '',
+                'desc': ''
             },
         }
         return {
             localdata,
             model: 'role',
             tables: ['role'],
+            rules: {
+                name: [
+                    { required: true, message: '请输入角色名称', trigger: 'blur' },
+                    { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+                ],
+            }
         }
     },
     computed: {},
@@ -100,9 +80,9 @@ export default {
         clearForm() {
             this.localdata.form = {
                 'og_id': '',
-                'role_id': '',
-                'role_name': '',
-                'role_desc': ''
+                'id': '',
+                'name': '',
+                'desc': ''
             }
             this.modalsType = this.types.APPEND_API
         },
@@ -111,35 +91,41 @@ export default {
             this.localdata.form = this.lodash.assign(this.localdata.form, item)
         },
         handleDelClick(id) {
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
+            this.$confirm('此操作将永久删除该角色, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
                 this.handleDelete(id).then(() => {
-                this.$message({
-                    message: '删除成功',
-                    type: 'success'
-                })
-                this.handleGetTable()
-            })
-           }).catch(() => {
                     this.$message({
-                        type: 'info',
-                        message: '已取消删除'
+                        message: '删除成功',
+                        type: 'success'
                     })
+                    this.handleGetTable()
                 })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                })
+            })
         },
         handleClick() {
-            this.handleSave().then(() => {
-                this.$message({
-                    message: '操作成功',
-                    type: 'success'
-                })
-                this.clearForm()
-                this.handleGetTable()
-            }, (e) => {
-                console.log(e)
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.handleSave().then(() => {
+                        this.$message({
+                            message: '操作成功',
+                            type: 'success'
+                        })
+                        this.clearForm()
+                        this.handleGetTable()
+                    }, (e) => {
+                        console.log(e)
+                    })
+                } else {
+                    return false;
+                }
             })
         }
     }

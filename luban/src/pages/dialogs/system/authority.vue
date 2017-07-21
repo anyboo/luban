@@ -8,7 +8,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    的权限设置
+                   {{authority.name}} 的权限设置
                 </h3>
             </div>
             <div class="modal-body">
@@ -31,8 +31,14 @@ export default {
             defaultProps: {
                 children: 'children',
                 label: 'label'
-            }
-        };
+            },
+            authority:{}
+        }
+    },
+    mounted() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.authority = this.$store.state.dialogs.dailogdata
+        }
     },
     computed: {
         authoritymenu() {
