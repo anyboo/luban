@@ -40,8 +40,8 @@
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column width="80" prop="data" label="操作">
                             <template scope="scope">
-                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row" @command="handleCommand">
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="localdata.dropDownMenu" class="btn btn-info btn-xs">
+                                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="getMenuOption" class="btn btn-info btn-xs">
                                         <i class="fa fa-cog"></i>操作
                                         <span class="caret"></span>
                                     </lb-dropdown-button>

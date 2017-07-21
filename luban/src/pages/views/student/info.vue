@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-10 text-right">
-                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="getStudentInfo">
+                    <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
                             <i class="fa fa-cog ng-scope"></i>
                             <span class="ng-scope"> 操作</span>
