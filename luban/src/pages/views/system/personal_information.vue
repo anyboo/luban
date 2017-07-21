@@ -15,21 +15,27 @@
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>账号密码</dt>
                             <dd>*********
-                                <a class="link pull-right" @click="status=3" style="height:31px;">修改密码</a>
+                                <template v-if="getActionOption('systempersonapassword')">
+                                    <a class="link pull-right" @click="status=3" style="height:31px;">修改密码</a>
+                                </template>
                                 <p class="text-muted">修改密码请点击右边"修改密码"链接</p>
                             </dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>真实姓名</dt>
                             <dd class="ng-binding" style="height:31px;">{{$store.state.system.name}}
-                                <a class="link pull-right" @click="status=1">修改姓名</a>
+                                <template v-if="getActionOption('systempersonaname')">
+                                    <a class="link pull-right" @click="status=1">修改姓名</a>
+                                </template>
                                 <p class="text-muted">修改姓名请点击右边"修改姓名"" 链接</p>
                             </dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>生日</dt>
                             <dd class="ng-binding" style="height:31px;">{{ getDateFormat($store.state.system.birth)}}
-                                <a class="link pull-right" @click="status=2">设置生日</a>
+                                <template v-if="getActionOption( 'systempersonabirthd')">
+                                    <a class="link pull-right" @click="status=2">设置生日</a>
+                                </template>
                                 <p class="text-muted">设置出生日期请点击右边"设置生日" 链接</p>
                             </dd>
                         </dl>

@@ -13,11 +13,17 @@
                                         <h4 class="list-group-item-head ng-binding text-danger">{{item.role_name}}</h4>
                                         <p class="list-grpup-item-text text-muted ng-binding">{{item.role_desc}}</p>
                                         <p class="list-group-item-text">
+                                             <template v-if="getActionOption('systemrolesdelete')">
                                             <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
                                                 <i class="fa fa-times"></i>删除
                                             </a>
+                                            </template>
+                                             <template v-if="getActionOption('systemrolesedit')">
                                             <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
+                                             </template>
+                                             <template v-if="getActionOption('systemrolesset')">
                                             <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority')" >权限设置</button>
+                                             </template>
                                         </p>
                                     </li>
                                 </template>
@@ -28,9 +34,11 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <span ng-if="action!='edit'" class="ng-scope">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
+                                <template v-if="getActionOption('systemrolesroles')">
                                 <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
                                     <i class="fa fa-plus"></i>
                                 </button>
+                                </template>
                             </div>
                             <div class="panel-body">
                                 <form name="form1" class="form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" ng-init="action='add';role.og_id=user.og_id">
@@ -41,9 +49,11 @@
                                     <p>角色描述:</p>
                                     <input type="text" name="role_desc" ng-disabled="role.og_id==0" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.role_desc">
                                     <div class="m-t m-b">
+                                         <template v-if="getActionOption('systemrolessave')">
                                         <button type='button' class="btn btn-primary" @click="handleClick">
                                             保存
                                         </button>
+                                          </template>
                                     </div>
                                 </form>
                             </div>
