@@ -11084,7 +11084,7 @@ End Header Option Page
     }
     
     .modal-body {
-        max-height: 700px !important;
+        max-height: 600px !important;
         overflow-y: auto;
         overflow-x: hidden;
     }
