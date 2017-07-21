@@ -33,7 +33,7 @@
                         </div>
                         <template v-if="getActionOption('lessonsclasses')">
                             <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">
-                                <i class="fa fa-plus"></i>新建表单
+                                <i class="fa fa-plus"></i>新建教室
                             </a>
                         </template>
                     </div>
