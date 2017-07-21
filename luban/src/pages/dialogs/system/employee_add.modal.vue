@@ -12,66 +12,32 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal ng-invalid ng-invalid-required ng-valid-minlength ng-dirty">
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">姓名:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <input type="text" name="name" class="form-control w-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" required v-model="localdata.form.name">
-                            </div>
-                        </div>
-                        <div class="error ng-hide" v-if="localdata.validator.fields.name.errorStatus">
-                            <span class="text-warning">姓名必须填写</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">
-                                账号(手机):
-                            </label>
-                            <div class="col-md-10 col-xs-12">
-                                <input type="text" name="tel" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.tel">
-                            </div>
-                        </div>
-                        <div class="error ng-hide" v-if="localdata.validator.fields.tel.errorStatus">
-                            <span class="text-warning">手机号必须填写且为11位</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">性别:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">类型:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">角色:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <el-select v-model="localdata.form.roles_id" multiple placeholder="请选择">
-                                    <el-option v-for="item in getroleData" :key="item._id" :label="item.name" :value="item._id">
-                                    </el-option>
-                                </el-select>
-                            </div>
-                        </div>
-    
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">出生日期:</label>
-                            <div class="col-md-10 col-xs-12">
-                                <div class="inline w-sm">
-                                    <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">
-                                <i class="glyphicon glyphicon-envelope"></i>Email:
-                            </label>
-                            <div class="col-md-10 col-xs-12">
-                                <input type="text" name="email" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.email">
-                            </div>
-                        </div>
-                    </form>
+                    <el-form :model="localdata.form" :rules="rules" label-width="95px" ref="ruleForm">
+                        <el-form-item label="姓名" prop="name">
+                            <el-input v-model="localdata.form.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="账号(手机)" prop="tel">
+                            <el-input v-model="localdata.form.tel"></el-input>
+                        </el-form-item>
+                        <el-form-item label="性别" prop="sex">
+                            <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
+                        </el-form-item>
+                        <el-form-item label="类型" prop="is_part_time">
+                            <lb-buttongroup :group-data="localdata.is_part_time" v-model="localdata.form.is_part_time"></lb-buttongroup>
+                        </el-form-item>
+                        <el-form-item label="角色" prop="roles_id">
+                            <el-select v-model="localdata.form.roles_id" multiple placeholder="请选择">
+                                <el-option v-for="item in getroleData" :key="item._id" :label="item.name" :value="item._id">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="出生日期" prop="birth">
+                            <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
+                        </el-form-item>
+                        <el-form-item label="Email" prop="email">
+                            <el-input v-model="localdata.form.email"></el-input>
+                        </el-form-item>
+                    </el-form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" @click="handleClick">确定</button>
@@ -101,19 +67,6 @@ export default {
                 'errorStatus': false,
                 'additional': true,
                 'fields': {
-                    'name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
-                    'tel': {
-                        'type': 'string',
-                        'len': 11,
-                        'required': true,
-                        'errorStatus': false
-                    },
                     'birth': {
                         'type': 'date',
                     }
@@ -136,10 +89,28 @@ export default {
                 'text': '兼职'
             }]
         }
+        var validateTel = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入手机号码'))
+            } else if (!(/^1\d{10}$/.test(value))){
+                callback(new Error('手机号码必须1开头——请输入11个字符!已输入'+value.length+'字符'))
+            } else {
+                callback()
+            }
+        }
         return {
             localdata,
             model: 'employee',
-            title: '添加'
+            title: '添加',
+            rules: {
+                name: [
+                    { required: true, message: '请输入姓名', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+                ],
+                tel: [
+                    { validator: validateTel, required: true, trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -158,15 +129,19 @@ export default {
     },
     methods: {
         handleClick() {
-            this.handleSave().then(() => {
-                this.$message({
-                    message: this.title + '成功',
-                    type: 'success'
-                })
-                this.lbClosedialog()
-                this.$store.state.envs.currDialogResult = this.currentRow
-                this.$store.state.envs.currDialog = 'lb-employee'
-            }, (e) => {
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.handleSave().then(() => {
+                        this.$message({
+                            message: this.title + '成功',
+                            type: 'success'
+                        })
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialogResult = this.currentRow
+                        this.$store.state.envs.currDialog = 'lb-employee'
+                    }, (e) => {
+                    })
+                }
             })
         }
     }
