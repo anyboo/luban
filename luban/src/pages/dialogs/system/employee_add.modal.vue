@@ -93,7 +93,7 @@ export default {
             if (value === '') {
                 callback(new Error('请输入手机号码'))
             } else if (!(/^1\d{10}$/.test(value))){
-                callback(new Error('手机号码必须1开头——请输入11个字符!已输入'+value.length+'字符'))
+                callback(new Error('手机号码必须1开头并为11位!已输入'+value.length+'位。'))
             } else {
                 callback()
             }
