@@ -3,6 +3,7 @@ import schema from 'async-validate'
 import schemaall from 'async-validate/plugin/all'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
+import menu from '~/stores/menu.js'
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -23,7 +24,7 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function() {
+    created: function () {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = _
@@ -37,28 +38,33 @@ export default {
         this.pagination.pagesize = 10
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
-    mounted: function() {
+    mounted: function () {
         this.handleGetTable()
     },
     computed: {
-        getTableData() {
-            return [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }]
+        getMenuOption() {
+            let menuOption = []
+            let to = this.$route.path
+            for (var item of menu) {
+                if (item.to == to) {
+                    if (item.dropDownMenu) {
+                        menuOption = item.dropDownMenu
+                    }
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                if (subitem.dropDownMenu) {
+                                    menuOption = subitem.dropDownMenu
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            return menuOption
         }
     },
     methods: {
@@ -282,7 +288,7 @@ export default {
                         resolve()
                     }).catch((error) => {
                         reject()
-                            //console.log(error, 'Promise error')
+                        //console.log(error, 'Promise error')
                     })
 
                 } else {

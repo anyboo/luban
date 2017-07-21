@@ -59,7 +59,7 @@
                                 <div class="tel m-t">
                                     <i class="fa fa-phone"></i>
                                     <span class="ng-binding">{{ item.first_tel }}</span>
-                                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" class="pull-right">
+                                    <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" class="pull-right">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                             <i class="fa fa-cog ng-scope"></i>
                                             <span class="caret"></span>
@@ -74,7 +74,7 @@
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column prop="data" label="操作">
                             <template scope="scope">
-                                <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row">
+                                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                         <i class="fa fa-cog ng-scope"></i>
                                         <span class="caret"></span>

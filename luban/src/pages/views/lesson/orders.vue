@@ -45,7 +45,7 @@
                 <el-table :data="getTablesData()" stripe>
                     <el-table-column prop="data" label="操作">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="scope.row"  @command="handleMenuCommand">
+                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row"  @command="handleMenuCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog ng-scope"></i>
                                     <span class="caret"></span>

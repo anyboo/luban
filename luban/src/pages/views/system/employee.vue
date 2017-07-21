@@ -47,7 +47,7 @@
                                                     <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
                                                 </div>
                                             </div>
-                                            <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="item" @command="handleMenuCommand" class="text-center ">
+                                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" @command="handleMenuCommand" class="text-center ">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="item.name">
                                                     <i class="fa fa-cog"></i>{{item.name}}
                                                     <span class="caret"></span>
