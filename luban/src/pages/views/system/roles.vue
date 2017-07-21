@@ -12,11 +12,17 @@
                                         <h4 class="list-group-item-head text-danger">{{item.name}}</h4>
                                         <p class="list-grpup-item-text text-muted ng-binding">{{item.desc}}</p>
                                         <p class="list-group-item-text">
-                                            <a class="btn btn-xs btn-default" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
-                                                <i class="fa fa-times"></i>删除
-                                            </a>
-                                            <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
-                                            <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority')">权限设置</button>
+                                            <template v-if="getActionOption('systemrolesdelete')">
+                                                <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
+                                                    <i class="fa fa-times"></i>删除
+                                                </a>
+                                            </template>
+                                            <template v-if="getActionOption('systemrolesedit')">
+                                                <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
+                                            </template>
+                                            <template v-if="getActionOption('systemrolesset')">
+                                                <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority')">权限设置</button>
+                                            </template>
                                         </p>
                                     </li>
                                 </template>
@@ -26,10 +32,12 @@
                     <div class="col-xs-12 col-sm-5 col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <span>{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
-                                <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                                <span ng-if="action!='edit'" class="ng-scope">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
+                                <template v-if="getActionOption('systemrolesroles')">
+                                    <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </template>
                             </div>
                             <div class="panel-body">
                                 <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-position="top" label-width="100px">
@@ -39,9 +47,11 @@
                                     <el-form-item label="角色描述" prop="desc">
                                         <el-input v-model="localdata.form.desc"></el-input>
                                     </el-form-item>
-                                    <el-form-item label-width="100px">
-                                        <el-button type="primary" @click="handleClick"> 保存</el-button>
-                                    </el-form-item>
+                                    <template v-if="getActionOption('systemrolessave')">
+                                        <el-form-item label-width="100px">
+                                            <el-button type="primary" @click="handleClick"> 保存</el-button>
+                                        </el-form-item>
+                                    </template>
                                 </el-form>
                             </div>
                         </div>

@@ -28,16 +28,20 @@
                             </form>
                         </div>
                         <div class="panel-footer" :class="getData">
+                             <template v-if="getActionOption('systememorgsave')">
                             <button type="button" class="btn btn-primary" @click="rest_save()">保存</button>
+                             </template>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default ng-scope">
                 <div class="panel-heading ">
+                      <template v-if="getActionOption('systememorgsavestudent')">
                     <a class="btn btn-sm btn-primary pull-right heights" @click="handleShowDialog('lb-addmodal')">
                         <i class="fa fa-plus"></i> 添加新校区</a>
                     <h4 class="manages">校区管理</h4>
+                    </template>
                 </div>
                 <div class="panel-body no-padder">
                     <div class="table-responsive">

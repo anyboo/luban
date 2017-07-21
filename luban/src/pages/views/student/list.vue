@@ -30,10 +30,11 @@
                 <div class="col-xs-12 col-md-8 m-t">
                     <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                     <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
-    
-                    <a @click="lbShowdialog($event,'lb-trash')" :class="{result:refreshData}">
-                        <i class="icon-lock"></i>已封存档案
-                    </a>
+                    <template v-if="getActionOption('studentlist')">
+                        <a @click="lbShowdialog($event,'lb-trash')" :class="{result:refreshData}">
+                            <i class="icon-lock"></i>已封存档案
+                        </a>
+                    </template>
                 </div>
             </div>
             <div class=" list-student ">

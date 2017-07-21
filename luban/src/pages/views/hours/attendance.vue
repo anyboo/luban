@@ -20,11 +20,13 @@
                                 </div>
                             </div>
                         </div>
+                        <template v-if="getActionOption('hoursattendance')">
                         <div class="col-xs-12 col-md-3 m-t">
                             <button class="btn btn-primary pull-right" @click="handleShowDialog('lb-attendance')">
                                 <i class="icon-plus glyphicon glyphicon-user"></i>考勤
                             </button>
                         </div>
+                        </template>
                     </div>
                     <div class="table-responsive">
                         <el-table :data="getTablesData()" stripe>

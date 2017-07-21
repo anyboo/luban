@@ -22,11 +22,13 @@
                             </div>
                         </div>
                     </div>
+                     <template v-if="getActionOption('hourssuspends')">
                     <div class="col-xs-12 col-md-4 m-t">
                         <button class="btn btn-primary pull-right" @click="handSelectStudent(true)">
                             <i class="icon-plus glyphicon glyphicon-user"></i>停课登记
                         </button>
                     </div>
+                    </template>
                 </div>
                 <div class="table-responsive">
                     <el-table :data="getTablesData()" stripe>

@@ -11,6 +11,7 @@
                                 <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
+                          <template v-if="getActionOption('iaeflow')">
                         <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <lb-buttongroup :group-data="localdata.type" v-model="localdata.form.type" @input="handleSearch"></lb-buttongroup>
@@ -18,6 +19,7 @@
                                 <i class="fa fa-pencil"></i>记一笔
                             </a>
                         </div>
+                    </template>
                     </div>
                     <div class="table-responsive">
                         <el-table :data="getTablesData()" stripe>
