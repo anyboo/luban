@@ -33,7 +33,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">-{{scope.row.amount}}</span>
+                                    <span class="badge bg-danger ng-binding">-{{parseFloat(scope.row.amount).toFixed(2)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="备注">
