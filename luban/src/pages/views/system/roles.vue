@@ -12,15 +12,15 @@
                                     <h4 class="list-group-item-head text-danger">{{item.name}}</h4>
                                     <p class="list-grpup-item-text text-muted">{{item.desc}}</p>
                                     <p class="list-group-item-text">
-                                        <template v-if="getActionOption('systemrolesdelete')">
+                                        <template v-if="getActionOptionDel">
                                             <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
                                                 <i class="fa fa-times"></i>删除
                                             </a>
                                         </template>
-                                        <template v-if="getActionOption('systemrolesedit')">
+                                        <template v-if="getActionOptionEdit">
                                             <a class="btn btn-xs btn-default" @click="handleEditClick(item)">编辑</a>
                                         </template>
-                                        <template v-if="getActionOption('systemrolesset')">
+                                        <template v-if="getActionOptionSet">
                                             <button class="btn btn-xs btn-default" @click="handleShowDialog('lb-authority',item)">权限设置</button>
                                         </template>
                                     </p>
@@ -33,27 +33,28 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <span ng-if="action!='edit'">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
-                            <template v-if="getActionOption('systemrolesroles')">
+                            <template v-if="getActionOptionAdd">
                                 <button class="btn btn-default btn-xs pull-right" @click="clearForm" v-if="modalsType==types.APPEND_API">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </template>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" v-if="getActionOptionSave">
                             <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-position="top" label-width="100px">
                                 <el-form-item label="角色名称" prop="name">
-                                    <el-input v-model="localdata.form.name"></el-input>
+                                    <el-input v-model.lazy="localdata.form.name"></el-input>
                                 </el-form-item>
                                 <el-form-item label="角色描述" prop="desc">
-                                    <el-input v-model="localdata.form.desc"></el-input>
+                                    <el-input v-model.lazy="localdata.form.desc"></el-input>
                                 </el-form-item>
                                 <el-form-item label="默认角色">
-                                    <el-switch v-model="localdata.form.defrole" on-text="" off-text="">
+                                    <el-switch v-model.lazy="localdata.form.defrole" on-text="" off-text="">
                                     </el-switch>
                                 </el-form-item>
-                                <template v-if="getActionOption('systemrolessave')">
+                                <template>
                                     <el-form-item label-width="100px">
-                                        <el-button type="primary" @click="handleClick"> 保存</el-button>
+                                        <el-button type="primary" @click="handleClick">保存</el-button>
+                                        <el-button @click="clearForm">取消</el-button>
                                     </el-form-item>
                                 </template>
                             </el-form>
@@ -84,12 +85,28 @@ export default {
             rules: {
                 name: [
                     { required: true, message: '请输入角色名称', trigger: 'blur' },
-                    { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
                 ],
             }
         }
     },
-    computed: {},
+    computed: {
+        getActionOptionSave() {
+            return this.getActionOption('systemrolessave')
+        },
+        getActionOptionAdd() {
+            return this.getActionOption('systemrolesroles')
+        },
+        getActionOptionDel() {
+            return this.getActionOption('systemrolesdelete')
+        },
+        getActionOptionEdit() {
+            return this.getActionOption('systemrolesedit')
+        },
+        getActionOptionSet() {
+            return this.getActionOption('systemrolesset')
+        }
+    },
     watch: {},
     methods: {
         clearForm() {
@@ -100,6 +117,7 @@ export default {
                 'defrole': false,
                 'authority': []
             }
+            this.$refs['ruleForm'].resetFields()
             this.modalsType = this.types.APPEND_API
         },
         handleEditClick(item) {

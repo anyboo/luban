@@ -72,15 +72,18 @@ export default {
             if (this.$store.state.system.tel == 'luban') {
                 return true
             }
-            for (var item of this.$store.state.system.roles) {
-                if (itemitem.authority && item.authority.indexOf(role)) {
-                    return true
+            console.log(role)
+            if (this.$store.state.system.roles) {
+                for (var item of this.$store.state.system.roles) {
+                    if (item.authority && item.authority.indexOf(role)>-1) {
+                        return true
+                    }
                 }
             }
             return false
         },
         getActionOption(key) {
-            return this.getRole(key)
+            return this.getRole(key+'_opt')
         },
         getToFixed(amount) {
             return parseFloat(amount).toFixed(2)

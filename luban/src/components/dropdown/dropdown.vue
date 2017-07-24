@@ -3,15 +3,21 @@
         <div>
             <slot name="buttonslot"></slot>
         </div>
+    
         <el-dropdown-menu slot="dropdown">
-            <template v-for="item in dropMenuData">
-                <template v-if="getShowStatus(item)">
+            <template v-if="getDropMenu.length>0">
+                <template v-for="item in getDropMenu">
                     <el-dropdown-item :command="getItemCommand(item)">
                         <a :id="id">
                             <i :class="item.icon" v-if="item.icon"></i>{{item.text}}
                         </a>
                     </el-dropdown-item>
                 </template>
+            </template>
+            <template v-else>
+                <el-dropdown-item>
+                    无操作
+                </el-dropdown-item>
             </template>
         </el-dropdown-menu>
     </el-dropdown>
@@ -22,7 +28,24 @@ export default {
     props: ['dropMenuData', 'id', 'menuData'],
     data() {
         return {
-
+        }
+    },
+    computed: {
+        getDropMenu() {
+            let menu = []
+            if (this.dropMenuData) {
+                for (var item of this.dropMenuData) {
+                    let action = item.url
+                    if (item.action) {
+                        let to = this.$route.path
+                        action = to + item.action
+                    }
+                    if (this.getShowStatus(item) && this.getActionOption(action)) {
+                        menu.push(item)
+                    }
+                }
+            }
+            return menu
         }
     },
     methods: {
@@ -30,7 +53,7 @@ export default {
             let result = true
             if (item.menuctrl) {
                 if (_.isArray(item.menuvalue)) {
-                    result = item.menuvalue.indexOf(this.menuData[item.menuctrl])!=-1
+                    result = item.menuvalue.indexOf(this.menuData[item.menuctrl]) != -1
                 } else {
                     result = this.menuData[item.menuctrl] == item.menuvalue
                 }
@@ -56,7 +79,6 @@ export default {
             }
             return result
         }
-    },
-    computed: {},
+    }
 }
 </script>

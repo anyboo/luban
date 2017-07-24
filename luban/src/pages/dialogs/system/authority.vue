@@ -36,10 +36,12 @@ export default {
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             let id = this.$store.state.dialogs.dailogdata['_id']
-            this.handleGetTableID('role', id ).then((obj) => {
+            this.handleGetTableID('role', id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     this.rote = obj.data[0]
-                    this.$refs.tree.setCheckedKeys(this.rote.authority)
+                    if (this.rote.authority && this.rote.authority.length > 0) {
+                        this.$refs.tree.setCheckedKeys(this.rote.authority)
+                    }
                 }
             })
         }
@@ -84,6 +86,18 @@ export default {
                 optdata.push(optitem)
             })
         },
+        getoptmenudata(optdata, dropDownMenu,to) {
+            dropDownMenu.forEach((item) => {
+                let optitem = {}
+                if (item.url) {
+                    optitem.id = item.url + '_opt'
+                } else if (item.action) {
+                    optitem.id = to + item.action + '_opt'
+                }
+                optitem.label = item.text
+                optdata.push(optitem)
+            })
+        },
         gettreedata(menudata, optdata, menus) {
             if (menus) {
                 menus.forEach((element) => {
@@ -98,7 +112,7 @@ export default {
                             optitem.label = element.menuTitle
                             optitem.children = []
                             if (element.dropDownMenu) {
-                                this.getoptdata(optitem.children, element.dropDownMenu)
+                                this.getoptmenudata(optitem.children, element.dropDownMenu,element.to)
                             }
                             if (element.action) {
                                 this.getoptdata(optitem.children, element.action)
