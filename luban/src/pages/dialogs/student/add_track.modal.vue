@@ -1,92 +1,62 @@
 <template>
-    <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
-        <div class="modal-content" modal-transclude>
-            <div page-controller="track" class="ng-scope">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="ng-scope">
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-comment"></i>为学员
-                        <span class="label bg-info ng-binding">{{getStudentName()}}</span>添加跟踪回访记录
+                        <span class="label bg-info">{{getStudentName()}}</span>添加跟踪回访记录
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal ng-pristine ng-invalid ng-invalid-required">
-                        <div class="wrapper-xs">
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-3">类型</label>
-                                <div class="col-md-10 col-xs-9">
-                                    <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type"></lb-buttongroup>
+                    <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
+                        <el-form-item label="类型" prop="track_type">
+                            <lb-buttongroup :group-data="localdata.track_type" v-model="localdata.form.track_type"></lb-buttongroup>
+                        </el-form-item>
+                        <el-form-item label="沟通方式" prop="track_way">
+                            <div class="input-group">
+                                <el-input type="text" v-model.trim.lazy="localdata.form.track_way"></el-input>
+                                <div class="input-group-btn">
+                                    <el-dropdown menu-align="start" @command="handleCommand">
+                                        <lb-dropdown-button button-class="btn btn-default">
+                                            选择
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                            <el-dropdown-item command="其他">其他</el-dropdown-item>
+                                            <el-dropdown-item command="面谈">面谈</el-dropdown-item>
+                                            <el-dropdown-item command="网络">网络</el-dropdown-item>
+                                            <el-dropdown-item command="电话">电话</el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>沟通方式
-                                </label>
-                                <div class="col-md-5 col-xs-9">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.track_way.errorStatus}" v-model.trim.lazy="localdata.form.track_way" @change="validate('track_way')">
-                                        <div class="input-group-btn">
-                                            <el-dropdown menu-align="start" @command="handleCommand">
-                                                <lb-dropdown-button button-class="btn btn-default">
-                                                    选择
-                                                    <span class="caret"></span>
-                                                </lb-dropdown-button>
-                                                <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                                    <el-dropdown-item command="其他">其他</el-dropdown-item>
-                                                    <el-dropdown-item command="面谈">面谈</el-dropdown-item>
-                                                    <el-dropdown-item command="网络">网络</el-dropdown-item>
-                                                    <el-dropdown-item command="电话">电话</el-dropdown-item> 
-                                                </el-dropdown-menu>
-                                            </el-dropdown>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger">*</span>沟通内容
-                                </label>
-                                <div class="col-md-10 col-xs-9">
-                                    <textarea class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.detail.errorStatus}" v-model.trim.lazy="localdata.form.detail" @change="validate('detail')">></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-3 col-md-2 control-label">
-                                    <span class="text-danger">*</span>接洽人
-                                </label>
-                                <div class="col-xs-9 col-md-5">
-                                    <input type="text" name="op_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.op_name.errorStatus}" placeholder="请输入接洽人的名字" v-model.trim.lazy="localdata.form.op_name" @change="validate('op_name')">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-3">
-                                    <span class="text-danger"></span>沟通日期
-                                </label>
-                                <div class="col-md-10 col-xs-9">
-                                    <div class="w-sm">
-                                        <el-date-picker type="datetime" v-model="localdata.form.track_time"></el-date-picker>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-9 col-md-5 col-xs-offset-3 col-md-offset-2">
-                                    <span class="text-info" ng-click="need_next_time = !need_next_time" @click="open()">
-                                        <i class="fa " :class="{'fa-check-square-o':isActive,'fa-square-o':!isActive}"></i>下次回访提醒
-                                    </span>
-                                    <div class="w-sm ng-hide" ng-show="need_next_time" v-if="isActive">
-                                        <el-date-picker type="datetime" v-model="localdata.form.next_time"></el-date-picker>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                        </el-form-item>
+                        <el-form-item label="沟通内容" prop="detail">
+                            <el-input type="textarea" v-model.trim.lazy="localdata.form.detail"></el-input>
+                        </el-form-item>
+                        <el-form-item label="接洽人" prop="op_name">
+                            <el-input type="text" placeholder="请输入接洽人的名字" v-model.trim.lazy="localdata.form.op_name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="沟通日期" prop="track_time">
+                            <el-date-picker type="datetime" v-model="localdata.form.track_time"></el-date-picker>
+                        </el-form-item>
+                        <el-form-item label="下次回访提醒">
+                            <el-switch v-model="isActive" on-text="" off-text="">
+                            </el-switch>
+                        </el-form-item>
+                        <el-form-item v-if="isActive">
+                           <el-date-picker type="datetime" v-model="localdata.form.next_time"></el-date-picker>
+                        </el-form-item>
+                    </el-form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="form1.$invalid || saving" ng-click="save_track()" @click="handleClick">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">取消</button>
+                    <button class="btn btn-primary" @click="handleClick">确定</button>
+                    <button class="btn btn-warning" @click="lbClosedialog($event)">取消</button>
                 </div>
             </div>
         </div>
@@ -118,30 +88,8 @@ export default {
                 'errorStatus': false,
                 'additional': true,
                 'fields': {
-                    'detail': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
-                    'track_way': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
-                    'op_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
                     'track_time': {
                         'type': 'date',
-
                     },
                     'next_time': {
                         'type': 'date',
@@ -153,6 +101,23 @@ export default {
             localdata,
             model: 'inquiry',
             isActive: false,
+            rules: {
+                track_way: [
+                    { required: true, message: '请选择沟通方式', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+                detail: [
+                    { required: true, message: '请输入沟通内容', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+                op_name: [
+                    { required: true, message: '请输入接洽人名字', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+                track_time: [
+                    { type: 'date', required: true, message: '请输入日期', trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -164,24 +129,26 @@ export default {
     methods: {
         handleCommand(value) {
             this.localdata.form.track_way = value
+            this.$refs['ruleForm'].validateField('track_way')
         },
         handleClick() {
             let vm = this
-            vm.handleSave().then((data) => {
-                vm.updateTeble('student', vm.$store.state.envs.currStudent._id, {
-                    'inquiry_id': data._id
-                }).then(() => {
-                    vm.$message({
-                        message: '操作成功',
-                        type: 'success'
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    vm.handleSave().then((data) => {
+                        vm.updateTeble('student', vm.$store.state.envs.currStudent._id, {
+                            'inquiry_id': data._id
+                        }).then(() => {
+                            vm.$message({
+                                message: '操作成功',
+                                type: 'success'
+                            })
+                            vm.lbClosedialog()
+                            this.$store.state.envs.currDialog = 'lb-inquiry'
+                        })
                     })
-                    vm.lbClosedialog()
-                    this.$store.state.envs.currDialog = 'lb-inquiry'
-                })
+                }
             })
-        },
-        open() {
-            this.isActive = !this.isActive
         }
     }
 }
