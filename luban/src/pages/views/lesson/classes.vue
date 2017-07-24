@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper ng-scope">
+    <div class="wrapper">
         <div class="panel panel-default">
             <div class="row wrapper no-gutter">
                 <div class="col-xs-12 col-md-4 m-t" :class='{result:changeTeacher}'>
@@ -8,7 +8,7 @@
                             <div class="input-group">
                                 <div class="input-group-btn">
                                     <el-dropdown menu-align="start" @command="handleMenuCommand">
-                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        <lb-dropdown-button class="btn btn-default btn-sm   ng-touched">
                                             {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
@@ -19,7 +19,7 @@
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                 </span>
@@ -32,20 +32,20 @@
                     <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                     <template v-if="getActionOption('lessonclasses')">
                         <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success pull-right">
-                            <i class="fa fa-plus "></i>开班
+                            <i class="fa fa-plus"></i>开班
                         </a>
                     </template>
                 </div>
             </div>
-            <div class="row ng-scope " v-if="localdata.form.view_mode == 'image'">
+            <div class="row " v-if="localdata.form.view_mode == 'image'">
                 <template v-for="item in getTablesData()">
-                    <div class="col-xs-12 col-sm-6 col-md-4 ng-scope" ng-repeat="item in grid.data" ng-if="!loading">
+                    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="item in grid.data" ng-if="!loading">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="ng-binding">{{item.class_name}}
-                                    <small class="label bg-success m-l ng-scope" v-if="getOpen(item,'open')">已开课</small>
-                                    <small class="label bg-red m-l ng-scope" v-if="getOpen(item,'')">未开课</small>
-                                    <small class="label bg-blue m-l ng-scope" v-if="getOpen(item,'close')">已结课</small>
+                                <h4 >{{item.class_name}}
+                                    <small class="label bg-success m-l" v-if="getOpen(item,'open')">已开课</small>
+                                    <small class="label bg-red m-l" v-if="getOpen(item,'')">未开课</small>
+                                    <small class="label bg-blue m-l" v-if="getOpen(item,'close')">已结课</small>
     
                                 </h4>
                             </div>
@@ -53,22 +53,22 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <label class="inline w-xs text-right">老师:</label>
-                                        <span class="ng-binding">{{getLookUp(item.employee, 'name')}}</span>
+                                        <span >{{getLookUp(item.employee, 'name')}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">课程名称:</label>
-                                        <span class="ng-binding">{{getLookUp(item.course, 'lesson_name')}}</span>
+                                        <span >{{getLookUp(item.course, 'lesson_name')}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">开课日期:</label>
-                                        <span class="ng-binding">{{getDateFormat(item.open_time)}}</span>
+                                        <span >{{getDateFormat(item.open_time)}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">招生情况:</label>
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">{{getPressageText(item)}}</span>
+                                                    <span style="white-space:nowrap;padding-left:20px" >{{getPressageText(item)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,18 +78,18 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
                                                 <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
-                                                    <span style="white-space:nowrap;padding-left:20px" class="ng-binding ng-scope">￥{{getPayAmout(item.order)}} / ￥{{getTotalAmout(item.order)}}</span>
+                                                    <span style="white-space:nowrap;padding-left:20px" >￥{{getPayAmout(item.order)}} / ￥{{getTotalAmout(item.order)}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">操作:</label>
-                                        <span class="label bg-info ng-binding">
+                                        <span class="label bg-info">
                                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" @command="handleCommand">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                                    <i class="fa fa-cog ng-scope"></i>
-                                                    <span class="ng-scope">操作</span>
+                                                    <i class="fa fa-cog"></i>
+                                                    <span >操作</span>
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
                                             </lb-dropdown>
@@ -102,14 +102,14 @@
                 </template>
             </div>
             <!-- hhhhh -->
-            <div class="table-responsive ng-scope" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
+            <div class="table-responsive" style="min-height:450px" v-if="localdata.form.view_mode == 'list'">
                 <el-table :data="getTablesData()" stripe>
                     <el-table-column prop="data" label="操作">
                         <template scope="scope">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
-                                    <span class="ng-scope">操作</span>
+                                    <i class="fa fa-cog"></i>
+                                    <span >操作</span>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
                             </lb-dropdown>
@@ -121,7 +121,7 @@
                     </el-table-column>
                     <el-table-column prop="data" label="老师">
                         <template scope="scope">
-                            <span class="ng-binding">{{getLookUp(scope.row.employee, 'name')}}</span>
+                            <span >{{getLookUp(scope.row.employee, 'name')}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="课程名">
@@ -129,7 +129,7 @@
                     </el-table-column>
                     <el-table-column prop="data" label="开课日期">
                         <template scope="scope">
-                            <span class="ng-binding">{{getDateFormat(scope.row.open_time)}}</span>
+                            <span >{{getDateFormat(scope.row.open_time)}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column label="状态">
@@ -151,8 +151,8 @@
                     </el-table-column>
                 </el-table>
             </div>
-            <div class="panel-footer ">
-                <div class="row ">
+            <div class="panel-footer">
+                <div class="row">
                     <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                     </el-pagination>
                 </div>

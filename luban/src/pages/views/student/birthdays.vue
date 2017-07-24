@@ -1,7 +1,7 @@
 <template>
-    <div ui-view class="ng-scope wrapper">
-        <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default ng-scope" xo-rest="birthday_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="birthday_students">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div class="panel panel-default" xo-rest="birthday_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="birthday_students">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
@@ -16,11 +16,11 @@
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column prop="data" label="学员">
                             <template scope="scope">
-                                <a class="link ng-binding" @click="handleRouter($event,scope.row)">
-                                    <span class="ng-binding">
+                                <a class="link" @click="handleRouter($event,scope.row)">
+                                    <span >
                                         <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                     </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
                         </el-table-column>
@@ -32,7 +32,7 @@
                         </el-table-column>
                         <el-table-column prop="data" label="年龄">
                             <template scope="scope">
-                                <span class="badge bg-info ng-binding">{{ fromNow(scope.row.birth) }}</span>
+                                <span class="badge bg-info">{{ fromNow(scope.row.birth) }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="建档日期">
@@ -44,8 +44,8 @@
                     </el-table>
                     <div class="grid-data-result"></div>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
+                <div class="panel-footer">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

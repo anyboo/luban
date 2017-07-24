@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -13,7 +13,7 @@
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
+                                    <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                             <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -30,7 +30,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{getToFixed(scope.row.money_pay_amount)}}</span>
+                                    <span class="badge bg-success">{{getToFixed(scope.row.money_pay_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
@@ -42,16 +42,16 @@
                             <!--
                             <el-table-column prop="data" label="收据">
                                 <template scope="scope">
-                                    <div class="inline ng-scope" ng-if="item.orb_id == '0'">
-                                        <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
+                                    <div class="inline" ng-if="item.orb_id == '0'">
+                                        <span class="m-l-xs" ng-if="item.bill_no == ''">收据未开</span>
                                     </div>
                                 </template>
                             </el-table-column>
                             -->
                             <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">
-                                    <span class="ng-scope">
-                                        <a class="link ng-binding">{{ getLookUp(scope.row.classes,'class_name') }}</a>
+                                    <span >
+                                        <a class="link">{{ getLookUp(scope.row.classes,'class_name') }}</a>
                                     </span>
                                 </template>
                             </el-table-column>
@@ -61,8 +61,8 @@
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

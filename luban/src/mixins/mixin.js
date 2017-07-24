@@ -68,8 +68,19 @@ export default {
         }
     },
     methods: {
+        getRole(role) {
+            if (this.$store.state.system.tel == 'luban') {
+                return true
+            }
+            for (var item of this.$store.state.system.roles) {
+                if (itemitem.authority && item.authority.indexOf(role)) {
+                    return true
+                }
+            }
+            return false
+        },
         getActionOption(key) {
-            return true
+            return this.getRole(key)
         },
         getToFixed(amount) {
             return parseFloat(amount).toFixed(2)

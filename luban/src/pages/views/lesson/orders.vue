@@ -1,6 +1,6 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="panel panel-default ng-scope" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
+    <div ui-view class="wrapper">
+        <div class="panel panel-default" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="padder">
@@ -8,7 +8,7 @@
                             <div class="input-group">
                                 <div class="input-group-btn">
                                     <el-dropdown menu-align="start" @command="handleCommand">
-                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        <lb-dropdown-button class="btn btn-default btn-sm   ng-touched">
                                             {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
@@ -19,7 +19,7 @@
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                 </span>
@@ -30,7 +30,7 @@
                 <div class="col-xs-12 col-md-8 m-t">
                     <div class="inline w va-m">
                         <div class="input-group">
-                            <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
+                            <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                     <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -47,7 +47,7 @@
                         <template scope="scope">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row"  @command="handleMenuCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
+                                    <i class="fa fa-cog"></i>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
                             </lb-dropdown>
@@ -79,8 +79,8 @@
                     </el-table-column>
                 </el-table>
             </div>
-            <div class="panel-footer ">
-                <div class="row ">
+            <div class="panel-footer">
+                <div class="row">
                     <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                     </el-pagination>
                 </div>

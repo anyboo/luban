@@ -1,14 +1,14 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope" :class="{result:getflowchange}">
-                <div class="panel panel-default ng-scope" xo-rest="fees" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="fees">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div ui-view  :class="{result:getflowchange}">
+                <div class="panel panel-default" xo-rest="fees" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="fees">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="   ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                                 <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
+                                <input type="text" id="ctl_date_end" class="  " style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                           <template v-if="getActionOption('iaeflow')">
@@ -38,24 +38,24 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-warning ng-binding ng-scope">{{getToFixed(scope.row.amount)}}</span>
+                                    <span class="badge bg-warning">{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型">
                                 <template scope="scope">
-                                    <span  class="badge bg-warning ng-scope">{{getButtongroupText(localdata.type,scope.row.type)}}</span>
+                                    <span  class="badge bg-warning">{{getButtongroupText(localdata.type,scope.row.type)}}</span>
                                 </template>
                             </el-table-column>
                             <!--
                             <el-table-column prop="data" label="分类">
                                 <template scope="scope">
-                                    <span ng-if="item.type == '0'" class="label bg-info ng-binding ng-scope">未设置</span>
+                                    <span ng-if="item.type == '0'" class="label bg-info">未设置</span>
                                 </template>
                             </el-table-column>
                             -->
                             <el-table-column prop="data" label="备注">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.note" class="ng-binding">{{scope.row.note}}</span>
+                                    <span ng-bind-html="item.note" >{{scope.row.note}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="经办人">
@@ -66,8 +66,8 @@
                             </el-table-column>
                         </el-table>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

@@ -2,15 +2,15 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="ng-scope"></div>
-                <div class="modal-header ng-scope">
+                <div ></div>
+                <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true" style="color:#fff;">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title" >
                         <i class="fa fa-shopping-cart"></i>学员
-                        <span class="label  ng-binding">{{localdata.form.student_name }}</span>报名&缴费
+                        <span class="label">{{localdata.form.student_name }}</span>报名&缴费
                     </h3>
                 </div>
                 <component v-bind:is="currentView"></component>

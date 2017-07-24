@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t" :class="{result:getdialog}">
                             <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
@@ -11,7 +11,7 @@
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
+                                    <input type="text" placeholder="学员" class="form-control" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                             <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -32,7 +32,7 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                    <span ng-bind-html="item.student.sex|sex:0" >
                                         <i class="fa" :class="{'fa-female':getLookUp(scope.row.student,'sex')=='2','fa-male':getLookUp(scope.row.student,'sex')=='1'}"></i>
                                     </span>{{ getLookUp(scope.row.student,'student_name') }}
                                 </template>
@@ -56,8 +56,8 @@
                             </el-table-column>
                         </el-table>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

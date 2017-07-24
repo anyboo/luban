@@ -1173,9 +1173,11 @@
     #sidebar {
         background: #33485c;
     }
+    
     .navbar-static-side ul {
-        z-index:200
+        z-index: 200
     }
+    
     .navbar-static-side ul li {
         border-bottom: 1px solid #374d63;
     }
@@ -4431,7 +4433,8 @@
         z-index: 9999;
         width: 100%;
     }
-    .zIndexs{
+    
+    .zIndexs {
         position: relative;
         z-index: 100
     }
@@ -11743,9 +11746,11 @@ End Header Option Page
         border-top: 0px solid #e5e5e5 !important;
         background: #f4f5f9;
     }
-label {
-    margin-bottom: 0px; 
-}
- .el-switch {
-    margin-top: 8px;
- }
+    
+    label {
+        margin-bottom: 0px;
+    }
+    
+    .el-switch {
+        margin-top: 8px;
+    }

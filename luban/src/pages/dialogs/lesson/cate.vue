@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div page-controller="lesson_cate" class="ng-scope">
+            <div page-controller="lesson_cate" >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>

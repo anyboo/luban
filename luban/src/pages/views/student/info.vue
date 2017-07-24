@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="wrapper ng-scope" page-controller="student">
+        <div class="wrapper" page-controller="student">
             <div class="page-bar row m-b">
                 <div class="col-xs-12 col-md-2">
                     <div class="btn-group dropdown" dropdown="">
@@ -10,8 +10,8 @@
                 <div class="col-xs-12 col-md-10 text-right">
                     <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
-                            <i class="fa fa-cog ng-scope"></i>
-                            <span class="ng-scope"> 操作</span>
+                            <i class="fa fa-cog"></i>
+                            <span > 操作</span>
                             </ng-transclude>
                             <span class="caret"></span>
                         </lb-dropdown-button>
@@ -24,35 +24,35 @@
                 <div class="panel-heading">
                     <i class="fa fa-user"></i> 学员信息</div>
                 <div class="panel-body">
-                    <div class="bg-white row no-gutter ng-scope">
-                        <div class="col-xs-12 col-md-4 ng-scope">
+                    <div class="bg-white row no-gutter">
+                        <div class="col-xs-12 col-md-4">
                             <div class="text-center clear">
-                                <div class="face ng-scope" style="width:120px;margin:0 auto">
+                                <div class="face" style="width:120px;margin:0 auto">
                                     <a @click="handleShowDialog('lb-editphotomodal',student)">
-                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px; ">
+                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
                                             <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
                                         </div>
                                     </a>
                                 </div>
                             </div>
                             <p class="text-center">
-                                <span class="text-2x ng-binding">{{ student.student_name }}</span>
-                                <span class="ng-binding">
+                                <span class="text-2x">{{ student.student_name }}</span>
+                                <span >
                                     <i class="fa" :class="{'fa-female':student.sex=='0','fa-male':student.sex!='0'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
                                 <li>
                                     <label class="field">昵称/英文名:</label>
-                                    <span class="ng-binding">{{ student.nickname }}</span>
+                                    <span >{{ student.nickname }}</span>
                                 </li>
-                                <li class="m-t-xs ng-scope">
+                                <li class="m-t-xs">
                                     <label class="field">学员归属:</label>
-                                    <span class="label bg-info ng-binding">{{getEmployeeName}}</span>
+                                    <span class="label bg-info">{{getEmployeeName}}</span>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-xs-12 col-md-8 ng-scope">
+                        <div class="col-xs-12 col-md-8">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-info"></i> 基础信息</div>
@@ -60,31 +60,31 @@
                                     <div class="row no-gutter">
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">住址:</label>
-                                            <span class="ng-binding">{{ student.home_address }}</span>
+                                            <span >{{ student.home_address }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">备注:</label>
-                                            <span class="ng-binding">{{ student.note }}</span>
+                                            <span >{{ student.note }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">学校:</label>
-                                            <span class="ng-binding">{{ student.school }}</span>
+                                            <span >{{ student.school }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">年级:</label>
-                                            <span class="ng-binding">{{ student.grade }}</span>
+                                            <span >{{ student.grade }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">班级:</label>
-                                            <span class="ng-binding">{{ student.class }}</span>
+                                            <span >{{ student.class }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">建档日期:</label>
-                                            <span class="ng-binding">{{ getDateFormat(student.creattime) }}</span>
+                                            <span >{{ getDateFormat(student.creattime) }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">生日:</label>
-                                            <span class="text-info ng-scope">{{ getDateFormat(student.birth) }}</span>
+                                            <span class="text-info">{{ getDateFormat(student.birth) }}</span>
                                         </div>
                                     </div>
                                 </div>

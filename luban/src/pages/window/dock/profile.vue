@@ -2,7 +2,7 @@
     <div class="dock-content">
         <div class="profile">
             <div class="profile-inner">
-                <div class="profile-content ">
+                <div class="profile-content">
                     <div class="profile-panel active" style="margin-top: 80px;text-align: center">
                         <div class="profile-face" style="margin-bottom: 25px;">
                             <img alt="" src="/assets/images/face_150.png">

@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div ui-view class="ng-scope wrapper ">
-            <div class="wrapper-xs ng-scope">
+        <div ui-view class="wrapper">
+            <div class="wrapper-xs">
                 <div class="panel panel-default">
-                    <div class="panel-body ng-scope" ui-view="">
+                    <div class="panel-body" ui-view="">
                         <div class="row no-gutter " style="margin-top:-14px;">
                             <div class="col-xs-12 col-md-4 m-t">
                                 <el-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
@@ -12,7 +12,7 @@
                                 <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                                 <div class="inline w-sm va-m m-l-xs">
                                     <div class="input-group">
-                                        <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
+                                        <input type="text" :placeholder="getSelectStudentName" class="form-control" readonly="readonly">
                                         <span class="input-group-btn">
                                 <button class="btn btn-default" @click="handSelectStudent(false)">
                                   <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -32,8 +32,8 @@
                             <el-table :data="getTablesData()" stripe>
                                 <el-table-column width="100" prop="data" label="学员" class="widthes">
                                     <template scope="scope">
-                                        <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
-                                            <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
+                                        <a  @click="handleRouter($event,scope.row.student)">
+                                            <span ></span>{{ getLookUp(scope.row.student,'student_name') }}
                                         </a>
                                     </template>
                                 </el-table-column>
@@ -57,8 +57,8 @@
                                     <template scope="scope"><a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details',scope.row)">查看详情</a> <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a></template>
                                 </el-table-column>
                             </el-table>
-                            <div class="panel-footer ">
-                                <div class="row ">
+                            <div class="panel-footer">
+                                <div class="row">
                                     <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                                     </el-pagination>
                                 </div>

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" @click="lbClosedialog($event)" class="close  ">
+                <button type="button" @click="lbClosedialog($event)" class="close ">
                     <span class="text-right" style="float:right">×</span>
                     <span class="sr-only">关闭</span>
                 </button>

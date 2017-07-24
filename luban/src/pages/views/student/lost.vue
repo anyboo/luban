@@ -1,13 +1,13 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div class=" wrapper panel panel-default bg-white ng-scope" xo-rest="lost_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,lost_marked:'0',ob_id:user.gv.ob_id}}" xo-rest-ctrl="lost_students">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div class=" wrapper panel panel-default bg-white" xo-rest="lost_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,lost_marked:'0',ob_id:user.gv.ob_id}}" xo-rest-ctrl="lost_students">
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
-                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                            <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="   ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                             <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
-                            <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
+                            <input type="text" id="ctl_date_end" class="  " style="display: none;" v-model="localdata.form.date_end">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
@@ -43,13 +43,13 @@
                         </el-table-column>
                     </el-table>
                     <div class="grid-data-result">
-                        <p class="text-center ng-binding ng-scope" ng-if="!loading && grid.data.length==0">
+                        <p class="text-center" ng-if="!loading && grid.data.length==0">
                             <i class="fa fa-frown-o"></i>无相关数据!
                         </p>
                     </div>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
+                <div class="panel-footer">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

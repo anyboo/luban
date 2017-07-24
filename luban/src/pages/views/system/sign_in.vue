@@ -1,19 +1,19 @@
 <template>
-    <div class="modal-over bg-black ng-scope" style="z-index: 100;    margin: -100px 0px 0px -100px;">
+    <div class="modal-over bg-black" style="z-index: 100;    margin: -100px 0px 0px -100px;">
         <div class="modal-center animated fadeInUp text-center" style="width:200px;margin:-100px 0 0 -100px">
             <div class="thumb-lg">
                 <img class="img-circle" src="/assets/images/a0.jpg">
             </div>
             <p class="h4 m-t m-b">
-                <span v-if="$store.state.system.name.length>0" class="ng-binding ng-scope">{{$store.state.system.name}}</span>
+                <span v-if="$store.state.system.name.length>0" >{{$store.state.system.name}}</span>
             </p>
             <div class="input-group" v-if="$store.state.system.name.length==0">
-                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border ng-pristine ng-untouched ng-valid" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
-                <span class="input-group-btn "></span>
+                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
+                <span class="input-group-btn"></span>
             </div>
             <br>
             <div class="input-group">
-                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
+                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
                 <span class="input-group-btn circles">
                     <a @click="login" class="btn btn-success btn-rounded no-border" style="height:34px ;  border-top-left-radius : 0px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 0px !important;">
                         <i class="fa fa-arrow-right"></i>

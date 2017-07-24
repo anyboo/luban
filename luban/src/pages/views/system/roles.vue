@@ -1,15 +1,16 @@
 <template>
     <div class="wrapper">
-        <div class="wrapper panel panel-default bg-white ng-scope">
-            <div class="row ng-scope">
+        <div class="wrapper panel panel-default bg-white">
+            <div class="row">
                 <div class="col-xs-12 col-sm-7 col-md-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">角色列表</div>
                         <ul class="list-group">
                             <template v-for="item in getTablesData()">
-                                <li class="list-group-item ng-scope">
+                                <li class="list-group-item">
+                                    <label class="badge badge-sm bg-info pull-right" v-if="item.defrole">默认</label>
                                     <h4 class="list-group-item-head text-danger">{{item.name}}</h4>
-                                    <p class="list-grpup-item-text text-muted ng-binding">{{item.desc}}</p>
+                                    <p class="list-grpup-item-text text-muted">{{item.desc}}</p>
                                     <p class="list-group-item-text">
                                         <template v-if="getActionOption('systemrolesdelete')">
                                             <a class="btn btn-xs btn-default ng-isolate-scope" tooltip-placement="top" tooltip="删除角色" confirm-text="确定要删除该角色吗?" @click="handleDelClick(item._id)">
@@ -31,9 +32,9 @@
                 <div class="col-xs-12 col-sm-5 col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span ng-if="action!='edit'" class="ng-scope">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
+                            <span ng-if="action!='edit'">{{modalsType==types.EDIT_API?'编辑':'添加'}}角色</span>
                             <template v-if="getActionOption('systemrolesroles')">
-                                <button class="btn btn-default btn-xs pull-right ng-hide" @click="clearForm" v-if="modalsType==types.APPEND_API">
+                                <button class="btn btn-default btn-xs pull-right" @click="clearForm" v-if="modalsType==types.APPEND_API">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </template>
@@ -45,6 +46,10 @@
                                 </el-form-item>
                                 <el-form-item label="角色描述" prop="desc">
                                     <el-input v-model="localdata.form.desc"></el-input>
+                                </el-form-item>
+                                <el-form-item label="默认角色">
+                                    <el-switch v-model="localdata.form.defrole" on-text="" off-text="">
+                                    </el-switch>
                                 </el-form-item>
                                 <template v-if="getActionOption('systemrolessave')">
                                     <el-form-item label-width="100px">
@@ -67,7 +72,9 @@ export default {
             'form': {
                 'og_id': '',
                 'name': '',
-                'desc': ''
+                'desc': '',
+                'authority': [],
+                'defrole': false
             },
         }
         return {
@@ -88,9 +95,9 @@ export default {
         clearForm() {
             this.localdata.form = {
                 'og_id': '',
-                'id': '',
                 'name': '',
                 'desc': '',
+                'defrole': false,
                 'authority': []
             }
             this.modalsType = this.types.APPEND_API

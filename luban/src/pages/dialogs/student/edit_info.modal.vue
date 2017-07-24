@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="ng-scope">
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
@@ -9,21 +9,21 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-user"></i>编辑
-                        <span class="badge bg-info ng-binding">{{localdata.form.student_name }}</span>的基本资料
+                        <span class="badge bg-info">{{localdata.form.student_name }}</span>的基本资料
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal ng-pristine ng-valid ng-valid-required">
-                        <div class="form-group ng-scope">
+                    <form name="form1" class="form-validation form-horizontal   -required">
+                        <div class="form-group">
                             <label class="col-xs-12 col-md-2 control-label">
                                 <span class="text-danger">*</span>姓名:
                             </label>
                             <div class="col-xs-12 col-md-10">
                                 <div class="inline va-m w-sm">
-                                    <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
+                                    <input type="text" name="student_name" class="form-control   ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
                                 </div>
                                 <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
-                                <div class="error ng-hide" v-if="localdata.validator.fields.student_name.errorStatus">
+                                <div class="error" v-if="localdata.validator.fields.student_name.errorStatus">
                                     <span class="text-warning">学员姓名必须填写</span>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                             <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                             <div class="col-xs-12 col-md-5">
                                 <div class="inline w-sm">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="localdata.form.nickname">
+                                    <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group ng-scope" ng-if="info.inited">
+                        <div class="form-group" ng-if="info.inited">
                             <label class="control-label col-md-2 col-xs-12">学员归属:</label>
                             <div class="col-md-5 col-xs-12">
                                 <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
@@ -53,20 +53,20 @@
                                 </el-select>
                             </div>
                         </div>
-                        <div class="form-group ng-scope" ng-if="have_field('home_address')">
+                        <div class="form-group" ng-if="have_field('home_address')">
                             <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.home_address">
+                                <input type="text" name="home_address" class="form-control" v-model="localdata.form.home_address">
                             </div>
                         </div>
-                        <div class="form-group ng-scope">
+                        <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                             <div class="col-md-10 col-xs-12">
-                                <div class="inline va-m w ng-scope" ng-if="have_field('school')">
-                                    <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" v-model="localdata.form.school">
+                                <div class="inline va-m w" ng-if="have_field('school')">
+                                    <input type="text" name="school" class="form-control" placeholder="学校" v-model="localdata.form.school">
                                 </div>
-                                <div class="inline va-m w-xs m-l-xs ng-scope">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.grade">
+                                <div class="inline va-m w-xs m-l-xs">
+                                    <select class="form-control" v-model="localdata.form.grade">
                                         <option value class>年级</option>
                                         <option value="0">不确定</option>
                                         <option value="1">一年级</option>
@@ -83,8 +83,8 @@
                                         <option value="12">高三</option>
                                     </select>
                                 </div>
-                                <div class="inline va-m w-xs m-l-xs ng-scope">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.class">
+                                <div class="inline va-m w-xs m-l-xs">
+                                    <select class="form-control" v-model="localdata.form.class">
                                         <option value class>班级</option>
                                         <option value="0">1</option>
                                         <option value="1">2</option>
@@ -107,7 +107,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">备注:</label>
                             <div class="col-md-5 col-xs-12">
-                                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
+                                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control"></textarea>
                             </div>
                         </div>
                     </form>

@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="ng-scope">
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,11 +9,11 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-user"></i>重置
-                        <span class="badge bg-info ng-binding">{{name}}</span>的账号密码
+                        <span class="badge bg-info">{{name}}</span>的账号密码
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-minlength">
+                    <form name="form1" class="form-validation form-horizontal  ng-invalid ng-invalid-required -minlength">
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录账号</label>
                             <div class="col-md-5 col-xs-12">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录密码</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-minlength" minlength="6" required v-model.trim="localdata.form.reset_password">
+                                <input type="text" name="password" class="form-control   ng-invalid ng-invalid-required -minlength" minlength="6" required v-model.trim="localdata.form.reset_password">
                             </div>
                             <div class="col-md-5 col-xs-12">
                                 <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='123456'">123456</a>

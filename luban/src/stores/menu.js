@@ -156,7 +156,7 @@ export default [{
     }, {
         menuTitle: '生日学员',
         to: '/student/birthdays',
-        menuIcon: 'fa fa-id-card-o',
+        menuIcon: 'fa fa-bold',
     }, {
         menuTitle: '赛事记录',
         to: '/student/recording',
@@ -287,7 +287,7 @@ export default [{
         menuTitle: '考勤',
         to: '/hours/attendance',
         menuIcon: 'fa fa-file-sound-o',
-         action: [{
+        action: [{
             'text': '考勤',
             'action': 'hoursattendance'
         }]

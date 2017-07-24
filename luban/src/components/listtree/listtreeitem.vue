@@ -1,12 +1,12 @@
 <template>
-    <li class="ng-scope angular-ui-tree-node" :collapsed="collapsed">
-        <div class="tree-node tree-node-content ng-scope angular-ui-tree-handle">
+    <li class="angular-ui-tree-node" :collapsed="collapsed">
+        <div class="tree-node tree-node-content angular-ui-tree-handle">
             <div class="tree-node-content">
                 <a class="btn btn-default btn-xs" @click="collapsed=!collapsed">
                     <i class="fa fa-minus-square-o" :class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                 </a>
-                <input class="va-m ng-pristine ng-valid ng-scope ng-touched" @blur='handleblur' type="text" v-model="treeItem.name" @input="handleChange">
-                <a class="btn btn-primary btn-xs m-l-xs ng-scope" data-nodrag="" @click="save_cate" v-if="change" tooltip="保存">
+                <input class="va-m   ng-touched" @blur='handleblur' type="text" v-model="treeItem.name" @input="handleChange">
+                <a class="btn btn-primary btn-xs m-l-xs" data-nodrag="" @click="save_cate" v-if="change" tooltip="保存">
                     <i class="fa fa-check" ng-show="!node._saving"></i>
                 </a>
                 <a class="pull-right btn btn-danger btn-xs" tooltip="删除" @click="remove_cate">
@@ -17,7 +17,7 @@
                 </a>
             </div>
         </div>
-        <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" :class="{hidden: collapsed}">
+        <ul class="list-unstyled    angular-ui-tree-nodes" :class="{hidden: collapsed}">
             <template v-for="item in getTreeData">
                 <lb-listtree-item :tree-item="item">
                 </lb-listtree-item>

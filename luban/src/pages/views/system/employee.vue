@@ -1,92 +1,90 @@
 <template>
-    <div class="wrapper wrapper ">
-        <div class="wrapper panel panel-default bg-white ng-scope">
-            <div class="ng-scope">
-                <div class="row wrapper">
-                    <div class="col-xs-12 col-md-4">
-                        <div class="padder">
-                            <div class="input-group w-full">
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <el-dropdown menu-align="start" @command="handleCommand">
-                                            <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
-                                                {{localdata.search.search_value}}
-                                                <span class="caret"></span>
-                                            </lb-dropdown-button>
-                                            <el-dropdown-menu slot="dropdown">
-                                                <template v-for="item in localdata.search.fields">
-                                                    <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
-                                                </template>
-                                            </el-dropdown-menu>
-                                        </el-dropdown>
-                                    </div>
-                                    <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
-                                    </span>
+    <div class="wrapper">
+        <div class="wrapper panel panel-default bg-white">
+            <div class="row wrapper">
+                <div class="col-xs-12 col-md-4">
+                    <div class="padder">
+                        <div class="input-group w-full">
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <el-dropdown menu-align="start" @command="handleCommand">
+                                        <lb-dropdown-button class="btn btn-default btn-sm   ng-touched">
+                                            {{localdata.search.search_value}}
+                                            <span class="caret"></span>
+                                        </lb-dropdown-button>
+                                        <el-dropdown-menu slot="dropdown">
+                                            <template v-for="item in localdata.search.fields">
+                                                <el-dropdown-item :command="item.name">{{item.value}}</el-dropdown-item>
+                                            </template>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
+                                <input type="text" class="input-sm form-control" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-8" :class="{result:refreshData}">
-                        <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
-                        <template v-if="getActionOption('systememployeeadd')">
+                </div>
+                <div class="col-xs-12 col-md-8" :class="{result:refreshData}">
+                    <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
+                    <template v-if="getActionOption('systememployeeadd')">
                         <button @click="lbShowdialog($event,'lb-employeeaddmodal')" class="btn btn-primary pull-right">
                             <i class="fa fa-plus"></i>添加
                         </button>
-                         </template>
-                    </div>
+                    </template>
                 </div>
-                <div class="wrapper">
-                    <div class="row list-employee ">
-                        <template v-for="item in getTablesData()">
-                            <div class="col-xs-12 col-md-6 ng-scope">
-                                <div class="bg-white wrapper b-a m-t box-shadow">
-                                    <div class="meida">
-                                        <div class="media-left">
-                                            <div class="w-xs ng-scope" ng-if="!item.avatar">
-                                                <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
-                                                    <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
-                                                </div>
+            </div>
+            <div class="wrapper">
+                <div class="row list-employee">
+                    <template v-for="item in getTablesData()">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="bg-white wrapper b-a m-t box-shadow">
+                                <div class="meida">
+                                    <div class="media-left">
+                                        <div class="w-xs" ng-if="!item.avatar">
+                                            <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px;">
+                                                <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
                                             </div>
-                                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" @command="handleMenuCommand" class="text-center ">
-                                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="item.name">
-                                                    <i class="fa fa-cog"></i>{{item.name}}
-                                                    <span class="caret"></span>
-                                                </lb-dropdown-button>
-                                            </lb-dropdown>
                                         </div>
-                                        <div class="media-body">
-                                            <p>
-                                                <label>账号:</label>
-                                                <span class="m-l-xs ng-binding ng-scope">
-                                                    <i class="fa fa-user ng-scope"></i>{{item.tel.length>0?item.tel:'未填写'}}
-                                                </span>
-                                            </p>
-                                            <p>
-                                                <label>类型:</label>
-                                                <span class="label bg-info ng-scope">{{ item.is_part_time == '0' ? '全职':'兼职' }}</span>
-                                            </p>
-                                            <p>
-                                                <label>生日:</label>
-                                                <span class="ng-binding">{{ getDateFormat(item.birth)}}</span>
-                                            </p>
-                                            <p>
-                                                <label>邮箱:</label>
-                                                <span class="ng-binding">{{item.email.length>0?item.tel:'未填写'}}</span>
-                                            </p>
-                                        </div>
+                                        <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" @command="handleMenuCommand" class="text-center">
+                                            <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" button-tooltip="item.name">
+                                                <i class="fa fa-cog"></i>{{item.name}}
+                                                <span class="caret"></span>
+                                            </lb-dropdown-button>
+                                        </lb-dropdown>
+                                    </div>
+                                    <div class="media-body">
+                                        <p>
+                                            <label>账号:</label>
+                                            <span class="m-l-xs">
+                                                <i class="fa fa-user"></i>{{item.tel.length>0?item.tel:'未填写'}}
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <label>类型:</label>
+                                            <span class="label bg-info">{{ item.is_part_time == '0' ? '全职':'兼职' }}</span>
+                                        </p>
+                                        <p>
+                                            <label>生日:</label>
+                                            <span>{{ getDateFormat(item.birth)}}</span>
+                                        </p>
+                                        <p>
+                                            <label>邮箱:</label>
+                                            <span>{{item.email.length>0?item.tel:'未填写'}}</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
-                        <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
-                        </el-pagination>
-                    </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+                    </el-pagination>
                 </div>
             </div>
         </div>

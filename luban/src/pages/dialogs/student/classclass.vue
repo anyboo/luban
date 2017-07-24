@@ -1,22 +1,22 @@
 <template>
     <div>
-        <div class="modal-body ng-scope">
-            <div class="ng-scope">
-                <div class="ng-scope">
+        <div class="modal-body">
+            <div >
+                <div >
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
-                            <h4 class="padder ">1.创建订单</h4>
+                            <h4 class="padder">1.创建订单</h4>
                         </div>
                         <div class="col-xs-6 bg-light lter" :class="{'bg-success':order}">
-                            <h4 class="padder ">2.缴费</h4>
+                            <h4 class="padder">2.缴费</h4>
                         </div>
                     </div>
-                    <form name="form1" class="form-horizontal ng-pristine ng-invalid ng-invalid-required" v-if="!order">
+                    <form name="form1" class="form-horizontal  ng-invalid ng-invalid-required" v-if="!order">
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
-                                    <input type="text" :placeholder="lesson_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
+                                    <input type="text" :placeholder="lesson_name" class="form-control   ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
                                             <i class="fa fa-book"></i>选择
@@ -30,7 +30,7 @@
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline">
                                     <div class="input-group">
-                                        <input type="text" :placeholder="getSelectClassName" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required readonly="readonly" v-model="class_name">
+                                        <input type="text" :placeholder="getSelectClassName" class="form-control   ng-invalid ng-invalid-required" required readonly="readonly" v-model="class_name">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default" @click="lbShowdialog($event,'lb-selectclasstpl')">
                                                 <i class="fa fa-flag"></i>选择
@@ -42,11 +42,11 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">
-                                <span class="ng-scope">报名</span>课次:
+                                <span >报名</span>课次:
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
+                                    <lb-numberinput type="number" class="form-control    -required" v-model="localdata.form.origin_times" @change="cacu_order_amount()">
                                         </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
@@ -56,7 +56,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" @change="cacu_order_amount()" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" v-model="localdata.form.unit_price">
+                                    <lb-numberinput type="number" @change="cacu_order_amount()" class="form-control    -required" v-model="localdata.form.unit_price">
                                         </lb-numberinput>
                                     <span class="input-group-addon">元/次</span>
                                 </div>
@@ -66,7 +66,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" readonly v-model="localdata.form.origin_amount">
+                                    <lb-numberinput type="number" class="form-control" readonly v-model="localdata.form.origin_amount">
                                         </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
@@ -77,7 +77,7 @@
                                         <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
                                         <div class="col-xs-12 col-sm-9 col-md-10">
                                             <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="ng-pristine ng-untouched ng-valid" disabled="disabled" v-model="localdata.form.order_has_time_limited">
+                                                <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="  " disabled="disabled" v-model="localdata.form.order_has_time_limited">
                                                 <i></i>
                                             </label>
                                         </div>
@@ -86,15 +86,15 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid i-switch m-t-xs m-r" v-model="localdata.form.has_discount">
+                                    <input type="checkbox" @change="cacu_order_amount()" class="   i-switch m-t-xs m-r" v-model="localdata.form.has_discount">
                                     <i></i>
                                 </label>
-                                <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
-                                    <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
+                                <a class="btn btn-default btn-xs pull-right" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
+                                    <span v-if="discount_caculator" >关闭</span> 折扣计算器
                                 </a>
-                                <div v-if="discount_caculator&&localdata.form.has_discount" class="ng-scope">
+                                <div v-if="discount_caculator&&localdata.form.has_discount" >
                                     <div class="input-group">
-                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
+                                        <lb-numberinput type="number" class="form-control" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
                                             </lb-numberinput>
                                         <span class="input-group-btn">
                                             <a class="btn btn-info" @click="cacu_discount_amount()">
@@ -102,11 +102,11 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_discount">
+                                <div class="input-group w m-t-xs" v-if="localdata.form.has_discount">
                                     <span class="input-group-addon">
                                         <i class="fa fa-minus"></i>
                                     </span>
-                                    <lb-numberinput type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control ng-pristine ng-valid ng-touched">
+                                    <lb-numberinput type="number" @change="cacu_order_amount()" v-model="localdata.form.discount_amount" class="form-control   ng-touched">
                                         </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
@@ -116,14 +116,14 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid " v-model="localdata.form.has_present">
+                                    <input type="checkbox" @change="cacu_order_amount()" class="" v-model="localdata.form.has_present">
                                     <i></i>
                                 </label>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present">
+                                <div class="input-group w m-t-xs" v-if="localdata.form.has_present">
                                     <span class="input-group-addon">
                                         <i class="fa fa-plus"></i>
                                     </span>
-                                    <lb-numberinput type="number" v-model="localdata.form.present_times" class="form-control ng-pristine ng-valid ng-touched">
+                                    <lb-numberinput type="number" v-model="localdata.form.present_times" class="form-control   ng-touched">
                                         </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
@@ -133,7 +133,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课耗单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" v-model="localdata.form.c_unit_price">
+                                    <lb-numberinput type="number" class="form-control   ng-invalid ng-invalid-required" v-model="localdata.form.c_unit_price">
                                         </lb-numberinput>
                                     <span class="input-group-addon">元/次</span>
                                 </div>
@@ -143,14 +143,14 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
+                                <input type="text" class="form-control" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.order_amount }}</span>
+                                    <span class="text-bold text-danger">{{ this.localdata.form.order_amount }}</span>
                                     <small>元</small>
                                 </p>
                             </div>
@@ -159,7 +159,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)}}</span>
+                                    <span class="text-bold text-danger">{{ Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)}}</span>
                                     <small>次</small>
                                 </p>
                             </div>
@@ -167,7 +167,7 @@
                         <div class="row no-gutter b-t m-t">
                             <div class="col-xs-8">
                                 <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="this.localdata.form.origin_amount - this.localdata.form.discount_amount==0">
-                                    <i class="fa fa-save" ng-hide="saving"></i> 确定订单
+                                    <i class="fa fa-save"></i> 确定订单
                                 </button>
                             </div>
                             <div class="col-xs-4">

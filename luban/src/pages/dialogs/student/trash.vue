@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
@@ -10,14 +10,14 @@
                     <i class="icon-lock"></i>已封存学员档案列表
                 </h3>
             </div>
-            <div class="wrapper bg-white ng-scope" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,isdelete:1}}" xo-rest-ctrl="trash">
-                <div ng-if="$action == 'list'" class="ng-scope">
+            <div class="wrapper bg-white" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,isdelete:1}}" xo-rest-ctrl="trash">
+                <div ng-if="$action == 'list'" >
                     <div class="padder">
                         <div class="input-group w-full">
                             <div class="input-group">
                                 <div class="input-group-btn">
                                     <el-dropdown menu-align="start" @command="handleCommand">
-                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        <lb-dropdown-button class="btn btn-default btn-sm   ng-touched">
                                             {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
@@ -28,7 +28,7 @@
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                             </span>
@@ -39,10 +39,10 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <span class="ng-binding">
+                                    <span >
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
                                 </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="联系电话">
@@ -64,8 +64,8 @@
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

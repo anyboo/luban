@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="wrapper panel panel-default bg-white" :class="{result:getSelectName}">
-            <div class="row  m-t ">
+            <div class="row  m-t">
                 <div id='calendar'></div>
             </div>
         </div>

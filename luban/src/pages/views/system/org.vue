@@ -1,5 +1,5 @@
  <template>
-    <div class="wrapper ">
+    <div class="wrapper">
         <div class="row">
             <div class="col-xs-12">
                 <div class="panel panel-default">
@@ -8,16 +8,16 @@
                     </div>
                     <div class="panel-body">
                         <el-form :model="localdata.form" :rules="rules" label-width="120px" ref="ruleForm">
-                            <el-form-item label="机构全称:" prop="name">
+                            <el-form-item label="机构全称" prop="name">
                                 <el-input v-model="localdata.form.name"></el-input>
                             </el-form-item>
-                            <el-form-item label="机构简称:" prop="short_name">
+                            <el-form-item label="机构简称" prop="short_name">
                                 <el-input v-model="localdata.form.short_name"></el-input>
                             </el-form-item>
-                            <el-form-item label="机构联系电话:" prop="tel">
+                            <el-form-item label="机构联系电话" prop="tel">
                                 <el-input v-model="localdata.form.tel"></el-input>
                             </el-form-item>
-                            <el-form-item label="详细地址:" prop="address">
+                            <el-form-item label="详细地址" prop="address">
                                 <el-input v-model="localdata.form.address"></el-input>
                             </el-form-item>
                         </el-form>
@@ -30,8 +30,8 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default ng-scope">
-            <div class="panel-heading ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 <template v-if="getActionOption('systememorgsavestudent')">
                     <a class="btn btn-sm btn-primary pull-right heights" @click="handleShowDialog('lb-addmodal')">
                         <i class="fa fa-plus"></i> 添加新校区</a>
@@ -69,8 +69,8 @@
                     </el-table>
                 </div>
             </div>
-            <div class="panel-footer ">
-                <div class="row ">
+            <div class="panel-footer">
+                <div class="row">
                     <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                     </el-pagination>
                 </div>
@@ -155,8 +155,6 @@ export default {
                 })
             }
         },
-
-
     }
 }
 </script>

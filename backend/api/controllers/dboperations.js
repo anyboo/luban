@@ -25,11 +25,28 @@ module.exports.login = function* login(next) {
     console.log(user)
     var db = yield MongoClient.connect(dbstr)
     let table = db.collection('employee')
-    var model = yield table.find({
-        'pwd': user.pwd,
-        'tel': user.user,
-        'lock': false
-    }).toArray()
+    let options = []
+    options.push({
+        '$match': {
+            'pwd': user.pwd,
+            'tel': user.user,
+            'lock': false
+        }
+    })
+    options.push({
+        '$unwind': '$roles_id'
+    })
+    options.push({
+        '$lookup': {
+            'localField': 'roles_id',
+            'from': 'role',
+            'foreignField': '_id',
+            'as': 'role'
+        }
+    })
+    let cursor = table.aggregate(options)
+    let model = yield cursor.toArray()
+
     var token = ''
     var code = -1
     var message = '登录失败'
@@ -40,6 +57,14 @@ module.exports.login = function* login(next) {
             id: model[0]._id
         }
         account = model[0]
+        account.roles = null
+        delete account.roles
+        account.roles = []
+        for (var item of model) {
+            if (item.role.length>0){
+                account.roles.push(item.role[0])
+            }
+        }
         account.pwd = null
         delete account.pwd
         token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 /* 1 days */ })
@@ -76,14 +101,14 @@ function changeModelId(model) {
         if (typeof item == 'string') {
             if (item.indexOf('_id') >= 0) {
                 try {
-                    console.log('-----', item, model[item],typeof model[item])
+                    console.log('-----', item, model[item], typeof model[item])
                     if (typeof model[item] === 'object') {
                         let iditem = model[item]
                         for (var idindex in iditem) {
                             if (checkId(iditem[idindex])) {
                                 let monkid = ObjectID(iditem[idindex])
                                 iditem[idindex] = monkid
-                                console.log('-----', iditem[idindex],monkid)
+                                console.log('-----', iditem[idindex], monkid)
                             }
                         }
 
@@ -178,7 +203,6 @@ module.exports.all = function* all(name, next) {
                     } else {
                         findObj[key] = value
                     }
-
                 }
             }
         } catch (e) {
