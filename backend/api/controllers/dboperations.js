@@ -59,6 +59,7 @@ module.exports.login = function* login(next) {
         account = model[0]
         account.roles = null
         delete account.roles
+        account.roles = []
         for (var item of model) {
             account.roles.push(item.role)
         }
