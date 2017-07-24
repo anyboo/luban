@@ -31,7 +31,7 @@
                     <lb-buttongroup :group-data="localdata.status" v-model="localdata.form.status" @input="handleSearch"></lb-buttongroup>
                     <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode"></lb-buttongroup>
                     <template v-if="getActionOption('lessonclasses')">
-                        <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success">
+                        <a @click="lbShowdialog($event,'lb-openclassmodal')" class="btn btn-success pull-right">
                             <i class="fa fa-plus "></i>开班
                         </a>
                     </template>
