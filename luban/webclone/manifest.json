@@ -4,7 +4,7 @@
     "version": "1.0",
     "description": "clone",
     "content_scripts": [{
-        "matches": ["https://modao.cc/*"],
+        "matches": ["https://modao.cc/*","http://www.eqxiu.com/*","http://v.xiao360.com/*"],
         "js": ["js/jquery-3.2.0.js", "js/background.js"]
     }],
     "icons": {
