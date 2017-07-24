@@ -8,16 +8,16 @@
                     </div>
                     <div class="panel-body">
                         <el-form :model="localdata.form" :rules="rules" label-width="120px" ref="ruleForm">
-                            <el-form-item label="机构全称:" prop="name">
+                            <el-form-item label="机构全称" prop="name">
                                 <el-input v-model="localdata.form.name"></el-input>
                             </el-form-item>
-                            <el-form-item label="机构简称:" prop="short_name">
+                            <el-form-item label="机构简称" prop="short_name">
                                 <el-input v-model="localdata.form.short_name"></el-input>
                             </el-form-item>
-                            <el-form-item label="机构联系电话:" prop="tel">
+                            <el-form-item label="机构联系电话" prop="tel">
                                 <el-input v-model="localdata.form.tel"></el-input>
                             </el-form-item>
-                            <el-form-item label="详细地址:" prop="address">
+                            <el-form-item label="详细地址" prop="address">
                                 <el-input v-model="localdata.form.address"></el-input>
                             </el-form-item>
                         </el-form>
@@ -155,8 +155,6 @@ export default {
                 })
             }
         },
-
-
     }
 }
 </script>

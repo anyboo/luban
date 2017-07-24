@@ -7,16 +7,16 @@
                     <h3 class="modal-title"><i class="icon-plus"></i> {{title}}新校区</h3></div>
                 <div class="modal-body">
                      <el-form :model="localdata.form" :rules="rules" label-width="95px" ref="ruleForm">
-                            <el-form-item label="校区名:" prop="branch_name">
+                            <el-form-item label="校区名" prop="branch_name">
                                 <el-input v-model="localdata.form.branch_name"></el-input>
                             </el-form-item>
-                            <el-form-item label="校区简称:" prop="short_name">
+                            <el-form-item label="校区简称" prop="short_name">
                                 <el-input v-model="localdata.form.short_name"></el-input>
                             </el-form-item>
-                            <el-form-item label="联系电话:" prop="branch_tel">
+                            <el-form-item label="联系电话" prop="branch_tel">
                                 <el-input v-model="localdata.form.branch_tel"></el-input>
                             </el-form-item>
-                            <el-form-item label="所在地区:" prop="group_name">
+                            <el-form-item label="所在地区" prop="group_name">
                                 <el-input v-model="localdata.form.group_name"></el-input>
                             </el-form-item>
                               <el-form-item label="详细地址" prop="address">
