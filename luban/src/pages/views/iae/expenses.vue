@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="expenses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="expenses">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="expenses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="expenses">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -14,14 +14,14 @@
                         <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div id="fct-expenses" style="display:none;">
-                                <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
+                                <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
                                     <input type="hidden" name="resource" value="expenses">
-                                    <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="date_start" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="date_start" value="2017-05-12" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" >
                                 </form>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">-{{getToFixed(scope.row.amount)}}</span>
+                                    <span class="badge bg-danger">-{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="备注">

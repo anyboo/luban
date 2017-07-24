@@ -1,13 +1,13 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div class=" wrapper panel panel-default bg-white ng-scope" page-controller="list2index">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div class=" wrapper panel panel-default bg-white" page-controller="list2index">
                 <div class="row no-gutter">
                     <div class="col-xs-12 ">
                         <lb-buttongroup :group-data="localdata.lesson_type" v-model="localdata.form.lesson_type"></lb-buttongroup>
                     </div>
                 </div>
-                <div class="m-t ng-scope" xo-rest="class_end_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list21">
+                <div class="m-t" xo-rest="class_end_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" ng-if="lesson_type == 0" xo-rest-ctrl="list21">
                     <div class="row no-gutter">
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">
@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <lb-buttongroup :group-data="localdata.pay_status" v-model="localdata.form.pay_status"></lb-buttongroup>
-                            <div class="inline w-md m-l-xs ng-scope" ng-if="class_rest.$loaded">
+                            <div class="inline w-md m-l-xs" ng-if="class_rest.$loaded">
                                 <div class="chosen-container chosen-container-single" style="width: 240px;" title>
                                     <el-select  v-model="localdata.form.classes_id" filterable placeholder="请选择班级">
                                         <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
@@ -33,12 +33,12 @@
                                 <i class="glyphicon glyphicon-export"></i>导出
                             </button>
                             <div id="fct-class_end_students" style="display:none;">
-                                <form name="export_form_class_end_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
+                                <form name="export_form_class_end_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="30bed37d3e9766e5dc6b3b2b3ee823e0">
                                     <input type="hidden" name="resource" value="class_end_students">
-                                    <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" >
                                 </form>
                             </div>
                         </div>
@@ -47,11 +47,11 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <a class="link ng-binding" @click="handleRouter($event,scope.row)">
-                                        <span class="ng-binding">
+                                    <a class="link" @click="handleRouter($event,scope.row)">
+                                        <span >
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                 </span>{{ scope.row.student_name }}
-                                        <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                        <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                     </a>
                                 </template>
                             </el-table-column>
@@ -60,7 +60,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="所在班级">
                                 <template scope="scope">
-                                    <a class="link ng-binding" tooltip="点击班级名查看该班级所有学员">11</a>
+                                    <a class="link" tooltip="点击班级名查看该班级所有学员">11</a>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="授课老师">
@@ -85,7 +85,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="缴费状态">
                                 <template scope="scope">
-                                    <span class="label bg-success ng-scope" ng-if="item.pay_status == '2'">已缴清</span>
+                                    <span class="label bg-success" ng-if="item.pay_status == '2'">已缴清</span>
                                 </template>
                             </el-table-column>
                         </el-table>

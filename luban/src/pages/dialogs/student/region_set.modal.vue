@@ -1,8 +1,8 @@
 <template>
     <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="wrapper ng-scope" page-controller="region_set">
-                <p class="ng-binding">请选择学员 {{getStudentName }} 的归属</p>
+            <div class="wrapper" page-controller="region_set">
+                <p >请选择学员 {{getStudentName }} 的归属</p>
                 <div class="w-sm">
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">

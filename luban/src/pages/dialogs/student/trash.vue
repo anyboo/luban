@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
@@ -10,8 +10,8 @@
                     <i class="icon-lock"></i>已封存学员档案列表
                 </h3>
             </div>
-            <div class="wrapper bg-white ng-scope" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,isdelete:1}}" xo-rest-ctrl="trash">
-                <div ng-if="$action == 'list'" class="ng-scope">
+            <div class="wrapper bg-white" xo-rest="students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,isdelete:1}}" xo-rest-ctrl="trash">
+                <div ng-if="$action == 'list'" >
                     <div class="padder">
                         <div class="input-group w-full">
                             <div class="input-group">
@@ -39,10 +39,10 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学生姓名">
                                 <template scope="scope">
-                                    <span class="ng-binding">
+                                    <span >
                                     <i class="fa" :class="{'fa-female':scope.row.sex=='0','fa-male':scope.row.sex!='0'}"></i>
                                 </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="联系电话">

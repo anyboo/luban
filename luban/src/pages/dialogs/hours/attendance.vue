@@ -44,9 +44,9 @@
                     </div>
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                <h4 class="list-group-item-heading ng-binding">{{item.class_name}}</h4>
-                                <p class="list-group-item-text text-muted ng-binding">老师:{{getLookUp(item.employee, 'name')}},已报人数:{{item.order.length}}/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
+                            <li class="list-group-item" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
+                                <h4 class="list-group-item-heading">{{item.class_name}}</h4>
+                                <p class="list-group-item-text text-muted">老师:{{getLookUp(item.employee, 'name')}},已报人数:{{item.order.length}}/{{item.max_student_num}},上课次数:0/{{item.total_times}}</p>
                             </li>
                         </template>
                     </ul>

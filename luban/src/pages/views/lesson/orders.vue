@@ -1,6 +1,6 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="panel panel-default ng-scope" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
+    <div ui-view class="wrapper ">
+        <div class="panel panel-default" xo-rest="orders" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1}}" xo-rest-ctrl="orders" loading-text="正在加载订单..." empty-text="没有符合条件的订单!">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="padder">
@@ -47,7 +47,7 @@
                         <template scope="scope">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row"  @command="handleMenuCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog ng-scope"></i>
+                                    <i class="fa fa-cog"></i>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
                             </lb-dropdown>

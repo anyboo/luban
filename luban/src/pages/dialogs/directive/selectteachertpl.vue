@@ -2,15 +2,15 @@ t
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
-                <h3 class="modal-title ng-binding">请选择老师</h3>
+                <h3 class="modal-title">请选择老师</h3>
             </div>
-            <div class="modal-body ng-scope">
-                <div class="ng-scope">
+            <div class="modal-body">
+                <div >
                     <div class="row">
                         <div class="col-xs-12 col-md-7">
                             <div class="input-group w-full">
@@ -41,14 +41,14 @@ t
                     </div>
                     <div class="row list-student m-t">
                         <template v-for="item in getTablesData()">
-                            <div class="col-sm-3 col-xs-4 m-b ng-scope">
+                            <div class="col-sm-3 col-xs-4 m-b">
                                 <div class="list-student-item box-shadow bg-info" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
                                     <div class="face">
                                         <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
                                             <img :src="makeImage(item.name,80)" style="vertical-align:top;" width="100%" height="">
                                         </div>
                                     </div>
-                                    <div class="name m-t ng-binding">
+                                    <div class="name m-t">
                                         <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
                                         </span>{{item.name}}
                                     </div>
@@ -65,8 +65,8 @@ t
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" @click="handleSelectTeacher">确定</button>
+            <div class="modal-footer text-center">
+                <button class="btn btn-primary" @click="handleSelectTeacher">确定</button>
             </div>
         </div>
     </div>

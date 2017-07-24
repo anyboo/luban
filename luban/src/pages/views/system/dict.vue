@@ -1,18 +1,18 @@
 <template>
     <div class="=wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div class="wrapper panel panel-default bg-white ng-scope">
-                <div class="panel panel-default ng-scope" style="margin-top:14px;">
+        <div class="wrapper-xs">
+            <div class="wrapper panel panel-default bg-white">
+                <div class="panel panel-default" style="margin-top:14px;">
                     <div class="panel-heading">字典列表</div>
                     <ul class="list-group">
     
-                        <li class="list-group-item clear ng-scope" v-for="(item, index) in localdata.dict">
+                        <li class="list-group-item clear" v-for="(item, index) in localdata.dict">
                             <span class="pull-right">
                                 <template v-if="getActionOption('systememdictedit')">
                                     <a @click="handleShowDialog('lb-dictitems',item)">编辑</a>
                                 </template>
                             </span>
-                            <h4 class="list-group-item-head ng-binding text-danger">{{item.text}}</h4>
+                            <h4 class="list-group-item-head text-danger">{{item.text}}</h4>
                         </li>
                     </ul>
                 </div>

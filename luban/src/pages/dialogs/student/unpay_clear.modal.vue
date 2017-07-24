@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="ng-scope">
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,69 +9,69 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="icon-ban"></i>清除订单
-                        <span class="label bg-info ng-binding">{{order.order_no}}</span>
+                        <span class="label bg-info">{{order.order_no}}</span>
                     </h3>
                 </div>
-                <div class="modal-body ng-scope">
+                <div class="modal-body">
                     <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-required ng-valid-number ng-valid-parse">
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">订单号:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.order_no}}</p>
+                                <p class="form-control-static">{{order.order_no}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">订单内容:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.body}}</p>
+                                <p class="form-control-static">{{order.body}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">购买课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.origin_times}}</p>
+                                <p class="form-control-static">{{order.origin_times}}</p>
                             </div>
                         </div>
-                        <div class="form-group ng-scope" ng-if="order.present_times > 0">
+                        <div class="form-group" ng-if="order.present_times > 0">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">赠送课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <p class="form-control-static ng-binding">{{order.present_times}} 次</p>
+                                <p class="form-control-static">{{order.present_times}} 次</p>
                             </div>
                         </div>
-                        <div class="form-group ng-scope" ng-if="order.present_times > 0">
+                        <div class="form-group" ng-if="order.present_times > 0">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
-                                <p class="form-control-static ng-binding">{{Number(order.origin_times)+Number(order.present_times)}} 次</p>
+                                <p class="form-control-static">{{Number(order.origin_times)+Number(order.present_times)}} 次</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">课次单价:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.unit_price}}</p>
+                                <p class="form-control-static">{{order.unit_price}}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">总金额:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.order_amount}}元</p>
+                                <p class="form-control-static">{{order.order_amount}}元</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">已付款:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.order_amount-order.unpay_amount}}元</p>
+                                <p class="form-control-static">{{order.order_amount-order.unpay_amount}}元</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">欠费金额:</label>
                             <div class="col-xs-12 col-md-5">
-                                <p class="form-control-static ng-binding">{{order.unpay_amount}}元</p>
+                                <p class="form-control-static">{{order.unpay_amount}}元</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <p class="form-control-static ng-binding">{{order.order_remark}}</p>
+                                <p class="form-control-static">{{order.order_remark}}</p>
                             </div>
                         </div>
                         <div class="form-group">

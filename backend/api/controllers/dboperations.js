@@ -76,14 +76,14 @@ function changeModelId(model) {
         if (typeof item == 'string') {
             if (item.indexOf('_id') >= 0) {
                 try {
-                    console.log('-----', item, model[item],typeof model[item])
+                    console.log('-----', item, model[item], typeof model[item])
                     if (typeof model[item] === 'object') {
                         let iditem = model[item]
                         for (var idindex in iditem) {
                             if (checkId(iditem[idindex])) {
                                 let monkid = ObjectID(iditem[idindex])
                                 iditem[idindex] = monkid
-                                console.log('-----', iditem[idindex],monkid)
+                                console.log('-----', iditem[idindex], monkid)
                             }
                         }
 
@@ -178,7 +178,6 @@ module.exports.all = function* all(name, next) {
                     } else {
                         findObj[key] = value
                     }
-
                 }
             }
         } catch (e) {

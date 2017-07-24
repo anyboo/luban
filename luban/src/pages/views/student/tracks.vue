@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div class="ng-scope">
-                <div class=" wrapper panel panel-default bg-white ng-scope">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div >
+                <div class=" wrapper panel panel-default bg-white">
                     <div class="row no-gutter ">
                         <div class="col-xs-12 col-md-4 m-t">
                             <el-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
@@ -36,14 +36,14 @@
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </template>
-                                    <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
-                                        <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
+                                    <a  @click="handleRouter($event,scope.row.student)">
+                                        <span ></span>{{ getLookUp(scope.row.student,'student_name') }}
                                     </a>
                                 </template>
                             </el-table-column>
                             <el-table-column width="100" prop="data" label="状态" class="widthes">
                                 <template scope="scope">
-                                    <span class="label bg-success ng-scope pull" width="100">已报读</span>
+                                    <span class="label bg-success pull" width="100">已报读</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="沟通内容">

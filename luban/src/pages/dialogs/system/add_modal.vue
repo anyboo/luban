@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div page-controller="branch_add" class="ng-scope">
+            <div page-controller="branch_add" >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     <h3 class="modal-title"><i class="icon-plus"></i> {{title}}新校区</h3></div>

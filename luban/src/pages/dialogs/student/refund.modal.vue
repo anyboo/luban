@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="ng-scope" :class="{result:getPay}">
+            <div  :class="{result:getPay}">
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,25 +9,25 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-calendar"></i>学员{{student.student_name}}
-                        <span class="label bg-info ng-binding"></span>订单缴/退／清费
+                        <span class="label bg-info"></span>订单缴/退／清费
                     </h3>
                 </div>
                 <div class="modal-content">
                     <lb-buttongroup :group-data="localdata.view_mode" v-model="localdata.form.view_mode" @input="handleSearch"></lb-buttongroup>
-                    <ul class="list-group ng-scope" v-if="getTablesData().length>0">
+                    <ul class="list-group" v-if="getTablesData().length>0">
                         <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope">
-                                <span class="pull-right label bg-info ng-binding">￥{{Number(item.order_amount)-Number(item.back_amount)}}</span>
-                                <h4 class="list-group-item-heading ng-binding">{{item.body}}</h4>
-                                <p class="list-group-item-text ng-binding">
+                            <li class="list-group-item">
+                                <span class="pull-right label bg-info">￥{{Number(item.order_amount)-Number(item.back_amount)}}</span>
+                                <h4 class="list-group-item-heading">{{item.body}}</h4>
+                                <p class="list-group-item-text">
                                     订单编号:{{item.order_no}}
-                                    <span class="ng-binding">
+                                    <span >
                                         <span class="badge bg-danger" v-if="item.pay_status==0">未付款</span>
                                         <span class="badge bg-warning" v-if="item.pay_status==1">部分付款</span>
                                         <span class="badge bg-green" v-if="item.pay_status==2">支付完成</span>
                                     </span>
-                                    <span class="ng-binding ng-scope">已付款:{{item.order_amount-item.unpay_amount}}元</span>
-                                    <span class="label bg-danger ng-binding ng-scope">退款:{{item.back_amount}}元</span>
+                                    <span >已付款:{{item.order_amount-item.unpay_amount}}元</span>
+                                    <span class="label bg-danger">退款:{{item.back_amount}}元</span>
                                 </p>
                                 <p class="m-t-xs">
                                     <a @click="handleShowDialog('lb-refunds',item)" class="btn btn-xs btn-default ng-click-active" v-if="item.refund_status != '2'&&item.pay_status != '0'||item.back_amount!=item.order_amount-item.unpay_amount">
@@ -42,16 +42,16 @@
                                 </p>
                             </li>
                         </template>
-                        <div class="row ng-scope wrapper">
+                        <div class="row wrapper">
                             <el-pagination class="pull-right el-pagination  el-pages" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>
                     </ul>
-                    <div class="wrapper ng-scope" v-else>
+                    <div class="wrapper" v-else>
                         <p class="text-center text-2x">
                             <i class="fa fa-frown-o"></i> 没有相关订单!</p>
                     </div>
-                    <div class="modal-footer text-center ng-scope ">
+                    <div class="modal-footer text-center ">
                         <button class="btn btn-primary ng-click-active" @click="lbClosedialog($event)">确定</button>
                     </div>
                 </div>

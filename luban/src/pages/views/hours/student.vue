@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_hours">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="student_hours" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="student_hours">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -29,7 +29,7 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <a class="link ng-binding">{{scope.row.student_name}}</a>
+                                    <a class="link">{{scope.row.student_name}}</a>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="上课时间">
@@ -37,7 +37,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="时长">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">1.00小时</span>
+                                    <span class="badge bg-success">1.00小时</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型">
@@ -45,12 +45,12 @@
                             </el-table-column>
                             <el-table-column prop="data" label="班级/课程">
                                 <template scope="scope">
-                                    <span class="label bg-info ng-binding">古典吉他初级</span>
+                                    <span class="label bg-info">古典吉他初级</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="课程金额">
                                 <template scope="scope">
-                                    <span class="label bg-danger ng-binding ng-scope" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
+                                    <span class="label bg-danger" ng-if="item.pay_status == 0" tooltip="未缴费">￥100.00</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="授课老师">

@@ -1,16 +1,16 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
-                <h3 class="modal-title ng-binding">
+                <h3 class="modal-title">
                     <i class="fa fa-flag"></i>请选择科目班级登记考勤
                 </h3>
             </div>
-            <div class="modal-body ng-scope">
+            <div class="modal-body">
     
                 <div class="row">
                     <div class="col-xs-12 col-md-7">
@@ -31,8 +31,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding"  disabled="disabled">确定</button>
+            <div class="modal-footer text-center">
+                <button class="btn btn-primary"  disabled="disabled">确定</button>
             </div>
         </div>
     </div>

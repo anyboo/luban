@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div ui-view class="ng-scope wrapper ">
-            <div class="wrapper-xs ng-scope">
+        <div ui-view class="wrapper ">
+            <div class="wrapper-xs">
                 <div class="panel panel-default">
-                    <div class="panel-body ng-scope" ui-view="">
+                    <div class="panel-body" ui-view="">
                         <div class="row no-gutter " style="margin-top:-14px;">
                             <div class="col-xs-12 col-md-4 m-t">
                                 <el-date-picker ref="picker" v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
@@ -32,8 +32,8 @@
                             <el-table :data="getTablesData()" stripe>
                                 <el-table-column width="100" prop="data" label="学员" class="widthes">
                                     <template scope="scope">
-                                        <a class="ng-binding" @click="handleRouter($event,scope.row.student)">
-                                            <span class="ng-binding"></span>{{ getLookUp(scope.row.student,'student_name') }}
+                                        <a  @click="handleRouter($event,scope.row.student)">
+                                            <span ></span>{{ getLookUp(scope.row.student,'student_name') }}
                                         </a>
                                     </template>
                                 </el-table-column>

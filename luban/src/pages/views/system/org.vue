@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default ng-scope">
+        <div class="panel panel-default">
             <div class="panel-heading ">
                 <template v-if="getActionOption('systememorgsavestudent')">
                     <a class="btn btn-sm btn-primary pull-right heights" @click="handleShowDialog('lb-addmodal')">

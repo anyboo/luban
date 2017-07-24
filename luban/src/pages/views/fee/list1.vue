@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="pay_history" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id,is_pay:1}}" xo-rest-ctrl="pay_history">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -30,7 +30,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{getToFixed(scope.row.money_pay_amount)}}</span>
+                                    <span class="badge bg-success">{{getToFixed(scope.row.money_pay_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
@@ -42,16 +42,16 @@
                             <!--
                             <el-table-column prop="data" label="收据">
                                 <template scope="scope">
-                                    <div class="inline ng-scope" ng-if="item.orb_id == '0'">
-                                        <span class="m-l-xs ng-scope" ng-if="item.bill_no == ''">收据未开</span>
+                                    <div class="inline" ng-if="item.orb_id == '0'">
+                                        <span class="m-l-xs" ng-if="item.bill_no == ''">收据未开</span>
                                     </div>
                                 </template>
                             </el-table-column>
                             -->
                             <el-table-column prop="data" label="课程/班级">
                                 <template scope="scope">
-                                    <span class="ng-scope">
-                                        <a class="link ng-binding">{{ getLookUp(scope.row.classes,'class_name') }}</a>
+                                    <span >
+                                        <a class="link">{{ getLookUp(scope.row.classes,'class_name') }}</a>
                                     </span>
                                 </template>
                             </el-table-column>

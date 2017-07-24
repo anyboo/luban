@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="attendances" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="attendances">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t" :class="{result:getdialog}">
                             <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
@@ -32,7 +32,7 @@
                         <el-table :data="getTablesData()" stripe>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <span ng-bind-html="item.student.sex|sex:0" class="ng-binding">
+                                    <span ng-bind-html="item.student.sex|sex:0" >
                                         <i class="fa" :class="{'fa-female':getLookUp(scope.row.student,'sex')=='2','fa-male':getLookUp(scope.row.student,'sex')=='1'}"></i>
                                     </span>{{ getLookUp(scope.row.student,'student_name') }}
                                 </template>

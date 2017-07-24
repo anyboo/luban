@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -24,12 +24,12 @@
                                 </div>
                             </div>
                             <div id="fct-arrearages" style="display:none;">
-                                <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
+                                <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
                                     <input type="hidden" name="resource" value="arrearages">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" >
                                 </form>
                             </div>
                         </div>
@@ -57,12 +57,12 @@
                             </el-table-column>
                             <el-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger ng-binding">{{ getToFixed(scope.row.unpay_amount)}}  </span>
+                                    <span class="badge bg-danger">{{ getToFixed(scope.row.unpay_amount)}}  </span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="总金额">
                                 <template scope="scope">
-                                    <span class="badge bg-info ng-binding">{{ getToFixed(scope.row.order_amount)}}</span>
+                                    <span class="badge bg-info">{{ getToFixed(scope.row.order_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">

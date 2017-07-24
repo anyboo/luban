@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="ng-scope">
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="fa fa-user"></i>重置
-                        <span class="badge bg-info ng-binding">{{name}}</span>的账号密码
+                        <span class="badge bg-info">{{name}}</span>的账号密码
                     </h3>
                 </div>
                 <div class="modal-body">

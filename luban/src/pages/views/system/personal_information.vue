@@ -4,13 +4,13 @@
             <span class="bar"></span>
         </div>
         <a href="" class="off-screen-toggle hide"></a>
-        <div class="app-content-body fade-in-up ng-scope" ui-view="">
-            <div class="bg-white ng-scope">
+        <div class="app-content-body fade-in-up" ui-view="">
+            <div class="bg-white">
                 <div class="wrapper-md m-t" ng-switch="$action" v-if="status==0">
-                    <div ng-switch-when="profile" class="ng-scope">
+                    <div ng-switch-when="profile" >
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>登录账号</dt>
-                            <dd class="ng-binding">{{$store.state.system.tel}}</dd>
+                            <dd >{{$store.state.system.tel}}</dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>账号密码</dt>
@@ -23,7 +23,7 @@
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>真实姓名</dt>
-                            <dd class="ng-binding" style="height:31px;">{{$store.state.system.name}}
+                            <dd  style="height:31px;">{{$store.state.system.name}}
                                 <template v-if="getActionOption('systempersonaname')">
                                     <a class="link pull-right" @click="status=1">修改姓名</a>
                                 </template>
@@ -32,7 +32,7 @@
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>生日</dt>
-                            <dd class="ng-binding" style="height:31px;">{{ getDateFormat($store.state.system.birth)}}
+                            <dd  style="height:31px;">{{ getDateFormat($store.state.system.birth)}}
                                 <template v-if="getActionOption( 'systempersonabirthd')">
                                     <a class="link pull-right" @click="status=2">设置生日</a>
                                 </template>
@@ -60,7 +60,7 @@
                     </el-form>
                 </div>
                 <div class="wrapper-md m-t" v-if="status==1">
-                    <form name="edit_name_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope ng-valid-required ng-valid-parse" ng-switch-when="edit_name" novalidate="">
+                    <form name="edit_name_form" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-required ng-valid-parse" ng-switch-when="edit_name" novalidate="">
                         <h4 class="b-b m-b padder-v" style="text-align:center">修改姓名</h4>
                          <el-form :model="localdata.form" :rules="rules" label-width="120px" ref="ruleForm" style="width:400px;margin: 0 auto;">
                             <el-form-item label="姓名" prop="name">
@@ -77,7 +77,7 @@
                     </form>
                 </div>
                 <div class="wrapper-md m-t" v-if="status==2">
-                    <form name="edit_birth_form" class="form-horizontal form-validation ng-pristine ng-valid ng-scope">
+                    <form name="edit_birth_form" class="form-horizontal form-validation ng-pristine ng-valid">
                         <h4 class="b-b m-b padder-v" style="text-align:center">修改生日</h4>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">生日:</label>

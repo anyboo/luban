@@ -2,10 +2,10 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="ng-scope">
+                <div >
                     <div class="modal-header">
                         <button type="button" @click="lbClosedialog($event)" class="close"><span>×</span><span class="sr-only">关闭</span></button>
-                        <h3 class="modal-title">字典<span class="label bg-info ng-binding">{{title}}</span>的字典项目</h3></div>
+                        <h3 class="modal-title">字典<span class="label bg-info">{{title}}</span>的字典项目</h3></div>
                     <div class="modal-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -19,8 +19,8 @@
                                 </thead>
                                 <tbody>
                                     <template v-for="(item, index) in getTablesData()">
-                                        <tr class="ng-scope">
-                                            <td class="ng-binding">{{index+1}}</td>
+                                        <tr >
+                                            <td >{{index+1}}</td>
                                             <td>
                                                 <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.text">
                                             </td>

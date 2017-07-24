@@ -1,7 +1,7 @@
 <template>
-    <div ui-view class="ng-scope wrapper">
-        <div class="wrapper-xs ng-scope">
-            <div class="panel panel-default ng-scope" :class="{result:getSelectStudentName}">
+    <div ui-view class="wrapper">
+        <div class="wrapper-xs">
+            <div class="panel panel-default" :class="{result:getSelectStudentName}">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-3 m-t">
                         <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>

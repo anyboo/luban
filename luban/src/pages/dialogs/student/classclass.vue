@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="modal-body ng-scope">
-            <div class="ng-scope">
-                <div class="ng-scope">
+        <div class="modal-body">
+            <div >
+                <div >
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
                             <h4 class="padder ">1.创建订单</h4>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">
-                                <span class="ng-scope">报名</span>课次:
+                                <span >报名</span>课次:
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
@@ -89,10 +89,10 @@
                                     <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid i-switch m-t-xs m-r" v-model="localdata.form.has_discount">
                                     <i></i>
                                 </label>
-                                <a class="btn btn-default btn-xs pull-right ng-scope" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
-                                    <span v-if="discount_caculator" class="ng-scope">关闭</span> 折扣计算器
+                                <a class="btn btn-default btn-xs pull-right" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
+                                    <span v-if="discount_caculator" >关闭</span> 折扣计算器
                                 </a>
-                                <div v-if="discount_caculator&&localdata.form.has_discount" class="ng-scope">
+                                <div v-if="discount_caculator&&localdata.form.has_discount" >
                                     <div class="input-group">
                                         <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
                                             </lb-numberinput>
@@ -102,7 +102,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_discount">
+                                <div class="input-group w m-t-xs" v-if="localdata.form.has_discount">
                                     <span class="input-group-addon">
                                         <i class="fa fa-minus"></i>
                                     </span>
@@ -119,7 +119,7 @@
                                     <input type="checkbox" @change="cacu_order_amount()" class="ng-pristine ng-untouched ng-valid " v-model="localdata.form.has_present">
                                     <i></i>
                                 </label>
-                                <div class="input-group w m-t-xs ng-scope" v-if="localdata.form.has_present">
+                                <div class="input-group w m-t-xs" v-if="localdata.form.has_present">
                                     <span class="input-group-addon">
                                         <i class="fa fa-plus"></i>
                                     </span>
@@ -150,7 +150,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ this.localdata.form.order_amount }}</span>
+                                    <span class="text-bold text-danger">{{ this.localdata.form.order_amount }}</span>
                                     <small>元</small>
                                 </p>
                             </div>
@@ -159,7 +159,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">总课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{ Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)}}</span>
+                                    <span class="text-bold text-danger">{{ Number(this.localdata.form.origin_times) + Number(this.localdata.form.present_times)}}</span>
                                     <small>次</small>
                                 </p>
                             </div>
@@ -167,7 +167,7 @@
                         <div class="row no-gutter b-t m-t">
                             <div class="col-xs-8">
                                 <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="this.localdata.form.origin_amount - this.localdata.form.discount_amount==0">
-                                    <i class="fa fa-save" ng-hide="saving"></i> 确定订单
+                                    <i class="fa fa-save"></i> 确定订单
                                 </button>
                             </div>
                             <div class="col-xs-4">

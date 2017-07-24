@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class="wrapper panel panel-default bg-white ng-scope">
+        <div class="wrapper panel panel-default bg-white">
             <div class="row">
                 <div class="col-xs-12 col-md-3 m-t " :class="{result:getSelectName}">
                     <div class="inline">

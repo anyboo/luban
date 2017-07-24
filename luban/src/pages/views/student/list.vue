@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class=" wrapper panel panel-default ng-scope">
+        <div class=" wrapper panel panel-default">
             <div class="row wrapper">
                 <div class="col-xs-12 col-md-4 m-t">
                     <div class="padder">
@@ -38,11 +38,11 @@
                 </div>
             </div>
             <div class=" list-student ">
-                <div class="row ng-scope" v-if="localdata.form.view_mode == 'image'">
+                <div class="row" v-if="localdata.form.view_mode == 'image'">
                     <template v-for="item in getTablesData()">
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b ng-scope">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 m-b">
                             <div class="bg-white b-a r-2x list-student-item box-shadow">
-                                <div class="face ng-scope">
+                                <div class="face">
                                     <a @click="handleRouter($event,item)">
                                         <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px; ">
                                             <img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height="">
@@ -50,19 +50,19 @@
                                     </a>
                                 </div>
                                 <div class="name m-t">
-                                    <a class="link ng-binding" @click="handleRouter($event,item)">
-                                        <span class="ng-binding">
+                                    <a class="link" @click="handleRouter($event,item)">
+                                        <span >
                                             <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
                                         </span>{{ item.student_name }}
-                                        <span v-if="item.nickname != ''" class="ng-binding ng-scope">{{ item.nickname }}</span>
+                                        <span v-if="item.nickname != ''" >{{ item.nickname }}</span>
                                     </a>
                                 </div>
                                 <div class="tel m-t">
                                     <i class="fa fa-phone"></i>
-                                    <span class="ng-binding">{{ item.first_tel }}</span>
+                                    <span >{{ item.first_tel }}</span>
                                     <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" class="pull-right">
                                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                            <i class="fa fa-cog ng-scope"></i>
+                                            <i class="fa fa-cog"></i>
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
                                     </lb-dropdown>
@@ -71,13 +71,13 @@
                         </div>
                     </template>
                 </div>
-                <div class="row ng-scope" v-if="localdata.form.view_mode == 'list'">
+                <div class="row" v-if="localdata.form.view_mode == 'list'">
                     <el-table :data="getTablesData()" stripe>
                         <el-table-column prop="data" label="操作">
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
+                                        <i class="fa fa-cog"></i>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
                                 </lb-dropdown>
@@ -85,22 +85,22 @@
                         </el-table-column>
                         <el-table-column prop="data" label="学员">
                             <template scope="scope">
-                                <a class="link ng-binding" @click="handleRouter($event,scope.row)">
-                                    <span class="ng-binding">
+                                <a class="link" @click="handleRouter($event,scope.row)">
+                                    <span >
                                         <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                     </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="联系电话">
                             <template scope="scope">
-                                <span class="ng-binding">{{ scope.row.first_tel }}</span>
+                                <span >{{ scope.row.first_tel }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="年龄">
                             <template scope="scope">
-                                <span class="ng-binding ng-scope">{{ fromNow(scope.row.birth) }}</span>
+                                <span >{{ fromNow(scope.row.birth) }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="住址">
@@ -113,7 +113,7 @@
                         </el-table-column>
                         <el-table-column prop="data" label="档案备注">
                             <template scope="scope">
-                                <p class="ng-binding">{{ scope.row.note }}</p>
+                                <p >{{ scope.row.note }}</p>
                             </template>
                         </el-table-column>
                     </el-table>

@@ -1,8 +1,8 @@
 <template>
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="wrapper ng-scope">
-                <p class="ng-binding">请设置学员 {{getStudentName }} 的意向程度</p>
+            <div class="wrapper">
+                <p >请设置学员 {{getStudentName }} 的意向程度</p>
                 <div class="w-sm">
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">

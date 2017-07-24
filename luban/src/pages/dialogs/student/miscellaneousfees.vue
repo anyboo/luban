@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="modal-body ng-scope">
-            <div ng-include="'tpl/app/student/order/'+$action+'.html'" class="ng-scope">
-                <div ng-controller="OrderCreateOtherCtrl" class="ng-scope">
+        <div class="modal-body">
+            <div ng-include="'tpl/app/student/order/'+$action+'.html'" >
+                <div ng-controller="OrderCreateOtherCtrl" >
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
                             <h4 class="padder">1.创建订单</h4>
@@ -45,7 +45,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">应缴金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <p class="form-control-static">
-                                    <span class="text-bold text-danger ng-binding">{{localdata.form.origin_amount }}</span>
+                                    <span class="text-bold text-danger">{{localdata.form.origin_amount }}</span>
                                     <small>元</small>
                                 </p>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="row no-gutter b-t m-t">
                             <div class="col-xs-8">
                                 <button type="button" class="btn btn-block btn-primary" @click="open()" :disabled="localdata.form.origin_amount==0">
-                                    <i class="fa fa-save" ng-hide="saving"></i>确定订单
+                                    <i class="fa fa-save"></i>确定订单
                                 </button>
                             </div>
                             <div class="col-xs-4">

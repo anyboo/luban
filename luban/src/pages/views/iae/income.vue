@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="bills" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="bills">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="bills" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="bills">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -25,14 +25,14 @@
                                 </div>
                             </div>
                             <div id="fct-bills" style="display:none;">
-                                <form name="export_form_bills" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid ng-scope">
+                                <form name="export_form_bills" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
                                     <input type="hidden" name="resource" value="bills">
-                                    <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="date_start" value="2017-04-01" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" class="ng-scope">
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" class="ng-scope">
+                                    <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="date_start" value="2017-04-01" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" >
                                 </form>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{getToFixed(scope.row.amount)}}</span>
+                                    <span class="badge bg-success">{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="付款方式">
@@ -61,14 +61,14 @@
                             </el-table-column>
                             <el-table-column prop="data" label="对账状态">
                                 <template scope="scope">
-                                    <span v-if="scope.row.check_status == '0'" class="badge bg-warning ng-scope">未对账</span>
-                                    <span v-if="scope.row.check_status == '1'" class="badge bg-success ng-scope">已对账</span>
+                                    <span v-if="scope.row.check_status == '0'" class="badge bg-warning">未对账</span>
+                                    <span v-if="scope.row.check_status == '1'" class="badge bg-success">已对账</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="操作">
                                 <template scope="scope">
                                     <a v-if="scope.row.check_status == '0'" class="btn btn-xs btn-default" @click="handleCommand(scope.row._id)">核对</a>
-                                    <span v-if="scope.row.check_status == '1'" class="info bg-success ng-scope">已核对</span>
+                                    <span v-if="scope.row.check_status == '1'" class="info bg-success">已核对</span>
                                 </template>
                             </el-table-column>
                         </el-table>

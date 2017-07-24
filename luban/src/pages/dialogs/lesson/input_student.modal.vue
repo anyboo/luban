@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div ng-controller="ClassInputStudentsCtrl" class="ng-scope">
+            <div ng-controller="ClassInputStudentsCtrl" >
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         为
-                        <span class="label bg-info ng-binding">11</span>批量报名
+                        <span class="label bg-info">11</span>批量报名
                     </h3>
                 </div>
                 <div class="modal-body">

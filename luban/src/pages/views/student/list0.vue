@@ -1,7 +1,7 @@
 <template>
-    <div class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div class="wrapper panel panel-default bg-white ng-scope">
+    <div class="wrapper ">
+        <div class="wrapper-xs">
+            <div class="wrapper panel panel-default bg-white">
                 <div class="row no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
                         <div class="inline">
@@ -29,8 +29,8 @@
                             <template scope="scope">
                                 <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog ng-scope"></i>
-                                        <span class="ng-scope">操作</span>
+                                        <i class="fa fa-cog"></i>
+                                        <span >操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
                                 </lb-dropdown>
@@ -38,11 +38,11 @@
                         </el-table-column>
                         <el-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
-                                <a class="link ng-binding" @click="handleRouter($event,scope.row)">
-                                    <span class="ng-binding">
+                                <a class="link" @click="handleRouter($event,scope.row)">
+                                    <span >
                                         <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                     </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" class="ng-binding ng-scope">{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
                         </el-table-column>
@@ -51,12 +51,12 @@
                         </el-table-column>
                         <el-table-column width="120" prop="data" label="学员归属">
                             <template scope="scope">
-                                <span class="label ng-scope" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
+                                <span class="label" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column width="100" prop="data" label="意向程度">
                             <template scope="scope">
-                                <span class="label ng-scope" :class="{'bg-info':scope.row.purpose!='0','bg-gray':scope.row.purpose=='0'}">{{ getButtongroupText(localdata.purpose,scope.row.purpose)}}</span>
+                                <span class="label" :class="{'bg-info':scope.row.purpose!='0','bg-gray':scope.row.purpose=='0'}">{{ getButtongroupText(localdata.purpose,scope.row.purpose)}}</span>
                             </template>
                         </el-table-column>
                         <el-table-column width="100" prop="data" label="来源渠道">
@@ -67,16 +67,16 @@
                         </el-table-column>
                         <el-table-column prop="data" label="档案备注">
                             <template scope="scope">
-                                <p ng-bind-html="item.note" class="ng-binding">{{scope.row.note}}</p>
+                                <p ng-bind-html="item.note" >{{scope.row.note}}</p>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="最后跟踪">
                             <template scope="scope">
-                                <div v-if="scope.row.inquiry && scope.row.inquiry.length > 0" class="ng-binding ng-scope">{{getDateFormat(getLookUp(scope.row.inquiry, 'track_time'))}}
-                                    <p class="text-muted ng-binding">{{getLookUp(scope.row.inquiry, 'detail')}}</p>
-                                    <p class="text-gray text-right ng-binding">{{getLookUp(scope.row.inquiry, 'op_name')}}</p>
+                                <div v-if="scope.row.inquiry && scope.row.inquiry.length > 0" >{{getDateFormat(getLookUp(scope.row.inquiry, 'track_time'))}}
+                                    <p class="text-muted">{{getLookUp(scope.row.inquiry, 'detail')}}</p>
+                                    <p class="text-gray text-right">{{getLookUp(scope.row.inquiry, 'op_name')}}</p>
                                 </div>
-                                <span v-else class="label bg-danger ng-scope">
+                                <span v-else class="label bg-danger">
                                     无跟踪记录
                                 </span>
                             </template>

@@ -1,6 +1,6 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
             <div class="panel panel-default">
                 <div class="row wrapper no-gutter">
                     <div class="col-xs-12 col-md-4 m-t">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 m-t">
-                        <div class="inline w-md m-l-xs ng-scope" ng-if="teacher_rest">
+                        <div class="inline w-md m-l-xs" ng-if="teacher_rest">
                         </div>
                         <template v-if="getActionOption('lessonsclasses')">
                             <a @click="lbShowdialog($event,'lb-newsclassmodal')" class="btn btn-primary pull-right">

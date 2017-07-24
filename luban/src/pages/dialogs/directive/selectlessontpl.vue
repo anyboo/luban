@@ -1,17 +1,17 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">关闭</span>
                 </button>
-                <h3 class="modal-title ng-binding">
+                <h3 class="modal-title">
                     <i class="fa fa-flag"></i>请选择课时包
                 </h3>
             </div>
-            <div class="modal-body ng-scope">
-                <div xo-rest="lessons" xo-rest-grid="{maxsize:5,params:vm.params}" loading-container=".list-group" loading-text="正在加载课程..." empty-text="没有符合条件的课程!" xo-rest-ctrl="select_lesson_tpl" class="ng-scope">
+            <div class="modal-body">
+                <div xo-rest="lessons" xo-rest-grid="{maxsize:5,params:vm.params}" loading-container=".list-group" loading-text="正在加载课程..." empty-text="没有符合条件的课程!" xo-rest-ctrl="select_lesson_tpl" >
                     <div class="row">
                         <div class="col-xs-12 col-md-7">
                             <div class="input-group w-full">
@@ -46,9 +46,9 @@
                     </div>
                     <ul class="list-group m-t">
                         <template v-for="item in getTablesData()">
-                            <li class="list-group-item ng-scope" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                <h4 class="list-group-item-heading ng-binding">{{item.lesson_name}}<span class="label bg-warning pull-right ng-binding ng-scope" ng-if="item.lesson_type == '1'">{{getButtongroupText(localdata.lesson_type,item.lesson_type)}}</span></h4>
-                                <p class="list-group-item-text text-muted ng-binding">课程编号:<span class="text-danger ng-binding">{{item.lesson_no}}</span>,课程售价:<span class="text-success ng-binding">{{item.price}}</span>,课程单价:8.00,总课次:123</p>
+                            <li class="list-group-item" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
+                                <h4 class="list-group-item-heading">{{item.lesson_name}}<span class="label bg-warning pull-right" ng-if="item.lesson_type == '1'">{{getButtongroupText(localdata.lesson_type,item.lesson_type)}}</span></h4>
+                                <p class="list-group-item-text text-muted">课程编号:<span class="text-danger">{{item.lesson_no}}</span>,课程售价:<span class="text-success">{{item.price}}</span>,课程单价:8.00,总课次:123</p>
                             </li>
                         </template>
                         <div class="grid-data-result">
@@ -62,8 +62,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" @click="handleSelectLesson">确定</button>
+            <div class="modal-footer text-center">
+                <button class="btn btn-primary" @click="handleSelectLesson">确定</button>
             </div>
         </div>
     </div>

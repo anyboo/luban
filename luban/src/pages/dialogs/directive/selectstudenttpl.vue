@@ -1,17 +1,17 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header ng-scope">
+            <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog($event)">
                     <span>×</span>
                     <span class="sr-only">关闭</span>
                 </button>
-                <h3 class="modal-title ng-binding">
+                <h3 class="modal-title">
                     <i class="fa fa-user"></i>请选择学员
                 </h3>
             </div>
-            <div class="modal-body ng-scope">
-                <div class="ng-scope">
+            <div class="modal-body">
+                <div >
                     <div class="row wrapper no-gutter bg-light">
                         <div class="col-xs-12">
                             <div class="input-group w-full">
@@ -43,11 +43,11 @@
                         </div>
                     </div>
                     <div class="wrapper list-student bg-light lter" v-if="localdata.form.view_mode == 'image'">
-                        <div class="row ng-scope text-center " >
+                        <div class="row text-center " >
                             <template v-for="item in getTablesData()">
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b ng-scope">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 m-b">
                                     <div class="b-a r-2x list-student-item box-shadow" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                        <div class="face ng-scope ">
+                                        <div class="face ">
                                             <a>
                                                 <div class="avatar-wrapper adres-css " style="border-radius:0; display:block; overflow:hidden;border-radius: 80px; width:80px; height:80px;">
                                                     <img :src="makeImage(item.student_name,80)" style="vertical-align:top;" width="100%" height="">
@@ -55,32 +55,32 @@
                                             </a>
                                         </div>
                                         <div class="name m-t">
-                                            <span class="ng-binding">
+                                            <span >
                                                 <i class="fa" :class="{'fa-female':item.sex=='0','fa-male':item.sex!='0'}"></i>
                                             </span>{{ item.student_name }}
                                         </div>
-                                        <div class="tel m-t"><span class="ng-binding">{{ item.nickname }}&nbsp;</span>
+                                        <div class="tel m-t"><span >{{ item.nickname }}&nbsp;</span>
                                         </div>
                                     </div>
                                 </div>
                             </template>
                         </div>
                     </div>
-                    <div class="table-responsive ng-scope " v-if="localdata.form.view_mode == 'list'">
+                    <div class="table-responsive " v-if="localdata.form.view_mode == 'list'">
                         <el-table :data="getTablesData()" stripe highlight-current-row ref="singleTable" @current-change="handleRowChange">
-                            <el-table-column width="30" prop="data" label class="ng-scope">
+                            <el-table-column width="30" prop="data" label >
                                 <template scope="scope">
                                     <input type="radio" name="selectid" :checked="getCheckRow(scope.row._id)">
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
                                 <template scope="scope">
-                                    <span class="ng-binding">{{ scope.row.student_name }}</span>
+                                    <span >{{ scope.row.student_name }}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="性别">
                                 <template scope="scope">
-                                    <span class="ng-binding"> {{ getButtongroupText(localdata.sex,scope.row.sex)}}</span>
+                                    <span > {{ getButtongroupText(localdata.sex,scope.row.sex)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="英文名">
@@ -98,8 +98,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer text-center ng-scope">
-                <button class="btn btn-primary ng-binding" @click="handleSelectStudent">确定</button>
+            <div class="modal-footer text-center">
+                <button class="btn btn-primary" @click="handleSelectStudent">确定</button>
             </div>
         </div>
     </div>

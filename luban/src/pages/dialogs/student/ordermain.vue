@@ -1,7 +1,7 @@
 <template>
-    <div class="modal-body ng-scope">
-        <div class="ng-scope">
-            <div class="row no-gutter ng-scope">
+    <div class="modal-body">
+        <div >
+            <div class="row no-gutter">
                 <div class="col-xs-4 text-center" @click="switchPage('lb-cc')">
                     <a class="block panel padder-v bg-warning item" style="cursor:pointer;
                     ">

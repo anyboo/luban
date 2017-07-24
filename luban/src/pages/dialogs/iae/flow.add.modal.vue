@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div page-controller="flow_add" class="ng-scope">
+            <div page-controller="flow_add" >
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -37,7 +37,7 @@
                                             <div class="form-group">
                                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属分类</label>
                                                 <div class="col-xs-12 col-sm-9 col-md-10">
-                                                    <div class="inline w-sm ng-scope" ng-if="fee.type == '0'">
+                                                    <div class="inline w-sm" ng-if="fee.type == '0'">
                                                         <select class="form-control ng-pristine ng-untouched ng-valid" ui-jq="chosen" ng-options="item.odi_id as item.text for item in $gv.dicts[8]" style="display: none;" v-model="localdata.form.odi_id">
                                                             <option value class>请选择</option>
                                                             <option value="0">日常支出</option>

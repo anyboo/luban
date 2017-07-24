@@ -1,8 +1,8 @@
 <template>
-    <div ui-view class="ng-scope wrapper ">
-        <div class="wrapper-xs ng-scope">
-            <div ui-view class="ng-scope">
-                <div class="panel panel-default ng-scope" xo-rest="refunds" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="refunds">
+    <div ui-view class="wrapper ">
+        <div class="wrapper-xs">
+            <div ui-view >
+                <div class="panel panel-default" xo-rest="refunds" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="refunds">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
@@ -32,7 +32,7 @@
                             </el-table-column>
                             <el-table-column prop="data" label="退款金额">
                                 <template scope="scope">
-                                    <span class="badge bg-success ng-binding">{{getToFixed(scope.row.amount)}}</span>
+                                    <span class="badge bg-success">{{getToFixed(scope.row.amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
