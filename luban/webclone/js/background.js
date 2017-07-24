@@ -1,4 +1,4 @@
-setTimeout(function () {
+setTimeout(function() {
     //console.log(document.all.length, document.styleSheets[0])
 
     //for (var i in document.styleSheets[0]) {
@@ -12,6 +12,7 @@ setTimeout(function () {
     var html = []
     console.log(all)
     let count = 0
+
     function getHtml(all, newhtml) {
         let onehtml = {}
         count++
