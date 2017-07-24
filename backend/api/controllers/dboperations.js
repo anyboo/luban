@@ -57,6 +57,11 @@ module.exports.login = function* login(next) {
             id: model[0]._id
         }
         account = model[0]
+        account.roles = null
+        delete account.roles
+        for (var item of model) {
+            account.roles.push(item.role)
+        }
         account.pwd = null
         delete account.pwd
         token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 /* 1 days */ })
