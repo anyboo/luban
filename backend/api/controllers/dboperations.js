@@ -61,7 +61,9 @@ module.exports.login = function* login(next) {
         delete account.roles
         account.roles = []
         for (var item of model) {
-            account.roles.push(item.role)
+            if (item.role.length>0){
+                account.roles.push(item.role[0])
+            }
         }
         account.pwd = null
         delete account.pwd

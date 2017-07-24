@@ -7,7 +7,7 @@
                         <template v-if="menuItem.menu">
                             <lb-menu navlevel="1" collapse="true">
                                 <template v-for="menuItem1 of menuItem.menu">
-                                    <lb-menu-item v-if="menuItem1.menuShow!=0" submenu="submenu-title" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
+                                    <lb-menu-item v-if="menushow(menuItem1)" submenu="submenu-title" :to="menuItem1.to" :menu-name="menuItem1.menuName" :menu-title="menuItem1.menuTitle" :menu-icon="menuItem1.menuIcon">
                                     </lb-menu-item>
                                 </template>
                             </lb-menu>
@@ -36,6 +36,9 @@ export default {
         'lb-menu': menu,
     },
     methods: {
+        menushow(menuItem1){
+            return menuItem1.menuShow!=0&&this.getRole(menuItem1.to)
+        },
         handleNodeClick(data) {
             
         },
