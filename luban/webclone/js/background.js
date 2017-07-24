@@ -1,4 +1,4 @@
-setTimeout(function() {
+setTimeout(function () {
     //console.log(document.all.length, document.styleSheets[0])
 
     //for (var i in document.styleSheets[0]) {
@@ -17,6 +17,7 @@ setTimeout(function() {
         let onehtml = {}
         count++
         onehtml.tagName = all.tagName
+        onehtml.id = all.id
         let attr = []
         for (let i = 0; i < all.attributes.length; i++) {
             let attrvalue = {}
