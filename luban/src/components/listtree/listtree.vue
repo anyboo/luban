@@ -1,6 +1,6 @@
 <template>
     <div class="angular-ui-tree">
-        <ul class="list-unstyled ng-pristine ng-untouched ng-valid angular-ui-tree-nodes">
+        <ul class="list-unstyled    angular-ui-tree-nodes">
             <template v-for="item in getTreeData">
                 <lb-listtree-item :tree-item="item">
                 </lb-listtree-item>

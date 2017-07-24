@@ -1,20 +1,20 @@
 <template>
-    <div ui-view class="wrapper ">
+    <div ui-view class="wrapper">
         <div class="wrapper-xs">
             <div ui-view >
                 <div class="panel panel-default" xo-rest="expenses" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="expenses">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="   ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                                 <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
+                                <input type="text" id="ctl_date_end" class="  " style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
                             <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                             <div id="fct-expenses" style="display:none;">
-                                <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
+                                <form name="export_form_expenses" action="/api/export" method="post" target="_blank" class="">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
                                     <input type="hidden" name="resource" value="expenses">
                                     <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" >
@@ -45,8 +45,8 @@
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

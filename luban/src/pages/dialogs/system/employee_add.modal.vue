@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div >
+            <div>
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -92,8 +92,8 @@ export default {
         var validateTel = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入手机号码'))
-            } else if (!(/^1\d{10}$/.test(value))){
-                callback(new Error('手机号码必须1开头并为11位!已输入'+value.length+'位。'))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须1开头并为11位!已输入' + value.length + '位。'))
             } else {
                 callback()
             }
@@ -124,6 +124,15 @@ export default {
     computed: {
         getroleData() {
             let role = this.$store.state.models.models.role.data
+            if ( this.title == '添加') {
+                for (var item of role) {
+                    if (item.defrole) {
+                        if (this.localdata.form.roles_id.indexOf(item._id) == -1){
+                            this.localdata.form.roles_id.push(item._id)
+                        }      
+                    }
+                }
+            }
             return role
         },
     },

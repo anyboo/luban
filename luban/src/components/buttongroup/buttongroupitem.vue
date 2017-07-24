@@ -1,5 +1,5 @@
 <template>
-    <label class="btn btn-default ng-pristine ng-untouched ng-valid" @click="handleClick" :class="{'active':active}">
+    <label class="btn btn-default" @click="handleClick" :class="{'active':active}">
         <i :class='iclass' v-if="iclass"></i>{{itext}}
     </label>
 </template>

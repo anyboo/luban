@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper ">
+    <div class="wrapper">
         <div class="wrapper-xs">
             <div class="wrapper panel panel-default bg-white">
                 <div class="row no-gutter">
@@ -12,7 +12,7 @@
                         <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
-                                <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
+                                <input type="text" :placeholder="getSelectStudentName" class="form-control" readonly="readonly">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handleSelectStudent">
                                         <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -85,8 +85,8 @@
                     <div class="wrapper" style="height:80px"></div>
                     <div class="grid-data-result"></div>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
+                <div class="panel-footer">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

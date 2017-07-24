@@ -17,7 +17,7 @@
                             <div class="input-group">
                                 <div class="input-group-btn">
                                     <el-dropdown menu-align="start" @command="handleCommand">
-                                        <lb-dropdown-button class="btn btn-default btn-sm ng-pristine ng-valid ng-touched">
+                                        <lb-dropdown-button class="btn btn-default btn-sm   ng-touched">
                                             {{localdata.search.search_value}}
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
@@ -28,7 +28,7 @@
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-untouched ng-valid" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
+                                <input type="text" class="input-sm form-control" placeholder="关键字" v-model.lazy="localdata.form.search_value" @change="handleSearch">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="button" @click="handleSearch">搜索</button>
                                 </span>
@@ -52,7 +52,7 @@
                     </template>
                 </ul>
                 <div class="panel-footer">
-                    <div class="row ">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

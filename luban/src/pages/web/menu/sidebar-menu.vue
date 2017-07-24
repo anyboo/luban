@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side ">
+    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
         <div class="sidebar-collapse menu-scroll" id="side-menu">
             <lb-menu>
                 <template v-for="menuItem of menuStore">

@@ -11,12 +11,12 @@
                             <h4 class="padder">2.缴费</h4>
                         </div>
                     </div>
-                    <form name="form1" class="form-horizontal ng-pristine ng-valid ng-valid-required" v-if="!order">
+                    <form name="form1" class="form-horizontal   -required" v-if="!order">
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费项目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="order_link_name">
+                                    <select class="form-control    -required" required v-model="order_link_name">
                                         <option value class>请选择</option>
                                         <option value="教材费">教材费</option>
                                         <option value="赛事报名费">赛事报名费</option>
@@ -29,7 +29,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" required v-model="localdata.form.origin_amount">
+                                    <lb-numberinput type="number" class="form-control    -required" required v-model="localdata.form.origin_amount">
                                     </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">订单备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="order_remark" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
+                                <input type="text" class="form-control" name="order_remark" placeholder="如有备注请输入" v-model="localdata.form.order_remark">
                             </div>
                         </div>
                         <div class="form-group">

@@ -1,14 +1,14 @@
 <template>
-    <div ui-view class="wrapper ">
+    <div ui-view class="wrapper">
         <div class="wrapper-xs">
             <div ui-view >
                 <div class="panel panel-default" xo-rest="bills" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="bills">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
                             <div class="inline">
-                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="ng-pristine ng-untouched ng-valid ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
+                                <input type="text" id="ctl_date_start" range-picker="daterange" pp-end="#ctl_date_end" class="   ng-isolate-scope" style="display: none;" v-model="localdata.form.date_start">
                                 <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
-                                <input type="text" id="ctl_date_end" class="ng-pristine ng-untouched ng-valid" style="display: none;" v-model="localdata.form.date_end">
+                                <input type="text" id="ctl_date_end" class="  " style="display: none;" v-model="localdata.form.date_end">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-8 m-t">
@@ -16,7 +16,7 @@
                             <lb-buttongroup :group-data="localdata.check_status" v-model="localdata.form.check_status" @input="handleSearch"></lb-buttongroup>
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
+                                    <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="localdata.form.param_student_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                             <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div id="fct-bills" style="display:none;">
-                                <form name="export_form_bills" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
+                                <form name="export_form_bills" action="/api/export" method="post" target="_blank" class="">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="3fcd68790fbf79751a57ca8fbda8b037">
                                     <input type="hidden" name="resource" value="bills">
                                     <input type="hidden" name="date_end" value="2017-05-12" ng-repeat="(key,value) in params" >
@@ -74,8 +74,8 @@
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

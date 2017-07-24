@@ -1,9 +1,9 @@
 <template>
-    <div class="wrapper ">
+    <div class="wrapper">
         <div class="wrapper-xs">
             <div class="wrapper panel panel-default bg-white">
                 <div class="row no-gutter">
-                    <div class="col-xs-12 ">
+                    <div class="col-xs-12">
                         <lb-buttongroup :group-data="localdata.lesson_type" v-model="localdata.form.lesson_type"></lb-buttongroup>
                     </div>
                 </div>
@@ -12,7 +12,7 @@
                         <div class="col-xs-12">
                             <div class="inline w-sm va-m m-l-xs">
                                 <div class="input-group">
-                                    <input type="text" placeholder="学员" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.student_name">
+                                    <input type="text" placeholder="学员" class="form-control" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
                                             <i class="icon-user"></i>
@@ -33,7 +33,7 @@
                                 <i class="glyphicon glyphicon-export"></i>导出
                             </button>
                             <div id="fct-class_students" style="display:none;">
-                                <form name="export_form_class_students" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
+                                <form name="export_form_class_students" action="/api/export" method="post" target="_blank" class="">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="30bed37d3e9766e5dc6b3b2b3ee823e0">
                                     <input type="hidden" name="resource" value="class_students">
                                     <input type="hidden" name="ob_id" value="11158" ng-repeat="(key,value) in params" >
@@ -106,8 +106,8 @@
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
-                    <div class="panel-footer ">
-                        <div class="row ">
+                    <div class="panel-footer">
+                        <div class="row">
                             <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                             </el-pagination>
                         </div>

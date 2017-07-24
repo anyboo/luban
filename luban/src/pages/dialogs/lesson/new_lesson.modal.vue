@@ -84,7 +84,7 @@
                         <el-collapse-item title="内容" name="3">
                             <el-form-item label="授课次数" v-if="localdata.form.price_model == '0'">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" v-model="localdata.form.inc_times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-parse" @change="changeTimeInc">
+                                    <lb-numberinput type="number" v-model="localdata.form.inc_times" class="form-control    -pattern -parse" @change="changeTimeInc">
                                     </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
@@ -106,7 +106,7 @@
                                                 </el-dropdown-menu>
                                             </el-dropdown>
                                         </div>
-                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.unit_hours" @change="changeTimeInc">
+                                        <lb-numberinput type="number" class="form-control    -pattern" v-model="localdata.form.unit_hours" @change="changeTimeInc">
                                         </lb-numberinput>
                                         <span class="input-group-addon">小时</span>
                                     </div>
@@ -115,7 +115,7 @@
                             <el-form-item label="课程总时长:">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern" v-model="localdata.form.inc_hours">
+                                        <lb-numberinput type="number" class="form-control    -pattern" v-model="localdata.form.inc_hours">
                                         </lb-numberinput>
                                         <span class="input-group-addon">小时</span>
                                     </div>

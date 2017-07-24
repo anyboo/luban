@@ -13,7 +13,7 @@
                                                                                -->
                         <div class="inline w-sm va-m m-l-xs">
                             <div class="input-group">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" :placeholder="localdata.form.student_name">
+                                <input type="text" class="form-control" readonly="readonly" :placeholder="localdata.form.student_name">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handSelectStudent(false)">
                                         <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -59,8 +59,8 @@
                         </el-table-column>
                     </el-table>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
+                <div class="panel-footer">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

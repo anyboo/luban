@@ -8,12 +8,12 @@
                 <span v-if="$store.state.system.name.length>0" >{{$store.state.system.name}}</span>
             </p>
             <div class="input-group" v-if="$store.state.system.name.length==0">
-                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border ng-pristine ng-untouched ng-valid" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
-                <span class="input-group-btn "></span>
+                <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
+                <span class="input-group-btn"></span>
             </div>
             <br>
             <div class="input-group">
-                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border ng-pristine ng-untouched ng-valid" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
+                <input type="password" v-on:keyup.enter="login" v-model="localdata.form.pwd" class="form-control text-sm btn-rounded no-border" placeholder="请输入密码" style="   border-top-left-radius : 50px !important;border-bottom-left-radius: 50px !important;">
                 <span class="input-group-btn circles">
                     <a @click="login" class="btn btn-success btn-rounded no-border" style="height:34px ;  border-top-left-radius : 0px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 0px !important;">
                         <i class="fa fa-arrow-right"></i>
@@ -54,6 +54,7 @@ export default {
             let account = { user: this.localdata.form.user, pwd: this.localdata.form.pwd }
             vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                 if (data.code == 0) {
+                    console.log(data.account)
                     this.$store.commit('user', data.account)
                     this.$router.push('/web')
                 } else {

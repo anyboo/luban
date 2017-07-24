@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <form name="form1" class="form form-horizontal form-validation ng-pristine ng-invalid ng-invalid-required ng-valid-pattern">
+        <form name="form1" class="form form-horizontal form-validation  ng-invalid ng-invalid-required -pattern">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-user"></i>学员档案录入
@@ -17,7 +17,7 @@
                             </label>
                             <div class="col-xs-12 col-md-10">
                                 <div class="inline va-m w-sm">
-                                    <input type="text" name="student_name" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
+                                    <input type="text" name="student_name" class="form-control   ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
                                 </div>
                                 <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
                                 <div class="error" v-if="localdata.validator.fields.student_name.errorStatus">
@@ -31,10 +31,10 @@
                             </label>
                             <div class="col-xs-12 col-md-10">
                                 <div class="inline va-m w-sm">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.first_tel.errorStatus}" placeholder="输入手机号" v-model.trim.lazy="localdata.form.first_tel" @change="validate('first_tel')">
+                                    <input type="text" class="form-control   ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.first_tel.errorStatus}" placeholder="输入手机号" v-model.trim.lazy="localdata.form.first_tel" @change="validate('first_tel')">
                                 </div>
                                 <div class="inline va-m w-xs m-l-xs">
-                                    <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.first_rel_rel">
+                                    <select class="form-control" v-model="localdata.form.first_rel_rel">
                                         <option value selected>关系</option>
                                         <option value="0">本人</option>
                                         <option value="1">爸爸</option>
@@ -42,17 +42,17 @@
                                     </select>
                                 </div>
                                 <div class="inline va-m w-xs m-l-xs" v-if="localdata.form.first_rel_rel!='0'">
-                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="localdata.form.first_rel_name">
+                                    <input type="text" class="form-control" placeholder="姓/名" v-model="localdata.form.first_rel_name">
                                 </div>
                                 <div class="error" v-if="localdata.validator.fields.first_tel.errorStatus">
                                     <span class="text-warning">手机号必须填写且为11位</span>
                                 </div>
                                 <div class="contact-list m-t-xs" v-for="item,index in localdata.form.relations">
                                     <div class="inline va-m w-sm">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="输入手机号" v-model="item.tel">
+                                        <input type="text" class="form-control" placeholder="输入手机号" v-model="item.tel">
                                     </div>
                                     <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control ng-pristine ng-untouched ng-valid" v-model="item.relation">
+                                        <select class="form-control" v-model="item.relation">
                                             <option value selected>关系</option>
                                             <option value="0">本人</option>
                                             <option value="1">爸爸</option>
@@ -60,7 +60,7 @@
                                         </select>
                                     </div>
                                     <div class="inline va-m w-xs m-l-xs" v-if="item.relation!='0'">
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="姓/名" v-model="item.name">
+                                        <input type="text" class="form-control" placeholder="姓/名" v-model="item.name">
                                     </div>
                                     <div class="inline va-m m-l-xs">
                                         <a @click="localdata.form.relations.splice(index, 1)">
@@ -96,7 +96,7 @@
                                 <label class="col-xs-12 col-md-2 control-label">昵称:</label>
                                 <div class="col-xs-12 col-md-10">
                                     <div class="inline w-sm" >
-                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="小名或英文名" v-model="localdata.form.nickname">
+                                        <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname">
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                 <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="inline w-lg">
-                                        <input type="text" name="home_address" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.home_address">
+                                        <input type="text" name="home_address" class="form-control" v-model="localdata.form.home_address">
                                     </div>
                                 </div>
                             </div>
@@ -120,10 +120,10 @@
                                 <label class="control-label col-md-2 col-xs-12">就读学校:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="inline va-m w" ng-if="have_field('school')">
-                                        <input type="text" name="school" class="form-control ng-pristine ng-untouched ng-valid" placeholder="学校" v-model="localdata.form.school">
+                                        <input type="text" name="school" class="form-control" placeholder="学校" v-model="localdata.form.school">
                                     </div>
                                     <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.grade">
+                                        <select class="form-control" v-model="localdata.form.grade">
                                             <option value class>年级</option>
                                             <option value="0">不确定</option>
                                             <option value="1">一年级</option>
@@ -141,7 +141,7 @@
                                         </select>
                                     </div>
                                     <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.class">
+                                        <select class="form-control" v-model="localdata.form.class">
                                             <option value class>班级</option>
                                             <option value="0">1</option>
                                             <option value="1">2</option>
@@ -165,7 +165,7 @@
                                 <label class="control-label col-md-2 col-xs-12">备注:</label>
                                 <div class="col-md-10 col-xs-12">
                                     <div class="inline w-lg">
-                                        <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control ng-pristine ng-untouched ng-valid"></textarea>
+                                        <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>

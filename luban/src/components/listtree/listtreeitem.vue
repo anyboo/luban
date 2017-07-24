@@ -5,7 +5,7 @@
                 <a class="btn btn-default btn-xs" @click="collapsed=!collapsed">
                     <i class="fa fa-minus-square-o" :class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                 </a>
-                <input class="va-m ng-pristine ng-valid ng-touched" @blur='handleblur' type="text" v-model="treeItem.name" @input="handleChange">
+                <input class="va-m   ng-touched" @blur='handleblur' type="text" v-model="treeItem.name" @input="handleChange">
                 <a class="btn btn-primary btn-xs m-l-xs" data-nodrag="" @click="save_cate" v-if="change" tooltip="保存">
                     <i class="fa fa-check" ng-show="!node._saving"></i>
                 </a>
@@ -17,7 +17,7 @@
                 </a>
             </div>
         </div>
-        <ul class="list-unstyled ng-pristine ng-untouched ng-valid angular-ui-tree-nodes" :class="{hidden: collapsed}">
+        <ul class="list-unstyled    angular-ui-tree-nodes" :class="{hidden: collapsed}">
             <template v-for="item in getTreeData">
                 <lb-listtree-item :tree-item="item">
                 </lb-listtree-item>

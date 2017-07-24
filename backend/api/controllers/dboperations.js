@@ -25,11 +25,28 @@ module.exports.login = function* login(next) {
     console.log(user)
     var db = yield MongoClient.connect(dbstr)
     let table = db.collection('employee')
-    var model = yield table.find({
-        'pwd': user.pwd,
-        'tel': user.user,
-        'lock': false
-    }).toArray()
+    let options = []
+    options.push({
+        '$match': {
+            'pwd': user.pwd,
+            'tel': user.user,
+            'lock': false
+        }
+    })
+    options.push({
+        '$unwind': '$roles_id'
+    })
+    options.push({
+        '$lookup': {
+            'localField': 'roles_id',
+            'from': 'role',
+            'foreignField': '_id',
+            'as': 'role'
+        }
+    })
+    let cursor = table.aggregate(options)
+    let model = yield cursor.toArray()
+
     var token = ''
     var code = -1
     var message = '登录失败'

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div ui-view class="wrapper ">
+        <div ui-view class="wrapper">
             <div class="wrapper-xs">
                 <div class="panel panel-default">
                     <div class="panel-body" ui-view="">
@@ -12,7 +12,7 @@
                                 <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                                 <div class="inline w-sm va-m m-l-xs">
                                     <div class="input-group">
-                                        <input type="text" :placeholder="getSelectStudentName" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly">
+                                        <input type="text" :placeholder="getSelectStudentName" class="form-control" readonly="readonly">
                                         <span class="input-group-btn">
                                 <button class="btn btn-default" @click="handSelectStudent(false)">
                                   <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
@@ -57,8 +57,8 @@
                                     <template scope="scope"><a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details',scope.row)">查看详情</a> <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a></template>
                                 </el-table-column>
                             </el-table>
-                            <div class="panel-footer ">
-                                <div class="row ">
+                            <div class="panel-footer">
+                                <div class="row">
                                     <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                                     </el-pagination>
                                 </div>

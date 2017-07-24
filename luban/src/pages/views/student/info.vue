@@ -29,7 +29,7 @@
                             <div class="text-center clear">
                                 <div class="face" style="width:120px;margin:0 auto">
                                     <a @click="handleShowDialog('lb-editphotomodal',student)">
-                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px; ">
+                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
                                             <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
                                         </div>
                                     </a>

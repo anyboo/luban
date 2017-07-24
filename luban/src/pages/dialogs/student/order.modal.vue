@@ -10,7 +10,7 @@
                     </button>
                     <h3 class="modal-title" >
                         <i class="fa fa-shopping-cart"></i>学员
-                        <span class="label ">{{localdata.form.student_name }}</span>报名&缴费
+                        <span class="label">{{localdata.form.student_name }}</span>报名&缴费
                     </h3>
                 </div>
                 <component v-bind:is="currentView"></component>

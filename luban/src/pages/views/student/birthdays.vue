@@ -44,8 +44,8 @@
                     </el-table>
                     <div class="grid-data-result"></div>
                 </div>
-                <div class="panel-footer ">
-                    <div class="row ">
+                <div class="panel-footer">
+                    <div class="row">
                         <el-pagination class="pull-right" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
                         </el-pagination>
                     </div>

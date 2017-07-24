@@ -1,5 +1,5 @@
 <template>
-    <div class="=wrapper ">
+    <div class="=wrapper">
         <div class="wrapper-xs">
             <div class="wrapper panel panel-default bg-white">
                 <div class="panel panel-default" style="margin-top:14px;">

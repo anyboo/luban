@@ -38,7 +38,7 @@
                         </ul>
                     </div>
                     <div class="m-t" v-if="step==2">
-                        <form name="form1" class="form-horizontal for-validation ng-valid ng-dirty ng-valid-parse" novalidate="">
+                        <form name="form1" class="form-horizontal for-validation  ng-dirty -parse" novalidate="">
                             <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">学员:</label>
                                 <div class="col-xs-12 col-md-5">
@@ -97,7 +97,7 @@
                                 <label class="control-label col-xs-12 col-md-2">退款金额:</label>
                                 <div class="col-xs-12 col-md-3">
                                     <div class="input-group">
-                                        <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount">
+                                        <lb-numberinput type="number" class="form-control" v-model="localdata.form.amount">
                                         </lb-numberinput>
                                         <span class="input-group-addon">元</span>
                                     </div>
@@ -129,7 +129,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-minus"></i>
                                         </span>
-                                        <lb-numberinput type="number" @model="localdata.form.times" class="form-control ng-pristine ng-untouched ng-valid">
+                                        <lb-numberinput type="number" @model="localdata.form.times" class="form-control">
                                         </lb-numberinput>
                                         <span class="input-group-addon">次</span>
                                     </div>
@@ -138,7 +138,7 @@
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">退款备注:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-6">
-                                    <input type="text" @model="localdata.form.note" class="form-control ng-pristine ng-untouched ng-valid">
+                                    <input type="text" @model="localdata.form.note" class="form-control">
                                 </div>
                             </div>
                         </form>

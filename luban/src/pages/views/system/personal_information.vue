@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper ">
+    <div class="wrapper">
         <div class="butterbar hide">
             <span class="bar"></span>
         </div>
@@ -60,7 +60,7 @@
                     </el-form>
                 </div>
                 <div class="wrapper-md m-t" v-if="status==1">
-                    <form name="edit_name_form" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-required ng-valid-parse" ng-switch-when="edit_name" novalidate="">
+                    <form name="edit_name_form" class="form-horizontal form-validation   -required -parse" ng-switch-when="edit_name" novalidate="">
                         <h4 class="b-b m-b padder-v" style="text-align:center">修改姓名</h4>
                          <el-form :model="localdata.form" :rules="rules" label-width="120px" ref="ruleForm" style="width:400px;margin: 0 auto;">
                             <el-form-item label="姓名" prop="name">
@@ -77,7 +77,7 @@
                     </form>
                 </div>
                 <div class="wrapper-md m-t" v-if="status==2">
-                    <form name="edit_birth_form" class="form-horizontal form-validation ng-pristine ng-valid">
+                    <form name="edit_birth_form" class="form-horizontal form-validation ">
                         <h4 class="b-b m-b padder-v" style="text-align:center">修改生日</h4>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">生日:</label>

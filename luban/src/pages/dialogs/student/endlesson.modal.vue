@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="m-t" ng-if="step==2">
-                        <form name="form1" class="form-horizontal ng-pristine ng-valid">
+                        <form name="form1" class="form-horizontal ">
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">结课课程:</label>
                                 <div class="col-xs-12 col-sm-9 col-md-10">

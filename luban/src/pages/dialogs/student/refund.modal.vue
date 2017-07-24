@@ -51,7 +51,7 @@
                         <p class="text-center text-2x">
                             <i class="fa fa-frown-o"></i> 没有相关订单!</p>
                     </div>
-                    <div class="modal-footer text-center ">
+                    <div class="modal-footer text-center">
                         <button class="btn btn-primary ng-click-active" @click="lbClosedialog($event)">确定</button>
                     </div>
                 </div>

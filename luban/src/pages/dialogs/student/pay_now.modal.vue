@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div v-if="!dopay" >
-                    <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-b ng-valid-a" novalidate>
+                    <form name="form1" class="form-horizontal form-validation   -b -a" novalidate>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">学员:</label>
                             <div class="col-xs-12 col-md-5">
@@ -73,11 +73,11 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">余额付款:{{currStudent.amount}}元</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <label class="i-switch m-t-xs m-r">
-                                    <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class="ng-valid ng-dirty ng-valid-parse ng-touched">
+                                    <input type="checkbox" @change="cacu_money_amount" v-model="localdata.form.use_balance" class=" ng-dirty -parse ng-touched">
                                     <i></i>
                                 </label>
                                 <div class="input-group w m-t-xs" v-if="localdata.form.use_balance">
-                                    <lb-numberinput type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a">
+                                    <lb-numberinput type="number" @change="cacu_money_amount" v-model.lazy="localdata.form.balance_pay_amount" class="form-control    -b -a">
                                     </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
@@ -87,7 +87,7 @@
                             <label class="control-label col-xs-12 col-md-2">现款缴费:</label>
                             <div class="col-xs-12 col-md-4">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" class="form-control ng-pristine ng-untouched ng-valid ng-valid-b ng-valid-a" v-model="localdata.form.money_pay_amount">
+                                    <lb-numberinput type="number" class="form-control    -b -a" v-model="localdata.form.money_pay_amount">
                                     </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>

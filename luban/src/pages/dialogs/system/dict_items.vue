@@ -22,10 +22,10 @@
                                         <tr >
                                             <td >{{index+1}}</td>
                                             <td>
-                                                <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.text">
+                                                <input type="text" class="form-control input-sm" v-model="item.text">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control input-sm ng-pristine ng-untouched ng-valid" v-model="item.sort">
+                                                <input type="text" class="form-control input-sm" v-model="item.sort">
                                             </td>
                                             <td><a class="btn btn-xs btn-primary" @click="handleEditClick(item)">保存</a>
                                                 <a class="btn btn-xs btn-danger" @click="handleDelClick(item._id)">删除</a></td>

@@ -13,7 +13,7 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal ng-valid ng-dirty ng-valid-parse">
+                    <form name="form1" class="form-validation form-horizontal  ng-dirty -parse">
                         <div class="wrapper-xs">
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">当前校区：</label>
@@ -26,7 +26,7 @@
                             <div class="form-group" ng-if="branch_rest.$loaded">
                                 <label class="col-xs-3 col-md-2 control-label">新校区：</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <select class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-options="item.ob_id as item.branch_name for item in branch_rest.$list" v-model="localdata.form.change_branch_ob_id">
+                                    <select class="form-control  ng-dirty -parse ng-touched" ng-options="item.ob_id as item.branch_name for item in branch_rest.$list" v-model="localdata.form.change_branch_ob_id">
                                         <option value class>选择校区</option>
                                         <option value="0">福州布尔培训</option>
                                     </select>

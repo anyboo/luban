@@ -17,12 +17,12 @@
                         <div class="input-group w-full">
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default btn-sm ng-pristine ng-valid ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
+                                    <button type="button" class="btn btn-default btn-sm   ng-touched" ng-model="grid.search_key" data-html="1" bs-options="item.name as item.value for item in filter.fields" bs-select>
                                         班级名称
                                         <span class="caret"></span>
                                     </button>
                                 </div>
-                                <input type="text" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="关键字" v-model="localdata.form.grid_search_value">
+                                <input type="text" class="input-sm form-control   ng-touched" placeholder="关键字" v-model="localdata.form.grid_search_value">
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-default" type="button" ng-click="grid.params._field=grid.search_key;grid.params.__field=grid.search_value">搜索</button>
                                 </span>

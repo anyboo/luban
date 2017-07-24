@@ -13,7 +13,7 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-horizontal form-validation ng-pristine ng-valid ng-valid-required ng-valid-number ng-valid-parse">
+                    <form name="form1" class="form-horizontal form-validation   -required -number -parse">
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">订单号:</label>
                             <div class="col-xs-12 col-md-5">
@@ -78,7 +78,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" name="times" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" required v-model="localdata.form.times">
+                                    <lb-numberinput type="number" name="times" class="form-control    -required -number" required v-model="localdata.form.times">
                                         </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
@@ -88,7 +88,7 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" name="amount" class="form-control ng-pristine ng-untouched ng-valid" v-model="localdata.form.amount">
+                                    <lb-numberinput type="number" name="amount" class="form-control" v-model="localdata.form.amount">
                                         </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
@@ -97,7 +97,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-parse" name="note" placeholder="请输入清除原因" required v-model="localdata.form.note">
+                                <input type="text" class="form-control    -required -parse" name="note" placeholder="请输入清除原因" required v-model="localdata.form.note">
                             </div>
                         </div>
                     </form>

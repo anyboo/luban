@@ -16,7 +16,7 @@
                                 <i class="glyphicon glyphicon-export"></i>导出
                             </button>
                             <div id="fct-student_hours" style="display:none;">
-                                <form name="export_form_student_hours" action="/api/export" method="post" target="_blank" class="ng-pristine ng-valid">
+                                <form name="export_form_student_hours" action="/api/export" method="post" target="_blank" class="">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="1e0dc4f9c2db17b4ba866832990057d4">
                                     <input type="hidden" name="resource" value="student_hours">
                                     <input type="hidden" name="ocs_id" value="24721" ng-repeat="(key,value) in params" >
@@ -72,7 +72,7 @@
                                     <small class="text-muted inline m-t-sm m-b-sm" ng-bind-template="共 1 条记录">共 1 条记录</small>
                                 </div>
                                 <div class="col-sm-4 text-right text-center-xs">
-                                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope ng-valid" total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
+                                    <ul class="pagination-sm m-t-none pagination ng-isolate-scope " total-items="grid.total" ng-model="grid.params.page" max-size="grid.maxsize" items-per-page="grid.params.pagesize" boundary-links="true" rotate="false"></ul>
                                 </div>
                             </div>
                         </div>

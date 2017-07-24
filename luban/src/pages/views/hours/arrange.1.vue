@@ -7,11 +7,11 @@
                         <el-date-picker v-model="localdata.form.daterange" type="daterange" @change="handleSearch"></el-date-picker>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-7 m-t ">
+                <div class="col-xs-12 col-md-7 m-t">
                     <lb-buttongroup :group-data="localdata.duration" v-model="localdata.form.duration" @input="handleDuration"></lb-buttongroup>
                     <div class="inline w-sm va-m m-l-xs">
                         <div class="input-group">
-                            <input type="text" placeholder="请选择" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" v-model="localdata.form.select_name">
+                            <input type="text" placeholder="请选择" class="form-control" readonly="readonly" v-model="localdata.form.select_name">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" @click="handleSelect">
                                     {{localdata.form.show_type}}
