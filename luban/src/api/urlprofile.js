@@ -2,8 +2,18 @@ const apiUrl2 = 'http://app.bullstech.cn:8888/'
 const apiUrl1 = 'http://app.bullstech.cn:9999/'
 
 let apiUrl = apiUrl1
-if (LUBANDEV){
+if (LUBANDEV) {
     apiUrl = apiUrl2
+    apiUrl += 'lubandemo/'
+} else {
+    let host = window.location.host
+    let dbindex = host.indexOf('.')
+    let dbstr = 'luban/'
+    if (dbindex > 0) {
+        dbstr = host.substring(0, dbindex)
+        dbstr += '/'
+    }
+    apiUrl += dbstr
 }
 
 function getLoginUrl() {

@@ -8,7 +8,7 @@ var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
 
-var dbstr = 'mongodb://localhost/lubandemo'
+var dbstr = 'mongodb://localhost/'
 
 function checkId(id) {
     let result = false
@@ -17,13 +17,20 @@ function checkId(id) {
     }
     return result
 }
-module.exports.login = function* login(next) {
+function getdbstr(db) {
+    let dbtemp = "lubandemo"
+    if (db && db.length > 0) {
+        dbtemp = db
+    }
+    return dbstr + dbtemp
+}
+module.exports.login = function* login(db, next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {
         limit: '500kb'
     })
     console.log(user)
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection('employee')
     let options = []
     options.push({
@@ -61,7 +68,7 @@ module.exports.login = function* login(next) {
         delete account.roles
         account.roles = []
         for (var item of model) {
-            if (item.role.length>0){
+            if (item.role.length > 0) {
                 account.roles.push(item.role[0])
             }
         }
@@ -146,7 +153,7 @@ function verify(token, authtime) {
     }
     return result
 }
-module.exports.all = function* all(name, next) {
+module.exports.all = function* all(db, name, next) {
     if ('GET' != this.method) return yield next
     let token = this.req.headers.authorization
     let authtime = this.req.headers.authtime
@@ -155,7 +162,7 @@ module.exports.all = function* all(name, next) {
         this.body = 'Access Forbidden'
         return
     }
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
     let query = this.query
     let limit = Number.parseInt(query.prepage || 30)
@@ -231,7 +238,7 @@ module.exports.all = function* all(name, next) {
     }
 
 }
-module.exports.upload = function* upload(next) {
+module.exports.upload = function* upload(db, next) {
     if ('POST' != this.method) return yield next
     if (!this.request.is('multipart/*')) return yield next
 
@@ -249,10 +256,10 @@ module.exports.upload = function* upload(next) {
     this.body = yield { success: 1, name: filename, url: 'http://www.bullstech.cn:9999/upload/' + filename }
 }
 
-module.exports.fetch = function* fetch(name, id, next) {
+module.exports.fetch = function* fetch(db, name, id, next) {
     if ('GET' != this.method) return yield next
     if (!checkId(id)) return yield next
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
     var model = yield table.find({ '_id': ObjectID(id) }).toArray()
     if (model.length === 0) {
@@ -262,12 +269,12 @@ module.exports.fetch = function* fetch(name, id, next) {
     this.body = yield model
 }
 
-module.exports.add = function* add(name, next) {
+module.exports.add = function* add(db, name, next) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '500kb'
     })
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
     let seqid = yield db.collection('lb_seq_id').findOneAndUpdate({ id: name }, { $inc: { seq: 1 } }, { upsert: true })
     model.lbseqid = seqid.seq
@@ -281,13 +288,13 @@ module.exports.add = function* add(name, next) {
     this.body = yield model
 }
 
-module.exports.modify = function* modify(name, id, next) {
+module.exports.modify = function* modify(db, name, id, next) {
     if ('PUT' != this.method) return yield next
     if (!checkId(id)) return yield next
     var data = yield parse(this, {
         limit: '500kb'
     })
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
     changeModelId(data)
     var result = yield table.updateOne({ '_id': ObjectID(id) }, {
@@ -297,10 +304,10 @@ module.exports.modify = function* modify(name, id, next) {
     this.body = result
 }
 
-module.exports.remove = function* remove(name, id, next) {
+module.exports.remove = function* remove(db, name, id, next) {
     if ('DELETE' != this.method) return yield next
     if (!checkId(id)) return yield next
-    var db = yield MongoClient.connect(dbstr)
+    var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
     var removed = yield table.remove({ '_id': ObjectID(id) })
     db.close()
