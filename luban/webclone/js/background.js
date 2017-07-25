@@ -5,6 +5,7 @@ setTimeout(function () {
     //提取css数据
     let lubanclone = {}
     let cssAll = document.styleSheets
+    console.log($("html"))
     let csstotal = {}
     function getCss(css) {
         var csses = []
@@ -100,6 +101,12 @@ setTimeout(function () {
             }
             if (styles != "") {
                 onehtml.style = styles
+            }
+        }
+        onehtml.dataset={}
+        if(all.dataset){
+            for(let item in all.dataset){
+                onehtml.dataset[item]=all.dataset[item]
             }
         }
         onehtml.children = []
