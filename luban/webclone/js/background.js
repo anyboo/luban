@@ -48,7 +48,6 @@ setTimeout(function () {
                 stylevalue[all.style[i]] = all.style[all.style[i]]
                 styles.push(stylevalue)
             }
-            console.log(styles)
             if (styles != "") {
                 onehtml.style = styles
             }
