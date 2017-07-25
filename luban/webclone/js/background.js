@@ -18,14 +18,18 @@ setTimeout(function () {
         count++
         onehtml.tagName = all.tagName
         onehtml.id = all.id
-        let attr = []
-        for (let i = 0; i < all.attributes.length; i++) {
-            let attrvalue = {}
-            attrvalue.name = all.attributes[i].name
-            attrvalue.value = all.attributes[i].value
-            attr.push(attrvalue)
+        if (all.attributes) {
+            let attr = []
+            for (let i = 0; i < all.attributes.length; i++) {
+                let attrvalue = {}
+                attrvalue.name = all.attributes[i].name
+                attrvalue.value = all.attributes[i].value
+                attr.push(attrvalue)
+            }
+            if (attr != "") {
+                onehtml.attributes = attr
+            }
         }
-        onehtml.attributes = attr
         if (all.classList) {
             let classes = []
             for (let i = 0; i < all.classList.length; i++) {
@@ -33,7 +37,9 @@ setTimeout(function () {
                 classvalue.value = all.classList[i]
                 classes.push(classvalue)
             }
-            onehtml.classList = classes
+            if (classes != "") {
+                onehtml.classList = classes
+            }
         }
         if (all.style) {
             let styles = []
@@ -42,7 +48,10 @@ setTimeout(function () {
                 stylevalue[all.style[i]] = all.style[all.style[i]]
                 styles.push(stylevalue)
             }
-            onehtml.style = styles
+            console.log(styles)
+            if (styles != "") {
+                onehtml.style = styles
+            }
         }
         onehtml.children = []
         if (all.children) {
