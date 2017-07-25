@@ -2,6 +2,7 @@ setTimeout(function () {
     //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
     //    console.log(data)
     //})
+    //提取css数据
     let lubanclone = {}
     let cssAll = document.styleSheets
     let csstotal = {}
@@ -36,23 +37,6 @@ setTimeout(function () {
     getCss(cssAll)
     lubanclone.cssall = csstotal
     console.log(csstotal)
-
-    // let cssindex = "5-3397"
-    // let cssstr = ".create_left .tab-panel .sel-contain .select-great .eqc-mask .eqc-name"
-    // if ($(cssstr).length > 0) {
-    //     let datacss = $(cssstr).attr("data-css")
-    //     if (datacss) {
-    //         if (datacss.length == 0) {
-    //             datacss += cssindex
-    //         } else {
-    //             datacss += "|" + cssindex
-    //         }
-    //     } else {
-    //         datacss = cssindex
-    //     }
-    //     $(cssstr).attr("data-css", datacss)
-    // }
-
     //标记编号
     function getDataCss(all) {
         for (var i = 0; i < all.length; i++) {
