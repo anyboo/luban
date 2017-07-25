@@ -120,7 +120,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$store.state.envs.currStudent)
         if (this.$store.state.envs.currStudent) {
             this.uid = this.$store.state.envs.currStudent._id
             this.handleSearch()

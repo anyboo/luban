@@ -1,9 +1,8 @@
 const apiUrl2 = 'http://app.bullstech.cn:8888/'
 const apiUrl1 = 'http://app.bullstech.cn:9999/'
 
-let apiUrl = apiUrl1
+let apiUrl = 'http://app.bullstech.cn:8888/'
 if (LUBANDEV) {
-    apiUrl = apiUrl2
     apiUrl += 'lubandemo/'
 } else {
     let host = window.location.host

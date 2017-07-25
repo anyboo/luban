@@ -321,9 +321,7 @@ export default {
                         })
                         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                         this.handleGetFilterTableTable('order', filterTxt).then((obj) => {
-
                             this.orderdata = obj.data.data
-                            console.log(this.orderdata)
                         })
                     }
                 }

@@ -72,7 +72,6 @@ export default {
             if (this.$store.state.system.tel == 'luban') {
                 return true
             }
-            console.log(role)
             if (this.$store.state.system.roles) {
                 for (var item of this.$store.state.system.roles) {
                     if (item.authority && item.authority.indexOf(role)>-1) {
