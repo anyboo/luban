@@ -36,36 +36,51 @@ setTimeout(function () {
     getCss(cssAll)
     lubanclone.cssall = cssAll
     console.log(csstotal)
-    /*
-    let cssindex = "5-3397"
-    let cssstr = ".create_left .tab-panel .sel-contain .select-great .eqc-mask .eqc-name"
-    if ($(cssstr).length>0) {
-        let datacss = $(cssstr).attr("data-css")
-        if (datacss) {
-            if (datacss.length == 0) {
-                datacss += cssindex
-            } else {
-                datacss += "|" + cssindex
-            }
-        } else {
-            datacss = cssindex
-        }
-        $(cssstr).attr("data-css", datacss)
-    }
-    */
 
+    function getData(cssStyle) {
+        let oneData = []
+        for (let i = 0; i < cssStyle.length; i++) {
+            for (let j = 0; j < cssStyle[i].cssRuleses.length; j++) {
+                let cssindex = i + '-' + j
+                let cssstr = cssStyle[i].cssRuleses[j].selectorText
+                if ($(cssstr).length > 0) {
+                    let datacss = $(cssstr).attr("data-css")
+                    if (datacss) {
+                        if (datacss.length == 0) {
+                            datacss += cssindex
+                        } else {
+                            datacss += "|" + cssindex
+                        }
+                    } else {
+                        datacss = cssindex
+                    }
+                    $(cssstr).attr("data-css", datacss)
+                }
+            }
+        }
+    }
+    getData(csstotal)
+    //html
     var all = $("html")
+    console.log(all)
     var html = []
     function getHtml(all, newhtml) {
         let onehtml = {}
         onehtml.tagName = all.tagName
         onehtml.id = all.id
+        onehtml.dataset = {}
+        if (all.dataset) {
+            for (let item in all.dataset) {
+                onehtml.dataset[item] = all.dataset[item]
+            }
+        }
         if (all.attributes) {
             let attr = []
             for (let i = 0; i < all.attributes.length; i++) {
                 let attrvalue = {}
                 attrvalue.name = all.attributes[i].name
                 attrvalue.value = all.attributes[i].value
+
                 attr.push(attrvalue)
             }
             if (attr != "") {
@@ -105,4 +120,4 @@ setTimeout(function () {
     getHtml(all[0], html)
     lubanclone.html = html
     console.log(html)
-}, 5000)
+}, 3000)
