@@ -34,26 +34,50 @@ setTimeout(function () {
         csstotal = csses
     }
     getCss(cssAll)
-    lubanclone.cssall = cssAll
+    lubanclone.cssall = csstotal
     console.log(csstotal)
-    /*
-    let cssindex = "5-3397"
-    let cssstr = ".create_left .tab-panel .sel-contain .select-great .eqc-mask .eqc-name"
-    if ($(cssstr).length>0) {
-        let datacss = $(cssstr).attr("data-css")
-        if (datacss) {
-            if (datacss.length == 0) {
-                datacss += cssindex
-            } else {
-                datacss += "|" + cssindex
-            }
-        } else {
-            datacss = cssindex
-        }
-        $(cssstr).attr("data-css", datacss)
-    }
-    */
 
+    // let cssindex = "5-3397"
+    // let cssstr = ".create_left .tab-panel .sel-contain .select-great .eqc-mask .eqc-name"
+    // if ($(cssstr).length > 0) {
+    //     let datacss = $(cssstr).attr("data-css")
+    //     if (datacss) {
+    //         if (datacss.length == 0) {
+    //             datacss += cssindex
+    //         } else {
+    //             datacss += "|" + cssindex
+    //         }
+    //     } else {
+    //         datacss = cssindex
+    //     }
+    //     $(cssstr).attr("data-css", datacss)
+    // }
+
+    //标记编号
+    function getDataCss(all) {
+        for (var i = 0; i < all.length; i++) {
+            let dataitem = all[i]
+            for (var j = 0; j < dataitem.cssRuleses.length; j++) {
+                let cssindex = i + "-" + j
+                let cssstr = dataitem.cssRuleses[j].selectorText
+                if ($(cssstr).length > 0) {
+                    let datacss = $(cssstr).attr("data-css")
+                    if (datacss) {
+                        if (datacss.length == 0) {
+                            datacss += cssindex
+                        } else {
+                            datacss += "|" + cssindex
+                        }
+                    } else {
+                        datacss = cssindex
+                    }
+                    $(cssstr).attr("data-css", datacss)
+                }
+            }
+        }
+    }
+    getDataCss(csstotal)
+    //获取标签数据
     var all = $("html")
     var html = []
     function getHtml(all, newhtml) {
