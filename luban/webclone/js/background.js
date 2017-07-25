@@ -1,21 +1,63 @@
 setTimeout(function () {
-    //console.log(document.all.length, document.styleSheets[0])
-
-    //for (var i in document.styleSheets[0]) {
-    //console.log(i)
-    //}
-    //console.log($("html"))
     //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
     //    console.log(data)
     //})
+    let lubanclone = {}
+    let cssAll = document.styleSheets
+    let csstotal = {}
+    function getCss(css) {
+        var csses = []
+        for (var i = 0; i < cssAll.length; ++i) {
+            let cssitem = cssAll[i]
+            let onecss = {}
+            onecss.cssRuleses = []
+            onecss.href = cssitem.href
+            for (var j = 0; j < cssitem.cssRules.length; ++j) {
+                let csssubitem = cssitem.cssRules[j]
+                let cssvalue = {}
+                cssvalue.cssstyle = []
+                cssvalue.cssText = csssubitem.cssText
+                cssvalue.selectorText = csssubitem.selectorText
+                cssvalue.type = csssubitem.type
+                cssvalue.elcount = 0
+                if (csssubitem.style) {
+                    for (let h = 0; h < csssubitem.style.length; ++h) {
+                        let styles = {}
+                        styles[csssubitem.style[h]] = csssubitem.style[csssubitem.style[h]]
+                        cssvalue.cssstyle.push(styles)
+                    }
+                }
+                onecss.cssRuleses.push(cssvalue)
+            }
+            csses.push(onecss)
+        }
+        csstotal = csses
+    }
+    getCss(cssAll)
+    lubanclone.cssall = cssAll
+    console.log(csstotal)
+    /*
+    let cssindex = "5-3397"
+    let cssstr = ".create_left .tab-panel .sel-contain .select-great .eqc-mask .eqc-name"
+    if ($(cssstr).length>0) {
+        let datacss = $(cssstr).attr("data-css")
+        if (datacss) {
+            if (datacss.length == 0) {
+                datacss += cssindex
+            } else {
+                datacss += "|" + cssindex
+            }
+        } else {
+            datacss = cssindex
+        }
+        $(cssstr).attr("data-css", datacss)
+    }
+    */
+
     var all = $("html")
     var html = []
-    console.log(all)
-    let count = 0
-
     function getHtml(all, newhtml) {
         let onehtml = {}
-        count++
         onehtml.tagName = all.tagName
         onehtml.id = all.id
         if (all.attributes) {
@@ -61,5 +103,6 @@ setTimeout(function () {
         newhtml.push(onehtml)
     }
     getHtml(all[0], html)
-    console.log(html, count)
+    lubanclone.html = html
+    console.log(html)
 }, 5000)
