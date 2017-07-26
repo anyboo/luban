@@ -1,4 +1,4 @@
-setTimeout(function () {
+setTimeout(function() {
     //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
     //    console.log(data)
     //})
@@ -7,6 +7,7 @@ setTimeout(function () {
     let cssAll = document.styleSheets
     console.log($("html"))
     let csstotal = {}
+
     function getCss(css) {
         var csses = []
         for (var i = 0; i < cssAll.length; ++i) {
@@ -38,7 +39,7 @@ setTimeout(function () {
     getCss(cssAll)
     lubanclone.cssall = csstotal
     console.log(csstotal)
-    //标记编号
+        //标记编号
     function getDataCss(all) {
         for (var i = 0; i < all.length; i++) {
             let dataitem = all[i]
@@ -62,10 +63,12 @@ setTimeout(function () {
         }
     }
     getDataCss(csstotal)
-    //获取标签数据
+        //获取标签数据
     var all = $("html")
     var html = []
+
     function getHtml(all, newhtml) {
+        $('*').bind('click', function() { $(this).css("color", "green") })
         let onehtml = {}
         onehtml.tagName = all.tagName
         onehtml.id = all.id
@@ -103,10 +106,10 @@ setTimeout(function () {
                 onehtml.style = styles
             }
         }
-        onehtml.dataset={}
-        if(all.dataset){
-            for(let item in all.dataset){
-                onehtml.dataset[item]=all.dataset[item]
+        onehtml.dataset = {}
+        if (all.dataset) {
+            for (let item in all.dataset) {
+                onehtml.dataset[item] = all.dataset[item]
             }
         }
         onehtml.children = []
@@ -116,8 +119,25 @@ setTimeout(function () {
             }
         }
         newhtml.push(onehtml)
+
     }
     getHtml(all[0], html)
     lubanclone.html = html
     console.log(html)
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+    var target = document.querySelector('html');
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            console.log(mutation.type);
+        });
+        console.log(mutations);
+    });
+    var config = {
+        attributes: true,
+        childList: true,
+        characterData: true,
+        subtree: true
+
+    }
+    observer.observe(target, config);
 }, 5000)
