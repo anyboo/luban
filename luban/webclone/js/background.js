@@ -1,4 +1,4 @@
-setTimeout(function () {
+setTimeout(function() {
     //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
     //    console.log(data)
     //})
