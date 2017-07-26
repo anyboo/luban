@@ -1,4 +1,4 @@
-window.getDomChange = function(dom) {
+window.lubandomchange = function(dom) {
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
     var target = document.querySelector(dom);
     var observer = new MutationObserver(function(mutations) {

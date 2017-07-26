@@ -1,8 +1,4 @@
-setTimeout(function () {
-    //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
-    //    console.log(data)
-    //})
-    //提取css数据
+window.lubaninfo = function () {
     let lubanclone = {}
     let cssAll = document.styleSheets
     console.log($("html"))
@@ -155,4 +151,5 @@ setTimeout(function () {
     }
     var newhtml = getNewHtml(html)
     console.log(newhtml)
-}, 5000)
+    return lubanclone
+}

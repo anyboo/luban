@@ -1,5 +1,5 @@
 
-window.lbUI = function () {
+window.lubanui = function () {
     var style = document.createElement("style")
     style.innerHTML = ".addcss{ border:1px solid blue;}"
     var e = document.createElement("div");
