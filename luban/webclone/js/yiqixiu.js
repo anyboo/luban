@@ -1,14 +1,12 @@
-setTimeout(function() {
+setTimeout(function () {
     //$.get('http://app.bullstech.cn:9999/api/glassmanage', function(data) {
     //    console.log(data)
     //})
     //提取css数据
-<<<<<<< HEAD
     let lubanclone = {}
     let cssAll = document.styleSheets
     console.log($("html"))
     let csstotal = {}
-
     function getCss(css) {
         var csses = []
         for (var i = 0; i < cssAll.length; ++i) {
@@ -40,7 +38,7 @@ setTimeout(function() {
     getCss(cssAll)
     lubanclone.cssall = csstotal
     console.log(csstotal)
-        //标记编号
+    //标记编号
     function getDataCss(all) {
         for (var i = 0; i < all.length; i++) {
             let dataitem = all[i]
@@ -64,15 +62,18 @@ setTimeout(function() {
         }
     }
     getDataCss(csstotal)
-        //获取标签数据
+    //获取标签数据
     var all = $("html")
     var html = []
-
+    $('*').bind('click', function () {
+        $(this)
+        console.log("luban")
+    })
     function getHtml(all, newhtml) {
-        $('*').bind('click', function() { $(this).css("color", "green") })
         let onehtml = {}
         onehtml.tagName = all.tagName
         onehtml.id = all.id
+
         if (all.attributes) {
             let attr = []
             for (let i = 0; i < all.attributes.length; i++) {
@@ -120,14 +121,38 @@ setTimeout(function() {
             }
         }
         newhtml.push(onehtml)
-
     }
     getHtml(all[0], html)
     lubanclone.html = html
     console.log(html)
-
+    //输出页面
+    let noTag = ['STYLE', 'META', 'BASE', 'TITLE', 'LINK']
+    let clssAttr = [{ oldtag: 'ng-class', tag: 'class' }]
+    function getNewHtml(html) {
+        let htmlItem = ''
+        for (let i = 0; i < html.length; i++) {
+            if (noTag.indexOf(html[i].tagName) == -1) {
+                let tagClass = ""
+                for (let j = 0; j < html[i].attributes.length; j++) {
+                    let index = _.findIndex(clssAttr, { 'oldtag': html[i].attributes[j].name })
+                    if (index != -1) {
+                        tagClass = `${clssAttr[index].tag}="${html[i].attributes[j].value}"`
+                    }
+                }
+                let sonItem = html[i].children
+                let sonhtml = ''
+                if (sonItem) {
+                    sonhtml = getNewHtml(sonItem)
+                }
+                if (tagClass != "") {
+                    htmlItem += `<${html[i].tagName} ${tagClass}>${sonhtml}</${html[i].tagName}>`
+                } else {
+                    htmlItem += `<${html[i].tagName}>${sonhtml}</${html[i].tagName}>`
+                }
+            }
+        }
+        return htmlItem
+    }
+    var newhtml = getNewHtml(html)
+    console.log(newhtml)
 }, 5000)
-=======
-    
-}, 5000)
->>>>>>> 47c922051b9ad83f7b56afdbec337b1fa7d3c83e
