@@ -157,10 +157,12 @@ module.exports.all = function* all(db, name, next) {
     if ('GET' != this.method) return yield next
     let token = this.req.headers.authorization
     let authtime = this.req.headers.authtime
-    if (!verify(token, authtime)) {
-        this.status = 401
-        this.body = 'Access Forbidden'
-        return
+    if (db != "webclone") {
+        if (!verify(token, authtime)) {
+            this.status = 401
+            this.body = 'Access Forbidden'
+            return
+        }
     }
     var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
