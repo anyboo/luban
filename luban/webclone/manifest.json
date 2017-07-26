@@ -5,7 +5,7 @@
     "description": "clone",
     "content_scripts": [{
         "matches": ["https://modao.cc/*", "http://www.eqxiu.com/*", "http://v.xiao360.com/*"],
-        "js": ["js/jquery-3.2.0.js", "js/background.js"]
+        "js": ["js/jquery-3.2.0.js", "js/background.js","js/lodash.js","js/html.js","js/ui.js","js/mutationobserver.js"]
     }],
     "icons": {
         "16": "images/icon16.png"
