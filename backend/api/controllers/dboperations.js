@@ -276,7 +276,7 @@ module.exports.fetch = function* fetch(db, name, id, next) {
 module.exports.add = function* add(db, name, next) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
-        limit: '500kb'
+        limit: '5000kb'
     })
     var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)

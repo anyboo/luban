@@ -1,5 +1,6 @@
 window.lubaninfo = function () {
     let lubanclone = {}
+    lubanclone.location = window.location
     let cssAll = document.styleSheets
     console.log($("html"))
     let csstotal = {}
