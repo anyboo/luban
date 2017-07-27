@@ -60,96 +60,129 @@ window.lubaninfo = function () {
     getDataCss(csstotal)
     //获取标签数据
     var all = $("html")
-    var html = []
-    $('*').bind('click', function () {
-        $(this)
-        console.log("luban")
-    })
-    function getHtml(all, newhtml) {
-        let onehtml = {}
-        onehtml.tagName = all.tagName
-        onehtml.id = all.id
-
-        if (all.attributes) {
+    function getHtml(root) {
+        let nodeitem = {}
+        nodeitem.tagName = root.tagName ? root.tagName : ''
+        nodeitem.nodeType = root.nodeType ? root.nodeType : 0
+        nodeitem.id = root.id ? root.id : ''
+        nodeitem.data = root.data ? root.data : ''
+        if (root.attributes) {
             let attr = []
-            for (let i = 0; i < all.attributes.length; i++) {
+            for (let i = 0; i < root.attributes.length; i++) {
                 let attrvalue = {}
-                attrvalue.name = all.attributes[i].name
-                attrvalue.value = all.attributes[i].value
+                attrvalue.name = root.attributes[i].name
+                attrvalue.value = root.attributes[i].value
                 attr.push(attrvalue)
             }
             if (attr != "") {
-                onehtml.attributes = attr
+                nodeitem.attributes = attr
             }
         }
-        if (all.classList) {
+        if (root.classList) {
             let classes = []
-            for (let i = 0; i < all.classList.length; i++) {
+            for (let i = 0; i < root.classList.length; i++) {
                 let classvalue = {}
-                classvalue.value = all.classList[i]
+                classvalue.value = root.classList[i]
                 classes.push(classvalue)
             }
             if (classes != "") {
-                onehtml.classList = classes
+                nodeitem.classList = classes
             }
         }
-        if (all.style) {
+        if (root.style) {
             let styles = []
-            for (let i = 0; i < all.style.length; i++) {
+            for (let i = 0; i < root.style.length; i++) {
                 let stylevalue = {}
-                stylevalue[all.style[i]] = all.style[all.style[i]]
+                stylevalue[root.style[i]] = root.style[root.style[i]]
                 styles.push(stylevalue)
             }
             if (styles != "") {
-                onehtml.style = styles
+                nodeitem.style = styles
             }
         }
-        onehtml.dataset = {}
-        if (all.dataset) {
-            for (let item in all.dataset) {
-                onehtml.dataset[item] = all.dataset[item]
+        nodeitem.dataset = {}
+        if (root.dataset) {
+            for (let item in root.dataset) {
+                nodeitem.dataset[item] = root.dataset[item]
             }
         }
-        onehtml.children = []
-        if (all.children) {
-            for (var i = 0; i < all.children.length; i++) {
-                getHtml(all.children[i], onehtml.children)
+        nodeitem.children = []
+        if (root.children) {
+            for (var i = 0; i < root.childNodes.length; i++) {
+                if (root.childNodes[i]) {
+                    nodeitem.children.push(getHtml(root.childNodes[i]))
+                }
             }
         }
-        newhtml.push(onehtml)
+        return nodeitem
     }
-    getHtml(all[0], html)
-    lubanclone.html = html
-    console.log(html)
-    //输出页面
-    let noTag = ['STYLE', 'META', 'BASE', 'TITLE', 'LINK']
+    let lubanhtml = []
+    lubanhtml.push(getHtml(all[0]))
+    lubanclone.html = lubanhtml
+
+    console.log(lubanhtml)
+
+    var lubanNodeType = [
+        { type: 'null', comment: '无元素', node: '' },
+        { type: 'Element', comment: '代表元素', node: 'Element, Text, Comment, ProcessingInstruction, CDATASection, EntityReference' },
+        { type: 'Attr', comment: '代表属性', node: 'Text, EntityReference' },
+        { type: 'Text', comment: '代表元素或属性中的文本内容', node: 'None' },
+        { type: 'CDATASection', comment: '代表文档中的 CDATA 部分（不会由解析器解析的文本）', node: 'None' },
+        { type: 'EntityReference', comment: '代表实体引用', node: 'Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference' },
+        { type: 'Entity', comment: '代表实体', node: 'Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference' },
+        { type: 'ProcessingInstruction', comment: '代表处理指令', node: 'None' },
+        { type: 'Comment', comment: '代表注释', node: 'None' },
+        { type: 'Document', comment: '代表整个文档（DOM 树的根节点)', node: 'Element, ProcessingInstruction, Comment, DocumentType' },
+        { type: 'DocumentType', comment: '向为文档定义的实体提供接口', node: '	None' },
+        { type: 'DocumentFragment', comment: '代表轻量级的 Document 对象，能够容纳文档的某个部分', node: 'Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference' },
+        { type: 'Notation', comment: '代表 DTD 中声明的符号', node: 'None' }
+    ]
+    let noTag = ['STYLE', 'META', 'BASE', 'TITLE', 'LINK', 'SCRIPT']
     let clssAttr = [{ oldtag: 'ng-class', tag: 'class' }]
-    function getNewHtml(html) {
-        let htmlItem = ''
-        for (let i = 0; i < html.length; i++) {
-            if (noTag.indexOf(html[i].tagName) == -1) {
-                let tagClass = ""
-                for (let j = 0; j < html[i].attributes.length; j++) {
-                    let index = _.findIndex(clssAttr, { 'oldtag': html[i].attributes[j].name })
-                    if (index != -1) {
-                        tagClass = `${clssAttr[index].tag}="${html[i].attributes[j].value}"`
+
+    function formatHTML(root) {
+        let html = ''
+        for (var key in root) {
+            let item = root[key]
+            if (noTag.indexOf(item.tagName) == -1) {
+                let nodetype = lubanNodeType[item.nodeType].type
+                if (nodetype == 'Element') {
+                    let htmlbegin = '<'
+                    let htmlend = '</'
+                    htmlbegin += item.tagName
+                    htmlend += item.tagName
+                    /*
+                    let tagClass = ""
+                    for (let j = 0; j < html[i].attributes.length; j++) {
+                        let index = _.findIndex(clssAttr, { 'oldtag': html[i].attributes[j].name })
+                        if (index != -1) {
+                            tagClass = `${clssAttr[index].tag}="${html[i].attributes[j].value}"`
+                        }
                     }
-                }
-                let sonItem = html[i].children
-                let sonhtml = ''
-                if (sonItem) {
-                    sonhtml = getNewHtml(sonItem)
-                }
-                if (tagClass != "") {
-                    htmlItem += `<${html[i].tagName} ${tagClass}>${sonhtml}</${html[i].tagName}>`
-                } else {
-                    htmlItem += `<${html[i].tagName}>${sonhtml}</${html[i].tagName}>`
+                    for (var attritem in item.attributes) {
+                        htmlbegin += ' '
+                        htmlbegin += item.attributes[attritem].name
+                        if (item.attributes[attritem]) {
+                            htmlbegin += '="'
+                            htmlbegin += item.attributes[attritem].value
+                            htmlbegin += '"'
+                        }
+                    }*/
+                    htmlbegin += '>'
+                    htmlend += '>'
+                    var htmlcontext = formatHTML(item.children)
+                    htmlbegin += htmlcontext
+                    htmlbegin += htmlend
+                    html += htmlbegin
+                } else if (nodetype == 'Text') {
+                    html += item.data.trim()
+                } else if (nodetype == 'Comment') {
                 }
             }
         }
-        return htmlItem
+        return html
     }
-    var newhtml = getNewHtml(html)
-    console.log(newhtml)
+    //输出页面
+    console.log(formatHTML(lubanhtml))
     return lubanclone
 }
