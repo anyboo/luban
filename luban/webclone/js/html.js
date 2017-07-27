@@ -15,7 +15,7 @@ window.lubaninfo = function () {
                 let csssubitem = cssitem.cssRules[j]
                 let cssvalue = {}
                 cssvalue.cssstyle = []
-                cssvalue.cssText = csssubitem.cssText
+                //cssvalue.cssText = csssubitem.cssText
                 cssvalue.selectorText = csssubitem.selectorText
                 cssvalue.type = csssubitem.type
                 cssvalue.elcount = 0
@@ -61,6 +61,7 @@ window.lubaninfo = function () {
     getDataCss(csstotal)
     //获取标签数据
     var all = $("html")
+    let noTag = ['STYLE', 'META', 'BASE', 'TITLE', 'LINK', 'SCRIPT']
     function getHtml(root) {
         let nodeitem = {}
         nodeitem.tagName = root.tagName ? root.tagName : ''
@@ -111,7 +112,10 @@ window.lubaninfo = function () {
         if (root.children) {
             for (var i = 0; i < root.childNodes.length; i++) {
                 if (root.childNodes[i]) {
-                    nodeitem.children.push(getHtml(root.childNodes[i]))
+                    let tagName = root.childNodes[i].tagName ? root.childNodes[i].tagName : ''
+                    if (noTag.indexOf(tagName) == -1) {
+                        nodeitem.children.push(getHtml(root.childNodes[i]))
+                    }
                 }
             }
         }
@@ -138,7 +142,7 @@ window.lubaninfo = function () {
         { type: 'DocumentFragment', comment: '代表轻量级的 Document 对象，能够容纳文档的某个部分', node: 'Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference' },
         { type: 'Notation', comment: '代表 DTD 中声明的符号', node: 'None' }
     ]
-    let noTag = ['STYLE', 'META', 'BASE', 'TITLE', 'LINK', 'SCRIPT']
+
     let clssAttr = [{ oldtag: 'ng-class', tag: 'class' }]
 
     function formatHTML(root) {

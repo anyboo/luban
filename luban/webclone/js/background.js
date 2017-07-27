@@ -10,5 +10,4 @@ setTimeout(function () {
                 console.log(data)
             })
         })
-
 }, 3000)
