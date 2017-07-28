@@ -9,80 +9,42 @@
                 </div>
                 <div class="panel-body">
                     <div class="wrapper-xs">
-                        <div class="form-group">
-                            <label class="col-xs-12 col-md-2 control-label">
-                                <span class="text-danger">*</span>姓名:
-                               
-                               
-                            </label>
-                            <div class="col-xs-12 col-md-10">
-                                <div class="inline va-m w-sm">
-                                    <input type="text" name="student_name" class="form-control   ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.student_name.errorStatus}" placeholder="输入学员姓名" v-model.trim.lazy="localdata.form.student_name" @change="validate('student_name')">
-                                </div>
+                        <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
+                            <el-form-item label="姓名" prop="student_name">
+                                <el-input v-model="localdata.form.student_name" style="width:120px;" placeholder="请输入学员姓名"></el-input>
                                 <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
-                                <div class="error" v-if="localdata.validator.fields.student_name.errorStatus">
-                                    <span class="text-warning">学员姓名必须填写</span>
-                                </div>
-                            </div> 
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-12 col-md-2 control-label">
-                                <span class="text-danger">*</span>联系方式:
-                            </label>
-                            <div class="col-xs-12 col-md-10">
-                                <div class="inline va-m w-sm">
-                                    <input type="text" class="form-control   ng-invalid ng-invalid-required" :class="{'ng-dirty':localdata.validator.fields.first_tel.errorStatus}" placeholder="输入手机号" v-model.trim.lazy="localdata.form.first_tel" @change="validate('first_tel')">
-                                </div>
-                                <div class="inline va-m w-xs m-l-xs">
-                                    <select class="form-control" v-model="localdata.form.first_rel_rel">
-                                        <option value selected>关系</option>
-                                        <option value="0">本人</option>
-                                        <option value="1">爸爸</option>
-                                        <option value="2">妈妈</option>
-                                    </select>
-                                </div>
-                                <div class="inline va-m w-xs m-l-xs" v-if="localdata.form.first_rel_rel!='0'">
-                                    <input type="text" class="form-control" placeholder="姓/名" v-model="localdata.form.first_rel_name">
-                                </div>
-                                <div class="error" v-if="localdata.validator.fields.first_tel.errorStatus">
-                                    <span class="text-warning">手机号必须填写且为11位</span>
-                                </div>
-                                <div class="contact-list m-t-xs" v-for="item,index in localdata.form.relations">
-                                    <div class="inline va-m w-sm">
-                                        <input type="text" class="form-control" placeholder="输入手机号" v-model="item.tel">
-                                    </div>
-                                    <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control" v-model="item.relation">
-                                            <option value selected>关系</option>
-                                            <option value="0">本人</option>
-                                            <option value="1">爸爸</option>
-                                            <option value="2">妈妈</option>
-                                        </select>
-                                    </div>
-                                    <div class="inline va-m w-xs m-l-xs" v-if="item.relation!='0'">
-                                        <input type="text" class="form-control" placeholder="姓/名" v-model="item.name">
-                                    </div>
-                                    <div class="inline va-m m-l-xs">
-                                        <a @click="localdata.form.relations.splice(index, 1)">
-                                            <i class="fa fa-minus-square-o"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                  <div>
-                                        <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
-                                            <i class="fa fa-plus-square-o"></i>增加联系方式
-                                        </a>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2 col-xs-12">
-                                来源渠道:
-                            </label>
-                            <div class="col-md-10 col-xs-12">
+                            </el-form-item>
+                            <el-form-item label="联系方式" prop="first_tel">
+                                <el-input v-model="localdata.form.first_tel" style="width:120px;" placeholder="请输入手机号"></el-input>
+                                <el-select v-model="localdata.form.first_rel_rel" placeholder="关系" style="width:100px;">
+                                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
+                            </el-form-item>
+                            <el-form-item prop="first_tel" v-for="item,index in localdata.form.relations">
+                                <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
+                                                      
+                                  <el-select v-model="item.relation"  placeholder="关系" style="width:100px;">
+                                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                    </el-option>
+                                </el-select>                       
+                                
+                                  <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
+                            
+                         <a @click="localdata.form.relations.splice(index, 1)">
+                                    <i class="fa fa-minus-square-o"></i>
+                                </a>
+                            </el-form-item>
+                            <span class="wrapper" style="position: relative; left:87px;top:-9px">
+                                <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
+                                    <i class="fa fa-plus-square-o"></i>增加联系方式
+                                </a>
+                            </span>
+                            <el-form-item label="来源渠道">
                                 <lb-buttongroup :group-data="localdata.track_from" v-model="localdata.form.track_from"></lb-buttongroup>
-                            </div>
-                        </div>
+                            </el-form-item>
+                        </el-form>
                         <div class="m-t m-b b-t text-center">
                             <a v-if="!expand" @click="expand=true" class="inline w b-l b-r b-b r-b">
                                 <i class="fa fa-arrow-down"></i>展开填写更多资料
@@ -91,91 +53,37 @@
                                 <i class="fa fa-arrow-up"></i>关闭更多资料
                             </a>
                         </div>
-                        <div v-show="expand" >
-                            <div class="form-group">
-                                <label class="col-xs-12 col-md-2 control-label">昵称:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <div class="inline w-sm" >
-                                        <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">出生日期:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline w-sm">
-                                        <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">家庭住址:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline w-lg">
-                                        <input type="text" name="home_address" class="form-control" v-model="localdata.form.home_address">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">就读学校:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline va-m w" ng-if="have_field('school')">
-                                        <input type="text" name="school" class="form-control" placeholder="学校" v-model="localdata.form.school">
-                                    </div>
-                                    <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control" v-model="localdata.form.grade">
-                                            <option value class>年级</option>
-                                            <option value="0">不确定</option>
-                                            <option value="1">一年级</option>
-                                            <option value="2">二年级</option>
-                                            <option value="3">三年级</option>
-                                            <option value="4">四年级</option>
-                                            <option value="5">五年级</option>
-                                            <option value="6">六年级</option>
-                                            <option value="7">初一</option>
-                                            <option value="8">初二</option>
-                                            <option value="9">初三</option>
-                                            <option value="10">高一</option>
-                                            <option value="11">高二</option>
-                                            <option value="12">高三</option>
-                                        </select>
-                                    </div>
-                                    <div class="inline va-m w-xs m-l-xs">
-                                        <select class="form-control" v-model="localdata.form.class">
-                                            <option value class>班级</option>
-                                            <option value="0">1</option>
-                                            <option value="1">2</option>
-                                            <option value="2">3</option>
-                                            <option value="3">4</option>
-                                            <option value="4">5</option>
-                                            <option value="5">6</option>
-                                            <option value="6">7</option>
-                                            <option value="7">8</option>
-                                            <option value="8">9</option>
-                                            <option value="9">10</option>
-                                            <option value="10">11</option>
-                                            <option value="11">12</option>
-                                            <option value="12">13</option>
-                                        </select>
-                                    </div>
-                                    <span class="padder">班</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2 col-xs-12">备注:</label>
-                                <div class="col-md-10 col-xs-12">
-                                    <div class="inline w-lg">
-                                        <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <el-form label-width="95px">
+                            <el-form-item label="昵称" prop="name">
+                                <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname" style="width:120px;">
+                            </el-form-item>
+                            <el-form-item label="出生日期" prop="form.birth">
+                                <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="家庭住址" prop="home_address">
+                                <input type="text" name="home_address" class="form-control" v-model="localdata.form.home_address" style="width:320px;">
+                            </el-form-item>
+                            <el-form-item label="就读学校" prop="first_tel">
+                                <el-input v-model="localdata.form.school" style="width:200px;"></el-input>
+                                <el-select v-model="localdata.form.grade" placeholder="年级" style="width:100px">
+                                    <el-option v-for="item in grade" :key="item.value" :label="item.label" :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-select v-model="localdata.form.class" placeholder="班级" style="width:100px">
+                                    <el-option v-for="item in claes" :key="item.value" :label="item.label" :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="备注" prop="form.note">
+                                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control" style="width:285px;"></textarea>
+                            </el-form-item>
+                        </el-form>
                     </div>
                 </div>
                 <div class="m-t m-b panel-footer">
                     <div class="form-group">
                         <div class="col-xs-12 col-md-10 col-md-offset-2">
-                            <button type="button" class="btn btn-primary w"  @click="handleClick">确认</button>
+                            <button type="button" class="btn btn-primary w" @click="handleClick">确认</button>
                         </div>
                     </div>
                 </div>
@@ -220,29 +128,6 @@ export default {
                 'amount': 0,
                 'isdel': false
             },
-            'validator': {
-                'type': 'object',
-                'errorStatus': false,
-                'additional': true,
-                'fields': {
-                    'student_name': {
-                        'type': 'string',
-                        'required': true,
-                        'min': 1,
-                        'max': 256,
-                        'errorStatus': false
-                    },
-                    'first_tel': {
-                        'type': 'string',
-                        'len': 11,
-                        'required': true,
-                        'errorStatus': false
-                    },
-                    'birth': {
-                        'type': 'date',
-                    }
-                }
-            },
             'sex': [{
                 'value': '1',
                 'iclass': 'fa fa-male',
@@ -270,22 +155,134 @@ export default {
                 'text': '其他'
             }]
         }
+        var validateTel = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入手机号码'))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须为数字1开头并为11位!已输入' + value.length + '位。'))
+            } else {
+                callback()
+            }
+        }
         return {
             localdata,
             expand: true,
-            model: 'student'
+            model: 'student',
+            options: [{
+                value: '0',
+                label: '本人'
+            }, {
+                value: '1',
+                label: '爸爸'
+            }, {
+                value: '2',
+                label: '妈妈'
+            }],
+            claes: [{
+                value: '0',
+                label: '1'
+            }, {
+                value: '1',
+                label: '2'
+            }, {
+                value: '2',
+                label: '3'
+            } , {
+                value: '3',
+                label: '4'
+            },{
+                value: '4',
+                label: '5'
+            }, {
+                value: '5',
+                label: '6'
+            }, {
+                value: '6',
+                label: '7'
+            } , {
+                value: '7',
+                label: '8'
+            },{
+                value: '8',
+                label: '9'
+            } , {
+                value: '9',
+                label: '10'
+            },{
+                value: '10',
+                label: '11'
+            }, {
+                value: '11',
+                label: '12'
+            }, {
+                value: '12',
+                label: '13'
+            } ],
+             grade: [{
+                value: '0',
+                label: '不确定'
+            }, {
+                value: '1',
+                label: '一年级'
+            }, {
+                value: '2',
+                label: '二年级'
+            } , {
+                value: '3',
+                label: '三年级'
+            },{
+                value: '4',
+                label: '四年级'
+            }, {
+                value: '5',
+                label: '五年级'
+            }, {
+                value: '6',
+                label: '六年级'
+            } , {
+                value: '7',
+                label: '初一'
+            },{
+                value: '8',
+                label: '初二'
+            } , {
+                value: '9',
+                label: '初三'
+            },{
+                value: '10',
+                label: '高一'
+            }, {
+                value: '11',
+                label: '高二'
+            }, {
+                value: '12',
+                label: '高三'
+            } ],
+            rules: {
+                student_name: [
+                    { required: true, message: '请输入姓名', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+                ],
+                first_tel: [
+                    { validator: validateTel, required: true, trigger: 'blur' }
+                ],
+            }
         }
     },
     computed: {},
     watch: {},
     methods: {
         handleClick() {
-            let vm = this
-            vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
-            vm.handleSave().then((response) => {
-                vm.$store.state.envs.currStudent = response
-                vm.handleShowDialog('lb-finishadd',response)
-            }, (e) => {
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    let vm = this
+                    vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
+                    vm.handleSave().then((response) => {
+                        vm.$store.state.envs.currStudent = response
+                        vm.handleShowDialog('lb-finishadd', response)
+                    }, (e) => {
+                    })
+                }
             })
         }
     }
