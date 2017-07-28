@@ -48,6 +48,7 @@ export default {
                     })
                     .then((info) => {
                         let infodata = JSON.parse(info)
+                        console.log(infodata)
                         this.appdata = this.startapp(infodata.html)
                         this.$forceUpdate()
                     }, (e) => {
