@@ -11,7 +11,7 @@
                     <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
                             <i class="fa fa-cog"></i>
-                            <span > 操作</span>
+                            <span> 操作</span>
                             </ng-transclude>
                             <span class="caret"></span>
                         </lb-dropdown-button>
@@ -37,14 +37,14 @@
                             </div>
                             <p class="text-center">
                                 <span class="text-2x">{{ student.student_name }}</span>
-                                <span >
+                                <span>
                                     <i class="fa" :class="{'fa-female':student.sex=='0','fa-male':student.sex!='0'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
                                 <li>
                                     <label class="field">昵称/英文名:</label>
-                                    <span >{{ student.nickname }}</span>
+                                    <span>{{ student.nickname }}</span>
                                 </li>
                                 <li class="m-t-xs">
                                     <label class="field">学员归属:</label>
@@ -60,27 +60,27 @@
                                     <div class="row no-gutter">
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">住址:</label>
-                                            <span >{{ student.home_address }}</span>
+                                            <span>{{ student.home_address }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">备注:</label>
-                                            <span >{{ student.note }}</span>
+                                            <span>{{ student.note }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">学校:</label>
-                                            <span >{{ student.school }}</span>
+                                            <span>{{ student.school }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">年级:</label>
-                                            <span >{{ student.grade }}</span>
+                                            <span>{{ student.grade }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">班级:</label>
-                                            <span >{{ student.class }}</span>
+                                            <span>{{ student.class }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">建档日期:</label>
-                                            <span >{{ getDateFormat(student.creattime) }}</span>
+                                            <span>{{ getDateFormat(student.creattime) }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">生日:</label>
@@ -92,6 +92,60 @@
                         </div>
                     </div>
                 </div>
+    
+                <div class="panel panel-default" style="width:66%;position: relative;left:267px;">
+                    <div class="panel-heading">
+                        <a class="btn btn-xs btn-default pull-right" ui-per="student.edit" ng-click="$util.open('tpl/app/student/add_contact.modal.html','sm',student)">
+                            <i class="fa fa-plus"></i> 添加联系人</a>
+                        <i class="icon-users"></i> 联系人</div>
+                    <table class="table table-striped m-b-none">
+                        <thead>
+                            <tr>
+                                <th>电话</th>
+                                <th class="hidden-xs">称呼</th>
+                                <th class="hidden-xs">姓名</th>
+                                <th class="hidden-xs">学习管家账号</th>
+                                <th class="hidden-xs">微信绑定</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>                          
+                            <tr ng-repeat="item in student.relations" class="ng-scope">
+                                <td class="ng-binding">                              
+                                    <i class="fa fa-star text-warning ng-scope" tooltip="第1联系人" ng-if="item.is_main == '1'"></i>                                  
+                                   12312312312</td>
+                                <td class="hidden-xs ng-binding">爸爸</td>
+                                <td class="hidden-xs ng-binding">未填写</td>
+                                <td class="hidden-xs">                               
+                                    <span class="label bg-info ng-scope" ng-if="item.ou_id != '0'">已开通</span>
+                                   
+                                </td>
+                                <td class="hidden-xs">                              
+                                    <span class="badge bg-gray ng-scope" ng-if="item.wb_id == '0'">未绑定</span>                                                             
+                                </td>
+                                <td>
+                                    <a ng-disabled="item.is_main == '1'" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
+                                        <i class="icon-close"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" tooltip="编辑">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/wxbind_qrcode.modal.html','md',{student:student,contact:item})" tooltip="微信绑定二维码">
+                                        <i class="fa fa-qrcode"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <p class="text-muted">提醒：学习管家账号是手机号，默认密码是手机号后6位</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+    
             </div>
         </div>
     </div>
@@ -104,7 +158,7 @@ export default {
             'form': {
                 'student_id': '',
             },
-           
+
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
@@ -164,7 +218,7 @@ export default {
 
         },
         handleSearch() {
-            if (this.uid&&this.uid.length > 0) {
+            if (this.uid && this.uid.length > 0) {
                 let filterObj = []
                 let student_id = this.uid
                 if (student_id.length > 0) {
