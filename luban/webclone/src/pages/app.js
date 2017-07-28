@@ -27,7 +27,10 @@ export default {
                 { type: 'DocumentType', comment: '向为文档定义的实体提供接口', node: '	None' },
                 { type: 'DocumentFragment', comment: '代表轻量级的 Document 对象，能够容纳文档的某个部分', node: 'Element, ProcessingInstruction, Comment, Text, CDATASection, EntityReference' },
                 { type: 'Notation', comment: '代表 DTD 中声明的符号', node: 'None' }
-            ]
+            ],
+            htmldata: '',
+            cssdata: '',
+            style: {}
         }
     },
     mounted() {
@@ -49,7 +52,10 @@ export default {
                     .then((info) => {
                         let infodata = JSON.parse(info)
                         console.log(infodata)
-                        this.appdata = this.startapp(infodata.html)
+                        this.htmldata = infodata.html
+                        this.cssdata = infodata.cssall
+                        // this.getDataCss(infodata.html, infodata.cssall)
+                        this.appdata = this.startapp(infodata.html, infodata.cssall)
                         this.$forceUpdate()
                     }, (e) => {
                         console.log(e)
@@ -58,14 +64,14 @@ export default {
                 console.log(e)
             }
         },
-        startapp(root) {
+        startapp(root, css) {
             let elementArray = []
             for (var key in root) {
                 let item = root[key]
                 if (this.noTag.indexOf(item.tagName) == -1) {
                     let nodetype = this.nodeType[item.nodeType] ? this.nodeType[item.nodeType].type : ''
                     if (nodetype == 'Element') {
-                        let elementItem = this.createElement(item.tagName, this.startapp(item.children))
+                        let elementItem = this.createElement(item.tagName, this.getDataCss(item, css), this.startapp(item.children, css))
                         elementArray.push(elementItem)
                     } else if (nodetype == 'Text') {
                         let elementItem = item.data.trim()
@@ -73,10 +79,34 @@ export default {
                     } else if (nodetype == 'Comment') {
                     }
                 } else {
-                    elementArray = elementArray.concat(this.startapp(item.children))
+                    elementArray = elementArray.concat(this.startapp(item.children, css))
                 }
             }
             return elementArray
+        },
+        getDataCss(html, css) {
+            let option = {}
+            let styleData = {}
+            option.style = {}
+            let datacss = html.dataset['css']
+            console.log(datacss)
+            if (datacss) {
+                let cssarr = datacss.split("|")
+                for (let i = 0; i < cssarr.length; i++) {
+                    let firstkey = parseInt((cssarr[i].split("-"))[0])
+                    let secondkey = parseInt((cssarr[i].split("-"))[1])
+                    console.log(css[firstkey].cssRuleses[secondkey].cssstyle)
+                    let cssstylearr = css[firstkey].cssRuleses[secondkey].cssstyle
+                    for (let j in cssstylearr) {
+                        styleData[j] = cssstylearr[j]
+                    }
+                    console.log(styleData)
+                }
+            }
+            option.style = styleData
+            option.attrs = {}
+            option.attrs['data-css'] = datacss
+            return option
         }
     }
 }

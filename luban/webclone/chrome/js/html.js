@@ -2,6 +2,7 @@ window.lubaninfo = function () {
     let lubanclone = {}
     lubanclone.location = window.location
     let cssAll = document.styleSheets
+    console.log(document.styleSheets)
     console.log($("html"))
     let csstotal = {}
     function getCss(css) {
@@ -14,16 +15,14 @@ window.lubaninfo = function () {
             for (var j = 0; j < cssitem.cssRules.length; ++j) {
                 let csssubitem = cssitem.cssRules[j]
                 let cssvalue = {}
-                cssvalue.cssstyle = []
+                cssvalue.cssstyle = {}
                 //cssvalue.cssText = csssubitem.cssText
                 cssvalue.selectorText = csssubitem.selectorText
                 cssvalue.type = csssubitem.type
                 cssvalue.elcount = 0
                 if (csssubitem.style) {
                     for (let h = 0; h < csssubitem.style.length; ++h) {
-                        let styles = {}
-                        styles[csssubitem.style[h]] = csssubitem.style[csssubitem.style[h]]
-                        cssvalue.cssstyle.push(styles)
+                        cssvalue.cssstyle[csssubitem.style[h]] = csssubitem.style[csssubitem.style[h]]
                     }
                 }
                 onecss.cssRuleses.push(cssvalue)
@@ -42,8 +41,8 @@ window.lubaninfo = function () {
             for (var j = 0; j < dataitem.cssRuleses.length; j++) {
                 let cssindex = i + "-" + j
                 let cssstr = dataitem.cssRuleses[j].selectorText
-                if ($(cssstr).length > 0) {
-                    let datacss = $(cssstr).attr("data-css")
+                $(cssstr).each(function (index, element) {
+                    let datacss = $(element).attr("data-css")
                     if (datacss) {
                         if (datacss.length == 0) {
                             datacss += cssindex
@@ -53,8 +52,8 @@ window.lubaninfo = function () {
                     } else {
                         datacss = cssindex
                     }
-                    $(cssstr).attr("data-css", datacss)
-                }
+                    $(element).attr("data-css", datacss)
+                })
             }
         }
     }
@@ -191,3 +190,4 @@ window.lubaninfo = function () {
     console.log(formatHTML(lubanhtml))
     return lubanclone
 }
+

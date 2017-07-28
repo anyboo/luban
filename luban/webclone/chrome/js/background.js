@@ -10,5 +10,6 @@ setTimeout(function () {
             $.post('http://app.bullstech.cn:8888/webclone/api/eqxiu', { info: base64 }, function (data) {
                 console.log(data)
             })
-        })*/
+        })
+       */
 }, 3000)
