@@ -87,25 +87,43 @@ export default {
         getDataCss(html, css) {
             let option = {}
             let styleData = {}
+            let styletotal = {}
             option.style = {}
             let datacss = html.dataset['css']
-            console.log(datacss)
+            let stylecss = html.style
+            let attrWidthHeight=html.attributes
+            let datasrc = html.currentSrc ? html.currentSrc : ''
             if (datacss) {
                 let cssarr = datacss.split("|")
                 for (let i = 0; i < cssarr.length; i++) {
                     let firstkey = parseInt((cssarr[i].split("-"))[0])
                     let secondkey = parseInt((cssarr[i].split("-"))[1])
-                    console.log(css[firstkey].cssRuleses[secondkey].cssstyle)
                     let cssstylearr = css[firstkey].cssRuleses[secondkey].cssstyle
                     for (let j in cssstylearr) {
                         styleData[j] = cssstylearr[j]
                     }
-                    console.log(styleData)
                 }
+            }
+            if (stylecss) {
+               console.log(stylecss) 
+                for (var index in stylecss) {
+                    styleData[index] = stylecss[index]
+                }
+            }
+            for(let i=0;i<attrWidthHeight.length;i++){
+                if(attrWidthHeight[i]['name']=='height'||attrWidthHeight[i]['name']=='width'){
+                    styleData[attrWidthHeight[i]['name']]=attrWidthHeight[i]['value']
+                }
+            }
+            if (datacss=='2-0|2-29|11-7'){
+                console.log('--------',html.attributes)
             }
             option.style = styleData
             option.attrs = {}
             option.attrs['data-css'] = datacss
+            if (datasrc != '') {
+                option.attrs['src'] = datasrc
+            }
             return option
         }
     }

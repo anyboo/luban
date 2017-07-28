@@ -67,6 +67,9 @@ window.lubaninfo = function () {
         nodeitem.nodeType = root.nodeType ? root.nodeType : 0
         nodeitem.id = root.id ? root.id : ''
         nodeitem.data = root.data ? root.data : ''
+        if (root.tagName == 'IMG') {
+            nodeitem.currentSrc = root.currentSrc
+        }
         if (root.attributes) {
             let attr = []
             for (let i = 0; i < root.attributes.length; i++) {
@@ -75,7 +78,7 @@ window.lubaninfo = function () {
                 attrvalue.value = root.attributes[i].value
                 attr.push(attrvalue)
             }
-            if (attr != "") {
+            if (attr.length > 0) {
                 nodeitem.attributes = attr
             }
         }
@@ -86,18 +89,20 @@ window.lubaninfo = function () {
                 classvalue.value = root.classList[i]
                 classes.push(classvalue)
             }
-            if (classes != "") {
+            if (classes.length > 0) {
                 nodeitem.classList = classes
             }
         }
         if (root.style) {
-            let styles = []
+            let styles = {}
+            let find = false
+            console.log(root.style.length)
             for (let i = 0; i < root.style.length; i++) {
-                let stylevalue = {}
-                stylevalue[root.style[i]] = root.style[root.style[i]]
-                styles.push(stylevalue)
+                styles[root.style[i]] = root.style[root.style[i]]
+                find = true
             }
-            if (styles != "") {
+            if (find) {
+                console.log(styles)
                 nodeitem.style = styles
             }
         }
