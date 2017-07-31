@@ -198,11 +198,11 @@ export default {
             return tablaData
         },
         handleShowDialog(url, menuData) {
-            //console.log(url, menuData)
+            console.log(url)
             this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {
-            //console.log(url)
+            console.log(url)
             if (event) event.preventDefault()
             this.$store.commit('pushdialog', { url })
         },
