@@ -351,7 +351,6 @@ export default {
             data
         }) {
             if (action == 'delete') {
-                console.log(data)
                 if (data.order.length>0) {
                     this.$message({
                             type: 'info',
