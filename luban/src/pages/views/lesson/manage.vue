@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                     <lb-buttongroup class="btn-group m-l"></lb-buttongroup> 
+                    <lb-buttongroup class="btn-group m-l"></lb-buttongroup>
                     <template v-if="getActionOption('lessonmanageles')">
                         <button class="btn btn-default pull-right" @click="lbShowdialog($event,'lb-cate')">
                             <i class="fa fa-list"></i>课程分类
@@ -53,7 +53,7 @@
                             </lb-dropdown>
                         </template>
                     </el-table-column>
-                    <el-table-column  prop="data" label="课程" width="250">
+                    <el-table-column prop="data" label="课程" width="250">
                         <template scope="scope">
                             <p>
                                 <span class="label bg-danger">{{getButtongroupText(localdata.lesson_type,scope.row.lesson_type)}}</span>{{scope.row.lesson_name}}
@@ -61,7 +61,7 @@
                             </p>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="data" label="定价" width="180"> 
+                    <el-table-column prop="data" label="定价" width="180">
                         <template scope="scope">
                             <p>
                                 课程单价:{{getToFixed(scope.row.unit_price)}}元/次
@@ -128,6 +128,12 @@ export default {
                 'value': '2',
                 'text': '课时包'
             }],
+            'orderlookup': {
+                'localField': '_id',
+                'from': 'classes',
+                'foreignField': 'course_id',
+                'as': 'classes'
+            }
         }
         return {
             localdata,
@@ -160,32 +166,45 @@ export default {
                     'type': 'like'
                 })
             }
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.orderlookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+            })
         },
         handleCommand({
             action,
             data
         }) {
             if (action == 'delete') {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.handleDelete(data._id).then(() => {
-                        this.$message({
-                            message: '删除成功',
-                            type: 'success'
-                        })
-                        this.handleGetTable()
-                    })
-                }).catch(() => {
+                if (data.classes.length>0) {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: '已有对应课程排课中，请先删除对应课程再执行操作'
                     })
-                })
+                } else {
+                    this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.handleDelete(data._id).then(() => {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            })
+                            this.handleGetTable()
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        })
+                    })
+                }
             }
         }
     }
