@@ -85,6 +85,12 @@ export default {
                 'search_key': 'class_name',
                 'search_value': '教室名'
             },
+            'sclesseslookup': {
+                'localField': '_id',
+                'from': 'arrange',
+                'foreignField': 'sclasses_id',
+                'as': 'sclesses'
+            }
         }
         return {
             localdata,
@@ -118,33 +124,46 @@ export default {
                     'type': 'like'
                 })
             }
-
+            filterObj.push({
+                'key': 'lookup',
+                'value': this.localdata.sclesseslookup,
+                'type': 'lookup'
+            })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                console.log(obj)
+            })
         },
         handleCommand({
             action,
             data
         }) {
             if (action == 'delete') {
-                this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.handleDelete(data._id).then(() => {
-                        this.$message({
-                            message: '删除成功',
-                            type: 'success'
-                        })
-                        this.handleGetTable()
-                    })
-                }).catch(() => {
+                if (data.sclesses.length > 0) {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: '该教室已有排课，请先删除排课教室再进行此操作'
                     })
-                })
+                } else {
+                    this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.handleDelete(data._id).then(() => {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            })
+                            this.handleGetTable()
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        })
+                    })
+                }
             }
         }
     }

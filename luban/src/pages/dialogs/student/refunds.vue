@@ -1,8 +1,8 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div ></div>
-            <div >
+            <div></div>
+            <div>
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
@@ -56,8 +56,8 @@
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static">{{order.body}}
                                         <!--
-                                                    <span class="text-danger" ng-if="oph.remain_times > -1">剩余 5 次</span>
-                                                    -->
+                                                                <span class="text-danger" ng-if="oph.remain_times > -1">剩余 5 次</span>
+                                                                -->
                                     </p>
                                 </div>
                             </div>
@@ -81,11 +81,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-xs-12 col-md-2">课耗金额:</label>
+                                <div class="col-xs-12 col-md-5">
+                                    <p class="form-control-static">{{getorderPay}}元
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">已退金额:</label>
                                 <div class="col-xs-12 col-md-5">
                                     <p class="form-control-static">{{order.back_amount}}元
                                     </p>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-md-2">可退金额:</label>
+                                <div class="col-xs-12 col-md-5">
+                                    <p class="form-control-static">{{getorder}}元
+                                    </p>
+                                </div>
+    
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">缴费日期:</label>
@@ -146,7 +161,7 @@
                 </div>
                 <div class="modal-footer">
                     <button v-if="step == 1" class="btn btn-primary" @click="step=2" :disabled="currentRow==null">下一步</button>
-                    <button v-if="step == 2" class="btn btn-primary" @click="do_refund" :disabled="localdata.form.amount==0">
+                    <button v-if="step == 2" class="btn btn-primary" @click="do_refund" :disabled="localdata.form.amount==0||parseInt(localdata.form.amount)> getorder ">
                         确定退款</button>
                     <button class="btn btn-warning m-l" @click="lbClosedialog($event)">关闭</button>
                 </div>
@@ -222,13 +237,27 @@ export default {
             this.handleSearch()
         }
     },
-    computed: {},
+    computed: {
+        getorder() {
+            let vm = this
+            let getorderTurn = parseInt(vm.currentRow.money_pay_amount) - (parseInt(vm.order.c_unit_price) * 2) - parseInt(vm.order.back_amount)
+            return getorderTurn
+        },
+        getorderPay() {
+            let vm = this
+            let tiem = parseInt(vm.order.c_unit_price) * 2
+            console.log(tiem)
+            return tiem
+        }
+
+    },
     watch: {},
     methods: {
         handleTimes_policy() {
 
         },
         handleListChange(row) {
+            console.log(row)
             this.currentRow = row
         },
         getCheckRowClass(rowid) {

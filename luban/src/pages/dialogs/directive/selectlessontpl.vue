@@ -151,7 +151,7 @@ export default {
             let status = this.localdata.form.status.trim()
             if (status.length > 0) {
                 filterObj.push({
-                    'key': 'track_type',
+                    'key': this.localdata.form.search_value,
                     'value': status,
                     'type': ''
                 })

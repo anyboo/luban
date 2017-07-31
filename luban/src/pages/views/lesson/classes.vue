@@ -42,7 +42,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="item in grid.data" ng-if="!loading">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 >{{item.class_name}}
+                                <h4>{{item.class_name}}
                                     <small class="label bg-success m-l" v-if="getOpen(item,'open')">已开课</small>
                                     <small class="label bg-red m-l" v-if="getOpen(item,'')">未开课</small>
                                     <small class="label bg-blue m-l" v-if="getOpen(item,'close')">已结课</small>
@@ -53,22 +53,22 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <label class="inline w-xs text-right">老师:</label>
-                                        <span >{{getLookUp(item.employee, 'name')}}</span>
+                                        <span>{{getLookUp(item.employee, 'name')}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">课程名称:</label>
-                                        <span >{{getLookUp(item.course, 'lesson_name')}}</span>
+                                        <span>{{getLookUp(item.course, 'lesson_name')}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">开课日期:</label>
-                                        <span >{{getDateFormat(item.open_time)}}</span>
+                                        <span>{{getDateFormat(item.open_time)}}</span>
                                     </li>
                                     <li class="m-t-xs">
                                         <label class="inline w-xs text-right">招生情况:</label>
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.max_student_num" value="item.student_count" type="info">
                                                 <div class="progress-bar progress-bar-info" style="width: 0%;">
-                                                    <span style="white-space:nowrap;padding-left:20px" >{{getPressageText(item)}}</span>
+                                                    <span style="white-space:nowrap;padding-left:20px">{{getPressageText(item)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                         <div class="inline w va-m">
                                             <div class="progress ng-isolate-scope" style="margin:0" max="item.total_amount" value="item.pay_amount" type="danger">
                                                 <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
-                                                    <span style="white-space:nowrap;padding-left:20px" >￥{{getPayAmout(item.order)}} / ￥{{getTotalAmout(item.order)}}</span>
+                                                    <span style="white-space:nowrap;padding-left:20px">￥{{getPayAmout(item.order)}} / ￥{{getTotalAmout(item.order)}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="item" @command="handleCommand">
                                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                                     <i class="fa fa-cog"></i>
-                                                    <span >操作</span>
+                                                    <span>操作</span>
                                                     <span class="caret"></span>
                                                 </lb-dropdown-button>
                                             </lb-dropdown>
@@ -109,7 +109,7 @@
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-info btn-xs" button-tooltip="操作">
                                     <i class="fa fa-cog"></i>
-                                    <span >操作</span>
+                                    <span>操作</span>
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
                             </lb-dropdown>
@@ -121,7 +121,7 @@
                     </el-table-column>
                     <el-table-column prop="data" label="老师">
                         <template scope="scope">
-                            <span >{{getLookUp(scope.row.employee, 'name')}}</span>
+                            <span>{{getLookUp(scope.row.employee, 'name')}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="data" label="课程名">
@@ -129,7 +129,7 @@
                     </el-table-column>
                     <el-table-column prop="data" label="开课日期">
                         <template scope="scope">
-                            <span >{{getDateFormat(scope.row.open_time)}}</span>
+                            <span>{{getDateFormat(scope.row.open_time)}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column label="状态">
@@ -190,7 +190,6 @@ export default {
                 'iclass': 'fa fa-list',
                 'text': '列表'
             }],
-           
             'search': {
                 'fields': [{
                     'name': 'class_name',
@@ -249,7 +248,7 @@ export default {
                     totalamount += Number(item.order_amount)
                 }
             }
-            return parseFloat(totalamount).toFixed(2) 
+            return parseFloat(totalamount).toFixed(2)
         },
         getPayAmout(orders) {
             var payamount = 0
@@ -262,7 +261,7 @@ export default {
                     payamount += Number(item.unpay_amount)
                 }
             }
-            return parseFloat(totalamount - payamount).toFixed(2) 
+            return parseFloat(totalamount - payamount).toFixed(2)
         },
         getPercentage(order, maxStudent) {
             let percentage = 100
@@ -351,24 +350,32 @@ export default {
             data
         }) {
             if (action == 'delete') {
-                this.$confirm('此操作将永久删除该班级, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.handleDelete(data._id).then(() => {
-                        this.$message({
-                            message: '删除成功',
-                            type: 'success'
-                        })
-                        this.handleGetTable()
-                    })
-                }).catch(() => {
+                if (data.order.length>0) {
                     this.$message({
-                        type: 'info',
-                        message: '已取消删除'
+                            type: 'info',
+                            message: '班级已排课，不能删除'
+                        })
+                } else {
+                    this.$confirm('此操作将永久删除该班级, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.handleDelete(data._id).then(() => {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            })
+                            this.handleGetTable()
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        })
                     })
-                })
+                }
+
             }
         }
     },

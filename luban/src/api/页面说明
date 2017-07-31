@@ -88,5 +88,35 @@ clear清除费用结构
 'amount': '',        //清除金额
 'note': ''           //清除备注
 }
-
+classes班级结果{
+  'class_name': '',   //班级名称
+'course_id': '',      //课程ID
+'open_time': '',      //预计开班时间
+'close_time': '',    //预计结课时间
+'max_student_num': 0,   //最大学生
+'total_times': 0,      //总共课时
+'unit_hours': 0,      //课时时间
+'teacher_id': '',     //老师
+'del_able': false   //是否删除
+'class_flag':0      //班级状态  0 未开班，1 已经开班  2 已经结班
+}
+排课数据
+ {
+	day_1: false,
+	day_2: false,
+	day_3: false,
+	day_4: false,
+	day_5: false,
+	day_6: false,
+	day_0: false,
+	dayloop: false,  //是否周期
+	daterange1: '',  //开始日期
+	daterange2: '',  //结束日期
+	classes_id: '',  //班级ID
+	sclasses_id: '',  //教室ID 
+	teacher_id: '',   //老师ID
+	timerange1: '',   //时间开始
+	timerange2: '',   //时间结束
+	timerange: ''   //时间区间
+}      
                
