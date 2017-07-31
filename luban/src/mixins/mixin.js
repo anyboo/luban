@@ -74,7 +74,7 @@ export default {
             }
             if (this.$store.state.system.roles) {
                 for (var item of this.$store.state.system.roles) {
-                    if (item.authority && item.authority.indexOf(role)>-1) {
+                    if (item.authority && item.authority.indexOf(role) > -1) {
                         return true
                     }
                 }
@@ -82,7 +82,7 @@ export default {
             return false
         },
         getActionOption(key) {
-            return this.getRole(key+'_opt')
+            return this.getRole(key + '_opt')
         },
         getToFixed(amount) {
             return parseFloat(amount).toFixed(2)
@@ -184,6 +184,19 @@ export default {
         },
         getStudentId() {
             return this.$store.state.envs.currStudent._id
+        },
+        getDictData(type) {
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            let tablaDatas = []
+            for (var i = 0; i < tablaData.length - 1; i++) {
+                if (type == '2') {
+                    tablaDatas.push(tablaData[i])
+                }
+            }
+            console.log(tablaDatas)
+            return tablaDatas
         },
         getTablesData() {
             let tablaData = []

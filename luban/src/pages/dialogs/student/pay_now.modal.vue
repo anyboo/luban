@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div ></div>
+            <div></div>
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog($event)">
                     <span aria-hidden="true">×</span>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="!dopay" >
+                <div v-if="!dopay">
                     <form name="form1" class="form-horizontal form-validation   -b -a" novalidate>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-md-2">学员:</label>
@@ -93,25 +93,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" v-if="localdata.form.pay_amount > 0">
-                            <label class="control-label col-xs-12 col-md-2">缴费方式:</label>
-                            <div class="col-xs-12 col-md-10">
-                                <ul class="list-group">
-                                    <li class="list-group-item" @click="select_pay()">
-                                        <img alt="现金支付" src="/assets/images/logo_cash.png">
-                                        <span class="text-success text-2x pull-right">
-                                            <i class="fa fa-check-circle"></i>
-                                        </span>
-                                    </li>
-                                </ul>
-                                <!--
-                                        <p class="alert alert-danger" ng-if="payment_rest.$list.length == 1">您还没有开通微信支付,可在【系统设置】》【支付设置】申请开通微信支付!</p>
-                                        -->
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-md-2"><span style='color:red'>* </span>缴费方式:</label>
+                            <div class="col-xs-12 col-md-4">
+                                <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
+                                    <el-option v-for="item in getDictData(2)" :key="item._id" :label="item.text" :value="item._id">
+                                    </el-option>
+                                </el-select>
                             </div>
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button type="button" class="btn btn-primary" @click="do_pay()" :disabled="localdata.form.pay_amount==0||parseInt(localdata.form.money_pay_amount)>parseInt(order.unpay_amount)">确认缴费</button>
+                                <button type="button" class="btn btn-primary" @click="do_pay()" :disabled="localdata.form.pay_amount==0||parseInt(localdata.form.money_pay_amount)>parseInt(order.unpay_amount)||localdata.form.region_oe_id == '请选择'">确认缴费</button>
                                 <button type="button" class="btn btn-danger m-l" @click="lbClosedialog($event)">关闭</button>
                             </div>
                         </div>
@@ -133,7 +126,8 @@ export default {
                 'money_pay_amount': '',
                 'pay_type': 0,
                 'use_balance': false,
-                'balance_pay_amount': 0
+                'balance_pay_amount': 0,
+                'region_oe_id': '请选择'
             }
         }
         return {
@@ -178,9 +172,6 @@ export default {
             } else {
                 this.localdata.form.money_pay_amount = this.order.unpay_amount
             }
-        },
-        select_pay() {
-
         },
         updateOrder() {
             let unpay_amount = this.order.unpay_amount - this.localdata.form.money_pay_amount
