@@ -111,7 +111,7 @@
                         </div>
                         <div class="form-group m-t">
                             <div class="col-xs-12 col-md-offset-2">
-                                <button type="button" class="btn btn-primary" @click="do_pay()" :disabled="localdata.form.pay_amount==0">确认缴费</button>
+                                <button type="button" class="btn btn-primary" @click="do_pay()" :disabled="localdata.form.pay_amount==0||parseInt(localdata.form.money_pay_amount)>parseInt(order.unpay_amount)">确认缴费</button>
                                 <button type="button" class="btn btn-danger m-l" @click="lbClosedialog($event)">关闭</button>
                             </div>
                         </div>
