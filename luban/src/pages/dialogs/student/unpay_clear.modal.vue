@@ -95,19 +95,14 @@
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label "><span style='color:red'>*</span> 清除备注:</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label ">
+                                <span style='color:red'>*</span> 清除备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <input type="text" class="form-control" id="inputError1" name="note" placeholder="请输入清除原因" v-model="localdata.form.note">
                             </div>
                         </div>
                     </form>
                 </div>
-                <!--         <el-form label-width="100px" class="demo-ruleForm">
-            
-                            <el-form-item label="清除备注:" prop="name">
-                                <el-input v-model="ruleForm.name" placeholder="请输入清除原因" v-model="localdata.form.note"></el-input>
-                            </el-form-item>
-                        </el-form> -->
                 <div class="modal-footer">
                     <button class="btn btn-primary" @click="do_save" :disabled="parseInt(localdata.form.times)>parseInt(order.origin_times)||parseInt(localdata.form.amount)>parseInt(order.unpay_amount)||localdata.form.note==''">确定</button>
                     <button class="btn btn-warning m-l" @click="lbClosedialog($event)">关闭</button>
@@ -177,6 +172,13 @@ export default {
         do_save() {
             this.handleSave().then((data) => {
                 this.updateOrder()
+                this.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-unpay_clear'
+
             })
         }
     }
