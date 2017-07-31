@@ -1,7 +1,7 @@
 <template>
     <div ui-view class="wrapper">
         <div class="wrapper-xs">
-            <div ui-view >
+            <div ui-view>
                 <div class="panel panel-default" xo-rest="arrearages" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="arrearages">
                     <div class="row wrapper">
                         <div class="col-xs-12 col-md-4 m-t">
@@ -17,19 +17,19 @@
                                 <div class="input-group">
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="localdata.form.student_name">
                                     <span class="input-group-btn">
-                                <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                      <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                                </button>
-                            </span>
+                                        <button class="btn btn-default" select-tpl="tpl/directive/selectStudentTpl.html" select-id-field="os_id" max-num="1" on-selected="select_student" select-params="{ob_id:user.gv.ob_id}" select-title="请选择学员" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                            <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                             <div id="fct-arrearages" style="display:none;">
                                 <form name="export_form_arrearages" action="/api/export" method="post" target="_blank" class="">
                                     <input type="hidden" name="X-XSRF-TOKEN" value="cee96e8dd9bbce533937bb8352bc7dde">
                                     <input type="hidden" name="resource" value="arrearages">
-                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params" >
-                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params" >
-                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params" >
+                                    <input type="hidden" name="ob_id" value="11091" ng-repeat="(key,value) in params">
+                                    <input type="hidden" name="page" value="1" ng-repeat="(key,value) in params">
+                                    <input type="hidden" name="pagesize" value="20" ng-repeat="(key,value) in params">
                                 </form>
                             </div>
                         </div>
@@ -57,12 +57,12 @@
                             </el-table-column>
                             <el-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger">{{ getToFixed(scope.row.unpay_amount)}}  </span>
+                                    <span class="badge badge-danger">{{ getToFixed(scope.row.unpay_amount)}} </span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="总金额">
                                 <template scope="scope">
-                                    <span class="badge bg-info">{{ getToFixed(scope.row.order_amount)}}</span>
+                                    <span class="badge badge-info">{{ getToFixed(scope.row.order_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">
@@ -109,7 +109,7 @@ export default {
                 'from': 'student',
                 'foreignField': '_id',
                 'as': 'student'
-            },        
+            },
         }
         return {
             localdata,
@@ -130,6 +130,10 @@ export default {
                     this.student_name = '学员'
                     this.handleSearch()
                 }
+            }
+            if (this.$store.state.envs.currDialog == 'lb-unpay_clear') {
+                console.log(this.$store.state.envs.currDialog)
+                this.handleSearch()
             }
             return this.student_name
         },
