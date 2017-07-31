@@ -57,12 +57,12 @@
                             </el-table-column>
                             <el-table-column prop="data" label="欠费金额">
                                 <template scope="scope">
-                                    <span class="badge bg-danger">{{ getToFixed(scope.row.unpay_amount)}}  </span>
+                                    <span class="badge badge-danger">{{ getToFixed(scope.row.unpay_amount)}}  </span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="总金额">
                                 <template scope="scope">
-                                    <span class="badge bg-info">{{ getToFixed(scope.row.order_amount)}}</span>
+                                    <span class="badge badge-info">{{ getToFixed(scope.row.order_amount)}}</span>
                                 </template>
                             </el-table-column>
                             <el-table-column prop="data" label="学员">

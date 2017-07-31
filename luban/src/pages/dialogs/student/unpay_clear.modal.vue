@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div >
+            <div>
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -78,8 +78,8 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除课次:</label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
-                                    <lb-numberinput type="number" name="times" class="form-control    -required -number" required v-model="localdata.form.times">
-                                        </lb-numberinput>
+                                    <lb-numberinput type="number" name="times" class="form-control " v-model="localdata.form.times">
+                                    </lb-numberinput>
                                     <span class="input-group-addon">次</span>
                                 </div>
                             </div>
@@ -89,21 +89,27 @@
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
                                     <lb-numberinput type="number" name="amount" class="form-control" v-model="localdata.form.amount">
-                                        </lb-numberinput>
+                                    </lb-numberinput>
                                     <span class="input-group-addon">元</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">清除备注:</label>
+                        <div class="form-group ">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label "><span style='color:red'>*</span> 清除备注:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <input type="text" class="form-control    -required -parse" name="note" placeholder="请输入清除原因" required v-model="localdata.form.note">
+                                <input type="text" class="form-control" id="inputError1" name="note" placeholder="请输入清除原因" v-model="localdata.form.note">
                             </div>
                         </div>
                     </form>
                 </div>
+                <!--         <el-form label-width="100px" class="demo-ruleForm">
+            
+                            <el-form-item label="清除备注:" prop="name">
+                                <el-input v-model="ruleForm.name" placeholder="请输入清除原因" v-model="localdata.form.note"></el-input>
+                            </el-form-item>
+                        </el-form> -->
                 <div class="modal-footer">
-                    <button class="btn btn-primary" @click="do_save">确定</button>
+                    <button class="btn btn-primary" @click="do_save" :disabled="parseInt(localdata.form.times)>parseInt(order.origin_times)||parseInt(localdata.form.amount)>parseInt(order.unpay_amount)||localdata.form.note==''">确定</button>
                     <button class="btn btn-warning m-l" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
@@ -140,6 +146,7 @@ export default {
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
             vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.amount = vm.order.unpay_amount
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     vm.currStudent = obj.data[0]
