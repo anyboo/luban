@@ -224,12 +224,9 @@ export default {
             }).value
         },
         handleSearch() {
-
             let filterObj = []
             let search_value = this.localdata.form.search_value.trim()
-            
             if (search_value.length > 0) {
-                console.log(search_value)
                 filterObj.push({
                     'key': this.localdata.search.search_key,
                     'value': search_value,

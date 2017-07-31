@@ -190,7 +190,6 @@ export default {
                 'iclass': 'fa fa-list',
                 'text': '列表'
             }],
-
             'search': {
                 'fields': [{
                     'name': 'class_name',

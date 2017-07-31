@@ -91,7 +91,7 @@ export default {
             option.style = {}
             let datacss = html.dataset['css']
             let stylecss = html.style
-            let attrWidthHeight=html.attributes
+            let attrWidthHeight = html.attributes
             let datasrc = html.currentSrc ? html.currentSrc : ''
             if (datacss) {
                 let cssarr = datacss.split("|")
@@ -105,18 +105,14 @@ export default {
                 }
             }
             if (stylecss) {
-               console.log(stylecss) 
                 for (var index in stylecss) {
                     styleData[index] = stylecss[index]
                 }
             }
-            for(let i=0;i<attrWidthHeight.length;i++){
-                if(attrWidthHeight[i]['name']=='height'||attrWidthHeight[i]['name']=='width'){
-                    styleData[attrWidthHeight[i]['name']]=attrWidthHeight[i]['value']
+            for (let i = 0; i < attrWidthHeight.length; i++) {
+                if (attrWidthHeight[i]['name'] == 'height' || attrWidthHeight[i]['name'] == 'width') {
+                    styleData[attrWidthHeight[i]['name']] = attrWidthHeight[i]['value']
                 }
-            }
-            if (datacss=='2-0|2-29|11-7'){
-                console.log('--------',html.attributes)
             }
             option.style = styleData
             option.attrs = {}
