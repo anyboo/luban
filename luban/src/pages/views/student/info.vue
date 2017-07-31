@@ -53,6 +53,7 @@
                             </ul>
                         </div>
                         <div class="col-xs-12 col-md-8">
+    
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-info"></i> 基础信息</div>
@@ -92,58 +93,44 @@
                         </div>
                     </div>
                 </div>
-    
-                <div class="panel panel-default" style="width:66%;position: relative;left:267px;">
-                    <div class="panel-heading">
-                        <a class="btn btn-xs btn-default pull-right" ui-per="student.edit" ng-click="$util.open('tpl/app/student/add_contact.modal.html','sm',student)">
-                            <i class="fa fa-plus"></i> 添加联系人</a>
-                        <i class="icon-users"></i> 联系人</div>
-                    <table class="table table-striped m-b-none">
-                        <thead>
-                            <tr>
-                                <th>电话</th>
-                                <th class="hidden-xs">称呼</th>
-                                <th class="hidden-xs">姓名</th>
-                                <th class="hidden-xs">学习管家账号</th>
-                                <th class="hidden-xs">微信绑定</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>                          
-                            <tr ng-repeat="item in student.relations" class="ng-scope">
-                                <td class="ng-binding">                              
-                                    <i class="fa fa-star text-warning ng-scope" tooltip="第1联系人" ng-if="item.is_main == '1'"></i>                                  
-                                   12312312312</td>
-                                <td class="hidden-xs ng-binding">爸爸</td>
-                                <td class="hidden-xs ng-binding">未填写</td>
-                                <td class="hidden-xs">                               
-                                    <span class="label bg-info ng-scope" ng-if="item.ou_id != '0'">已开通</span>
-                                   
-                                </td>
-                                <td class="hidden-xs">                              
-                                    <span class="badge bg-gray ng-scope" ng-if="item.wb_id == '0'">未绑定</span>                                                             
-                                </td>
-                                <td>
-                                    <a ng-disabled="item.is_main == '1'" class="btn btn-xs btn-danger ng-isolate-scope" confirm-action="remove_relation($index,item)" confirm-text="确定要删除该联系人吗?" tooltip="删除" disabled="disabled">
-                                        <i class="icon-close"></i>
-                                    </a>
-                                    <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/edit_contact.modal.html','md',{student:student,contact:item})" tooltip="编辑">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-xs btn-info m-l-xs" ng-click="$util.open('tpl/app/student/wxbind_qrcode.modal.html','md',{student:student,contact:item})" tooltip="微信绑定二维码">
-                                        <i class="fa fa-qrcode"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <p class="text-muted">提醒：学习管家账号是手机号，默认密码是手机号后6位</p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="margin-bottom:10px;">
+                                <a class="btn btn-xs btn-default pull-right" @click="handleClick">
+                                    <i></i> 保存</a>
+                                <i class="icon-users"></i> 联系人</div>
+                            <table class="table table-striped m-b-none">
+                                <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
+                                    <el-form-item prop="first_tel">
+                                        <el-input v-model="localdata.form.first_tel" style="width:120px;" placeholder="请输入手机号"></el-input>
+                                        <el-select v-model="localdata.form.first_rel_rel" placeholder="关系" style="width:100px;">
+                                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                        <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
+                                    </el-form-item>
+                                    <el-form-item prop="first_tel" v-for="item,index in localdata.form.relations">
+                                        <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
+                                        <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
+                                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                        <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
+                                        <a @click="localdata.form.relations.splice(index, 1)">
+                                            <i class="fa fa-minus-square-o"></i>
+                                        </a>
+                                    </el-form-item>
+                                    <span class="wrapper" style="position: relative; left:87px;top:-9px">
+                                        <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
+                                            <i class="fa fa-plus-square-o"></i>增加联系方式
+                                        </a>
+                                    </span>
+                                </el-form>
+                            </table>
+                        </div>
+                    </div>
                 </div>
     
             </div>
@@ -157,8 +144,10 @@ export default {
         let localdata = {
             'form': {
                 'student_id': '',
+                'relations': [],
+                'first_rel_rel': '',
+                'first_tel': ''
             },
-
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
@@ -166,11 +155,35 @@ export default {
                 'as': 'employee'
             },
         }
+        var validateTel = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入手机号码'))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须为数字1开头并为11位!已输入' + value.length + '位。'))
+            } else {
+                callback()
+            }
+        }
         return {
             localdata,
             student: {},
             tables: ['student'],
-            uid: ''
+            uid: '',
+            options: [{
+                value: '0',
+                label: '本人'
+            }, {
+                value: '1',
+                label: '爸爸'
+            }, {
+                value: '2',
+                label: '妈妈'
+            }],
+            rules: {
+                first_tel: [
+                    { validator: validateTel, required: true, trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -239,6 +252,18 @@ export default {
                 })
             }
         },
+        handleClick() {
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.handleSave().then(() => {
+                        this.$message({
+                            message: '操作成功',
+                            type: 'success'
+                        })
+                    })
+                }
+            })
+        }
     }
 }
 </script>

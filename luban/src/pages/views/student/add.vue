@@ -22,17 +22,15 @@
                                 </el-select>
                                 <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
                             </el-form-item>
-                            <el-form-item prop="first_tel" v-for="item,index in localdata.form.relations">
-                                <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
-                                                      
-                                  <el-select v-model="item.relation"  placeholder="关系" style="width:100px;">
+                            <el-form-item prop="first_tel" v-for="item in localdata.form.relations">
+                                <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input> 
+                                <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
                                     <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                                     </el-option>
-                                </el-select>                       
-                                
-                                  <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
-                            
-                         <a @click="localdata.form.relations.splice(index, 1)">
+                                </el-select>  
+                                <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
+    
+                                <a @click="localdata.form.relations.splice(index, 1)">
                                     <i class="fa fa-minus-square-o"></i>
                                 </a>
                             </el-form-item>
@@ -53,7 +51,7 @@
                                 <i class="fa fa-arrow-up"></i>关闭更多资料
                             </a>
                         </div>
-                        <el-form label-width="95px">
+                        <el-form label-width="95px" v-show="expand">
                             <el-form-item label="昵称" prop="name">
                                 <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname" style="width:120px;">
                             </el-form-item>
@@ -97,7 +95,6 @@
     border-color: #edf1f2;
     border-radius: 0 0 1px 1px;
 }
-
 .panel-footer .btn {
     margin-left: 22%;
     margin-top: 10px;
@@ -187,10 +184,10 @@ export default {
             }, {
                 value: '2',
                 label: '3'
-            } , {
+            }, {
                 value: '3',
                 label: '4'
-            },{
+            }, {
                 value: '4',
                 label: '5'
             }, {
@@ -199,16 +196,16 @@ export default {
             }, {
                 value: '6',
                 label: '7'
-            } , {
+            }, {
                 value: '7',
                 label: '8'
-            },{
+            }, {
                 value: '8',
                 label: '9'
-            } , {
+            }, {
                 value: '9',
                 label: '10'
-            },{
+            }, {
                 value: '10',
                 label: '11'
             }, {
@@ -217,8 +214,8 @@ export default {
             }, {
                 value: '12',
                 label: '13'
-            } ],
-             grade: [{
+            }],
+            grade: [{
                 value: '0',
                 label: '不确定'
             }, {
@@ -227,10 +224,10 @@ export default {
             }, {
                 value: '2',
                 label: '二年级'
-            } , {
+            }, {
                 value: '3',
                 label: '三年级'
-            },{
+            }, {
                 value: '4',
                 label: '四年级'
             }, {
@@ -239,16 +236,16 @@ export default {
             }, {
                 value: '6',
                 label: '六年级'
-            } , {
+            }, {
                 value: '7',
                 label: '初一'
-            },{
+            }, {
                 value: '8',
                 label: '初二'
-            } , {
+            }, {
                 value: '9',
                 label: '初三'
-            },{
+            }, {
                 value: '10',
                 label: '高一'
             }, {
@@ -257,7 +254,7 @@ export default {
             }, {
                 value: '12',
                 label: '高三'
-            } ],
+            }],
             rules: {
                 student_name: [
                     { required: true, message: '请输入姓名', trigger: 'blur' },

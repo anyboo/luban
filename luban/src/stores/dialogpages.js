@@ -85,4 +85,5 @@ pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
 
+
 export default pages
