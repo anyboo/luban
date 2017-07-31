@@ -12,14 +12,14 @@
             </div>
             <div class="modal-body">
                 <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
+                    <el-form-item label="老师" v-if="localdata.form.classes_id.length>0">
+                        {{techName}}
+                    </el-form-item>
                     <el-form-item label="班级" prop="classes_id" required>
                         <el-select v-model="localdata.form.classes_id" filterable placeholder="请选择" @change="getTechName" style="width: 100%;">
                             <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                             </el-option>
                         </el-select>
-                    </el-form-item>
-                    <el-form-item label="老师" v-if="localdata.form.classes_id.length>0">
-                        {{techName}}
                     </el-form-item>
                     <el-form-item label="上课教室" prop="sclasses_id" required>
                         <el-select v-model="localdata.form.sclasses_id" filterable placeholder="请选择" style="width: 100%;">
@@ -30,8 +30,8 @@
                     <el-form-item label="开始日期" prop="daterange1" required>
                         <el-date-picker @change="date1change" type="date" placeholder="选择日期" v-model="localdata.form.daterange1" style="width: 100%;"></el-date-picker>
                     </el-form-item>
-                    <el-form-item label="上课时间" prop="timerange" required>
-                        <el-time-picker v-model="localdata.form.timerange" placeholder="选择时间" is-range style="width: 100%;">
+                    <el-form-item label="上课时间" prop="timerange">
+                        <el-time-picker v-model="localdata.form.timerange" placeholder="选择时间" is-range style="width: 100%;" minTime="00:00">
                         </el-time-picker>
                     </el-form-item>
                     <el-form-item label="结束日期" prop="daterange2" :required="localdata.form.dayloop">
@@ -133,7 +133,7 @@ export default {
                 teacher_id: '',
                 timerange1: '',
                 timerange2: '',
-                timerange: ''
+                timerange: [new Date(), new Date()]
             }
         }
         var validateDatatime = (rule, value, callback) => {
@@ -217,6 +217,11 @@ export default {
                     this.hasDel = true
                     this.setEditModle(obj.data[0]._id)
                     this.localdata.form = this.lodash.assign(this.localdata.form, obj.data[0])
+                    this.localdata.form.timerange[0] = this.moment(this.localdata.form.timerange1).toDate()
+                    this.localdata.form.timerange[1] = this.moment(this.localdata.form.timerange2).toDate()
+                    this.localdata.form.daterange1 = this.moment(this.localdata.form.daterange1).toDate()
+                    this.localdata.form.daterange2 = this.moment(this.localdata.form.daterange2).toDate()
+                    this.getTechName()
                     this.daychange()
                 }
             })
@@ -234,8 +239,8 @@ export default {
     },
     watch: {},
     methods: {
-        date1change(){
-            if (!this.localdata.form.dayloop){
+        date1change() {
+            if (!this.localdata.form.dayloop) {
                 this.localdata.form.daterange2 = this.localdata.form.daterange1
             }
         },
@@ -292,8 +297,8 @@ export default {
                     vm.localdata.form.daterange2 = vm.getDatetime(vm.localdata.form.daterange2)
                     vm.localdata.form.timerange1 = vm.getDatetime(vm.localdata.form.timerange[0])
                     vm.localdata.form.timerange2 = vm.getDatetime(vm.localdata.form.timerange[1])
-                    vm.localdata.form.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
-                    vm.localdata.form.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
+                    //vm.localdata.form.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
+                    //vm.localdata.form.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
                     vm.handleSave().then(() => {
                         vm.$message({
                             message: '操作成功',
