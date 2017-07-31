@@ -100,5 +100,23 @@ classes班级结果{
 'del_able': false   //是否删除
 'class_flag':0      //班级状态  0 未开班，1 已经开班  2 已经结班
 }
-        
+排课数据
+ {
+	day_1: false,
+	day_2: false,
+	day_3: false,
+	day_4: false,
+	day_5: false,
+	day_6: false,
+	day_0: false,
+	dayloop: false,  //是否周期
+	daterange1: '',  //开始日期
+	daterange2: '',  //结束日期
+	classes_id: '',  //班级ID
+	sclasses_id: '',  //教室ID 
+	teacher_id: '',   //老师ID
+	timerange1: '',   //时间开始
+	timerange2: '',   //时间结束
+	timerange: ''   //时间区间
+}      
                
