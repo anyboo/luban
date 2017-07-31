@@ -91,7 +91,9 @@ export default {
                 'max_student_num': 0,
                 'total_times': 0,
                 'unit_hours': 0,
-                'teacher_id': ''
+                'teacher_id': '',
+                'del_able': false,
+                'class_flag':0 
             },
             'validator': {
                 'type': 'object',
