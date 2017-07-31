@@ -22,19 +22,19 @@
                                 </el-select>
                                 <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
                             </el-form-item>
-                            <template v-for="item in localdata.form.relations">
-                                <el-form-item>
-                                    <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
-                                    <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
-                                        <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label">
-                                        </el-option>
-                                    </el-select>
-                                    <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
-                                    <a @click="localdata.form.relations.splice(index, 1)">
-                                        <i class="fa fa-minus-square-o"></i>
-                                    </a>
-                                </el-form-item>
-                            </template>
+                            <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{
+         validator: validateTel, required: true, trigger: 'blur'
+        }">
+                                <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
+                                <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
+                                    <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
+                                    </el-option>
+                                </el-select>
+                                <el-input v-model="item.name" style="width:100px;" v-if="item.relation!='0'"></el-input>
+                                <a @click="localdata.form.relations.splice(index, 1)">
+                                    <i class="fa fa-minus-square-o"></i>
+                                </a>
+                            </el-form-item>
                             <span class="wrapper" style="position: relative; left:87px;top:-9px">
                                 <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
                                     <i class="fa fa-plus-square-o"></i>增加联系方式
@@ -111,7 +111,7 @@ export default {
                 'student_name': '',
                 'sex': '0',
                 'first_tel': '',
-                'first_rel_rel': '',
+                'first_rel_rel': '2',
                 'first_rel_name': '',
                 'relations': [],
                 'track_from': '其他',
@@ -265,7 +265,8 @@ export default {
                 first_tel: [
                     { validator: validateTel, required: true, trigger: 'blur' }
                 ],
-            }
+            },
+            validateTel
         }
     },
     computed: {},
