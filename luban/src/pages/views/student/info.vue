@@ -97,10 +97,20 @@
                     <div class="col-md-4"></div>
                     <div class="col-md-8">
                         <div class="panel panel-default">
-                            <div class="panel-heading" style="margin-bottom:10px;">
-                                <a class="btn btn-xs btn-default pull-right" @click="handleClick">
+                            <div class="panel-heading">
+                                <a class="btn btn-xs btn-default pull-right" @click="rest_save">
                                     <i></i> 保存</a>
                                 <i class="icon-users"></i> 联系人</div>
+                            <table class="table table-striped m-b-none">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid #ccc;background-color:#f4f5f9;">
+                                        <th>电话</th>
+                                        <th class="hidden-xs">称呼</th>
+                                        <th class="hidden-xs">姓名</th>
+                                    </tr>
+                                </thead>
+                               
+                            </table>
                             <table class="table table-striped m-b-none">
                                 <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
                                     <el-form-item prop="first_tel">
@@ -110,8 +120,13 @@
                                             </el-option>
                                         </el-select>
                                         <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
+                                        <span class="wrapper">
+                                            <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
+                                                <i class="fa fa-plus-square-o"></i>增加联系方式
+                                            </a>
+                                        </span>
                                     </el-form-item>
-                                    <template v-for="item in localdata.form.relations">
+                                    <template v-for="(item,index) in localdata.form.relations">
                                         <el-form-item>
                                             <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
                                             <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
@@ -124,21 +139,27 @@
                                             </a>
                                         </el-form-item>
                                     </template>
-                                    <span class="wrapper" style="position: relative; left:87px;top:-9px">
-                                        <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
-                                            <i class="fa fa-plus-square-o"></i>增加联系方式
-                                        </a>
-                                    </span>
                                 </el-form>
                             </table>
                         </div>
                     </div>
                 </div>
-    
+               
             </div>
         </div>
     </div>
 </template>
+<style>
+.table>thead>tr>th {
+    padding: 8px 15px;
+    font-weight: normal;
+    color: #000;
+    background-color: #f4f5f9;
+    border-bottom: 0;
+}
+</style>
+
+
 <script>
 export default {
     name: 'footer',
@@ -148,7 +169,8 @@ export default {
                 'student_id': '',
                 'relations': [],
                 'first_rel_rel': '',
-                'first_tel': ''
+                'first_tel': '',
+                'first_rel_name': '',
             },
             'lookup': {
                 'localField': 'region_oe_id',
@@ -251,21 +273,29 @@ export default {
                 let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                 this.handleGetFilterTable(filterTxt).then(() => {
                     this.student = this.$store.state.models.models.student.data[0]
+                    this.localdata.form = this.lodash.assign(this.localdata.form, this.student)
                 })
             }
         },
-        handleClick() {
+        rest_save() {
+            let student_id = this.uid
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    this.handleSave().then(() => {
-                        this.$message({
-                            message: '操作成功',
-                            type: 'success'
-                        })
+                    this.updateTeble('student', student_id, {
+                        'first_rel_rel': this.localdata.form.first_rel_rel,
+                        'first_tel': this.localdata.form.first_tel,
+                        'first_rel_name': this.localdata.form.first_rel_name,
+                        'relations': this.localdata.form.relations
+                    }).then(() => {
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialog = 'lb-paynow'
+                        this.dopay = true
                     })
                 }
             })
-        }
+        },
     }
 }
 </script>
+
+
