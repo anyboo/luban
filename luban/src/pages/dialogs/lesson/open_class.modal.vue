@@ -48,13 +48,6 @@
                             <span class="input-group-addon">人</span>
                         </div>
                     </el-form-item>
-                    <el-form-item label="额定人数">
-                        <div class="input-group">
-                            <lb-numberinput type="number" class="form-control" v-model="localdata.form.max_student_num">
-                            </lb-numberinput>
-                            <span class="input-group-addon">人</span>
-                        </div>
-                    </el-form-item>
                     <el-form-item label="授课次数">
                         <div class="input-group">
                             <lb-numberinput type="number" class="form-control" v-model="localdata.form.total_times">
