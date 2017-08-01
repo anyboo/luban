@@ -97,7 +97,7 @@
                             <label class="control-label col-xs-12 col-md-2"><span style='color:red'>* </span>缴费方式:</label>
                             <div class="col-xs-12 col-md-4">
                                 <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
-                                    <el-option v-for="item in getDictData(2)" :key="item._id" :label="item.text" :value="item._id">
+                                    <el-option v-for="item in getDictData('2')" :key="item._id" :label="item.text" :value="item._id">
                                     </el-option>
                                 </el-select>
                             </div>
