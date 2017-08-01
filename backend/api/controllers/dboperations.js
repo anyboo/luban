@@ -318,18 +318,16 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
     let writeobj = []
 
     model.forEach((element) => {
-        console.log(element)
-        let data = changeModelId(element)
-        console.log(data)
+        changeModelId(element)
         let opt = {}
-        if (data._id) {
+        if (element._id) {
             opt.updateOne = {
-                filter: { '_id': data._id }
-                , update: { $set: data }
+                filter: { '_id': element._id }
+                , update: { $set: element }
             }
         } else {
             opt.insertOne = {
-                document: data
+                document: element
             }
         }
         writeobj.push(opt)
