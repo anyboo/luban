@@ -1,6 +1,6 @@
 <template>
     <div ui-view class="wrapper">
-        <div class="wrapper-xs">
+        <div class="wrapper-xs"> 
             <div class="panel panel-default" xo-rest="birthday_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="birthday_students">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">

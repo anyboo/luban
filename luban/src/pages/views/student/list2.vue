@@ -15,7 +15,7 @@
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control" readonly="readonly">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handleSelectStudent">
-                                        <i class="icon-user"></i>
+                                       <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                     </button>
                                 </span>
                                 </div>
