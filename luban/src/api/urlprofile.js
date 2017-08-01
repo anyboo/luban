@@ -23,7 +23,7 @@ function getApiUrl() {
     return apiUrl + 'api/'
 }
 
-function getUrls(getUrls) {
+function getUrls(model) {
     return apiUrl + 'apis/' + model + '/'
 }
 
@@ -45,6 +45,7 @@ function getUrlFilter(model, filter, prepage, page) {
 
 export default {
     getUrl,
+    getUrls,
     getUrlField,
     getUrlById,
     apiUrl,

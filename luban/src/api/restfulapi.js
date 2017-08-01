@@ -38,7 +38,7 @@ function httpAppendApi({ model, form }) {
 }
 
 function httpBulkApi({ model, form }) {
-    let apiUrl = urlUtil.getUrls(model, id)
+    let apiUrl = urlUtil.getUrls(model)
     httpAuth()
     return Vue.http.post(apiUrl, form)
 }
@@ -68,5 +68,6 @@ export default {
     httpDeleteApi,
     httpGetIdApi,
     httpGetFilterApi,
-    httpLoginApi
+    httpLoginApi,
+    httpBulkApi
 }

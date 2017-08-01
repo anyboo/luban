@@ -318,7 +318,9 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
     let writeobj = []
 
     model.forEach((element) => {
+        console.log(element)
         let data = changeModelId(element)
+        console.log(data)
         let opt = {}
         if (data._id) {
             opt.updateOne = {
