@@ -2,33 +2,49 @@
     <div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <div >
+                <div>
                     <div class="modal-header">
-                        <button type="button" @click="lbClosedialog($event)" class="close"><span>×</span><span class="sr-only">关闭</span></button>
-                        <h3 class="modal-title">字典<span class="label bg-info">{{title}}</span>的字典项目</h3></div>
+                        <button type="button" @click="lbClosedialog($event)" class="close">
+                            <span>×</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h3 class="modal-title">字典
+                            <span class="label bg-info">{{title}}</span>的字典项目</h3>
+                    </div>
                     <div class="modal-body">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
-                                    <tr> 
+                                    <tr>
                                         <td width="50">ID</td>
                                         <td>内容</td>
-                                        <td width="80">排序</td>
-                                        <td><a class="m-l btn btn-info btn-xs" @click="handleClick"><i class="fa fa-plus"></i> 新增</a></td>
+                                        <td width="60">排序</td>
+                                        <td width="60">默认</td>
+                                        <td>
+                                            <a class="m-l btn btn-info btn-xs" @click="handleClick">
+                                                <i class="fa fa-plus"></i> 新增</a>
+                                        </td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <template v-for="(item, index) in getTablesData()">
-                                        <tr >
-                                            <td >{{index+1}}</td>
+                                        <tr>
+                                            <td>{{index+1}}</td>
                                             <td>
                                                 <input type="text" class="form-control input-sm" v-model="item.text">
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control input-sm" v-model="item.sort">
                                             </td>
-                                            <td><a class="btn btn-xs btn-primary" @click="handleEditClick(item)">保存</a>
-                                                <a class="btn btn-xs btn-danger" @click="handleDelClick(item._id)">删除</a></td>
+                                            <td>
+                                                <el-switch v-model="item.defvalue" style="" on-text="" off-text="">
+                                                </el-switch>
+                                            </td>
+                                            <td>
+    
+                                                <a class="btn btn-xs btn-primary" @click="handleEditClick(item)">保存</a>
+                                                <a class="btn btn-xs btn-danger" @click="handleDelClick(item._id)">删除</a>
+                                            </td>
                                         </tr>
                                     </template>
                                 </tbody>
@@ -51,7 +67,8 @@ export default {
             'form': {
                 'text': '',
                 'sort': '100',
-                'type': '0'
+                'type': '0',
+                'defvalue': false
             },
         }
         return {
@@ -72,7 +89,8 @@ export default {
             this.localdata.form = {
                 'text': '',
                 'sort': '100',
-                'type': this.localdata.form.type
+                'type': this.localdata.form.type,
+                'defvalue': false
             }
             this.modalsType = this.types.APPEND_API
         },
@@ -106,7 +124,7 @@ export default {
             filterObj.push({
                 'key': 'type',
                 'value': this.localdata.form.type,
-                'type': ''
+                'type': '',
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
