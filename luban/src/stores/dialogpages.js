@@ -23,6 +23,7 @@ import page47 from '~/pages/dialogs/student/reg_student_match.modal.vue'
 import page49 from '~/pages/dialogs/student/endlesson.modal.vue'
 import page51 from '~/pages/dialogs/student/region_set.modal.vue'
 import page50 from '~/pages/dialogs/student/change_branch.modal.vue'
+import page66 from '~/pages/dialogs/student/printer_receipt.vue'
 import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page77 from '~/pages/dialogs/system/authority.vue'
@@ -84,6 +85,7 @@ pages['lb-leaveshours'] = page74
 pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
+pages['lb-printerreceipt'] = page66 
 
 
 export default pages

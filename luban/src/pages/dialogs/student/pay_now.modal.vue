@@ -22,7 +22,7 @@
                         <span class="text-success">{{localdata.form.money_pay_amount}}</span>元,请选择接下来的操作.</p>
                     <div class="row no-gutter m-t">
                         <div class="col-xs-6">
-                            <a class="btn btn-primary btn-block" @click="print_bill()">
+                            <a class="btn btn-primary btn-block" @click="handleShowDialog('lb-printerreceipt',order)">
                                 <i class="icon-printer"></i> 打印收据</a>
                         </div>
                         <div class="col-xs-6">
@@ -94,7 +94,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-xs-12 col-md-2"><span style='color:red'>* </span>缴费方式:</label>
+                            <label class="control-label col-xs-12 col-md-2">
+                                <span style='color:red'>* </span>缴费方式:</label>
                             <div class="col-xs-12 col-md-4">
                                 <el-select v-model="localdata.form.region_oe_id" placeholder="请选择">
                                     <el-option v-for="item in getDictData('2')" :key="item._id" :label="item.text" :value="item._id">
@@ -114,6 +115,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
     name: 'pay_now',
@@ -218,9 +220,6 @@ export default {
                 this.updateOrder()
             })
         },
-        print_bill() {
-
-        }
     }
 }
 </script>
