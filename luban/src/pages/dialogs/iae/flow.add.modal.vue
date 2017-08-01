@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">经办人</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="inline w" :class="{result:changeSelectTeacher}">
+                                <div class="inline w" >
                                     <div class="input-group">
                                         <input type="text" class="form-control" readonly v-model="teacher_name">
                                         <span class="input-group-btn">

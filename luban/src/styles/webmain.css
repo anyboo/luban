@@ -11754,3 +11754,11 @@ End Header Option Page
     .el-switch {
         margin-top: 8px;
     }
+    
+    .woman {
+        color: red;
+    }
+    
+    .mans {
+        color: blue;
+    }

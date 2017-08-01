@@ -190,12 +190,11 @@ export default {
             let tablaName = 'dictionary'
             tablaData = this.$store.state.models.models[tablaName].data
             let tablaDatas = []
-            for (var i = 0; i < tablaData.length - 1; i++) {
-                if (type == '2') {
+            for (var i = 0; i < tablaData.length; i++) {
+                if (tablaData[i].type == type) {
                     tablaDatas.push(tablaData[i])
                 }
             }
-            console.log(tablaDatas)
             return tablaDatas
         },
         getTablesData() {

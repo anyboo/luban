@@ -1,6 +1,6 @@
 <template>
     <div ui-view class="wrapper">
-        <div class="wrapper-xs">
+        <div class="wrapper-xs"> 
             <div class="panel panel-default" xo-rest="birthday_students" xo-rest-grid="{maxsize:5,params:{pagesize:20,page:1,ob_id:user.gv.ob_id}}" xo-rest-ctrl="birthday_students">
                 <div class="row wrapper">
                     <div class="col-xs-12 col-md-4 m-t">
@@ -18,7 +18,8 @@
                             <template scope="scope">
                                 <a class="link" @click="handleRouter($event,scope.row)">
                                     <span >
-                                        <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                      <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
+                                        ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
                                     </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </a>

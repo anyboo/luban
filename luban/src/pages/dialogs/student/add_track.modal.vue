@@ -70,7 +70,7 @@ export default {
             'form': {
                 'track_type': '0',
                 'track_way': '',
-                'op_name': '',
+                'op_name': this.$store.state.system.name,
                 'track_time': '',
                 'next_time': '',
                 'detail': '',

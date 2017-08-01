@@ -15,7 +15,7 @@
                                     <input type="text" :placeholder="getSelectStudentName" class="form-control" readonly="readonly">
                                     <span class="input-group-btn">
                                     <button class="btn btn-default" @click="handleSelectStudent">
-                                        <i class="icon-user"></i>
+                                       <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
                                     </button>
                                 </span>
                                 </div>
@@ -49,7 +49,8 @@
                                 <template scope="scope">
                                     <a class="link" @click="handleRouter($event,scope.row)">
                                         <span >
-                                    <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                    <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
+                                        ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
                                 </span>{{ scope.row.student_name }}
                                         <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                     </a>

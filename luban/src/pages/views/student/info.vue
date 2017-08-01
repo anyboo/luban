@@ -38,7 +38,9 @@
                             <p class="text-center">
                                 <span class="text-2x">{{ student.student_name }}</span>
                                 <span>
-                                    <i class="fa" :class="{'fa-female':student.sex=='0','fa-male':student.sex!='0'}"></i>
+                                   
+                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
+                                        ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
@@ -53,7 +55,6 @@
                             </ul>
                         </div>
                         <div class="col-xs-12 col-md-8">
-    
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-info"></i> 基础信息</div>
@@ -109,7 +110,6 @@
                                         <th class="hidden-xs">姓名</th>
                                     </tr>
                                 </thead>
-                               
                             </table>
                             <table class="table table-striped m-b-none">
                                 <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
@@ -144,22 +144,10 @@
                         </div>
                     </div>
                 </div>
-               
             </div>
         </div>
     </div>
 </template>
-<style>
-.table>thead>tr>th {
-    padding: 8px 15px;
-    font-weight: normal;
-    color: #000;
-    background-color: #f4f5f9;
-    border-bottom: 0;
-}
-</style>
-
-
 <script>
 export default {
     name: 'footer',

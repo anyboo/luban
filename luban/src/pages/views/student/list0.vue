@@ -39,8 +39,14 @@
                         <el-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
                                 <a class="link" @click="handleRouter($event,scope.row)">
+<<<<<<< HEAD
                                     <span>
                                         <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+=======
+                                    <span >
+                                        <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
+                                        ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
+>>>>>>> 37392ab67bd734ad06f0655abb6a638c4334704a
                                     </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''">{{ scope.row.nickname }}</span>
                                 </a>
