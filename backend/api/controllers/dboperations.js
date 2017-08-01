@@ -332,7 +332,7 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
         }
         writeobj.push(opt)
     })
-    var result = yield table.bulkWrite(opt)
+    var result = yield table.bulkWrite(writeobj)
     db.close()
     this.body = result
 }
