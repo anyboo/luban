@@ -191,12 +191,10 @@ export default {
             tablaData = this.$store.state.models.models[tablaName].data
             let tablaDatas = []
             for (var i = 0; i < tablaData.length; i++) {
-                if (tablaData[i].type == "2") {
+                if (tablaData[i].type == type) {
                     tablaDatas.push(tablaData[i])
                 }
             }
-            console.log(type)
-            console.log(tablaDatas)
             return tablaDatas
         },
         getTablesData() {
