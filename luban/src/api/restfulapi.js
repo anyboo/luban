@@ -34,7 +34,13 @@ function httpLoginApi(obj) {
 function httpAppendApi({ model, form }) {
     let apiUrl = urlUtil.getUrl(model)
     httpAuth()
-    return Vue.http.post(apiUrl, form, httpAuth())
+    return Vue.http.post(apiUrl, form)
+}
+
+function httpBulkApi({ model, form }) {
+    let apiUrl = urlUtil.getUrls(model, id)
+    httpAuth()
+    return Vue.http.post(apiUrl, form)
 }
 
 function httpEditApi({ model, id, form }) {

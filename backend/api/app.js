@@ -14,9 +14,9 @@ app.use(route.post('/:db/upload', control.upload))
 app.use(route.get('/:db/api/:name', control.all))
 app.use(route.get('/:db/api/:name/:id', control.fetch))
 app.use(route.post('/:db/api/:name', control.add))
+app.use(route.post('/:db/apis/:name', control.bulkWrite))
 app.use(route.put('/:db/api/:name/:id', control.modify))
 app.use(route.delete('/:db/api/:name/:id', control.remove))
-
 
 app.use(route.options('/', control.options))
 app.use(route.trace('/', control.trace))

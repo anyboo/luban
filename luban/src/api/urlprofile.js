@@ -23,6 +23,10 @@ function getApiUrl() {
     return apiUrl + 'api/'
 }
 
+function getUrls(getUrls) {
+    return apiUrl + 'apis/' + model + '/'
+}
+
 function getUrl(model) {
     return getApiUrl() + model + '/'
 }

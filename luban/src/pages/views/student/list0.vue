@@ -30,7 +30,7 @@
                                 <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default btn-xs" button-tooltip="操作">
                                         <i class="fa fa-cog"></i>
-                                        <span >操作</span>
+                                        <span>操作</span>
                                         <span class="caret"></span>
                                     </lb-dropdown-button>
                                 </lb-dropdown>
@@ -39,10 +39,10 @@
                         <el-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
                                 <a class="link" @click="handleRouter($event,scope.row)">
-                                    <span >
+                                    <span>
                                         <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
                                     </span>{{ scope.row.student_name }}
-                                    <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
+                                    <span v-if="scope.row.nickname != ''">{{ scope.row.nickname }}</span>
                                 </a>
                             </template>
                         </el-table-column>
@@ -67,12 +67,12 @@
                         </el-table-column>
                         <el-table-column prop="data" label="档案备注">
                             <template scope="scope">
-                                <p ng-bind-html="item.note" >{{scope.row.note}}</p>
+                                <p ng-bind-html="item.note">{{scope.row.note}}</p>
                             </template>
                         </el-table-column>
                         <el-table-column prop="data" label="最后跟踪">
                             <template scope="scope">
-                                <div v-if="scope.row.inquiry && scope.row.inquiry.length > 0" >{{getDateFormat(getLookUp(scope.row.inquiry, 'track_time'))}}
+                                <div v-if="scope.row.inquiry && scope.row.inquiry.length > 0">{{getDateFormat(getLookUp(scope.row.inquiry, 'track_time'))}}
                                     <p class="text-muted">{{getLookUp(scope.row.inquiry, 'detail')}}</p>
                                     <p class="text-gray text-right">{{getLookUp(scope.row.inquiry, 'op_name')}}</p>
                                 </div>
@@ -171,8 +171,11 @@ export default {
             if (this.$store.state.envs.currDialog == 'lb-changestudent') {
                 this.handleSearch()
             }
+            if (this.$store.state.envs.currDialog == 'lb-inquiry') {
+                this.handleSearch()
+            }
             return this.localdata.form.student_name
-        },
+        }
     },
     watch: {},
     methods: {

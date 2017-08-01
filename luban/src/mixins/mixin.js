@@ -340,6 +340,20 @@ export default {
                 })
             })
         },
+        mx_db_bulkwrite(model,modalform) {
+            let vm = this
+            return new Promise((resolve, reject) => {
+                vm.$store.dispatch(types.BULK_API, {
+                    'model': model,
+                    'form': modalform,
+                }).then((response) => {
+                    resolve(response)
+                }).catch((error) => {
+                    reject()
+                    console.log(error, 'Promise error')
+                })
+            })
+        },
         handleSave(form) {
             let vm = this
             let modalform = form ? form : vm.localdata.form

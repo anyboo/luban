@@ -167,6 +167,20 @@ const actions = {
                 })
         })
     },
+    [types.BULK_API]({ commit }, obj) {
+        return new Promise(resolve => {
+            restfulapi.httpBulkApi(obj)
+                .then((response) => {
+                    resolve(response.data)
+                })
+                .catch(function (response) {
+                    if (response.status == 401) {
+                        commit(types.LOGIN_API, { login: false, data: '' })
+                    }
+                })
+        })
+    },
+
     [types.APPEND_API]({ commit }, obj) {
         return new Promise(resolve => {
             restfulapi.httpAppendApi(obj)

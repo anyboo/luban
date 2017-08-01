@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div>
                     <div class="modal-header">
-                        <button type="button" @click="lbClosedialog($event)" class="close">
+                        <button type="button" @click="handleDictSave(true)" class="close">
                             <span>×</span>
                             <span class="sr-only">关闭</span>
                         </button>
@@ -20,29 +20,28 @@
                                         <td>内容</td>
                                         <td width="60">排序</td>
                                         <td width="60">默认</td>
-                                        <td>
-                                            <a class="m-l btn btn-info btn-xs" @click="handleClick">
+                                        <td width="100">
+                                            <a class="m-l btn btn-info btn-xs" @click="handleDictSave(false)">
                                                 <i class="fa fa-plus"></i> 新增</a>
                                         </td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <template v-for="(item, index) in getTablesData()">
+                                    <template v-for="(item, index) in dictionary">
                                         <tr>
                                             <td>{{index+1}}</td>
                                             <td>
-                                                <input type="text" class="form-control input-sm" v-model="item.text">
+                                                <input type="text" class="form-control input-sm" v-model.lazy="item.text" @change="item.change=true">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control input-sm" v-model="item.sort">
+                                                <input type="number" class="form-control input-sm" v-model.lazy="item.sort" @change="item.change=true">
                                             </td>
                                             <td>
-                                                <el-switch v-model="item.defvalue" style="" on-text="" off-text="">
+                                                <el-switch v-model="item.defvalue" style="" on-text="" off-text="" @change="item.change=true">
                                                 </el-switch>
                                             </td>
                                             <td>
-    
-                                                <a class="btn btn-xs btn-primary" @click="handleEditClick(item)">保存</a>
+                                                <a :disabled="item.text.length>0&&!item.change" class="btn btn-xs btn-primary" @click="handleEditClick(item)">保存</a>
                                                 <a class="btn btn-xs btn-danger" @click="handleDelClick(item._id)">删除</a>
                                             </td>
                                         </tr>
@@ -52,7 +51,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
+                        <button class="btn btn-warning" @click="handleDictSave(true)">关闭</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +64,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'text': '',
+                'text': '默认',
                 'sort': '100',
                 'type': '0',
                 'defvalue': false
@@ -75,7 +74,8 @@ export default {
             localdata,
             model: 'dictionary',
             tables: ['dictionary'],
-            title: ''
+            title: '',
+            dictionary: []
         }
     },
     created() {
@@ -87,7 +87,7 @@ export default {
     methods: {
         clearForm() {
             this.localdata.form = {
-                'text': '',
+                'text': '默认',
                 'sort': '100',
                 'type': this.localdata.form.type,
                 'defvalue': false
@@ -97,9 +97,10 @@ export default {
         handleEditClick(item) {
             this.setEditModle(item._id)
             this.localdata.form = this.lodash.assign(this.localdata.form, item)
-            this.handleClick()
+            this.localdata.form.change = false
+            this.handleDictSaveOpt()
         },
-        handleClick() {
+        handleDictSaveOpt() {
             this.handleSave().then(() => {
                 this.$message({
                     message: '操作成功',
@@ -109,6 +110,34 @@ export default {
                 this.handleSearch()
             }, (e) => {
             })
+        },
+        handleopt(close) {
+            if (close) {
+                this.lbClosedialog()
+            } else {
+                this.handleDictSaveOpt()
+            }
+        },
+        handleDictSave(close) {
+            let save = false
+            let confirm = false
+            let find = this.lodash.find(this.dictionary, { change: true })
+            if (find) {
+                this.$confirm('数据有变动是否保存?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.mx_db_bulkwrite('dictionary',this.dictionary).then(response => {
+                        console.log(response)
+                        this.handleopt(close)
+                    })
+                }).catch(() => {
+                    this.handleopt(close)
+                })
+            } else {
+                this.handleopt(close)
+            }
         },
         handleDelClick(id) {
             this.handleDelete(id).then(() => {
@@ -127,7 +156,9 @@ export default {
                 'type': '',
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then(obj => {
+                this.dictionary = obj.data.data
+            })
         }
     }
 }

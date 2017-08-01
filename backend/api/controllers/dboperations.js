@@ -296,7 +296,7 @@ module.exports.modify = function* modify(db, name, id, next) {
     if ('PUT' != this.method) return yield next
     if (!checkId(id)) return yield next
     var data = yield parse(this, {
-        limit: '500kb'
+        limit: '5000kb'
     })
     var db = yield MongoClient.connect(getdbstr(db))
     let table = db.collection(name)
@@ -304,6 +304,35 @@ module.exports.modify = function* modify(db, name, id, next) {
     var result = yield table.updateOne({ '_id': ObjectID(id) }, {
         $set: data
     })
+    db.close()
+    this.body = result
+}
+
+module.exports.bulkWrite = function* bulkWrite(db, name, next) {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '5000kb'
+    })
+    var db = yield MongoClient.connect(getdbstr(db))
+    let table = db.collection(name)
+    let writeobj = []
+
+    model.forEach((element) => {
+        let data = changeModelId(element)
+        let opt = {}
+        if (data._id) {
+            opt.updateOne = {
+                filter: { '_id': data._id }
+                , update: { $set: data }
+            }
+        } else {
+            opt.insertOne = {
+                document: data
+            }
+        }
+        writeobj.push(opt)
+    })
+    var result = yield table.bulkWrite(opt)
     db.close()
     this.body = result
 }
@@ -322,6 +351,7 @@ module.exports.remove = function* remove(db, name, id, next) {
     }
 
 }
+
 
 module.exports.head = function* () {
     return yield
