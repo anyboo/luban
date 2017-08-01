@@ -101,6 +101,7 @@
     margin-left: 22%;
     margin-top: 10px;
 }
+
 </style>
 <script>
 export default {
@@ -129,11 +130,11 @@ export default {
             },
             'sex': [{
                 'value': '1',
-                'iclass': 'fa fa-male',
+                'iclass': 'fa fa-male  mans',
                 'text': '男'
             }, {
                 'value': '2',
-                'iclass': 'fa fa-female',
+                'iclass': 'fa fa-female woman',
                 'text': '女'
             }, {
                 'value': '0',

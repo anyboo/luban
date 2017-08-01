@@ -31,7 +31,8 @@
                             <p class="text-center">
                                 <span class="text-2x ng-binding">{{ student.student_name }}</span>
                                 <span class="ng-binding">
-                                    <i class="fa" :class="{'fa-female':student.sex=='0','fa-male':student.sex!='0'}"></i>
+                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
+                                        ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">

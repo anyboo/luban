@@ -87,7 +87,8 @@
                             <template scope="scope">
                                 <a class="link" @click="handleRouter($event,scope.row)">
                                     <span >
-                                        <i class="fa" :class="{'fa-female':scope.row.sex=='2','fa-male':scope.row.sex=='1'}"></i>
+                                        <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
+                                        ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
                                     </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''" >{{ scope.row.nickname }}</span>
                                 </a>
@@ -135,6 +136,9 @@
 }
 .col-md-12 {
     width: 33.33333333%;
+}
+.setes{
+    color:red;
 }
 </style>
 <script>
