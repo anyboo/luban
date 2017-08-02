@@ -3,7 +3,7 @@
         <div class="wrapper b-a r-5x bg-white box-shadow">
             <button tooltip="VIP会员拥有更多学员数、校区数、账号数" class="btn btn-info pull-right r ng-scope">
                 <i class="fa fa-arrow-circle-up"></i> 升级成VIP会员</button>
-            <h4>
+            <h4  style="margin-bottom:0px;">
                 <i class="icon-badge"></i>会员身份:
                 <span class="label bg-gray ng-scope">免费会员</span>
             </h4>
@@ -11,7 +11,7 @@
         <div class="wrapper b-a r-5x bg-white box-shadow m-t">
             <button class="btn btn-default pull-right r">
                 <i class="fa fa-money"></i> 充值</button>
-            <h4>
+            <h4  style="margin-bottom:0px;">
                 <i class="fa fa-cny"></i> 系统余额:
                 <span class="label bg-info ng-binding">￥0.00</span>
             </h4>
@@ -19,7 +19,7 @@
         <div class="wrapper b-a r-5x bg-white box-shadow m-t">
             <button class="btn btn-default pull-right r">
                 <i class="icon-basket"></i> 购买</button>
-            <h4>
+            <h4 style="margin-bottom:0px;">
                 <i class="fa fa-mobile"></i> 短信剩余:
                 <span class="label bg-info ng-binding">10</span>
                 <small class="text-muted m-l ng-binding">已使用:0 条</small>
@@ -109,75 +109,6 @@
         </p>
     </div>
 </template>
-<style>
-.btn-info {
-    color: #fff!important;
-    background-color: #4d90fe;
-    border-color: #4d90fe;
-}
-.r-5x {
-    border-radius: 10px;
-}
-
-.r {
-    border-radius: 1px 1px 1px 1px;
-}
-
-.wrapper-sm {
-    padding: 10px;
-}
-
-.box-shadow {
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-}
-
-.bg-teal-gradient {
-    color: #fff;
-    background: #39cccc!important;
-}
-
-.r {
-    border-radius: 1px 1px 1px 1px;
-}
-
-.wrapper-sm {
-    padding: 10px;
-}
-
-.box-shadow {
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-}
-
-.bg-aqua-gradient {
-    color: #fff;
-    background: #00c0ef!important;
-}
-
-.bg-gray {
-    color: #000;
-    background-color: #d2d6de!important;
-}
-
-.badge,
-.label {
-    font-weight: bold;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-    border-radius: .25em;
-}
-.r {
-    border-radius: 1px 1px 1px 1px;
-}
-.wrapper-sm {
-    padding: 10px;
-}
-.box-shadow {
-    box-shadow: 0 2px 2px rgba(0,0,0,0.05), 0 1px 0 rgba(0,0,0,0.05);
-}
-.bg-blue-gradient {
-    color: #fff;
-    background: #0073b7!important;
-}
-</style>
 <script>
 export default {
     name: 'systems',

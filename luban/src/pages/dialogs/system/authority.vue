@@ -19,7 +19,7 @@
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
             </div>
         </div>
-    </div>
+    </div> 
 </template>
 <script>
 import menus from '~/stores/menu'

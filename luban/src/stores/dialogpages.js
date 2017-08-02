@@ -27,6 +27,7 @@ import page66 from '~/pages/dialogs/student/printer_receipt.vue'
 import page52 from '~/pages/dialogs/student/purpose_set.modal.vue'
 import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page77 from '~/pages/dialogs/system/authority.vue'
+import page78 from '~/pages/dialogs/system/add_module.vue'
 
 
 import page67 from '~/pages/dialogs/system/add_modal.vue'
@@ -85,7 +86,8 @@ pages['lb-leaveshours'] = page74
 pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
-pages['lb-printerreceipt'] = page66 
+pages['lb-printerreceipt'] = page66
+pages['lb-addmodule'] = page78
 
 
 export default pages
