@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <form name="form1" class="form-horizontal  ng-invalid ng-invalid-required" v-if="!order">
-                        <div class="form-group m-t">
+                        <!--<div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="input-group">
@@ -24,7 +24,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名班级:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -247,15 +247,16 @@ export default {
                     this.class_name = '请选择班级'
                     this.localdata.form.origin_times = ''
                 }
-            } else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
-                if (this.$store.state.envs.currDialogResult) {
-                    this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
-                    this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
-                } else {
-                    this.lesson_name = '请选择老师'
-                    this.localdata.form.course_id = ''
-                }
-            }
+            } 
+            // else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
+            //     if (this.$store.state.envs.currDialogResult) {
+            //         this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
+            //         this.localdata.form.course_id = this.$store.state.envs.currDialogResult._id
+            //     } else {
+            //         this.lesson_name = '请选择老师'
+            //         this.localdata.form.course_id = ''
+            //     }
+            // }
             return this.class_name
         },
     },
