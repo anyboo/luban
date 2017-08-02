@@ -23,8 +23,8 @@
                                 <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
                             </el-form-item>
                             <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{
-         validator: validateTel, required: true, trigger: 'blur'
-        }">
+                 validator: validateTel, required: true, trigger: 'blur'
+                }">
                                 <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
                                 <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
                                     <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
@@ -41,7 +41,7 @@
                                 </a>
                             </span>
                             <el-form-item label="来源渠道">
-                                <lb-buttongroup :group-data="localdata.track_from" v-model="localdata.form.track_from"></lb-buttongroup>
+                                <lb-buttongroup :group-data="getDictData('3')" v-model="localdata.form.track_from"></lb-buttongroup>
                             </el-form-item>
                         </el-form>
                         <div class="m-t m-b b-t text-center">
@@ -101,7 +101,6 @@
     margin-left: 22%;
     margin-top: 10px;
 }
-
 </style>
 <script>
 export default {
@@ -141,19 +140,6 @@ export default {
                 'iclass': 'fa fa-question-circle',
                 'text': '待确定'
             }],
-            'track_from': [{
-                'value': '上门',
-                'text': '上门'
-            }, {
-                'value': '广告',
-                'text': '广告'
-            }, {
-                'value': '介绍',
-                'text': '介绍'
-            }, {
-                'value': '其他',
-                'text': '其他'
-            }]
         }
         var validateTel = (rule, value, callback) => {
             if (value === '') {

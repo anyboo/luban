@@ -312,7 +312,7 @@ input {
         background: red;
         display: block;
         margin-top:30px;
-        margin-left:70px;
+        margin-left:30px;
 
     }
     @page {
