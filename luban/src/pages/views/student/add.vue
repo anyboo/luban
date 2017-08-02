@@ -17,17 +17,17 @@
                             <el-form-item label="联系方式" prop="first_tel">
                                 <el-input v-model="localdata.form.first_tel" style="width:120px;" placeholder="请输入手机号"></el-input>
                                 <el-select v-model="localdata.form.first_rel_rel" placeholder="关系" style="width:100px;">
-                                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                    <el-option v-for="item in getDictData('1')" :key="item._id" :label="item.text" :value="item._id">
                                     </el-option>
                                 </el-select>
                                 <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
                             </el-form-item>
                             <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{
-                 validator: validateTel, required: true, trigger: 'blur'
-                }">
+                                             validator: validateTel, required: true, trigger: 'blur'
+                                            }">
                                 <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
                                 <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
-                                    <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
+                                    <el-option v-for="subitem in getDictData('1')" :key="subitem._id" :label="subitem.text" :value="subitem._id">
                                     </el-option>
                                 </el-select>
                                 <el-input v-model="item.name" style="width:100px;" v-if="item.relation!='0'"></el-input>
@@ -111,7 +111,7 @@ export default {
                 'student_name': '',
                 'sex': '0',
                 'first_tel': '',
-                'first_rel_rel': '2',
+                'first_rel_rel': '',
                 'first_rel_name': '',
                 'relations': [],
                 'track_from': '其他',
@@ -154,16 +154,6 @@ export default {
             localdata,
             expand: false,
             model: 'student',
-            options: [{
-                value: '0',
-                label: '本人'
-            }, {
-                value: '1',
-                label: '爸爸'
-            }, {
-                value: '2',
-                label: '妈妈'
-            }],
             claes: [{
                 value: '0',
                 label: '1'
@@ -255,6 +245,13 @@ export default {
             },
             validateTel
         }
+    },
+    mounted() {
+        this.getTableApidata('dictionary').then(() => {
+            this.localdata.form.first_rel_rel = this.getDictDefvalue('1')
+            this.localdata.form.track_from = this.getDictDefvalue('3')
+            console.log(this.getDictDefvalue('1'))
+        })
     },
     computed: {},
     watch: {},

@@ -185,6 +185,22 @@ export default {
         getStudentId() {
             return this.$store.state.envs.currStudent._id
         },
+        getDictDefvalue(type) {
+            let value = ''
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            for (var i = 0; i < tablaData.length; i++) {
+                if (tablaData[i].type == type) {
+                    if (tablaData[i].defvalue) {
+                        value = tablaData[i]._id
+                        break
+                    }
+                }
+            }
+            console.log(value)
+            return value
+        },
         getDictData(type) {
             let tablaData = []
             let tablaName = 'dictionary'
@@ -195,6 +211,7 @@ export default {
                     tablaDatas.push(tablaData[i])
                 }
             }
+            console.log(tablaDatas)
             return tablaDatas
         },
         getTablesData() {
@@ -339,7 +356,7 @@ export default {
                 })
             })
         },
-        mx_db_bulkwrite(model,modalform) {
+        mx_db_bulkwrite(model, modalform) {
             let vm = this
             return new Promise((resolve, reject) => {
                 vm.$store.dispatch(types.BULK_API, {
