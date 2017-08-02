@@ -128,6 +128,9 @@ export default {
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    this.dictionary.forEach((element)=> {
+                        element.change = false
+                    })
                     this.mx_db_bulkwrite('dictionary',this.dictionary).then(response => {
                         console.log(response)
                         this.handleopt(close)
