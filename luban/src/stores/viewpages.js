@@ -15,6 +15,7 @@ import systememployee from '~/pages/views/system/employee.vue'
 import systemdict from '~/pages/views/system/dict.vue'
 import systemorg from '~/pages/views/system/org.vue'
 import systemroles from '~/pages/views/system/roles.vue'
+import systemsystems from '~/pages/views/system/systems.vue'
 
 import lessonsclasses from '~/pages/views/lesson/sclasses.vue'
 import lessonmanage from '~/pages/views/lesson/manage.vue'
@@ -57,6 +58,7 @@ pages['lb-systememployee'] = systememployee
 pages['lb-systemdict'] = systemdict
 pages['lb-systemorg'] = systemorg
 pages['lb-systemroles'] = systemroles
+pages['lb-systemsystems'] = systemsystems
 
 pages['lb-lessonsclasses'] = lessonsclasses
 pages['lb-lessonmanage'] = lessonmanage

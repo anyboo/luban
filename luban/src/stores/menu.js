@@ -504,6 +504,6 @@ export default [{
     }, {
         menuTitle: '系统状态',
         menuIcon: ' fa fa-th',
-        menuShow: 0,
+        to: '/system/systems',
     }]
 }, ]
