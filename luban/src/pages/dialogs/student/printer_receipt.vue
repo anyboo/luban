@@ -10,7 +10,7 @@
                     <h3 class="modal-title">
                         <i class="fa fa-print"></i>打印收据</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
                     <div class="table-responsive ng-scope">
                         <table class=" table-print-head">
                             <tbody>
@@ -295,16 +295,35 @@ input {
     text-align: right;
     border-top: 1px solid #e5e5e5;
 }
+
 @media print {
-    .page-header-topbar,#wrapper,#footer {
-         display:none;
+    .page-header-topbar,
+    #wrapper,
+    #footer {
+        display: none;
     }
-    .modal-content > *{
-         display:none;
+    .modal-content>*,
+    .modal-content>div>.modal-header,
+    .modal-content>div>.modal-title,
+    .modal-content>div>.modal-footer {
+        display: none;
     }
-    .modal-content > .print {
+    .modal-content>.print {
         background: red;
-        display:block;
+        display: block;
+        margin-top:30px;
+        margin-left:70px;
+
+    }
+    @page {
+        size: A4 landscape;
+    }
+    @page :left {
+        margin: 3cm;
+    }
+    @page :right {
+        margin-left: 2cm;
+        margin-top: 4cm;
     }
 }
 </style>
@@ -366,8 +385,8 @@ export default {
     methods: {
         handleClick() {
             //打印选区内容
-          
-      
+
+
             window.print();
         }
     },
