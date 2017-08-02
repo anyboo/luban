@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="modal-body">
-            <div ng-include="'tpl/app/student/order/'+$action+'.html'" >
-                <div ng-controller="OrderCreateOtherCtrl" >
+            <div ng-include="'tpl/app/student/order/'+$action+'.html'">
+                <div ng-controller="OrderCreateOtherCtrl">
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
                             <h4 class="padder">1.创建订单</h4>
@@ -16,12 +16,10 @@
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">缴费项目:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="w-sm">
-                                    <select class="form-control    -required" required v-model="order_link_name">
-                                        <option value class>请选择</option>
-                                        <option value="教材费">教材费</option>
-                                        <option value="赛事报名费">赛事报名费</option>
-                                        <option value="服装费">服装费</option>
-                                    </select>
+                                    <el-select v-model="order_link_name" placeholder="请选择" style="width:100px;">
+                                        <el-option v-for="item in getDictData('5')" :key="item._id" :label="item.text" :value="item._id">
+                                        </el-option>
+                                    </el-select>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">
                             <el-select v-model="localdata.form.purpose" placeholder="请选择">
-                                <el-option v-for="item in localdata.purpose" :key="item.value" :label="item.text" :value="item.value">
+                                <el-option v-for="item in getDictData('6')" :key="item._id" :label="item.text" :value="item._id">
                                 </el-option>
                             </el-select>
                         </div>
@@ -27,22 +27,9 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'purpose': '',
                 'student_name': '',
+                'purpose':''
             },
-            'purpose': [{
-                'value': '0',
-                'text': '请选择'
-            }, {
-                'value': '1',
-                'text': '没有意向'
-            }, {
-                'value': '2',
-                'text': '初步意向'
-            }, {
-                'value': '3',
-                'text': '意向强烈'
-            }]
         }
         return {
             localdata,
@@ -52,6 +39,9 @@ export default {
     mounted() {
         this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
         this.localdata.form.purpose = this.$store.state.dialogs.dailogdata.purpose
+        if (this.getDictText('6',this.localdata.form.purpose)==''){
+            this.localdata.form.purpose = this.getDictDefvalue('6')
+        }
         this.localdata.form.student_name = this.$store.state.dialogs.dailogdata.student_name
     },
     computed: {

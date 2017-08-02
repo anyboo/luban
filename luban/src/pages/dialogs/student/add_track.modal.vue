@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div >
+            <div>
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -27,10 +27,7 @@
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
                                         <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                            <el-dropdown-item command="其他">其他</el-dropdown-item>
-                                            <el-dropdown-item command="面谈">面谈</el-dropdown-item>
-                                            <el-dropdown-item command="网络">网络</el-dropdown-item>
-                                            <el-dropdown-item command="电话">电话</el-dropdown-item>
+                                            <el-dropdown-item v-for="item in getDictData('4')" command=item._id>{{item.text}}</el-dropdown-item>
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
@@ -50,7 +47,7 @@
                             </el-switch>
                         </el-form-item>
                         <el-form-item v-if="isActive">
-                           <el-date-picker type="datetime" v-model="localdata.form.next_time"></el-date-picker>
+                            <el-date-picker type="datetime" v-model="localdata.form.next_time"></el-date-picker>
                         </el-form-item>
                     </el-form>
                 </div>

@@ -39,9 +39,9 @@
                         <el-table-column width="100" prop="data" label="学员">
                             <template scope="scope">
                                 <a class="link" @click="handleRouter($event,scope.row)">
-                                    <span >
+                                    <span>
                                         <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
-                                        ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
+                                                                ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
                                     </span>{{ scope.row.student_name }}
                                     <span v-if="scope.row.nickname != ''">{{ scope.row.nickname }}</span>
                                 </a>
@@ -57,7 +57,9 @@
                         </el-table-column>
                         <el-table-column width="100" prop="data" label="意向程度">
                             <template scope="scope">
-                                <span class="label" :class="{'bg-info':scope.row.purpose!='0','bg-gray':scope.row.purpose=='0'}">{{ getButtongroupText(localdata.purpose,scope.row.purpose)}}</span>
+                                <span class="label" :class="{'bg-info':getDictText('6',scope.row.purpose)==getdataPurpose(scope.row.purpose),'bg-gray':getDictText('6',scope.row.purpose)!=getdataPurpose(scope.row.purpose)||scope.row.purpose==getDictDefvalue('6')}">
+                                    {{ getdataPurpose(scope.row.purpose)}}
+                                </span>
                             </template>
                         </el-table-column>
                         <el-table-column width="100" prop="data" label="来源渠道">
@@ -125,20 +127,6 @@ export default {
                 'value': 'month',
                 'text': '本月'
             }],
-            'purpose': [{
-                'value': '0',
-                'text': '请选择'
-            }, {
-                'value': '1',
-                'text': '没有意向'
-            }, {
-                'value': '2',
-                'text': '初步意向'
-            }, {
-                'value': '3',
-                'text': '意向强烈'
-            }],
-
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
@@ -180,6 +168,14 @@ export default {
     },
     watch: {},
     methods: {
+        getdataPurpose(value) {
+            let purpose = ''
+            purpose = this.getDictText('6', value)
+            if (purpose == '') {
+                purpose = this.getDictText('6',this. getDictDefvalue('6'))
+            }
+            return purpose
+        },
         handleSelectStudent() {
             //this.$store.state.envs.currDialog = ''
             //this.$store.state.envs.currDialogResult = null

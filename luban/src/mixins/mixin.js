@@ -198,8 +198,21 @@ export default {
                     }
                 }
             }
-            console.log(value)
             return value
+        },
+        getDictText(type,value){
+            let text = ''
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            for (var i = 0; i < tablaData.length; i++) {
+                  if (tablaData[i].type == type) {
+                    if (tablaData[i]._id == value) {
+                        text = tablaData[i].text
+                    }
+                }
+            }
+            return text
         },
         getDictData(type) {
             let tablaData = []
