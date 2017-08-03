@@ -364,8 +364,6 @@ export default {
             vm.localdata.form.class_id = vm.order.class_id
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             vm.localdata.form.balance_pay_amount = 0
-
-
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     vm.currStudent = obj.data[0]
@@ -384,9 +382,6 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            //打印选区内容
-
-
             window.print();
         }
     },
