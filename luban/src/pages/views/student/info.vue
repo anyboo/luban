@@ -123,7 +123,7 @@
                                                 <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
                                                 </el-option>
                                             </el-select>
-                                            <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="item.relation!='0'"></el-input>
+                                            <el-input v-model="item.name" style="width:100px;" v-if="item.relation!='0'"></el-input>
                                             <a @click="localdata.form.relations.splice(index, 1)">
                                                 <i class="fa fa-minus-square-o"></i>
                                             </a>

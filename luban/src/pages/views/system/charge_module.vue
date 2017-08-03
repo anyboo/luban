@@ -34,7 +34,7 @@
                             <template scope="scope">{{scope.row.chargemodule}}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="收费方式">
-                            <template scope="scope">1</template>
+                            <template scope="scope">{{scope.row.chargr_type}}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="描述">
                             <template scope="scope">{{scope.row.description }}</template>
@@ -58,7 +58,8 @@ export default {
         let localdata = {
             'form': {
                 'search_value': '',
-                'status': ''
+                'status': '',
+                'student_id':'',
             },
             'sclesseslookup': {
                 'localField': '_id',
@@ -76,6 +77,7 @@ export default {
         changeTeacher() {
             let result = false
             if (this.$store.state.envs.currDialog == 'lb-addmodule') {
+                 this.handleSearch()
             }
             return result
         },
@@ -87,6 +89,25 @@ export default {
             this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
                 'name': value
             }).value
+        },
+        handleSearch() {
+            let filterObj = []
+
+            let student_id = this.localdata.form.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
+                let startTime = this.getDatetime(this.localdata.form.daterange[0])
+                let endTime = this.getDatetime(this.localdata.form.daterange[1])
+            }
+
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt)
         },
         handleCommand({
             action,
