@@ -78,6 +78,7 @@ export default {
             localdata,
             model: 'charge',
             title: '创建',
+             rote: {},
             options: [{
                 value: '0',
                 label: '1月'
@@ -129,7 +130,7 @@ export default {
     methods: {
         handleClick() {
             this.$refs['ruleForm'].validate((valid) => {
-                 let auth = this.$refs.tree.getCheckedNodes()
+                let auth = this.$refs.tree.getCheckedNodes()
                 if (valid) {
                     this.handleSave().then(() => {
                         this.$message({
@@ -167,7 +168,6 @@ export default {
                 var stud = auth[i].label
                 console.log(stud)
             }
-
         },
     }
 }
