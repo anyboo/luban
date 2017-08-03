@@ -33,7 +33,7 @@
                         <el-table-column prop="data" label="功能选择">
                             <template scope="scope">{{scope.row.chargemodule}}</template>
                         </el-table-column>
-                         <el-table-column prop="data" label="收费方式">
+                        <el-table-column prop="data" label="收费方式">
                             <template scope="scope">1</template>
                         </el-table-column>
                         <el-table-column prop="data" label="描述">

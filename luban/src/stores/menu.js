@@ -508,7 +508,7 @@ export default [{
         },
         {
             menuTitle: '收费模块',
-            menuIcon: ' fa fa-th',
+            menuIcon: 'fa fa-strikethrough',
             to: '/system/charge_module',
             dropDownMenu: [{
                 'url': 'lb-addmodule',
