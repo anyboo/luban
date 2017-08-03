@@ -64,6 +64,7 @@ export default {
                     }
                 }
             }
+            console.log(menuOption)
             return menuOption
         }
     },
