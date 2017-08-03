@@ -4,15 +4,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-user"></i>学员档案录入
-                    <a @click="lbShowdialog($event,'lb-import')">
-                    </a>
                 </div>
                 <div class="panel-body">
                     <div class="wrapper-xs">
                         <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
                             <el-form-item label="姓名" prop="student_name">
                                 <el-input v-model="localdata.form.student_name" style="width:120px;" placeholder="请输入学员姓名"></el-input>
-                                <lb-buttongroup :group-data="localdata.sex" v-model="localdata.form.sex"></lb-buttongroup>
+                                <el-radio-group v-model="localdata.form.sex">
+                                    <el-radio-button v-for="sex in localdata.sex" :label="sex.text" :key="sex.value"></el-radio-button>
+                                </el-radio-group>
                             </el-form-item>
                             <el-form-item label="联系方式" prop="first_tel">
                                 <el-input v-model="localdata.form.first_tel" style="width:120px;" placeholder="请输入手机号"></el-input>
@@ -23,8 +23,8 @@
                                 <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
                             </el-form-item>
                             <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{
-                                             validator: validateTel, required: true, trigger: 'blur'
-                                            }">
+                                                                                     validator: validateTel, required: true, trigger: 'blur'
+                                                                                    }">
                                 <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
                                 <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
                                     <el-option v-for="subitem in getDictData('1')" :key="subitem._id" :label="subitem.text" :value="subitem._id">
@@ -41,7 +41,9 @@
                                 </a>
                             </span>
                             <el-form-item label="来源渠道">
-                                <lb-buttongroup :group-data="getDictData('3')" v-model="localdata.form.track_from"></lb-buttongroup>
+                                <el-radio-group v-model="localdata.form.track_from">
+                                    <el-radio-button v-for="way in getDictData('3')" :label="way.text" :key="way._id"></el-radio-button>
+                                </el-radio-group>
                             </el-form-item>
                         </el-form>
                         <div class="m-t m-b b-t text-center">

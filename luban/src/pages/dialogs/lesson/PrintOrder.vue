@@ -1,20 +1,19 @@
 <template>
     <div class="modal-dialog modal-lg">
         <div class="modal-content" modal-transclude>
-            <div class="print">
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="icon-printer"></i>打印订单号
+                        <i class="icon-printer"></i>订单号
                         <span class="label bg-info ng-binding">{{ order.order_no}}</span>
                         的收据</h3>
                 </div>
-    
                 <div class="modal-body">
-                    <el-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                    <el-table ref="multipleTable"  border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
                         <el-table-column type="selection" width="55">
                         </el-table-column>
                         <el-table-column label="缴费日期">
@@ -30,13 +29,11 @@
                 </div>
     
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" @click="handleShowDialog('lb-printerreceipt',order)">
                         <i class="icon fa fa-print"></i>
                         打印</button>
                     <button type="button" class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
                 </div>
-            </div>
-            <div id="print_area" style="display: none">
             </div>
         </div>
     </div>
@@ -45,11 +42,21 @@
 export default {
     name: 'PrintOrder',
     data() {
-        let localdata = {}
+        let localdata = {
+             'form': {
+                'order_id': '',
+                'money_pay_amount': '',
+                'pay_type': 0,
+                'use_balance': false,
+                'balance_pay_amount': 0,
+          
+            }
+        }
         return {
             localdata,
             multipleSelection: [],
             order: {},
+           
         }
     },
     mounted() {
