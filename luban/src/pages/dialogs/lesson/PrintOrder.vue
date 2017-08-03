@@ -13,7 +13,7 @@
                         的收据</h3>
                 </div>
                 <div class="modal-body">
-                    <el-table ref="multipleTable"  border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                    <el-table ref="multipleTable"  tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
                         <el-table-column type="selection" width="55">
                         </el-table-column>
                         <el-table-column label="缴费日期">
