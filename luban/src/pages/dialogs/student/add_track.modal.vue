@@ -27,7 +27,9 @@
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
                                         <el-dropdown-menu slot="dropdown" style="z-index:3000;">
-                                            <el-dropdown-item v-for="item in getDictData('4')" command=item._id>{{item.text}}</el-dropdown-item>
+                                            <template v-for="item in getDictData('4')">
+                                                <el-dropdown-item command=item._id>{{item.text}}</el-dropdown-item>
+                                            </template>
                                         </el-dropdown-menu>
                                     </el-dropdown>
                                 </div>
