@@ -37,7 +37,7 @@
                                 <template scope="scope">{{ getLookUp(scope.row.student,'student_name') }}</template>
                             </el-table-column>
                             <el-table-column prop="data" label="付款方式">
-                                <template scope="scope">现金</template>
+                                <template scope="scope">{{getDictText('2',scope.row.region_oe_id)}}</template>
                             </el-table-column>
                             <!--
                             <el-table-column prop="data" label="收据">

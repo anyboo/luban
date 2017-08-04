@@ -64,7 +64,6 @@ export default {
                     }
                 }
             }
-            console.log(menuOption)
             return menuOption
         }
     },
@@ -241,7 +240,6 @@ export default {
             return tablaData
         },
         handleShowDialog(url, menuData) {
-            console.log(url)
             this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {

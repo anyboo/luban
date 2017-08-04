@@ -7,8 +7,11 @@ const jwt = require('jsonwebtoken')
 var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
-
+const SMSClient = require('./smsclient.js')
 var dbstr = 'mongodb://localhost/'
+const accessKeyId = 'ACSFUX7fLUMpBZM1'
+const secretAccessKey = 'qsGNrvuGnu'
+const queueName = 'Alicom-Queue-1420938370661882-'
 
 function checkId(id) {
     let result = false
@@ -366,4 +369,38 @@ module.exports.options = function* () {
 
 module.exports.trace = function* () {
     this.body = yield 'Smart! But you can\'t trace.'
+}
+
+module.exports.sms = function* () {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    console.log(model)
+    let smsClient = new SMSClient({ accessKeyId, secretAccessKey })
+    function addNumber(count) {
+        let str = '';
+        for (var i = 0; i < count; i += 1) {
+            str += Math.floor(Math.random() * 10);
+        }
+        return str;
+    }
+    let number = addNumber(6)
+    let res = yield smsClient.sendSMS({
+        PhoneNumbers: model.phone,
+        SignName: '鲁班SAAS系统',
+        TemplateCode: 'SMS_81415024',
+        TemplateParam: JSON.stringify({ 'number': number })
+    })
+    let { Code } = res
+    let smsinfo = {}
+    smsinfo.info = 'Send OK'
+    if (Code === 'OK') {
+        //处理返回参数
+        console.log(res)
+        //smsinfo.res = res
+    } else {
+        smsinfo.info = 'Send Error'
+    }
+    this.body = yield smsinfo
 }
