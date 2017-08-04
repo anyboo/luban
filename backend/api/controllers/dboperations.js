@@ -378,8 +378,14 @@ module.exports.sms = function* () {
     })
     console.log(model)
     let smsClient = new SMSClient({ accessKeyId, secretAccessKey })
-    let number = '546325'
-
+    function addNumber(count) {
+        let str = '';
+        for (var i = 0; i < count; i += 1) {
+            str += Math.floor(Math.random() * 10);
+        }
+        return str;
+    }
+    let number = addNumber(6)
     let res = yield smsClient.sendSMS({
         PhoneNumbers: model.phone,
         SignName: '鲁班SAAS系统',
