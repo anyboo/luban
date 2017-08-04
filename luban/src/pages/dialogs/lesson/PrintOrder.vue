@@ -9,7 +9,7 @@
                     </button>
                     <h3 class="modal-title">
                         <i class="icon-printer"></i>订单号
-                        <span class="label bg-info ng-binding">{{ order.order_no}}</span>
+                        <span class="label bg-info ng-binding" :class="refresh">{{ order.order_no}}</span>
                         的收据</h3>
                 </div>
                 <div class="modal-body">
@@ -50,6 +50,7 @@ export default {
         let localdata = {
             'form': {
                 'order_id': '',
+                'student_id': '',
                 'money_pay_amount': '',
                 'pay_type': 0,
                 'use_balance': false,
@@ -66,6 +67,12 @@ export default {
         }
     },
     computed: {
+        refresh() {
+            if (this.$store.state.envs.currDialog == 'lb-printerreceipt') {
+                console.log(this.$store.state.envs.currDialog)
+                this.handleSearch()
+            }
+        }
     },
     mounted() {
         let vm = this
@@ -104,6 +111,7 @@ export default {
                 })
             }
 
+
         },
         getprint(value) {
             if (value) {
@@ -127,6 +135,7 @@ export default {
         },
         handleCurrentChange(val) {
             this.pay = val;
+            console.log(this.pay)
         }
     }
 }

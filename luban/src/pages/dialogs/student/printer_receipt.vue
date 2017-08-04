@@ -347,7 +347,7 @@ export default {
             order: {},
             currStudent: {},
             classes: {},
-            pay:{},
+            pay: {},
             pickerOptions0: {
                 disabledDate(time) {
                     return time.getTime() < Date.now() - 8.64e7;
@@ -393,11 +393,14 @@ export default {
             this.updateTeble('pay', this.pay._id, {
                 'print': true
             }).then(() => {
-                this.dopay = true
             })
+            this.lbClosedialog()
+            this.$store.state.envs.currDialog = 'lb-printerreceipt'
         },
         handleClick() {
-            window.print();
+            this.setPayStatus()
+            window.print()
+
         }
     },
 }
