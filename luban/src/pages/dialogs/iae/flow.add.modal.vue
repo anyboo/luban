@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">经办人</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label" :class="changeSelectTeacher">经办人</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
                                 <div class="inline w">
                                     <div class="input-group">
@@ -76,8 +76,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" ng-disabled="saving" ng-click="save_fee()" @click="handleClick">确定</button>
-                    <button class="btn btn-warning" ng-click="$dismiss()" @click="lbClosedialog($event)">关闭</button>
+                    <button class="btn btn-primary" @click="handleClick">确定</button>
+                    <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
                 </div>
             </div>
         </div>
@@ -127,11 +127,9 @@ export default {
             let Num = ''
             if (this.localdata.form.type == '0') {
                 Num = '7'
-
             } else {
                 Num = '8'
             }
-            console.log(Num)
             return Num
         },
         changeSelectTeacher() {
@@ -144,6 +142,7 @@ export default {
                     this.teacher_name = '请选择老师'
                     this.localdata.form.teacher_id = ''
                 }
+
                 result = true
             }
             return result
@@ -152,14 +151,24 @@ export default {
     watch: {},
     methods: {
         handleClick() {
-            this.handleSave().then(() => {
-                this.$message({
-                    message: '操作成功',
-                    type: 'success'
+            //判定
+            if (this.localdata.form.amount && this.localdata.form.sel && this.teacher_name!='luban') {
+                this.handleSave().then(() => {
+                    this.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    this.lbClosedialog()
+                    this.$store.state.envs.currDialog = 'lb-flow'
                 })
-                this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-flow'
-            })
+            } else {
+                this.$message({
+                    message: '请将表单填写完整!',
+                    type: 'warning'
+
+                })
+            }
+
         },
     }
 }
