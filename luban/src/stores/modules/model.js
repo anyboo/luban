@@ -74,6 +74,9 @@ const state = {
         },
         charge: {
             data: []
+        },
+        cart: {
+            data: []
         }
 
 

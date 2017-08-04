@@ -92,7 +92,6 @@ export default {
         },
         handleSearch() {
             let filterObj = []
-
             let student_id = this.localdata.form.student_id.trim()
             if (student_id.length > 0) {
                 filterObj.push({
@@ -101,11 +100,6 @@ export default {
                     'type': ''
                 })
             }
-            if (this.localdata.form.daterange && this.localdata.form.daterange.length == 2) {
-                let startTime = this.getDatetime(this.localdata.form.daterange[0])
-                let endTime = this.getDatetime(this.localdata.form.daterange[1])
-            }
-
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },

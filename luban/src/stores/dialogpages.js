@@ -29,6 +29,7 @@ import page62 from '~/pages/dialogs/system/reset_account.modal.vue'
 import page77 from '~/pages/dialogs/system/authority.vue'
 import page78 from '~/pages/dialogs/system/add_module.vue'
 import page67 from '~/pages/dialogs/system/add_modal.vue'
+import page70 from '~/pages/dialogs/system/cart.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
 import page39 from '~/pages/dialogs/directive/selectclasstpl.vue'
@@ -85,9 +86,10 @@ pages['lb-leaveshours'] = page74
 pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
-pages['lb-printerreceipt'] = page66 
-pages['lb-printerorder'] =page13
+pages['lb-printerreceipt'] = page66
+pages['lb-printerorder'] = page13
 pages['lb-addmodule'] = page78
+pages['lb-cart'] = page70
 
 
 export default pages

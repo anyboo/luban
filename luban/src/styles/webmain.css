@@ -7125,6 +7125,7 @@ End Header Option Page
         font-size: 11px !important;
         font-weight: 300;
         height: 18px;
+        color: #1f2d3d !important;
         padding: 3px 6px 3px 6px;
         -webkit-border-radius: 12px !important;
         -moz-border-radius: 12px !important;
@@ -7132,7 +7133,8 @@ End Header Option Page
         text-shadow: none !important;
         text-align: center;
         vertical-align: middle;
-        background-color: #bcbcbc;
+        background-color: #d1dbe5 !important;
+        /*background-color: #bcbcbc;*/
     }
     
     .label {
@@ -11787,51 +11789,31 @@ End Header Option Page
     
     .bg-teal-gradient {
         color: #fff;
-        background: #39cccc!important;
-    }
-    
-    .r {
-        border-radius: 1px 1px 1px 1px;
-    }
-    
-    .wrapper-sm {
-        padding: 10px;
-    }
-    
-    .box-shadow {
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-    }
-    
-    .bg-aqua-gradient {
-        color: #fff;
-        background: #00c0ef!important;
-    }
-    
-    .bg-gray {
-        color: #000;
-        background-color: #d2d6de!important;
-    }
-    
-    .badge,
-    .label {
-        font-weight: bold;
-        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-        border-radius: .25em;
-    }
-    
-    .r {
-        border-radius: 1px 1px 1px 1px;
-    }
-    
-    .wrapper-sm {
-        padding: 10px;
-    }
-    
-    .box-shadow {
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
-    }
-    
-    .bg-blue-gradient {
-        color: #fff;
         background: #0073b7!important;
+    }
+    
+    .el-input__icon+.el-input__inner {
+        padding-right: 21px;
+        padding-left: 25px;
+        width: 100px;
+    }
+    
+    .el-input-number--small .el-input-number__decrease,
+    .el-input-number--small .el-input-number__increase {
+        line-height: 30px;
+        width: 30px;
+        font-size: 13px;
+        height: 28px;
+    }
+    
+    .el-icon-plus:before {
+        content: "\e61c";
+        position: relative;
+        top: 7px;
+    }
+    
+    .el-icon-minus:before {
+        content: "\e619";
+        position: relative;
+        top: 7px;
     }

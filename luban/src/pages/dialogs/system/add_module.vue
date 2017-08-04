@@ -14,7 +14,7 @@
                     <el-form-item label="名称" prop="name">
                         <el-input v-model="localdata.form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="功能选择">
+                    <el-form-item label="功能选择" prop="chargemodule">
                         <el-tree :data="authoritymenu" :default-checked-keys="rote.authority" show-checkbox ref="tree" node-key="id" :props="defaultProps" v-model="localdata.form.chargemodule">
                         </el-tree>
                     </el-form-item>
@@ -28,7 +28,7 @@
                                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                                 </el-option>
                             </el-select>
-                            <el-input v-model="localdata.form.first_price" style="width:100px;"></el-input>
+                           <lb-numberinput v-model="localdata.form.first_price" style="width:100px;height:34px;"  placeholder="价格" ></lb-numberinput>
                             <span class="wrapper">
                                 <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
                                     <i class="fa fa-plus-square-o"></i>增加收费方式
@@ -41,7 +41,7 @@
                                     <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
                                     </el-option>
                                 </el-select>
-                                <el-input v-model="item.priced" style="width:100px;"></el-input>
+                                 <lb-numberinput v-model="item.priced" style="width:100px;height:34px;"   placeholder="价格"></lb-numberinput>
                                 <a @click="localdata.form.relations.splice(index, 1)">
                                     <i class="fa fa-minus-square-o"></i>
                                 </a>
@@ -51,6 +51,7 @@
                     <!--收费方式-->
                 </el-form>
                 <el-button @click="getCheckedNodes">通过 node 获取</el-button>
+                <el-button @click="getprice">ss</el-button>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleClick">确定</button>
@@ -102,6 +103,14 @@ export default {
                     { required: true, message: '请输入模块名称', trigger: 'blur' },
                     { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
                 ],
+                description:[
+                    { required: true, message: '请输入描述内容', trigger: 'blur' },
+                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ],
+                // chargemodule:[
+                //     { required: true, message: '请输入至少一个以上', trigger: 'blur' },
+                //     { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                // ],
             }
         }
     },
@@ -130,13 +139,11 @@ export default {
     methods: {
         handleClick() {
             this.$refs['ruleForm'].validate((valid) => {
-                let auth = this.$refs.tree.getCheckedNodes()
                 if (valid) {
                     this.handleSave().then(() => {
                         this.$message({
                             message: '操作成功',
                             type: 'success',
-                            'authority': auth
                         })
                         this.lbClosedialog()
                         this.$store.state.envs.currDialog = 'lb-addmodule'
@@ -168,6 +175,12 @@ export default {
                 var stud = auth[i].label
                 console.log(stud)
             }
+        },
+        getprice(){
+        for(var i=0;i<relations.length;i++){
+            var price=relations[i]
+            console.log( price)
+        }
         },
     }
 }
