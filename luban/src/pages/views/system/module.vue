@@ -20,7 +20,7 @@
                     &nbsp;
                 </el-col>
                 <el-col :span="2">
-                    <el-button type="primary" icon="search" @click="lbShowdialog($event,'lb-newsclassmodal')">搜索</el-button>
+                    <el-button type="primary" icon="search" @click="lbShowdialog($event,'lb-newsystemmodule')">搜索</el-button>
                 </el-col>
             </el-row>
         </div>

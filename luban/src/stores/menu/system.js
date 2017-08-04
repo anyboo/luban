@@ -77,6 +77,10 @@ export default {
             'action': 'systememdictedit'
         }]
     }, {
+        menuTitle: '模块设计',
+        to: '/system/module',
+        menuIcon: 'fa fa-keyboard-o',
+    }, {
         menuTitle: '日志',
         menuIcon: 'fa fa-picture-o',
         menuShow: 0,
