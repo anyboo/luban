@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-lg">
         <div class="modal-content" modal-transclude>
-            <div>
+            <div >
                 <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -13,28 +13,23 @@
                         的收据</h3>
                 </div>
                 <div class="modal-body">
-                    <el-table highlight-current-row :data="getTablesData()" ref="multipleTable" tooltip-effect="dark" style="width: 100%" @current-change="handleCurrentChange">
-                        <el-table-column type="index" width="55">
+                    <el-table ref="multipleTable"  tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                        <el-table-column type="selection" width="55">
                         </el-table-column>
-                        <el-table-column property='data' label="缴费日期">
-                            <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
+                        <el-table-column label="缴费日期">
+                            <template scope="scope">{{}}</template>
                         </el-table-column>
-                        <el-table-column property="data" label="缴费金额">
-                            <template scope="scope">
-                                <span class="badge bg-success">{{getToFixed(scope.row.money_pay_amount)}}</span>
-                            </template>
+                        <el-table-column prop="name" label="缴费金额">
                         </el-table-column>
-                        <el-table-column property="data" label="付款方式">
-                            <template scope="scope">{{getDictText('2',scope.row.region_oe_id)}}</template>
+                        <el-table-column prop="address" label="付款方式">
                         </el-table-column>
-                        <el-table-column property="data" label="收据">
-                            <template scope="scope">{{getprint(scope.row.print)}}</template>
+                        <el-table-column prop="address" label="收据">
                         </el-table-column>
                     </el-table>
                 </div>
     
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" @click="handlePrint">
+                    <button type="button" class="btn btn-primary" @click="handleShowDialog('lb-printerreceipt',order)">
                         <i class="icon fa fa-print"></i>
                         打印</button>
                     <button type="button" class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
@@ -48,24 +43,21 @@ export default {
     name: 'PrintOrder',
     data() {
         let localdata = {
-            'form': {
+             'form': {
                 'order_id': '',
                 'money_pay_amount': '',
                 'pay_type': 0,
                 'use_balance': false,
                 'balance_pay_amount': 0,
-                'print': false,
+          
             }
         }
         return {
             localdata,
+            multipleSelection: [],
             order: {},
-            tables: ['pay'],
-            student_name: '',
-            pay: null
+           
         }
-    },
-    computed: {
     },
     mounted() {
         let vm = this
@@ -90,43 +82,20 @@ export default {
                     }
                 }
             })
-            this.handleSearch()
         }
     },
     methods: {
-        handlePrint() {
-            if (this.pay) {
-                this.handleShowDialog('lb-printerreceipt', { order: this.order, pay: this.pay })
+        toggleSelection(rows) {
+            if (rows) {
+                rows.forEach(row => {
+                    this.$refs.multipleTable.toggleRowSelection(row);
+                });
             } else {
-                this.$message({
-                    message: '请选择',
-                    type: 'warning'
-                })
-            }
-
-        },
-        getprint(value) {
-            if (value) {
-                return "已打印"
-            } else {
-                return "未打印"
+                this.$refs.multipleTable.clearSelection();
             }
         },
-        handleSearch() {
-            let filterObj = []
-            let student_id = this.localdata.form.student_id
-            if (student_id && student_id.length > 0) {
-                filterObj.push({
-                    'key': 'student_id',
-                    'value': student_id,
-                    'type': ''
-                })
-                let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                this.handleGetFilterTable(filterTxt)
-            }
-        },
-        handleCurrentChange(val) {
-            this.pay = val;
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
         }
     }
 }

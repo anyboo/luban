@@ -58,7 +58,7 @@
                                 <tr>
                                     <td>
                                         <div class="line-input w-long">
-                                            <input style="width:140px" type="text" :value="order.body" class="input_three">
+                                            <input style="width:140px" type="text" :value="classes.class_name" class="input_three">
                                         </div>
                                     </td>
                                     <td>
@@ -104,7 +104,7 @@
                                     <td>实缴金额</td>
                                     <td>
                                         <div class="line-input">
-                                            <input type="text" :value="order.pay_status">
+                                            <input type="text" :value="pay.money_pay_amount">
                                         </div>
                                     </td>
                                     <td>欠款金额</td>
@@ -311,9 +311,8 @@ input {
     .modal-content>.print {
         background: red;
         display: block;
-        margin-top:30px;
-        margin-left:30px;
-
+        margin-top: 30px;
+        margin-left: 30px;
     }
     @page {
         size: A4 landscape;
@@ -347,6 +346,8 @@ export default {
             localdata,
             order: {},
             currStudent: {},
+            classes: {},
+            pay:{},
             pickerOptions0: {
                 disabledDate(time) {
                     return time.getTime() < Date.now() - 8.64e7;
@@ -358,7 +359,9 @@ export default {
     mounted() {
         let vm = this
         if (vm.$store.state.dialogs.dailogdata) {
-            vm.order = vm.$store.state.dialogs.dailogdata
+            let { order, pay } = vm.$store.state.dialogs.dailogdata
+            vm.order = order
+            vm.pay = pay
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
             vm.localdata.form.class_id = vm.order.class_id
@@ -376,11 +379,23 @@ export default {
                     }
                 }
             })
+            vm.handleGetTableID('classes', vm.order.class_id).then((obj) => {
+                if (obj.data && obj.data.length > 0) {
+                    vm.classes = obj.data[0]
+                }
+            })
         }
     },
     computed: {},
     watch: {},
     methods: {
+        setPayStatus() {
+            this.updateTeble('pay', this.pay._id, {
+                'print': true
+            }).then(() => {
+                this.dopay = true
+            })
+        },
         handleClick() {
             window.print();
         }

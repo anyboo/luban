@@ -22,7 +22,7 @@
                         <span class="text-success">{{localdata.form.money_pay_amount}}</span>元,请选择接下来的操作.</p>
                     <div class="row no-gutter m-t">
                         <div class="col-xs-6">
-                            <a class="btn btn-primary btn-block" @click="handleShowDialog('lb-printerreceipt',order)">
+                            <a class="btn btn-primary btn-block" @click="handleShowDialog('lb-printerreceipt',{order,pay})">
                                 <i class="icon-printer"></i> 打印收据</a>
                         </div>
                         <div class="col-xs-6">
@@ -129,12 +129,14 @@ export default {
                 'pay_type': 0,
                 'use_balance': false,
                 'balance_pay_amount': 0,
-                'region_oe_id': '请选择'
+                'region_oe_id': '请选择',
+                'print': false
             }
         }
         return {
             localdata,
             order: {},
+            pay: {},
             model: 'pay',
             dopay: false,
             currStudent: {}
@@ -186,6 +188,7 @@ export default {
             } else if (unpay_amount == this.order.order_amount) {
                 pay_status = 0
             }
+            this.order.unpay_amount = unpay_amount
             this.updateTeble('order', this.order._id, {
                 'pay_status': pay_status,
                 'unpay_amount': unpay_amount
@@ -212,6 +215,7 @@ export default {
         },
         do_pay() {
             this.handleSave().then((data) => {
+                this.pay = data
                 if (this.order.order_type == 2) {
                     this.setStudentAmount()
                 } else if (this.order.order_type == 1) {
