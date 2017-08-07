@@ -11,8 +11,17 @@
                     </el-input>
                 </el-col>
                 <el-col :span="9" v-if="dateSearch">
-                    <el-date-picker v-model="value7" type="daterange" align="right" placeholder="选择日期范围" :picker-options="pickerOptions2">
-                    </el-date-picker>
+                    <div class="block">
+                        <el-date-picker v-model="value7" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+                <el-col :span="5" v-if="radioGroupSearch">
+                    <el-radio-group>
+                        <template v-for="item in radioGroupSearchInfo">
+                            <el-radio-button :label="item.label"></el-radio-button>
+                        </template>
+                    </el-radio-group>
                 </el-col>
                 <el-col :span="5" v-if="groupBtnSearch">
                     <el-button-group>
@@ -30,7 +39,7 @@
         </div>
         <el-table :data="tableData" stripe border>
             <template v-for="item in textTableInfo">
-                <el-table-column :label="item.label" width="280">
+                <el-table-column :label="item.label" width="200">
                     <template scope="scope">
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
@@ -43,49 +52,45 @@
                                     {{item.label}}
                                     <i class="el-icon-caret-bottom el-icon--right"></i>
                                 </el-button>
-                                <template v-for="item in item.fields">
-                                    <el-dropdown-menu slot="dropdown" >
-                                        <el-dropdown-item>{{item}}</el-dropdown-item>
-                                    </el-dropdown-menu>
-                                </template>
+                                <el-dropdown-menu slot="dropdown">
+                                    <template v-for="value in item.fields">
+                                        <el-dropdown-item>{{value}}</el-dropdown-item>
+                                    </template>
+                                </el-dropdown-menu>
                             </el-dropdown>
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ scope.row[item.prop]}}</el-tag>
                         </template>
+                        <template v-if="item.type=='progress'">
+                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="Number(item.percentage)" :text="item.text"></lb-progress>
+                        </template>
+                        <template v-if="item.type=='priceText'">
+                            <p>
+                                课程单价:50元/次
+                            </p>
+                            <p>
+                                <label>课程售价:</label>
+                                <span class="label bg-info">5000</span>元
+                            </p>
+                        </template>
+                        <template v-if="item.type=='contentText'">
+                            <p>
+                                <label>单次课时长:</label>
+                                <span class="label bg-info">10</span>时
+                            </p>
+                            <p>
+                                <label>课程包含:</label>
+                                <template>
+                                    <span class="label bg-info">50</span>次
+                                </template>
+                                <span class="label bg-info">2</span>课时
+                            </p>
+                        </template>
                     </template>
                 </el-table-column>
             </template>
         </el-table>
-        <!-- <el-table :data="tableData" stripe border>
-                                        <el-table-column label="日期" width="180">
-                                            <template scope="scope">
-                                                <el-icon name="time"></el-icon>
-                                                <span style="margin-left: 10px">{{ scope.row.date }}</span>
-                                            </template>
-                                        </el-table-column>
-                                        <el-table-column prop="name" label="姓名" width="180">
-                                        </el-table-column>
-                                        <el-table-column prop="address" label="地址">
-                                        </el-table-column>
-                                        <el-table-column label="操作" width="150">
-                                            <template scope="scope">
-                                                <el-dropdown>
-                                                    <el-button size="mini">
-                                                        操作
-                                                        <i class="el-icon-caret-bottom el-icon--right"></i>
-                                                    </el-button>
-                                                    <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item>黄金糕</el-dropdown-item>
-                                                        <el-dropdown-item>狮子头</el-dropdown-item>
-                                                        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                                                        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                                                        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-                                                    </el-dropdown-menu>
-                                                </el-dropdown>
-                                            </template>
-                                        </el-table-column>
-                                    </el-table> -->
         <div class="pagination">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
             </el-pagination>
@@ -187,19 +192,19 @@ export default {
             tableData: [{
                 name: '王小虎',
                 date: '2016-05-02',
-                tagtext:'陈狗陈'
+                tagtext: '陈狗陈'
             }, {
                 date: '2016-05-04',
                 name: '王小虎',
-                tagtext:'陈狗陈'
+                tagtext: '陈狗陈'
             }, {
                 date: '2016-05-01',
                 name: '王小虎',
-                tagtext:'陈狗陈'
+                tagtext: '陈狗陈'
             }, {
                 date: '2016-05-03',
                 name: '王小虎',
-                tagtext:'陈狗陈'
+                tagtext: '陈狗陈'
             }]
         }
     },
@@ -297,6 +302,30 @@ export default {
                 }
             }
             return groupBtnSearchInfo
+        },
+        radioGroupSearch() {
+            let searchdata = this.module.pageSearch
+            if (searchdata) {
+                for (let item of this.module.pageSearch) {
+                    if (item.type == 'radioGroupSearch') {
+                        return true
+                    }
+                }
+            }
+            return false
+        },
+        radioGroupSearchInfo() {
+            let radioGroupSearchInfo = []
+            let searchdata = this.module.pageSearch
+            if (searchdata) {
+                for (let item of this.module.pageSearch) {
+                    if (item.type == 'radioGroupSearch') {
+                        radioGroupSearchInfo = item.fields
+                        break
+                    }
+                }
+            }
+            return radioGroupSearchInfo
         },
         //表格
         textTableInfo() {

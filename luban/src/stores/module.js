@@ -62,6 +62,23 @@ export default {
                         }
                     ]
                 },
+                {
+                    'type': 'radioGroupSearch',
+                    'fields': [
+                        {
+                            'label': '已开课',
+                            'icon': ''
+                        },
+                        {
+                            'label': '未开课',
+                            'icon': ''
+                        },
+                        {
+                            'label': '已结课',
+                            'icon': ''
+                        }
+                    ]
+                },
             ],
             'pageTableField': [
                 {
@@ -85,6 +102,24 @@ export default {
                     'label': '出勤情况',
                     'prop': 'tagtext',
                     'color':'danger'
+                },
+                {
+                    'type': 'progress',
+                    'label': '招生情况',
+                    'prop': 'tagtext',
+                    'textInside':'true',
+                    'strokeWidth':'18',
+                    'percentage':'60',
+                    'text':'40/60'
+                },
+                {
+                    'type': 'priceText',
+                    'label': '定价',
+                },
+                {
+                    'type': 'contentText',
+                    'label': '内容',
+                    'prop': 'contentText',
                 },
             ],
             'pageTable': 'sclasses',
