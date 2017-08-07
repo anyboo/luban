@@ -56,7 +56,7 @@ module.exports.login = function* login(db, next) {
     })
     let cursor = table.aggregate(options)
     let model = yield cursor.toArray()
-
+    console.log(model)
     var token = ''
     var code = -1
     var message = '登录失败'

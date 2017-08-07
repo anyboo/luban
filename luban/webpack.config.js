@@ -59,7 +59,7 @@ module.exports = (options = {}) => ({
     },
     plugins: [
         new webpack.DefinePlugin({
-           LUBANDEV: JSON.stringify(options.dev)
+            LUBANDEV: JSON.stringify(options.dev)
         }),
         new HtmlWebpackPlugin({
             template: 'index.html'
@@ -74,6 +74,7 @@ module.exports = (options = {}) => ({
     devServer: {
         host: '0.0.0.0',
         port: 8010,
+        disableHostCheck: true,
         proxy: {
             '/api/': {
                 target: 'http://127.0.0.1:8080',
