@@ -200,13 +200,13 @@ export default {
             }
             return value
         },
-        getDictText(type,value){
+        getDictText(type, value) {
             let text = ''
             let tablaData = []
             let tablaName = 'dictionary'
             tablaData = this.$store.state.models.models[tablaName].data
             for (var i = 0; i < tablaData.length; i++) {
-                  if (tablaData[i].type == type) {
+                if (tablaData[i].type == type) {
                     if (tablaData[i]._id == value) {
                         text = tablaData[i].text
                     }
@@ -266,19 +266,15 @@ export default {
         handleGetFilterTableTable(model, filter) {
             let vm = this
             return new Promise((resolve, reject) => {
-                if (vm.tables) {
-                    let table = {}
-                    table.model = model
-                    table.filter = filter
-                    table.alias = this.alias
-                    table.prepage = this.pagination.pagesize
-                    table.page = this.pagination.currentPage - 1
-                    vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
-                        resolve(response)
-                    })
-                } else {
-                    reject()
-                }
+                let table = {}
+                table.model = model
+                table.filter = filter
+                table.alias = this.alias
+                table.prepage = this.pagination.pagesize
+                table.page = this.pagination.currentPage - 1
+                vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                    resolve(response)
+                })
             })
         },
         handleGetFilterTable(filter) {
