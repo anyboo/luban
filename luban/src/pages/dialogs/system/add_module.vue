@@ -24,13 +24,8 @@
                     <!--收费方式-->
                     <el-form :model="localdata.form" label-width="100px" ref="ruleForm">
                         <el-form-item prop="chargr_type" label="收费方式">
-                            <el-select v-model="localdata.form.chargr_type" placeholder="方式" style="width:100px;">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                                </el-option>
-                            </el-select>
-                           <lb-numberinput v-model="localdata.form.first_price" style="width:100px;height:34px;"  placeholder="价格" ></lb-numberinput>
-                            <span class="wrapper">
-                                <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
+                              <span class="wrapper">
+                                <a @click="localdata.form.relations.push({relation:'',priced:'',index:''})">
                                     <i class="fa fa-plus-square-o"></i>增加收费方式
                                 </a>
                             </span>
@@ -38,10 +33,10 @@
                         <template v-for="(item,index) in localdata.form.relations">
                             <el-form-item>
                                 <el-select v-model="item.relation" placeholder="方式" style="width:100px;">
-                                    <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
+                                    <el-option v-for="subitem in options" :key="subitem.label" :label="subitem.label" :value="subitem.label">
                                     </el-option>
                                 </el-select>
-                                 <lb-numberinput v-model="item.priced" style="width:100px;height:34px;"   placeholder="价格"></lb-numberinput>
+                                 <lb-numberinput v-model="item.priced" style="width:100px;height:34px;"placeholder="价格"></lb-numberinput>
                                 <a @click="localdata.form.relations.splice(index, 1)">
                                     <i class="fa fa-minus-square-o"></i>
                                 </a>
@@ -51,7 +46,7 @@
                     <!--收费方式-->
                 </el-form>
                 <el-button @click="getCheckedNodes">通过 node 获取</el-button>
-                <el-button @click="getprice">ss</el-button>
+             
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleClick">确定</button>
@@ -70,9 +65,8 @@ export default {
                 'name': '',
                 'description': '',
                 'chargemodule': '',
-                'chargr_type': '',
-                'first_price': '',
                 'relations': [],
+                'relationsIndex':0
             }
         }
         return {
@@ -124,6 +118,13 @@ export default {
             treedata.push(menudata)
             this.gettreedata(menudata.children, menus)
             return treedata
+        },
+        gettype() {
+            let options = []
+            for (var i = 0; i < options.length; i++) {
+                var relationes = options[i]
+                return relationes
+            }
         }
     },
     mounted() {
@@ -176,12 +177,7 @@ export default {
                 console.log(stud)
             }
         },
-        getprice(){
-        for(var i=0;i<relations.length;i++){
-            var price=relations[i]
-            console.log( price)
-        }
-        },
+    
     }
 }
 </script>

@@ -89,11 +89,7 @@ pages['lb-authority'] = page77
 pages['lb-printerreceipt'] = page66
 pages['lb-printerorder'] = page13
 pages['lb-addmodule'] = page78
-<<<<<<< HEAD
 pages['lb-cart'] = page70
 
-=======
-pages['lb-newsystemmodule'] = page79
->>>>>>> f79f55861c134fa0028fa463593952dfb1836c46
 
 export default pages

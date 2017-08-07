@@ -14,8 +14,6 @@
           <thead>
             <tr>
               <th>商品</th>
-              <th>单价</th>
-              <th>数量</th>
               <th>金额</th>
               <th></th>
             </tr>
@@ -23,14 +21,8 @@
           <template v-for="item in getTablesData()">
             <tbody class="ng-scope">
               <tr class="ng-scope">
-                <td class="ng-binding">考勤卡设计服务费</td>
-                <td class="ng-binding">￥600</td>
-                <td class="w-sm">
-                  <template>
-                    <el-input-number v-model="localdata.form.num" size="small"></el-input-number>
-                  </template>
-                </td>
-                <td class="ng-binding">￥600</td>
+                <td class="ng-binding">{{getLookUp(item.charge, 'name')}}</td>
+                <td class="ng-binding">{{getLookUp(item.charge, 'relations')[item.chargePriceIndex].priced }}</td>
                 <td>
                   <a class="btn btn-danger btn-xs" @click="handleDelClick(item._id)">
                     <i class="icon-ban"></i> 删除</a>
@@ -55,12 +47,18 @@
 <script>
 export default {
   name: 'newsclass',
- 
+
   data() {
     let localdata = {
       'form': {
-        ' num: ': '1',
-      }
+        num: 1,
+      },
+      'lookup': {
+        'localField': 'charge_id',
+        'from': 'charge',
+        'foreignField': '_id',
+        'as': 'charge'
+      },
     }
     return {
       localdata,
@@ -72,26 +70,27 @@ export default {
   computed: {},
   watch: {},
   methods: {
-     handleDelClick(id) {
-            this.$confirm('此操作将永久删除该订单, 是否继续?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-            }).then(() => {
-                this.handleDelete(id).then(() => {
-                    this.$message({
-                        message: '删除成功',
-                        type: 'success'
-                    })
-                    this.handleGetTable()
-                })
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: '已取消删除'
-                })
-            })
-        },
+    handleDelClick(id) {
+      this.handleDelete(id).then(() => {
+        this.$message({
+          message: '删除购物车成功',
+          type: 'success'
+        })
+        this.handleSearch()
+      })
+    },
+    handleSearch() {
+      let filterObj = []
+      filterObj.push({
+        'key': 'lookup',
+        'value': this.localdata.lookup,
+        'type': 'lookup'
+      })
+      let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+      this.handleGetFilterTable(filterTxt).then(obj => {
+        console.log(obj)
+      })
+    }
   }
 }
 </script>

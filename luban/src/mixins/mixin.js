@@ -24,7 +24,7 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function () {
+    created: function() {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = _
@@ -38,7 +38,7 @@ export default {
         this.pagination.pagesize = 10
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
-    mounted: function () {
+    mounted: function() {
         this.handleGetTable()
     },
     computed: {
@@ -200,13 +200,13 @@ export default {
             }
             return value
         },
-        getDictText(type,value){
+        getDictText(type, value) {
             let text = ''
             let tablaData = []
             let tablaName = 'dictionary'
             tablaData = this.$store.state.models.models[tablaName].data
             for (var i = 0; i < tablaData.length; i++) {
-                  if (tablaData[i].type == type) {
+                if (tablaData[i].type == type) {
                     if (tablaData[i]._id == value) {
                         text = tablaData[i].text
                     }
@@ -345,7 +345,7 @@ export default {
                         resolve()
                     }).catch((error) => {
                         reject()
-                        //console.log(error, 'Promise error')
+                            //console.log(error, 'Promise error')
                     })
 
                 } else {

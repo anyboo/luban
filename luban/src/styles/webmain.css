@@ -11795,7 +11795,6 @@ End Header Option Page
     .el-input__icon+.el-input__inner {
         padding-right: 21px;
         padding-left: 25px;
-        width: 100px;
     }
     
     .el-input-number--small .el-input-number__decrease,

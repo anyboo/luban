@@ -48,21 +48,19 @@
                             <li class="list-group-item">
                                 <label class="text-black">收费方式:</label>
                                 <!--收费方式-->
-                                <template>
-                                    <el-select v-model="localdata.form.chargr_type" placeholder="方式">
-                                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled">
-                                        </el-option>
-                                    </el-select>
-                                </template>
+                                <el-select v-model="item.relationsIndex" placeholder="方式" style="width: 100px;">
+                                    <el-option v-for="(subitem,index) in item.relations" :key="index" :label="subitem.relation" :value="index" :disabled="item.disabled">
+                                    </el-option>
+                                </el-select>
                                 <!--收费方式-->
-                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.first_price}}</label>
+                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.relations[item.relationsIndex].priced}}¥</label>
                             </li>
                             <li class="list-group-item">
                                 <label class="text-black">描述:</label>
                                 <label class="badge  ng-binding">{{item.description}}</label>
                             </li>
                         </ul>
-                        <button class="btn btn-block btn-default" @click="lbShowdialog($event,'lb-cart')" @mousedown="handleClick()" >
+                        <button class="btn btn-block btn-default" @click="lbShowdialog($event,'lb-cart')" @mousedown="handleClick(item)">
                             <i class="icon-plus"></i>加入购物车</button>
                     </div>
                 </div>
@@ -74,10 +72,6 @@
                 </el-pagination>
             </div>
         </div>
-        <p class="text-center m-t">
-            <a class="link">保密协议</a> |
-            <a class="link">服务协议</a>
-        </p>
     </div>
 </template>
 <script>
@@ -86,32 +80,22 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'chargr_type': '',
+                'charge_id':'',
+                'chargePriceIndex':'',
             }
         }
         return {
             tables: ['charge'],
             model: 'cart',
-            localdata,
-            options: [{
-                value: '0',
-                label: '1月'
-            }, {
-                value: '1',
-                label: '3月'
-            }, {
-                value: '2',
-                label: '6月'
-            }, {
-                value: '3',
-                label: '12月'
-            }]
+            localdata
         }
     },
     computed: {
     },
     methods: {
-        handleClick() {
+        handleClick(item) {
+           this.localdata.form.chargePriceIndex = item.relationsIndex
+            this.localdata.form.charge_id = item._id
             this.handleSave().then(() => {
                 this.$message({
                     message: '添加购物车成功',
@@ -119,6 +103,13 @@ export default {
                 })
                 this.lbClosedialog()
                 this.$store.state.envs.currDialog = 'lb-cart'
+            })
+        },
+        handleSearch() {
+            let filterObj = []
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTable(filterTxt).then(obj => {
+                console.log(obj)
             })
         },
     }
