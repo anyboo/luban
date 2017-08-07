@@ -37,7 +37,7 @@
                 </el-col>
             </el-row>
         </div>
-        <el-table :data="tableData" stripe border>
+        <el-table stripe border>
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
@@ -131,13 +131,14 @@
 }
 </style>
 <script>
-import module from '~/stores/module.js'
+import pagesmodule from '~/stores/module.js'
 export default {
-    name: 'sclasses',
+    name: 'systemmodule',
+    props:['module'],
     data() {
         let localdata = {}
         return {
-            module: module.pages.lessonsclasses,
+            moduledata: {},
             localdata,
             tables: ['sclasses'],
             input5: '',
@@ -170,24 +171,7 @@ export default {
                         picker.$emit('pick', [start, end]);
                     }
                 }]
-            },
-            tableData: [{
-                name: '王小虎',
-                date: '2016-05-02',
-                tagtext: '陈狗陈'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                tagtext: '陈狗陈'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                tagtext: '陈狗陈'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                tagtext: '陈狗陈'
-            }]
+            }
         }
     },
     mounted() {
@@ -197,9 +181,9 @@ export default {
         //搜索
         textSearchInfo() {
             let textSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'textSearch') {
                         textSearchInfo = item.fields
                         break
@@ -209,9 +193,9 @@ export default {
             return textSearchInfo
         },
         textSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'textSearch') {
                         return true
                     }
@@ -220,9 +204,9 @@ export default {
             return false
         },
         dateSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'dateSearch') {
                         return true
                     }
@@ -231,9 +215,9 @@ export default {
             return false
         },
         singleBtnSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'singleBtnSearch') {
                         return true
                     }
@@ -243,9 +227,9 @@ export default {
         },
         singleBtnSearchInfo() {
             let singleBtnSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'singleBtnSearch') {
                         singleBtnSearchInfo = item.fields
                         break
@@ -255,9 +239,9 @@ export default {
             return singleBtnSearchInfo
         },
         groupBtnSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'groupBtnSearch') {
                         return true
                     }
@@ -267,9 +251,9 @@ export default {
         },
         groupBtnSearchInfo() {
             let groupBtnSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'groupBtnSearch') {
                         groupBtnSearchInfo = item.fields
                         break
@@ -279,9 +263,9 @@ export default {
             return groupBtnSearchInfo
         },
         radioGroupSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'radioGroupSearch') {
                         return true
                     }
@@ -291,9 +275,9 @@ export default {
         },
         radioGroupSearchInfo() {
             let radioGroupSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'radioGroupSearch') {
                         radioGroupSearchInfo = item.fields
                         break
@@ -304,11 +288,16 @@ export default {
         },
         //表格
         textTableInfo() {
-            let textTableInfo = this.module.pageTableField
+            let textTableInfo = this.moduledata.pageTableField
             return textTableInfo
         }
     },
-    watch: {},
+    watch: {
+        module:function(val){
+            console.log(val)
+            this.moduledata = pagesmodule[val]
+        }
+    },
     methods: {}
 }
 </script>

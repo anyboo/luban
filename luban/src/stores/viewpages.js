@@ -17,7 +17,6 @@ import systemorg from '~/pages/views/system/org.vue'
 import systemroles from '~/pages/views/system/roles.vue'
 import systemsystems from '~/pages/views/system/systems.vue'
 import systemcharge_module from '~/pages/views/system/charge_module.vue'
-import systemmodule from '~/pages/views/system/module.vue'
 
 import lessonsclasses from '~/pages/views/lesson/sclasses.vue'
 import lessonmanage from '~/pages/views/lesson/manage.vue'
@@ -62,7 +61,6 @@ pages['lb-systemorg'] = systemorg
 pages['lb-systemroles'] = systemroles
 pages['lb-systemsystems'] = systemsystems
 pages['lb-systemcharge_module'] = systemcharge_module
-pages['lb-systemmodule'] = systemmodule
 
 pages['lb-lessonsclasses'] = lessonsclasses
 pages['lb-lessonmanage'] = lessonmanage
