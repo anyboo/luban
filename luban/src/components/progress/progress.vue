@@ -47,7 +47,7 @@
         type: Number,
         default: 0,
         required: true,
-        validator: val => val >= 0 && val <= 100
+        //validator: val => val >= 0 && val <= 100
       },
       status: {
         type: String

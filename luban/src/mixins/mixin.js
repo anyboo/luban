@@ -266,19 +266,15 @@ export default {
         handleGetFilterTableTable(model, filter) {
             let vm = this
             return new Promise((resolve, reject) => {
-                if (vm.tables) {
-                    let table = {}
-                    table.model = model
-                    table.filter = filter
-                    table.alias = this.alias
-                    table.prepage = this.pagination.pagesize
-                    table.page = this.pagination.currentPage - 1
-                    vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
-                        resolve(response)
-                    })
-                } else {
-                    reject()
-                }
+                let table = {}
+                table.model = model
+                table.filter = filter
+                table.alias = this.alias
+                table.prepage = this.pagination.pagesize
+                table.page = this.pagination.currentPage - 1
+                vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                    resolve(response)
+                })
             })
         },
         handleGetFilterTable(filter) {

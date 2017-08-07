@@ -85,8 +85,8 @@ export default {
             } else {
                 let tomodule = to.replace(/\//g, '')
                 if (module[tomodule]) {
-                    this.isModlues = true
                     this.moduleName = tomodule
+                    this.isModlues = true
                 } else {
                     view = 'lb-' + to.replace(/\//g, '')
                 }

@@ -3,8 +3,8 @@
         <div class="search">
             <el-row :gutter="12">
                 <el-col :span="6" v-if="textSearch">
-                    <el-input placeholder="请输入内容" v-model="input5">
-                        <el-select v-model="select" slot="prepend" placeholder="请选择">
+                    <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
+                        <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
                             <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
                         </el-select>
                         <el-button slot="append" icon="search"></el-button>
@@ -30,14 +30,14 @@
                         </template>
                     </el-button-group>
                 </el-col>
-                <el-col :span="2" v-if="singleBtnSearch">
+                <el-col :span="2" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
-                        <el-button :type="item.type" :icon="item.icon" @click="lbShowdialog($event,'lb-newsystemmodule')">{{item.label}}</el-button>
+                        <el-button :type="item.type"  @click="lbShowdialog($event,'lb-newsclassmodal')">{{item.label}}</el-button>
                     </template>
                 </el-col>
             </el-row>
         </div>
-        <el-table stripe border>
+        <el-table :data="moduleTableData" stripe border>
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
@@ -45,16 +45,16 @@
                             <el-icon name="time"></el-icon>
                             <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span>
                         </template>
-                        <template v-if="item.type=='text'">{{ scope.row[item.prop] }} </template>
+                        <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
                         <template v-if="item.type=='operation'">
-                            <el-dropdown>
+                            <el-dropdown @command="handleCommand">
                                 <el-button size="mini">
                                     {{item.label}}
                                     <i class="el-icon-caret-bottom el-icon--right"></i>
                                 </el-button>
-                                <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-menu slot="dropdown" >
                                     <template v-for="value in item.fields">
-                                        <el-dropdown-item>{{value}}</el-dropdown-item>
+                                        <el-dropdown-item :command="value.action">{{value.msg}}</el-dropdown-item>
                                     </template>
                                 </el-dropdown-menu>
                             </el-dropdown>
@@ -134,15 +134,13 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
-    props:['module'],
+    props: ['module'],
     data() {
-        let localdata = {}
         return {
-            moduledata: {},
-            localdata,
-            tables: ['sclasses'],
-            input5: '',
-            select: '',
+            moduledata: pagesmodule[this.module],
+            textSearchKey: '',
+            textSearchValue: '',
+            moduleTableData: [],
             value7: '',
             radio: '',
             pickerOptions2: {
@@ -175,116 +173,35 @@ export default {
         }
     },
     mounted() {
-        console.log(this.module)
     },
     computed: {
         //搜索
         textSearchInfo() {
-            let textSearchInfo = []
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'textSearch') {
-                        textSearchInfo = item.fields
-                        break
-                    }
-                }
-            }
-            return textSearchInfo
+            return this.getModuleSearchInfo('textSearch')
         },
         textSearch() {
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'textSearch') {
-                        return true
-                    }
-                }
-            }
-            return false
+            return this.getModuleSearchInfo('textSearch').length > 0
         },
         dateSearch() {
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'dateSearch') {
-                        return true
-                    }
-                }
-            }
-            return false
+            return this.getModuleSearchInfo('dateSearch').length > 0
         },
         singleBtnSearch() {
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'singleBtnSearch') {
-                        return true
-                    }
-                }
-            }
-            return false
+            return this.getModuleSearchInfo('singleBtnSearch').length > 0
         },
         singleBtnSearchInfo() {
-            let singleBtnSearchInfo = []
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'singleBtnSearch') {
-                        singleBtnSearchInfo = item.fields
-                        break
-                    }
-                }
-            }
-            return singleBtnSearchInfo
+            return this.getModuleSearchInfo('singleBtnSearch')
         },
         groupBtnSearch() {
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'groupBtnSearch') {
-                        return true
-                    }
-                }
-            }
-            return false
+            return this.getModuleSearchInfo('groupBtnSearch').length > 0
         },
         groupBtnSearchInfo() {
-            let groupBtnSearchInfo = []
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'groupBtnSearch') {
-                        groupBtnSearchInfo = item.fields
-                        break
-                    }
-                }
-            }
-            return groupBtnSearchInfo
+            return this.getModuleSearchInfo('groupBtnSearch')
         },
         radioGroupSearch() {
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'radioGroupSearch') {
-                        return true
-                    }
-                }
-            }
-            return false
+            return this.getModuleSearchInfo('radioGroupSearch').length > 0
         },
         radioGroupSearchInfo() {
-            let radioGroupSearchInfo = []
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == 'radioGroupSearch') {
-                        radioGroupSearchInfo = item.fields
-                        break
-                    }
-                }
-            }
-            return radioGroupSearchInfo
+            return this.getModuleSearchInfo('radioGroupSearch')
         },
         //表格
         textTableInfo() {
@@ -293,11 +210,45 @@ export default {
         }
     },
     watch: {
-        module:function(val){
-            console.log(val)
+        module: function (val) {
             this.moduledata = pagesmodule[val]
         }
     },
-    methods: {}
+    methods: {
+        getModuleSearchInfo(Search) {
+            let searchInfo = []
+            let searchdata = this.moduledata.pageSearch
+            if (searchdata) {
+                for (let item of this.moduledata.pageSearch) {
+                    if (item.type == Search) {
+                        searchInfo = item.fields
+                        break
+                    }
+                }
+            }
+            return searchInfo
+        },
+        handleSearch() {
+            let filterObj = []
+            let search_value = this.textSearchValue
+            console.log(search_value)
+            if (search_value.length > 0) {
+                filterObj.push({
+                    'key': this.textSearchKey,
+                    'value': search_value,
+                    'type': 'like'
+                })
+            }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            console.log(this.moduledata.pageTable, filterTxt, filterObj)
+            this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
+                this.moduleTableData = obj.data.data
+                console.log(this.moduleTableData)
+            })
+        },
+        handleCommand(command) {
+        this.$message('click on item ' + command);
+      }
+    }
 }
 </script>
