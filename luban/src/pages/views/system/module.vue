@@ -10,14 +10,14 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="9" v-if="dateSearch">
+                <el-col :span="4" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="value7" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
                         </el-date-picker>
                     </div>
                 </el-col>
                 <el-col :span="5" v-if="radioGroupSearch">
-                    <el-radio-group>
+                    <el-radio-group v-model="radio">
                         <template v-for="item in radioGroupSearchInfo">
                             <el-radio-button :label="item.label"></el-radio-button>
                         </template>
@@ -39,7 +39,7 @@
         </div>
         <el-table :data="tableData" stripe border>
             <template v-for="item in textTableInfo">
-                <el-table-column :label="item.label" width="200">
+                <el-table-column :label="item.label">
                     <template scope="scope">
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
@@ -135,26 +135,7 @@ import module from '~/stores/module.js'
 export default {
     name: 'sclasses',
     data() {
-        let localdata = {
-            'form': {
-                'search_value': '',
-                'status': ''
-            },
-            'search': {
-                'fields': [{
-                    'name': 'class_name',
-                    'value': '教室名'
-                }],
-                'search_key': 'class_name',
-                'search_value': '教室名'
-            },
-            'sclesseslookup': {
-                'localField': '_id',
-                'from': 'arrange',
-                'foreignField': 'sclasses_id',
-                'as': 'sclesses'
-            }
-        }
+        let localdata = {}
         return {
             module: module.pages.lessonsclasses,
             localdata,
@@ -162,6 +143,7 @@ export default {
             input5: '',
             select: '',
             value7: '',
+            radio: '',
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
@@ -212,13 +194,6 @@ export default {
         console.log(this.module)
     },
     computed: {
-        changeTeacher() {
-            let result = false
-            if (this.$store.state.envs.currDialog == 'lb-newsclass') {
-                this.handleSearch()
-            }
-            return result
-        },
         //搜索
         textSearchInfo() {
             let textSearchInfo = []
@@ -334,65 +309,6 @@ export default {
         }
     },
     watch: {},
-    methods: {
-        handleCommand(value) {
-            this.localdata.search.search_key = value
-            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
-                'name': value
-            }).value
-        },
-        handleSearch() {
-            let filterObj = []
-            let search_value = this.localdata.form.search_value.trim()
-            if (search_value.length > 0) {
-                filterObj.push({
-                    'key': this.localdata.search.search_key,
-                    'value': search_value,
-                    'type': 'like'
-                })
-            }
-            filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.sclesseslookup,
-                'type': 'lookup'
-            })
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt).then((obj) => {
-                console.log(obj)
-            })
-        },
-        handleCommand({
-            action,
-            data
-        }) {
-            if (action == 'delete') {
-                if (data.sclesses.length > 0) {
-                    this.$message({
-                        type: 'info',
-                        message: '该教室已有排课，请先删除排课教室再进行此操作'
-                    })
-                } else {
-                    this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        this.handleDelete(data._id).then(() => {
-                            this.$message({
-                                message: '删除成功',
-                                type: 'success'
-                            })
-                            this.handleGetTable()
-                        })
-                    }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消删除'
-                        })
-                    })
-                }
-            }
-        }
-    }
+    methods: {}
 }
 </script>
