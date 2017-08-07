@@ -4,8 +4,14 @@
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
             <lb-body>
-                <component v-bind:is="getCurrentView">
-                </component>
+                <template v-if="getCurrentView">
+                    <lb-systemmodule :module="moduleName" >
+                    </lb-systemmodule>
+                </template>
+                <template v-else>
+                    <component v-bind:is="currentView">
+                    </component>
+                </template>
             </lb-body>
         </div>
         <lb-footer></lb-footer>
@@ -26,9 +32,11 @@ import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
 import body from './body.vue'
 import footer from './footer.vue'
+import module from '~/stores/module.js'
 import pages from '~/stores/viewpages.js'
 import dialoglist from '../dialog/dialoglist.vue'
 import modalbackdrop from '../dialog/modalbackdrop.vue'
+import systemmodule from '~/pages/views/system/module.vue'
 
 pages['lb-header'] = header
 pages['lb-sidebar'] = sidebar
@@ -36,6 +44,7 @@ pages['lb-body'] = body
 pages['lb-footer'] = footer
 pages['lb-dialoglist'] = dialoglist
 pages['lb-modalbackdrop'] = modalbackdrop
+pages['lb-systemmodule'] = systemmodule
 
 export default {
     name: 'app',
@@ -44,7 +53,9 @@ export default {
         return {
             localdata,
             currentView: '',
-            isvariety: false
+            isvariety: false,
+            isModlues: false,
+            moduleName: ''
         }
     },
     components: pages,
@@ -61,20 +72,27 @@ export default {
     },
     computed: {
         getCurrentView() {
+            this.isModlues = false
             if (!this.$store.state.models.login) {
                 this.$router.push('/system/sign_in')
             } else if (this.$store.state.system.name.length == 0) {
                 this.$router.push('/system/sign_in')
             }
-
             let to = this.$route.path
             let view = 'lb-studentadd'
             if (to == '/' || to == '/web') {
                 view = 'lb-studentadd'
             } else {
-                view = 'lb-' + to.replace(/\//g, '')
+                let tomodule = to.replace(/\//g, '')
+                if (module[tomodule]) {
+                    this.isModlues = true
+                    this.moduleName = tomodule
+                } else {
+                    view = 'lb-' + to.replace(/\//g, '')
+                }
             }
-            return view
+            this.currentView = view
+            return this.isModlues
         }
     },
     methods: {

@@ -10,9 +10,18 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="9" v-if="dateSearch">
-                    <el-date-picker v-model="value7" type="daterange" align="right" placeholder="选择日期范围" :picker-options="pickerOptions2">
-                    </el-date-picker>
+                <el-col :span="4" v-if="dateSearch">
+                    <div class="block">
+                        <el-date-picker v-model="value7" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
+                        </el-date-picker>
+                    </div>
+                </el-col>
+                <el-col :span="5" v-if="radioGroupSearch">
+                    <el-radio-group v-model="radio">
+                        <template v-for="item in radioGroupSearchInfo">
+                            <el-radio-button :label="item.label"></el-radio-button>
+                        </template>
+                    </el-radio-group>
                 </el-col>
                 <el-col :span="5" v-if="groupBtnSearch">
                     <el-button-group>
@@ -28,9 +37,9 @@
                 </el-col>
             </el-row>
         </div>
-        <el-table :data="tableData" stripe border>
+        <el-table stripe border>
             <template v-for="item in textTableInfo">
-                <el-table-column :label="item.label" width="280">
+                <el-table-column :label="item.label">
                     <template scope="scope">
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
@@ -43,49 +52,45 @@
                                     {{item.label}}
                                     <i class="el-icon-caret-bottom el-icon--right"></i>
                                 </el-button>
-                                <template v-for="item in item.fields">
-                                    <el-dropdown-menu slot="dropdown" >
-                                        <el-dropdown-item>{{item}}</el-dropdown-item>
-                                    </el-dropdown-menu>
-                                </template>
+                                <el-dropdown-menu slot="dropdown">
+                                    <template v-for="value in item.fields">
+                                        <el-dropdown-item>{{value}}</el-dropdown-item>
+                                    </template>
+                                </el-dropdown-menu>
                             </el-dropdown>
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ scope.row[item.prop]}}</el-tag>
                         </template>
+                        <template v-if="item.type=='progress'">
+                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="Number(item.percentage)" :text="item.text"></lb-progress>
+                        </template>
+                        <template v-if="item.type=='priceText'">
+                            <p>
+                                课程单价:50元/次
+                            </p>
+                            <p>
+                                <label>课程售价:</label>
+                                <span class="label bg-info">5000</span>元
+                            </p>
+                        </template>
+                        <template v-if="item.type=='contentText'">
+                            <p>
+                                <label>单次课时长:</label>
+                                <span class="label bg-info">10</span>时
+                            </p>
+                            <p>
+                                <label>课程包含:</label>
+                                <template>
+                                    <span class="label bg-info">50</span>次
+                                </template>
+                                <span class="label bg-info">2</span>课时
+                            </p>
+                        </template>
                     </template>
                 </el-table-column>
             </template>
         </el-table>
-        <!-- <el-table :data="tableData" stripe border>
-                                        <el-table-column label="日期" width="180">
-                                            <template scope="scope">
-                                                <el-icon name="time"></el-icon>
-                                                <span style="margin-left: 10px">{{ scope.row.date }}</span>
-                                            </template>
-                                        </el-table-column>
-                                        <el-table-column prop="name" label="姓名" width="180">
-                                        </el-table-column>
-                                        <el-table-column prop="address" label="地址">
-                                        </el-table-column>
-                                        <el-table-column label="操作" width="150">
-                                            <template scope="scope">
-                                                <el-dropdown>
-                                                    <el-button size="mini">
-                                                        操作
-                                                        <i class="el-icon-caret-bottom el-icon--right"></i>
-                                                    </el-button>
-                                                    <el-dropdown-menu slot="dropdown">
-                                                        <el-dropdown-item>黄金糕</el-dropdown-item>
-                                                        <el-dropdown-item>狮子头</el-dropdown-item>
-                                                        <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                                                        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
-                                                        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
-                                                    </el-dropdown-menu>
-                                                </el-dropdown>
-                                            </template>
-                                        </el-table-column>
-                                    </el-table> -->
         <div class="pagination">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
             </el-pagination>
@@ -126,37 +131,20 @@
 }
 </style>
 <script>
-import module from '~/stores/module.js'
+import pagesmodule from '~/stores/module.js'
 export default {
-    name: 'sclasses',
+    name: 'systemmodule',
+    props:['module'],
     data() {
-        let localdata = {
-            'form': {
-                'search_value': '',
-                'status': ''
-            },
-            'search': {
-                'fields': [{
-                    'name': 'class_name',
-                    'value': '教室名'
-                }],
-                'search_key': 'class_name',
-                'search_value': '教室名'
-            },
-            'sclesseslookup': {
-                'localField': '_id',
-                'from': 'arrange',
-                'foreignField': 'sclasses_id',
-                'as': 'sclesses'
-            }
-        }
+        let localdata = {}
         return {
-            module: module.pages.lessonsclasses,
+            moduledata: {},
             localdata,
             tables: ['sclasses'],
             input5: '',
             select: '',
             value7: '',
+            radio: '',
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
@@ -183,43 +171,19 @@ export default {
                         picker.$emit('pick', [start, end]);
                     }
                 }]
-            },
-            tableData: [{
-                name: '王小虎',
-                date: '2016-05-02',
-                tagtext:'陈狗陈'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                tagtext:'陈狗陈'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                tagtext:'陈狗陈'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                tagtext:'陈狗陈'
-            }]
+            }
         }
     },
     mounted() {
         console.log(this.module)
     },
     computed: {
-        changeTeacher() {
-            let result = false
-            if (this.$store.state.envs.currDialog == 'lb-newsclass') {
-                this.handleSearch()
-            }
-            return result
-        },
         //搜索
         textSearchInfo() {
             let textSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'textSearch') {
                         textSearchInfo = item.fields
                         break
@@ -229,9 +193,9 @@ export default {
             return textSearchInfo
         },
         textSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'textSearch') {
                         return true
                     }
@@ -240,9 +204,9 @@ export default {
             return false
         },
         dateSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'dateSearch') {
                         return true
                     }
@@ -251,9 +215,9 @@ export default {
             return false
         },
         singleBtnSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'singleBtnSearch') {
                         return true
                     }
@@ -263,9 +227,9 @@ export default {
         },
         singleBtnSearchInfo() {
             let singleBtnSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'singleBtnSearch') {
                         singleBtnSearchInfo = item.fields
                         break
@@ -275,9 +239,9 @@ export default {
             return singleBtnSearchInfo
         },
         groupBtnSearch() {
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'groupBtnSearch') {
                         return true
                     }
@@ -287,9 +251,9 @@ export default {
         },
         groupBtnSearchInfo() {
             let groupBtnSearchInfo = []
-            let searchdata = this.module.pageSearch
+            let searchdata = this.moduledata.pageSearch
             if (searchdata) {
-                for (let item of this.module.pageSearch) {
+                for (let item of this.moduledata.pageSearch) {
                     if (item.type == 'groupBtnSearch') {
                         groupBtnSearchInfo = item.fields
                         break
@@ -298,72 +262,42 @@ export default {
             }
             return groupBtnSearchInfo
         },
+        radioGroupSearch() {
+            let searchdata = this.moduledata.pageSearch
+            if (searchdata) {
+                for (let item of this.moduledata.pageSearch) {
+                    if (item.type == 'radioGroupSearch') {
+                        return true
+                    }
+                }
+            }
+            return false
+        },
+        radioGroupSearchInfo() {
+            let radioGroupSearchInfo = []
+            let searchdata = this.moduledata.pageSearch
+            if (searchdata) {
+                for (let item of this.moduledata.pageSearch) {
+                    if (item.type == 'radioGroupSearch') {
+                        radioGroupSearchInfo = item.fields
+                        break
+                    }
+                }
+            }
+            return radioGroupSearchInfo
+        },
         //表格
         textTableInfo() {
-            let textTableInfo = this.module.pageTableField
+            let textTableInfo = this.moduledata.pageTableField
             return textTableInfo
         }
     },
-    watch: {},
-    methods: {
-        handleCommand(value) {
-            this.localdata.search.search_key = value
-            this.localdata.search.search_value = this.lodash.find(this.localdata.search.fields, {
-                'name': value
-            }).value
-        },
-        handleSearch() {
-            let filterObj = []
-            let search_value = this.localdata.form.search_value.trim()
-            if (search_value.length > 0) {
-                filterObj.push({
-                    'key': this.localdata.search.search_key,
-                    'value': search_value,
-                    'type': 'like'
-                })
-            }
-            filterObj.push({
-                'key': 'lookup',
-                'value': this.localdata.sclesseslookup,
-                'type': 'lookup'
-            })
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt).then((obj) => {
-                console.log(obj)
-            })
-        },
-        handleCommand({
-            action,
-            data
-        }) {
-            if (action == 'delete') {
-                if (data.sclesses.length > 0) {
-                    this.$message({
-                        type: 'info',
-                        message: '该教室已有排课，请先删除排课教室再进行此操作'
-                    })
-                } else {
-                    this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        this.handleDelete(data._id).then(() => {
-                            this.$message({
-                                message: '删除成功',
-                                type: 'success'
-                            })
-                            this.handleGetTable()
-                        })
-                    }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消删除'
-                        })
-                    })
-                }
-            }
+    watch: {
+        module:function(val){
+            console.log(val)
+            this.moduledata = pagesmodule[val]
         }
-    }
+    },
+    methods: {}
 }
 </script>

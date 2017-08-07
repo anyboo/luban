@@ -91,5 +91,9 @@ pages['lb-printerorder'] = page13
 pages['lb-addmodule'] = page78
 pages['lb-cart'] = page70
 
+<<<<<<< HEAD
+=======
+pages['lb-newsystemmodule'] = page79
+>>>>>>> 1c0c91ddcb29f5dfac5d7b4039e3759f08435b29
 
 export default pages
