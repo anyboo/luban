@@ -5,48 +5,28 @@ export default {
     'pageTableField': [
         {
             'type': 'text',
-            'label': '课程记录',
-            'prop': 'lesson',
-        },
-        {
-            'type': 'text',
-            'label': '缴费记录',
-            'prop': 'student_id'
-        },
-        {
-            'type': 'text',
             'label': '沟通内容',
             'prop': 'detail'
         },
         {
             'type': 'text',
-            'label': '排课记录',
-            'prop': 'course'
+            'label': '沟通方式',
+            'prop': 'track_way',
         },
         {
             'type': 'text',
-            'label': '考勤记录',
-            'prop': 'salary'
+            'label': '接洽人',
+            'prop': 'op_name'
+        },
+        {
+            'type': 'datetime',
+            'label': '沟通时间',
+            'prop': 'track_time'
         },
         {
             'type': 'text',
-            'label': '请假记录',
-            'prop': 'lessonleave'
-        },
-        {
-            'type': 'text',
-            'label': '点评记录',
-            'prop': 'comments'
-        },
-        {
-            'type': 'text',
-            'label': '成绩记录',
-            'prop': 'score'
-        },
-        {
-            'type': 'text',
-            'label': '赛事记录',
-            'prop': 'events'
+            'label': '类型',
+            'prop': 'track_type'
         }
     ],
     'pageTable': 'inquiry',

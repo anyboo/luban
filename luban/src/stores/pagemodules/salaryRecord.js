@@ -5,51 +5,26 @@ export default {
     'pageTableField': [
         {
             'type': 'text',
-            'label': '课程记录',
-            'prop': 'lesson',
+            'label': '班级',
+            'prop': 'classes',
         },
         {
             'type': 'text',
-            'label': '缴费记录',
-            'prop': 'price'
+            'label': '上课老师',
+            'prop': 'employee'
+        },
+        {
+            'type': 'datetime',
+            'label': '考勤时间',
+            'prop': 'arrangestart'
         },
         {
             'type': 'text',
-            'label': '跟踪回访记录',
-            'prop': 'callback'
-        },
-        {
-            'type': 'text',
-            'label': '排课记录',
-            'prop': 'course'
-        },
-        {
-            'type': 'text',
-            'label': '考勤记录',
-            'prop': 'salary'
-        },
-        {
-            'type': 'text',
-            'label': '请假记录',
-            'prop': 'lessonleave'
-        },
-        {
-            'type': 'text',
-            'label': '点评记录',
-            'prop': 'comments'
-        },
-        {
-            'type': 'text',
-            'label': '成绩记录',
-            'prop': 'score'
-        },
-        {
-            'type': 'text',
-            'label': '赛事记录',
-            'prop': 'events'
+            'label': '出勤状态',
+            'prop': ''
         }
     ],
-    'pageTable': 'salaryrecord',
+    'pageTable': 'attendance',
     'pageTemplate': 'table1',
     'pagePath': '/student/info'
 }

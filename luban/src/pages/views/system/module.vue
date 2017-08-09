@@ -41,9 +41,10 @@
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
+                        <template v-if="item.type=='payment'">{{getDictText('2',scope.row[item.prop])}}</template>
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
-                            <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span>
+                            <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                         </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
                         <template v-if="item.type=='operation'">
@@ -87,7 +88,7 @@
             </template>
         </el-table>
         <div class="pagination">
-            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="Number(total)">
             </el-pagination>
         </div>
         <div class="clear"></div>
@@ -149,6 +150,7 @@ export default {
             moduleTableData: [],
             datevalue: '',
             radiovalue: '',
+            total:'',
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
@@ -275,6 +277,8 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
+                    this.total=this.moduleTableData.length
+                    console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
 

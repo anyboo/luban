@@ -174,7 +174,9 @@ export default {
             })
 
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTable(filterTxt)
+            this.handleGetFilterTable(filterTxt).then((obj) => {
+                console.log(obj)
+            })
         },
         handleDuration() {
             let duration = this.localdata.form.duration.trim()

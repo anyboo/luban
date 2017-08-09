@@ -4,52 +4,32 @@ export default {
     'pageSearch': [],
     'pageTableField': [
         {
-            'type': 'text',
-            'label': '课程记录',
-            'prop': 'lesson',
+            'type': 'datetime',
+            'label': '日期',
+            'prop': 'creattime',
         },
         {
             'type': 'text',
-            'label': '缴费记录',
-            'prop': 'pay'
+            'label': '金额',
+            'prop': 'money_pay_amount'
+        },
+        {
+            'type': 'payment',
+            'label': '付款方式',
+            'prop': 'region_oe_id'
         },
         {
             'type': 'text',
-            'label': '跟踪回访记录',
-            'prop': 'callback'
+            'label': '课程/班级',
+            'prop': 'classes'
         },
         {
             'type': 'text',
-            'label': '排课记录',
-            'prop': 'course'
-        },
-        {
-            'type': 'text',
-            'label': '考勤记录',
-            'prop': 'salary'
-        },
-        {
-            'type': 'text',
-            'label': '请假记录',
-            'prop': 'lessonleave'
-        },
-        {
-            'type': 'text',
-            'label': '点评记录',
-            'prop': 'comments'
-        },
-        {
-            'type': 'text',
-            'label': '成绩记录',
-            'prop': 'score'
-        },
-        {
-            'type': 'text',
-            'label': '赛事记录',
-            'prop': 'events'
+            'label': '备注',
+            'prop': 'order_remark'
         }
     ],
-    'pageTable': 'payrecord',
+    'pageTable': 'pay',
     'pageTemplate': 'table1',
-    'pagePath': '/student/info'
+    'pagePath': ''
 }
