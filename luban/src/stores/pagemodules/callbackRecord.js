@@ -22,11 +22,6 @@ export default {
             'type': 'datetime',
             'label': '沟通时间',
             'prop': 'track_time'
-        },
-        {
-            'type': 'text',
-            'label': '类型',
-            'prop': 'track_type'
         }
     ],
     'pageTable': 'inquiry',
