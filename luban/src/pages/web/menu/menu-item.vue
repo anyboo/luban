@@ -14,7 +14,7 @@
 export default {
     name: 'MenuItem',
     componentName: 'MenuItem',
-    props: ['menuName', 'menuTitle', 'menuIcon', 'to', 'component', 'componentData','submenu'],
+    props: ['menuName', 'menuTitle', 'menuIcon', 'to', 'component', 'componentData', 'submenu'],
     data() {
         return {
             isActive: false
@@ -55,7 +55,7 @@ export default {
                 if (event) event.preventDefault()
             } else {
                 if (this.to) {
-                    this.$router.push(this.to)
+                    this.$store.commit('router', this.to)
                 }
             }
         }

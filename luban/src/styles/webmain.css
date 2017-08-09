@@ -11816,3 +11816,12 @@ End Header Option Page
         position: relative;
         top: 7px;
     }
+
+    .el-table__body-wrapper{
+        overflow-x: hidden;
+    }
+
+    .panel-default > .panel-heading{
+        background-color: #eef1f6;
+    }
+

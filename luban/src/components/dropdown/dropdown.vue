@@ -37,7 +37,7 @@ export default {
                 for (var item of this.dropMenuData) {
                     let action = item.url
                     if (item.action) {
-                        let to = this.$route.path
+                        let to = this.$store.state.system.router
                         action = to + item.action
                     }
                     if (this.getShowStatus(item) && this.getActionOption(action)) {

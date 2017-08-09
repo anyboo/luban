@@ -55,7 +55,7 @@ export default {
             vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                 if (data.code == 0) {
                     this.$store.commit('user', data.account)
-                    this.$router.push('/web')
+                    this.$store.commit('router', '/web')
                 } else {
                     this.$store.commit('user', { name: '', tel: '', _id: '' })
                     this.$message({

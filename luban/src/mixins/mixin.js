@@ -44,7 +44,7 @@ export default {
     computed: {
         getMenuOption() {
             let menuOption = []
-            let to = this.$route.path
+            let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
                     if (item.dropDownMenu) {
@@ -224,7 +224,6 @@ export default {
                     tablaDatas.push(tablaData[i])
                 }
             }
-            console.log(tablaDatas)
             return tablaDatas
         },
         getTablesData() {

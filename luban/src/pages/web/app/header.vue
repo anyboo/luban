@@ -102,7 +102,7 @@ export default {
             this.hide = this.menu
         },
         changeView(view) {
-            this.$router.push(view)
+            this.$store.commit('router', view)
             this.hide = false
         }
 

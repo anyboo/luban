@@ -19,7 +19,7 @@ export default {
     computed: {
         getCurrMenu() {
             var menuName = ''
-            let to = this.$route.path
+            let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
                     menuName = item.menuTitle

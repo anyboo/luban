@@ -172,7 +172,7 @@ export default {
         },
         handleRouter(event, item) {
             this.$store.state.envs.currStudent = item
-            this.$router.push('/student/info')
+            this.$store.commit('router', '/student/info')
             event.stopPropagation()
         },
         handleSearch() {

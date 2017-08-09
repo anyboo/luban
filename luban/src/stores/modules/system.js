@@ -7,7 +7,10 @@ const state = {
     birth: '',
     login: false,
     roles:[],
-    theme: 'rgba(208, 150, 21, 0.8)'
+    theme: 'rgba(208, 150, 21, 0.8)',
+    routerback: '',
+    router: '',
+    currStudentID:''
 }
 const getters = {}
 const actions = {}
@@ -21,6 +24,16 @@ const mutations = {
         state.theme = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
+    student: (state, obj) => {
+        state.currStudentID = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    router: (state, obj) => {
+        console.log(obj)
+        state.routerback =  state.router
+        state.router = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
     user: (state, obj) => {
         state.name = obj.name
         state.id = obj._id
@@ -30,6 +43,9 @@ const mutations = {
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
+        state.routerback =  obj.routerback
+        state.currStudentID = obj.currStudentID
+        state.router = obj.router
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme
         state.name = obj.name

@@ -194,8 +194,9 @@ export default {
             let vm = this
             vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
             vm.handleSave().then(() => {
-                vm.$store.state.dialogs.dailogdata = vm.lodash.assign(vm.$store.state.dialogs.dailogdata, vm.localdata.form)
+                //vm.$store.state.dialogs.dailogdata = vm.lodash.assign(vm.$store.state.dialogs.dailogdata, vm.localdata.form)
                 vm.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-editstudentinfo'
             })
         }
     }

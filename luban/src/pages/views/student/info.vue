@@ -4,7 +4,7 @@
             <div class="page-bar row m-b">
                 <div class="col-xs-12 col-md-2">
                     <div class="btn-group dropdown" dropdown="">
-                        <a class="btn btn-default" href="javascript:history.back();">返回</a>
+                        <a class="btn btn-default" @click="handleBack">返回</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-10 text-right">
@@ -39,7 +39,7 @@
                                 <span class="text-2x">{{ student.student_name }}</span>
                                 <span>
                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
-                                                                ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
+                                                                                                        ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
@@ -53,7 +53,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-xs-12 col-md-8" style="padding:0;">
+                        <div class="col-xs-12 col-md-8">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-info"></i> 基础信息</div>
@@ -90,47 +90,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-8">
-                        <div class="panel panel-default" style="margin-right:14px;">
-                            <div class="panel-heading" style="margin-bottom:5px;">
-                                <a class="btn btn-xs btn-default pull-right" @click="rest_save">
-                                    <i></i> 保存</a>
-                                <i class="icon-users"></i> 联系人</div>
-                            <table class="table table-striped m-b-none">
-                                <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
-                                    <el-form-item prop="first_tel">
-                                        <el-input v-model="localdata.form.first_tel" style="width:120px;" placeholder="请输入手机号"></el-input>
-                                        <el-select v-model="localdata.form.first_rel_rel" placeholder="关系" style="width:100px;">
-                                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                                            </el-option>
-                                        </el-select>
-                                        <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
-                                        <span class="wrapper">
-                                            <a @click="localdata.form.relations.push({relation:'',name:'',tel:''})">
-                                                <i class="fa fa-plus-square-o"></i>增加联系方式
-                                            </a>
-                                        </span>
-                                    </el-form-item>
-                                    <template v-for="(item,index) in localdata.form.relations">
-                                        <el-form-item>
-                                            <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
-                                            <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
-                                                <el-option v-for="subitem in options" :key="subitem.value" :label="subitem.label" :value="subitem.value">
-                                                </el-option>
-                                            </el-select>
-                                            <el-input v-model="item.name" style="width:100px;" v-if="item.relation!='0'"></el-input>
-                                            <a @click="localdata.form.relations.splice(index, 1)">
-                                                <i class="fa fa-minus-square-o"></i>
-                                            </a>
-                                        </el-form-item>
-                                    </template>
-                                </el-form>
-                            </table>
+                            <el-table :data="relation" stripe>
+                                <el-table-column prop="tel" label="电话">
+                                </el-table-column>
+                                <el-table-column prop="rel" width="100" label="关系">
+                                </el-table-column>
+                                <el-table-column prop="name" label="名字">
+                                </el-table-column>
+                            </el-table>
                         </div>
                     </div>
                 </div>
@@ -156,12 +123,6 @@
         </div>
     </div>
 </template>
-<style>
-.col-md-8 {
-    width: 66.66666667%;
-    padding-left: 11px;
-}
-</style>
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/modulestudentinfo.js'
@@ -197,6 +158,7 @@ export default {
             localdata,
             activeName: '1',
             student: {},
+            relation: [],
             tables: ['student'],
             uid: '',
             options: [{
@@ -220,9 +182,16 @@ export default {
         'lb-systemmodule': systemmodule
     },
     mounted() {
-        if (this.$store.state.envs.currStudent) {
-            this.uid = this.$store.state.envs.currStudent._id
+        let currStudent = this.$store.state.envs.currStudent
+        if (currStudent && currStudent._id && currStudent._id.length > 0) {
+            this.uid = currStudent._id
+            this.$store.commit('student', this.uid)
             this.handleSearch()
+        } else {
+            this.uid = this.$store.state.system.currStudentID
+            if (this.uid) {
+                this.handleSearch()
+            }
         }
     },
     computed: {
@@ -230,6 +199,10 @@ export default {
             let name = '未设定'
             if (this.student.employee && this.student.employee.length > 0) {
                 name = this.getLookUp(this.student.employee, 'name')
+            }
+            if (this.$store.state.envs.currDialog == 'lb-editstudentinfo') {
+                this.handleSearch()
+                this.$store.state.envs.currDialog = ''
             }
             return name
         },
@@ -239,6 +212,9 @@ export default {
     },
     watch: {},
     methods: {
+        handleBack() {
+            this.$store.commit('router', this.$store.state.system.routerback)
+        },
         deleteStudent() {
             let vm = this
             this.$confirm('确定要封存该学员档案吗?', '提示', {
@@ -261,7 +237,6 @@ export default {
                     message: '已取消删除'
                 })
             })
-
         },
         handleSearch() {
             if (this.uid && this.uid.length > 0) {
@@ -283,6 +258,20 @@ export default {
                 this.handleGetFilterTable(filterTxt).then(() => {
                     this.student = this.$store.state.models.models.student.data[0]
                     this.localdata.form = this.lodash.assign(this.localdata.form, this.student)
+                    let obj = {}
+                    this.relation = []
+                    obj.tel = this.student.first_tel
+                    obj.rel = this.getDictText('1', this.student.first_rel_rel)
+                    obj.name = this.student.first_rel_name
+                    this.relation.push(obj)
+                    this.student.relations.forEach(relobj => {
+                        let objitem = {}
+                        objitem.tel = relobj.tel
+                        objitem.rel = this.getDictText('1', relobj.relation)
+                        objitem.name = relobj.name
+                        this.relation.push(objitem)
+                    })
+                    console.log(this.student, this.relation)
                 })
             }
         },

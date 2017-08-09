@@ -74,29 +74,28 @@ export default {
         getCurrentView() {
             this.isModlues = false
             if (!this.$store.state.models.login) {
-                this.$router.push('/system/sign_in')
+                this.$store.commit('router', '/system/sign_in')
             } else if (this.$store.state.system.name.length == 0) {
-                this.$router.push('/system/sign_in')
-            }
-            let to = this.$route.path
-            let view = 'lb-studentadd'
-            if (to == '/' || to == '/web') {
-                view = 'lb-studentadd'
+                this.$store.commit('router', '/system/sign_in')
             } else {
-                // if (module) {
-                //     this.moduleObj = module
-                //     this.isModlues = true
-                // }
-                let tomodule = to.replace(/\//g, '')
-                if (module[tomodule]) {
-                    this.moduleObj = tomodule
-                    this.isModlues = true
+                let to = this.$store.state.system.router
+                let view = 'lb-studentadd'
+                if (to == '/' || to == '/web') {
+                    view = 'lb-studentadd'
+                } else {
+                    if (to) {
+                        let tomodule = to.replace(/\//g, '')
+                        if (module[tomodule]) {
+                            this.moduleObj = tomodule
+                            this.isModlues = true
+                        }
+                        else {
+                            view = 'lb-' + to.replace(/\//g, '')
+                        }
+                    }
                 }
-                else {
-                    view = 'lb-' + to.replace(/\//g, '')
-                }
+                this.currentView = view
             }
-            this.currentView = view
             return this.isModlues
         }
     },

@@ -1,6 +1,6 @@
 <template>
     <div class="pace-done">
-        <router-view></router-view>
+        <lb-web></lb-web>
     </div>
 </template>
 <style>
@@ -13,6 +13,7 @@
 }
 </style>
 <script>
+import web from '~/pages/web/app/app.vue'
 export default {
     name: 'app',
     data() {
@@ -21,6 +22,9 @@ export default {
             localdata,
             isvariety: false,
         }
+    },
+    components: {
+        'lb-web': web
     },
     computed: {},
     watch: {
