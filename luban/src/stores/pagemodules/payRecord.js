@@ -1,6 +1,12 @@
 export default {
     'pageName': 'payRecord',
     'pageLable': '缴费记录',
+    'tableSearch': [{
+        'localField': 'class_id',
+        'from': 'classes',
+        'foreignField': '_id',
+        'as': 'classes'
+    }],
     'pageSearch': [],
     'pageTableField': [
         {
@@ -19,9 +25,10 @@ export default {
             'prop': 'region_oe_id'
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '课程/班级',
-            'prop': 'classes'
+            'prop': 'classes',
+            'lookup':'class_name'
         },
         {
             'type': 'text',

@@ -47,6 +47,7 @@
                             <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                         </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
+                        <template v-if="item.type=='tabletext'">{{ getLookUp(scope.row[item.table],item.prop) }}</template>
                         <template v-if="item.type=='operation'">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="getMenuOption" class="btn btn-info btn-xs">
@@ -150,7 +151,8 @@ export default {
             moduleTableData: [],
             datevalue: '',
             radiovalue: '',
-            total:'',
+            total: '',
+            hastableSearch: false,
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
@@ -187,6 +189,7 @@ export default {
         } else if (typeof (this.module) == 'string' && this.module != '') {
             this.moduledata = pagesmodule[this.module]
         }
+        
     },
     computed: {
         getSearch() {
@@ -229,7 +232,13 @@ export default {
                 let textTableInfo = this.moduledata.pageTableField
                 return textTableInfo
             }
-        }
+        },
+        // getTableSearch() {
+        //     if (this.moduledata && this.moduledata.tableSearch.length > 0) {
+        //         this.hastableSearch = true
+        //         return true
+        //     }
+        // },
     },
     watch: {
         module: function (val) {
@@ -273,15 +282,25 @@ export default {
                     'type': ''
                 })
             }
+            if (this.moduledata && this.moduledata.tableSearch&&this.moduledata.tableSearch.length > 0) {
+                console.log('111111111',this.moduledata.tableSearch)
+                let tablesSearch = this.moduledata.tableSearch
+                for (let item of tablesSearch) {
+                    filterObj.push({
+                        'key': 'lookup',
+                        'value': item,
+                        'type': ''
+                    })
+                }
+            }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
-                    this.total=this.moduleTableData.length
+                    this.total = this.moduleTableData.length
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
-
         },
         handleCommand({
             action,

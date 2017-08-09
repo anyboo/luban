@@ -1,6 +1,7 @@
 export default {
     'pageName': 'lessonsclasses',
     'pageLable': '教室管理',
+    'tableSearch':[],
     'pageSearch': [
         {
             'type': 'textSearch',

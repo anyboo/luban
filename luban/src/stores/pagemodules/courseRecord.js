@@ -5,17 +5,32 @@ export default {
     'pageTableField': [
         {
             'type': 'text',
-            'label': '课程记录',
+            'label': '班级',
             'prop': 'lesson',
         },
         {
             'type': 'text',
-            'label': '缴费记录',
+            'label': '上课教室',
             'prop': 'pay'
         },
         {
             'type': 'text',
-            'label': '跟踪回访记录',
+            'label': '开始日期',
+            'prop': 'callback'
+        },
+        {
+            'type': 'text',
+            'label': '上课时间',
+            'prop': 'callback'
+        },
+        {
+            'type': 'text',
+            'label': '结束日期',
+            'prop': 'callback'
+        },
+        {
+            'type': 'text',
+            'label': '老师',
             'prop': 'callback'
         }
     ],
