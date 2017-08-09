@@ -5,7 +5,7 @@
             <lb-sidebar></lb-sidebar>
             <lb-body>
                 <template v-if="getCurrentView">
-                    <lb-systemmodule :module="moduleName" >
+                    <lb-systemmodule :module="moduleObj">
                     </lb-systemmodule>
                 </template>
                 <template v-else>
@@ -55,7 +55,7 @@ export default {
             currentView: '',
             isvariety: false,
             isModlues: false,
-            moduleName: ''
+            moduleObj: ''
         }
     },
     components: pages,
@@ -83,11 +83,16 @@ export default {
             if (to == '/' || to == '/web') {
                 view = 'lb-studentadd'
             } else {
+                // if (module) {
+                //     this.moduleObj = module
+                //     this.isModlues = true
+                // }
                 let tomodule = to.replace(/\//g, '')
                 if (module[tomodule]) {
-                    this.moduleName = tomodule
+                    this.moduleObj = tomodule
                     this.isModlues = true
-                } else {
+                }
+                else {
                     view = 'lb-' + to.replace(/\//g, '')
                 }
             }

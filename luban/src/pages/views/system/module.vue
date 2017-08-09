@@ -1,6 +1,6 @@
 <template>
-    <div class="table-block table-box">
-        <div class="search">
+    <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
+        <div class="search" v-if="getSearch">
             <el-row :gutter="12">
                 <el-col :span="6" v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
@@ -12,12 +12,12 @@
                 </el-col>
                 <el-col :span="4" v-if="dateSearch">
                     <div class="block">
-                        <el-date-picker v-model="value7" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
+                        <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
                         </el-date-picker>
                     </div>
                 </el-col>
                 <el-col :span="5" v-if="radioGroupSearch">
-                    <el-radio-group v-model="radio">
+                    <el-radio-group v-model="radiovalue">
                         <template v-for="item in radioGroupSearchInfo">
                             <el-radio-button :label="item.label"></el-radio-button>
                         </template>
@@ -32,7 +32,7 @@
                 </el-col>
                 <el-col :span="2" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
-                        <el-button :type="item.type"  @click="lbShowdialog($event,'lb-newsclassmodal')">{{item.label}}</el-button>
+                        <el-button :type="item.type" @click="lbShowdialog($event,'lb-newsclassmodal')">{{item.label}}</el-button>
                     </template>
                 </el-col>
             </el-row>
@@ -47,17 +47,12 @@
                         </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
                         <template v-if="item.type=='operation'">
-                            <el-dropdown @command="handleCommand">
-                                <el-button size="mini">
-                                    {{item.label}}
-                                    <i class="el-icon-caret-bottom el-icon--right"></i>
-                                </el-button>
-                                <el-dropdown-menu slot="dropdown" >
-                                    <template v-for="value in item.fields">
-                                        <el-dropdown-item :command="value.action">{{value.msg}}</el-dropdown-item>
-                                    </template>
-                                </el-dropdown-menu>
-                            </el-dropdown>
+                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="getMenuOption" class="btn btn-info btn-xs">
+                                    <i class="fa fa-cog"></i>操作
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ scope.row[item.prop]}}</el-tag>
@@ -99,6 +94,12 @@
     </div>
 </template>
 <style>
+.table-blockinfo {
+    border-radius: 4px;
+    transition: .2s;
+    background: #fff;
+}
+
 .table-block {
     border: 1px solid #cccccc;
     border-radius: 4px;
@@ -121,6 +122,11 @@
     float: right;
 }
 
+.table-blockinfo .pagination {
+    padding: 5px;
+    float: right;
+}
+
 .table-block .clear {
     clear: both;
     height: 0px;
@@ -134,15 +140,15 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
-    props: ['module'],
+    props: ['module', 'info', 'searchValue'],
     data() {
         return {
-            moduledata: pagesmodule[this.module],
+            moduledata: '',
             textSearchKey: '',
             textSearchValue: '',
             moduleTableData: [],
-            value7: '',
-            radio: '',
+            datevalue: '',
+            radiovalue: '',
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
@@ -169,13 +175,25 @@ export default {
                         picker.$emit('pick', [start, end]);
                     }
                 }]
-            }
+            },
+            tables: ['sclasses'],
         }
     },
-    mounted() {
+    created() {
+        if (typeof (this.module) == 'object') {
+            this.moduledata = this.module
+        } else if (typeof (this.module) == 'string' && this.module != '') {
+            this.moduledata = pagesmodule[this.module]
+        }
     },
     computed: {
-        //搜索
+        getSearch() {
+            let nSearch = false
+            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+                nSearch = true
+            }
+            return nSearch
+        },
         textSearchInfo() {
             return this.getModuleSearchInfo('textSearch')
         },
@@ -205,24 +223,32 @@ export default {
         },
         //表格
         textTableInfo() {
-            let textTableInfo = this.moduledata.pageTableField
-            return textTableInfo
+            if (this.moduledata && this.moduledata.pageTableField.length > 0) {
+                let textTableInfo = this.moduledata.pageTableField
+                return textTableInfo
+            }
         }
     },
     watch: {
         module: function (val) {
-            this.moduledata = pagesmodule[val]
+            if (typeof (val) == 'object') {
+                this.moduledata = val
+            } else if (typeof (val) == 'string' && this.module != '') {
+                this.moduledata = pagesmodule[val]
+            }
         }
     },
     methods: {
         getModuleSearchInfo(Search) {
             let searchInfo = []
-            let searchdata = this.moduledata.pageSearch
-            if (searchdata) {
-                for (let item of this.moduledata.pageSearch) {
-                    if (item.type == Search) {
-                        searchInfo = item.fields
-                        break
+            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+                let searchdata = this.moduledata.pageSearch
+                if (searchdata) {
+                    for (let item of this.moduledata.pageSearch) {
+                        if (item.type == Search) {
+                            searchInfo = item.fields
+                            break
+                        }
                     }
                 }
             }
@@ -231,7 +257,6 @@ export default {
         handleSearch() {
             let filterObj = []
             let search_value = this.textSearchValue
-            console.log(search_value)
             if (search_value.length > 0) {
                 filterObj.push({
                     'key': this.textSearchKey,
@@ -239,16 +264,53 @@ export default {
                     'type': 'like'
                 })
             }
+            if (this.searchValue) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': this.searchValue,
+                    'type': ''
+                })
+            }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            console.log(this.moduledata.pageTable, filterTxt, filterObj)
-            this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
-                this.moduleTableData = obj.data.data
-                console.log(this.moduleTableData)
-            })
+            if (this.moduledata && this.moduledata.pageTable) {
+                this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
+                    this.moduleTableData = obj.data.data
+                })
+            }
+
         },
-        handleCommand(command) {
-        this.$message('click on item ' + command);
-      }
+        handleCommand({
+            action,
+            data
+        }) {
+            if (action == 'delete') {
+                if (data.sclesses) {
+                    this.$message({
+                        type: 'info',
+                        message: '该教室已有排课，请先删除排课教室再进行此操作'
+                    })
+                } else {
+                    this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.handleDelete(data._id).then(() => {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            })
+                            this.handleGetTable()
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        })
+                    })
+                }
+            }
+        }
     }
 }
 </script>

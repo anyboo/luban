@@ -337,7 +337,7 @@ export default {
                     table.id = id
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {
-                        //console.log('handleDelete')
+                        // console.log('handleDelete')
                         resolve()
                     }).catch((error) => {
                         reject()
