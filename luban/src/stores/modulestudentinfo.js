@@ -1,10 +1,10 @@
-import lessonRecord from './pagemodules/lessonRecord'
-import courseRecord from './pagemodules/courseRecord'
-import payRecord from './pagemodules/payRecord'
-import callbackRecord from './pagemodules/callbackRecord'
-import salaryRecord from './pagemodules/salaryRecord'
-import lessonleaveRecord from './pagemodules/lessonleaveRecord'
-import eventsRecord from './pagemodules/eventsRecord'
+import lessonRecord from './pagemodules/studentinfo/lessonRecord'
+import courseRecord from './pagemodules/studentinfo/courseRecord'
+import payRecord from './pagemodules/studentinfo/payRecord'
+import callbackRecord from './pagemodules/studentinfo/callbackRecord'
+import salaryRecord from './pagemodules/studentinfo/salaryRecord'
+import lessonleaveRecord from './pagemodules/studentinfo/lessonleaveRecord'
+import eventsRecord from './pagemodules/studentinfo/eventsRecord'
 
 let pages =[]
 pages.push(courseRecord)

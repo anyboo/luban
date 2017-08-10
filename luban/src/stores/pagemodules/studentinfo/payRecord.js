@@ -27,8 +27,8 @@ export default {
         {
             'type': 'tabletext',
             'label': '课程/班级',
-            'prop': 'classes',
-            'lookup':'class_name'
+            'prop': 'class_name',
+            'table':'classes'
         },
         {
             'type': 'text',
