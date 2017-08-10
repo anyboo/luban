@@ -10,16 +10,26 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="4" v-if="dateSearch">
+                <el-col :span="5" v-if="dateSearch">
                     <div class="block">
-                        <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions2">
+                        <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
                         </el-date-picker>
                     </div>
                 </el-col>
-                <el-col :span="5" v-if="radioGroupSearch">
-                    <el-radio-group v-model="radiovalue">
-                        <template v-for="item in radioGroupSearchInfo">
-                            <el-radio-button :label="item.label"></el-radio-button>
+                <el-col :span="5" v-if="selectUserSearch">
+                    <div class="input-group">
+                        <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="studentname">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
+                                <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
+                            </button>
+                        </span>
+                    </div>
+                </el-col>
+                <el-col :span="6" v-if="radioGroupSearch">
+                    <el-radio-group v-model="radiovalue" @change="handleSearch">
+                        <template v-for="(item,index) in radioGroupSearchInfo">
+                            <el-radio-button :label="index">{{item.label}}</el-radio-button>
                         </template>
                     </el-radio-group>
                 </el-col>
@@ -30,9 +40,11 @@
                         </template>
                     </el-button-group>
                 </el-col>
-                <el-col :span="2" v-if="singleBtnSearch" class="pull-right">
+                <el-col :span="getModuleSearchSpan('singleBtnSearch')" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
-                        <el-button :type="item.type" @click="lbShowdialog($event,'lb-newsclassmodal')">{{item.label}}</el-button>
+                        <template v-if="getActionOption(item.actionoption)">
+                            <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)">{{item.label}}</el-button>
+                        </template>
                     </template>
                 </el-col>
             </el-row>
@@ -46,7 +58,30 @@
                             <el-icon name="time"></el-icon>
                             <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                         </template>
+                        <template v-if="item.type=='lesson'">
+                            <p>
+                                <span class="label bg-danger">{{getButtongroupText(item.othertype,scope.row[item.lesson_type])}}</span>{{scope.row[item.lesson_name]}}
+                                <small class="label bg-info m-l">{{scope.row[item.lesson_no]}}</small>
+                            </p>
+                        </template>
+                        <template v-if="item.type=='getButtongroupText'">
+                            {{getButtongroupText(item.othertype,scope.row[item.prop])}}
+                        </template>
+                        <template v-if="item.type=='openlessonsstatus'">
+                            <small class="label bg-success" v-if="getOpen(scope.row,'open')">已开课</small>
+                            <small class="label bg-red" v-if="getOpen(scope.row,'')">未开课</small>
+                            <small class="label bg-blue" v-if="getOpen(scope.row,'close')">已结课</small>
+                        </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
+                        <template v-if="item.type=='studentlink'">
+                            <a class="link" @click="handleRouter($event,scope.row)">
+                                <span>
+                                    <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
+                                                                                    ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
+                                </span>{{ scope.row[item.name] }}
+                                <span v-if="scope.row.nickname != ''">{{ scope.row[item.nickname] }}</span>
+                            </a>
+                        </template>
                         <template v-if="item.type=='tabletext'">{{ getLookUp(scope.row[item.table],item.prop) }}</template>
                         <template v-if="item.type=='operation'">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
@@ -59,29 +94,42 @@
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ scope.row[item.prop]}}</el-tag>
                         </template>
+                        <template v-if="item.type=='payment1'">
+                            ￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}
+                        </template>
                         <template v-if="item.type=='progress'">
-                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="Number(item.percentage)" :text="item.text"></lb-progress>
+                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row[item.order],scope.row[item.max_student_num])" :text="getPressageText(scope.row)"></lb-progress>
                         </template>
                         <template v-if="item.type=='priceText'">
+                            <div class="inline w va-m">
+                                <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
+                                    <span style="white-space:nowrap;padding-left:20px">￥{{getPayAmout(scope.row[item.order])}} / ￥{{getTotalAmout(scope.row[item.order])}}</span>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-if="item.type=='getToFixed'">
+                            {{getToFixed(scope.row[item.prop])}}
+                        </template>
+                        <template v-if="item.type=='lessonpriceText'">
                             <p>
-                                课程单价:50元/次
+                                课程单价:{{getToFixed(scope.row[item.unit_price])}}元/次
                             </p>
                             <p>
                                 <label>课程售价:</label>
-                                <span class="label bg-info">5000</span>元
+                                <span class="label bg-info">{{getToFixed(scope.row[item.price])}}</span>元
                             </p>
                         </template>
                         <template v-if="item.type=='contentText'">
                             <p>
                                 <label>单次课时长:</label>
-                                <span class="label bg-info">10</span>时
+                                <span class="label bg-info">{{scope.row[item.unit_hours]}}</span>时
                             </p>
                             <p>
                                 <label>课程包含:</label>
-                                <template>
-                                    <span class="label bg-info">50</span>次
+                                <template v-if="scope.row[item.lesson_type]=='0'&&scope.row[item.price_model]=='0'">
+                                    <span class="label bg-info">{{scope.row[item.inc_times]}}</span>次
                                 </template>
-                                <span class="label bg-info">2</span>课时
+                                <span class="label bg-info">{{scope.row[item.inc_hours]}}</span>课时
                             </p>
                         </template>
                     </template>
@@ -89,7 +137,7 @@
             </template>
         </el-table>
         <div class="pagination">
-            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="Number(total)">
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
             </el-pagination>
         </div>
         <div class="clear"></div>
@@ -151,9 +199,10 @@ export default {
             moduleTableData: [],
             datevalue: '',
             radiovalue: '',
-            total: '',
+            studentname: '',
+            student_id: '',
             hastableSearch: false,
-            pickerOptions2: {
+            pickerOptions: {
                 shortcuts: [{
                     text: '最近一周',
                     onClick(picker) {
@@ -189,12 +238,13 @@ export default {
         } else if (typeof (this.module) == 'string' && this.module != '') {
             this.moduledata = pagesmodule[this.module]
         }
-        
+
     },
     computed: {
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+                console.log(this.moduledata.pageSearch)
                 nSearch = true
             }
             return nSearch
@@ -226,6 +276,12 @@ export default {
         radioGroupSearchInfo() {
             return this.getModuleSearchInfo('radioGroupSearch')
         },
+        selectUserSearch() {
+            return this.getModuleSearchInfo('selectUserSearch').length > 0
+        },
+        selectUserSearchInfo() {
+            return this.getModuleSearchInfo('selectUserSearch')
+        },
         //表格
         textTableInfo() {
             if (this.moduledata && this.moduledata.pageTableField.length > 0) {
@@ -233,23 +289,48 @@ export default {
                 return textTableInfo
             }
         },
-        // getTableSearch() {
-        //     if (this.moduledata && this.moduledata.tableSearch.length > 0) {
-        //         this.hastableSearch = true
-        //         return true
-        //     }
-        // },
+        getSelectStudentName() {
+            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.$store.state.envs.currDialogResult) {
+                    this.student_name = this.$store.state.envs.currDialogResult.student_name
+                    this.student_id = this.$store.state.envs.currDialogResult._id
+                    this.handleSearch()
+                } else {
+                    this.student_id = ''
+                    this.student_name = '学员'
+                    this.handleSearch()
+                }
+            }
+            return this.student_name
+        },
     },
     watch: {
         module: function (val) {
             if (typeof (val) == 'object') {
                 this.moduledata = val
+                this.handleSearch()
             } else if (typeof (val) == 'string' && this.module != '') {
                 this.moduledata = pagesmodule[val]
+                this.handleSearch()
             }
         }
     },
     methods: {
+        getModuleSearchSpan(Search) {
+            let searchSpan = 2
+            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+                let searchdata = this.moduledata.pageSearch
+                if (searchdata) {
+                    for (let item of this.moduledata.pageSearch) {
+                        if (item.type == Search && item.span) {
+                            searchSpan = item.span
+                            break
+                        }
+                    }
+                }
+            }
+            return searchSpan
+        },
         getModuleSearchInfo(Search) {
             let searchInfo = []
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
@@ -267,6 +348,26 @@ export default {
         },
         handleSearch() {
             let filterObj = []
+            let datetime = this.datevalue
+            if (datetime&&datetime.length==2) {
+                let startTime = this.getDatetime(datetime[0])
+                let endTime = this.getDatetime(datetime[1])
+                if (startTime > 0) {
+                    if (startTime == endTime) {
+                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
+                    }
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'daterange1',
+                        'value': endTime,
+                        'type': 'lte'
+                    })
+                }
+            }
             let search_value = this.textSearchValue
             if (search_value.length > 0) {
                 filterObj.push({
@@ -282,13 +383,47 @@ export default {
                     'type': ''
                 })
             }
-            if (this.moduledata && this.moduledata.tableSearch&&this.moduledata.tableSearch.length > 0) {
-                console.log('111111111',this.moduledata.tableSearch)
+            let student_id = this.student_id.trim()
+            if (student_id.length > 0) {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': student_id,
+                    'type': ''
+                })
+            }
+            if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
+                console.log('111111111', this.moduledata.tableSearch)
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
                     filterObj.push({
                         'key': 'lookup',
                         'value': item,
+                        'type': 'lookup'
+                    })
+                }
+            }
+            this.radiovalue += ''
+            let status = this.radiovalue.trim()
+            if (status.length > 0) {
+                let opentime = new Date()
+                if (status == '0') {
+                    filterObj.push({
+                        'key': 'open_time',
+                        'value': opentime.getTime(),
+                        'type': 'lte'
+                    })
+                }
+                if (status == '1') {
+                    filterObj.push({
+                        'key': 'open_time',
+                        'value': opentime.getTime(),
+                        'type': 'gt'
+                    })
+                }
+                if (status == '2') {
+                    filterObj.push({
+                        'key': 'status',
+                        'value': 2,
                         'type': ''
                     })
                 }
@@ -297,10 +432,57 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
-                    this.total = this.moduleTableData.length
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
+        },
+        getOpen(item, value) {
+            let opentime = new Date()
+            if (value == 'close') {
+                return item.status == 2
+            } else if (value == 'open') {
+                return item.open_time < opentime.getTime()
+            } else {
+                return item.open_time > opentime.getTime()
+            }
+        },
+        getPercentage(order, maxStudent) {
+            let percentage = 100
+            let ordercount = 0
+            if (order) {
+                ordercount = order.length
+            }
+            if (maxStudent > 0) {
+                percentage = Number(ordercount) * 100 / Number(maxStudent)
+            }
+            return percentage
+        },
+        getPressageText(row) {
+            let count = row.order ? row.order.length : 0
+            return count + '/' + row.max_student_num
+        },
+        getTotalAmout(orders) {
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+            }
+            return parseFloat(totalamount).toFixed(2)
+        },
+        getPayAmout(orders) {
+            var payamount = 0
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+                for (var item of orders) {
+                    payamount += Number(item.unpay_amount)
+                }
+            }
+            console.log('22222', orders)
+            return parseFloat(totalamount - payamount).toFixed(2)
         },
         handleCommand({
             action,
@@ -313,17 +495,19 @@ export default {
                         message: '该教室已有排课，请先删除排课教室再进行此操作'
                     })
                 } else {
-                    this.$confirm('此操作将永久删除该教室, 是否继续?', '提示', {
+                    this.$confirm('此操作将永久删除, 是否继续?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'warning'
                     }).then(() => {
+                        this.tables = []
+                        this.tables.push(this.moduledata.pageTable)
                         this.handleDelete(data._id).then(() => {
                             this.$message({
                                 message: '删除成功',
                                 type: 'success'
                             })
-                            this.handleGetTable()
+                            this.handleSearch()
                         })
                     }).catch(() => {
                         this.$message({

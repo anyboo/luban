@@ -272,6 +272,7 @@ export default {
                 table.prepage = this.pagination.pagesize
                 table.page = this.pagination.currentPage - 1
                 vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                    this.pagination.total = response.data.count
                     resolve(response)
                 })
             })

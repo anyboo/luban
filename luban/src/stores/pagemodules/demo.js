@@ -34,9 +34,19 @@ export default {
             'type': 'singleBtnSearch',
             'fields': [
                 {
-                    'label': '搜索',
+                    'label': '新建教室',
                     'type': 'success',
-                    'icon': 'search'
+                    'showdialog':'lb-newsclassmodal',
+                    'actionoption':'lessonsclasses'
+                }
+            ]
+        },
+        {
+            'type': 'selectUserSearch',
+            'fields': [
+                {
+                    'showdialog':'lb-newsclassmodal',
+                    'actionoption':'lessonsclasses'
                 }
             ]
         },
@@ -104,11 +114,8 @@ export default {
         {
             'type': 'progress',
             'label': '招生情况',
-            'prop': 'tagtext',
-            'textInside': 'true',
-            'strokeWidth': '18',
-            'percentage': '60',
-            'text': '40/60'
+            'order': 'order',
+            'max_student_num': 'max_student_num'
         },
         {
             'type': 'priceText',

@@ -19,7 +19,9 @@ export default {
             'fields': [
                 {
                     'label': '新建教室',
-                    'type': 'success'
+                    'type': 'success',
+                    'showdialog':'lb-newsclassmodal',
+                    'actionoption':'lessonsclasses'
                 }
             ]
         },
