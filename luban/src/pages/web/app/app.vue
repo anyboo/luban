@@ -74,9 +74,9 @@ export default {
         getCurrentView() {
             this.isModlues = false
             if (!this.$store.state.models.login) {
-                this.$store.commit('router', '/system/sign_in')
+                 this.currentView = 'lb-systemsign_in'
             } else if (this.$store.state.system.name.length == 0) {
-                this.$store.commit('router', '/system/sign_in')
+                 this.currentView = 'lb-systemsign_in'
             } else {
                 let to = this.$store.state.system.router
                 let view = 'lb-studentadd'

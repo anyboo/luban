@@ -210,6 +210,9 @@ export default {
                 this.handleSearch()
                 result = true
             }
+             if (this.$store.state.envs.currDialog == 'lb-editstudentinfo') {
+                this.handleSearch()
+            }
             return result
         },
     },
