@@ -43,7 +43,7 @@
                 <el-col :span="getModuleSearchSpan('singleBtnSearch')" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
-                            <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)">{{item.label}}</el-button>
+                            <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
                         </template>
                     </template>
                 </el-col>
@@ -72,12 +72,20 @@
                             <small class="label bg-red" v-if="getOpen(scope.row,'')">未开课</small>
                             <small class="label bg-blue" v-if="getOpen(scope.row,'close')">已结课</small>
                         </template>
+                        <template v-if="item.type=='checkStatus'">
+                            <span v-if="scope.row[item.check_status] == '0'" class="badge bg-warning">未对账</span>
+                            <span v-if="scope.row[item.check_status] == '1'" class="badge bg-success">已对账</span>
+                        </template>
+                        <template v-if="item.type=='checkAccount'">
+                            <a v-if="scope.row[item.check_status] == '0'" class="btn btn-xs btn-default" @click="handleCheck(scope.row[item._id])">核对</a>
+                            <span v-if="scope.row[item.check_status] == '1'" class="info bg-success">已核对</span>
+                        </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
                         <template v-if="item.type=='studentlink'">
                             <a class="link" @click="handleRouter($event,scope.row)">
                                 <span>
                                     <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
-                                                                                    ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
+                                                                                            ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
                                 </span>{{ scope.row[item.name] }}
                                 <span v-if="scope.row.nickname != ''">{{ scope.row[item.nickname] }}</span>
                             </a>
@@ -92,7 +100,10 @@
                             </lb-dropdown>
                         </template>
                         <template v-if="item.type=='textTag'">
-                            <el-tag :type="item.color">{{ scope.row[item.prop]}}</el-tag>
+                            <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
+                        </template>
+                        <template v-if="item.type=='negativeTag'">
+                            <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='payment1'">
                             ￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}
@@ -349,7 +360,7 @@ export default {
         handleSearch() {
             let filterObj = []
             let datetime = this.datevalue
-            if (datetime&&datetime.length==2) {
+            if (datetime && datetime.length == 2) {
                 let startTime = this.getDatetime(datetime[0])
                 let endTime = this.getDatetime(datetime[1])
                 if (startTime > 0) {
@@ -483,6 +494,29 @@ export default {
             }
             console.log('22222', orders)
             return parseFloat(totalamount - payamount).toFixed(2)
+        },
+        handleCheck(id) {
+            this.$confirm('是否要核对?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+            }).then(() => {
+                this.updateTeble('flow', id, {
+                    'check_status': 1
+                }).then(() => {
+                    this.$message({
+                        message: '核对成功',
+                        type: 'success'
+                    })
+                    this.handleSearch()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已确定核对'
+                })
+            }
+                )
         },
         handleCommand({
             action,

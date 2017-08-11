@@ -7,6 +7,9 @@ import hourssuspends from './pagemodules/hours/hourssuspends'
 import feelist1 from './pagemodules/fee/feelist1'
 import feelist3 from './pagemodules/fee/feelist3'
 import feelist4 from './pagemodules/fee/feelist4'
+import iaeflow from './pagemodules/iae/iaeflow'
+import iaeincome from './pagemodules/iae/iaeincome'
+import iaeexpenses from './pagemodules/iae/iaeexpenses'
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -18,5 +21,8 @@ pages['hourssuspends'] = hourssuspends
 pages['feelist1'] = feelist1
 pages['feelist3'] = feelist3
 pages['feelist4'] = feelist4
+pages['iaeflow'] = iaeflow
+pages['iaeincome'] = iaeincome
+pages['iaeexpenses'] = iaeexpenses
 
 export default pages
