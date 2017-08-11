@@ -45,31 +45,20 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
+            'span': 12,
             'fields': [
                 {
-                    'label': '所有学员',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '所有学员' },
+                        { 'label': '未报读学员' },
+                        { 'label': '已报读学员' }
+                    ]
                 },
                 {
-                    'label': '未报读学员',
-                    'icon': ''
-                },
-                {
-                    'label': '已报读学员',
-                    'icon': ''
-                }
-            ]
-        },
-        {
-            'type': 'radioGroupSearch',
-            'fields': [
-                {
-                    'label': '头像',
-                    'icon': ''
-                },
-                {
-                    'label': '列表',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '头像' },
+                        { 'label': '列表' },
+                    ]
                 }
             ]
         },
@@ -77,7 +66,7 @@ export default {
             'type': 'singleBtnSearch',
             'fields': [
                 {
-                    'label': '开班',
+                    'label': '已封存档案',
                     'type': 'success',
                     'showdialog': 'lb-openclassmodal',
                     'actionoption': 'lessonclasses'
@@ -93,43 +82,38 @@ export default {
             'prop': 'setting'
         },
         {
+            'type': 'studentRouter',
+            'label': '学员',
+            'sex': 'sex',
+            'student_name': 'student_name',
+            'nickname': 'nickname'
+        },
+        {
             'type': 'text',
-            'label': '班级名',
-            'prop': 'class_name',
+            'label': '联系电话',
+            'prop': 'first_tel',
         },
         {
-            'type': 'tabletext',
-            'label': '老师',
-            'table': 'employee',
-            'prop': 'name',
+            'type': 'fromNow',
+            'label': '年龄',
+            'prop': 'birth',
         },
         {
-            'type': 'tabletext',
-            'label': '课程名',
-            'table': 'course',
-            'prop': 'lesson_name',
+            'type': 'text',
+            'label': '住址',
+            'prop': 'home_address',
         },
         {
-            'type': 'datetime',
-            'label': '开课时间',
-            'prop': 'open_time',
+            'type': 'getEmployeeName',
+            'label': '学员归属',
         },
         {
-            'type': 'openlessonsstatus',
-            'label': '状态',
-        }, {
-            'type': 'progress',
-            'label': '招生情况',
-            'order': 'order',
-            'max_student_num': 'max_student_num'
-        },
-        {
-            'type': 'payment1',
-            'label': '缴费情况',
-            'order': 'order',
+            'type': 'text',
+            'label': '档案备注',
+            'prop': 'note',
         },
     ],
-    'pageTable': 'classes',
+    'pageTable': 'student',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

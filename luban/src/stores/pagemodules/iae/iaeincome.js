@@ -54,7 +54,7 @@ export default {
             'color': 'gray'
         },
         {
-            'type': 'text',
+            'type': 'constant',
             'label': '付款方式',
             'prop': '现金',
         },

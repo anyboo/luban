@@ -10,6 +10,13 @@ import feelist4 from './pagemodules/fee/feelist4'
 import iaeflow from './pagemodules/iae/iaeflow'
 import iaeincome from './pagemodules/iae/iaeincome'
 import iaeexpenses from './pagemodules/iae/iaeexpenses'
+import studentlist from './pagemodules/student/studentlist'
+import studentlist1 from './pagemodules/student/studentlist1'
+import studentlist2 from './pagemodules/student/studentlist2'
+import studentlist0 from './pagemodules/student/studentlist0'
+import studenttracks from './pagemodules/student/studenttracks'
+import studentbirthdays from './pagemodules/student/studentbirthdays'
+import studentrecording from './pagemodules/student/studentrecording'
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -24,5 +31,12 @@ pages['feelist4'] = feelist4
 pages['iaeflow'] = iaeflow
 pages['iaeincome'] = iaeincome
 pages['iaeexpenses'] = iaeexpenses
+pages['studentlist'] = studentlist
+pages['studentlist1'] = studentlist1
+pages['studentlist2'] = studentlist2
+pages['studentlist0'] = studentlist0
+pages['studenttracks'] = studenttracks
+pages['studentbirthdays'] = studentbirthdays
+pages['studentrecording'] = studentrecording
 
 export default pages

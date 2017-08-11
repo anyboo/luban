@@ -16,6 +16,12 @@
                         </el-date-picker>
                     </div>
                 </el-col>
+                <el-col :span="4" v-if="classesSearch">
+                    <el-select v-model="classesId" filterable placeholder="请选择班级">
+                        <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
+                        </el-option>
+                    </el-select>
+                </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
                     <div class="input-group">
                         <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="studentname">
@@ -26,12 +32,14 @@
                         </span>
                     </div>
                 </el-col>
-                <el-col :span="6" v-if="radioGroupSearch">
-                    <el-radio-group v-model="radiovalue" @change="handleSearch">
-                        <template v-for="(item,index) in radioGroupSearchInfo">
-                            <el-radio-button :label="index">{{item.label}}</el-radio-button>
-                        </template>
-                    </el-radio-group>
+                <el-col :span="getModuleSearchSpan('radioGroupSearch',6)" v-if="radioGroupSearch">
+                    <template v-for="item in radioGroupSearchInfo">
+                        <el-radio-group v-model="radiovalue" @change="handleSearch">
+                            <template v-for="(value,index) in item.labels">
+                                <el-radio-button :label="index">{{value.label}}</el-radio-button>
+                            </template>
+                        </el-radio-group>
+                    </template>
                 </el-col>
                 <el-col :span="5" v-if="groupBtnSearch">
                     <el-button-group>
@@ -40,7 +48,7 @@
                         </template>
                     </el-button-group>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('singleBtnSearch')" v-if="singleBtnSearch" class="pull-right">
+                <el-col :span="getModuleSearchSpan('singleBtnSearch',2)" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
                             <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
@@ -53,7 +61,14 @@
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
+                        <template v-if="item.type=='constant'">{{item.prop}}</template>
                         <template v-if="item.type=='payment'">{{getDictText('2',scope.row[item.prop])}}</template>
+                        <template v-if="item.type=='lessoncount'">
+                            {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
+                        </template>
+                        <template v-if="item.type=='content'">
+                            <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre>
+                        </template>
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
                             <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
@@ -66,6 +81,33 @@
                         </template>
                         <template v-if="item.type=='getButtongroupText'">
                             {{getButtongroupText(item.othertype,scope.row[item.prop])}}
+                        </template>
+                        <template v-if="item.type=='getdataPurpose'">
+                            <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
+                                {{ getdataPurpose(scope.row[item.prop])}}
+                            </span>
+                        </template>
+                        <template v-if="item.type=='getEmployeeName'">
+                            <span class="" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
+                        </template>
+                        <template v-if="item.type=='studenttracksadd'">
+                            <template v-if="getActionOption('studenttracksadd')">
+                                <a class="link" @click="handleAddTrack(scope.row[item.prop])" tooltip="新增记录">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </template>
+                            <a @click="handleRouter($event,scope.row[item.prop])">
+                                {{ getLookUp(scope.row[item.prop],'student_name') }}
+                            </a>
+                        </template>
+                        <template v-if="item.type=='lastTrack'">
+                            <div v-if="scope.row[item.prop] && scope.row[item.prop].length > 0">{{getDateFormat(getLookUp(scope.row[item.prop], 'track_time'))}}
+                                <p class="text-muted">{{getLookUp(scope.row[item.prop], 'detail')}}</p>
+                                <p class="text-gray text-right">{{getLookUp(scope.row[item.prop], 'op_name')}}</p>
+                            </div>
+                            <span v-else class="label bg-danger">
+                                无跟踪记录
+                            </span>
                         </template>
                         <template v-if="item.type=='openlessonsstatus'">
                             <small class="label bg-success" v-if="getOpen(scope.row,'open')">已开课</small>
@@ -81,13 +123,19 @@
                             <span v-if="scope.row[item.check_status] == '1'" class="info bg-success">已核对</span>
                         </template>
                         <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
-                        <template v-if="item.type=='studentlink'">
+                        <template v-if="item.type=='fromNow'">{{ fromNow(scope.row.birth) }}</template>
+                        <template v-if="item.type=='studentRouter'">
                             <a class="link" @click="handleRouter($event,scope.row)">
                                 <span>
-                                    <i class="fa" :class="{'fa-female ':scope.row.sex=='2','fa-male':scope.row.sex=='1'
-                                                                                            ,'mans':scope.row.sex=='1','woman':scope.row.sex=='2'}"></i>
-                                </span>{{ scope.row[item.name] }}
-                                <span v-if="scope.row.nickname != ''">{{ scope.row[item.nickname] }}</span>
+                                    <i class="fa" :class="{'fa-female ':scope.row[item.sex]=='2','fa-male':scope.row[item.sex]=='1'
+                                                             ,'mans':scope.row[item.sex]=='1','woman':scope.row[item.sex]=='2'}"></i>
+                                </span>{{ scope.row[item.student_name] }}
+                                <span v-if="scope.row[item.nickname] != ''">{{ scope.row[item.nickname] }}</span>
+                            </a>
+                        </template>
+                        <template v-if="item.type=='studentlink'">
+                            <a @click="handleRouter($event,scope.row[item.prop])">
+                                <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
                             </a>
                         </template>
                         <template v-if="item.type=='tabletext'">{{ getLookUp(scope.row[item.table],item.prop) }}</template>
@@ -117,6 +165,10 @@
                                     <span style="white-space:nowrap;padding-left:20px">￥{{getPayAmout(scope.row[item.order])}} / ￥{{getTotalAmout(scope.row[item.order])}}</span>
                                 </div>
                             </div>
+                        </template>
+                        <template v-if="item.type=='recordingSetting'">
+                            <a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details',scope.row)">查看详情</a>
+                            <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a>
                         </template>
                         <template v-if="item.type=='getToFixed'">
                             {{getToFixed(scope.row[item.prop])}}
@@ -212,6 +264,7 @@ export default {
             radiovalue: '',
             studentname: '',
             student_id: '',
+            classesId: '',
             hastableSearch: false,
             pickerOptions: {
                 shortcuts: [{
@@ -293,6 +346,9 @@ export default {
         selectUserSearchInfo() {
             return this.getModuleSearchInfo('selectUserSearch')
         },
+        classesSearch() {
+            return this.getModuleSearchInfo('classesSearch').length > 0
+        },
         //表格
         textTableInfo() {
             if (this.moduledata && this.moduledata.pageTableField.length > 0) {
@@ -314,6 +370,10 @@ export default {
             }
             return this.student_name
         },
+        getClassesData() {
+            let classes = this.$store.state.models.models.classes.data
+            return classes
+        },
     },
     watch: {
         module: function (val) {
@@ -327,8 +387,8 @@ export default {
         }
     },
     methods: {
-        getModuleSearchSpan(Search) {
-            let searchSpan = 2
+        getModuleSearchSpan(Search, count) {
+            let searchSpan = count
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
@@ -356,6 +416,13 @@ export default {
                 }
             }
             return searchInfo
+        },
+        getEmployeeName(item) {
+            let name = '未设定'
+            if (item.employee && item.employee.length > 0) {
+                name = this.getLookUp(item.employee, 'name')
+            }
+            return name
         },
         handleSearch() {
             let filterObj = []
@@ -492,8 +559,34 @@ export default {
                     payamount += Number(item.unpay_amount)
                 }
             }
-            console.log('22222', orders)
             return parseFloat(totalamount - payamount).toFixed(2)
+        },
+        getdataPurpose(value) {
+            let purpose = ''
+            purpose = this.getDictText('6', value)
+            if (purpose == '') {
+                purpose = this.getDictText('6', this.getDictDefvalue('6'))
+            }
+            return purpose
+        },
+        handleAddTrack(item) {
+            let student = this.getLookUp(item)
+            this.$store.state.envs.currStudent = student
+            this.handleShowDialog('lb-addtrackmodal', student)
+        },
+        handleDelClick(id) {
+            this.handleDelete(id).then(() => {
+                this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                })
+                this.handleGetTable()
+            })
+        },
+        handleRouter(event, item) {
+            this.$store.state.envs.currStudent = item
+            this.$store.commit('router', '/student/info')
+            event.stopPropagation()
         },
         handleCheck(id) {
             this.$confirm('是否要核对?', '提示', {

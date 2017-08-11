@@ -22,9 +22,7 @@ export default {
         {
             'type': 'selectUserSearch',
             'fields': [
-                {
-                    
-                }
+                {}
             ]
         },
         {

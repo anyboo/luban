@@ -21,14 +21,7 @@ export default {
         },
         {
             'type': 'dateSearch',
-            'fields': [
-                {
-                    'label': '教室名称',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'name'
-                }
-            ]
+            'fields': [{}]
         },
         {
             'type': 'singleBtnSearch',
@@ -36,18 +29,15 @@ export default {
                 {
                     'label': '新建教室',
                     'type': 'success',
-                    'showdialog':'lb-newsclassmodal',
-                    'actionoption':'lessonsclasses'
+                    'showdialog': 'lb-newsclassmodal',
+                    'actionoption': 'lessonsclasses'
                 }
             ]
         },
         {
             'type': 'selectUserSearch',
             'fields': [
-                {
-                    'showdialog':'lb-newsclassmodal',
-                    'actionoption':'lessonsclasses'
-                }
+                {}
             ]
         },
         {
@@ -74,16 +64,17 @@ export default {
             'type': 'radioGroupSearch',
             'fields': [
                 {
-                    'label': '已开课',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '所有学员' },
+                        { 'label': '未报读学员' },
+                        { 'label': '已报读学员' }
+                    ]
                 },
                 {
-                    'label': '未开课',
-                    'icon': ''
-                },
-                {
-                    'label': '已结课',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '头像' },
+                        { 'label': '列表' },
+                    ]
                 }
             ]
         },
@@ -100,10 +91,13 @@ export default {
             'prop': 'date'
         },
         {
+            'type': 'fromNow',
+            'label': '年龄',
+            'prop': 'birth'
+        },
+        {
             'type': 'operation',
-            'label': '操作',
-            'prop': 'setting',
-            'fields': ['编辑', '删除', '标记']
+            'label': '操作'
         },
         {
             'type': 'getToFixed',
@@ -115,6 +109,27 @@ export default {
             'label': '学员',
             'table': 'student',
             'prop': 'student_name',
+        },
+        {
+            'type': 'getEmployeeName',
+            'label': '学员归属',
+        },
+        {
+            'type': 'getdataPurpose',
+            'label': '意向程度',
+            'prop': 'purpose',
+        },
+        {
+            'type': 'studentRouter',
+            'label': '学员',
+            'sex': 'sex',
+            'student_name': 'student_name',
+            'nickname': 'nickname'
+        },
+        {
+            'type': 'constant',
+            'label': '付款方式',
+            'prop': '现金',
         },
         {
             'type': 'textTag',
@@ -164,13 +179,18 @@ export default {
             'type': 'checkAccount',
             'label': '对账状态',
             'check_status': 'check_status',
-            '_id':'_id'
+            '_id': '_id'
         },
         {
             'type': 'negativeTag',
             'label': '金额',
             'prop': 'amount',
             'color': 'gray'
+        },
+        {
+            'type': 'lastTrack',
+            'label': '最后跟踪',
+            'prop': 'inquiry',
         },
     ],
     'pageTable': 'sclasses',
