@@ -54,7 +54,42 @@ export default {
             'url': 'lb-employeeaddmodal',
             'icon': 'fa fa-pencil',
             'text': '编辑资料',
-
+        }, {
+            'action': 'unlock',
+            'icon': 'fa fa-unlock',
+            'text': '账号解封',
+            'menuctrl': 'lock',
+            'menuvalue': true
+        }, {
+            'action': 'lock',
+            'icon': 'fa fa-lock',
+            'text': '离职封存',
+            'menuctrl': 'lock',
+            'menuvalue': false
+        }, {
+            'url': 'lb-resetaccountmodal',
+            'icon': 'fa fa-key',
+            'text': '重置密码'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除',
+            'menuctrl': 'lock',
+            'menuvalue': true
+        }],
+        action: [{
+            'text': '添加',
+            'action': 'systememployeeadd'
+        }]
+    }, {
+        menuTitle: '机构校区设置',
+        to: '/system/org',
+        menuIcon: 'fa fa-institution',
+        dropDownMenu: [{
+            'url': 'lb-addmodal',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除'
@@ -85,11 +120,13 @@ export default {
         menuTitle: '系统状态',
         menuIcon: ' fa fa-th',
         to: '/system/systems',
+        menuShow: 0,
     },
     {
         menuTitle: '收费模块',
         menuIcon: 'fa fa-strikethrough',
         to: '/system/charge_module',
+        menuShow: 0,
         dropDownMenu: [{
             'url': 'lb-addmodule',
             'icon': 'fa fa-pencil',

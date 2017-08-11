@@ -44,6 +44,12 @@ export default {
             }
         }
     },
+    created() {
+        this.getTableApidata('dictionary').then(() => {
+            this.form.first_rel_rel = this.getDictDefvalue('1')
+            this.form.track_from = this.getDictDefvalue('3')
+        })
+    },
     methods: {
         handleClick() {
             this.$refs['ruleForm'].handleClick()

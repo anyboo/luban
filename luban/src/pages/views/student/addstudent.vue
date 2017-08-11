@@ -3,7 +3,7 @@
         <el-form-item label="姓名" prop="student_name">
             <el-input v-model="localdata.form.student_name" style="width:120px;" placeholder="请输入学员姓名"></el-input>
             <el-radio-group v-model="localdata.form.sex">
-                <el-radio-button v-for="sex in localdata.sex" :label="sex.text" :key="sex.value"></el-radio-button>
+                <el-radio-button v-for="sex in localdata.sex" :label="sex.text" :value="sex.value" :key="sex.value"></el-radio-button>
             </el-radio-group>
         </el-form-item>
         <el-form-item label="联系方式" prop="first_tel">
@@ -34,7 +34,7 @@
         </span>
         <el-form-item label="来源渠道">
             <el-radio-group v-model="localdata.form.track_from">
-                <el-radio-button v-for="way in getDictData('3')" :label="way.text" :key="way._id"></el-radio-button>
+                <el-radio-button v-for="way in getDictData('3')" :label="way.text" :value="way._id" :key="way._id"></el-radio-button>
             </el-radio-group>
         </el-form-item>
         <div class="m-t m-b b-t text-center">
@@ -47,10 +47,10 @@
         </div>
         <div v-show="expand">
             <el-form-item label="昵称">
-                <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname" style="width:120px;">
+                <input type="text" class="form-control" placeholder="小名或英文名" v-model="localdata.form.nickname" style="width:320px;">
             </el-form-item>
             <el-form-item label="出生日期">
-                <el-date-picker type="date" name="birth" v-model="localdata.form.birth"></el-date-picker>
+                <el-date-picker type="date" name="birth" v-model="localdata.form.birth" style="width:320px;"></el-date-picker>
             </el-form-item>
             <el-form-item label="家庭住址">
                 <input type="text" name="home_address" class="form-control" v-model="localdata.form.home_address" style="width:320px;">
@@ -67,7 +67,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="备注">
-                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control" style="width:285px;"></textarea>
+                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control" style="width:320px;"></textarea>
             </el-form-item>
         </div>
     </el-form>
@@ -197,10 +197,6 @@ export default {
             },
             validateTel
         }
-    },
-    mounted() {
-        this.localdata.form.first_rel_rel = this.getDictDefvalue('1')
-        this.localdata.form.track_from = this.getDictDefvalue('3')
     },
     methods: {
         handleEdit() {

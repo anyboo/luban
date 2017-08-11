@@ -26,9 +26,9 @@
                                             选择
                                             <span class="caret"></span>
                                         </lb-dropdown-button>
-                                        <el-dropdown-menu slot="dropdown" style="z-index:3000;">
+                                        <el-dropdown-menu slot="dropdown">
                                             <template v-for="item in getDictData('4')">
-                                                <el-dropdown-item command=item._id>{{item.text}}</el-dropdown-item>
+                                                <el-dropdown-item :command="item._id">{{item.text}}</el-dropdown-item>
                                             </template>
                                         </el-dropdown-menu>
                                     </el-dropdown>
@@ -127,7 +127,7 @@ export default {
     },
     methods: {
         handleCommand(value) {
-            this.localdata.form.track_way = value
+            this.localdata.form.track_way = this.getDictText('4', value)
             this.$refs['ruleForm'].validateField('track_way')
         },
         handleClick() {
