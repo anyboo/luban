@@ -68,6 +68,33 @@ export default {
         }
     },
     methods: {
+        getTotalAmout(orders) {
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+            }
+            return parseFloat(totalamount).toFixed(2)
+        },
+        getPayAmout(orders) {
+            var payamount = 0
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+                for (var item of orders) {
+                    payamount += Number(item.unpay_amount)
+                }
+            }
+            return parseFloat(totalamount - payamount).toFixed(2)
+        },
+        handleRouter(event, item) {
+            this.$store.state.envs.currStudent = item
+            this.$store.commit('router', '/student/info')
+            event.stopPropagation()
+        },
         getRole(role) {
             if (this.$store.state.system.tel == 'luban') {
                 return true

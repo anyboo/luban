@@ -45,10 +45,7 @@ export default {
         },
         {
             'type': 'studentRouter',
-            'label': '学员',
-            'sex': 'sex',
-            'student_name': 'student_name',
-            'nickname': 'nickname'
+            'label': '学员'
         },
         {
             'type': 'text',

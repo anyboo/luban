@@ -70,15 +70,9 @@ export default {
             'prop': 'name',
         },
         {
-            'type': 'checkStatus',
-            'label': '对账状态',
-            'prop': 'check_status',
-        },
-        {
-            'type': 'checkAccount',
-            'label': '对账状态',
-            'check_status': 'check_status',
-            '_id':'_id'
+            'type': 'checkstatus',
+            'statutype':'checkAccount',
+            'label': '对账状态'
         }
     ],
     'pageTable': 'flow',

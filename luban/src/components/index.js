@@ -7,6 +7,11 @@ import selecteusersearch from './selecteusersearch/'
 import lessonhours from './lessonhours/'
 import lessonprice from './lessonprice/'
 import lessontype from './lessontype/'
+import studentrouter from './studentrouter/'
+import studenttracksadd from './studenttracksadd/'
+import lasttrack from './lasttrack/'
+import payconditions from './payconditions/'
+import checkstatus from './checkstatus/'
 
 const components = [
     dropdown.LbDropdown,
@@ -19,7 +24,12 @@ const components = [
     selecteusersearch,
     lessonhours,
     lessonprice,
-    lessontype
+    lessontype,
+    studentrouter,
+    studenttracksadd,
+    lasttrack,
+    payconditions,
+    checkstatus
 ]
 const install = function(Vue) {
     if (install.installed) return
@@ -39,5 +49,10 @@ export default {
     selecteusersearch,
     lessonhours,
     lessonprice,
-    lessontype
+    lessontype,
+    studentrouter,
+    studenttracksadd,
+    lasttrack,
+    payconditions,
+    checkstatus
 }

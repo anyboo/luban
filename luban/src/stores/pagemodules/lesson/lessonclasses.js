@@ -89,7 +89,8 @@ export default {
             'prop': 'open_time',
         },
         {
-            'type': 'openlessonsstatus',
+            'type': 'checkstatus',
+            'statutype':'openlessonsstatus',
             'label': '状态',
         },{
             'type': 'progress',
@@ -98,7 +99,7 @@ export default {
             'max_student_num': 'max_student_num'
         },
         {
-            'type': 'payment1',
+            'type': 'payconditions',
             'label': '缴费情况',
             'order': 'order',
         },

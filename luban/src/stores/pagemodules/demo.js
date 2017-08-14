@@ -121,10 +121,7 @@ export default {
         },
         {
             'type': 'studentRouter',
-            'label': '学员',
-            'sex': 'sex',
-            'student_name': 'student_name',
-            'nickname': 'nickname'
+            'label': '学员'
         },
         {
             'type': 'constant',
@@ -167,19 +164,12 @@ export default {
         },
         {
             'type': 'contentText',
-            'label': '内容',
-            'prop': 'contentText',
+            'label': '内容'
         },
         {
             'type': 'checkStatus',
-            'label': '对账状态',
-            'prop': 'check_status',
-        },
-        {
-            'type': 'checkAccount',
-            'label': '对账状态',
-            'check_status': 'check_status',
-            '_id': '_id'
+            'statutype':'accountcheck',
+            'label': '对账状态'
         },
         {
             'type': 'negativeTag',

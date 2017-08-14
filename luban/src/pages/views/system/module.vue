@@ -23,7 +23,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch ></lb-selecteusersearch>
+                    <lb-selecteusersearch v-on:search="handleSearch"></lb-selecteusersearch>
                 </el-col>
                 <el-col :span="getModuleSearchSpan('radioGroupSearch',6)" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -54,8 +54,12 @@
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
-                        <template v-if="item.type=='constant'">{{item.prop}}</template>
-                        <template v-if="item.type=='payment'">{{getDictText('2',scope.row[item.prop])}}</template>
+                        <template v-if="item.type=='constant'">
+                            {{item.prop}}
+                        </template>
+                        <template v-if="item.type=='payment'">
+                            {{getDictText('2',scope.row[item.prop])}}
+                        </template>
                         <template v-if="item.type=='lessoncount'">
                             {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
                         </template>
@@ -81,54 +85,31 @@
                             <span class="" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
                         </template>
                         <template v-if="item.type=='studenttracksadd'">
-                            <template v-if="getActionOption('studenttracksadd')">
-                                <a class="link" @click="handleAddTrack(scope.row[item.prop])" tooltip="新增记录">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </template>
-                            <a @click="handleRouter($event,scope.row[item.prop])">
-                                {{ getLookUp(scope.row[item.prop],'student_name') }}
-                            </a>
+                            <lb-studenttracksadd :lessonData="scope.row" :typeData="item"></lb-studenttracksadd>
                         </template>
                         <template v-if="item.type=='lastTrack'">
-                            <div v-if="scope.row[item.prop] && scope.row[item.prop].length > 0">{{getDateFormat(getLookUp(scope.row[item.prop], 'track_time'))}}
-                                <p class="text-muted">{{getLookUp(scope.row[item.prop], 'detail')}}</p>
-                                <p class="text-gray text-right">{{getLookUp(scope.row[item.prop], 'op_name')}}</p>
-                            </div>
-                            <span v-else class="label bg-danger">
-                                无跟踪记录
-                            </span>
+                            <lb-lasttrack :lessonData="scope.row" :typeData="item"></lb-lasttrack>
                         </template>
-                        <template v-if="item.type=='openlessonsstatus'">
-                            <small class="label bg-success" v-if="getOpen(scope.row,'open')">已开课</small>
-                            <small class="label bg-red" v-if="getOpen(scope.row,'')">未开课</small>
-                            <small class="label bg-blue" v-if="getOpen(scope.row,'close')">已结课</small>
+                        <template v-if="item.type=='checkstatus'">
+                            <lb-checkstatus :lessonData="scope.row" :typeData="item" v-on:search="handleSearch"></lb-checkstatus>
                         </template>
-                        <template v-if="item.type=='checkStatus'">
-                            <span v-if="scope.row[item.check_status] == '0'" class="badge bg-warning">未对账</span>
-                            <span v-if="scope.row[item.check_status] == '1'" class="badge bg-success">已对账</span>
+                        <template v-if="item.type=='text'">
+                            {{ scope.row[item.prop] }}
                         </template>
-                        <template v-if="item.type=='checkAccount'">
-                            <a v-if="scope.row[item.check_status] == '0'" class="btn btn-xs btn-default" @click="handleCheck(scope.row[item._id])">核对</a>
-                            <span v-if="scope.row[item.check_status] == '1'" class="info bg-success">已核对</span>
+                        <template v-if="item.type=='fromNow'">
+                            {{ fromNow(scope.row.birth) }}
                         </template>
-                        <template v-if="item.type=='text'">{{ scope.row[item.prop] }}</template>
-                        <template v-if="item.type=='fromNow'">{{ fromNow(scope.row.birth) }}</template>
                         <template v-if="item.type=='studentRouter'">
-                            <a class="link" @click="handleRouter($event,scope.row)">
-                                <span>
-                                    <i class="fa" :class="{'fa-female ':scope.row[item.sex]=='2','fa-male':scope.row[item.sex]=='1'
-                                                             ,'mans':scope.row[item.sex]=='1','woman':scope.row[item.sex]=='2'}"></i>
-                                </span>{{ scope.row[item.student_name] }}
-                                <span v-if="scope.row[item.nickname] != ''">{{ scope.row[item.nickname] }}</span>
-                            </a>
+                            <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentlink'">
                             <a @click="handleRouter($event,scope.row[item.prop])">
                                 <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
                             </a>
                         </template>
-                        <template v-if="item.type=='tabletext'">{{ getLookUp(scope.row[item.table],item.prop) }}</template>
+                        <template v-if="item.type=='tabletext'">
+                            {{ getLookUp(scope.row[item.table],item.prop) }}
+                        </template>
                         <template v-if="item.type=='operation'">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="getMenuOption" class="btn btn-info btn-xs">
@@ -143,22 +124,14 @@
                         <template v-if="item.type=='negativeTag'">
                             <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
-                        <template v-if="item.type=='payment1'">
+                        <template v-if="item.type=='payconditions'">
                             ￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}
                         </template>
                         <template v-if="item.type=='progress'">
                             <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row[item.order],scope.row[item.max_student_num])" :text="getPressageText(scope.row)"></lb-progress>
                         </template>
                         <template v-if="item.type=='priceText'">
-                            <div class="inline w va-m">
-                                <div class="progress-bar progress-bar-danger" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="0.00" aria-valuemin="0" aria-valuemax="0.00" ng-style="{width: percent + '%'}" aria-valuetext="%" ng-transclude="">
-                                    <span style="white-space:nowrap;padding-left:20px">￥{{getPayAmout(scope.row[item.order])}} / ￥{{getTotalAmout(scope.row[item.order])}}</span>
-                                </div>
-                            </div>
-                        </template>
-                        <template v-if="item.type=='recordingSetting'">
-                            <a class="btn btn-default btn-xs" @click="handleShowDialog('lb-details',scope.row)">查看详情</a>
-                            <a class="btn btn-danger btn-xs ng-isolate-scope" @click="handleDelClick(scope.row._id)">删除</a>
+                            <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
                         </template>
                         <template v-if="item.type=='getToFixed'">
                             {{getToFixed(scope.row[item.prop])}}
@@ -167,7 +140,7 @@
                             <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
                         </template>
                         <template v-if="item.type=='contentText'">
-                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
+                            <lb-lessonhours :lessonData="scope.row"></lb-lessonhours>
                         </template>
                     </template>
                 </el-table-column>
@@ -528,11 +501,6 @@ export default {
             }
             return purpose
         },
-        handleAddTrack(item) {
-            let student = this.getLookUp(item)
-            this.$store.state.envs.currStudent = student
-            this.handleShowDialog('lb-addtrackmodal', student)
-        },
         handleDelClick(id) {
             this.handleDelete(id).then(() => {
                 this.$message({
@@ -541,11 +509,6 @@ export default {
                 })
                 this.handleGetTable()
             })
-        },
-        handleRouter(event, item) {
-            this.$store.state.envs.currStudent = item
-            this.$store.commit('router', '/student/info')
-            event.stopPropagation()
         },
         handleCheck(id) {
             this.$confirm('是否要核对?', '提示', {

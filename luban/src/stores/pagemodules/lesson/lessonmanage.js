@@ -69,12 +69,7 @@ export default {
         },
         {
             'type': 'contentText',
-            'label': ' 内容',
-            'unit_hours': 'unit_hours',
-            'lesson_type': 'lesson_type',
-            'price_model': 'price_model',
-            'inc_times': 'inc_times',
-            'inc_hours': 'inc_hours'
+            'label': ' 内容'
         }
     ],
     'pageTable': 'course',

@@ -26,11 +26,11 @@ export default {
                 if (this.$store.state.envs.currDialogResult) {
                     this.student_name = this.$store.state.envs.currDialogResult.student_name
                     this.student_id = this.$store.state.envs.currDialogResult._id
-                    this.handleSearch()
+                    this.$emit('search')
                 } else {
                     this.student_id = ''
                     this.student_name = '学员'
-                    this.handleSearch()
+                    this.$emit('search')
                 }
             }
             return this.student_name
