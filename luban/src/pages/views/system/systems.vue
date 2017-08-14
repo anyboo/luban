@@ -53,7 +53,7 @@
                                     </el-option>
                                 </el-select>
                                 <!--收费方式-->
-                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.relations[item.relationsIndex].priced}}¥</label>
+                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.relations[item.relationsIndex]}}¥</label>
                             </li>
                             <li class="list-group-item">
                                 <label class="text-black">描述:</label>
@@ -87,7 +87,7 @@ export default {
         return {
             tables: ['charge'],
             model: 'cart',
-            localdata
+            localdata,
         }
     },
     computed: {
@@ -115,3 +115,10 @@ export default {
     }
 }
 </script>
+
+
+
+
+
+
+

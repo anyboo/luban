@@ -66,7 +66,7 @@ export default {
                 'description': '',
                 'chargemodule': '',
                 'relations': [],
-                'relationsIndex':0
+                'relationsIndex':0,
             }
         }
         return {
