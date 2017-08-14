@@ -56,8 +56,8 @@ export default {
                 {
                     'label': '已封存档案',
                     'type': 'success',
-                    'showdialog': 'lb-openclassmodal',
-                    'actionoption': 'lessonclasses'
+                    'showdialog': 'lb-trash',
+                    'actionoption': 'studentlist'
                 },
             ]
         },

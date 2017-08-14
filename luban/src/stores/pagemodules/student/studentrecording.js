@@ -26,7 +26,7 @@ export default {
                 {
                     'label': ' 添加赛事记录',
                     'type': 'success',
-                    'showdialog': 'lb-selectstudenttpl',
+                    'showdialog': 'lb-regstudentmatchmodal',
                     'actionoption': 'studentrecording'
                 }
             ]

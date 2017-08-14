@@ -38,8 +38,8 @@ export default {
                     'label': '跟踪回访登记',
                     'type': 'success',
                     'icon': 'edit',
-                    'showdialog': 'lb-selectstudenttpl',
-                    'actionoption': 'lessonsclasses'
+                    'showdialog': 'lb-addtrackmodal',
+                    'actionoption': 'studenttracksadd'
                 }
             ]
         },
