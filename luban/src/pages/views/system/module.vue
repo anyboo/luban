@@ -48,7 +48,7 @@
                         </template>
                     </el-button-group>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('singleBtnSearch',2)" v-if="singleBtnSearch" class="pull-right">
+                <el-col :span="getModuleSearchSpan('singleBtnSearch',3)" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
                             <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
