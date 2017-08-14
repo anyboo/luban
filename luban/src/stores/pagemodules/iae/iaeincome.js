@@ -71,8 +71,13 @@ export default {
         },
         {
             'type': 'checkstatus',
-            'statutype':'checkAccount',
+            'statutype':'accountcheck',
             'label': '对账状态'
+        },
+        {
+            'type': 'checkstatus',
+            'statutype':'checkAccount',
+            'label': '操作'
         }
     ],
     'pageTable': 'flow',
