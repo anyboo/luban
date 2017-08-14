@@ -53,12 +53,6 @@ export default {
                         { 'label': '未报读学员' },
                         { 'label': '已报读学员' }
                     ]
-                },
-                {
-                    'labels': [
-                        { 'label': '头像' },
-                        { 'label': '列表' },
-                    ]
                 }
             ]
         },

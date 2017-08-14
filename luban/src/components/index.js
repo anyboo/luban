@@ -3,6 +3,10 @@ import buttongroup from './buttongroup/'
 import listtree from './listtree/'
 import numberinput from './numberinput/'
 import progress from './progress/'
+import selecteusersearch from './selecteusersearch/'
+import lessonhours from './lessonhours/'
+import lessonprice from './lessonprice/'
+import lessontype from './lessontype/'
 
 const components = [
     dropdown.LbDropdown,
@@ -11,7 +15,11 @@ const components = [
     listtree.LbListTree,
     listtree.LbListtreeItem,
     numberinput,
-    progress
+    progress,
+    selecteusersearch,
+    lessonhours,
+    lessonprice,
+    lessontype
 ]
 const install = function(Vue) {
     if (install.installed) return
@@ -27,6 +35,9 @@ export default {
     buttongroup,
     listtree,
     numberinput,
-    progress
-
+    progress,
+    selecteusersearch,
+    lessonhours,
+    lessonprice,
+    lessontype
 }

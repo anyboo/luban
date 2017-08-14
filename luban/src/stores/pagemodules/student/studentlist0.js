@@ -25,13 +25,6 @@ export default {
             'fields': [
                 {
                     'labels': [
-                        { 'label': '今日' },
-                        { 'label': '本周' },
-                        { 'label': '本月' }
-                    ]
-                },
-                {
-                    'labels': [
                         { 'label': '所有' },
                         { 'label': '未归属' }
                     ]

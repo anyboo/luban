@@ -47,8 +47,8 @@ export default {
                     'label': '导出',
                     'type': 'success',
                     'icon':'upload2',
-                    'showdialog': '',
-                    'actionoption': ''
+                    'showdialog': 'lb-selectstudenttpl',
+                    'actionoption': 'studentrecording'
                 },
             ]
         },
