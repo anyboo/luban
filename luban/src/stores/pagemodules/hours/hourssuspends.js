@@ -10,7 +10,30 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
-            'fields': [{} ]
+            'searchfunction': function (form, vm) {
+                let filterObj = []
+                if (form && form.length == 2) {
+                    let startTime = vm.getDatetime(form[0])
+                    let endTime = vm.getDatetime(form[1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            endTime = vm.getDatetimeEndOf(form[1])
+                        }
+                        filterObj.push({
+                            'key': 'daterange1',
+                            'value': startTime,
+                            'type': 'gte'
+                        })
+                        filterObj.push({
+                            'key': 'daterange1',
+                            'value': endTime,
+                            'type': 'lte'
+                        })
+                    }
+                }
+                return filterObj
+            },
+            'fields': [{}]
         },
         {
             'type': 'selectUserSearch',
@@ -22,12 +45,12 @@ export default {
                 {
                     'label': '停课登记',
                     'type': 'success',
-                    'showdialog':'lb-suspendshours',
-                    'actionoption':'hourssuspends'
+                    'showdialog': 'lb-suspendshours',
+                    'actionoption': 'hourssuspends'
                 }
             ]
         },
-        
+
     ],
     'pageTableField': [
         {

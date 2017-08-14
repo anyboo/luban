@@ -12,6 +12,30 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
+            'searchfunction': function (form, vm) {
+                let filterObj = []
+                if (form && form.length == 2) {
+                    let startTime = vm.getDatetime(form[0])
+                    let endTime = vm.getDatetime(form[1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            startTime = vm.getDatetimeStartOf('day')
+                            endTime = vm.getDatetimeStartOf('day', true)
+                        }
+                        filterObj.push({
+                            'key': 'join_date',
+                            'value': startTime,
+                            'type': 'gte'
+                        })
+                        filterObj.push({
+                            'key': 'join_date',
+                            'value': endTime,
+                            'type': 'lte'
+                        })
+                    }
+                }
+                return filterObj
+            },
             'fields': [{}]
         },
         {

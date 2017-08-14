@@ -15,6 +15,29 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
+            'searchfunction': function (form, vm) {
+                let filterObj = []
+                if (form && form.length == 2) {
+                    let startTime = vm.getDatetime(form[0])
+                    let endTime = vm.getDatetime(form[1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            endTime = this.getDatetimeEndOf(vm.localdata.form.daterange[1])
+                        }
+                        filterObj.push({
+                        'key': 'creattime',
+                        'value': startTime,
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'creattime',
+                        'value': endTime,
+                        'type': 'lte'
+                    })
+                    }
+                }
+                return filterObj
+            },
             'fields': [{}]
         },
         {
