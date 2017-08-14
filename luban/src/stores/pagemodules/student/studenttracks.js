@@ -16,7 +16,6 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
-            'span':12,
             'fields': [
                 {
                     'labels': [

@@ -34,12 +34,6 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'nickname'
-                },
-                {
-                    'label': '学员卡号',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'card_no'
                 }
             ]
         },
