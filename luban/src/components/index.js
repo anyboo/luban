@@ -10,7 +10,6 @@ import lessontype from './lessontype/'
 import studentrouter from './studentrouter/'
 import studenttracksadd from './studenttracksadd/'
 import lasttrack from './lasttrack/'
-import payconditions from './payconditions/'
 import checkstatus from './checkstatus/'
 
 const components = [
@@ -28,7 +27,6 @@ const components = [
     studentrouter,
     studenttracksadd,
     lasttrack,
-    payconditions,
     checkstatus
 ]
 const install = function(Vue) {
@@ -53,6 +51,5 @@ export default {
     studentrouter,
     studenttracksadd,
     lasttrack,
-    payconditions,
     checkstatus
 }

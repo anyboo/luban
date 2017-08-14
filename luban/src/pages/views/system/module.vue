@@ -500,29 +500,6 @@ export default {
                 this.handleGetTable()
             })
         },
-        handleCheck(id) {
-            this.$confirm('是否要核对?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning',
-            }).then(() => {
-                this.updateTeble('flow', id, {
-                    'check_status': 1
-                }).then(() => {
-                    this.$message({
-                        message: '核对成功',
-                        type: 'success'
-                    })
-                    this.handleSearch()
-                })
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: '已确定核对'
-                })
-            }
-                )
-        },
         handleCommand({
             action,
             data
