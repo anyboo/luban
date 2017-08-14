@@ -34,12 +34,6 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'nickname'
-                },
-                {
-                    'label': '学员卡号',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'card_no'
                 }
             ]
         },
@@ -53,12 +47,6 @@ export default {
                         { 'label': '未报读学员' },
                         { 'label': '已报读学员' }
                     ]
-                },
-                {
-                    'labels': [
-                        { 'label': '头像' },
-                        { 'label': '列表' },
-                    ]
                 }
             ]
         },
@@ -68,8 +56,8 @@ export default {
                 {
                     'label': '已封存档案',
                     'type': 'success',
-                    'showdialog': 'lb-openclassmodal',
-                    'actionoption': 'lessonclasses'
+                    'showdialog': 'lb-trash',
+                    'actionoption': 'studentlist'
                 },
             ]
         },

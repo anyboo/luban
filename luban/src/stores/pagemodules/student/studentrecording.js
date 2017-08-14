@@ -26,7 +26,7 @@ export default {
                 {
                     'label': ' 添加赛事记录',
                     'type': 'success',
-                    'showdialog': 'lb-selectstudenttpl',
+                    'showdialog': 'lb-regstudentmatchmodal',
                     'actionoption': 'studentrecording'
                 }
             ]
@@ -35,7 +35,7 @@ export default {
     'pageTableField': [
         {
             'type': 'studentlink',
-            'label': '操作',
+            'label': '学员',
             'prop': 'student'
         },
         {
@@ -59,9 +59,9 @@ export default {
             'prop': '2017-06-06',
         },
         {
-            'type': 'recordingSetting',
-            'label': '操作',
-        }
+            'type': 'operation',
+            'label': '操作'
+        },
     ],
     'pageTable': 'recording',
     'pageTemplate': 'table1',

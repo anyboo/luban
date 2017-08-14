@@ -10,15 +10,7 @@ export default {
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
-            'span': 12,
             'fields': [
-                {
-                    'labels': [
-                        { 'label': '班课学员' },
-                        { 'label': '1对1学员' },
-                        { 'label': '课时包学员' }
-                    ]
-                },
                 {
                     'labels': [
                         { 'label': '已缴费' },
@@ -34,24 +26,12 @@ export default {
                 {}
             ]
         },
-        {
-            'type': 'classesSearch',
-            'fields': [
-                {}
-            ]
-        },
-        {
-            'type': 'singleBtnSearch',
-            'fields': [
-                {
-                    'label': '导出',
-                    'type': 'success',
-                    'icon':'upload2',
-                    'showdialog': '',
-                    'actionoption': ''
-                },
-            ]
-        },
+        // {
+        //     'type': 'classesSearch',
+        //     'fields': [
+        //         {}
+        //     ]
+        // },
     ],
     'pageTableField': [
         {

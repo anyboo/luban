@@ -23,14 +23,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <div class="input-group">
-                        <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly" v-model="studentname">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectstudenttpl')">
-                                <i class="taskbar-action-icon glyphicon glyphicon-user"></i>
-                            </button>
-                        </span>
-                    </div>
+                    <lb-selecteusersearch ></lb-selecteusersearch>
                 </el-col>
                 <el-col :span="getModuleSearchSpan('radioGroupSearch',6)" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -74,10 +67,7 @@
                             <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                         </template>
                         <template v-if="item.type=='lesson'">
-                            <p>
-                                <span class="label bg-danger">{{getButtongroupText(item.othertype,scope.row[item.lesson_type])}}</span>{{scope.row[item.lesson_name]}}
-                                <small class="label bg-info m-l">{{scope.row[item.lesson_no]}}</small>
-                            </p>
+                            <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
                         </template>
                         <template v-if="item.type=='getButtongroupText'">
                             {{getButtongroupText(item.othertype,scope.row[item.prop])}}
@@ -174,26 +164,10 @@
                             {{getToFixed(scope.row[item.prop])}}
                         </template>
                         <template v-if="item.type=='lessonpriceText'">
-                            <p>
-                                课程单价:{{getToFixed(scope.row[item.unit_price])}}元/次
-                            </p>
-                            <p>
-                                <label>课程售价:</label>
-                                <span class="label bg-info">{{getToFixed(scope.row[item.price])}}</span>元
-                            </p>
+                            <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
                         </template>
                         <template v-if="item.type=='contentText'">
-                            <p>
-                                <label>单次课时长:</label>
-                                <span class="label bg-info">{{scope.row[item.unit_hours]}}</span>时
-                            </p>
-                            <p>
-                                <label>课程包含:</label>
-                                <template v-if="scope.row[item.lesson_type]=='0'&&scope.row[item.price_model]=='0'">
-                                    <span class="label bg-info">{{scope.row[item.inc_times]}}</span>次
-                                </template>
-                                <span class="label bg-info">{{scope.row[item.inc_hours]}}</span>课时
-                            </p>
+                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                         </template>
                     </template>
                 </el-table-column>
@@ -356,20 +330,6 @@ export default {
                 return textTableInfo
             }
         },
-        getSelectStudentName() {
-            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
-                if (this.$store.state.envs.currDialogResult) {
-                    this.student_name = this.$store.state.envs.currDialogResult.student_name
-                    this.student_id = this.$store.state.envs.currDialogResult._id
-                    this.handleSearch()
-                } else {
-                    this.student_id = ''
-                    this.student_name = '学员'
-                    this.handleSearch()
-                }
-            }
-            return this.student_name
-        },
         getClassesData() {
             let classes = this.$store.state.models.models.classes.data
             return classes
@@ -470,7 +430,6 @@ export default {
                 })
             }
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
-                console.log('111111111', this.moduledata.tableSearch)
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
                     filterObj.push({

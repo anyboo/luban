@@ -16,15 +16,7 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
-            'span':12,
             'fields': [
-                {
-                    'labels': [
-                        { 'label': '今日' },
-                        { 'label': '本周' },
-                        { 'label': '本月' }
-                    ]
-                },
                 {
                     'labels': [
                         { 'label': '售前' },
@@ -46,8 +38,8 @@ export default {
                     'label': '跟踪回访登记',
                     'type': 'success',
                     'icon': 'edit',
-                    'showdialog': 'lb-selectstudenttpl',
-                    'actionoption': 'lessonsclasses'
+                    'showdialog': 'lb-addtrackmodal',
+                    'actionoption': 'studenttracksadd'
                 }
             ]
         },

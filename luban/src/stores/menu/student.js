@@ -174,7 +174,16 @@ export default {
         action: [{
             'text': '添加赛事记录',
             'action': 'studentrecording'
+        }],
+        dropDownMenu: [{
+            'url': 'lb-details',
+            'icon': 'fa fa-pencil',
+            'text': '查看详情'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
         }]
-    }
+    },
     ]
 }

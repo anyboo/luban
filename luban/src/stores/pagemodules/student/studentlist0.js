@@ -21,18 +21,11 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
-            'span':12,
             'fields': [
                 {
                     'labels': [
-                        { 'label': '今日' },
-                        { 'label': '本周' },
-                        { 'label': '本月' }
-                    ]
-                },
-                {
-                    'labels': [
-                        { 'label': '所有' },
+                        { 'label': '所有学员' },
+                        { 'label': '已归属' },
                         { 'label': '未归属' }
                     ]
                 }
