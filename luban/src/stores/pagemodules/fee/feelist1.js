@@ -15,6 +15,29 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
+            'searchfunction': function (form, vm) {
+                let filterObj = []
+                if (form && form.length == 2) {
+                    let startTime = vm.getDatetime(form[0])
+                    let endTime = vm.getDatetime(form[1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            endTime = vm.getDatetimeEndOf(form[1])
+                        }
+                        filterObj.push({
+                            'key': 'creattime',
+                            'value': startTime,
+                            'type': 'gt'
+                        })
+                        filterObj.push({
+                            'key': 'creattime',
+                            'value': endTime,
+                            'type': 'lt'
+                        })
+                    }
+                }
+                return filterObj
+            },
             'fields': [{}]
         },
         {
@@ -36,7 +59,7 @@ export default {
         {
             'type': 'tabletext',
             'label': '学员',
-            'table':'student',
+            'table': 'student',
             'prop': 'student_name'
         },
         {
@@ -47,7 +70,7 @@ export default {
         {
             'type': 'tabletext',
             'label': '课程/班级',
-            'table':'classes',
+            'table': 'classes',
             'prop': 'class_name'
         },
         {

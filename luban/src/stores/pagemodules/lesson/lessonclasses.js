@@ -32,6 +32,32 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
+            'groupSearchfun': function (form,key,vm) {
+                let filterObj = []
+                if (form[key] && form[key] == 2) {
+                    let startTime = vm.getDatetime(form[key][0])
+                    let endTime = vm.getDatetime(form[key][1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            endTime = vm.getDatetimeEndOf(form[key][1])
+                        }
+
+                        filterObj.push({
+                            'key': 'creattime',
+                            'value': startTime,
+                            'type': 'gt'
+                        })
+                        filterObj.push({
+                            'key': 'creattime',
+                            'value': endTime,
+                            'type': 'lt'
+                        })
+                    }
+                }
+
+                return filterObj
+            },
+            'key': 'daterange',
             'fields': [
                 {
                     'label': '已开课',
@@ -90,9 +116,9 @@ export default {
         },
         {
             'type': 'checkstatus',
-            'statutype':'openlessonsstatus',
+            'statutype': 'openlessonsstatus',
             'label': '状态',
-        },{
+        }, {
             'type': 'progress',
             'label': '招生情况',
             'order': 'order',

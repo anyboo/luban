@@ -12,6 +12,29 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
+            'searchfunction': function (form, vm) {
+                let filterObj = []
+                if (form && form.length == 2) {
+                    let startTime = vm.getDatetime(form[0])
+                    let endTime = vm.getDatetime(form[1])
+                    if (startTime > 0) {
+                        if (startTime == endTime) {
+                            endTime = vm.getDatetimeEndOf(form[1])
+                        }
+                        filterObj.push({
+                        'key': 'birthstr',
+                        'value': vm.getDateNumFormat(startTime),
+                        'type': 'gte'
+                    })
+                    filterObj.push({
+                        'key': 'birthstr',
+                        'value': vm.getDateNumFormat(endTime),
+                        'type': 'lte'
+                    })
+                    }
+                }
+                return filterObj
+            },
             'fields': [{}]
         }
     ],

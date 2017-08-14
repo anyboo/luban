@@ -269,6 +269,9 @@ export default {
         dateSearch() {
             return this.getModuleSearchInfo('dateSearch').length > 0
         },
+        dateSearchInfo() {
+            return this.getSearchFun('dateSearch')
+        },
         singleBtnSearch() {
             return this.getModuleSearchInfo('singleBtnSearch').length > 0
         },
@@ -315,6 +318,8 @@ export default {
                 this.handleSearch()
             } else if (typeof (val) == 'string' && this.module != '') {
                 this.moduledata = pagesmodule[val]
+                this.datevalue=''
+                this.radiovalue=''
                 this.handleSearch()
             }
         }
@@ -350,6 +355,19 @@ export default {
             }
             return searchInfo
         },
+        getSearchFun(Search) {
+            let searchfun = function () { }
+            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+                let searchdata = this.moduledata.pageSearch
+                if (searchdata) {
+                    for (let item of this.moduledata.pageSearch) {
+                        searchfun = item.searchfunction
+                        break
+                    }
+                }
+            }
+            return searchfun
+        },
         getEmployeeName(item) {
             let name = '未设定'
             if (item.employee && item.employee.length > 0) {
@@ -360,23 +378,10 @@ export default {
         handleSearch() {
             let filterObj = []
             let datetime = this.datevalue
-            if (datetime && datetime.length == 2) {
-                let startTime = this.getDatetime(datetime[0])
-                let endTime = this.getDatetime(datetime[1])
-                if (startTime > 0) {
-                    if (startTime == endTime) {
-                        endTime = this.getDatetimeEndOf(this.localdata.form.daterange[1])
-                    }
-                    filterObj.push({
-                        'key': 'daterange1',
-                        'value': startTime,
-                        'type': 'gte'
-                    })
-                    filterObj.push({
-                        'key': 'daterange1',
-                        'value': endTime,
-                        'type': 'lte'
-                    })
+            if (this.dateSearchInfo) {
+                let filterObjItem = this.dateSearchInfo(datetime, this)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
                 }
             }
             let search_value = this.textSearchValue
