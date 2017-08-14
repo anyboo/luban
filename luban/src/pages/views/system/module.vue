@@ -446,16 +446,6 @@ export default {
                 })
             }
         },
-        getOpen(item, value) {
-            let opentime = new Date()
-            if (value == 'close') {
-                return item.status == 2
-            } else if (value == 'open') {
-                return item.open_time < opentime.getTime()
-            } else {
-                return item.open_time > opentime.getTime()
-            }
-        },
         getPercentage(order, maxStudent) {
             let percentage = 100
             let ordercount = 0

@@ -26,6 +26,16 @@ export default {
     watch: {
     },
     methods: {
+        getOpen(item, value) {
+            let opentime = new Date()
+            if (value == 'close') {
+                return item.status == 2
+            } else if (value == 'open') {
+                return item.open_time < opentime.getTime()
+            } else {
+                return item.open_time > opentime.getTime()
+            }
+        },
         handleCheck(id) {
             this.$confirm('是否要核对?', '提示', {
                 confirmButtonText: '确定',
