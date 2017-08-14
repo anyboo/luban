@@ -20,10 +20,10 @@ export default {
             'type': 'singleBtnSearch',
             'fields': [
                 {
-                    'label': '请假登记',
+                    'label': '停课登记',
                     'type': 'success',
-                    'showdialog':'lb-selectstudenttpl',
-                    'actionoption':'hoursleaves'
+                    'showdialog':'lb-suspendshours',
+                    'actionoption':'hourssuspends'
                 }
             ]
         },

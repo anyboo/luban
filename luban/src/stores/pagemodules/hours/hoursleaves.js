@@ -22,7 +22,7 @@ export default {
                 {
                     'label': '请假登记',
                     'type': 'success',
-                    'showdialog':'lb-selectstudenttpl',
+                    'showdialog':'lb-leaveshours',
                     'actionoption':'hoursleaves'
                 }
             ]
