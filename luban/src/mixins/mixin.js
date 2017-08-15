@@ -495,7 +495,7 @@ export default {
 
         },
         getLookUp(obj, key) {
-            let result = ''
+            let result = null
             if (obj && obj.length > 0) {
                 if (key) {
                     result = obj[0][key]

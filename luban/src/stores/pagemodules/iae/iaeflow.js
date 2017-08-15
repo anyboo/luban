@@ -84,6 +84,7 @@ export default {
         {
             'type': 'getButtongroupText',
             'label': '类型',
+            'color': 'gray',
             'othertype': [{
                 'value': '',
                 'text': '所有'

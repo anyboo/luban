@@ -61,6 +61,7 @@ export default {
         {
             'type': 'getButtongroupText',
             'label': '类型',
+            'color': 'gray',
             'prop': 'order_type',
             'othertype': [{
                 'value': 1,
@@ -96,6 +97,7 @@ export default {
         {
             'type': 'getButtongroupText',
             'label': '付款情况',
+            'color': 'gray',
             'prop': 'pay_status',
             'othertype': [{
                 'value': -1,

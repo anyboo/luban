@@ -143,6 +143,7 @@ export default {
         {
             'type': 'getButtongroupText',
             'label': '付款情况',
+            'color': 'gray',
             'prop': 'pay_status',
             'othertype': [{
                 'value': -1,

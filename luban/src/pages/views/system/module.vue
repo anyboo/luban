@@ -10,7 +10,7 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :xs="8" :sm="6" :md="6" :lg="6"  v-if="dateSearch">
+                <el-col :xs="8" :sm="6" :md="6" :lg="6" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
                         </el-date-picker>
@@ -74,7 +74,7 @@
                             <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
                         </template>
                         <template v-if="item.type=='getButtongroupText'">
-                            {{getButtongroupText(item.othertype,scope.row[item.prop])}}
+                            <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='getdataPurpose'">
                             <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
@@ -105,6 +105,9 @@
                         <template v-if="item.type=='studentRouter'">
                             <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
                         </template>
+                        <template v-if="item.type=='studentRouter1'">
+                             <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
+                        </template>
                         <template v-if="item.type=='studentlink'">
                             <a @click="handleRouter($event,scope.row[item.prop])">
                                 <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
@@ -115,7 +118,7 @@
                         </template>
                         <template v-if="item.type=='operation'">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default"  class="btn btn-info btn-xs">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" class="btn btn-info btn-xs">
                                     <i class="fa fa-cog"></i>操作
                                     <span class="caret"></span>
                                 </lb-dropdown-button>

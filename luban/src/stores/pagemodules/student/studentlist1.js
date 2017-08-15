@@ -13,7 +13,13 @@ export default {
             'from': 'classes',
             'foreignField': 'course_id',
             'as': 'classes'
-        }
+        },
+         {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            }
     ],
     'pageSearch': [
         {
@@ -43,7 +49,7 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'studentRouter',
+            'type': 'studentRouter1',
             'label': '学员'
         },
         {
@@ -61,32 +67,38 @@ export default {
         {
             'type': 'constant',
             'label': '授课老师',
-            'prop': '张英乙',
+            'prop': '老师'
         },
         {
-            'type': 'constant',
+            'type': 'getButtongroupText',
             'label': '缴费状态',
-            'prop': '欠费:￥22.00',
+            'color': 'gray',
+            'prop': 'pay_status',
+            'othertype': [{
+                'value': 0,
+                'text': '未缴费'
+            }, {
+                'value':1,
+                'text': '部分缴费'
+            }, {
+                'value': 2,
+                'text': '已缴费'
+            }]
         },
         {
-            'type': 'constant',
+            'type': 'text',
             'label': '报读课次',
-            'prop': '4',
+            'prop': 'origin_times',
         },
         {
-            'type': 'constant',
+            'type': 'text',
             'label': '课次单价',
-            'prop': '￥16.50',
+            'prop': 'c_unit_price',
         },
         {
             'type': 'constant',
             'label': '剩余课次',
             'prop': '3',
-        },
-        {
-            'type': 'constant',
-            'label': '剩余金额',
-            'prop': '￥49.5',
         },
         {
             'type': 'getEmployeeName',

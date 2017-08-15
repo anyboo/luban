@@ -115,6 +115,7 @@ export default {
         {
             'type': 'getButtongroupText',
             'label': '类型',
+            'color': 'gray',
             'prop': 'track_type',
             'othertype': [{
                 'value': '0',
