@@ -22,7 +22,7 @@ export default {
         },
         {
             'type': 'singleBtnSearch',
-            'span': 4,
+            'span': 5,
             'fields': [
                 {
                     'label': '添加课程',

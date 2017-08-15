@@ -10,9 +10,10 @@ export default {
         menuTitle: '考勤',
         to: '/hours/attendance',
         menuIcon: 'fa fa-file-sound-o',
-        action: [{
-            'text': '考勤',
-            'action': 'hoursattendance'
+        dropDownMenu: [{
+            'url': 'lb-hoursattendance',
+            'icon': 'fa fa-pencil',
+            'text': '考勤'
         }]
     }, {
         menuTitle: '教师课耗',

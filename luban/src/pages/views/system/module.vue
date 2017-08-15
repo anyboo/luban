@@ -2,7 +2,7 @@
     <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
         <div class="search" v-if="getSearch">
             <el-row :gutter="12">
-                <el-col :span="6" v-if="textSearch">
+                <el-col :xs="8" :sm="8" :md="8" :lg="6" v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
                         <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
                             <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
@@ -10,7 +10,7 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="5" v-if="dateSearch">
+                <el-col :xs="8" :sm="6" :md="6" :lg="6"  v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
                         </el-date-picker>
@@ -25,7 +25,7 @@
                 <el-col :span="5" v-if="selectUserSearch">
                     <lb-selecteusersearch v-on:search="handleSearch"></lb-selecteusersearch>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('˚',6)" v-if="radioGroupSearch">
+                <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
                             <template v-for="(value,index) in item.labels">
@@ -41,7 +41,7 @@
                         </template>
                     </el-button-group>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('singleBtnSearch',3)" v-if="singleBtnSearch" class="pull-right">
+                <el-col :xs="6" :sm="6" :md="6" :lg="5" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
                             <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
@@ -112,7 +112,7 @@
                         </template>
                         <template v-if="item.type=='operation'">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" :drop-menu-data="getMenuOption" class="btn btn-info btn-xs">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default"  class="btn btn-info btn-xs">
                                     <i class="fa fa-cog"></i>操作
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
@@ -326,6 +326,7 @@ export default {
                 this.moduledata = pagesmodule[val]
                 this.datevalue = ''
                 this.radiovalue = ''
+                this.moduleTableData = ''
                 this.handleSearch()
             }
         }
@@ -462,6 +463,7 @@ export default {
             //     }
             // }
             console.log(filterObj)
+            console.log('-------------------')
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {

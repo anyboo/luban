@@ -229,7 +229,7 @@ export default {
                         message: '操作成功',
                         type: 'success'
                     })
-                    history.back()
+                    this.$store.commit('router', this.$store.state.system.routerback)
                 })
             }).catch(() => {
                 this.$message({

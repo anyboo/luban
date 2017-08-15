@@ -1,6 +1,6 @@
 export default {
     'pageName': 'hoursattendance',
-    'pageLable': '班级设置',
+    'pageLable': '考勤',
     'tableSearch': [
         {
             'localField': 'teacher_id',
@@ -26,7 +26,7 @@ export default {
                 {
                     'label': '老师姓名',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'employee.name'
                 }
             ]
@@ -36,6 +36,8 @@ export default {
         {
             'type': 'operation',
             'label': '操作',
+            'prop': 'setting',
+            'fields': []
         },
         {
             'type': 'text',
