@@ -1,17 +1,27 @@
 <template>
     <div>
         <template v-if="typeData.statutype=='openlessonsstatus'">
-            <small class="label bg-success" v-if="getOpen(lessonData,'open')">已开课</small>
+            <el-tag type="gray" v-if="getOpen(lessonData,'')">未开课</el-tag>
+            <el-tag type="success" v-if="getOpen(lessonData,'open')">已开课</el-tag>
+            <el-tag type="danger" v-if="getOpen(lessonData,'close')">已结课</el-tag>
+
+            <!-- <small class="label bg-success" v-if="getOpen(lessonData,'open')">已开课</small>
             <small class="label bg-red" v-if="getOpen(lessonData,'')">未开课</small>
-            <small class="label bg-blue" v-if="getOpen(lessonData,'close')">已结课</small>
+            <small class="label bg-blue" v-if="getOpen(lessonData,'close')">已结课</small> -->
         </template>
         <template v-if="typeData.statutype=='accountcheck'">
-            <span v-if="lessonData.check_status == '0'" class="badge bg-warning">未对账</span>
-            <span v-if="lessonData.check_status == '1'" class="badge bg-success">已对账</span>
+            <el-tag type="gray" v-if="lessonData.check_status == '0'">未对账</el-tag>
+            <el-tag type="success" v-if="lessonData.check_status == '1'" >已对账</el-tag>
+
+            <!-- <span v-if="lessonData.check_status == '0'" class="badge bg-warning">未对账</span>
+            <span v-if="lessonData.check_status == '1'" class="badge bg-success">已对账</span> -->
         </template>
         <template v-if="typeData.statutype=='checkAccount'">
-            <a v-if="lessonData.check_status== '0'" class="btn btn-xs btn-default" @click="handleCheck(lessonData._id)">核对</a>
-            <span v-if="lessonData.check_status == '1'" class="info bg-success">已核对</span>
+            <a v-if="lessonData.check_status== '0'" @click="handleCheck(lessonData._id)"><el-tag type="gray">核对</el-tag></a>
+            <el-tag type="danger" v-if="lessonData.check_status == '1'" >已核对</el-tag>
+
+            <!-- <a v-if="lessonData.check_status== '0'" class="btn btn-xs btn-default" @click="handleCheck(lessonData._id)">核对</a>
+            <span v-if="lessonData.check_status == '1'" class="info bg-success">已核对</span> -->
         </template>
     </div>
 </template>

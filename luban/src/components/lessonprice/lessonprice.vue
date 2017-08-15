@@ -5,7 +5,7 @@
         </p>
         <p>
             <label>课程售价:</label>
-            <span class="label bg-info">{{getToFixed(lessonData[typeData.price])}}</span>元
+            <el-tag type="primary">{{getToFixed(lessonData[typeData.price])}}</el-tag>元
         </p>
     </div>
 </template>

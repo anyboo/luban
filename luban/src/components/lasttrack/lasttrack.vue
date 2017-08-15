@@ -4,8 +4,8 @@
             <p class="text-muted">{{getLookUp(lessonData[typeData.prop], 'detail')}}</p>
             <p class="text-gray text-right">{{getLookUp(lessonData[typeData.prop], 'op_name')}}</p>
         </div>
-        <span v-else class="label bg-danger">
-            无跟踪记录
+        <span v-else>
+            <el-tag type="danger">无跟踪记录</el-tag>
         </span>
     </div>
 </template>
