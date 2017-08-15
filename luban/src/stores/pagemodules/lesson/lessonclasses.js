@@ -121,8 +121,6 @@ export default {
         }, {
             'type': 'progress',
             'label': '招生情况',
-            'order': 'order',
-            'max_student_num': 'max_student_num'
         },
         {
             'type': 'payconditions',
