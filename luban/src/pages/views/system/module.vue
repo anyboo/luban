@@ -122,7 +122,7 @@
                             </lb-dropdown>
                         </template>
                         <template v-if="item.type=='textScale'">
-                            {{scope.row[item.prop1].length}}/{{scope.row[item.prop2]}}
+                            {{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{scope.row[item.prop2]}}
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
@@ -329,7 +329,6 @@ export default {
                 this.moduledata = pagesmodule[val]
                 this.datevalue = ''
                 this.radiovalue = ''
-                this.moduleTableData = ''
                 this.handleSearch()
             }
         }
