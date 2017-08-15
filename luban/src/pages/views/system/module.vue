@@ -96,6 +96,9 @@
                         <template v-if="item.type=='text'">
                             {{ scope.row[item.prop] }}
                         </template>
+                        <template v-if="item.type=='textphone'">
+                            {{ scope.row.student[0].first_tel }}
+                        </template>
                         <template v-if="item.type=='fromNow'">
                             {{ fromNow(scope.row.birth) }}
                         </template>
