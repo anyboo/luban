@@ -202,8 +202,8 @@
     height: 0px;
 }
 
-.el-select .el-input {
-    width: 90;
+.search .el-select .el-input {
+    width: 100;
 }
 </style>
 <script>
