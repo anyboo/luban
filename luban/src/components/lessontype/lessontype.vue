@@ -1,8 +1,9 @@
 <template>
     <div>
         <p>
-            <span class="label bg-danger">{{getButtongroupText(typeData.othertype,lessonData[typeData.lesson_type])}}</span>{{lessonData[typeData.lesson_name]}}
-            <small class="label bg-info m-l">{{lessonData[typeData.lesson_no]}}</small>
+            {{lessonData[typeData.lesson_name]}}
+            <el-tag type="success">{{lessonData[typeData.lesson_no]}}</el-tag>
+            <el-tag type="danger">{{getButtongroupText(typeData.othertype,lessonData[typeData.lesson_type])}}</el-tag>
         </p>
     </div>
 </template>

@@ -99,16 +99,7 @@ export default {
             'type': 'constant',
             'label': '剩余课次',
             'prop': '3',
-        },
-        {
-            'type': 'getEmployeeName',
-            'label': '学员归属',
-        },
-        {
-            'type': 'datetime',
-            'label': '建档日期',
-            'prop': 'creattime'
-        },
+        }
     ],
     'pageTable': 'order',
     'pageTemplate': 'table1',

@@ -77,12 +77,13 @@
                             <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='getdataPurpose'">
-                            <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
+                            <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
+                            <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
                                 {{ getdataPurpose(scope.row[item.prop])}}
-                            </span>
+                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
-                            <span class="" :class="{'bg-info':getEmployeeName(scope.row)!='未设定','bg-gray':getEmployeeName(scope.row)=='未设定'}">{{ getEmployeeName(scope.row) }}</span>
+                            <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
                         </template>
                         <template v-if="item.type=='studenttracksadd'">
                             <lb-studenttracksadd :lessonData="scope.row" :typeData="item"></lb-studenttracksadd>
@@ -143,7 +144,7 @@
                             <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
                         </template>
                         <template v-if="item.type=='getToFixed'">
-                            {{getToFixed(scope.row[item.prop])}}
+                            <el-tag type="gray">{{getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='lessonpriceText'">
                             <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
