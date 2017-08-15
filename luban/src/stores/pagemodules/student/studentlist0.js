@@ -17,7 +17,7 @@ export default {
     'pageSearch': [
         {
             'type': 'dateSearch',
-            'searchfunction': function (form,vm) {
+            'searchfunction': function (form, vm) {
                 let filterObj = []
                 if (form && form.length == 2) {
                     let startTime = vm.getDatetime(form[0])
@@ -44,13 +44,25 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
-            '':'',
+            'searchfunction': function (form) {
+                console.log('js', form)
+                let filterObj = []
+                let status = form + ''
+                if (status == '1') {
+                    filterObj.push({
+                        'key': 'region_oe_id',
+                        'value': '0',
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
                 {
                     'labels': [
                         { 'label': '所有学员' },
-                        { 'label': '已归属' },
-                        { 'label': '未归属' }
+                        { 'label': '未归属' },
+
                     ]
                 }
             ]

@@ -58,6 +58,10 @@ export default {
     ],
     'pageTableField': [
         {
+            'type': 'operation',
+            'label': '操作'
+        },
+        {
             'type': 'studentlink',
             'label': '学员',
             'prop': 'student'
@@ -81,11 +85,7 @@ export default {
             'type': 'constant',
             'label': '录入时间',
             'prop': '2017-06-06',
-        },
-        {
-            'type': 'operation',
-            'label': '操作'
-        },
+        }
     ],
     'pageTable': 'recording',
     'pageTemplate': 'table1',

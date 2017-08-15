@@ -25,7 +25,7 @@
                 <el-col :span="5" v-if="selectUserSearch">
                     <lb-selecteusersearch v-on:search="handleSearch"></lb-selecteusersearch>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('radioGroupSearch',6)" v-if="radioGroupSearch">
+                <el-col :span="getModuleSearchSpan('˚',6)" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
                             <template v-for="(value,index) in item.labels">
@@ -117,6 +117,9 @@
                                     <span class="caret"></span>
                                 </lb-dropdown-button>
                             </lb-dropdown>
+                        </template>
+                        <template v-if="item.type=='textScale'">
+                            {{scope.row[item.prop1].length}}/{{scope.row[item.prop2]}}
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
@@ -290,6 +293,9 @@ export default {
         radioGroupSearchInfo() {
             return this.getModuleSearchInfo('radioGroupSearch')
         },
+        radioGroupSearchFun() {
+            return this.getSearchFun('radioGroupSearch')
+        },
         selectUserSearch() {
             return this.getModuleSearchInfo('selectUserSearch').length > 0
         },
@@ -318,8 +324,8 @@ export default {
                 this.handleSearch()
             } else if (typeof (val) == 'string' && this.module != '') {
                 this.moduledata = pagesmodule[val]
-                this.datevalue=''
-                this.radiovalue=''
+                this.datevalue = ''
+                this.radiovalue = ''
                 this.handleSearch()
             }
         }
@@ -345,7 +351,7 @@ export default {
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
-                    for (let item of this.moduledata.pageSearch) {
+                    for (let item of searchdata) {
                         if (item.type == Search) {
                             searchInfo = item.fields
                             break
@@ -356,13 +362,17 @@ export default {
             return searchInfo
         },
         getSearchFun(Search) {
-            let searchfun = function () { }
+            let searchfun
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
-                    for (let item of this.moduledata.pageSearch) {
-                        searchfun = item.searchfunction
-                        break
+                    for (let item of searchdata) {
+                        if (item.type == Search) {
+                            if (item.searchfunction) {
+                                searchfun = item.searchfunction
+                                break
+                            }
+                        }
                     }
                 }
             }
@@ -384,11 +394,19 @@ export default {
                     filterObj.push(item)
                 }
             }
-            let search_value = this.textSearchValue
-            if (search_value.length > 0) {
+            let radiosearch_value = this.radiovalue
+            if (this.radioGroupSearchFun) {
+                let filterObjItem = this.radioGroupSearchFun(radiosearch_value)
+                console.log('function', filterObjItem)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
+                }
+            }
+            let textsearch_value = this.textSearchValue
+            if (textsearch_value.length > 0) {
                 filterObj.push({
                     'key': this.textSearchKey,
-                    'value': search_value,
+                    'value': textsearch_value,
                     'type': 'like'
                 })
             }
@@ -417,32 +435,33 @@ export default {
                     })
                 }
             }
-            this.radiovalue += ''
-            let status = this.radiovalue.trim()
-            if (status.length > 0) {
-                let opentime = new Date()
-                if (status == '0') {
-                    filterObj.push({
-                        'key': 'open_time',
-                        'value': opentime.getTime(),
-                        'type': 'lte'
-                    })
-                }
-                if (status == '1') {
-                    filterObj.push({
-                        'key': 'open_time',
-                        'value': opentime.getTime(),
-                        'type': 'gt'
-                    })
-                }
-                if (status == '2') {
-                    filterObj.push({
-                        'key': 'status',
-                        'value': 2,
-                        'type': ''
-                    })
-                }
-            }
+            // this.radiovalue += ''
+            // let status = this.radiovalue.trim()
+            // if (status.length > 0) {
+            //     let opentime = new Date()
+            //     if (status == '0') {
+            //         filterObj.push({
+            //             'key': 'open_time',
+            //             'value': opentime.getTime(),
+            //             'type': 'lte'
+            //         })
+            //     }
+            //     if (status == '1') {
+            //         filterObj.push({
+            //             'key': 'open_time',
+            //             'value': opentime.getTime(),
+            //             'type': 'gt'
+            //         })
+            //     }
+            //     if (status == '2') {
+            //         filterObj.push({
+            //             'key': 'status',
+            //             'value': 2,
+            //             'type': ''
+            //         })
+            //     }
+            // }
+            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {

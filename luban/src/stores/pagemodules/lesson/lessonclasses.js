@@ -32,44 +32,44 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
-            'groupSearchfun': function (form,key,vm) {
+            'searchfunction': function (form) {
+                console.log('js', form)
                 let filterObj = []
-                if (form[key] && form[key] == 2) {
-                    let startTime = vm.getDatetime(form[key][0])
-                    let endTime = vm.getDatetime(form[key][1])
-                    if (startTime > 0) {
-                        if (startTime == endTime) {
-                            endTime = vm.getDatetimeEndOf(form[key][1])
-                        }
-
+                let status = form + ''
+                if (status.length > 0) {
+                    let opentime = new Date()
+                    if (status == '0') {
                         filterObj.push({
-                            'key': 'creattime',
-                            'value': startTime,
+                            'key': 'open_time',
+                            'value': opentime.getTime(),
+                            'type': 'lte'
+                        })
+                    }
+                    if (status == '1') {
+                        filterObj.push({
+                            'key': 'open_time',
+                            'value': opentime.getTime(),
                             'type': 'gt'
                         })
+                    }
+                    if (status == '2') {
                         filterObj.push({
-                            'key': 'creattime',
-                            'value': endTime,
-                            'type': 'lt'
+                            'key': 'status',
+                            'value': 2,
+                            'type': ''
                         })
                     }
                 }
-
                 return filterObj
             },
-            'key': 'daterange',
             'fields': [
                 {
-                    'label': '已开课',
-                    'icon': ''
-                },
-                {
-                    'label': '未开课',
-                    'icon': ''
-                },
-                {
-                    'label': '已结课',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '已开课' },
+                        { 'label': '未开课' },
+                        { 'label': '已结课' },
+
+                    ]
                 }
             ]
         },

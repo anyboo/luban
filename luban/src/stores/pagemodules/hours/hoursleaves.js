@@ -31,6 +31,7 @@ export default {
                     })
                     }
                 }
+                console.log('22222', filterObj)
                 return filterObj
             },
             'fields': [{} ]

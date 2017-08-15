@@ -39,6 +39,20 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
+            'searchfunction': function (form) {
+                console.log('js',form)
+                let filterObj = []
+                let status = form+''
+                if (status.length>0) {
+                    filterObj.push({
+                        'key': 'track_type',
+                        'value': status,
+                        'type': ''
+                    })
+                }
+                console.log(filterObj)
+                return filterObj
+            },
             'fields': [
                 {
                     'labels': [
