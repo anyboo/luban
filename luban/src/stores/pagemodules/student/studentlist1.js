@@ -1,12 +1,20 @@
 export default {
     'pageName': 'studentlist1',
     'pageLable': '在读学员',
-    'tableSearch': [{
-        'localField': 'region_oe_id',
-        'from': 'employee',
-        'foreignField': '_id',
-        'as': 'employee'
-    }],
+    'tableSearch': [
+        {
+            'localField': 'student_id',
+            'from': 'student',
+            'foreignField': '_id',
+            'as': 'student'
+        },
+        {
+            'localField': 'course_id',
+            'from': 'classes',
+            'foreignField': 'course_id',
+            'as': 'classes'
+        }
+    ],
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
@@ -39,14 +47,16 @@ export default {
             'label': '学员'
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '联系电话',
-            'prop': 'first_tel',
+            'table':'student',
+            'prop': 'first_tel'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '所在班级',
-            'prop': '班级一班',
+            'table':'classes',
+            'prop': 'class_name'
         },
         {
             'type': 'constant',
@@ -88,7 +98,7 @@ export default {
             'prop': 'creattime'
         },
     ],
-    'pageTable': 'student',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

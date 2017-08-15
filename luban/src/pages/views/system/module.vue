@@ -25,7 +25,7 @@
                 <el-col :span="5" v-if="selectUserSearch">
                     <lb-selecteusersearch v-on:search="handleSearch"></lb-selecteusersearch>
                 </el-col>
-                <el-col :span="getModuleSearchSpan('˚',6)" v-if="radioGroupSearch">
+                <el-col :span="getModuleSearchSpan('radioGroupSearch',6)" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
                             <template v-for="(value,index) in item.labels">
@@ -95,6 +95,9 @@
                         </template>
                         <template v-if="item.type=='text'">
                             {{ scope.row[item.prop] }}
+                        </template>
+                        <template v-if="item.type=='textphone'">
+                            {{ scope.row.student[0].first_tel }}
                         </template>
                         <template v-if="item.type=='fromNow'">
                             {{ fromNow(scope.row.birth) }}
