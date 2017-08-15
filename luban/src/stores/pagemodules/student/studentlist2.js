@@ -1,12 +1,14 @@
 export default {
     'pageName': 'studentlist2',
     'pageLable': '在读学员',
-    'tableSearch': [{
-        'localField': 'region_oe_id',
-        'from': 'employee',
-        'foreignField': '_id',
-        'as': 'employee'
-    }],
+    'tableSearch': [
+        {
+            'localField': 'student_id',
+            'from': 'student',
+            'foreignField': '_id',
+            'as': 'student'
+        },
+    ],
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
@@ -35,38 +37,40 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'studentRouter',
+            'type': 'studentRouter1',
             'label': '学员'
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '联系电话',
-            'prop': 'first_tel',
+            'table':'student',
+            'prop': 'first_tel'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '所在班级',
-            'prop': '班级一班',
+            'table':'classes',
+            'prop': 'class_name'
         },
         {
             'type': 'constant',
             'label': '授课老师',
-            'prop': '张英乙',
+            'prop': '老师'
         },
         {
-            'type': 'constant',
+            'type': 'datetime',
             'label': '报班日期',
-            'prop': '2017-05-13',
+            'prop': 'creattime',
         },
-         {
+        {
             'type': 'constant',
             'label': '结课日期',
             'prop': '2017-05-15',
         },
-        {
-            'type': 'constant',
+       {
+            'type': 'text',
             'label': '报读课次',
-            'prop': '4',
+            'prop': 'origin_times',
         },
         {
             'type': 'constant',
@@ -74,12 +78,23 @@ export default {
             'prop': '1',
         },
         {
-            'type': 'constant',
+            'type': 'getButtongroupText',
             'label': '缴费状态',
-            'prop': '已缴清',
-        },
+            'color': 'gray',
+            'prop': 'pay_status',
+            'othertype': [{
+                'value': 0,
+                'text': '未缴费'
+            }, {
+                'value':1,
+                'text': '部分缴费'
+            }, {
+                'value': 2,
+                'text': '已缴费'
+            }]
+        }
     ],
-    'pageTable': 'student',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': ''
 }
