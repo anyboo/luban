@@ -126,7 +126,7 @@
                             </lb-dropdown>
                         </template>
                         <template v-if="item.type=='textScale'">
-                            {{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{scope.row[item.prop2]}}
+                            <el-tag type="warning">{{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{scope.row[item.prop2]}}</el-tag>
                         </template>
                         <template v-if="item.type=='textTag'">
                             <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
@@ -135,10 +135,11 @@
                             <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='payconditions'">
-                            ￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}
+                            <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag>
                         </template>
                         <template v-if="item.type=='progress'">
-                            <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row[item.order],scope.row[item.max_student_num])" :text="getPressageText(scope.row)"></lb-progress>
+                            <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
+                            <!-- <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row[item.order],scope.row[item.max_student_num])" :text="getPressageText(scope.row)"></lb-progress> -->
                         </template>
                         <template v-if="item.type=='priceText'">
                             <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
