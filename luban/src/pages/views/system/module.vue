@@ -400,7 +400,6 @@ export default {
             let radiosearch_value = this.radiovalue
             if (this.radioGroupSearchFun) {
                 let filterObjItem = this.radioGroupSearchFun(radiosearch_value)
-                console.log('function', filterObjItem)
                 for (let item of filterObjItem) {
                     filterObj.push(item)
                 }
@@ -438,34 +437,6 @@ export default {
                     })
                 }
             }
-            // this.radiovalue += ''
-            // let status = this.radiovalue.trim()
-            // if (status.length > 0) {
-            //     let opentime = new Date()
-            //     if (status == '0') {
-            //         filterObj.push({
-            //             'key': 'open_time',
-            //             'value': opentime.getTime(),
-            //             'type': 'lte'
-            //         })
-            //     }
-            //     if (status == '1') {
-            //         filterObj.push({
-            //             'key': 'open_time',
-            //             'value': opentime.getTime(),
-            //             'type': 'gt'
-            //         })
-            //     }
-            //     if (status == '2') {
-            //         filterObj.push({
-            //             'key': 'status',
-            //             'value': 2,
-            //             'type': ''
-            //         })
-            //     }
-            // }
-            console.log(filterObj)
-            console.log('-------------------')
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
