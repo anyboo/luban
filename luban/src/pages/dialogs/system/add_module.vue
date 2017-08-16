@@ -67,11 +67,14 @@ export default {
                 'chargemodule': '',
                 'relations': [],
                 'relationsIndex':0,
+                'priced':0
+               
             }
         }
         return {
             localdata,
             model: 'charge',
+            priced:'',
             title: '创建',
              rote: {},
             options: [{

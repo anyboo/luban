@@ -6,11 +6,11 @@ const state = {
     face: '',
     birth: '',
     login: false,
-    roles:[],
+    roles: [],
     theme: 'rgba(208, 150, 21, 0.8)',
     routerback: '',
     router: '',
-    currStudentID:''
+    currStudentID: '',
 }
 const getters = {}
 const actions = {}
@@ -30,7 +30,7 @@ const mutations = {
     },
     router: (state, obj) => {
         console.log(obj)
-        state.routerback =  state.router
+        state.routerback = state.router
         state.router = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
@@ -43,7 +43,7 @@ const mutations = {
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
-        state.routerback =  obj.routerback
+        state.routerback = obj.routerback
         state.currStudentID = obj.currStudentID
         state.router = obj.router
         state.wallpaper = obj.wallpaper

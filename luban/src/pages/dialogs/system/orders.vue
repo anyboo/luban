@@ -1,0 +1,74 @@
+<template>
+  <div>
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" @click="lbClosedialog($event)">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">关闭</span>
+          </button>
+          <h3 class="modal-title">
+            <i class="fa fa-flag-checkered"></i>我的订单</h3>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover table-striped table-border m-t" style="margin-top:0px;">
+            <thead>
+              <tr>
+                <th>商品</th>
+                <th>金额</th>
+              </tr>
+            </thead>
+            <template v-for="item in getTablesData()">
+              <tbody class="ng-scope">
+                <tr class="ng-scope">
+                  <td class="ng-binding">gg</td>
+                   <td class="ng-binding">dd</td>
+                  <td>
+                    <a class="btn btn-danger btn-xs" >
+                      <i class="icon-ban"></i> 删除</a>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning m-l-xs" @click="lbClosedialog($event)">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'newsclass',
+
+  data() {
+    let localdata = {
+      'form': {
+      },
+      'lookup': {
+      },
+    }
+    return {
+      localdata,
+      tables: ['oder'],
+    }
+  },
+  mounted() {
+  },
+  computed: {},
+  watch: {},
+  methods: { 
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+

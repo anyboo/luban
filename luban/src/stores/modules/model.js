@@ -77,6 +77,9 @@ const state = {
         },
         cart: {
             data: []
+        },
+        oder: {
+            data: []
         }
 
 

@@ -43,6 +43,7 @@ import page75 from '~/pages/dialogs/hours/suspendshours.vue'
 import page76 from '~/pages/dialogs/hours/attendance.vue'
 import page13 from '~/pages/dialogs/lesson/PrintOrder.vue'
 import page79 from '~/pages/dialogs/system/module.vue'
+import page80 from '~/pages/dialogs/system/orders.vue'
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -90,6 +91,7 @@ pages['lb-printerreceipt'] = page66
 pages['lb-printerorder'] = page13
 pages['lb-addmodule'] = page78
 pages['lb-cart'] = page70
+pages['lb-orders'] = page80
 
 
 export default pages

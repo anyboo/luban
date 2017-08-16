@@ -28,7 +28,7 @@
         <div class="wrapper b-a r-5x bg-white box-shadow m-t">
             <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'lb-cart')">
                 <i class="icon-basket"></i> 购物车</button>
-            <button class="btn btn-default pull-right m-r">
+            <button class="btn btn-default pull-right m-r" @click="lbShowdialog($event,'lb-orders')">
                 <i class="fa fa-book"></i> 我的订单</button>
             <h4>
                 <i class="fa fa-th-large"></i> luban功能选择:
@@ -82,12 +82,16 @@ export default {
             'form': {
                 'charge_id':'',
                 'chargePriceIndex':'',
+                'priced':''
+               
             }
         }
         return {
             tables: ['charge'],
             model: 'cart',
             localdata,
+            priced:''
+           
         }
     },
     computed: {

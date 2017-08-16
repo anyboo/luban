@@ -202,7 +202,7 @@ export default {
             this.handleSave().then(() => {
                 this.$message({
                     message: '操作成功',
-                    type: 'success'
+                    type: 'success' 
                 })
                 this.$store.state.system.birth = this.localdata.form.birth
                 this.$store.state.system.name = this.localdata.form.name
