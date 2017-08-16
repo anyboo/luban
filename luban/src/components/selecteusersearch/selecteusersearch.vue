@@ -14,12 +14,16 @@ export default {
     props: ['value'],
     data() {
         return {
-            studentname: '学员'
+            studentname: '学员',
+            student_id: ''
         }
     },
     watch: {
-        value:function() {
-            this.studentname = ''
+        value: function (val) {
+            if (val == '') {
+                this.studentname = '学员'
+            }
+            this.student_id = val
         }
     },
     methods: {
@@ -27,14 +31,18 @@ export default {
     computed: {
         getSelectStudentName() {
             if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                let student_tempid = ''
                 if (this.$store.state.envs.currDialogResult) {
                     this.studentname = this.$store.state.envs.currDialogResult.student_name
-                    this.student_id = this.$store.state.envs.currDialogResult._id
-                    this.$emit('input', this.student_id)
+                    student_tempid = this.$store.state.envs.currDialogResult._id
                 } else {
-                    this.student_id = ''
+                    student_tempid = ''
                     this.studentname = '学员'
-                    this.$emit('input', this.student_id)
+                }
+                this.$store.state.envs.currDialog = ''
+                if (this.student_id != student_tempid) {
+                    this.student_id = student_tempid
+                    this.$emit('input', student_tempid)
                 }
             }
             return this.studentname

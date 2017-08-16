@@ -23,7 +23,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch v-on:input="handleSearch" v-model="student_id"></lb-selecteusersearch>
+                    <lb-selecteusersearch @input="handleSearch" v-model="student_id"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -333,6 +333,7 @@ export default {
                 this.datevalue = ''
                 this.radiovalue = ''
                 this.student_id = ''
+                console.log(this.student_id)
                 this.handleSearch()
             }
         }
@@ -393,6 +394,7 @@ export default {
             return name
         },
         handleSearch() {
+            console.log('handleSearch')
             let filterObj = []
             let datetime = this.datevalue
             if (this.dateSearchInfo) {
@@ -431,6 +433,7 @@ export default {
                     'type': ''
                 })
             }
+            console.log('----',student_id)
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
@@ -445,7 +448,7 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
-                    console.log(this.moduledata.pageTable, this.moduleTableData)
+                    //console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
         },
