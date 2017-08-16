@@ -4,6 +4,15 @@ export default {
     // menuShow: 0,
     menu: [{
         menuTitle: '排课',
+        to: '/hours/lessons',
+        menuIcon: 'fa fa-file-sound-o',
+        dropDownMenu: [{
+            'url': 'lb-lessons',
+            'icon': 'fa fa-pencil',
+            'text': '排课'
+        }]
+    },{
+        menuTitle: '课程表',
         to: '/hours/arrange',
         menuIcon: 'fa fa-file',
     }, {
