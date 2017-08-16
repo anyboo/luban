@@ -12,7 +12,25 @@ export default {
         'foreignField': 'class_id',
         'as': 'order'
     }],
-    'pageSearch': [],
+    'pageSearch': [
+        {
+            'type': 'textSearch',
+            'fields': [
+                {
+                    'label': '班级名',
+                    'defvalue': '',
+                    'default': true,
+                    'value': 'class_name'
+                },
+                {
+                    'label': '老师姓名',
+                    'defvalue': '',
+                    'default': true,
+                    'value': 'employee.name'
+                }
+            ]
+        }
+    ],
     'pageTableField': [
         {
             'type': 'operation',
@@ -37,9 +55,10 @@ export default {
             'prop': 'lesson_name',
         },
         {
-            'type': 'constant',
-            'label': ' 授课次数',
-            'prop': '5/10',
+            'type': 'textScale',
+            'label': ' 排课次数',
+            'prop1': 'total_times',
+            'prop2': 'total_times',
         }
     ],
     'pageTable': 'classes',
