@@ -12,12 +12,24 @@ export default {
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let search_value = form+''
+                if (search_value.length>0) {
+                    filterObj.push({
+                        'key': 'pay_status',
+                        'value': Number(search_value),
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
                 {
                     'labels': [
-                        { 'label': '已缴费' },
-                        { 'label': '部分缴费' },
                         { 'label': '未缴费' },
+                        { 'label': '部分缴费' },
+                        { 'label': '已缴费' },
                     ]
                 }
             ]

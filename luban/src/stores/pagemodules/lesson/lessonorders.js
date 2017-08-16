@@ -27,22 +27,25 @@ export default {
         },
         {
             'type': 'radioGroupSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let search_value = form+''
+                if (search_value.length>0) {
+                    filterObj.push({
+                        'key': 'pay_status',
+                        'value': Number(search_value),
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
                 {
-                    'label': '所有',
-                    'icon': ''
-                },
-                {
-                    'label': '未付款',
-                    'icon': ''
-                },
-                {
-                    'label': '部分付款',
-                    'icon': ''
-                },
-                {
-                    'label': '已付款',
-                    'icon': ''
+                    'labels': [
+                        { 'label': '未缴费' },
+                        { 'label': '部分缴费' },
+                        { 'label': '已缴费' },
+                    ]
                 }
             ]
         }
@@ -104,13 +107,13 @@ export default {
                 'text': '所有'
             }, {
                 'value': 0,
-                'text': '未付款'
+                'text': '未缴费'
             }, {
                 'value': 1,
-                'text': '部分付款'
+                'text': '部分缴费'
             }, {
                 'value': 2,
-                'text': '已付款'
+                'text': '已缴费'
             }]
         },
         {

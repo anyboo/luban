@@ -14,22 +14,34 @@ export default {
             'foreignField': 'course_id',
             'as': 'classes'
         },
-         {
-                'localField': 'teacher_id',
-                'from': 'employee',
-                'foreignField': '_id',
-                'as': 'employee'
-            }
+        {
+            'localField': 'teacher_id',
+            'from': 'employee',
+            'foreignField': '_id',
+            'as': 'employee'
+        }
     ],
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let search_value = form+''
+                if (search_value.length>0) {
+                    filterObj.push({
+                        'key': 'pay_status',
+                        'value': Number(search_value),
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
                 {
                     'labels': [
-                        { 'label': '已缴费' },
-                        { 'label': '部分缴费' },
                         { 'label': '未缴费' },
+                        { 'label': '部分缴费' },
+                        { 'label': '已缴费' },
                     ]
                 }
             ]
@@ -55,13 +67,13 @@ export default {
         {
             'type': 'tabletext',
             'label': '联系电话',
-            'table':'student',
+            'table': 'student',
             'prop': 'first_tel'
         },
         {
             'type': 'tabletext',
             'label': '所在班级',
-            'table':'classes',
+            'table': 'classes',
             'prop': 'class_name'
         },
         {
@@ -78,7 +90,7 @@ export default {
                 'value': 0,
                 'text': '未缴费'
             }, {
-                'value':1,
+                'value': 1,
                 'text': '部分缴费'
             }, {
                 'value': 2,
