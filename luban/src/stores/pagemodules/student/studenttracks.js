@@ -93,7 +93,7 @@ export default {
             'prop': '已报读',
         },
         {
-            'type': 'content',
+            'type': 'text',
             'label': '沟通内容',
             'prop': 'detail',
         },
