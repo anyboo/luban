@@ -1,6 +1,6 @@
 <template>
     <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
-        <div class="search" v-if="getSearch">
+        <div class="search" v-if="getSearch" >
             <el-row :gutter="12">
                 <el-col :xs="8" :sm="8" :md="8" :lg="6" v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
@@ -50,7 +50,7 @@
                 </el-col>
             </el-row>
         </div>
-        <el-table :data="moduleTableData" stripe border>
+        <el-table :data="moduleTableData" stripe border :class="getUpdata">
             <template v-for="item in textTableInfo">
                 <el-table-column :label="item.label">
                     <template scope="scope">
@@ -79,8 +79,8 @@
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                        {{ getdataPurpose(scope.row[item.prop])}}
-                                    </span> -->
+                                            {{ getdataPurpose(scope.row[item.prop])}}
+                                        </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -222,6 +222,7 @@ export default {
             studentname: '',
             student_id: '',
             classesId: '',
+            lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry','lb-recording','lb-newsclass','lb-lesson','lb-openclass','lb-leaveshours','lb-suspendshours','lb-flow','lb-unpay_clear','lb-attendance'],
             hastableSearch: false,
             pickerOptions: {
                 shortcuts: [{
@@ -261,6 +262,11 @@ export default {
         }
     },
     computed: {
+        getUpdata() {
+             if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog)!= '-1') {
+                this.handleSearch()
+            }
+        },
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
@@ -394,7 +400,6 @@ export default {
             return name
         },
         handleSearch() {
-            console.log('handleSearch')
             let filterObj = []
             let datetime = this.datevalue
             if (this.dateSearchInfo) {
@@ -433,7 +438,6 @@ export default {
                     'type': ''
                 })
             }
-            console.log('----',student_id)
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
