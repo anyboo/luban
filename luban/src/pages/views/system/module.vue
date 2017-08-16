@@ -23,7 +23,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch v-on:search="handleSearch"></lb-selecteusersearch>
+                    <lb-selecteusersearch v-on:input="handleSearch" v-model="student_id"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -79,8 +79,8 @@
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                {{ getdataPurpose(scope.row[item.prop])}}
-                            </span> -->
+                                        {{ getdataPurpose(scope.row[item.prop])}}
+                                    </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -107,7 +107,7 @@
                             <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentRouter1'">
-                             <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
+                            <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentlink'">
                             <a @click="handleRouter($event,scope.row[item.prop])">
@@ -139,7 +139,6 @@
                         </template>
                         <template v-if="item.type=='progress'">
                             <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
-                            <!-- <lb-progress :text-inside="true" :stroke-width="18" :percentage="getPercentage(scope.row[item.order],scope.row[item.max_student_num])" :text="getPressageText(scope.row)"></lb-progress> -->
                         </template>
                         <template v-if="item.type=='priceText'">
                             <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
@@ -260,7 +259,6 @@ export default {
         } else if (typeof (this.module) == 'string' && this.module != '') {
             this.moduledata = pagesmodule[this.module]
         }
-
     },
     computed: {
         getSearch() {
@@ -334,6 +332,7 @@ export default {
                 this.moduledata = pagesmodule[val]
                 this.datevalue = ''
                 this.radiovalue = ''
+                this.student_id = ''
                 this.handleSearch()
             }
         }
