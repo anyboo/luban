@@ -3,7 +3,7 @@
         <el-form-item label="姓名" prop="student_name">
             <el-input v-model="localdata.form.student_name" style="width:120px;" placeholder="请输入学员姓名"></el-input>
             <el-radio-group v-model="localdata.form.sex">
-                <template v-for="way in localdata.sex">
+                <template v-for="sex in localdata.sex">
                     <el-radio-button :label="sex.value">{{sex.text}}</el-radio-button>
                 </template>
             </el-radio-group>
