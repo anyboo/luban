@@ -4,6 +4,7 @@ import lessonclasses from './pagemodules/lesson/lessonclasses'
 import lessonorders from './pagemodules/lesson/lessonorders'
 import hoursleaves from './pagemodules/hours/hoursleaves'
 import hourssuspends from './pagemodules/hours/hourssuspends'
+import hourslessons from './pagemodules/hours/hourslessons'
 import hoursattendance from './pagemodules/hours/hoursattendance'
 import feelist1 from './pagemodules/fee/feelist1'
 import feelist3 from './pagemodules/fee/feelist3'
@@ -25,6 +26,7 @@ pages['lessonmanage'] = lessonmanage
 pages['lessonclasses'] = lessonclasses
 pages['lessonorders'] = lessonorders
 pages['hoursleaves'] = hoursleaves
+pages['hourslessons'] = hourslessons
 pages['hourssuspends'] = hourssuspends
 pages['hoursattendance'] = hoursattendance
 pages['feelist1'] = feelist1

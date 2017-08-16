@@ -473,7 +473,7 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
-                    //console.log(this.moduledata.pageTable, this.moduleTableData)
+                    console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
         },
