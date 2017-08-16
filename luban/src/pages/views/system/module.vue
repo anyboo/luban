@@ -223,6 +223,7 @@ export default {
             student_id: '',
             classesId: '',
             lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
+            openDialogArr:['lb-leaveshours','lb-suspendshours','lb-regstudentmatchmodal','lb-addtrackmodal'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {
@@ -355,7 +356,7 @@ export default {
     },
     methods: {
         handOpenDialog(dialog) {
-            if (dialog == 'lb-regstudentmatchmodal' || dialog == 'lb-addtrackmodal') {
+            if (this.openDialogArr.indexOf(dialog) != '-1') {
                 this.selStudentAddInquiry = dialog
                 this.$store.state.envs.currDialog = ''
                 this.$store.state.envs.currDialogResult = null
