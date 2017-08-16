@@ -285,6 +285,48 @@ export default {
                 })
             })
         },
+        savearrage(obj) {
+            let vm = this
+            let evnitem = {}
+            evnitem.arrange_id = item._id
+            evnitem.sclasses_id = item.sclasses_id
+            evnitem.classes_id = item.classes_id
+            evnitem.teacher_id = item.teacher_id
+            evnitem.resourceId = item.sclasses_id
+            evnitem.title = ''
+            if (item.dayloop) {
+                let loopdatastart = item.daterange1
+                let loopdataend = item.daterange2
+                let loopcount = 0
+                while (loopdatastart <= loopdataend) {
+                    if (loopcount > 1000) {
+                        break
+                    }
+                    let days = vm.moment(loopdatastart).days()
+                    if (item['day_' + days]) {
+                        evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
+                        evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
+                        let evncpitem = {}
+                        Object.assign(evncpitem, evnitem)
+                        eve.push(evncpitem)
+                    }
+                    loopdatastart = vm.moment(loopdatastart).add(1, 'days').toDate().getTime()
+                    loopcount++
+                }
+            } else {
+                evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
+                evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                eve.push(evnitem)
+            }
+            this.mx_db_bulkwrite('dictionary', eve).then(response => {
+                vm.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                vm.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-arrange'
+            })
+        },
         save() {
             let vm = this
             this.$refs['ruleForm'].validate((valid) => {
@@ -299,13 +341,8 @@ export default {
                     vm.localdata.form.timerange2 = vm.getDatetime(vm.localdata.form.timerange[1])
                     //vm.localdata.form.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
                     //vm.localdata.form.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
-                    vm.handleSave().then(() => {
-                        vm.$message({
-                            message: '操作成功',
-                            type: 'success'
-                        })
-                        vm.lbClosedialog()
-                        this.$store.state.envs.currDialog = 'lb-arrange'
+                    vm.handleSave().then((obj) => {
+                        this.savearrage(obj)
                     }, (e) => {
                         console.log(e)
                     })

@@ -1,6 +1,6 @@
 <template>
     <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
-        <div class="search" v-if="getSearch" >
+        <div class="search" v-if="getSearch">
             <el-row :gutter="12">
                 <el-col :xs="8" :sm="8" :md="8" :lg="6" v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
@@ -23,7 +23,7 @@
                     </el-select>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @input="handleSearch" v-model="student_id"></lb-selecteusersearch>
+                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -44,7 +44,7 @@
                 <el-col :xs="6" :sm="6" :md="6" :lg="5" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
-                            <el-button :type="item.type" @click="lbShowdialog($event,item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
+                            <el-button :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
                         </template>
                     </template>
                 </el-col>
@@ -79,8 +79,8 @@
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                            {{ getdataPurpose(scope.row[item.prop])}}
-                                        </span> -->
+                                                                {{ getdataPurpose(scope.row[item.prop])}}
+                                                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -222,8 +222,9 @@ export default {
             studentname: '',
             student_id: '',
             classesId: '',
-            lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry','lb-recording','lb-newsclass','lb-lesson','lb-openclass','lb-leaveshours','lb-suspendshours','lb-flow','lb-unpay_clear','lb-attendance'],
+            lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
             hastableSearch: false,
+            selStudentAddInquiry: '',
             pickerOptions: {
                 shortcuts: [{
                     text: '最近一周',
@@ -263,8 +264,16 @@ export default {
     },
     computed: {
         getUpdata() {
-             if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog)!= '-1') {
+            if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
                 this.handleSearch()
+            } else if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+                if (this.selStudentAddInquiry.length > 0) {
+                    let student = this.$store.state.envs.currDialogResult
+                    this.$store.state.envs.currStudent = student
+                    this.$store.state.envs.currDialog = ''
+                    this.handleShowDialog(this.selStudentAddInquiry, student)
+                    this.selStudentAddInquiry = ''
+                }
             }
         },
         getSearch() {
@@ -345,6 +354,17 @@ export default {
         }
     },
     methods: {
+        handOpenDialog(dialog) {
+            if (dialog == 'lb-regstudentmatchmodal' || dialog == 'lb-addtrackmodal') {
+                this.selStudentAddInquiry = dialog
+                this.$store.state.envs.currDialog = ''
+                this.$store.state.envs.currDialogResult = null
+                this.handleShowDialog('lb-selectstudenttpl')
+            } else {
+                this.handleShowDialog(dialog)
+            }
+
+        },
         getModuleSearchSpan(Search, count) {
             let searchSpan = count
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {

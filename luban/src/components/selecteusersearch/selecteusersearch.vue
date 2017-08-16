@@ -11,7 +11,7 @@
 <script>
 export default {
     name: 'LbSelecteusersearch',
-    props: ['value'],
+    props: ['value', 'selected'],
     data() {
         return {
             studentname: '学员',
@@ -31,18 +31,20 @@ export default {
     computed: {
         getSelectStudentName() {
             if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
-                let student_tempid = ''
-                if (this.$store.state.envs.currDialogResult) {
-                    this.studentname = this.$store.state.envs.currDialogResult.student_name
-                    student_tempid = this.$store.state.envs.currDialogResult._id
-                } else {
-                    student_tempid = ''
-                    this.studentname = '学员'
-                }
-                this.$store.state.envs.currDialog = ''
-                if (this.student_id != student_tempid) {
-                    this.student_id = student_tempid
-                    this.$emit('input', student_tempid)
+                if (this.selected == '') {
+                    let student_tempid = ''
+                    if (this.$store.state.envs.currDialogResult) {
+                        this.studentname = this.$store.state.envs.currDialogResult.student_name
+                        student_tempid = this.$store.state.envs.currDialogResult._id
+                    } else {
+                        student_tempid = ''
+                        this.studentname = '学员'
+                    }
+                    this.$store.state.envs.currDialog = ''
+                    if (this.student_id != student_tempid) {
+                        this.student_id = student_tempid
+                        this.$emit('input', student_tempid)
+                    }
                 }
             }
             return this.studentname
