@@ -11,7 +11,22 @@ export default {
             'icon': 'fa fa-pencil',
             'text': '排课'
         }]
-    },{
+    }, 
+    // {
+    //     menuTitle: '排课详情',
+    //     to: '/hours/lessonsdetail',
+    //     menuIcon: 'fa fa-file-sound-o',
+    //     dropDownMenu: [{
+    //         'url': 'lb-lessonsdetail',
+    //         'icon': 'fa fa-pencil',
+    //         'text': '编辑'
+    //     }, {
+    //         'action': 'delete',
+    //         'icon': 'fa fa-times',
+    //         'text': '删除'
+    //     }]
+    // }, 
+    {
         menuTitle: '课程表',
         to: '/hours/arrange',
         menuIcon: 'fa fa-file',

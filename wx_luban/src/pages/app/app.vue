@@ -49,9 +49,12 @@ export default {
         if (codeend) {
             cdstr = codeurl.slice(codeindex + 1, codeend)
         }
+        console.log(cdstr)
         Vue.http.post('http://app.bullstech.cn:8888/wx/',{code:cdstr}).then(obj=>{
             console.log(obj)
         })
+
+
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }

@@ -63,9 +63,15 @@ export default {
         },
         {
             'type': 'lessonpriceText',
-            'label': '定价',
-            'unit_price': 'unit_price',
-            'price': 'price',
+            'typeinfo':'singleprice',
+            'label': ' 课程单价',
+            'prop': 'unit_price',
+        },
+        {
+            'type': 'lessonpriceText',
+            'typeinfo':'price',
+            'label': '课程售价',
+            'prop': 'price',
         },
         {
             'type': 'contentText',

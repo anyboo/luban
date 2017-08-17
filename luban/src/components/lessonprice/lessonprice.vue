@@ -1,12 +1,11 @@
 <template>
     <div>
-        <p>
-            课程单价:{{getToFixed(lessonData[typeData.unit_price])}}元/次
-        </p>
-        <p>
-            <label>课程售价:</label>
-            <el-tag type="primary">{{getToFixed(lessonData[typeData.price])}}</el-tag>元
-        </p>
+        <template v-if="typeData.typeinfo=='singleprice'">
+            {{getToFixed(lessonData[typeData.prop])}}元/次
+       </template>
+        <template v-if="typeData.typeinfo=='price'">
+            {{getToFixed(lessonData[typeData.prop])}}元
+        </template>
     </div>
 </template>
 <script>

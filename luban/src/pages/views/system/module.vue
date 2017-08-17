@@ -10,6 +10,11 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
+                <el-col :span="2" v-if="handleback">
+                    <div class="btn-group dropdown" dropdown="">
+                        <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
+                    </div>
+                </el-col>
                 <el-col :xs="8" :sm="6" :md="6" :lg="6" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
@@ -60,6 +65,9 @@
                         <template v-if="item.type=='constant'">
                             {{item.prop}}
                         </template>
+                        <template v-if="item.type=='lessonrouter'">
+                             <a class="link" @click="lessonrouter($event,item.prop)">排课详情</a> 
+                        </template>
                         <template v-if="item.type=='payment'">
                             {{getDictText('2',scope.row[item.prop])}}
                         </template>
@@ -84,9 +92,6 @@
                         </template>
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
-                            <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                                                                {{ getdataPurpose(scope.row[item.prop])}}
-                                                                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -116,7 +121,7 @@
                             <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentlink'">
-                            <a @click="handleRouter($event,scope.row[item.prop])">
+                            <a class="link" @click="handleRouter($event,scope.row[item.prop])">
                                 <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
                             </a>
                         </template>
@@ -144,7 +149,6 @@
                             <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
                                 <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
                             </el-tooltip>
-                            <!-- <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag> -->
                         </template>
                         <template v-if="item.type=='progress'">
                             <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
@@ -296,6 +300,9 @@ export default {
             }
             return nSearch
         },
+        handleback() {
+            return this.getModuleSearchInfo('handleback').length > 0
+        },
         textSearchInfo() {
             return this.getModuleSearchInfo('textSearch')
         },
@@ -373,6 +380,10 @@ export default {
         }
     },
     methods: {
+        lessonrouter(event,url,info) {
+            this.$store.commit('router',  url)
+            event.stopPropagation()
+        },
         handOpenDialog(dialog) {
             if (this.openDialogArr.indexOf(dialog) != '-1') {
                 this.selStudentAddInquiry = dialog
