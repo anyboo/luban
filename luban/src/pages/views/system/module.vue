@@ -382,20 +382,11 @@ export default {
         }
     },
     methods: {
-<<<<<<< HEAD
         lessonrouter(event, url, info) {
             if(info){
                 this.$store.commit('class', info._id)
             }
             this.$store.commit('router', url)
-=======
-        lessonrouter(event,url,info) {
-<<<<<<< HEAD
-=======
-            this.$store.commit('class', info._id)
->>>>>>> 17d46d20a7bfe650244bbc32c06673482ab2baf5
-            this.$store.commit('router',  url)
->>>>>>> b6cfee0d09c0cc9726e77e57ec9c82921a834a14
             event.stopPropagation()
         },
         handOpenDialog(dialog) {
