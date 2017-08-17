@@ -407,11 +407,10 @@ module.exports.sms = function* () {
 }
 function ajax(code) {
     return new Promise(function (resolve) {
-        console.log('ajax')
         let options = {
             hostname: 'api.weixin.qq.com',
             port: 443,
-            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=SECRET&code='+code+'&grant_type=authorization_code',
+            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code='+code+'&grant_type=authorization_code',
             method: 'GET'
         }
         const req = https.request(options, (res) => {
@@ -419,7 +418,7 @@ function ajax(code) {
             console.log('请求头：', res.headers)
 
             res.on('data', (d) => {
-                console.log(d.toString())
+                resolve(JSON.parse(d.toString()))
             })
         })
 

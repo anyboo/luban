@@ -7,13 +7,13 @@
         </div>
         <div class='modal-body'>
             <el-form :model="numberValidateForm" ref="numberValidateForm" label-width='60px'>
-                <el-form-item label="账户" prop="age"  :rules="[
-                                                                                              { required: true, message: '电话不能为空'},
-                                                                                              { type: 'text', message: '电话必须为数字值'}
-                                                                                            ]">
+                <el-form-item label="账户" prop="age" :rules="[
+                                                                                                  { required: true, message: '电话不能为空'},
+                                                                                                  { type: 'text', message: '电话必须为数字值'}
+                                                                                                ]">
                     <el-input type="text" :disabled="true" v-model="numberValidateForm.user" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item class='padbom' label="密码" >
+                <el-form-item class='padbom' label="密码">
                     <el-input type='password' v-model="numberValidateForm.pwd" :disabled="true"></el-input>
                 </el-form-item>
                 <div class='text-center login_padleft'>
@@ -23,7 +23,6 @@
                         </el-col>
                     </el-row>
                 </div>
-    
             </el-form>
         </div>
     </div>
