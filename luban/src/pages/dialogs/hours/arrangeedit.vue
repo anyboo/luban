@@ -293,8 +293,6 @@ export default {
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
             evnitem.teacher_id = item.teacher_id
-            evnitem.resourceId = item.sclasses_id
-            evnitem.title = ''
             if (item.dayloop) {
                 let loopdatastart = item.daterange1
                 let loopdataend = item.daterange2
