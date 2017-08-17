@@ -29,13 +29,31 @@ export default {
                     'value': 'employee.name'
                 }
             ]
+        },
+        {
+            'type': 'radioGroupSearch',
+            'fields': [
+                {
+                    'labels': [
+                        { 'label': '未排课' },
+                        { 'label': '部分排课' },
+                        { 'label': '已排课' },
+                    ]
+                }
+            ]
+        },
+        {
+            'type': 'selectLessonSearch',
+            'fields': [
+                {}
+            ]
         }
     ],
     'pageTableField': [
         {
-            'type': 'operation',
-            'label': '操作',
-            'prop': 'setting'
+            'type': 'lessonrouter',
+            'label': '排课',
+            'prop': '/hours/lessonsdetail'
         },
         {
             'type': 'text',

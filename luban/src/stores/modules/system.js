@@ -11,7 +11,11 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
+<<<<<<< HEAD
     balance: 0
+=======
+    currClassID:'',
+>>>>>>> 593c6d6a9c58b1887091ef851fd574cec99160a2
 }
 const getters = {}
 const actions = {}
@@ -23,6 +27,10 @@ const mutations = {
     },
     theme: (state, obj) => {
         state.theme = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    class: (state, obj) => {
+        state.currClassID = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     student: (state, obj) => {
@@ -46,6 +54,7 @@ const mutations = {
     system: (state, obj) => {
         state.routerback = obj.routerback
         state.currStudentID = obj.currStudentID
+        state.currClassID = obj.currClassID
         state.router = obj.router
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme

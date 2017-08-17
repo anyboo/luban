@@ -1,22 +1,20 @@
 <template>
     <div>
-        <p>
-            <label>单次课时长:</label>
-            <el-tag type="primary">{{lessonData.unit_hours}}</el-tag>时
-        </p>
-        <p>
-            <label>课程包含:</label>
+        <template v-if="typeData.typeinfo=='singletime'">
+            {{lessonData.unit_hours}}小时
+        </template >
+        <template v-if="typeData.typeinfo=='time'">
             <template v-if="lessonData.lesson_type=='0'&&lessonData.price_model=='0'">
-                <el-tag type="primary">{{lessonData.inc_times}}</el-tag>次
+                <el-tag type="gray">{{lessonData.inc_times}}</el-tag>次
             </template>
-            <el-tag type="primary">{{lessonData.inc_hours}}</el-tag>课时
-        </p>
+            <el-tag type="gray">{{lessonData.inc_hours}}</el-tag>课时
+        </template >
     </div>
 </template>
 <script>
 export default {
     name: 'LbLessonhours',
-    props: ['lessonData'],
+    props: ['lessonData','typeData'],
     data() {
         return {
         }

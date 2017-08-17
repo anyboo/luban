@@ -10,6 +10,11 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
+                <el-col :span="2" v-if="handleback">
+                    <div class="btn-group dropdown" dropdown="">
+                        <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
+                    </div>
+                </el-col>
                 <el-col :xs="8" :sm="6" :md="6" :lg="6" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
@@ -21,6 +26,9 @@
                         <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                         </el-option>
                     </el-select>
+                </el-col>
+                <el-col :span="5" v-if="selectLessonSearch">
+                    <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
                     <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
@@ -57,6 +65,9 @@
                         <template v-if="item.type=='constant'">
                             {{item.prop}}
                         </template>
+                        <template v-if="item.type=='lessonrouter'">
+                            <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
+                        </template>
                         <template v-if="item.type=='payment'">
                             {{getDictText('2',scope.row[item.prop])}}
                         </template>
@@ -64,7 +75,10 @@
                             {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
                         </template>
                         <template v-if="item.type=='content'">
-                            <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre>
+                            <el-tooltip :content="scope.row[item.prop]" placement="top">
+                                <el-button>{{ scope.row[item.prop]}}</el-button>
+                            </el-tooltip>
+                            <!-- <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre> -->
                         </template>
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
@@ -78,9 +92,6 @@
                         </template>
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
-                            <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                                                {{ getdataPurpose(scope.row[item.prop])}}
-                                                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -110,7 +121,7 @@
                             <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentlink'">
-                            <a @click="handleRouter($event,scope.row[item.prop])">
+                            <a class="link" @click="handleRouter($event,scope.row[item.prop])">
                                 <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
                             </a>
                         </template>
@@ -135,7 +146,9 @@
                             <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='payconditions'">
-                            <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag>
+                            <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
+                                <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
+                            </el-tooltip>
                         </template>
                         <template v-if="item.type=='progress'">
                             <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
@@ -150,7 +163,7 @@
                             <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
                         </template>
                         <template v-if="item.type=='contentText'">
-                            <lb-lessonhours :lessonData="scope.row"></lb-lessonhours>
+                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                         </template>
                     </template>
                 </el-table-column>
@@ -221,9 +234,11 @@ export default {
             radiovalue: '',
             studentname: '',
             student_id: '',
+            course_id: '',
             classesId: '',
+            lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr:['lb-leaveshours','lb-suspendshours','lb-regstudentmatchmodal','lb-addtrackmodal'],
+            openDialogArr: ['lb-leaveshours', 'lb-suspendshours', 'lb-regstudentmatchmodal', 'lb-addtrackmodal'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {
@@ -280,10 +295,15 @@ export default {
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
-                console.log(this.moduledata.pageSearch)
                 nSearch = true
             }
             return nSearch
+        },
+        handlebackFun() {
+            return this.getSearchFun('handleback')
+        },
+        handleback() {
+            return this.getModuleSearchInfo('handleback').length > 0
         },
         textSearchInfo() {
             return this.getModuleSearchInfo('textSearch')
@@ -324,6 +344,12 @@ export default {
         selectUserSearchInfo() {
             return this.getModuleSearchInfo('selectUserSearch')
         },
+        selectLessonSearch() {
+            return this.getModuleSearchInfo('selectLessonSearch').length > 0
+        },
+        selectLessonSearchInfo() {
+            return this.getModuleSearchInfo('selectLessonSearch')
+        },
         classesSearch() {
             return this.getModuleSearchInfo('classesSearch').length > 0
         },
@@ -349,12 +375,19 @@ export default {
                 this.datevalue = ''
                 this.radiovalue = ''
                 this.student_id = ''
-                console.log(this.student_id)
+                this.course_id = ''
                 this.handleSearch()
             }
         }
     },
     methods: {
+        lessonrouter(event, url, info) {
+            if (info) {
+                this.$store.commit('class', info._id)
+            }
+            this.$store.commit('router', url)
+            event.stopPropagation()
+        },
         handOpenDialog(dialog) {
             if (this.openDialogArr.indexOf(dialog) != '-1') {
                 this.selStudentAddInquiry = dialog
@@ -429,6 +462,12 @@ export default {
                     filterObj.push(item)
                 }
             }
+            if (this.handlebackFun) {
+                let filterObjItem = this.handlebackFun(this)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
+                }
+            }
             let radiosearch_value = this.radiovalue
             if (this.radioGroupSearchFun) {
                 let filterObjItem = this.radioGroupSearchFun(radiosearch_value)
@@ -451,11 +490,19 @@ export default {
                     'type': ''
                 })
             }
-            let student_id = this.student_id.trim()
-            if (student_id.length > 0) {
+            let courseId = this.course_id.trim()
+            if (courseId.length > 0) {
+                filterObj.push({
+                    'key': 'course_id',
+                    'value': courseId,
+                    'type': ''
+                })
+            }
+            let studentId = this.student_id.trim()
+            if (studentId.length > 0) {
                 filterObj.push({
                     'key': 'student_id',
-                    'value': student_id,
+                    'value': studentId,
                     'type': ''
                 })
             }

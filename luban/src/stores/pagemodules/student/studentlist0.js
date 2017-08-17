@@ -45,7 +45,6 @@ export default {
         {
             'type': 'radioGroupSearch',
             'searchfunction': function (form) {
-                console.log('js', form)
                 let filterObj = []
                 let status = form + ''
                 if (status == '1') {
