@@ -14,6 +14,10 @@ export default {
     }],
     'pageSearch': [
         {
+            'type': 'handleback',
+            'fields': [{}]
+        },
+        {
             'type': 'dateSearch',
             'fields': [{}]
         },
