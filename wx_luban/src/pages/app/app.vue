@@ -39,28 +39,39 @@ export default {
         }
     },
     mounted() {
-        let codeurl = window.location.search
-        let codeindex = codeurl.indexOf('=')
-        let codeend = codeurl.indexOf('&')
-        console.log(codeurl);
-        console.log(codeindex);
-        console.log(codeend);
-        let cdstr = ''
-        if (codeend) {
-            cdstr = codeurl.slice(codeindex + 1, codeend)
-        }
-        console.log(cdstr)
-        if (cdstr.length > 0) {
-            Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
-                console.log(obj)
-            })
-
-        }
-
-
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
+        /*         let codeurl = window.location.search
+                let codeindex = codeurl.indexOf('=')
+                let codeend = codeurl.indexOf('&')
+                console.log(codeurl);
+                console.log(codeindex);
+                console.log(codeend);
+                let cdstr = ''
+                if (codeend) {
+                    cdstr = codeurl.slice(codeindex + 1, codeend)
+                }
+                console.log(cdstr)
+                if (cdstr.length > 0) {
+                    Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
+                        console.log(obj.bodyText.openid)
+                        this.$store.commit('getopenid', obj.bodyText.openid)
+                    })
+                } */
+        let openid = 'oZy8Uwatalkn5 - N39nk0lVEFaDCw'
+        let filterObj = []
+        filterObj.push({
+            'key': 'openid',
+            'value': openid,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        this.handleGetFilterTableTable('student', filterTxt).then(obj => {
+            console.log(obj)
+        })
+
+
     },
     components: {
         'lb-footer': footer,

@@ -70,15 +70,16 @@ export default {
                         type: 'error'
                     })
                 }
+
+
             })
             this.numberValidateForm = {
                 user: '',
                 pwd: ''
             }
+
+            
             this.$store.commit('homes', 'lb-verification')
-        },
-        handleVerification() {
-            this.iscolor = true
         }
     }
 }

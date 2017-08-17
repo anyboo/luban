@@ -1,15 +1,15 @@
 const state = {
-    currentView:'lb-verification'
+    openid:''
 }
 const getters = {
-    yes(state){
-        return state.currentView
+    openids(state){
+        return state.openid
     }
 }
 const actions = {}
 const mutations = {
-     homes(state,view){
-        state.currentView=view
+     getopenid(state,data){
+        state.openid=data
     },
 }
 export default {

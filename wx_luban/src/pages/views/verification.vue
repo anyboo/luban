@@ -67,6 +67,7 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     //键值
+                    /*
                     let token = window.localStorage.getItem('token')
                     let tokentime = window.localStorage.getItem('tokentime')
                     Vue.http.headers.common['authorization'] = token
@@ -88,7 +89,7 @@ export default {
                         console.log(student_ids)
                         this.$store.commit('student', student_ids)
                         this.$store.commit('homes', 'lb-home')
-                    })
+                    })*/
                 } else {
                     alert('错误！')
                     return false
