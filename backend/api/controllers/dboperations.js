@@ -421,6 +421,7 @@ function ajax(code) {
                 let wxdata = JSON.parse(d.toString())
                 let wxobj = {}
                 wxobj.openid = wxdata.openid
+                console.log(wxobj)
                 resolve(wxobj)
         })
     })
