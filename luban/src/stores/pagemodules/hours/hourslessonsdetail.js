@@ -15,9 +15,9 @@ export default {
     'pageSearch': [
         {
             'type': 'handleback',
-            'searchfunction': function (form) {
+            'searchfunction': function (vm) {
                 let filterObj = []
-                let classId= form+''
+                let classId=vm.$store.state.system.currStudentID
                 if (classId.length>0) {
                     filterObj.push({
                         'key': '_id',
@@ -25,7 +25,6 @@ export default {
                         'type': ''
                     })
                 }
-                console.log('2222',filterObj)
                 return filterObj
             },
             'fields': [{}]

@@ -382,7 +382,7 @@ export default {
     },
     methods: {
         lessonrouter(event, url, info) {
-            if(info){
+            if (info) {
                 this.$store.commit('class', info._id)
             }
             this.$store.commit('router', url)
@@ -462,13 +462,10 @@ export default {
                     filterObj.push(item)
                 }
             }
-            let classId = this.$store.state.system.currStudentID
-            if (classId.length > 0) {
-                if (this.handlebackFun) {
-                    let filterObjItem = this.handlebackFun(classId)
-                    for (let item of filterObjItem) {
-                        filterObj.push(item)
-                    }
+            if (this.handlebackFun) {
+                let filterObjItem = this.handlebackFun(this)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
                 }
             }
             let radiosearch_value = this.radiovalue
