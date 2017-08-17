@@ -80,6 +80,9 @@ const state = {
         },
         oder: {
             data: []
+        },
+        money: {
+            data: []
         }
 
 

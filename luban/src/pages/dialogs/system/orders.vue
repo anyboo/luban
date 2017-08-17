@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="modal-dialog" >
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button class="close" type="button" @click="lbClosedialog($event)">
@@ -21,10 +21,10 @@
             <template v-for="item in getTablesData()">
               <tbody class="ng-scope">
                 <tr class="ng-scope">
-                  <td class="ng-binding">gg</td>
-                   <td class="ng-binding">dd</td>
+                  <td class="ng-binding">aa</td>
+                  <td class="ng-binding">dd</td>
                   <td>
-                    <a class="btn btn-danger btn-xs" >
+                    <a class="btn btn-danger btn-xs" @click="handleDelClick(item._id)">
                       <i class="icon-ban"></i> 删除</a>
                   </td>
                 </tr>
@@ -47,7 +47,11 @@ export default {
     let localdata = {
       'form': {
       },
-      'lookup': {
+       'lookup': {
+        'localField': 'charge_id',
+        'from': 'charge',
+        'foreignField': '_id',
+        'as': 'charge'
       },
     }
     return {
@@ -59,7 +63,28 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: { 
+  methods: {
+    handleDelClick(id) {
+      this.handleDelete(id).then(() => {
+        this.$message({
+          message: '删除购物车成功',
+          type: 'success'
+        })
+        this.handleSearch()
+      })
+    },
+    handleSearch() {
+      let filterObj = []
+      filterObj.push({
+        'key': 'lookup',
+        'value': this.localdata.lookup,
+        'type': 'lookup'
+      })
+      let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+      this.handleGetFilterTable(filterTxt).then(obj => {
+        // console.log(obj)
+      })
+    },
   }
 }
 </script>
