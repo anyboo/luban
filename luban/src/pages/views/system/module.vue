@@ -295,7 +295,6 @@ export default {
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
-                console.log(this.moduledata.pageSearch)
                 nSearch = true
             }
             return nSearch
@@ -439,7 +438,6 @@ export default {
                         if (item.type == Search) {
                             if (item.searchfunction) {
                                 searchfun = item.searchfunction
-                                console.log('get',searchfun)
                                 break
                             }
                         }
@@ -528,7 +526,6 @@ export default {
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
-            console.log('1234546',filterObj)
         },
         getPercentage(order, maxStudent) {
             let percentage = 100
