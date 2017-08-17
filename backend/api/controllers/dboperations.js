@@ -418,7 +418,7 @@ function ajax(code) {
             console.log('请求头：', res.headers)
 
             res.on('data', (d) => {
-                resolve(d.toJSON())
+                resolve(JSON.parse(d.toString()))
             })
         })
 
