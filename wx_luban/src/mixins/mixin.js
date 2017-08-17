@@ -35,6 +35,7 @@ export default {
     },
     mounted: function () {
         /*   this.handleGetTable() */
+
     },
     computed: {
         getMenuOption() {

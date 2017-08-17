@@ -5,7 +5,7 @@
         </component>
         <lb-footer v-if="currentView!='lb-login'&&currentView!='lb-verification'">
             <lb-switchover v-on:increment="incrementTotalhome" :class="{blueer:iscolor1}" class="footer_icon">
-                <i  class="fa fa-circle-o fa-2x bradius" aria-hidden="ture"></i>
+                <i class="fa fa-circle-o fa-2x bradius" aria-hidden="ture"></i>
             </lb-switchover>
             <lb-switchover v-on:increment="incrementTotaluser" :class="{blueer:iscolor2}" class="footer_icon">
                 <i class="fa fa-user-o fa-2x bradius" aria-hidden="ture"></i>
@@ -39,6 +39,19 @@ export default {
         }
     },
     mounted() {
+        let codeurl = window.location.search
+        let codeindex = codeurl.indexOf('=')
+        let codeend = codeurl.indexOf('&')
+        console.log(codeurl);
+        console.log(codeindex);
+        console.log(codeend);
+        let cdstr = ''
+        if (codeend) {
+            cdstr = codeurl.slice(codeindex + 1, codeend)
+        }
+        Vue.http.post('http://app.bullstech.cn:8888/wx/',{code:cdstr}).then(obj=>{
+            console.log(obj)
+        })
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
@@ -50,7 +63,7 @@ export default {
         'lb-switchover': switchover,
         'lb-login': login,
         'lb-common': common_use,
-        'lb-verification':verification,
+        'lb-verification': verification,
     },
     methods: {
         incrementTotalhome() {
