@@ -414,14 +414,10 @@ function ajax(code) {
             method: 'GET'
         }
         const req = https.request(options, (res) => {
-            console.log('状态码：', res.statusCode)
-            console.log('请求头：', res.headers)
-
             res.on('data', (d) => {
                 let wxdata = JSON.parse(d.toString())
                 let wxobj = {}
                 wxobj.openid = wxdata.openid
-                console.log(wxobj,wxdata)
                 resolve(wxobj)
         })
     })
