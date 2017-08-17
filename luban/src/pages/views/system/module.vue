@@ -84,9 +84,6 @@
                         </template>
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
-                            <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                                                                {{ getdataPurpose(scope.row[item.prop])}}
-                                                                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -144,7 +141,6 @@
                             <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
                                 <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
                             </el-tooltip>
-                            <!-- <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag> -->
                         </template>
                         <template v-if="item.type=='progress'">
                             <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>

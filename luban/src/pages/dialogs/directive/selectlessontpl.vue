@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="fa fa-flag"></i>请选择课时包
+                    <i class="fa fa-flag"></i>请选择课程
                 </h3>
             </div>
             <div class="modal-body">

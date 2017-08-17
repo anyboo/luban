@@ -36,12 +36,11 @@ export default {
                     this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
                     courseId = this.$store.state.envs.currDialogResult._id
                 } else {
-                    courseId=''
+                    courseId = ''
                     this.lesson_name = '请选择课程'
-                    
                 }
                 this.$store.state.envs.currDialog = ''
-                if(this.course_id!=courseId){
+                if (this.course_id != courseId) {
                     this.course_id = courseId
                     this.$emit('input', courseId)
                 }

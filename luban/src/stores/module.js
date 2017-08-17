@@ -6,6 +6,7 @@ import hoursleaves from './pagemodules/hours/hoursleaves'
 import hourssuspends from './pagemodules/hours/hourssuspends'
 import hourslessons from './pagemodules/hours/hourslessons'
 import hoursattendance from './pagemodules/hours/hoursattendance'
+import hourslessonsdetail from './pagemodules/hours/hourslessonsdetail'
 import feelist1 from './pagemodules/fee/feelist1'
 import feelist3 from './pagemodules/fee/feelist3'
 import feelist4 from './pagemodules/fee/feelist4'
@@ -29,6 +30,7 @@ pages['hoursleaves'] = hoursleaves
 pages['hourslessons'] = hourslessons
 pages['hourssuspends'] = hourssuspends
 pages['hoursattendance'] = hoursattendance
+pages['hourslessonsdetail'] = hourslessonsdetail
 pages['feelist1'] = feelist1
 pages['feelist3'] = feelist3
 pages['feelist4'] = feelist4
