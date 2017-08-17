@@ -410,7 +410,7 @@ function ajax(code) {
         let options = {
             hostname: 'api.weixin.qq.com',
             port: 443,
-            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=00863cbb03ed5ae61cbc928a4be6e63e&code='+code+'&grant_type=authorization_code',
+            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code='+code+'&grant_type=authorization_code',
             method: 'GET'
         }
         const req = https.request(options, (res) => {
