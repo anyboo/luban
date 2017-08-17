@@ -381,6 +381,10 @@ export default {
     },
     methods: {
         lessonrouter(event,url,info) {
+<<<<<<< HEAD
+=======
+            this.$store.commit('class', info._id)
+>>>>>>> 17d46d20a7bfe650244bbc32c06673482ab2baf5
             this.$store.commit('router',  url)
             event.stopPropagation()
         },

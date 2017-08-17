@@ -288,7 +288,7 @@ export default {
         savearrage(obj) {
             let vm = this
             let evnitem = {}
-            evnitem.arrange_id = item._id
+            evnitem.dayloop = item.dayloop
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
             evnitem.teacher_id = item.teacher_id
@@ -307,6 +307,7 @@ export default {
                         evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
                         evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
                         let evncpitem = {}
+                        evncpitem.days = days
                         Object.assign(evncpitem, evnitem)
                         eve.push(evncpitem)
                     }
@@ -316,9 +317,11 @@ export default {
             } else {
                 evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
                 evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                let days = vm.moment(evnitem.start).days()
+                evnitem.days = days
                 eve.push(evnitem)
             }
-            this.mx_db_bulkwrite('dictionary', eve).then(response => {
+            this.mx_db_bulkwrite('coursescheduling', eve).then(response => {
                 vm.$message({
                     message: '操作成功',
                     type: 'success'
@@ -341,11 +344,11 @@ export default {
                     vm.localdata.form.timerange2 = vm.getDatetime(vm.localdata.form.timerange[1])
                     //vm.localdata.form.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
                     //vm.localdata.form.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
-                    vm.handleSave().then((obj) => {
-                        this.savearrage(obj)
-                    }, (e) => {
-                        console.log(e)
-                    })
+                    //vm.handleSave().then((obj) => {
+                    this.savearrage(vm.localdata.form)
+                    //}, (e) => {
+                    //   console.log(e)
+                    //})
                 } else {
                     return false
                 }
