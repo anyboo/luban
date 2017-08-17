@@ -31,17 +31,21 @@ export default {
     computed: {
         getSelectLessonName() {
             if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
+                let courseId = ''
                 if (this.$store.state.envs.currDialogResult) {
                     this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name
-                    this.course_id = this.$store.state.envs.currDialogResult._id
-                    this.$emit('input', this.course_id)
+                    courseId = this.$store.state.envs.currDialogResult._id
                 } else {
+                    courseId=''
                     this.lesson_name = '请选择课程'
-                    this.course_id = ''
-                    this.$emit('input', this.course_id)
+                    
+                }
+                this.$store.state.envs.currDialog = ''
+                if(this.course_id!=courseId){
+                    this.course_id = courseId
+                    this.$emit('input', courseId)
                 }
             }
-            this.$store.state.envs.currDialog = ''
             return this.lesson_name
         },
     }
