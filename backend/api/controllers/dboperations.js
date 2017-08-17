@@ -410,23 +410,23 @@ function ajax(code) {
         let options = {
             hostname: 'api.weixin.qq.com',
             port: 443,
-            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code='+code+'&grant_type=authorization_code',
+            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code=' + code + '&grant_type=authorization_code',
             method: 'GET'
         }
         const req = https.request(options, (res) => {
-            console.log('状态码：', res.statusCode)
-            console.log('请求头：', res.headers)
-
             res.on('data', (d) => {
-                resolve(JSON.parse(d.toString()))
-            })
+                let wxdata = JSON.parse(d.toString())
+                let wxobj = {}
+                wxobj.openid = wxdata.openid
+                resolve(wxobj)
         })
+    })
 
-        req.on('error', (e) => {
-            console.error(e)
-        });
-        req.end()
+    req.on('error', (e) => {
+        console.error(e)
     });
+    req.end()
+});
 }
 
 module.exports.wx = function* wx() {

@@ -1,24 +1,18 @@
 <template>
     <div class="wrapper bg-light ng-scope">
-        <div class="wrapper b-a r-5x bg-white box-shadow">
-            <button tooltip="VIP会员拥有更多学员数、校区数、账号数" class="btn btn-info pull-right r ng-scope">
-                <i class="fa fa-arrow-circle-up"></i> 升级成VIP会员</button>
-            <h4 style="margin-bottom:0px;">
-                <i class="icon-badge"></i>会员身份:
-                <span class="label bg-gray ng-scope">免费会员</span>
-            </h4>
-        </div>
-        <div class="wrapper b-a r-5x bg-white box-shadow m-t">
-            <button class="btn btn-default pull-right r">
+        <div class="wrapper b-a r-5x bg-white box-shadow m-t"> 
+            <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'lb-recharge')">
                 <i class="fa fa-money"></i> 充值</button>
+                <button class="btn btn-default pull-right r m-r" @click="lbShowdialog($event,'lb-rechargerecord')">
+                <i class="fa fa-money"></i> 充值记录</button>
             <h4 style="margin-bottom:0px;">
                 <i class="fa fa-cny"></i> 系统余额:
-                <span class="label bg-info ng-binding">￥0.00</span>
+                <span class="label bg-info ng-binding">￥{{$store.state.system.balance}}</span>
             </h4>
         </div>
         <div class="wrapper b-a r-5x bg-white box-shadow m-t">
             <button class="btn btn-default pull-right r">
-                <i class="icon-basket"></i> 购买</button>
+                <i class="icon-basket"></i> 购买</button> 
             <h4 style="margin-bottom:0px;">
                 <i class="fa fa-mobile"></i> 短信剩余:
                 <span class="label bg-info ng-binding">10</span>
@@ -53,7 +47,7 @@
                                     </el-option>
                                 </el-select>
                                 <!--收费方式-->
-                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.relations[item.relationsIndex]}}¥</label>
+                                <label class="badge bg-info ng-binding" style="margin-top:7px;">{{item.relations[item.relationsIndex].priced}}¥</label>
                             </li>
                             <li class="list-group-item">
                                 <label class="text-black">描述:</label>
@@ -74,6 +68,12 @@
         </div>
     </div>
 </template>
+<style>
+.bg-info {
+    color: #fff;
+    background-color: #4d90fe;
+}
+</style>
 <script>
 export default {
     name: 'systems',

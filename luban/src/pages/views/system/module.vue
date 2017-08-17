@@ -66,7 +66,7 @@
                             {{item.prop}}
                         </template>
                         <template v-if="item.type=='lessonrouter'">
-                             <a class="link" @click="lessonrouter($event,item.prop)">排课详情</a> 
+                            <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
                         </template>
                         <template v-if="item.type=='payment'">
                             {{getDictText('2',scope.row[item.prop])}}
@@ -86,6 +86,9 @@
                         </template>
                         <template v-if="item.type=='lesson'">
                             <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
+                        </template>
+                        <template v-if="item.type=='checkweek'">
+                            <lb-checkweek :lessonData="scope.row"></lb-checkweek>
                         </template>
                         <template v-if="item.type=='getButtongroupText'">
                             <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
@@ -163,7 +166,7 @@
                             <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
                         </template>
                         <template v-if="item.type=='contentText'">
-                            <lb-lessonhours :lessonData="scope.row"></lb-lessonhours>
+                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                         </template>
                     </template>
                 </el-table-column>
@@ -295,10 +298,12 @@ export default {
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
-                console.log(this.moduledata.pageSearch)
                 nSearch = true
             }
             return nSearch
+        },
+        handlebackFun() {
+            return this.getSearchFun('handleback')
         },
         handleback() {
             return this.getModuleSearchInfo('handleback').length > 0
@@ -374,15 +379,22 @@ export default {
                 this.radiovalue = ''
                 this.student_id = ''
                 this.course_id = ''
-                console.log(this.student_id)
                 this.handleSearch()
             }
         }
     },
     methods: {
+<<<<<<< HEAD
         lessonrouter(event,url,info) {
             this.$store.commit('class', info._id)
             this.$store.commit('router',  url)
+=======
+        lessonrouter(event, url, info) {
+            if (info) {
+                this.$store.commit('class', info._id)
+            }
+            this.$store.commit('router', url)
+>>>>>>> 2db93ecf092ae1ba2ba3d0dcd6a742109dc2e028
             event.stopPropagation()
         },
         handOpenDialog(dialog) {
@@ -455,6 +467,12 @@ export default {
             let datetime = this.datevalue
             if (this.dateSearchInfo) {
                 let filterObjItem = this.dateSearchInfo(datetime, this)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
+                }
+            }
+            if (this.handlebackFun) {
+                let filterObjItem = this.handlebackFun(this)
                 for (let item of filterObjItem) {
                     filterObj.push(item)
                 }

@@ -1,0 +1,133 @@
+<template>
+    <div>
+        <div class="modal-dialog" v-if="alipay==1">
+            <div class="modal-content">
+                <div class="ng-scope">
+                    <div class="modal-header">
+                        <button class="close" type="button" @click="lbClosedialog($event)">
+                            <span>×</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h3 class="modal-title">
+                            <i class="fa fa-money"></i>系统充值</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ng-scope">
+                            <dl class="dl-horizontal">
+                                <dt>充值金额:</dt>
+                                <dd>
+                                    <div class="w-sm input-group">
+                                        <lb-numberinput type="text" class="form-control ng-pristine ng-valid ng-touched" v-model.lazy="localdata.form.priced">
+                                        </lb-numberinput>
+                                        <span class="input-group-addon">元</span>
+                                    </div>                           
+                                </dd>                 
+                                <dt class="m-t">支付方式:</dt>
+                                <dd class="m-t">
+                                    <ul class="list-group">
+                                        <li class="list-group-item ng-scope">
+                                            <img src="/assets/images/alipay.jpg">
+                                            <i class="fa fa-check-circle text-success pull-right ng-scope"></i>
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt class="m-t"></dt>
+                                <dd class="m-t">
+                                    <button class="btn btn-primary" @click="submitForm">立即充值</button>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--充值-->
+        <!--确定充值-->
+        <div class="modal-dialog" v-if="alipay==2">
+            <div class="modal-content">
+                <div page-controller="system_charge" class="ng-scope">
+                    <div class="modal-header">
+                        <button class="close" type="button" @click="lbClosedialog($event)">
+                            <span>×</span>
+                            <span class="sr-only">关闭</span>
+                        </button>
+                        <h3 class="modal-title">
+                            <i class="fa fa-money"></i>系统充值</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-if="step == 2" class="ng-scope">
+                            <h4 class="text-center">确认充值</h4>
+                            <dl class="dl-horizontal m-t">
+                                <dt>充值方式:</dt>
+                                <dd>
+                                    <img src="/assets/images/alipay.jpg">
+                                </dd>
+                                <dt class="m-t">充值金额:</dt>
+                                <dd class="m-t ng-binding">{{this.localdata.form.priced}}</dd>
+                            </dl>
+                            <div class="text-center">
+                                <button class="btn btn-primary" @click="recharge">确认充值</button>
+                                <button class="btn btn-default m-l" @click="alipay=1">返回</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'newsclass',
+
+    data() {
+        let localdata = {
+            'form': {
+                'priced': '',
+                'balance': 0
+            },
+        }
+        return {
+            localdata,
+            alipay: '1',
+            model: 'money',
+        }
+    },
+    mounted() {
+    },
+    computed: {
+        totalMoney() {
+            let money = 0
+            let vm = this
+            this.getTablesData().forEach((product) => {
+                money += parseInt(vm.getLookUp(product.charge, 'relations')[product.chargePriceIndex].priced)
+            })
+            return money
+        }
+    },
+    watch: {},
+    methods: {
+        recharge() {
+            this.handleSave().then(() => {
+                this.$message({
+                    message: '充值成功',
+                    type: 'success',
+                })
+                this.localdata.form.balance += parseInt(this.localdata.form.priced)
+                this.$store.state.system.balance = this.localdata.form.balance
+                this.lbClosedialog()
+                this.$store.state.envs.currDialog = 'lb-cart'
+            })
+        },
+        handcut() {
+            this.alipay = 1
+            if (this.totalMoney > this.$store.state.system.balance) {
+                this.prices = !this.prices
+            }
+        },
+        submitForm() {
+            this.alipay = 2
+        }
+    }
+}
+</script>

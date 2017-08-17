@@ -285,15 +285,14 @@ export default {
                 })
             })
         },
-        savearrage(obj) {
+        savearrage(item) {
             let vm = this
+            let eve = []
             let evnitem = {}
             evnitem.dayloop = item.dayloop
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
             evnitem.teacher_id = item.teacher_id
-            evnitem.resourceId = item.sclasses_id
-            evnitem.title = ''
             if (item.dayloop) {
                 let loopdatastart = item.daterange1
                 let loopdataend = item.daterange2
@@ -306,6 +305,8 @@ export default {
                     if (item['day_' + days]) {
                         evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
                         evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
+                        evnitem.start = this.moment(evnitem.start).toDate()
+                        evnitem.end = this.moment(evnitem.end).toDate()
                         let evncpitem = {}
                         evncpitem.days = days
                         Object.assign(evncpitem, evnitem)
@@ -317,6 +318,8 @@ export default {
             } else {
                 evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
                 evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                evnitem.start = this.moment(evnitem.start).toDate()
+                evnitem.end = this.moment(evnitem.end).toDate()
                 let days = vm.moment(evnitem.start).days()
                 evnitem.days = days
                 eve.push(evnitem)

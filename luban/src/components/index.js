@@ -12,7 +12,7 @@ import studentrouter from './studentrouter/'
 import studenttracksadd from './studenttracksadd/'
 import lasttrack from './lasttrack/'
 import checkstatus from './checkstatus/'
-
+import checkweek from './checkweek/'
 
 const components = [
     dropdown.LbDropdown,
@@ -30,7 +30,8 @@ const components = [
     studenttracksadd,
     lasttrack,
     checkstatus,
-    selectelessonsearch
+    selectelessonsearch,
+    checkweek
 ]
 const install = function(Vue) {
     if (install.installed) return
@@ -55,5 +56,6 @@ export default {
     studenttracksadd,
     lasttrack,
     checkstatus,
-    selectelessonsearch
+    selectelessonsearch,
+    checkweek
 }
