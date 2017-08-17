@@ -43,8 +43,13 @@ export default {
         },
         {
             'type': 'constant',
-            'label': '星期',
-            'prop': '星期一',
+            'label': '教室',
+            'prop': '舞蹈二班',
+        },
+        {
+            'type': 'constant',
+            'label': '上课老师',
+            'prop': '老师',
         },
         {
             'type': 'constant',
@@ -58,14 +63,14 @@ export default {
         },
         {
             'type': 'constant',
-            'label': '上课老师',
-            'prop': '老师',
+            'label': '星期',
+            'prop': '星期一',
         },
         {
             'type': 'constant',
-            'label': '教室',
-            'prop': '舞蹈二班',
-        },
+            'label': '排课状态',
+            'prop': '已排课',
+        }
     ],
     'pageTable': 'classes',
     'pageTemplate': 'table1',

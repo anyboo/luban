@@ -16,9 +16,13 @@ export default {
         to: '/hours/lessonsdetail',
         menuIcon: 'fa fa-file-sound-o',
         dropDownMenu: [{
-            'url': 'lb-lessonsdetail',
+            'url': 'lb-newlessonmodal',
             'icon': 'fa fa-pencil',
-            'text': '操作'
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
         }]
     }, {
         menuTitle: '课程表',
