@@ -75,7 +75,13 @@ export default {
         },
         {
             'type': 'contentText',
-            'label': ' 内容'
+            'typeinfo':'singletime',
+            'label': '单次课时',
+        },
+        {
+            'type': 'contentText',
+            'typeinfo':'time',
+            'label': '总课时',
         }
     ],
     'pageTable': 'course',

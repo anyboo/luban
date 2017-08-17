@@ -163,7 +163,7 @@
                             <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
                         </template>
                         <template v-if="item.type=='contentText'">
-                            <lb-lessonhours :lessonData="scope.row"></lb-lessonhours>
+                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                         </template>
                     </template>
                 </el-table-column>
