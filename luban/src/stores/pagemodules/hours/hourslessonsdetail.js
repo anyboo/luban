@@ -1,26 +1,26 @@
 export default {
     'pageName': 'hourslessonsdetail',
     'pageLable': '排课详情',
-    'tableSearch': [{
-        'localField': 'course_id',
-        'from': 'course',
+    'tableSearch': [ {
+        'localField': 'sclasses_id',
+        'from': 'sclasses',
         'foreignField': '_id',
-        'as': 'course'
-    }, {
-        'localField': '_id',
-        'from': 'order',
-        'foreignField': 'class_id',
-        'as': 'order'
+        'as': 'sclasses'
+    },{
+        'localField': 'teacher_id',
+        'from': 'employee',
+        'foreignField': '_id',
+        'as': 'employee'
     }],
     'pageSearch': [
         {
             'type': 'handleback',
             'searchfunction': function (vm) {
                 let filterObj = []
-                let classId=vm.$store.state.system.currStudentID
+                let classId=vm.$store.state.system.currClassID
                 if (classId.length>0) {
                     filterObj.push({
-                        'key': '_id',
+                        'key': 'classes_id',
                         'value': classId,
                         'type': ''
                     })
@@ -58,29 +58,30 @@ export default {
             'prop': 'setting'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '教室',
-            'prop': '舞蹈二班',
+            'table': 'sclasses',
+            'prop': 'class_name',
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '上课老师',
-            'prop': '老师',
+            'table': 'employee',
+            'prop': 'name',
         },
         {
             'type': 'constant',
-            'label': '开始时间',
+            'label': '开课日期',
             'prop': '2017-08-19',
         },
         {
             'type': 'constant',
-            'label': '结束时间',
+            'label': '上课时间段',
             'prop': '2017-08-19',
         },
         {
-            'type': 'constant',
+            'type': 'checkweek',
             'label': '星期',
-            'prop': '星期一',
         },
         {
             'type': 'constant',
@@ -88,7 +89,7 @@ export default {
             'prop': '已排课',
         }
     ],
-    'pageTable': 'classes',
+    'pageTable': 'coursescheduling',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

@@ -11,11 +11,7 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
-<<<<<<< HEAD
-    balance: 0
-=======
     currClassID:'',
->>>>>>> 593c6d6a9c58b1887091ef851fd574cec99160a2
 }
 const getters = {}
 const actions = {}

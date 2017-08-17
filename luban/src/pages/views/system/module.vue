@@ -87,6 +87,9 @@
                         <template v-if="item.type=='lesson'">
                             <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
                         </template>
+                        <template v-if="item.type=='checkweek'">
+                            <lb-checkweek :lessonData="scope.row"></lb-checkweek>
+                        </template>
                         <template v-if="item.type=='getButtongroupText'">
                             <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                         </template>
