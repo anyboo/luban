@@ -22,6 +22,9 @@
                         </el-option>
                     </el-select>
                 </el-col>
+                <el-col :span="5" v-if="selectLessonSearch">
+                    <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
+                </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
                     <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
                 </el-col>
@@ -64,7 +67,10 @@
                             {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
                         </template>
                         <template v-if="item.type=='content'">
-                            <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre>
+                            <el-tooltip :content="scope.row[item.prop]" placement="top">
+                                <el-button>{{ scope.row[item.prop]}}</el-button>
+                            </el-tooltip>
+                            <!-- <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre> -->
                         </template>
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
@@ -79,8 +85,8 @@
                         <template v-if="item.type=='getdataPurpose'">
                             <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             <!-- <span class="label" :class="{'bg-info':getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop]),'bg-gray':getDictText('6',scope.row[item.prop])!=getdataPurpose(scope.row[item.prop])||scope.row[item.prop]==getDictDefvalue('6')}">
-                                                                {{ getdataPurpose(scope.row[item.prop])}}
-                                                            </span> -->
+                                                                                {{ getdataPurpose(scope.row[item.prop])}}
+                                                                            </span> -->
                         </template>
                         <template v-if="item.type=='getEmployeeName'">
                             <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -135,7 +141,10 @@
                             <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
                         </template>
                         <template v-if="item.type=='payconditions'">
-                            <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag>
+                            <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
+                                <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
+                            </el-tooltip>
+                            <!-- <el-tag type="primary">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-tag> -->
                         </template>
                         <template v-if="item.type=='progress'">
                             <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
@@ -221,9 +230,11 @@ export default {
             radiovalue: '',
             studentname: '',
             student_id: '',
+            course_id: '',
             classesId: '',
+            lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr:['lb-leaveshours','lb-suspendshours','lb-regstudentmatchmodal','lb-addtrackmodal'],
+            openDialogArr: ['lb-leaveshours', 'lb-suspendshours', 'lb-regstudentmatchmodal', 'lb-addtrackmodal'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {
@@ -324,6 +335,12 @@ export default {
         selectUserSearchInfo() {
             return this.getModuleSearchInfo('selectUserSearch')
         },
+        selectLessonSearch() {
+            return this.getModuleSearchInfo('selectLessonSearch').length > 0
+        },
+        selectLessonSearchInfo() {
+            return this.getModuleSearchInfo('selectLessonSearch')
+        },
         classesSearch() {
             return this.getModuleSearchInfo('classesSearch').length > 0
         },
@@ -349,6 +366,7 @@ export default {
                 this.datevalue = ''
                 this.radiovalue = ''
                 this.student_id = ''
+                this.course_id = ''
                 console.log(this.student_id)
                 this.handleSearch()
             }
@@ -451,11 +469,19 @@ export default {
                     'type': ''
                 })
             }
-            let student_id = this.student_id.trim()
-            if (student_id.length > 0) {
+            let courseId = this.course_id.trim()
+            if (courseId.length > 0) {
+                filterObj.push({
+                    'key': 'course_id',
+                    'value': courseId,
+                    'type': ''
+                })
+            }
+            let studentId = this.student_id.trim()
+            if (studentId.length > 0) {
                 filterObj.push({
                     'key': 'student_id',
-                    'value': student_id,
+                    'value': studentId,
                     'type': ''
                 })
             }

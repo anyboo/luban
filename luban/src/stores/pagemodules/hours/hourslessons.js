@@ -29,6 +29,24 @@ export default {
                     'value': 'employee.name'
                 }
             ]
+        },
+        {
+            'type': 'radioGroupSearch',
+            'fields': [
+                {
+                    'labels': [
+                        { 'label': '未排课' },
+                        { 'label': '部分排课' },
+                        { 'label': '已排课' },
+                    ]
+                }
+            ]
+        },
+        {
+            'type': 'selectLessonSearch',
+            'fields': [
+                {}
+            ]
         }
     ],
     'pageTableField': [
