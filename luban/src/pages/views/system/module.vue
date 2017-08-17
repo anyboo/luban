@@ -10,6 +10,11 @@
                         <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
+                <el-col :span="2" v-if="handleback">
+                    <div class="btn-group dropdown" dropdown="">
+                        <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
+                    </div>
+                </el-col>
                 <el-col :xs="8" :sm="6" :md="6" :lg="6" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
@@ -59,6 +64,9 @@
                     <template scope="scope">
                         <template v-if="item.type=='constant'">
                             {{item.prop}}
+                        </template>
+                        <template v-if="item.type=='lessonrouter'">
+                             <a class="link" @click="lessonrouter($event,item.prop)">排课详情</a> 
                         </template>
                         <template v-if="item.type=='payment'">
                             {{getDictText('2',scope.row[item.prop])}}
@@ -113,7 +121,7 @@
                             <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                         </template>
                         <template v-if="item.type=='studentlink'">
-                            <a @click="handleRouter($event,scope.row[item.prop])">
+                            <a class="link" @click="handleRouter($event,scope.row[item.prop])">
                                 <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
                             </a>
                         </template>
@@ -292,6 +300,9 @@ export default {
             }
             return nSearch
         },
+        handleback() {
+            return this.getModuleSearchInfo('handleback').length > 0
+        },
         textSearchInfo() {
             return this.getModuleSearchInfo('textSearch')
         },
@@ -369,6 +380,10 @@ export default {
         }
     },
     methods: {
+        lessonrouter(event,url,info) {
+            this.$store.commit('router',  url)
+            event.stopPropagation()
+        },
         handOpenDialog(dialog) {
             if (this.openDialogArr.indexOf(dialog) != '-1') {
                 this.selStudentAddInquiry = dialog

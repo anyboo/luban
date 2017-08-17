@@ -51,9 +51,9 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'operation',
-            'label': '操作',
-            'prop': 'setting'
+            'type': 'lessonrouter',
+            'label': '排课',
+            'prop': '/hours/lessonsdetail'
         },
         {
             'type': 'text',
