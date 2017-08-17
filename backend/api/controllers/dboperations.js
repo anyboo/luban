@@ -12,6 +12,7 @@ var dbstr = 'mongodb://localhost/'
 const accessKeyId = 'ACSFUX7fLUMpBZM1'
 const secretAccessKey = 'qsGNrvuGnu'
 const queueName = 'Alicom-Queue-1420938370661882-'
+const https = require('https');
 
 function checkId(id) {
     let result = false
@@ -403,4 +404,39 @@ module.exports.sms = function* () {
         smsinfo.info = 'Send Error'
     }
     this.body = yield smsinfo
+}
+function ajax(code) {
+    return new Promise(function (resolve) {
+        console.log('ajax')
+        let options = {
+            hostname: 'api.weixin.qq.com',
+            port: 443,
+            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=SECRET&code='+code+'&grant_type=authorization_code',
+            method: 'GET'
+        }
+        const req = https.request(options, (res) => {
+            console.log('状态码：', res.statusCode)
+            console.log('请求头：', res.headers)
+
+            res.on('data', (d) => {
+                console.log(d.toString())
+            })
+        })
+
+        req.on('error', (e) => {
+            console.error(e)
+        });
+        req.end()
+    });
+}
+
+module.exports.wx = function* wx() {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    console.log(model)
+    let wxinfo = {}
+    wxinfo = yield ajax(model.code)
+    this.body = yield wxinfo
 }
