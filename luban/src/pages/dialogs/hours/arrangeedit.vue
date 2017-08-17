@@ -285,8 +285,9 @@ export default {
                 })
             })
         },
-        savearrage(obj) {
+        savearrage(item) {
             let vm = this
+            let eve = []
             let evnitem = {}
             evnitem.dayloop = item.dayloop
             evnitem.sclasses_id = item.sclasses_id

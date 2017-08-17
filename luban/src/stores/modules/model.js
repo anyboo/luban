@@ -80,9 +80,10 @@ const state = {
         },
         oder: {
             data: []
+        },
+        coursescheduling:{
+            data: []
         }
-
-
     },
     currentModel: {},
     login: true
