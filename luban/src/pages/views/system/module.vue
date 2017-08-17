@@ -66,7 +66,7 @@
                             {{item.prop}}
                         </template>
                         <template v-if="item.type=='lessonrouter'">
-                             <a class="link" @click="lessonrouter($event,item.prop)">排课详情</a> 
+                            <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
                         </template>
                         <template v-if="item.type=='payment'">
                             {{getDictText('2',scope.row[item.prop])}}
@@ -300,6 +300,9 @@ export default {
             }
             return nSearch
         },
+        handlebackFun() {
+            return this.getSearchFun('handleback')
+        },
         handleback() {
             return this.getModuleSearchInfo('handleback').length > 0
         },
@@ -374,15 +377,16 @@ export default {
                 this.radiovalue = ''
                 this.student_id = ''
                 this.course_id = ''
-                console.log(this.student_id)
                 this.handleSearch()
             }
         }
     },
     methods: {
-        lessonrouter(event,url,info) {
-            this.$store.commit('class', info._id)
-            this.$store.commit('router',  url)
+        lessonrouter(event, url, info) {
+            if(info){
+                this.$store.commit('class', info._id)
+            }
+            this.$store.commit('router', url)
             event.stopPropagation()
         },
         handOpenDialog(dialog) {
@@ -435,6 +439,7 @@ export default {
                         if (item.type == Search) {
                             if (item.searchfunction) {
                                 searchfun = item.searchfunction
+                                console.log('get',searchfun)
                                 break
                             }
                         }
@@ -457,6 +462,15 @@ export default {
                 let filterObjItem = this.dateSearchInfo(datetime, this)
                 for (let item of filterObjItem) {
                     filterObj.push(item)
+                }
+            }
+            let classId = this.$store.state.system.currStudentID
+            if (classId.length > 0) {
+                if (this.handlebackFun) {
+                    let filterObjItem = this.handlebackFun(classId)
+                    for (let item of filterObjItem) {
+                        filterObj.push(item)
+                    }
                 }
             }
             let radiosearch_value = this.radiovalue
@@ -514,6 +528,7 @@ export default {
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
+            console.log('1234546',filterObj)
         },
         getPercentage(order, maxStudent) {
             let percentage = 100

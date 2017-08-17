@@ -15,6 +15,19 @@ export default {
     'pageSearch': [
         {
             'type': 'handleback',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let classId= form+''
+                if (classId.length>0) {
+                    filterObj.push({
+                        'key': '_id',
+                        'value': classId,
+                        'type': ''
+                    })
+                }
+                console.log('2222',filterObj)
+                return filterObj
+            },
             'fields': [{}]
         },
         {
