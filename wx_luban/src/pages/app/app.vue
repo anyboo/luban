@@ -50,9 +50,12 @@ export default {
             cdstr = codeurl.slice(codeindex + 1, codeend)
         }
         console.log(cdstr)
-        Vue.http.post('http://app.bullstech.cn:8888/wx/',{code:cdstr}).then(obj=>{
-            console.log(obj)
-        })
+        if (cdstr.length > 0) {
+            Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
+                console.log(obj)
+            })
+
+        }
 
 
         if (this.$store.state.models.login) {
