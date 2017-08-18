@@ -3,7 +3,7 @@
         <el-input :disabled="true" :placeholder="getSelectLessonName"></el-input>
         <span class="input-group-btn">
             <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                <i class="el-icon-search"></i>选择
+                <i class="fa fa-book"></i>选择
             </button>
         </span>
     </div>
