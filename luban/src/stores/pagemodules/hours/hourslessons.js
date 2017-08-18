@@ -7,11 +7,11 @@ export default {
         'foreignField': '_id',
         'as': 'course'
     }, {
-        'localField': '_id',
-        'from': 'order',
-        'foreignField': 'class_id',
-        'as': 'order'
-    }],
+        'localField': 'teacher_id',
+        'from': 'employee',
+        'foreignField': '_id',
+        'as': 'employee'
+    },],
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -58,13 +58,15 @@ export default {
             },
             'fields': [
                 {
-                    'text':'请选择课程',
-                    'showdialog':'lb-selectlessontpl',
-                    'search':'lesson_name'
+                    'text': '请选择课程',
+                    'showdialog': 'lb-selectlessontpl',
+                    'search': 'lesson_name'
                 }
             ]
         }
     ],
+    pageTableOperation:false,
+    pageTableCheck:true,
     'pageTableField': [
         {
             'type': 'lessonrouter',
