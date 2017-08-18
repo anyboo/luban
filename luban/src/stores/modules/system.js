@@ -11,8 +11,13 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
+<<<<<<< HEAD
     balance: '',
     sms: ''
+=======
+    currClassID:'',
+    isModlues:true
+>>>>>>> bbc5259e4d7076359fc650a6f308aa818ae37932
 }
 const getters = {}
 const actions = {}

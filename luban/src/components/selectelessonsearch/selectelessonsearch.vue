@@ -23,7 +23,7 @@ export default {
             if (val == '') {
                 this.lesson_name = '请选择课程'
             }
-            this.student_id = val
+            this.course_id = val
         }
     },
     methods: {

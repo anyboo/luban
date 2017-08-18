@@ -305,6 +305,8 @@ export default {
                     if (item['day_' + days]) {
                         evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
                         evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
+                        evnitem.start = this.moment(evnitem.start).toDate()
+                        evnitem.end = this.moment(evnitem.end).toDate()
                         let evncpitem = {}
                         evncpitem.days = days
                         Object.assign(evncpitem, evnitem)
@@ -316,6 +318,8 @@ export default {
             } else {
                 evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
                 evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                evnitem.start = this.moment(evnitem.start).toDate()
+                evnitem.end = this.moment(evnitem.end).toDate()
                 let days = vm.moment(evnitem.start).days()
                 evnitem.days = days
                 eve.push(evnitem)

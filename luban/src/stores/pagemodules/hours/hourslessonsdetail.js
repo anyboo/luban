@@ -2,25 +2,30 @@ export default {
     'pageName': 'hourslessonsdetail',
     'pageLable': '排课详情',
     'tableSearch': [{
-        'localField': 'course_id',
-        'from': 'course',
+        'localField': 'sclasses_id',
+        'from': 'sclasses',
         'foreignField': '_id',
-        'as': 'course'
-    }, {
-        'localField': '_id',
-        'from': 'order',
-        'foreignField': 'class_id',
-        'as': 'order'
+        'as': 'sclasses'
+    },{
+        'localField': 'teacher_id',
+        'from': 'employee',
+        'foreignField': '_id',
+        'as': 'employee'
+    },{
+        'localField': 'classes_id',
+        'from': 'classes',
+        'foreignField': '_id',
+        'as': 'classes'
     }],
     'pageSearch': [
         {
             'type': 'handleback',
             'searchfunction': function (vm) {
                 let filterObj = []
-                let classId=vm.$store.state.system.currStudentID
+                let classId=vm.$store.state.system.currClassID
                 if (classId.length>0) {
                     filterObj.push({
-                        'key': '_id',
+                        'key': 'classes_id',
                         'value': classId,
                         'type': ''
                     })
@@ -32,6 +37,12 @@ export default {
         {
             'type': 'dateSearch',
             'fields': [{}]
+        },
+        {
+            'type': 'selectLessonSearch',
+            'fields': [
+                {}
+            ]
         },
         {
             'type': 'singleBtnSearch',
@@ -53,34 +64,46 @@ export default {
     ],
     'pageTableField': [
         {
+            'type': 'checkbox',
+            'label': '',
+        },
+        {
             'type': 'operation',
             'label': '操作',
             'prop': 'setting'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
+            'label': '班级名',
+            'table': 'classes',
+            'prop': 'class_name',
+        },
+        {
+            'type': 'tabletext',
             'label': '教室',
-            'prop': '舞蹈二班',
+            'table': 'sclasses',
+            'prop': 'class_name',
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '上课老师',
-            'prop': '老师',
+            'table': 'employee',
+            'prop': 'name',
         },
         {
-            'type': 'constant',
-            'label': '开始时间',
-            'prop': '2017-08-19',
+            'type': 'datetime',
+            'label': '开课日期',
+            'prop': 'start',
         },
         {
-            'type': 'constant',
-            'label': '结束时间',
-            'prop': '2017-08-19',
+            'type': 'datetimeRange',
+            'label': '上课时间段',
+            'prop1': 'start',
+            'prop2': 'end',
         },
         {
-            'type': 'constant',
-            'label': '星期',
-            'prop': '星期一',
+            'type': 'checkweek',
+            'label': '上课星期',
         },
         {
             'type': 'constant',
@@ -88,7 +111,7 @@ export default {
             'prop': '已排课',
         }
     ],
-    'pageTable': 'classes',
+    'pageTable': 'coursescheduling',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

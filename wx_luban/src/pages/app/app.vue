@@ -21,6 +21,7 @@ import home from '../views/home.vue'
 import login from '../views/login.vue'
 import verification from '../views/verification.vue'
 import common_use from '../dialogs/common_use/common_use.vue'
+import common_order from '../dialogs/common_use/common_order.vue'
 
 
 export default {
@@ -39,25 +40,48 @@ export default {
         }
     },
     mounted() {
-        let codeurl = window.location.search
-        let codeindex = codeurl.indexOf('=')
-        let codeend = codeurl.indexOf('&')
-        console.log(codeurl);
-        console.log(codeindex);
-        console.log(codeend);
-        let cdstr = ''
-        if (codeend) {
-            cdstr = codeurl.slice(codeindex + 1, codeend)
-        }
-        console.log(cdstr)
-        Vue.http.post('http://app.bullstech.cn:8888/wx/',{code:cdstr}).then(obj=>{
-            console.log(obj)
-        })
-
-
+        
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
+                let codeurl = window.location.search
+                let codeindex = codeurl.indexOf('=')
+                let codeend = codeurl.indexOf('&')
+                console.log(codeurl);
+                console.log(codeindex);
+                console.log(codeend);
+                let cdstr = ''
+                if (codeend) {
+                    cdstr = codeurl.slice(codeindex + 1, codeend)
+                }
+                console.log(cdstr)
+                if (cdstr.length > 0) {
+                    Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
+                        console.log(obj.bodyText.openid)
+                        this.$store.commit('getopenid', obj.bodyText.openid)
+                    })
+                } 
+     /*    let openid = 'oZy8Uwa334232n5 - N39nk0lVEFaDCw' */
+     let openid = this.$store.state.openid.openid
+        let filterObj = []
+        filterObj.push({
+            'key': 'openid',
+            'value': openid,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        this.handleGetFilterTableTable('student', filterTxt).then(obj => {
+          /*   console.log(obj.data) */
+            if(obj.data.count>0){
+                this.$store.commit('student',obj.data.data[0]._id)
+                this.$store.commit('homes','lb-home')
+            }else{
+                this.$store.commit('getopenid',openid)
+                this.$store.commit('homes','lb-verification')
+            }
+        })
+
+
     },
     components: {
         'lb-footer': footer,
@@ -67,6 +91,7 @@ export default {
         'lb-login': login,
         'lb-common': common_use,
         'lb-verification': verification,
+        'lb-order':common_order,
     },
     methods: {
         incrementTotalhome() {

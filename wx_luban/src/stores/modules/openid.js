@@ -1,16 +1,15 @@
 const state = {
-    student_id:''
+    openid:''
 }
 const getters = {
-    student(state){
-        return state.student_id
+    openids(state){
+        return state.openid
     }
 }
-const actions = {
-}
+const actions = {}
 const mutations = {
-     student(state,id){
-        state.student_id=id
+     getopenid(state,data){
+        state.openid=data
     },
 }
 export default {

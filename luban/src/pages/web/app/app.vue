@@ -4,13 +4,17 @@
         <div id="wrapper">
             <lb-sidebar></lb-sidebar>
             <lb-body>
-                <template v-if="getCurrentView">
+                <template v-if="getCurrentView ==1">
                     <lb-systemmodule :module="moduleObj">
                     </lb-systemmodule>
                 </template>
-                <template v-else>
+                <template v-if="getCurrentView == 0">
                     <component v-bind:is="currentView">
                     </component>
+                </template>
+                <template v-if="getCurrentView == 2">
+                    <lb-blank>
+                    </lb-blank>
                 </template>
             </lb-body>
         </div>
@@ -32,6 +36,7 @@ import header from './header.vue'
 import sidebar from '../menu/sidebar-menu.vue'
 import body from './body.vue'
 import footer from './footer.vue'
+import blank from './blank.vue'
 import module from '~/stores/module.js'
 import pages from '~/stores/viewpages.js'
 import dialoglist from '../dialog/dialoglist.vue'
@@ -42,6 +47,7 @@ pages['lb-header'] = header
 pages['lb-sidebar'] = sidebar
 pages['lb-body'] = body
 pages['lb-footer'] = footer
+pages['lb-blank'] = blank
 pages['lb-dialoglist'] = dialoglist
 pages['lb-modalbackdrop'] = modalbackdrop
 pages['lb-systemmodule'] = systemmodule
@@ -54,7 +60,6 @@ export default {
             localdata,
             currentView: '',
             isvariety: false,
-            isModlues: false,
             moduleObj: ''
         }
     },
@@ -72,11 +77,11 @@ export default {
     },
     computed: {
         getCurrentView() {
-            this.isModlues = false
+            let isModlues = 0
             if (!this.$store.state.models.login) {
-                 this.currentView = 'lb-systemsign_in'
+                this.currentView = 'lb-systemsign_in'
             } else if (this.$store.state.system.name.length == 0) {
-                 this.currentView = 'lb-systemsign_in'
+                this.currentView = 'lb-systemsign_in'
             } else {
                 let to = this.$store.state.system.router
                 let view = 'lb-studentadd'
@@ -87,7 +92,12 @@ export default {
                         let tomodule = to.replace(/\//g, '')
                         if (module[tomodule]) {
                             this.moduleObj = tomodule
-                            this.isModlues = true
+                            if (this.$store.state.system.isModlues) {
+                                this.$store.state.system.isModlues = false
+                                isModlues = 1
+                            } else {
+                                isModlues = 2
+                            }
                         }
                         else {
                             view = 'lb-' + to.replace(/\//g, '')
@@ -96,7 +106,7 @@ export default {
                 }
                 this.currentView = view
             }
-            return this.isModlues
+            return isModlues
         }
     },
     methods: {

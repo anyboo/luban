@@ -8,6 +8,23 @@ export default {
             'foreignField': '_id',
             'as': 'student'
         },
+        {
+            'localField': 'class_id',
+            'from': 'classes',
+            'foreignField': '_id',
+            'as': 'classes'
+        },
+        {
+            'key': 'teacher_id',
+            'value': '$classes',
+            'type': 'unwind'
+        },
+        {
+            'localField': 'classes.teacher_id',
+            'from': 'employee',
+            'foreignField': '_id',
+            'as': 'employee'
+        },
     ],
     'pageSearch': [
         {
@@ -59,15 +76,16 @@ export default {
             'prop': 'first_tel'
         },
         {
-            'type': 'tabletext',
+            'type': 'subtext',
             'label': '所在班级',
-            'table':'classes',
-            'prop': 'class_name'
+            'prop': 'classes',
+            'subprop': 'class_name'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '授课老师',
-            'prop': '老师'
+            'prop': 'name',
+            'table': 'employee'
         },
         {
             'type': 'datetime',
