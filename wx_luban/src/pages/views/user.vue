@@ -15,12 +15,13 @@
                 </el-col>
                 <el-col :span="16">
                     <div>
+                        <!--  data -->
                         <img src='/assets/images/1.jpg'>
                         <div class="disinblock header-content">
                             <ul>
-                                <li>李平安</li>
-                                <li>学号:1</li>
-                                <li>电话:15017542357</li>
+                                <li>姓名:{{dbdata.student_name}}</li>
+                                <li>昵称:{{dbdata.nickname}}</li>
+                                <li>电话:{{dbdata.first_tel}}</li>
                             </ul>
                         </div>
                     </div>
@@ -38,10 +39,10 @@
                         <el-row>
                             <el-col :span="16">
                                 <i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i>
-                                <div class='disinblock fontwei'>购物订单</div>
+                                <div class='disinblock fontwei'>课程订单</div>
                             </el-col>
                             <el-col :span="8">
-                                <div class='colorgray floatright'>
+                                <div class='colorgray floatright' @click="handleClick">
                                     <span>查看所有订单</span>
                                     <i class="fa fa-angle-right " aria-hidden="true"></i>
                                 </div>
@@ -57,19 +58,23 @@
                             <el-col :span="12">
                                 <div class="txt-center">
                                     <span>
+                                        <!--  data -->
                                         <el-badge :value="12" class="user-item">
                                             <i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
                                         </el-badge>
                                     </span>
+                                    <p class="txt-center fontwei">未付款</p>
                                 </div>
                             </el-col>
                             <el-col :span="12">
                                 <div class="txt-center">
                                     <span>
+                                        <!--  data -->
                                         <el-badge :value="43" class="user-item">
                                             <i class="fa fa-calendar-check-o fa-3x" aria-hidden="true"></i>
                                         </el-badge>
                                     </span>
+                                    <p class="txt-center fontwei">已付款</p>
                                 </div>
                             </el-col>
                         </el-row>
@@ -96,22 +101,22 @@
                         <el-row>
                             <el-col :span="24">
                                 <div class="txt-center">
-                                    <p class='colorred'>943154.5</p>
+                                    <p class='colorred'>{{dbdata.amount}}元</p>
                                     <p>账户余额</p>
                                 </div>
                             </el-col>
                             <!-- <el-col :span="8">
-                                <div class="txt-center">
-                                    <p>1</p>
-                                    <p>电子卷</p>
-                                </div>
-                            </el-col>
-                            <el-col :span="8">
-                                <div class="txt-center">
-                                    <p>3095.93</p>
-                                    <p>可用积分</p>
-                                </div>
-                            </el-col> -->
+                                                <div class="txt-center">
+                                                    <p>1</p>
+                                                    <p>电子卷</p>
+                                                </div>
+                                            </el-col>
+                                            <el-col :span="8">
+                                                <div class="txt-center">
+                                                    <p>3095.93</p>
+                                                    <p>可用积分</p>
+                                                </div>
+                                            </el-col> -->
                         </el-row>
                     </div>
                 </el-col>
@@ -126,13 +131,31 @@ export default {
         let localdata = {}
         return {
             localdata,
+            dbdata: []
         }
     },
     components: {
 
     },
+    mounted() {
+        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id).then(obj => {
+            if (obj.data.length > 0) {
+                this.dbdata = obj.data[0]
+                console.log(obj)
+            }
+        })
+/* 
+        console.log(this.$store.state.student_id.student_id)
+        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/order/' + this.$store.state.student_id.student_id).then(obj => {
+            console.log(obj)
+        }) */
+
+
+    },
     methods: {
-    
+        handleClick() {
+            this.$store.commit('homes', 'lb-order')
+        }
     }
 }
 </script>
