@@ -6,11 +6,11 @@ export default {
         'from': 'course',
         'foreignField': '_id',
         'as': 'course'
-    }, {
-        'localField': '_id',
-        'from': 'order',
-        'foreignField': 'class_id',
-        'as': 'order'
+    },{
+        'localField': 'teacher_id',
+        'from': 'employee',
+        'foreignField': '_id',
+        'as': 'employee'
     }],
     'pageSearch': [
         {

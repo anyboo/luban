@@ -131,6 +131,7 @@ export default {
             this.teacher_name = this.getLookUp(data.employee, 'name')
             this.lesson_name = this.getLookUp(data.course, 'lesson_name')
             this.localdata.form = this.lodash.assign(this.localdata.form, data)
+            console.log( this.localdata.form)
         } else {
             this.title = '创建'
         }

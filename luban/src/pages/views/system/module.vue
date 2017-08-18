@@ -122,6 +122,9 @@
                         <template v-if="item.type=='checkstatus'">
                             <lb-checkstatus :lessonData="scope.row" :typeData="item" v-on:search="handleSearch"></lb-checkstatus>
                         </template>
+                         <template v-if="item.type=='subtext'">
+                            {{ getSubText(scope.row,item.prop,item.subprop) }}
+                        </template>
                         <template v-if="item.type=='text'">
                             {{ scope.row[item.prop] }}
                         </template>
@@ -459,6 +462,17 @@ export default {
             }
             return searchInfo
         },
+        getSubText(item,prop,subprop){
+            let text = ''
+            if (item){
+                if (item[prop]){
+                    if (item[prop][subprop]){
+                        text = item[prop][subprop]
+                    }
+                }
+            }
+            return text
+        },
         getSearchFun(Search) {
             let searchfun
             if (this.moduledata && this.moduledata.pageSearch.length > 0) {
@@ -544,16 +558,22 @@ export default {
                     'type': ''
                 })
             }
+
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
-                    filterObj.push({
-                        'key': 'lookup',
-                        'value': item,
-                        'type': 'lookup'
-                    })
+                    if (item.type == "unwind") {
+                        filterObj.push(item)
+                    } else {
+                        filterObj.push({
+                            'key': 'lookup',
+                            'value': item,
+                            'type': 'lookup'
+                        })
+                    }
                 }
             }
+
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
