@@ -40,11 +40,7 @@ export default {
                 {
                     'label': '新增排课',
                     'type': 'success',
-<<<<<<< HEAD
                     'showdialog': 'lb-newlessonmodal',
-=======
-                    'showdialog': 'lb-arrangeedit',
->>>>>>> 2db93ecf092ae1ba2ba3d0dcd6a742109dc2e028
                     'actionoption': 'lessonmanageadd'
                 }, {
                     'label': '批量删除',
