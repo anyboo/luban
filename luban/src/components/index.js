@@ -5,6 +5,7 @@ import numberinput from './numberinput/'
 import progress from './progress/'
 import selecteusersearch from './selecteusersearch/'
 import selectelessonsearch from './selectelessonsearch/'
+import selectesearch from './selectesearch/'
 import lessonhours from './lessonhours/'
 import lessonprice from './lessonprice/'
 import lessontype from './lessontype/'
@@ -31,7 +32,8 @@ const components = [
     lasttrack,
     checkstatus,
     selectelessonsearch,
-    checkweek
+    checkweek,
+    selectesearch
 ]
 const install = function(Vue) {
     if (install.installed) return
@@ -57,5 +59,6 @@ export default {
     lasttrack,
     checkstatus,
     selectelessonsearch,
-    checkweek
+    checkweek,
+    selectesearch
 }

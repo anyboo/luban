@@ -43,9 +43,25 @@ export default {
             ]
         },
         {
-            'type': 'selectLessonSearch',
+            'type': 'selectSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let searchValue = form + ''
+                if (searchValue.length > 0) {
+                    filterObj.push({
+                        'key': 'course_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
-                {}
+                {
+                    'text':'请选择课程',
+                    'showdialog':'lb-selectlessontpl',
+                    'search':'lesson_name'
+                }
             ]
         }
     ],

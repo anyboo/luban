@@ -1,7 +1,7 @@
 export default {
     'pageName': 'hourslessonsdetail',
     'pageLable': '排课详情',
-    'tableSearch': [ {
+    'tableSearch': [{
         'localField': 'sclasses_id',
         'from': 'sclasses',
         'foreignField': '_id',
@@ -11,6 +11,11 @@ export default {
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
+    },{
+        'localField': 'classes_id',
+        'from': 'classes',
+        'foreignField': '_id',
+        'as': 'classes'
     }],
     'pageSearch': [
         {
@@ -34,13 +39,19 @@ export default {
             'fields': [{}]
         },
         {
+            'type': 'selectLessonSearch',
+            'fields': [
+                {}
+            ]
+        },
+        {
             'type': 'singleBtnSearch',
             'span': 5,
             'fields': [
                 {
                     'label': '新增排课',
                     'type': 'success',
-                    'showdialog': 'lb-newlessonmodal',
+                    'showdialog': 'lb-arrangeedit',
                     'actionoption': 'lessonmanageadd'
                 }, {
                     'label': '批量删除',
@@ -53,9 +64,19 @@ export default {
     ],
     'pageTableField': [
         {
+            'type': 'checkbox',
+            'label': '',
+        },
+        {
             'type': 'operation',
             'label': '操作',
             'prop': 'setting'
+        },
+        {
+            'type': 'tabletext',
+            'label': '班级名',
+            'table': 'classes',
+            'prop': 'class_name',
         },
         {
             'type': 'tabletext',
@@ -70,14 +91,15 @@ export default {
             'prop': 'name',
         },
         {
-            'type': 'constant',
+            'type': 'datetime',
             'label': '开课日期',
-            'prop': '2017-08-19',
+            'prop': 'start',
         },
         {
-            'type': 'constant',
+            'type': 'datetimeRange',
             'label': '上课时间段',
-            'prop': '2017-08-19',
+            'prop1': 'start',
+            'prop2': 'end',
         },
         {
             'type': 'checkweek',
