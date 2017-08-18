@@ -9,25 +9,30 @@ export default {
             'as': 'student'
         },
         {
-            'localField': 'course_id',
+            'localField': 'class_id',
             'from': 'classes',
-            'foreignField': 'course_id',
+            'foreignField': '_id',
             'as': 'classes'
         },
         {
-            'localField': 'teacher_id',
+            'key': 'teacher_id',
+            'value': '$classes',
+            'type': 'unwind'
+        },
+        {
+            'localField': 'classes.teacher_id',
             'from': 'employee',
             'foreignField': '_id',
             'as': 'employee'
-        }
+        },
     ],
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
             'searchfunction': function (form) {
                 let filterObj = []
-                let search_value = form+''
-                if (search_value.length>0) {
+                let search_value = form + ''
+                if (search_value.length > 0) {
                     filterObj.push({
                         'key': 'pay_status',
                         'value': Number(search_value),
@@ -71,15 +76,16 @@ export default {
             'prop': 'first_tel'
         },
         {
-            'type': 'tabletext',
+            'type': 'subtext',
             'label': '所在班级',
-            'table': 'classes',
-            'prop': 'class_name'
+            'prop': 'classes',
+            'subprop': 'class_name'
         },
         {
-            'type': 'constant',
+            'type': 'tabletext',
             'label': '授课老师',
-            'prop': '老师'
+            'prop': 'name',
+            'table': 'employee'
         },
         {
             'type': 'getButtongroupText',
