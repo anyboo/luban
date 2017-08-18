@@ -22,7 +22,7 @@
                             <tbody class="ng-scope">
                                 <tr class="ng-scope">
                                     <td class="ng-binding">{{item.priced}}元</td>
-                                    <td class="ng-binding">{{new Date()}}</td>
+                                    <td class="ng-binding">{{}}</td>
                                     <td>
                                         <a class="btn btn-danger btn-xs" @click="handleDelClick(item._id)">
                                             <i class="icon-ban"></i> 删除</a>

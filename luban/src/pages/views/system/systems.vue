@@ -1,18 +1,18 @@
 <template>
     <div class="wrapper bg-light ng-scope">
-        <div class="wrapper b-a r-5x bg-white box-shadow m-t"> 
+        <div class="wrapper b-a r-5x bg-white box-shadow m-t">
             <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'lb-recharge')">
                 <i class="fa fa-money"></i> 充值</button>
-                <button class="btn btn-default pull-right r m-r" @click="lbShowdialog($event,'lb-rechargerecord')">
+            <button class="btn btn-default pull-right r m-r" @click="lbShowdialog($event,'lb-rechargerecord')">
                 <i class="fa fa-money"></i> 充值记录</button>
             <h4 style="margin-bottom:0px;">
                 <i class="fa fa-cny"></i> 系统余额:
-                <span class="label bg-info ng-binding">￥{{$store.state.system.balance}}</span>
+                <span class="label bg-info ng-binding">￥{{getData}}</span>
             </h4>
-        </div>
+        </div>     
         <div class="wrapper b-a r-5x bg-white box-shadow m-t">
-            <button class="btn btn-default pull-right r">
-                <i class="icon-basket"></i> 购买</button> 
+            <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'lb-sms')">
+                <i class="icon-basket"></i> 购买</button>
             <h4 style="margin-bottom:0px;">
                 <i class="fa fa-mobile"></i> 短信剩余:
                 <span class="label bg-info ng-binding">10</span>
@@ -80,25 +80,38 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'charge_id':'',
-                'chargePriceIndex':'',
-                'priced':''
-               
+                'charge_id': '',
+                'chargePriceIndex': '',
+                'priced': ''
+
             }
         }
         return {
             tables: ['charge'],
             model: 'cart',
             localdata,
-            priced:''
-           
+            priced: ''
+
         }
     },
+    mounted() {
+        this.getTableApidata('org')
+    },
     computed: {
+        getData() {
+            let balance = 0
+            let org = this.$store.state.models.models.org.data
+            if (org.length > 0) {
+                if (org[0].balance) {
+                    balance = org[0].balance
+                }
+            }
+            return balance
+        },
     },
     methods: {
         handleClick(item) {
-           this.localdata.form.chargePriceIndex = item.relationsIndex
+            this.localdata.form.chargePriceIndex = item.relationsIndex
             this.localdata.form.charge_id = item._id
             this.handleSave().then(() => {
                 this.$message({
