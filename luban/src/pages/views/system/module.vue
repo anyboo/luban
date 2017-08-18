@@ -27,11 +27,16 @@
                         </el-option>
                     </el-select>
                 </el-col>
+                <el-col :span="5" v-if="selectSearch">
+                    <template v-for="item in selectSearchInfo">
+                        <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
+                    </template>
+                </el-col>
                 <el-col :span="5" v-if="selectLessonSearch">
                     <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
+                    <lb-selecteusersearch @search="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -45,7 +50,8 @@
                 <el-col :span="5" v-if="groupBtnSearch">
                     <el-button-group>
                         <template v-for="item in groupBtnSearchInfo">
-                            <el-button :type="item.type">{{item.label}}</el-button>
+                            <el-button :type="item.type">
+                                {{item.label}}</el-button>
                         </template>
                     </el-button-group>
                 </el-col>
@@ -60,7 +66,11 @@
         </div>
         <el-table :data="moduleTableData" stripe border :class="getUpdata">
             <template v-for="item in textTableInfo">
-                <el-table-column :label="item.label">
+                <template v-if="item.type=='checkbox'">
+                    <el-table-column type="selection" width="55">
+                    </el-table-column>
+                </template>
+                <el-table-column :label="item.label" v-if="item.type!='checkbox'">
                     <template scope="scope">
                         <template v-if="item.type=='constant'">
                             {{item.prop}}
@@ -83,6 +93,10 @@
                         <template v-if="item.type=='datetime'">
                             <el-icon name="time"></el-icon>
                             <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
+                        </template>
+                        <template v-if="item.type=='datetimeRange'">
+                            <el-icon name="time"></el-icon>
+                            <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
                         </template>
                         <template v-if="item.type=='lesson'">
                             <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
@@ -236,12 +250,15 @@ export default {
             textSearchKey: '',
             textSearchValue: '',
             moduleTableData: [],
+            checked: false,
             datevalue: '',
             radiovalue: '',
             studentname: '',
             student_id: '',
             course_id: '',
             classesId: '',
+            selectsearchValue: '',
+            multipleSelection: [],
             lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
             openDialogArr: ['lb-leaveshours', 'lb-suspendshours', 'lb-regstudentmatchmodal', 'lb-addtrackmodal'],
@@ -343,6 +360,16 @@ export default {
         },
         radioGroupSearchFun() {
             return this.getSearchFun('radioGroupSearch')
+        },
+        selectSearch() {
+            return this.getModuleSearchInfo('selectSearch').length > 0
+        },
+        selectSearchInfo() {
+            console.log('2222',this.getModuleSearchInfo('selectSearch'))
+            return this.getModuleSearchInfo('selectSearch')
+        },
+        selectesearchFun() {
+            return this.getSearchFun('selectSearch')
         },
         selectUserSearch() {
             return this.getModuleSearchInfo('selectUserSearch').length > 0
@@ -485,6 +512,13 @@ export default {
                     filterObj.push(item)
                 }
             }
+            let selectesearch = this.selectsearchValue
+            if (this.selectesearchFun) {
+                let filterObjItem = this.selectesearchFun(selectesearch)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
+                }
+            }
             let radiosearch_value = this.radiovalue
             if (this.radioGroupSearchFun) {
                 let filterObjItem = this.radioGroupSearchFun(radiosearch_value)
@@ -507,15 +541,14 @@ export default {
                     'type': ''
                 })
             }
-            let courseId = this.course_id.trim()
-            if (courseId.length > 0) {
-                filterObj.push({
-                    'key': 'course_id',
-                    'value': courseId,
-                    'type': ''
-                })
-            }
-
+            // let courseId = this.course_id.trim()
+            // if (courseId.length > 0) {
+            //     filterObj.push({
+            //         'key': 'course_id',
+            //         'value': courseId,
+            //         'type': ''
+            //     })
+            // }
             let studentId = this.student_id.trim()
             if (studentId.length > 0) {
                 filterObj.push({

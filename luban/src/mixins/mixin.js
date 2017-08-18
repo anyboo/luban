@@ -186,6 +186,19 @@ export default {
             }
             return datetimestr
         },
+        getDatetimeRanget(starttime,endtime) {
+            let startTemp = moment(starttime)
+            let endTemp = moment(endtime)
+            let starttimestr = ''
+            let endtimestr = ''
+            if (startTemp.isValid()) {
+                starttimestr = startTemp.format('H:mm')
+            }
+            if (endTemp.isValid()) {
+                endtimestr = endTemp.format('H:mm')
+            }
+            return starttimestr+'--'+endtimestr
+        },
         getDateNumFormat(datestring) {
             let dateTemp = moment(datestring)
             let datetimestr = 0
