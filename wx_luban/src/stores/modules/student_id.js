@@ -7,9 +7,6 @@ const getters = {
     }
 }
 const actions = {
-    student(context, data) {
-            context.commit('student', data)
-        }
 }
 const mutations = {
      student(state,id){

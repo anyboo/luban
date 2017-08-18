@@ -8,7 +8,7 @@
         <div class='modal-body'>
             <el-form :model="numberValidateForm" :rules="rules" ref="numberValidateForm" label-width='60px'>
                 <el-form-item label="电话" prop="number">
-                    <el-input v-model="numberValidateForm.number" auto-complete="off"></el-input>
+                    <el-input v-model="numberValidateForm.number" auto-complete="off" @blur="handleblur"></el-input>
                 </el-form-item>
                 <el-form-item class='padbom' label="验证" prop="verification">
                     <el-row>
@@ -16,7 +16,7 @@
                             <el-input v-model="numberValidateForm.verification"></el-input>
                         </el-col>
                         <el-col :span="12">
-                            <el-button v-bind:class="{touch:iscolor}" class="floatright" type="button" style="width:80%" @click="handleVerification">验证码</el-button>
+                            <el-button v-bind:class="{touch:iscolor}" class="floatright" type="button" style="width:80%" @click="handleVerification" :disabled="choose">验证码</el-button>
                         </el-col>
                     </el-row>
                 </el-form-item>
@@ -47,8 +47,10 @@ export default {
             localdata,
             numberValidateForm: {
                 number: '',
-                verification: ''
+                verification: '',
+
             },
+            choose: true,
             iscolor: false,
             rules: {
                 number: [
@@ -67,7 +69,7 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     //键值
-                    /*
+
                     let token = window.localStorage.getItem('token')
                     let tokentime = window.localStorage.getItem('tokentime')
                     Vue.http.headers.common['authorization'] = token
@@ -83,19 +85,48 @@ export default {
                     let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                     Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
                         console.log(obj)
-                        if (obj.body.data[0].first_tel == this.numberValidateForm.number) {
+                        if (obj.data.count > 0) {
                             student_ids = obj.body.data[0]._id
+                            this.$store.commit('student', student_ids)
+                            //绑定
+                            Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id, { openid: this.$store.state.openid.openid }).then(obj => {
+                                console.log(obj)
+                            })
+                            this.$store.commit('homes', 'lb-home')
+
                         }
-                        console.log(student_ids)
-                        this.$store.commit('student', student_ids)
-                        this.$store.commit('homes', 'lb-home')
-                    })*/
+                    })
                 } else {
                     alert('错误！')
                     return false
                 }
             });
-
+        },
+        handleblur() {
+            console.log(this.choose)
+            let token = window.localStorage.getItem('token')
+            let tokentime = window.localStorage.getItem('tokentime')
+            Vue.http.headers.common['authorization'] = token
+            Vue.http.headers.common['authtime'] = tokentime
+            //查询
+            let filterObj = []
+            filterObj.push({
+                'key': 'first_tel',
+                'value': this.numberValidateForm.number,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
+                if (obj.data.count <= 0) {
+                    this.$message({
+                        message: '该用户不存在',
+                        type: 'warning'
+                    })
+                }else{
+                    this.choose = false
+                }
+                
+            })
         },
         handleVerification() {
             this.iscolor = true
