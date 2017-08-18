@@ -34,9 +34,10 @@ export default {
                 if (this.selected == '') {
                     let searchId = ''
                     if (this.$store.state.envs.currDialogResult) {
-                        let fieldValue=this.searchfield
+                        let fieldValue=this.searchfield.trim()
                         console.log('4555',fieldValue)
                         this.defaultvalue = this.$store.state.envs.currDialogResult.fieldValue
+                        console.log('8888',this.defaultvalue)
                         searchId = this.$store.state.envs.currDialogResult._id
                     } else {
                         searchId = ''
@@ -45,7 +46,8 @@ export default {
                     this.$store.state.envs.currDialog = ''
                     if (this.search_id != searchId) {
                         this.search_id = searchId
-                        this.$emit('search', searchId)
+                        console.log('99999',searchId)
+                        this.$emit('input', searchId)
                     }
                 }
             }

@@ -36,7 +36,7 @@
                     <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @search="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
+                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -499,6 +499,7 @@ export default {
                 }
             }
             let selectesearch = this.selectsearchValue
+            console.log('6666',selectesearch)
             if (this.selectesearchFun) {
                 let filterObjItem = this.selectesearchFun(selectesearch)
                 for (let item of filterObjItem) {
