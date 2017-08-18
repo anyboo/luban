@@ -44,7 +44,7 @@ export default {
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
-        /*         let codeurl = window.location.search
+                let codeurl = window.location.search
                 let codeindex = codeurl.indexOf('=')
                 let codeend = codeurl.indexOf('&')
                 console.log(codeurl);
@@ -60,8 +60,9 @@ export default {
                         console.log(obj.bodyText.openid)
                         this.$store.commit('getopenid', obj.bodyText.openid)
                     })
-                } */
-        let openid = 'oZy8Uwa334232n5 - N39nk0lVEFaDCw'
+                } 
+     /*    let openid = 'oZy8Uwa334232n5 - N39nk0lVEFaDCw' */
+     let openid = this.$store.state.openid.openid
         let filterObj = []
         filterObj.push({
             'key': 'openid',
