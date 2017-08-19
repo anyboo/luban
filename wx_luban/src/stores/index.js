@@ -4,6 +4,7 @@ import system from './modules/system'
 import commondata from './modules/commondata'
 import student_id from './modules/student_id'
 import openid from './modules/openid'
+import classid from './modules/classid'
 
 export default {
     modules: {
@@ -12,6 +13,6 @@ export default {
         system: system,
         commondata: commondata,
         student_id: student_id,
-        openid:openid,
+        classid:classid,
     }
 }

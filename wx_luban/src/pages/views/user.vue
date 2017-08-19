@@ -59,7 +59,7 @@
                                 <div class="txt-center">
                                     <span>
                                         <!--  data -->
-                                        <el-badge :value="12" class="user-item">
+                                        <el-badge :value="getunpay(order_data)" class="user-item">
                                             <i class="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
                                         </el-badge>
                                     </span>
@@ -70,7 +70,7 @@
                                 <div class="txt-center">
                                     <span>
                                         <!--  data -->
-                                        <el-badge :value="43" class="user-item">
+                                        <el-badge :value="getpay(order_data)" class="user-item">
                                             <i class="fa fa-calendar-check-o fa-3x" aria-hidden="true"></i>
                                         </el-badge>
                                     </span>
@@ -105,18 +105,6 @@
                                     <p>账户余额</p>
                                 </div>
                             </el-col>
-                            <!-- <el-col :span="8">
-                                                <div class="txt-center">
-                                                    <p>1</p>
-                                                    <p>电子卷</p>
-                                                </div>
-                                            </el-col>
-                                            <el-col :span="8">
-                                                <div class="txt-center">
-                                                    <p>3095.93</p>
-                                                    <p>可用积分</p>
-                                                </div>
-                                            </el-col> -->
                         </el-row>
                     </div>
                 </el-col>
@@ -131,7 +119,8 @@ export default {
         let localdata = {}
         return {
             localdata,
-            dbdata: []
+            dbdata: [],
+            order_data: []
         }
     },
     components: {
@@ -141,20 +130,44 @@ export default {
         Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id).then(obj => {
             if (obj.data.length > 0) {
                 this.dbdata = obj.data[0]
-                console.log(obj)
             }
         })
-/* 
-        console.log(this.$store.state.student_id.student_id)
-        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/order/' + this.$store.state.student_id.student_id).then(obj => {
-            console.log(obj)
-        }) */
-
-
+        let filterObj = []
+        filterObj.push({
+            'key': 'student_id',
+            'value': this.$store.state.student_id.student_id,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/order/?filter=' + filterTxt).then(obj => {
+            this.order_data = obj.data.data
+        })
     },
     methods: {
         handleClick() {
             this.$store.commit('homes', 'lb-order')
+        },
+        getunpay(val) {
+            let unpay = 0
+            let count = 0
+            for (var i = 0; i < val.length; i++) {
+                if (parseInt(val[i].pay_status) < 2) {
+                    unpay += parseInt(val[i].pay_status)
+                    count++
+                }
+            }
+            return count
+        },
+        getpay(val) {
+            let pay = 0
+            let count = 0
+            for (var i = 0; i < val.length; i++) {
+                if (parseInt(val[i].pay_status) == 2) {
+                    pay += parseInt(val[i].pay_status)
+                    count++
+                }
+            }
+            return count
         }
     }
 }

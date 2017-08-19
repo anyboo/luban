@@ -41,7 +41,7 @@ export default {
     },
     mounted() {
         
-        if (this.$store.state.models.login) {
+       /*  if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
                 let codeurl = window.location.search
@@ -60,9 +60,9 @@ export default {
                         console.log(obj.bodyText.openid)
                         this.$store.commit('getopenid', obj.bodyText.openid)
                     })
-                } 
-     /*    let openid = 'oZy8Uwa334232n5 - N39nk0lVEFaDCw' */
-     let openid = this.$store.state.openid.openid
+                }  */
+      let openid = 'oZy8Uwatalkn5-N39nk0lVEFaDCw' 
+ /*     let openid = this.$store.state.openid.openid */
         let filterObj = []
         filterObj.push({
             'key': 'openid',

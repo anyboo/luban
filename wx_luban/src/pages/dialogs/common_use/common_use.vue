@@ -99,7 +99,7 @@ export default {
     watch: {},
     methods: {
         getInfo(itemval, item) {
-            let info
+            let info =''
             info = itemval.label + ' : ' + item[itemval.prop]
             if (itemval.type == 'payment') {
                 info = itemval.label + ' : ' + this.getDictData('2', item[itemval.prop])
