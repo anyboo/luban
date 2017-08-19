@@ -11,7 +11,7 @@ export default {
         }
     },
     mounted(){
-        this.$store.state.system.isModlues = true
+        this.$store.state.system.isModlues=true
     }
 }
 </script>

@@ -106,6 +106,7 @@ export default {
                 }
                 this.currentView = view
             }
+            console.log(isModlues)
             return isModlues
         }
     },

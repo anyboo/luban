@@ -11,6 +11,7 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
+    isModlues: true,
     balance: '',
     sms: ''
 }
