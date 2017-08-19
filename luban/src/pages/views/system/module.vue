@@ -2,7 +2,7 @@
     <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
         <div class="search" v-if="getSearch">
             <el-row :gutter="12">
-                <el-col :xs="8" :sm="8" :md="8" :lg="6" v-if="textSearch">
+                <el-col :xs="24" :sm="24" :md="8" :lg="6" v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
                         <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
                             <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
@@ -31,12 +31,6 @@
                         <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
                     </template>
                 </el-col>
-                <el-col :span="5" v-if="selectLessonSearch">
-                    <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
-                </el-col>
-                <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
-                </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
@@ -63,8 +57,8 @@
                 </el-col>
             </el-row>
         </div>
-        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata">
-            <template v-for="item in textTableInfo">
+        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
+            <template v-for="(item,index) in textTableInfo">
                 <template v-if="item.type=='checkbox'">
                     <el-table-column type="selection" width="55">
                     </el-table-column>
@@ -107,7 +101,6 @@
                                 <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                             </template>
                             <template v-if="item.type=='datetimeRange'">
-                                <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
                             </template>
                             <template v-if="item.type=='lesson'">
@@ -248,7 +241,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
-    props: ['module', 'info', 'searchValue'],
+    props: ['module', 'info', 'searchValue', 'value'],
     data() {
         return {
             moduledata: '',
@@ -258,9 +251,7 @@ export default {
             checked: false,
             datevalue: '',
             radiovalue: '',
-            studentname: '',
-            student_id: '',
-            course_id: '',
+            highlight: false,
             classesId: '',
             selectsearchValue: '',
             multipleSelection: [],
@@ -307,6 +298,9 @@ export default {
         }
     },
     computed: {
+        getCheckHighlight() {
+            this.highlight = true
+        },
         getUpdata() {
             if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
                 this.handleSearch()
@@ -326,6 +320,14 @@ export default {
                 nSearch = true
             }
             return nSearch
+        },
+        getDialogUrl() {
+            let dialogUrl = ''
+            if (this.moduledata.dialogUrl && this.moduledata.dialogUrl.length > 0) {
+                dialogUrl = this.moduledata.dialogUrl
+                return dialogUrl
+            }
+            return dialogUrl
         },
         handlebackFun() {
             return this.getSearchFun('handleback')
@@ -376,18 +378,6 @@ export default {
         selectesearchFun() {
             return this.getSearchFun('selectSearch')
         },
-        selectUserSearch() {
-            return this.getModuleSearchInfo('selectUserSearch').length > 0
-        },
-        selectUserSearchInfo() {
-            return this.getModuleSearchInfo('selectUserSearch')
-        },
-        selectLessonSearch() {
-            return this.getModuleSearchInfo('selectLessonSearch').length > 0
-        },
-        selectLessonSearchInfo() {
-            return this.getModuleSearchInfo('selectLessonSearch')
-        },
         classesSearch() {
             return this.getModuleSearchInfo('classesSearch').length > 0
         },
@@ -412,13 +402,15 @@ export default {
                 this.moduledata = pagesmodule[val]
                 this.datevalue = ''
                 this.radiovalue = ''
-                this.student_id = ''
-                this.course_id = ''
+                this.selectsearchValue = ''
                 this.handleSearch()
             }
         }
     },
     methods: {
+        handleTableChange(val) {
+            this.$emit('tablechange',{ 'row': val, 'dialog':this.getDialogUrl})
+        },
         lessonrouter(event, url, info) {
             if (info) {
                 this.$store.commit('class', info._id)
@@ -546,15 +538,6 @@ export default {
                     'type': ''
                 })
             }
-            let studentId = this.student_id.trim()
-            if (studentId.length > 0) {
-                filterObj.push({
-                    'key': 'student_id',
-                    'value': studentId,
-                    'type': ''
-                })
-            }
-
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {

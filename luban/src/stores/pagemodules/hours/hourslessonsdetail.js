@@ -6,12 +6,12 @@ export default {
         'from': 'sclasses',
         'foreignField': '_id',
         'as': 'sclasses'
-    },{
+    }, {
         'localField': 'teacher_id',
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
-    },{
+    }, {
         'localField': 'classes_id',
         'from': 'classes',
         'foreignField': '_id',
@@ -22,8 +22,8 @@ export default {
             'type': 'handleback',
             'searchfunction': function (vm) {
                 let filterObj = []
-                let classId=vm.$store.state.system.currClassID
-                if (classId.length>0) {
+                let classId = vm.$store.state.system.currClassID
+                if (classId.length > 0) {
                     filterObj.push({
                         'key': 'classes_id',
                         'value': classId,
@@ -39,9 +39,25 @@ export default {
             'fields': [{}]
         },
         {
-            'type': 'selectLessonSearch',
+            'type': 'selectSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let searchValue = form + ''
+                if (searchValue.length > 0) {
+                    filterObj.push({
+                        'key': 'classes_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
             'fields': [
-                {}
+                {
+                    'text': '请选择班级',
+                    'showdialog': '/lesson/classesdialog',
+                    'search': 'class_name'
+                }
             ]
         },
         {
