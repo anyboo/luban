@@ -31,15 +31,6 @@
                         <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
                     </template>
                 </el-col>
-<<<<<<< HEAD
-                <el-col :span="5" v-if="selectLessonSearch">
-                    <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
-                </el-col>
-                <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
-                </el-col>
-=======
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
@@ -66,13 +57,8 @@
                 </el-col>
             </el-row>
         </div>
-<<<<<<< HEAD
-        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata">
-            <template v-for="item in textTableInfo">
-=======
         <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
             <template v-for="(item,index) in textTableInfo">
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
                 <template v-if="item.type=='checkbox'">
                     <el-table-column type="selection" width="55">
                     </el-table-column>
@@ -115,10 +101,6 @@
                                 <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                             </template>
                             <template v-if="item.type=='datetimeRange'">
-<<<<<<< HEAD
-                                <el-icon name="time"></el-icon>
-=======
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
                                 <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
                             </template>
                             <template v-if="item.type=='lesson'">
@@ -556,18 +538,6 @@ export default {
                     'type': ''
                 })
             }
-<<<<<<< HEAD
-            let studentId = this.student_id.trim()
-            if (studentId.length > 0) {
-                filterObj.push({
-                    'key': 'student_id',
-                    'value': studentId,
-                    'type': ''
-                })
-            }
-
-=======
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {

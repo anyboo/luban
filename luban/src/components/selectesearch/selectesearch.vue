@@ -31,13 +31,7 @@ export default {
                     let searchId = ''
                     if (this.$store.state.envs.currDialogResult) {
                         let fieldValue = this.searchfield.trim()
-<<<<<<< HEAD
-                        console.log('4555', fieldValue)
                         this.defaultvalue = this.$store.state.envs.currDialogResult[fieldValue]
-                        console.log('8888', this.defaultvalue)
-=======
-                        this.defaultvalue = this.$store.state.envs.currDialogResult[fieldValue]
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
                         searchId = this.$store.state.envs.currDialogResult._id
                     } else {
                         searchId = ''
@@ -46,10 +40,6 @@ export default {
                     this.$store.state.envs.currDialog = ''
                     if (this.search_id != searchId) {
                         this.search_id = searchId
-<<<<<<< HEAD
-                        console.log('99999', searchId)
-=======
->>>>>>> 9586392fd6dc12209b677d00ba06f65616e1777e
                         this.$emit('input', searchId)
                     }
                 }
