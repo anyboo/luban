@@ -101,7 +101,7 @@ export default {
                 this.orgid = org[0]._id
             }
             return this.sms
-            console.log('sms', this.sms)
+            console.log('sms456', this.sms)
         }
     },
     watch: {},
@@ -115,7 +115,9 @@ export default {
                 this.balance -= parseInt(400)
                 this.sms += parseInt(5000)
                 this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
-                    console.log('sms', this.sms)
+                    console.log('sms123', this.sms)
+                    console.log('balance',this.balance)
+                    console.log('orgid', this.orgid)
                     this.getTableApidata('org')
                     this.lbClosedialog()
                     this.$store.state.envs.currDialog = 'lb-cart'

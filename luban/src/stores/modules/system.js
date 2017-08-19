@@ -11,8 +11,6 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
-    balance: '',
-    sms: ''
 }
 const getters = {}
 const actions = {}
