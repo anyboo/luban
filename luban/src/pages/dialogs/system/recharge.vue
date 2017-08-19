@@ -17,11 +17,11 @@
                                 <dt>充值金额:</dt>
                                 <dd>
                                     <div class="w-sm input-group">
-                                        <lb-numberinput type="text" class="form-control ng-pristine ng-valid ng-touched" v-model.lazy="localdata.form.priced">
+                                        <lb-numberinput type="number" class="form-control ng-pristine ng-valid ng-touched" v-model.lazy="localdata.form.priced">
                                         </lb-numberinput>
                                         <span class="input-group-addon">元</span>
-                                    </div>                           
-                                </dd>                 
+                                    </div>
+                                </dd>
                                 <dt class="m-t">支付方式:</dt>
                                 <dd class="m-t">
                                     <ul class="list-group">
@@ -54,7 +54,7 @@
                         <h3 class="modal-title">
                             <i class="fa fa-money"></i>系统充值</h3>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" :class="getData">
                         <div ng-if="step == 2" class="ng-scope">
                             <h4 class="text-center">确认充值</h4>
                             <dl class="dl-horizontal m-t">
@@ -91,9 +91,12 @@ export default {
             localdata,
             alipay: '1',
             model: 'money',
+            balance: 0,
+            orgid: '',
         }
     },
     mounted() {
+        this.getTableApidata('org')
     },
     computed: {
         totalMoney() {
@@ -103,7 +106,15 @@ export default {
                 money += parseInt(vm.getLookUp(product.charge, 'relations')[product.chargePriceIndex].priced)
             })
             return money
-        }
+        },
+        getData() {
+            let org = this.$store.state.models.models.org.data
+            if (org.length > 0) {
+                this.balance = parseInt(org[0].balance)
+                this.orgid = org[0]._id
+            }
+            return true
+        },
     },
     watch: {},
     methods: {
@@ -113,10 +124,12 @@ export default {
                     message: '充值成功',
                     type: 'success',
                 })
-                this.localdata.form.balance += parseInt(this.localdata.form.priced)
-                this.$store.state.system.balance = this.localdata.form.balance
-                this.lbClosedialog()
-                this.$store.state.envs.currDialog = 'lb-cart'
+                this.balance += parseInt(this.localdata.form.priced)
+                this.updateTeble('org', this.orgid, { balance: this.balance }).then(() => {
+                    this.getTableApidata('org')
+                    this.lbClosedialog()
+                    this.$store.state.envs.currDialog = 'lb-cart'
+                })
             })
         },
         handcut() {

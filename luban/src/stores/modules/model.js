@@ -81,7 +81,7 @@ const state = {
         oder: {
             data: []
         },
-        coursescheduling:{
+        money: {
             data: []
         }
     },

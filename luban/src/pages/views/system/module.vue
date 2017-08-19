@@ -7,7 +7,6 @@
                         <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
                             <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
                         </el-select>
-                        <el-button slot="append" icon="search"></el-button>
                     </el-input>
                 </el-col>
                 <el-col :span="2" v-if="handleback">
@@ -15,7 +14,7 @@
                         <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
                     </div>
                 </el-col>
-                <el-col :xs="8" :sm="6" :md="6" :lg="6" v-if="dateSearch">
+                <el-col :xs="8" :sm="6" :md="6" :lg="4" v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
                         </el-date-picker>
@@ -36,7 +35,7 @@
                     <lb-selectelessonsearch @input="handleSearch" v-model="course_id"></lb-selectelessonsearch>
                 </el-col>
                 <el-col :span="5" v-if="selectUserSearch">
-                    <lb-selecteusersearch @search="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
+                    <lb-selecteusersearch @input="handleSearch" v-model="student_id" :selected="selStudentAddInquiry"></lb-selecteusersearch>
                 </el-col>
                 <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
@@ -64,91 +63,15 @@
                 </el-col>
             </el-row>
         </div>
-        <el-table :data="moduleTableData" stripe border :class="getUpdata">
+        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata">
             <template v-for="item in textTableInfo">
                 <template v-if="item.type=='checkbox'">
                     <el-table-column type="selection" width="55">
                     </el-table-column>
                 </template>
-                <el-table-column :label="item.label" v-if="item.type!='checkbox'">
-                    <template scope="scope">
-                        <template v-if="item.type=='constant'">
-                            {{item.prop}}
-                        </template>
-                        <template v-if="item.type=='lessonrouter'">
-                            <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
-                        </template>
-                        <template v-if="item.type=='payment'">
-                            {{getDictText('2',scope.row[item.prop])}}
-                        </template>
-                        <template v-if="item.type=='lessoncount'">
-                            {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
-                        </template>
-                        <template v-if="item.type=='content'">
-                            <el-tooltip :content="scope.row[item.prop]" placement="top">
-                                <el-button>{{ scope.row[item.prop]}}</el-button>
-                            </el-tooltip>
-                            <!-- <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre> -->
-                        </template>
-                        <template v-if="item.type=='datetime'">
-                            <el-icon name="time"></el-icon>
-                            <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
-                        </template>
-                        <template v-if="item.type=='datetimeRange'">
-                            <el-icon name="time"></el-icon>
-                            <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
-                        </template>
-                        <template v-if="item.type=='lesson'">
-                            <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
-                        </template>
-                        <template v-if="item.type=='checkweek'">
-                            <lb-checkweek :lessonData="scope.row"></lb-checkweek>
-                        </template>
-                        <template v-if="item.type=='getButtongroupText'">
-                            <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='getdataPurpose'">
-                            <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='getEmployeeName'">
-                            <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
-                        </template>
-                        <template v-if="item.type=='studenttracksadd'">
-                            <lb-studenttracksadd :lessonData="scope.row" :typeData="item"></lb-studenttracksadd>
-                        </template>
-                        <template v-if="item.type=='lastTrack'">
-                            <lb-lasttrack :lessonData="scope.row" :typeData="item"></lb-lasttrack>
-                        </template>
-                        <template v-if="item.type=='checkstatus'">
-                            <lb-checkstatus :lessonData="scope.row" :typeData="item" v-on:search="handleSearch"></lb-checkstatus>
-                        </template>
-                         <template v-if="item.type=='subtext'">
-                            {{ getSubText(scope.row,item.prop,item.subprop) }}
-                        </template>
-                        <template v-if="item.type=='text'">
-                            {{ scope.row[item.prop] }}
-                        </template>
-                        <template v-if="item.type=='textphone'">
-                            {{ scope.row.student[0].first_tel }}
-                        </template>
-                        <template v-if="item.type=='fromNow'">
-                            {{ fromNow(scope.row.birth) }}
-                        </template>
-                        <template v-if="item.type=='studentRouter'">
-                            <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
-                        </template>
-                        <template v-if="item.type=='studentRouter1'">
-                            <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
-                        </template>
-                        <template v-if="item.type=='studentlink'">
-                            <a class="link" @click="handleRouter($event,scope.row[item.prop])">
-                                <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
-                            </a>
-                        </template>
-                        <template v-if="item.type=='tabletext'">
-                            {{ getLookUp(scope.row[item.table],item.prop) }}
-                        </template>
-                        <template v-if="item.type=='operation'">
+                <template v-else-if="item.type=='operation'">
+                    <el-table-column :label="item.label" width="90">
+                        <template scope="scope">
                             <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" class="btn btn-info btn-xs">
                                     <i class="fa fa-cog"></i>操作
@@ -156,37 +79,119 @@
                                 </lb-dropdown-button>
                             </lb-dropdown>
                         </template>
-                        <template v-if="item.type=='textScale'">
-                            <el-tag type="warning">{{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{scope.row[item.prop2]}}</el-tag>
+                    </el-table-column>
+                </template>
+                <template v-else-if="item.type!='checkbox'&&item.type!='operation'">
+                    <el-table-column :label="item.label">
+                        <template scope="scope">
+                            <template v-if="item.type=='constant'">
+                                {{item.prop}}
+                            </template>
+                            <template v-if="item.type=='lessonrouter'">
+                                <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
+                            </template>
+                            <template v-if="item.type=='payment'">
+                                {{getDictText('2',scope.row[item.prop])}}
+                            </template>
+                            <template v-if="item.type=='lessoncount'">
+                                {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
+                            </template>
+                            <template v-if="item.type=='content'">
+                                <el-tooltip :content="scope.row[item.prop]" placement="top">
+                                    <el-button>{{ scope.row[item.prop]}}</el-button>
+                                </el-tooltip>
+                                <!-- <pre class="ng-binding widths">{{ scope.row[item.prop]}}</pre> -->
+                            </template>
+                            <template v-if="item.type=='datetime'">
+                                <el-icon name="time"></el-icon>
+                                <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
+                            </template>
+                            <template v-if="item.type=='datetimeRange'">
+                                <el-icon name="time"></el-icon>
+                                <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
+                            </template>
+                            <template v-if="item.type=='lesson'">
+                                <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
+                            </template>
+                            <template v-if="item.type=='checkweek'">
+                                <lb-checkweek :lessonData="scope.row"></lb-checkweek>
+                            </template>
+                            <template v-if="item.type=='getButtongroupText'">
+                                <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='getdataPurpose'">
+                                <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='getEmployeeName'">
+                                <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
+                            </template>
+                            <template v-if="item.type=='studenttracksadd'">
+                                <lb-studenttracksadd :lessonData="scope.row" :typeData="item"></lb-studenttracksadd>
+                            </template>
+                            <template v-if="item.type=='lastTrack'">
+                                <lb-lasttrack :lessonData="scope.row" :typeData="item"></lb-lasttrack>
+                            </template>
+                            <template v-if="item.type=='checkstatus'">
+                                <lb-checkstatus :lessonData="scope.row" :typeData="item" v-on:search="handleSearch"></lb-checkstatus>
+                            </template>
+                            <template v-if="item.type=='subtext'">
+                                {{ getSubText(scope.row,item.prop,item.subprop) }}
+                            </template>
+                            <template v-if="item.type=='text'">
+                                {{ scope.row[item.prop] }}
+                            </template>
+                            <template v-if="item.type=='textphone'">
+                                {{ scope.row.student[0].first_tel }}
+                            </template>
+                            <template v-if="item.type=='fromNow'">
+                                {{ fromNow(scope.row.birth) }}
+                            </template>
+                            <template v-if="item.type=='studentRouter'">
+                                <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
+                            </template>
+                            <template v-if="item.type=='studentRouter1'">
+                                <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
+                            </template>
+                            <template v-if="item.type=='studentlink'">
+                                <a class="link" @click="handleRouter($event,scope.row[item.prop])">
+                                    <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}
+                                </a>
+                            </template>
+                            <template v-if="item.type=='tabletext'">
+                                {{ getLookUp(scope.row[item.table],item.prop) }}
+                            </template>
+                            <template v-if="item.type=='textScale'">
+                                <el-tag type="warning">{{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{scope.row[item.prop2]}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='textTag'">
+                                <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='negativeTag'">
+                                <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='payconditions'">
+                                <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
+                                    <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
+                                </el-tooltip>
+                            </template>
+                            <template v-if="item.type=='progress'">
+                                <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='priceText'">
+                                <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
+                            </template>
+                            <template v-if="item.type=='getToFixed'">
+                                <el-tag type="gray">{{getToFixed(scope.row[item.prop])}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='lessonpriceText'">
+                                <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
+                            </template>
+                            <template v-if="item.type=='contentText'">
+                                <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
+                            </template>
                         </template>
-                        <template v-if="item.type=='textTag'">
-                            <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='negativeTag'">
-                            <el-tag :type="item.color">-{{ getToFixed(scope.row[item.prop])}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='payconditions'">
-                            <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
-                                <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
-                            </el-tooltip>
-                        </template>
-                        <template v-if="item.type=='progress'">
-                            <el-tag type="warning">{{getPressageText(scope.row)}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='priceText'">
-                            <lb-payconditions :lessonData="scope.row" :typeData="item"></lb-payconditions>
-                        </template>
-                        <template v-if="item.type=='getToFixed'">
-                            <el-tag type="gray">{{getToFixed(scope.row[item.prop])}}</el-tag>
-                        </template>
-                        <template v-if="item.type=='lessonpriceText'">
-                            <lb-lessonprice :lessonData="scope.row" :typeData="item"></lb-lessonprice>
-                        </template>
-                        <template v-if="item.type=='contentText'">
-                            <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
-                        </template>
-                    </template>
-                </el-table-column>
+                    </el-table-column>
+                </template>
             </template>
         </el-table>
         <div class="pagination">
@@ -365,7 +370,7 @@ export default {
             return this.getModuleSearchInfo('selectSearch').length > 0
         },
         selectSearchInfo() {
-            console.log('2222',this.getModuleSearchInfo('selectSearch'))
+            console.log('2222', this.getModuleSearchInfo('selectSearch'))
             return this.getModuleSearchInfo('selectSearch')
         },
         selectesearchFun() {
@@ -462,11 +467,11 @@ export default {
             }
             return searchInfo
         },
-        getSubText(item,prop,subprop){
+        getSubText(item, prop, subprop) {
             let text = ''
-            if (item){
-                if (item[prop]){
-                    if (item[prop][subprop]){
+            if (item) {
+                if (item[prop]) {
+                    if (item[prop][subprop]) {
                         text = item[prop][subprop]
                     }
                 }
@@ -541,14 +546,6 @@ export default {
                     'type': ''
                 })
             }
-            // let courseId = this.course_id.trim()
-            // if (courseId.length > 0) {
-            //     filterObj.push({
-            //         'key': 'course_id',
-            //         'value': courseId,
-            //         'type': ''
-            //     })
-            // }
             let studentId = this.student_id.trim()
             if (studentId.length > 0) {
                 filterObj.push({
@@ -577,6 +574,8 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data
+                    var table = this.$refs.table
+                    table.$forceUpdate()
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }

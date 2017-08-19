@@ -11,7 +11,8 @@ const state = {
     routerback: '',
     router: '',
     currStudentID: '',
-    currClassID:'',
+    isModlues: true,
+
 }
 const getters = {}
 const actions = {}

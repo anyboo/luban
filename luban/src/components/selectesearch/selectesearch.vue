@@ -1,17 +1,12 @@
 <template>
-    <div class="input-group">
-        <input type="text" :placeholder="getSelectStudentName" class="form-control" ng-readonly="true" readonly="readonly">
-        <span class="input-group-btn">
-            <button class="btn btn-default" @click="lbShowdialog($event,showdialog)">
-                <i class="el-icon-menu"></i>
-            </button>
-        </span>
-    </div>
+    <el-input :placeholder="getSelectStudentName" :disabled="true">
+        <el-button slot="append" icon="search" @click="handleShowDialog(showdialog)"></el-button>
+    </el-input>
 </template>
 <script>
 export default {
     name: 'LbSelectesearch',
-    props: ['value', 'selected','default','showdialog','searchfield'],
+    props: ['value', 'selected', 'default', 'showdialog', 'searchfield'],
     data() {
         return {
             defaultvalue: this.default,
@@ -34,9 +29,10 @@ export default {
                 if (this.selected == '') {
                     let searchId = ''
                     if (this.$store.state.envs.currDialogResult) {
-                        let fieldValue=this.searchfield
-                        console.log('4555',fieldValue)
-                        this.defaultvalue = this.$store.state.envs.currDialogResult.fieldValue
+                        let fieldValue = this.searchfield.trim()
+                        console.log('4555', fieldValue)
+                        this.defaultvalue = this.$store.state.envs.currDialogResult[fieldValue]
+                        console.log('8888', this.defaultvalue)
                         searchId = this.$store.state.envs.currDialogResult._id
                     } else {
                         searchId = ''
@@ -45,7 +41,8 @@ export default {
                     this.$store.state.envs.currDialog = ''
                     if (this.search_id != searchId) {
                         this.search_id = searchId
-                        this.$emit('search', searchId)
+                        console.log('99999', searchId)
+                        this.$emit('input', searchId)
                     }
                 }
             }

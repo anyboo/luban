@@ -59,7 +59,7 @@
           </div>
           <div class="modal-body">
             <div class="bg-light lter padder padder-v">您的当前账户余额:
-              <span class="text-success ng-binding">￥{{$store.state.system.balance}}</span>元
+              <span class="text-success ng-binding">￥{{getData}}</span>元
               <span class="bg-light lter padder padder-v">订单余额:
                 <span class="text-success ng-binding">￥{{totalMoney}}</span>元</span>
             </div>
@@ -85,7 +85,8 @@
         </div>
       </div>
     </div>
-      <lb-recharge  v-if="alipay==3"></lb-recharge>
+    <!--充值组件-->
+    <lb-recharge v-if="alipay==3"></lb-recharge>
     <!--充值组件-->
   </div>
 </template>
@@ -111,12 +112,14 @@ export default {
       localdata,
       tables: ['cart'],
       model: 'oder',
-      model: 'money',
       alipay: '2',
       prices: false,
+      orgid: '',
+      balance: 0
     }
   },
   mounted() {
+    this.getTableApidata('org')
   },
   components: {
     'lb-recharge': recharge,
@@ -129,7 +132,15 @@ export default {
         money += parseInt(vm.getLookUp(product.charge, 'relations')[product.chargePriceIndex].priced)
       })
       return money
-    }
+    },
+    getData() {
+      let org = this.$store.state.models.models.org.data
+      if (org.length > 0) {
+        this.balance = parseInt(org[0].balance)
+        this.orgid = org[0]._id
+      }
+      return this.balance
+    },
   },
   watch: {},
   methods: {
@@ -157,28 +168,19 @@ export default {
       this.handleSave().then(() => {
         this.$message({
           message: '购买成功',
-          type: 'success'
-        })
-        this.$store.state.system.balance -= parseInt(this.totalMoney)
-        this.lbClosedialog()
-        this.$store.state.envs.currDialog = 'lb-cart'
-      })
-    },
-    recharge() {
-      this.handleSave().then(() => {
-        this.$message({
-          message: '充值成功',
           type: 'success',
         })
-        this.localdata.form.balance += parseInt(this.localdata.form.priced)
-        this.$store.state.system.balance = this.localdata.form.balance
-        this.lbClosedialog()
-        this.$store.state.envs.currDialog = 'lb-cart'
+        this.balance -= parseInt(this.totalMoney)
+        this.updateTeble('org', this.orgid, { balance: this.balance }).then(() => {
+          this.getTableApidata('org')
+          this.lbClosedialog()
+          this.$store.state.envs.currDialog = 'lb-cart'
+        })
       })
     },
     handcut() {
       this.alipay = 1
-      if (this.totalMoney > this.$store.state.system.balance) {
+      if (this.totalMoney > this.getData) {
         this.prices = !this.prices
       }
     },
