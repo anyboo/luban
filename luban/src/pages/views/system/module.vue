@@ -518,7 +518,6 @@ export default {
                 }
             }
             let selectesearch = this.selectsearchValue
-            console.log('6666', selectesearch)
             if (this.selectesearchFun) {
                 let filterObjItem = this.selectesearchFun(selectesearch)
                 for (let item of filterObjItem) {
@@ -547,14 +546,6 @@ export default {
                     'type': ''
                 })
             }
-            // let courseId = this.course_id.trim()
-            // if (courseId.length > 0) {
-            //     filterObj.push({
-            //         'key': 'course_id',
-            //         'value': courseId,
-            //         'type': ''
-            //     })
-            // }
             let studentId = this.student_id.trim()
             if (studentId.length > 0) {
                 filterObj.push({

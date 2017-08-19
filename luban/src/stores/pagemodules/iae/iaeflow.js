@@ -36,8 +36,26 @@ export default {
             'fields': [{}]
         },
         {
-            'type': 'selectUserSearch',
-            'fields': [{}]
+            'type': 'selectSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let searchValue = form + ''
+                if (searchValue.length > 0) {
+                    filterObj.push({
+                    'key': 'student_id',
+                    'value': searchValue,
+                    'type': ''
+                })
+                }
+                return filterObj
+            },
+            'fields': [
+                {
+                    'text': '请选择学员',
+                    'showdialog': 'lb-selectstudenttpl',
+                    'search': 'student_name'
+                }
+            ]
         },
         {
             'type': 'radioGroupSearch',

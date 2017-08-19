@@ -25,15 +25,15 @@ export default {
                             endTime = this.getDatetimeEndOf(vm.localdata.form.daterange[1])
                         }
                         filterObj.push({
-                        'key': 'creattime',
-                        'value': startTime,
-                        'type': 'gte'
-                    })
-                    filterObj.push({
-                        'key': 'creattime',
-                        'value': endTime,
-                        'type': 'lte'
-                    })
+                            'key': 'creattime',
+                            'value': startTime,
+                            'type': 'gte'
+                        })
+                        filterObj.push({
+                            'key': 'creattime',
+                            'value': endTime,
+                            'type': 'lte'
+                        })
                     }
                 }
                 return filterObj
@@ -41,8 +41,26 @@ export default {
             'fields': [{}]
         },
         {
-            'type': 'selectUserSearch',
-            'fields': [{}]
+            'type': 'selectSearch',
+            'searchfunction': function (form) {
+                let filterObj = []
+                let searchValue = form + ''
+                if (searchValue.length > 0) {
+                    filterObj.push({
+                        'key': 'student_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
+                }
+                return filterObj
+            },
+            'fields': [
+                {
+                    'text': '请选择学员',
+                    'showdialog': 'lb-selectstudenttpl',
+                    'search': 'student_name'
+                }
+            ]
         },
         {
             'type': 'radioGroupSearch',
@@ -94,12 +112,12 @@ export default {
         },
         {
             'type': 'checkstatus',
-            'statutype':'accountcheck',
+            'statutype': 'accountcheck',
             'label': '对账状态'
         },
         {
             'type': 'checkstatus',
-            'statutype':'checkAccount',
+            'statutype': 'checkAccount',
             'label': '操作'
         }
     ],
