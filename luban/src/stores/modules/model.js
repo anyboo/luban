@@ -83,6 +83,9 @@ const state = {
         },
         money: {
             data: []
+        },
+        sms: {
+            data: []
         }
     },
     currentModel: {},

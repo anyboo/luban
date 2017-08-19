@@ -8,23 +8,27 @@
                         <span class="sr-only">关闭</span>
                     </button>
                     <h3 class="modal-title">
-                        <i class="fa fa-flag-checkered"></i>我的充值记录</h3> 
+                        <i class="fa fa-flag-checkered"></i>我的购买记录</h3> 
                 </div>
                 <div class="modal-body">
                     <table class="table table-hover table-striped table-border m-t" style="margin-top:0px;">
                         <thead>
                             <tr>
-                                <th>充值金额</th>
-                                <th>充值日期</th>
+                                <th>数量</th>
+                                <th>单价</th>
+                                <th>售价</th>
+                                <th>购买时间</th>                       
                             </tr>
                         </thead>
                         <template v-for="item in getTablesData()">
                             <tbody class="ng-scope">
                                 <tr class="ng-scope">
-                                    <td class="ng-binding">{{item.priced}}元</td>
+                                    <td class="ng-binding">{{item.sum}}</td>
+                                    <td class="ng-binding">{{item.unitPrice}}</td>
+                                     <td class="ng-binding">{{item.price}}</td>
                                     <td class="ng-binding">{{getDateFormat(item.creattime)}}</td>
                                     <td>
-                                        <a class="btn btn-danger btn-xs" @click="handleDelClick(item._id)">
+                                        <a class="btn btn-danger btn-xs"  @click="handleDelClick(item._id)">
                                             <i class="icon-ban"></i> 删除</a>
                                     </td>
                                 </tr>
@@ -41,13 +45,12 @@
 </template>
 <script>
 export default {
-    name: 'newsclass',
-
+    name: 'sms_recording',
     data() {
         let localdata = {
             'form': {
             },
-            'lookup': {
+             'lookup': {
                 'localField': 'charge_id',
                 'from': 'charge',
                 'foreignField': '_id',
@@ -56,18 +59,18 @@ export default {
         }
         return {
             localdata,
-            tables: ['money'],
+            tables: ['sms'],
         }
     },
-    mounted() {
+     mounted() {
     },
     computed: {},
     watch: {},
-    methods: {
+     methods: {
         handleDelClick(id) {
             this.handleDelete(id).then(() => {
                 this.$message({
-                    message: '删除充值记录成功',
+                    message: '删除短信记录成功',
                     type: 'success'
                 })
                 this.handleSearch()
@@ -82,7 +85,6 @@ export default {
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt).then(obj => {
-                // console.log(obj)
             })
         },
     }

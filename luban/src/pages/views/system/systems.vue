@@ -10,12 +10,15 @@
                 <span class="label bg-info ng-binding">￥{{getData}}</span>
             </h4>
         </div>     
-        <div class="wrapper b-a r-5x bg-white box-shadow m-t">
+        <div class="wrapper b-a r-5x bg-white box-shadow m-t"> 
+            
             <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'lb-sms')">
                 <i class="icon-basket"></i> 购买</button>
+                 <button class="btn btn-default pull-right r m-r" @click="lbShowdialog($event,'lb-smsrecording')">
+                <i class="fa fa-money"></i> 短信购买记录</button>
             <h4 style="margin-bottom:0px;">
                 <i class="fa fa-mobile"></i> 短信剩余:
-                <span class="label bg-info ng-binding">10</span>
+                <span class="label bg-info ng-binding">{{getSms}}</span>
                 <small class="text-muted m-l ng-binding">已使用:0 条</small>
             </h4>
         </div>
@@ -108,6 +111,17 @@ export default {
             }
             return balance
         },
+         getSms() {
+            let org = this.$store.state.models.models.org.data
+            if (org.length > 0) {
+                if (org[0].sms){
+                    this.sms = parseInt(org[0].sms)
+                }
+                this.orgid = org[0]._id
+            }
+            return this.sms
+            console.log('sms456', this.sms)
+        }
     },
     methods: {
         handleClick(item) {

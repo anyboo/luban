@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content" modal-transclude="">
             <div class="ng-scope">
-                <div class="modal-header" :class="getSms">
+                <div class="modal-header">
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span>×</span>
                         <span class="sr-only">关闭</span>
@@ -10,7 +10,7 @@
                     <h3 class="modal-title">
                         <i class="fa fa-mobile"></i>购买短信</h3>
                 </div>
-                <div class="modal-body" :class="getData">
+                <div class="modal-body" :class="getSms">
                     <div class="bg-light lter padder padder-v">您的当前账户余额:
                         <span class="text-success ng-binding" style="color:#35aa47;">￥{{getData}}</span>元,剩余短信:
                         <span class="text-info ng-binding" style="color:#4d90fe;">{{getSms}}</span>条</div>
@@ -71,14 +71,15 @@ export default {
     name: 'sms',
     data() {
         let localdata = {
-            'form': {
-            },
         }
         return {
             localdata,
             orgid: '',
             balance: 0,
             sms: 0,
+            sum: '',
+            unitPrice: '',
+            model: 'sms',
         }
     },
     mounted() {
@@ -88,26 +89,33 @@ export default {
         getData() {
             let org = this.$store.state.models.models.org.data
             if (org.length > 0) {
-                this.balance = parseInt(org[0].balance)
+                if (org[0].balance) {
+                    this.balance = parseInt(org[0].balance)
+                }
                 this.orgid = org[0]._id
             }
             return this.balance
-            console.log('balance', this.balance)
         },
         getSms() {
             let org = this.$store.state.models.models.org.data
             if (org.length > 0) {
-                this.sms = parseInt(org[0].sms)
+                if (org[0].sms) {
+                    this.sms = parseInt(org[0].sms)
+                }
                 this.orgid = org[0]._id
             }
             return this.sms
-            console.log('sms456', this.sms)
         }
     },
     watch: {},
     methods: {
         handsms() {
-            this.handleSave().then(() => {
+            let form =  {
+                'sum': 5000,
+                'unitPrice': 0.08,
+                'price': 400
+            }
+            this.handleSave(form).then(() => {
                 this.$message({
                     message: '购买成功',
                     type: 'success',
@@ -115,9 +123,6 @@ export default {
                 this.balance -= parseInt(400)
                 this.sms += parseInt(5000)
                 this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
-                    console.log('sms123', this.sms)
-                    console.log('balance',this.balance)
-                    console.log('orgid', this.orgid)
                     this.getTableApidata('org')
                     this.lbClosedialog()
                     this.$store.state.envs.currDialog = 'lb-cart'
@@ -125,14 +130,19 @@ export default {
             })
         },
         handsmt() {
-            this.handleSave().then(() => {
+             let form =  {
+                'sum': 20000,
+                'unitPrice': 0.075,
+                'price': 15000
+            }
+            this.handleSave(form).then(() => {
                 this.$message({
                     message: '购买成功',
                     type: 'success',
                 })
                 this.balance -= parseInt(1500)
-                console.log('123', this.balance)
-                this.updateTeble('org', this.orgid, { balance: this.balance }).then(() => {
+                this.sms += parseInt(20000)
+                this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
                     this.getTableApidata('org')
                     this.lbClosedialog()
                     this.$store.state.envs.currDialog = 'lb-cart'
@@ -140,14 +150,19 @@ export default {
             })
         },
         handsmf() {
-            this.handleSave().then(() => {
+             let form =  {
+                'sum': 50000,
+                'unitPrice': 0.07,
+                'price': 3500
+            }
+            this.handleSave(form).then(() => {
                 this.$message({
                     message: '购买成功',
                     type: 'success',
                 })
                 this.balance -= parseInt(3500)
-                console.log('123', this.balance)
-                this.updateTeble('org', this.orgid, { balance: this.balance }).then(() => {
+                this.sms += parseInt(50000)
+                this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
                     this.getTableApidata('org')
                     this.lbClosedialog()
                     this.$store.state.envs.currDialog = 'lb-cart'

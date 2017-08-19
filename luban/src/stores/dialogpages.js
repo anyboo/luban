@@ -47,6 +47,7 @@ import page80 from '~/pages/dialogs/system/orders.vue'
 import page81 from '~/pages/dialogs/system/recharge_record.vue'
 import page82 from '~/pages/dialogs/system/recharge.vue'
 import page83 from '~/pages/dialogs/system/sms.vue'
+import page84 from '~/pages/dialogs/system/sms_recording.vue'
 
 var pages = {}
 pages['lb-dialog'] = dialog
@@ -98,6 +99,7 @@ pages['lb-orders'] = page80
 pages['lb-rechargerecord'] = page81
 pages['lb-recharge'] = page82
 pages['lb-sms'] = page83
+pages['lb-smsrecording'] = page84
 
 
 export default pages

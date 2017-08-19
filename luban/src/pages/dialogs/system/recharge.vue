@@ -79,12 +79,10 @@
 <script>
 export default {
     name: 'newsclass',
-
     data() {
         let localdata = {
             'form': {
                 'priced': '',
-                'balance': 0
             },
         }
         return {
@@ -110,7 +108,9 @@ export default {
         getData() {
             let org = this.$store.state.models.models.org.data
             if (org.length > 0) {
-                this.balance = parseInt(org[0].balance)
+                if (org[0].balance) {
+                    this.balance = parseInt(org[0].balance)
+                }
                 this.orgid = org[0]._id
             }
             return true
