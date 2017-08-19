@@ -3,9 +3,6 @@ import buttongroup from './buttongroup/'
 import listtree from './listtree/'
 import numberinput from './numberinput/'
 import progress from './progress/'
-import selecteusersearch from './selecteusersearch/'
-import selectelessonsearch from './selectelessonsearch/'
-import selectesearch from './selectesearch/'
 import lessonhours from './lessonhours/'
 import lessonprice from './lessonprice/'
 import lessontype from './lessontype/'
@@ -14,6 +11,7 @@ import studenttracksadd from './studenttracksadd/'
 import lasttrack from './lasttrack/'
 import checkstatus from './checkstatus/'
 import checkweek from './checkweek/'
+import selectesearch from './selectesearch/'
 
 const components = [
     dropdown.LbDropdown,
@@ -23,7 +21,6 @@ const components = [
     listtree.LbListtreeItem,
     numberinput,
     progress,
-    selecteusersearch,
     lessonhours,
     lessonprice,
     lessontype,
@@ -31,7 +28,6 @@ const components = [
     studenttracksadd,
     lasttrack,
     checkstatus,
-    selectelessonsearch,
     checkweek,
     selectesearch
 ]
@@ -50,7 +46,6 @@ export default {
     listtree,
     numberinput,
     progress,
-    selecteusersearch,
     lessonhours,
     lessonprice,
     lessontype,
@@ -58,7 +53,6 @@ export default {
     studenttracksadd,
     lasttrack,
     checkstatus,
-    selectelessonsearch,
     checkweek,
     selectesearch
 }
