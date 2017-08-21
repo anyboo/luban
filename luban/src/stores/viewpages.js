@@ -11,7 +11,6 @@ import systemsystems from '~/pages/views/system/systems.vue'
 import systemcharge_module from '~/pages/views/system/charge_module.vue'
 
 import hoursarrange from '~/pages/views/hours/arrange.vue'
-import hoursattendance from '~/pages/views/hours/attendance.vue'
 
 var pages = {}
 pages['lb-studentadd'] = studentadd
@@ -27,6 +26,5 @@ pages['lb-systemsystems'] = systemsystems
 pages['lb-systemcharge_module'] = systemcharge_module
 
 pages['lb-hoursarrange'] = hoursarrange
-pages['lb-hoursattendance'] = hoursattendance
 
 export default pages
