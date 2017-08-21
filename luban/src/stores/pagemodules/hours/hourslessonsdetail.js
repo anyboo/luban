@@ -55,7 +55,7 @@ export default {
             'fields': [
                 {
                     'text': '请选择班级',
-                    'showdialog': '/lesson/classesdialog',
+                    'showdialog': 'selectclassesdialog',
                     'search': 'class_name'
                 }
             ]

@@ -59,7 +59,7 @@ export default {
             'fields': [
                 {
                     'text': '请选择课程',
-                    'showdialog': 'lb-selectlessontpl',
+                    'showdialog': 'selectlessondialog',
                     'search': 'lesson_name'
                 }
             ]

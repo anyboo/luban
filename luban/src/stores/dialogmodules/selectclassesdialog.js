@@ -31,7 +31,7 @@ export default {
             ]
         },
     ],
-    'dialogUrl':'/lesson/classesdialog',
+    'dialogUrl':'selectclassesdialog',
     'pageTableField': [
         {
             'type': 'text',

@@ -1,6 +1,10 @@
-import lessonclassesdialog from './dialogmodules/lesson/lessonclassesdialog'
+import selectclassesdialog from './dialogmodules/selectclassesdialog.js'
+import selectlessondialog from './dialogmodules/selectlessondialog.js'
+import selectstudentdialog from './dialogmodules/selectstudentdialog.js'
 
 let pages ={}
-pages['lessonclassesdialog'] = lessonclassesdialog
+pages['selectclassesdialog'] = selectclassesdialog
+pages['selectlessondialog'] = selectlessondialog
+pages['selectstudentdialog'] = selectstudentdialog
 
 export default pages

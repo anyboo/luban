@@ -53,7 +53,7 @@ export default {
             'fields': [
                 {
                     'text': '请选择学员',
-                    'showdialog': 'lb-selectstudenttpl',
+                    'showdialog': 'selectstudentdialog',
                     'search': 'student_name'
                 }
             ]
