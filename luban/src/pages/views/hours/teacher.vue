@@ -23,18 +23,13 @@
                             <el-table-column prop="data" label="授课时间">
                                 <template scope="scope">2017-05-12 11:00</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="时长">
-                                <template scope="scope">
-                                    <span class="badge bg-success">1.00小时</span>
-                                </template>
-                            </el-table-column>
                             <el-table-column prop="data" label="学生数">
                                 <template scope="scope">1</template>
                             </el-table-column>
                             <el-table-column prop="data" label="类型">
                                 <template scope="scope">1对1</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="对象">
+                            <el-table-column prop="data" label="班级">
                                 <template scope="scope">李达康</template>
                             </el-table-column>
                             <el-table-column prop="data" label="课程金额">

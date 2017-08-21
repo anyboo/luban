@@ -84,6 +84,12 @@
                             <template v-if="item.type=='lessonrouter'">
                                 <a class="link" @click="lessonrouter($event,item.prop,scope.row)">排课详情</a>
                             </template>
+                            <template v-if="item.type=='teachertype'">
+                                <el-tag type="success">{{ item.is_part_time == '0' ? '全职':'兼职' }}</el-tag>
+                            </template>
+                            <template v-if="item.type=='notwrite'">
+                                {{scope.row[item.prop].length>0?scope.row[item.prop]:'未填写'}}
+                            </template>
                             <template v-if="item.type=='payment'">
                                 {{getDictText('2',scope.row[item.prop])}}
                             </template>
@@ -99,6 +105,10 @@
                             <template v-if="item.type=='datetime'">
                                 <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
+                            </template>
+                            <template v-if="item.type=='tabledatetime'">
+                                <el-icon name="time"></el-icon>
+                                <span style="margin-left: 10px">{{ getDateFormat(getLookUp(scope.row[item.table],item.prop)) }}</span>
                             </template>
                             <template v-if="item.type=='datetimeRange'">
                                 <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
