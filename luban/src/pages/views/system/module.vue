@@ -260,7 +260,7 @@ export default {
             moduleTableData: [],
             checked: false,
             datevalue: '',
-            radiovalue: '',
+            radiovalue: '0',
             highlight: false,
             classesId: '',
             selectsearchValue: '',
