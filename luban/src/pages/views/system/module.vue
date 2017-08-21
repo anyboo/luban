@@ -266,7 +266,7 @@ export default {
             selectsearchValue: '',
             multipleSelection: [],
             lesson_name: '请选择课程',
-            lbTagArr: ['lb-trash', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
+            lbTagArr: ['lb-trash', 'lb-addmodal','lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
             openDialogArr: ['lb-leaveshours', 'lb-suspendshours', 'lb-regstudentmatchmodal', 'lb-addtrackmodal'],
             hastableSearch: false,
             selStudentAddInquiry: '',
@@ -659,6 +659,37 @@ export default {
                         })
                     })
                 }
+            }
+            if (action == 'lock' || action == 'unlock') {
+                let info = '离职封存适用于员工离职之后，封存之后该账号对应的历史记录保留在系统，但是不能再登陆系统, 是否继续?'
+                let infomessage = '封存成功'
+                let lock = true
+                if (action == 'unlock') {
+                    info = '您确定要解封 ' + data.name + ' 的资料吗?'
+                    infomessage = '解封成功'
+                    lock = false
+                }
+
+                this.$confirm(info, '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.updateTeble('employee', data._id, {
+                        'lock': lock
+                    }).then(() => {
+                        this.$message({
+                            message: infomessage,
+                            type: 'success'
+                        })
+                        this.handleSearch()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
             }
         }
     }
