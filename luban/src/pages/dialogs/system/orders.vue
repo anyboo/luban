@@ -16,13 +16,15 @@
               <tr>
                 <th>商品</th>
                 <th>金额</th>
+                 <th>时间</th>
               </tr>
             </thead>
             <template v-for="item in getTablesData()">
               <tbody class="ng-scope">
                 <tr class="ng-scope">
-                  <td class="ng-binding">aa</td>
-                  <td class="ng-binding">dd</td>
+                  <td class="ng-binding">a</td>
+                  <td class="ng-binding">123</td>
+                   <td class="ng-binding">{{getDateFormat(item.creattime)}}</td>
                   <td>
                     <a class="btn btn-danger btn-xs" @click="handleDelClick(item._id)">
                       <i class="icon-ban"></i> 删除</a>

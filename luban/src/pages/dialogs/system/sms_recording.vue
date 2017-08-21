@@ -23,9 +23,9 @@
                         <template v-for="item in getTablesData()">
                             <tbody class="ng-scope">
                                 <tr class="ng-scope">
-                                    <td class="ng-binding">{{item.sum}}</td>
-                                    <td class="ng-binding">{{item.unitPrice}}</td>
-                                     <td class="ng-binding">{{item.price}}</td>
+                                    <td class="ng-binding">{{item.sum}}条</td>
+                                    <td class="ng-binding">{{item.unitPrice}}元</td>
+                                     <td class="ng-binding">{{item.price}}元</td>
                                     <td class="ng-binding">{{getDateFormat(item.creattime)}}</td>
                                     <td>
                                         <a class="btn btn-danger btn-xs"  @click="handleDelClick(item._id)">

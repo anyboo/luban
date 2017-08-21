@@ -9,7 +9,6 @@
           </button>
           <h3 class="modal-title">
             <i class="fa fa-flag-checkered"></i>购物车</h3>
-  
         </div>
         <div class="modal-body">
           <table class="table table-hover table-striped table-border m-t" style="margin-top:0px;">
@@ -64,7 +63,6 @@
                 <span class="text-success ng-binding">￥{{totalMoney}}</span>元</span>
             </div>
             <div class="m-t ng-scope">
-              <!--余额不够1-->
               <div class="m-t wrapper ng-scope" v-if="prices">
                 <p class="m-t m-b text-danger text-2x text-center">
                   <i class="fa fa-exclamation-triangle"></i>您的账户余额不够!</p>
@@ -72,22 +70,17 @@
                   <a class="btn btn-danger" @click="alipay=3">立即充值</a>
                 </p>
               </div>
-              <!--余额不够-->
-              <!--购买-->
               <div class="m-t wrapper ng-scope" v-if="!prices">
                 <p class="text-center">
                   <a class="btn btn-danger" @click="handleClick">立即购买</a>
                 </p>
               </div>
-              <!--购买-->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!--充值组件-->
     <lb-recharge v-if="alipay==3"></lb-recharge>
-    <!--充值组件-->
   </div>
 </template>
 <script>
