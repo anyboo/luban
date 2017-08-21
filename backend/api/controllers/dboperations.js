@@ -13,6 +13,7 @@ const accessKeyId = 'ACSFUX7fLUMpBZM1'
 const secretAccessKey = 'qsGNrvuGnu'
 const queueName = 'Alicom-Queue-1420938370661882-'
 const https = require('https');
+const smsdb = 'lubansms'
 
 function checkId(id) {
     let result = false
@@ -325,9 +326,15 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
         changeModelId(element)
         let opt = {}
         if (element._id) {
-            opt.updateOne = {
-                filter: { '_id': element._id }
-                , update: { $set: element }
+            if (element._delete) {
+                opt.deleteOne = {
+                    filter: { '_id': element._id }
+                }
+            } else {
+                opt.updateOne = {
+                    filter: { '_id': element._id }
+                    , update: { $set: element }
+                }
             }
         } else {
             opt.insertOne = {
@@ -353,7 +360,6 @@ module.exports.remove = function* remove(db, name, id, next) {
     } else {
         this.body = '{"success":1}'
     }
-
 }
 
 
@@ -372,6 +378,47 @@ module.exports.trace = function* () {
     this.body = yield 'Smart! But you can\'t trace.'
 }
 
+module.exports.checksms = function* checksms(next) {
+    if ('POST' != this.method) return yield next
+    var sms = yield parse(this, {
+        limit: '500kb'
+    })
+    var db = yield MongoClient.connect(getdbstr(smsdb))
+    let table = db.collection('sms')
+    let options = []
+    options.push({
+        '$match': {
+            'phone': sms.phone,
+            'number': sms.number
+        }
+    })
+    let cursor = table.aggregate(options)
+    let model = yield cursor.toArray()
+    let status = -1
+    let info = '未发现短信检查'
+    let nowtime = new Date().getTime()
+    if (model.length > 0) {
+        if (model[0].smscheck) {
+            status = -2
+            info = '短信已经检测'
+        } else if (nowtime - 30 * 60 * 1000 <= model[0].smstime && model[0].smstime <= nowtime) {
+            status = 0
+            info = '短信验证通过'
+            let smscheck = yield table.findOneAndUpdate(
+                {
+                    phone: model.phone
+                },
+                {
+                    'smscheck': true
+                })
+        } else {
+            info = '短信已经超时'
+            status = -3
+        }
+    }
+    db.close()
+    this.body = yield { status }
+}
 module.exports.sms = function* () {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
@@ -387,6 +434,29 @@ module.exports.sms = function* () {
         return str;
     }
     let number = addNumber(6)
+
+    var db = yield MongoClient.connect(getdbstr(smsdb))
+    let nowtime = new Date().getTime()
+    let sms = yield db.collection('smssend').insert(
+        {
+            'phone': model.phone,
+            'number': number,
+            'smstime': nowtime
+        })
+    let sms = yield db.collection('sms').findOneAndUpdate(
+        {
+            phone: model.phone
+        },
+        {
+            'phone': model.phone,
+            'number': number,
+            'smstime': nowtime,
+            'smscheck': false
+        },
+        {
+            upsert: true
+        })
+
     let res = yield smsClient.sendSMS({
         PhoneNumbers: model.phone,
         SignName: '鲁班SAAS系统',
@@ -419,14 +489,14 @@ function ajax(code) {
                 let wxobj = {}
                 wxobj.openid = wxdata.openid
                 resolve(wxobj)
+            })
         })
-    })
 
-    req.on('error', (e) => {
-        console.error(e)
+        req.on('error', (e) => {
+            console.error(e)
+        });
+        req.end()
     });
-    req.end()
-});
 }
 
 module.exports.wx = function* wx() {
