@@ -100,23 +100,22 @@ classes班级结果{
 'del_able': false   //是否删除
 'class_flag':0      //班级状态  0 未开班，1 已经开班  2 已经结班
 }
-排课数据
+coursescheduling排课数据
  {
-	day_1: false,
-	day_2: false,
-	day_3: false,
-	day_4: false,
-	day_5: false,
-	day_6: false,
-	day_0: false,
 	dayloop: false,  //是否周期
-	daterange1: '',  //开始日期
-	daterange2: '',  //结束日期
+	start:'',         //开始时间
+	end:'',			//结束时间
+	days:0 ,        //星期 0 日 1-6 一-六
 	classes_id: '',  //班级ID
 	sclasses_id: '',  //教室ID 
 	teacher_id: '',   //老师ID
-	timerange1: '',   //时间开始
-	timerange2: '',   //时间结束
-	timerange: ''   //时间区间
-}      
+} 
+attence考勤数据
+{
+	classes_id: '',  //班级ID
+	sclasses_id: '',  //教室ID 
+	teacher_id: '',   //老师ID
+	student_id：'',  //学员ID
+	coursescheduling_id:'' //排课id
+}     
                
