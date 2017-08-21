@@ -34,7 +34,7 @@ export default {
                 if (status.length > 0) {
                     filterObj.push({
                         'key': 'lock',
-                        'value': status == '0',
+                        'value': status == '1',
                         'type': ''
                     })
                 }
