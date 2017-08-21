@@ -437,7 +437,7 @@ module.exports.sms = function* () {
 
     var db = yield MongoClient.connect(getdbstr(smsdb))
     let nowtime = new Date().getTime()
-    let sms = yield db.collection('smssend').insert(
+    let smssend = yield db.collection('smssend').insert(
         {
             'phone': model.phone,
             'number': number,
