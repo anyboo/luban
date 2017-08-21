@@ -43,7 +43,7 @@
                             <el-table-column prop="data" label="类型">
                                 <template scope="scope">1对1</template>
                             </el-table-column>
-                            <el-table-column prop="data" label="班级/课程">
+                            <el-table-column prop="data" label="班级">
                                 <template scope="scope">
                                     <span class="label bg-info">古典吉他初级</span>
                                 </template>
@@ -58,9 +58,6 @@
                             </el-table-column>
                             <el-table-column prop="data" label="登记时间">
                                 <template scope="scope">2017-05-12 09:06</template>
-                            </el-table-column>
-                            <el-table-column prop="data" label="登记人">
-                                <template scope="scope">陈佳木</template>
                             </el-table-column>
                         </el-table>
     

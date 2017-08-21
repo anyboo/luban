@@ -57,9 +57,9 @@ export default {
             'fields': [
                 {
                     'labels': [
-                        { 'label': '所有学员' },
-                        { 'label': '未报读学员' },
-                        { 'label': '已报读学员' }
+                        { 'label': '所有' },
+                        { 'label': '未报读' },
+                        { 'label': '已报读' }
                     ]
                 }
             ]

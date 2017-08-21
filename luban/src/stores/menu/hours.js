@@ -41,13 +41,11 @@ export default {
     }, {
         menuTitle: '教师课耗',
         to: '/hours/teacher',
-        menuIcon: 'fa fa-file-zip-o',
-        menuShow: 0,
+        menuIcon: 'fa fa-file-zip-o'
     }, {
         menuTitle: '学员课耗',
         to: '/hours/student',
-        menuIcon: 'fa fa-vcard',
-        menuShow: 0,
+        menuIcon: 'fa fa-vcard'
     }, {
         menuTitle: '课时预警',
         to: '/hours/warning',

@@ -19,33 +19,6 @@ export default {
                     'value': 'lesson_no'
                 }
             ]
-        },
-        {
-            'type': 'radioGroupSearch',
-            'span': 12,
-            'searchfunction': function (form) {
-                let filterObj = []
-                let search_value = form + ''
-                if (search_value.length > 0) {
-                    if (search_value != '0') {
-                        filterObj.push({
-                            'key': 'status',
-                            'value': status,
-                            'type': ''
-                        })
-                    }
-                }
-                return filterObj
-            },
-            'fields': [
-                {
-                    'labels': [
-                        { 'label': '所有学员' },
-                        { 'label': '未报读学员' },
-                        { 'label': '已报读学员' }
-                    ]
-                }
-            ]
         }
     ],
     'dialogUrl': 'selectstudentdialog',

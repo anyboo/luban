@@ -44,11 +44,6 @@
                                     </a>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="data" label="点评">
-                                <template scope="scope">
-                                    <span ng-if="item.is_comment == '0'" class="badge bg-warning">未点评</span>
-                                </template>
-                            </el-table-column>
                         </el-table>
                         <div class="grid-data-result"></div>
                     </div>
