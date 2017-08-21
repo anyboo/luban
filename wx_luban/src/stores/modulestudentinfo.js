@@ -1,4 +1,3 @@
-import lessonRecord from './pagemodules/lessonRecord'
 import courseRecord from './pagemodules/courseRecord'
 import payRecord from './pagemodules/payRecord'
 import callbackRecord from './pagemodules/callbackRecord'
@@ -13,6 +12,5 @@ pages.push(callbackRecord)
 pages.push(salaryRecord)
 pages.push(lessonleaveRecord)
 pages.push(eventsRecord)
-pages.push(lessonRecord)
 
 export default pages

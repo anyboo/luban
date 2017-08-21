@@ -1,5 +1,5 @@
 const state = {
-    currentView:'lb-login'
+    currentView:''
 }
 const getters = {
     yes(state){

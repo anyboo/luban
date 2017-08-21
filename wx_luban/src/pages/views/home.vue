@@ -13,7 +13,7 @@
             <template v-for="item in menudata">
                 <el-col :span="8">
                     <div class="grid-contes" @click="handleClick(item.pageTable)">
-                        <i :class='item.menuIcon'></i>
+                        <img :src="'/assets/icon/'+item.menuIcon+'.png'" >
                         <p class="home_gray">{{item.menuTitle}}</p>
                     </div>
                 </el-col>

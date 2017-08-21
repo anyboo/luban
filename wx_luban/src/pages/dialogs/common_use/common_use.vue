@@ -38,7 +38,7 @@
     </div>
 </template>
 <script>
-import pagesmodule from '~/stores/modulestudentinfo.js'
+import pagesmodule from '~/stores/modulestudentinfo'
 export default {
     name: 'common',
     data() {
@@ -50,7 +50,7 @@ export default {
             containerHeight: 0,
             loading: false,
             allLoaded: false,
-            bottomText: '上拉加载更多...',
+            bottomText: '下拉加载更多...',
             bottomStatus: '',
             totalCount: '',
         }
@@ -62,10 +62,35 @@ export default {
             'value': this.$store.state.student_id.student_id,
             'type': ''
         })
+        filterObj.push(
+            {
+                'key': 'lookup',
+                'value': {
+                    'localField': 'class_id',
+                    'from': 'classes',
+                    'foreignField': '_id',
+                    'as': 'classes'
+                },
+                'type': 'lookup'
+            }
+        )
+        filterObj.push(
+            {
+                'key': 'lookup',
+                'value': {
+                    'localField': 'order_id',
+                    'from': 'order',
+                    'foreignField': '_id',
+                    'as': 'order'
+                },
+                'type': 'lookup'
+            }
+        )
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        console.log(this.$store.state.commondata.commondata)
         this.handleGetFilterTableTable(this.$store.state.commondata.commondata, filterTxt).then(obj => {
             this.dbdata = obj.data.data
-            console.log(this.dbdata[0])
+            console.log(this.dbdata)
         })
     },
     computed: {
@@ -99,10 +124,23 @@ export default {
     watch: {},
     methods: {
         getInfo(itemval, item) {
-            let info =''
+            let info
             info = itemval.label + ' : ' + item[itemval.prop]
             if (itemval.type == 'payment') {
                 info = itemval.label + ' : ' + this.getDictData('2', item[itemval.prop])
+            }
+            if (itemval.prop == 'class_name') {
+                info = itemval.label + ' : '
+                if (item.classes && item.classes.length) {
+                    info = itemval.label + ' : ' + item.classes[0].class_name
+                }
+            }
+            if (itemval.prop == 'order_remark') {
+                info = itemval.label + ' : '
+                if (item.order && item.order.length) {
+                    console.log(item.order, item.order.length)
+                    info = itemval.label + ' : ' + item.order[0].order_remark
+                }
             }
             return info
         },
@@ -112,11 +150,14 @@ export default {
                     sum[i].track_time = this.getDateFormat(sum[i].track_time)
                     sum[i].arrangestart = this.getDateFormat(sum[i].arrangestart)
                     sum[i].creattime = this.getDateFormat(sum[i].creattime)
+                    sum[i].createtime = this.getDateFormat(sum[i].createtime)
+                    sum[i].daterange1 = this.getDateFormat(sum[i].daterange1)
+                    sum[i].daterange2 = this.getDateFormat(sum[i].daterange2)
                 }
             }
             return sum
         },
-         handleBack() {
+        handleBack() {
             this.$store.commit('homes', 'lb-home')
         },
         loadBottom: function () {
