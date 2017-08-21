@@ -36,11 +36,10 @@
     color: #7D9EC0;
 }
 </style>
-
 <script>
 import md5 from '~/api/md5.min.js'
 export default {
-    name: 'login',
+    name: 'verification',
     data() {
         let localdata = {}
         return {
@@ -68,8 +67,26 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    //键值
-
+                    Vue.http.post('http://app.bullstech.cn:8888/checksms/', { phone: this.numberValidateForm.number,number:this.numberValidateForm.verification }).then(obj => {
+                        console.log(obj.data.status)
+                        if(obj.data.status == 0){
+                              this.resiget()
+                        }else{
+                            this.$message({
+                        message: '验证码错误',
+                        type: 'error'
+                             })
+                        }
+                })
+                   
+                } else {
+                    alert('错误！')
+                    return false
+                }
+            });
+        },
+        resiget(){
+        //键值
                     let token = window.localStorage.getItem('token')
                     let tokentime = window.localStorage.getItem('tokentime')
                     Vue.http.headers.common['authorization'] = token
@@ -89,18 +106,13 @@ export default {
                             student_ids = obj.body.data[0]._id
                             this.$store.commit('student', student_ids)
                             //绑定
-                            Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id, { openid: this.$store.state.openid.openid }).then(obj => {
+                            Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id,{openid:this.$store.state.openid.openid}).then(obj => {
                                 console.log(obj)
                             })
                             this.$store.commit('homes', 'lb-home')
 
                         }
                     })
-                } else {
-                    alert('错误！')
-                    return false
-                }
-            });
         },
         handleblur() {
             console.log(this.choose)

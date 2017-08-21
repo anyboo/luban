@@ -1,29 +1,25 @@
 export default [{
-    menuTitle:'课程记录',
-    menuIcon:'fa fa-user-plus fa-2x',
-     pageTable:'lessonrecord',
-},{
     menuTitle:'缴费记录',
-    menuIcon:'fa fa-user-circle fa-2x',
+    menuIcon:'payRecord',
      pageTable:'pay',
 },{
     menuTitle:'跟踪回访',
-    menuIcon:'fa fa-pencil fa-2x',
+    menuIcon:'callbackRecord',
     pageTable:'inquiry',
 },{
     menuTitle:'排课记录',
-    menuIcon:'fa fa-shopping-cart fa-2x',
+    menuIcon:'courseRecord',
      pageTable:'arrange',
 },{
     menuTitle:'考勤记录',
-    menuIcon:'fa fa-money fa-2x',
+    menuIcon:'salaryRecord',
      pageTable:'attendance',
 },{
     menuTitle:'请假记录',
-    menuIcon:'fa fa-reply fa-2x',
+    menuIcon:'lessonleaveRecord',
      pageTable:'leaves',
 },{
     menuTitle:'赛事记录',
-    menuIcon:'fa fa-envelope-open-o fa-2x',
+    menuIcon:'eventsRecord',
      pageTable:'recording',
 }]

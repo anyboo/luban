@@ -28,18 +28,16 @@
                         <div class="col-xs-12 col-md-4">
                             <div class="text-center clear">
                                 <div class="face" style="width:120px;margin:0 auto">
-                                    <a @click="handleShowDialog('lb-editphotomodal',student)">
-                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
-                                            <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
-                                        </div>
-                                    </a>
+                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
+                                        <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-center">
                                 <span class="text-2x">{{ student.student_name }}</span>
                                 <span>
                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
-                                                                                                        ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
+                                                                                                            ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">

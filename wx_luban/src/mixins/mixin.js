@@ -30,7 +30,7 @@ export default {
         this.moment = moment
         this.pagination.currentPage = 1
         this.pagination.total = 0
-        this.pagination.pagesize = 10
+        this.pagination.pagesize = 50
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
     mounted: function () {

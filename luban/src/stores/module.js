@@ -21,6 +21,7 @@ import studenttracks from './pagemodules/student/studenttracks'
 import studentbirthdays from './pagemodules/student/studentbirthdays'
 import studentrecording from './pagemodules/student/studentrecording'
 import systememployee from './pagemodules/system/systememployee'
+import systemschool from './pagemodules/system/systemschool'
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -46,5 +47,6 @@ pages['studenttracks'] = studenttracks
 pages['studentbirthdays'] = studentbirthdays
 pages['studentrecording'] = studentrecording
 pages['systememployee'] = systememployee
+pages['systemschool'] = systemschool
 
 export default pages

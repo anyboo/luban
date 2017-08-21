@@ -14,5 +14,6 @@ export default {
         commondata: commondata,
         student_id: student_id,
         classid:classid,
+        openid:openid,
     }
 }
