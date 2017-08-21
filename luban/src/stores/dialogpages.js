@@ -9,7 +9,6 @@ import page38 from '~/pages/dialogs/student/import.vue'
 import page42 from '~/pages/dialogs/student/trash.vue'
 import page53 from '~/pages/dialogs/student/view_course.modal.vue'
 import page58 from '~/pages/dialogs/system/employee_add.modal.vue'
-import page35 from '~/pages/dialogs/student/edit_photo.modal.vue'
 import page7 from '~/pages/dialogs/student/pay_now.modal.vue'
 import page54 from '~/pages/dialogs/student/unpay_clear.modal.vue'
 import page18 from '~/pages/dialogs/lesson/input_student.modal.vue'
@@ -56,12 +55,10 @@ pages['lb-import'] = page38
 pages['lb-trash'] = page42
 pages['lb-viewcoursemodal'] = page53
 pages['lb-employeeaddmodal'] = page58
-pages['lb-photomodal'] = page35
 pages['lb-paynowmodal'] = page7
 pages['lb-unpayclearmodal'] = page54
 pages['lb-inputstudentmodal'] = page18
 pages['lb-editinfomodal'] = page43
-pages['lb-editphotomodal'] = page35
 pages['lb-ordermodal'] = page36
 pages['lb-refundmodal'] = page48
 pages['lb-changeclassmodal'] = page45
