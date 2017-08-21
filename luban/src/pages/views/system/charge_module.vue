@@ -31,7 +31,7 @@
                             <template scope="scope">{{scope.row.name }}</template>
                         </el-table-column>
                         <el-table-column prop="data" label="功能选择">
-                            <template scope="scope">{{scope.row.chargemodule}}</template>
+                            <template scope="scope">44</template>
                         </el-table-column>
                         <el-table-column prop="data" label="收费方式">
                             <template scope="scope">{{scope.row.chargr_type}}</template>
@@ -59,7 +59,7 @@ export default {
             'form': {
                 'search_value': '',
                 'status': '',
-                'student_id':'',
+                'student_id': '',
             },
             'sclesseslookup': {
                 'localField': '_id',
@@ -77,7 +77,7 @@ export default {
         changeTeacher() {
             let result = false
             if (this.$store.state.envs.currDialog == 'lb-addmodule') {
-                 this.handleSearch()
+                this.handleSearch()
             }
             return result
         },

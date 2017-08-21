@@ -9,6 +9,7 @@
           </button>
           <h3 class="modal-title">
             <i class="fa fa-flag-checkered"></i>购物车</h3>
+  
         </div>
         <div class="modal-body">
           <table class="table table-hover table-striped table-border m-t" style="margin-top:0px;">

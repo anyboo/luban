@@ -45,8 +45,6 @@
                     </el-form>
                     <!--收费方式-->
                 </el-form>
-                <el-button @click="getCheckedNodes">通过 node 获取</el-button>
-             
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleClick">确定</button>
