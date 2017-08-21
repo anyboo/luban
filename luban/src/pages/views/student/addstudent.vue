@@ -16,9 +16,7 @@
             </el-select>
             <el-input v-model="localdata.form.first_rel_name" style="width:100px;" v-if="localdata.form.first_rel_rel!='0'"></el-input>
         </el-form-item>
-        <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{
-                                                                                                                                         validator: validateTel, required: true, trigger: 'blur'
-                                                                                                                                        }">
+        <el-form-item v-for="(item, index) in localdata.form.relations" :key="index" :prop="'relations.' + index + '.tel'" :rules="{validator: validateTel, required: true, trigger: 'blur'}">
             <el-input v-model="item.tel" style="width:120px;" placeholder="请输入手机号"></el-input>
             <el-select v-model="item.relation" placeholder="关系" style="width:100px;">
                 <el-option v-for="subitem in getDictData('1')" :key="subitem._id" :label="subitem.text" :value="subitem._id">
