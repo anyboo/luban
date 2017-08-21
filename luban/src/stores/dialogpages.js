@@ -1,6 +1,5 @@
 import dialog from '~/pages/web/dialog/dialog.vue'
 import finishadd from '~/pages/dialogs/student/finishadd.vue'
-import selectstudenttpl from '~/pages/dialogs/directive/selectstudenttpl.vue'
 import page15 from '~/pages/dialogs/iae/flow.add.modal.vue'
 import page31 from '~/pages/dialogs/lesson/cate.vue'
 import page5 from '~/pages/dialogs/lesson/open_class.modal.vue'
@@ -32,10 +31,6 @@ import page67 from '~/pages/dialogs/system/add_modal.vue'
 import page70 from '~/pages/dialogs/system/cart.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
-import page39 from '~/pages/dialogs/directive/selectclasstpl.vue'
-import page40 from '~/pages/dialogs/directive/selectlessontpl.vue'
-import page2 from '~/pages/dialogs/directive/selectteachertpl.vue'
-import page11 from '~/pages/dialogs/directive/selectsclasstpl.vue'
 import page72 from '~/pages/dialogs/student/refunds.vue'
 import page73 from '~/pages/dialogs/hours/arrangeedit.vue'
 import page74 from '~/pages/dialogs/hours/leaveshours.vue'
@@ -52,7 +47,6 @@ import page84 from '~/pages/dialogs/system/sms_recording.vue'
 var pages = {}
 pages['lb-dialog'] = dialog
 pages['lb-finishadd'] = finishadd
-pages['lb-selectstudenttpl'] = selectstudenttpl
 pages['lb-flowaddmodal'] = page15
 pages['lb-cate'] = page31
 pages['lb-openclassmodal'] = page5
@@ -81,10 +75,6 @@ pages['lb-resetaccountmodal'] = page62
 pages['lb-addmodal'] = page67
 pages['lb-details'] = page68
 pages['lb-dictitems'] = page69
-pages['lb-selectteachertpl'] = page2
-pages['lb-selectsclasstpl'] = page11
-pages['lb-selectclasstpl'] = page39
-pages['lb-selectlessontpl'] = page40
 pages['lb-refunds'] = page72
 pages['lb-arrangeedit'] = page73
 pages['lb-leaveshours'] = page74

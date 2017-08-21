@@ -2,7 +2,6 @@ import dropdown from './dropdown/'
 import buttongroup from './buttongroup/'
 import listtree from './listtree/'
 import numberinput from './numberinput/'
-import progress from './progress/'
 import lessonhours from './lessonhours/'
 import lessonprice from './lessonprice/'
 import lessontype from './lessontype/'
@@ -20,7 +19,6 @@ const components = [
     listtree.LbListTree,
     listtree.LbListtreeItem,
     numberinput,
-    progress,
     lessonhours,
     lessonprice,
     lessontype,
@@ -45,7 +43,6 @@ export default {
     buttongroup,
     listtree,
     numberinput,
-    progress,
     lessonhours,
     lessonprice,
     lessontype,
