@@ -27,7 +27,7 @@
                                         <span class="text text-success ng-binding">400 元</span>
                                     </p>
                                     <p>
-                                        <a class="btn btn-info" @click="handsms">购买</a>
+                                        <a class="btn btn-info" @click="handsms('5000','0.08','400')">购买</a>
                                     </p>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                         <span class="text text-success ng-binding">1500 元</span>
                                     </p>
                                     <p>
-                                        <a class="btn btn-info" @click="handsmt">购买</a>
+                                        <a class="btn btn-info" @click="handsms('20000','0.075','1500')">购买</a>
                                     </p>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         <span class="text text-success ng-binding">3500元</span>
                                     </p>
                                     <p>
-                                        <a class="btn btn-info" @click="handsmf">购买</a>
+                                        <a class="btn btn-info" @click="handsms('50000','0.07','3500')">购买</a>
                                     </p>
                                 </div>
                             </div>
@@ -109,66 +109,31 @@ export default {
     },
     watch: {},
     methods: {
-        handsms() {
-            let form =  {
-                'sum': 5000,
-                'unitPrice': 0.08,
-                'price': 400
+        handsms(sum, unitPrice, price) {
+            let form = {
+                'sum': sum,
+                'unitPrice': unitPrice,
+                'price': price
             }
-            this.handleSave(form).then(() => {
-                this.$message({
-                    message: '购买成功',
-                    type: 'success',
+            if (this.getData < price) {
+                   this.handleShowDialog('lb-recharge')
+            }
+            else {
+                this.handleSave(form).then(() => {
+                    this.$message({
+                        message: '购买成功',
+                        type: 'success',
+                    })
+                    this.balance -= parseInt(price)
+                    this.sms += parseInt(sum)
+                    this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
+                        this.getTableApidata('org')
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialog = 'lb-cart'
+                    })
                 })
-                this.balance -= parseInt(400)
-                this.sms += parseInt(5000)
-                this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
-                    this.getTableApidata('org')
-                    this.lbClosedialog()
-                    this.$store.state.envs.currDialog = 'lb-cart'
-                })
-            })
+            }
         },
-        handsmt() {
-             let form =  {
-                'sum': 20000,
-                'unitPrice': 0.075,
-                'price': 15000
-            }
-            this.handleSave(form).then(() => {
-                this.$message({
-                    message: '购买成功',
-                    type: 'success',
-                })
-                this.balance -= parseInt(1500)
-                this.sms += parseInt(20000)
-                this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
-                    this.getTableApidata('org')
-                    this.lbClosedialog()
-                    this.$store.state.envs.currDialog = 'lb-cart'
-                })
-            })
-        },
-        handsmf() {
-             let form =  {
-                'sum': 50000,
-                'unitPrice': 0.07,
-                'price': 3500
-            }
-            this.handleSave(form).then(() => {
-                this.$message({
-                    message: '购买成功',
-                    type: 'success',
-                })
-                this.balance -= parseInt(3500)
-                this.sms += parseInt(50000)
-                this.updateTeble('org', this.orgid, { balance: this.balance, sms: this.sms }).then(() => {
-                    this.getTableApidata('org')
-                    this.lbClosedialog()
-                    this.$store.state.envs.currDialog = 'lb-cart'
-                })
-            })
-        }
     }
 }
 </script>

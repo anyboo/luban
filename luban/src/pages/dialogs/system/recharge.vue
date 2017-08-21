@@ -14,17 +14,15 @@
                     <div class="modal-body">
                         <div class="ng-scope">
                             <dl class="dl-horizontal">
-                                <dt>充值金额:</dt>
-                                <dd>
-                                    <div class="w-sm input-group">
-                                        <lb-numberinput type="number" class="form-control ng-pristine ng-valid ng-touched" v-model.lazy="localdata.form.priced">
-                                        </lb-numberinput>
-                                        <span class="input-group-addon">元</span>
-                                    </div>
-                                </dd>
-                                <dt class="m-t">支付方式:</dt>
+                                    <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm"  >
+                                        <el-form-item label="充值金额:" prop="priced" >
+                                            <lb-numberinput type="number" class="form-control ng-pristine ng-valid ng-touched" v-model.lazy="localdata.form.priced"  style="width:23%;">
+                                            </lb-numberinput>
+                                        </el-form-item>
+                                    </el-form>            
+                                <dt class="m-t" style="width:88px;font-weight:300;">支付方式:</dt>
                                 <dd class="m-t">
-                                    <ul class="list-group">
+                                    <ul class="list-group" style="margin-left:-80px;">
                                         <li class="list-group-item ng-scope">
                                             <img src="/assets/images/alipay.jpg">
                                             <i class="fa fa-check-circle text-success pull-right ng-scope"></i>
@@ -58,7 +56,7 @@
                         <div ng-if="step == 2" class="ng-scope">
                             <h4 class="text-center">确认充值</h4>
                             <dl class="dl-horizontal m-t">
-                                <dt>充值方式:</dt>
+                                <dt >充值方式:</dt>
                                 <dd>
                                     <img src="/assets/images/alipay.jpg">
                                 </dd>
@@ -85,12 +83,26 @@ export default {
                 'priced': '',
             },
         }
+        var validateTel = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入大于1的数字'))
+            } else if (value<1) {
+                callback(new Error('请输入大于1的数字'))
+            } else {
+                callback()
+            }
+        }
         return {
             localdata,
             alipay: '1',
             model: 'money',
             balance: 0,
             orgid: '',
+            rules: {
+                priced: [
+                    { validator: validateTel, required: true, trigger: 'blur' }
+                ],
+            }
         }
     },
     mounted() {
@@ -139,7 +151,14 @@ export default {
             }
         },
         submitForm() {
-            this.alipay = 2
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.alipay = 2
+                } else {
+                    console.log('error submit!!')
+                    return false;
+                }
+            })
         }
     }
 }
