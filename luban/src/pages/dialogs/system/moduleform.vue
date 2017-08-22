@@ -1,5 +1,5 @@
 <template>
-    <el-form :model="localdata.form" :rules="module.rules" label-width="100px" ref="ruleForm">
+    <el-form :model="localdata.form" :rules="getRules" label-width="100px" ref="ruleForm">
         <template v-for="item in module.formField">
             <template v-if="item.type=='input'">
                 <el-form-item :label="item.label" :prop="item.prop">
@@ -33,14 +33,31 @@
             <template v-if="item.type=='inputselect'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-input placeholder="请输入内容" v-model="localdata.form[item.field]">
-                        <el-select v-model="localdata.form[item.field]" slot="append" placeholder="请选择">
-                            <el-option label="餐厅名" value="餐厅名"></el-option>
-                            <el-option label="订单号" value="订单号"></el-option>
-                            <el-option label="用户电话" value="用户电话"></el-option>
+                        <el-select v-model="localdata.form[item.field]" slot="prepend" placeholder="请选择">
+                            <template v-for="dataitem in getSelectData(item)">
+                                <el-option :label="dataitem.text" :value="dataitem.text">{{dataitem.text}}</el-option>
+                            </template>
                         </el-select>
                     </el-input>
                 </el-form-item>
             </template>
+            <template v-if="item.type=='option'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-select v-model="localdata.form[item.field]" multiple placeholder="请选择" style="width: 100%;">
+                        <el-option v-for="value in getroleData" :key="value._id" :label="value.name" :value="value._id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </template>
+             <template v-if="item.type=='switchdatetime'">
+                <el-form-item :label="item.label">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
+                    </el-switch>
+                </el-form-item>
+                <el-form-item v-if="localdata.form[item.fieldActive]">
+                    <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
+                </el-form-item>
+            </template> 
         </template>
     </el-form>
 </template>
@@ -68,9 +85,42 @@ export default {
         }
     },
     mounted() {
-        //console.log(this.module.formField, this.formType)
+        if (this.module.mounted) {
+            this.module.mounted(this)
+        }
+    },
+    computed: {
+        getRules() {
+            let rules = null
+            if (this.module.rulesData) {
+                rules = this.module.rulesData(this)
+            } else {
+                rules = this.module.rules
+            }
+            return rules
+        },
+        getroleData() {
+            let role = this.$store.state.models.models.role.data
+            if (this.title == '添加') {
+                for (var item of role) {
+                    if (item.defrole) {
+                        if (this.localdata.form.roles_id.indexOf(item._id) == -1) {
+                            this.localdata.form.roles_id.push(item._id)
+                        }
+                    }
+                }
+            }
+            return role
+        },
     },
     methods: {
+        getSelectData(item) {
+            let data = null
+            if (item.data) {
+                data = item.data(this)
+            }
+            return data
+        },
         getform() {
             let localdata = {}
             if (this.form) {
@@ -94,10 +144,10 @@ export default {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
                     let vm = this
-                    for(var index in this.module.formField){
-                        let item  = this.module.formField[index]
-                        if (item.type=="datetime"){
-                            vm.localdata.form[item.field] = vm.getDatetime( vm.localdata.form[item.field])
+                    for (var index in this.module.formField) {
+                        let item = this.module.formField[index]
+                        if (item.type == "datetime") {
+                            vm.localdata.form[item.field] = vm.getDatetime(vm.localdata.form[item.field])
                         }
                     }
                     // = vm.getDateNumFormat(vm.localdata.form.birth)
