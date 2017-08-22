@@ -475,7 +475,7 @@ module.exports.sms = function* () {
     }
     this.body = yield smsinfo
 }
-function ajax(options) {
+function ajax(options, body) {
     return new Promise(function (resolve) {
         const req = https.request(options, (res) => {
             res.on('data', (d) => {
@@ -483,6 +483,10 @@ function ajax(options) {
                 resolve(wxdata)
             })
         })
+        if (options.method) {
+            req.write(body)
+        }
+
         req.on('error', (e) => {
             console.error(e)
         });
@@ -515,7 +519,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     if ('GET' != this.method) return yield next
     let wxinfo = {}
     let qcdata = { "action_name": "QR_LIMIT_SCENE", "action_info": { "scene": { "scene_id": id } } }
-
+    let body = JSON.stringify(qcdata)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -524,10 +528,10 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
         json: true,
         headers: {
             "content-type": "application/json",
-        },
-        body: JSON.stringify(qcdata)
+            'Content-Length': body.length,
+        }
     }
     console.log(options)
-    wxinfo = yield ajax(options)
+    wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
 }
