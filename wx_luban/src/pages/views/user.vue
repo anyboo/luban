@@ -17,7 +17,7 @@
                     <div>
                         <!--  data -->
                         <img src='/assets/images/1.jpg'>
-                        <div class="disinblock header-content">
+                        <div class="disinblock header-content ">
                             <ul>
                                 <li>姓名:{{dbdata.student_name}}</li>
                                 <li>昵称:{{dbdata.nickname}}</li>
