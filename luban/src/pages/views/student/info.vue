@@ -37,7 +37,7 @@
                                 <span class="text-2x">{{ student.student_name }}</span>
                                 <span>
                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
-                                                                                                            ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
+                                                                                                                    ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
@@ -50,6 +50,11 @@
                                     <span class="label bg-info">{{getEmployeeName}}</span>
                                 </li>
                             </ul>
+                            <div>
+                                <el-button @click="handleQrcode()" type="text">我的二维码</el-button>
+                                <!--  {{httpGetUrlQccode(student.student_id)}} -->
+                                <img :src="qrcodeimg">
+                            </div>
                         </div>
                         <div class="col-xs-12 col-md-8">
                             <div class="panel panel-default">
@@ -124,6 +129,7 @@
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/modulestudentinfo.js'
+import getUrl from '~/api/restfulapi.js'
 export default {
     name: 'footer',
     data() {
@@ -159,6 +165,7 @@ export default {
             relation: [],
             tables: ['student'],
             uid: '',
+            qrcodeimg:'',
             options: [{
                 value: '0',
                 label: '本人'
@@ -210,6 +217,17 @@ export default {
     },
     watch: {},
     methods: {
+        handleQrcode() {
+            console.log(this.uid)
+            getUrl.httpGetUrlQccode(this.uid).then(obj => {
+                console.log(obj)
+                console.log(obj.data.ticket)
+                this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='+ obj.data.ticket
+            })
+            /*     Vue.http.get('http://app.bullstech.cn:8888/wxqrcode/'+this.uid).then(obj=>{
+                     console.log(obj)
+                 })  */
+        },
         handleBack() {
             this.$store.commit('router', this.$store.state.system.routerback)
         },
