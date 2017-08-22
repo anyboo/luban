@@ -42,9 +42,12 @@ export default {
     },
     created() {
         if (this.$store.state.dialogs.dailogdata) {
-            this.id = this.$store.state.dialogs.dailogdata['_id']
-            this.formtype = true
-            this.form = this.$store.state.dialogs.dailogdata
+            if (this.module.student) {
+            }else{
+                this.id = this.$store.state.dialogs.dailogdata['_id']
+                this.formtype = true
+                this.form = JSON.parse(JSON.stringify(this.$store.state.dialogs.dailogdata))
+            }
         }
     },
     components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform },
@@ -55,11 +58,15 @@ export default {
 
             }
             if (this.module._type == 1) {
-                let formtitle = '新建'
-                if (this.formtype) {
-                    formtitle = '编辑'
+                if (this.module.student) {
+                    text = this.getStudentName() + '学员' + this.module.pageLable
+                } else {
+                    let formtitle = '新建'
+                    if (this.formtype) {
+                        formtitle = '编辑'
+                    }
+                    text = formtitle + this.module.pageLable
                 }
-                text = formtitle + this.module.pageLable
             }
             return text
         }
@@ -72,7 +79,11 @@ export default {
         selectmodule() {
             this.lbClosedialog()
             this.$store.state.envs.currDialogResult = this.currentRow
-            this.$store.state.envs.currDialog = this.currDialog
+            if (this.currentRow){
+                this.$store.state.envs.currDialog = this.currDialog
+            }else{
+                this.$store.state.envs.currDialog = this.module.dialogUrl
+            }
         },
         appendmodule() {
             this.$refs['ruleForm'].append()
@@ -85,7 +96,6 @@ export default {
                 this.selectmodule()
             }
             if (this.module._type == 1) {
-                console.log(this.id, this.module._type)
                 if (this.id.length > 0) {
                     this.editmodule(this.id)
                 } else {

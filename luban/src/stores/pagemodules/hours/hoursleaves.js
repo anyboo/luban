@@ -64,7 +64,7 @@ export default {
                 {
                     'label': '请假登记',
                     'type': 'success',
-                    'showdialog':'lb-leaveshours',
+                    'showdialog':'leavesform',
                     'actionoption':'hoursleaves'
                 }
             ]

@@ -25,7 +25,6 @@ export default {
     },
     computed: {
         getSelectStudentName() {
-             console.log(this.$store.state.envs.currDialog,this.showdialog)
             if (this.$store.state.envs.currDialog == this.showdialog) {
                 if (this.selected == '') {
                     let searchId = ''

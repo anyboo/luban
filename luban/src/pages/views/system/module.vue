@@ -266,8 +266,8 @@ export default {
             selectsearchValue: '',
             multipleSelection: [],
             lesson_name: '请选择课程',
-            lbTagArr: ['lb-trash', 'lb-addmodal','lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr: ['lb-leaveshours', 'lb-suspendshours', 'lb-regstudentmatchmodal', 'lb-addtrackmodal'],
+            lbTagArr: ['lb-trash', 'lb-addmodal', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
+            openDialogArr: ['leavesform', 'suspendform', 'lb-regstudentmatchmodal', 'inquiryform'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {
@@ -312,16 +312,18 @@ export default {
             this.highlight = true
         },
         getUpdata() {
-            if ('moduleform'==this.$store.state.envs.currDialog){
+            if ('moduleform' == this.$store.state.envs.currDialog) {
                 this.handleSearch()
-            }else if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
+            } else if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
                 this.handleSearch()
-            } else if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
+            } else if (this.$store.state.envs.currDialog == 'selectstudentdialog') {
                 if (this.selStudentAddInquiry.length > 0) {
-                    let student = this.$store.state.envs.currDialogResult
-                    this.$store.state.envs.currStudent = student
+                    if (this.$store.state.envs.currDialogResult) {
+                        let student = this.$store.state.envs.currDialogResult
+                        this.$store.state.envs.currStudent = student
+                        this.handleShowDialog(this.selStudentAddInquiry, student)
+                    }
                     this.$store.state.envs.currDialog = ''
-                    this.handleShowDialog(this.selStudentAddInquiry, student)
                     this.selStudentAddInquiry = ''
                 }
             }
@@ -332,14 +334,6 @@ export default {
                 nSearch = true
             }
             return nSearch
-        },
-        getDialogUrl() {
-            let dialogUrl = ''
-            if (this.moduledata.dialogUrl && this.moduledata.dialogUrl.length > 0) {
-                dialogUrl = this.moduledata.dialogUrl
-                return dialogUrl
-            }
-            return dialogUrl
         },
         handlebackFun() {
             return this.getSearchFun('handleback')
@@ -421,7 +415,7 @@ export default {
     },
     methods: {
         handleTableChange(val) {
-            this.$emit('tablechange',{ 'row': val, 'dialog':this.getDialogUrl})
+            this.$emit('tablechange', { 'row': val, 'dialog': this.module.dialogUrl })
         },
         lessonrouter(event, url, info) {
             if (info) {
@@ -435,11 +429,10 @@ export default {
                 this.selStudentAddInquiry = dialog
                 this.$store.state.envs.currDialog = ''
                 this.$store.state.envs.currDialogResult = null
-                this.handleShowDialog('lb-selectstudenttpl')
+                this.handleShowDialog('selectstudentdialog')
             } else {
                 this.handleShowDialog(dialog)
             }
-
         },
         getModuleSearchSpan(Search, count) {
             let searchSpan = count

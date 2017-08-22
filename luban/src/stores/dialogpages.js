@@ -31,8 +31,6 @@ import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
 import page72 from '~/pages/dialogs/student/refunds.vue'
 import page73 from '~/pages/dialogs/hours/arrangeedit.vue'
-import page74 from '~/pages/dialogs/hours/leaveshours.vue'
-import page75 from '~/pages/dialogs/hours/suspendshours.vue'
 import page76 from '~/pages/dialogs/hours/attendance.vue'
 import page13 from '~/pages/dialogs/lesson/PrintOrder.vue'
 import page79 from '~/pages/dialogs/system/module.vue'
@@ -72,8 +70,6 @@ pages['lb-details'] = page68
 pages['lb-dictitems'] = page69
 pages['lb-refunds'] = page72
 pages['lb-arrangeedit'] = page73
-pages['lb-leaveshours'] = page74
-pages['lb-suspendshours'] = page75
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
 pages['lb-printerreceipt'] = page66

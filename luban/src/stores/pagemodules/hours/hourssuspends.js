@@ -63,7 +63,7 @@ export default {
                 {
                     'label': '停课登记',
                     'type': 'success',
-                    'showdialog': 'lb-suspendshours',
+                    'showdialog': 'suspendform',
                     'actionoption': 'hourssuspends'
                 }
             ]
