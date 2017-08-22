@@ -521,10 +521,19 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     let wxinfo = {}
     let qcdata = { "action_name": "QR_LIMIT_SCENE", "action_info": { "scene": { "scene_id": id } } }
     let body = JSON.stringify(qcdata)
+
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: 'cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
+    let access_info = {}
+    access_info = yield ajax(access_options)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: 'cgi-bin/qrcode/create?access_token=TOKENPOST',
+        path: '/cgi-bin/qrcode/create?access_token='+access_info.access_token,
         method: 'POST',
         json: true,
         headers: {
