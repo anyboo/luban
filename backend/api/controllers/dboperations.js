@@ -527,6 +527,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
         },
         body: JSON.stringify(qcdata)
     }
+    console.log(options)
     wxinfo = yield ajax(options)
     this.body = yield wxinfo
 }
