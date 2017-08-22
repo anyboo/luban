@@ -511,7 +511,7 @@ module.exports.wx = function* wx() {
     this.body = yield wxobj
 }
 
-module.exports.wxqrcode = function* wxqrcode(id,next) {
+module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     if ('GET' != this.method) return yield next
     let wxinfo = {}
     let qcdata = { "action_name": "QR_LIMIT_SCENE", "action_info": { "scene": { "scene_id": id } } }
