@@ -4,6 +4,7 @@ import campusform from './formmodules/campusform.js'
 import leavesform from './formmodules/leavesform.js'
 import suspendform from './formmodules/suspendform.js'
 import inquiryform from './formmodules/inquiryform.js'
+import recordingform from './formmodules/recordingform.js'
 
 let pages = {}
 pages['studentform'] = studentform
@@ -12,5 +13,6 @@ pages['campusform'] = campusform
 pages['leavesform'] = leavesform
 pages['suspendform'] = suspendform
 pages['inquiryform'] = inquiryform
+pages['recordingform'] = recordingform
 
 export default pages

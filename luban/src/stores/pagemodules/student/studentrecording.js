@@ -66,7 +66,7 @@ export default {
                 {
                     'label': ' 添加赛事记录',
                     'type': 'success',
-                    'showdialog': 'lb-regstudentmatchmodal',
+                    'showdialog': 'recordingform',
                     'actionoption': 'studentrecording'
                 }
             ]

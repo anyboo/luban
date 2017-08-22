@@ -1,22 +1,28 @@
 export default {
     'pageName': 'selectstudentdialog',
-    'pageLable': '选择教室',
+    'pageLable': '选择学员',
     'tableSearch': [],
     'pageSearch': [
         {
             'type': 'textSearch',
             'fields': [
                 {
-                    'label': '课程名',
+                    'label': '学员',
                     'defvalue': '',
                     'default': true,
-                    'value': 'lesson_name'
+                    'value': 'student_name'
                 },
                 {
-                    'label': '课程编号',
+                    'label': '性别',
                     'defvalue': '',
                     'default': true,
-                    'value': 'lesson_no'
+                    'value': 'sex'
+                },
+                {
+                    'label': '英文名',
+                    'defvalue': '',
+                    'default': true,
+                    'value': 'nickname'
                 }
             ]
         }
