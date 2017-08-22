@@ -4,7 +4,6 @@ import page15 from '~/pages/dialogs/iae/flow.add.modal.vue'
 import page31 from '~/pages/dialogs/lesson/cate.vue'
 import page5 from '~/pages/dialogs/lesson/open_class.modal.vue'
 import page4 from '~/pages/dialogs/lesson/new_lesson.modal.vue'
-import page33 from '~/pages/dialogs/lesson/new_sclass.modal.vue'
 import page38 from '~/pages/dialogs/student/import.vue'
 import page42 from '~/pages/dialogs/student/trash.vue'
 import page53 from '~/pages/dialogs/student/view_course.modal.vue'
@@ -50,7 +49,6 @@ pages['lb-flowaddmodal'] = page15
 pages['lb-cate'] = page31
 pages['lb-openclassmodal'] = page5
 pages['lb-newlessonmodal'] = page4
-pages['lb-newsclassmodal'] = page33
 pages['lb-import'] = page38
 pages['lb-trash'] = page42
 pages['lb-viewcoursemodal'] = page53

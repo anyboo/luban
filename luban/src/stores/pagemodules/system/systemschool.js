@@ -44,7 +44,7 @@ export default {
                 {
                     'label': '添加新校区',
                     'type': 'success',
-                    'showdialog': 'lb-addmodal',
+                    'showdialog': 'campusform',
                     'actionoption': 'systememorgsavestudent'
                 },
             ]
