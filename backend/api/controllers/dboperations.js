@@ -484,7 +484,7 @@ function ajax(options, body) {
                 resolve(wxdata)
             })
         })
-        if (options.method) {
+        if (options.method == 'POST') {
             req.write(body)
         }
 
@@ -533,7 +533,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/qrcode/create?access_token='+access_info.access_token,
+        path: '/cgi-bin/qrcode/create?access_token=' + access_info.access_token,
         method: 'POST',
         json: true,
         headers: {
