@@ -480,6 +480,7 @@ function ajax(options, body) {
         const req = https.request(options, (res) => {
             res.on('data', (d) => {
                 let wxdata = JSON.parse(d.toString())
+                console.log(wxdata)
                 resolve(wxdata)
             })
         })
