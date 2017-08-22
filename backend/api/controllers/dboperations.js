@@ -475,23 +475,14 @@ module.exports.sms = function* () {
     }
     this.body = yield smsinfo
 }
-function ajax(code) {
+function ajax(options) {
     return new Promise(function (resolve) {
-        let options = {
-            hostname: 'api.weixin.qq.com',
-            port: 443,
-            path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code=' + code + '&grant_type=authorization_code',
-            method: 'GET'
-        }
         const req = https.request(options, (res) => {
             res.on('data', (d) => {
                 let wxdata = JSON.parse(d.toString())
-                let wxobj = {}
-                wxobj.openid = wxdata.openid
-                resolve(wxobj)
+                resolve(wxdata)
             })
         })
-
         req.on('error', (e) => {
             console.error(e)
         });
@@ -506,6 +497,36 @@ module.exports.wx = function* wx() {
     })
     console.log(model)
     let wxinfo = {}
-    wxinfo = yield ajax(model.code)
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/sns/oauth2/access_token?appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf&code=' + model.code + '&grant_type=authorization_code',
+        method: 'GET'
+    }
+    wxinfo = yield ajax(options)
+    let wxobj = {}
+    if (wxinfo) {
+        wxobj.openid = wxinfo.openid
+    }
+    this.body = yield wxobj
+}
+
+module.exports.wxqrcode = function* wxqrcode(id,next) {
+    if ('GET' != this.method) return yield next
+    let wxinfo = {}
+    let qcdata = { "action_name": "QR_LIMIT_SCENE", "action_info": { "scene": { "scene_id": id } } }
+
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: 'cgi-bin/qrcode/create?access_token=TOKENPOST',
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(qcdata)
+    }
+    wxinfo = yield ajax(options)
     this.body = yield wxinfo
 }
