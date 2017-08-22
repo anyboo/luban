@@ -79,7 +79,7 @@ export default {
                 {
                     'label': '开班',
                     'type': 'success',
-                    'showdialog': 'lb-openclassmodal',
+                    'showdialog': 'classesform',
                     'actionoption': 'lessonclasses'
                 },
             ]

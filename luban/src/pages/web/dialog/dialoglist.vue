@@ -2,8 +2,8 @@
     <div v-if="modalShow">
         <template v-for="item,index in getDialog">
             <lb-dialog :zindex="index*2+1500">
-                <template v-if="getDialogMoudle(item)">
-                    <lb-systemdialogmmodule :module="moduleObj">
+                <template v-if="getDialogMoudle(item,index)">
+                    <lb-systemdialogmmodule :module="moduleObj[index]">
                     </lb-systemdialogmmodule>
                 </template>
                 <template v-else>
@@ -27,8 +27,7 @@ export default {
         let localdata = {}
         return {
             localdata,
-            moduleObj: '',
-            type: 0
+            moduleObj: {}
         }
     },
     components: dialogpages,
@@ -41,7 +40,7 @@ export default {
         }
     },
     methods: {
-        getDialogMoudle(item) {
+        getDialogMoudle(item, index) {
             console.log(item)
             let isModlues = false
             if (!this.$store.state.models.login) {
@@ -53,12 +52,14 @@ export default {
                 if (to) {
                     let tomodule = to.replace(/\//g, '')
                     if (module[tomodule]) {
-                        this.moduleObj = module[tomodule]
-                        this.moduleObj._type = 0
+                        let moduleObj = module[tomodule]
+                        moduleObj._type = 0
+                        this.moduleObj[index] = moduleObj
                         isModlues = true
                     } else if (moduleform[tomodule]) {
-                        this.moduleObj = moduleform[tomodule]
-                        this.moduleObj._type = 1
+                        let moduleObj = moduleform[tomodule]
+                        moduleObj._type = 1
+                        this.moduleObj[index] = moduleObj
                         isModlues = true
                     }
                 }
