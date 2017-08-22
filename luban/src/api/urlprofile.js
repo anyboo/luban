@@ -23,6 +23,10 @@ function getApiUrl() {
     return apiUrl + 'api/'
 }
 
+function getUrlQccode(id) {
+    return apiUrl + 'wxqrcode/' + id
+}
+
 function getUrls(model) {
     return apiUrl + 'apis/' + model + '/'
 }
@@ -50,5 +54,6 @@ export default {
     getUrlById,
     apiUrl,
     getUrlFilter,
-    getLoginUrl
+    getLoginUrl,
+    getUrlQccode
 }

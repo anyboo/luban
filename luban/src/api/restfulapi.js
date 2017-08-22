@@ -7,6 +7,12 @@ function httpAuth() {
     Vue.http.headers.common['authtime'] = tokentime
 }
 
+function httpGetUrlQccode(id) {
+    let apiUrlGet = urlUtil.getUrlQccode(id)
+    httpAuth()
+    return Vue.http.get(apiUrlGet)
+}
+
 function httpGetFieldsApi(model, fields) {
     let apiUrlGet = urlUtil.getUrlField(model, fields)
     httpAuth()
@@ -69,5 +75,6 @@ export default {
     httpGetIdApi,
     httpGetFilterApi,
     httpLoginApi,
-    httpBulkApi
+    httpBulkApi,
+    httpGetUrlQccode
 }
