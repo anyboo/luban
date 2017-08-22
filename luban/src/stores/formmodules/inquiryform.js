@@ -7,6 +7,7 @@ export default {
         'track_way': '',
         'track_time': '',
         'next_time': '',
+        'active': false,
         'detail': '',
         'student_id': ''
     },
@@ -25,7 +26,10 @@ export default {
             'type': 'inputselect',
             'label': '沟通方式',
             'prop': 'track_way',
-            'field': 'track_way'
+            'field': 'track_way',
+            data(vm) {
+                return vm.getDictData('4')
+            }
         },
         {
             'type': 'input',
@@ -45,6 +49,14 @@ export default {
             'label': '沟通内容',
             'prop': '',
             'field': 'detail'
+        },
+        {
+            'type': 'switchdatetime',
+            'label': '下次回访提醒',
+            'prop': '',
+            'field': 'next_time',
+            'fieldActive': 'active',
+            'datetype': 'datetime',
         }
     ],
     'pageTable': 'inquiry',

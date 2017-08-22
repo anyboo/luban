@@ -55,7 +55,7 @@ export default {
                 {
                     'label': '添加',
                     'type': 'success',
-                    'showdialog': 'lb-employeeaddmodal',
+                    'showdialog': 'employeeform',
                     'actionoption': 'systememployeeadd'
                 },
             ]
