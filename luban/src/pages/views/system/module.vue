@@ -312,7 +312,9 @@ export default {
             this.highlight = true
         },
         getUpdata() {
-            if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
+            if ('moduleform'==this.$store.state.envs.currDialog){
+                this.handleSearch()
+            }else if (this.lbTagArr.indexOf(this.$store.state.envs.currDialog) != '-1') {
                 this.handleSearch()
             } else if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
                 if (this.selStudentAddInquiry.length > 0) {

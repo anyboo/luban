@@ -6,7 +6,7 @@ export default {
         to: '/lesson/sclasses',
         menuIcon: 'fa fa-certificate',
         dropDownMenu: [{
-            'url': 'lb-newsclassmodal',
+            'url': 'sclassesform',
             'icon': 'fa fa-pencil',
             'text': '编辑'
         }, {

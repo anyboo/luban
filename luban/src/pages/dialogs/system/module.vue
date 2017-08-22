@@ -7,10 +7,15 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    <i class="fa fa-flag-checkered"></i>设计</h3>
+                    {{title}}</h3>
             </div>
             <div class="modal-body">
-                <lb-systemmodule :module="module" :info="true" @tablechange="dialogData"></lb-systemmodule>
+                <template v-if="module._type==0">
+                    <lb-systemmodule :module="module" :info="true" @tablechange="dialogData"></lb-systemmodule>
+                </template>
+                <template v-if="module._type==1">
+                    <lb-dialogmmoduleform ref="ruleForm" :module="module" :form="form"></lb-dialogmmoduleform>
+                </template>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleOk">确定</button>
@@ -21,6 +26,7 @@
 </template>
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
+import dialogmmoduleform from './moduleform.vue'
 
 export default {
     name: 'dialogmodule',
@@ -29,18 +35,63 @@ export default {
         return {
             currentRow: null,
             currDialog: '',
+            id: '',
+            formtype: false,
+            form: null
         }
     },
-    components: { 'lb-systemmodule': systemmodule },
+    created() {
+        if (this.$store.state.dialogs.dailogdata) {
+            this.id = this.$store.state.dialogs.dailogdata['_id']
+            this.formtype = true
+            this.form = this.$store.state.dialogs.dailogdata
+        }
+    },
+    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform },
+    computed: {
+        title() {
+            let text = this.module.pageLable
+            if (this.module._type == 0) {
+
+            }
+            if (this.module._type == 1) {
+                let formtitle = '新建'
+                if (this.formtype) {
+                    formtitle = '编辑'
+                }
+                text = formtitle + this.module.pageLable
+            }
+            return text
+        }
+    },
     methods: {
         dialogData(val) {
             this.currentRow = val.row
             this.currDialog = val.dialog
         },
-        handleOk() {
+        selectmodule() {
             this.lbClosedialog()
             this.$store.state.envs.currDialogResult = this.currentRow
             this.$store.state.envs.currDialog = this.currDialog
+        },
+        appendmodule() {
+            this.$refs['ruleForm'].append()
+        },
+        editmodule(id) {
+            this.$refs['ruleForm'].edit(id)
+        },
+        handleOk() {
+            if (this.module._type == 0) {
+                this.selectmodule()
+            }
+            if (this.module._type == 1) {
+                console.log(this.id, this.module._type)
+                if (this.id.length > 0) {
+                    this.editmodule(this.id)
+                } else {
+                    this.appendmodule()
+                }
+            }
         }
     }
 }

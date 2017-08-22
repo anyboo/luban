@@ -20,7 +20,7 @@ export default {
                 {
                     'label': '新建教室',
                     'type': 'success',
-                    'showdialog':'lb-newsclassmodal',
+                    'showdialog':'sclassesform',
                     'actionoption':'lessonsclasses'
                 }
             ]

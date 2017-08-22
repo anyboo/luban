@@ -16,7 +16,7 @@ export default {
             'iclass': 'fa fa-question-circle',
             'text': '待确定'
         }],
-        'claes': [{
+        'classes': [{
             'value': '0',
             'label': '1'
         }, {
@@ -99,27 +99,10 @@ export default {
     },
     'formField': [
         {
-            'type': 'text',
+            'type': 'input',
             'label': '班级',
-            'prop': 'class_name'
-        },
-        {
-            'type': 'tabletext',
-            'label': '老师',
-            'table': 'employee',
-            'prop': 'name',
-        },
-        {
-            'type': 'textScale',
-            'label': '已报人数',
-            'prop1': 'order',
-            'prop2': 'max_student_num'
-        },
-        {
-            'type': 'textScale',
-            'label': '已报人数',
-            'prop1': 'total_times',
-            'prop2': 'total_times'
+            'prop': 'student_name',
+            'field':'student_name'
         }
     ],
     'pageTable': 'student',

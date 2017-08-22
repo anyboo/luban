@@ -10,7 +10,7 @@ export default {
         to: '/student/list',
         menuIcon: 'fa fa-user-circle',
         dropDownMenu: [{
-            'url': 'lb-editinfomodal',
+            'url': 'studentform',
             'icon': 'fa fa-pencil',
             'text': '修改资料'
         }

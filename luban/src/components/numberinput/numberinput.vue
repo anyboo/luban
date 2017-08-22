@@ -1,9 +1,11 @@
 <template>
-    <input v-model="numbervalue" type="number" @blur="changeNum" @change="updateValue">
+    <el-input placeholder="请输入数字" v-model="numbervalue" @blur="changeNum" @change="updateValue">
+        <template slot="append">{{text}}</template>
+    </el-input>
 </template>
 <script>
 export default {
-    props: ['value'],
+    props: ['value','text'],
     name: 'LbNumberinput',
     data() {
         return {
