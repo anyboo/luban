@@ -60,7 +60,7 @@
             </template>
             <template v-if="item.type=='selectSearch'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    <lb-selectesearch v-model="localdata.form[item.field]" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
+                    <lb-selectesearch v-model="localdata.form[item.field]" :table="item.table" selected="" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
                 </el-form-item>
             </template>
             <template v-if="item.type=='select'">

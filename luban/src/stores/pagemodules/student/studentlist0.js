@@ -92,6 +92,7 @@ export default {
     'pageTableField': [
         {
             'type': 'operation',
+            'student':true,
             'label': '操作'
         },
         {

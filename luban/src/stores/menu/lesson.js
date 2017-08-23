@@ -43,7 +43,7 @@ export default {
         to: '/lesson/classes',
         menuIcon: 'fa fa-gear',
         dropDownMenu: [{
-            'url': 'lb-openclassmodal',
+            'url': 'classesform',
             'icon': 'fa fa-pencil',
             'text': '编辑'
         }, {

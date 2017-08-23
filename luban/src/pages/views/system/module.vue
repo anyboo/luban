@@ -66,7 +66,7 @@
                 <template v-else-if="item.type=='operation'">
                     <el-table-column :label="item.label" width="90">
                         <template scope="scope">
-                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
+                            <lb-dropdown :student="item.student" :drop-menu-data="getMenuOption" :menu-data="scope.row" @command="handleCommand">
                                 <lb-dropdown-button slot="buttonslot" button-class="btn btn-xs btn-default" class="btn btn-info btn-xs">
                                     <i class="fa fa-cog"></i>操作
                                     <span class="caret"></span>

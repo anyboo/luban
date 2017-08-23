@@ -24,7 +24,7 @@ export default {
         handleAddTrack(item) {
             let student = this.getLookUp(item)
             this.$store.state.envs.currStudent = student
-            this.handleShowDialog('lb-addtrackmodal', student)
+            this.handleShowDialog('inquiryform', student)
         },
     },
     computed: {

@@ -17,11 +17,12 @@ export default {
         {
             'type': 'selectSearch',
             'label': '授课老师',
-            'prop': 'student_id',
-            'field': 'student_id',
+            'prop': 'teacher_id',
+            'field': 'teacher_id',
             'text': '请选择老师',
-            'showdialog': 'selectstudentdialog',
-            'search': 'student_name'
+            'showdialog': 'selectteacherdialog',
+            'search': 'name',
+            'table':'employee'
         },
         {
             'type': 'selectSearch',
@@ -30,7 +31,8 @@ export default {
             'field': 'course_id',
             'text': '请选择课程',
             'showdialog': 'selectlessondialog',
-            'search': 'course_name'
+            'search': 'lesson_name',
+            'table':'course'
         },
         {
             'type': 'input',

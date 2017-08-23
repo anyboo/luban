@@ -6,11 +6,11 @@
 <script>
 export default {
     name: 'LbSelectesearch',
-    props: ['value', 'selected', 'default', 'showdialog', 'searchfield'],
+    props: ['value', 'selected', 'default', 'showdialog', 'searchfield','table'],
     data() {
         return {
             defaultvalue: this.default,
-            search_id: ''
+            search_id: this.value
         }
     },
     watch: {
@@ -21,7 +21,14 @@ export default {
             this.search_id = val
         }
     },
-    methods: {
+    mounted() {
+        if (this.table&&this.search_id.length>0){
+            this.handleGetTableID(this.table,this.search_id).then((obj)=>{
+               if (obj.data.length>0){
+                   this.defaultvalue = obj.data[0][this.searchfield]
+               }
+            })
+        }
     },
     computed: {
         getSelectStudentName() {

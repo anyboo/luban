@@ -25,7 +25,7 @@
 <script>
 export default {
     name: 'LbDropdown',
-    props: ['dropMenuData', 'id', 'menuData'],
+    props: ['dropMenuData', 'id', 'menuData','student'],
     data() {
         return {
         }
@@ -63,6 +63,9 @@ export default {
         handleCommand(common) {
             if (common.indexOf('u:') >= 0) {
                 let url = common.replace('u:', '')
+                if (this.student){
+                    this.$store.state.envs.currStudent = this.menuData
+                }
                 this.handleShowDialog(url, this.menuData)
             } else {
                 let action = common.replace('a:', '')

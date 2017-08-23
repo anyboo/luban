@@ -146,7 +146,7 @@ export default {
             'icon': 'icon-heart',
             'text': '意向程度设置'
         }, {
-            'url': 'lb-addtrackmodal',
+            'url': 'inquiryform',
             'icon': 'fa fa-phone-square',
             'text': '跟踪回访'
         }]
