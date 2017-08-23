@@ -192,6 +192,14 @@
                             <template v-if="item.type=='contentText'">
                                 <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                             </template>
+                            <template v-if="item.type=='studentoperation'">
+                                <a class="link" @click="do_recover(scope.row._id)">
+                                    <i class="icon-lock-open"></i>恢复
+                                </a>
+                                <a class="link" @click="confirm_delete(scope.row._id)">
+                                    <i class="fa fa-times"></i>删除
+                                </a>
+                            </template>
                         </template>
                     </el-table-column>
                 </template>
@@ -296,8 +304,7 @@ export default {
                         picker.$emit('pick', [start, end]);
                     }
                 }]
-            },
-            tables: ['sclasses'],
+            }
         }
     },
     created() {
@@ -414,6 +421,43 @@ export default {
         }
     },
     methods: {
+        confirm_delete(id) {
+            let vm = this
+            vm.$confirm('是否确定删除学员的档案?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.tables = []
+                this.tables.push(this.moduledata.pageTable)
+                vm.handleDelete(id).then(() => {
+                    vm.$message({
+                        message: '删除成功',
+                        type: 'success'
+                    })
+                    this.$store.state.envs.currDialog = 'trashdialog'
+                    vm.handleSearch()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                })
+            })
+        },
+        do_recover(id) {
+            let vm = this
+            vm.updateTeble('student', id, {
+                'isdel': false
+            }).then(() => {
+                vm.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                this.$store.state.envs.currDialog = 'lb-trash'
+                vm.handleSearch()
+            })
+        },
         handleTableChange(val) {
             this.$emit('tablechange', { 'row': val, 'dialog': this.module.dialogUrl })
         },
@@ -546,7 +590,9 @@ export default {
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
-                    if (item.type == "unwind") {
+                    if (item.type == "") {
+                        filterObj.push(item)
+                    }else if (item.type == "unwind") {
                         filterObj.push(item)
                     } else {
                         filterObj.push({

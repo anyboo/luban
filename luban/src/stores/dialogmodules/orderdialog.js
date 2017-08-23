@@ -1,11 +1,7 @@
 export default {
-    'pageName': 'trashdialog',
-    'pageLable': '已封存档案',
-    'tableSearch': [{
-        'key': 'isdel',
-        'value': true,
-        'type': ''
-    }],
+    'pageName': 'orderdialog',
+    'pageLable': '退费',
+    'tableSearch': [],
     'pageSearch': [
         {
             'type': 'textSearch',

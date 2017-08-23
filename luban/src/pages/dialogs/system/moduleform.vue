@@ -65,8 +65,8 @@
             </template>
             <template v-if="item.type=='select'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    <el-select v-model="localdata.form[item.field]" placeholder="请选择">
-                        <el-option v-for="value in getDictData(getNum)" :key="value._id" :label="value.text" :value="value._id">
+                    <el-select v-model="localdata.form[item.field]" placeholder="请选择" style="width: 100%;">
+                        <el-option v-for="value in getDictData(getDistNum(item))" :key="value._id" :label="value.text" :value="value._id">
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -103,15 +103,6 @@ export default {
         }
     },
     computed: {
-        getNum() {
-            let Num = ''
-            if (this.localdata.form.type == '0') {
-                Num = '7'
-            } else {
-                Num = '8'
-            }
-            return Num
-        },
         getRules() {
             let rules = null
             if (this.module.rulesData) {
@@ -136,6 +127,9 @@ export default {
         },
     },
     methods: {
+        getDistNum(item) {
+            return item.dict(this)
+        },
         getSelectData(item) {
             let data = null
             if (item.data) {

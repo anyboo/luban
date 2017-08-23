@@ -34,11 +34,11 @@ export default {
                             'text': '转班'
                         }*/
             , {
-            'url': 'lb-addtrackmodal',
+            'url': 'inquiryform',
             'icon': 'fa fa-phone-square',
             'text': '跟踪回访'
         }, {
-            'url': 'lb-regstudentmatchmodal',
+            'url': 'recordingform',
             'icon': 'fa fa-flag-o',
             'text': '登记赛事记录'
         }, {
@@ -138,11 +138,11 @@ export default {
         to: '/student/list0',
         menuIcon: 'glyphicon glyphicon-list',
         dropDownMenu: [{
-            'url': 'lb-regionsetmodal',
+            'url': 'studentregion',
             'icon': 'icon-rocket',
             'text': '学员归属设定'
         }, {
-            'url': 'lb-purposesetmodal',
+            'url': 'studentpurpose',
             'icon': 'icon-heart',
             'text': '意向程度设置'
         }, {

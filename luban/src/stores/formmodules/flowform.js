@@ -33,7 +33,14 @@ export default {
             'type': 'select',
             'label': '所属分类',
             'prop': '',
-            'field': 'sel'
+            'field': 'sel',
+            'dict': function(vm){
+                let dict = 8
+                if (vm.localdata.form.type==0){
+                    dict = 7
+                }
+                return dict
+            }
         },
         {
             'type': 'input',

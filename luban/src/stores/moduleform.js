@@ -8,6 +8,8 @@ import recordingform from './formmodules/recordingform.js'
 import employeeform from './formmodules/employeeform.js'
 import classesform from './formmodules/classesform.js'
 import flowform from './formmodules/flowform.js'
+import studentregion from './formmodules/studentregion.js'
+import studentpurpose from './formmodules/studentpurpose.js'
 
 let pages = {}
 pages['studentform'] = studentform
@@ -20,5 +22,7 @@ pages['recordingform'] = recordingform
 pages['employeeform'] = employeeform
 pages['classesform'] = classesform
 pages['flowform'] = flowform
+pages['studentregion'] = studentregion
+pages['studentpurpose'] = studentpurpose
 
 export default pages

@@ -70,7 +70,7 @@ export default {
                 {
                     'label': '已封存档案',
                     'type': 'success',
-                    'showdialog': 'lb-trash',
+                    'showdialog': 'trashdialog',
                     'actionoption': 'studentlist'
                 },
             ]
@@ -81,6 +81,7 @@ export default {
         {
             'type': 'operation',
             'label': '操作',
+            'student':true,
             'prop': 'setting'
         },
         {
