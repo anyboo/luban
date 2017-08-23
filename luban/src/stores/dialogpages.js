@@ -1,6 +1,5 @@
 import dialog from '~/pages/web/dialog/dialog.vue'
 import finishadd from '~/pages/dialogs/student/finishadd.vue'
-import page15 from '~/pages/dialogs/iae/flow.add.modal.vue'
 import page31 from '~/pages/dialogs/lesson/cate.vue'
 import page4 from '~/pages/dialogs/lesson/new_lesson.modal.vue'
 import page38 from '~/pages/dialogs/student/import.vue'
@@ -37,7 +36,6 @@ import page84 from '~/pages/dialogs/system/sms_recording.vue'
 var pages = {}
 pages['lb-dialog'] = dialog
 pages['lb-finishadd'] = finishadd
-pages['lb-flowaddmodal'] = page15
 pages['lb-cate'] = page31
 pages['lb-newlessonmodal'] = page4
 pages['lb-import'] = page38
