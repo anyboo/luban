@@ -1,6 +1,6 @@
 export default {
     'pageName': 'recordingform',
-    'pageLable': '回访记录',
+    'pageLable': '赛事记录',
     'student': true,
     'form': {
         'match_name': '',

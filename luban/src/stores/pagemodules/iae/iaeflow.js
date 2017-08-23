@@ -81,7 +81,7 @@ export default {
                     'label': '记一笔',
                     'type': 'success',
                     'icon': 'edit',
-                    'showdialog': 'lb-flowaddmodal',
+                    'showdialog': 'flowform',
                     'actionoption': 'iaeflow'
                 }
             ]
