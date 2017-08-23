@@ -192,6 +192,9 @@
                             <template v-if="item.type=='contentText'">
                                 <lb-lessonhours :lessonData="scope.row" :typeData="item"></lb-lessonhours>
                             </template>
+                            <template v-if="item.type=='subtract'">
+                                <el-tag type="gray">{{Number(scope.row[item.prop1])-Number(scope.row[item.prop2])}}元</el-tag>
+                            </template>
                             <template v-if="item.type=='studentoperation'">
                                 <a class="link" @click="do_recover(scope.row._id)">
                                     <i class="icon-lock-open"></i>恢复
@@ -199,6 +202,9 @@
                                 <a class="link" @click="confirm_delete(scope.row._id)">
                                     <i class="fa fa-times"></i>删除
                                 </a>
+                            </template>
+                            <template v-if="item.type=='button'">
+                                <el-button @click="handleShowDialog(item.dialog,scope.row)">{{item.text}}</el-button>
                             </template>
                         </template>
                     </el-table-column>
@@ -342,6 +348,9 @@ export default {
             }
             return nSearch
         },
+        handleFun() {
+            return this.getSearchFun('handle')
+        },
         handlebackFun() {
             return this.getSearchFun('handleback')
         },
@@ -421,6 +430,9 @@ export default {
         }
     },
     methods: {
+        getRefund(item) {
+
+        },
         confirm_delete(id) {
             let vm = this
             vm.$confirm('是否确定删除学员的档案?', '提示', {
@@ -558,6 +570,12 @@ export default {
                     filterObj.push(item)
                 }
             }
+            if (this.handleFun) {
+                let filterObjItem = this.handleFun(this)
+                for (let item of filterObjItem) {
+                    filterObj.push(item)
+                }
+            }
             let selectesearch = this.selectsearchValue
             if (this.selectesearchFun) {
                 let filterObjItem = this.selectesearchFun(selectesearch)
@@ -590,9 +608,9 @@ export default {
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
-                    if (item.type == "") {
+                    if (item.type == '') {
                         filterObj.push(item)
-                    }else if (item.type == "unwind") {
+                    } else if (item.type&&item.type.length > 0) {
                         filterObj.push(item)
                     } else {
                         filterObj.push({
@@ -603,7 +621,7 @@ export default {
                     }
                 }
             }
-
+            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {

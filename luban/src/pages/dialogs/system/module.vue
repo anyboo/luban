@@ -55,7 +55,9 @@ export default {
         title() {
             let text = this.module.pageLable
             if (this.module._type == 0) {
-
+                if (this.module.student) {
+                    text = this.getStudentName() + '学员' + this.module.pageLable
+                }
             }
             if (this.module._type == 1) {
                 if (this.module.student) {

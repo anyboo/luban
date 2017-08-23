@@ -1,4 +1,3 @@
-import studentform from './formmodules/studentform.js'
 import sclassesform from './formmodules/sclassesform.js'
 import campusform from './formmodules/campusform.js'
 import leavesform from './formmodules/leavesform.js'
@@ -10,9 +9,9 @@ import classesform from './formmodules/classesform.js'
 import flowform from './formmodules/flowform.js'
 import studentregion from './formmodules/studentregion.js'
 import studentpurpose from './formmodules/studentpurpose.js'
+import orderform from './formmodules/orderform.js'
 
 let pages = {}
-pages['studentform'] = studentform
 pages['sclassesform'] = sclassesform
 pages['campusform'] = campusform
 pages['leavesform'] = leavesform
@@ -24,5 +23,6 @@ pages['classesform'] = classesform
 pages['flowform'] = flowform
 pages['studentregion'] = studentregion
 pages['studentpurpose'] = studentpurpose
+pages['orderform'] = orderform
 
 export default pages

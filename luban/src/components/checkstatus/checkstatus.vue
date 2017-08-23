@@ -7,11 +7,18 @@
         </template>
         <template v-if="typeData.statutype=='accountcheck'">
             <el-tag type="gray" v-if="lessonData.check_status == '0'">未对账</el-tag>
-            <el-tag type="success" v-if="lessonData.check_status == '1'" >已对账</el-tag>
+            <el-tag type="success" v-if="lessonData.check_status == '1'">已对账</el-tag>
         </template>
         <template v-if="typeData.statutype=='checkAccount'">
-            <a v-if="lessonData.check_status== '0'" @click="handleCheck(lessonData._id)"><el-tag type="gray">核对</el-tag></a>
-            <el-tag type="danger" v-if="lessonData.check_status == '1'" >已核对</el-tag>
+            <a v-if="lessonData.check_status== '0'" @click="handleCheck(lessonData._id)">
+                <el-tag type="gray">核对</el-tag>
+            </a>
+            <el-tag type="danger" v-if="lessonData.check_status == '1'">已核对</el-tag>
+        </template>
+        <template v-if="typeData.statutype=='checkPay'">
+            <el-tag type="gray" v-if="lessonData.pay_status==0">未付款</el-tag>
+            <el-tag type="success" v-if="lessonData.pay_status==1">部分付款</el-tag>
+            <el-tag type="danger"  v-if="lessonData.pay_status==2">支付完成</el-tag>
         </template>
     </div>
 </template>

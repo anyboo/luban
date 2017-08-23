@@ -10,7 +10,7 @@ export default {
         to: '/student/list',
         menuIcon: 'fa fa-user-circle',
         dropDownMenu: [{
-            'url': 'studentform',
+            'url': 'lb-editinfomodal',
             'icon': 'fa fa-pencil',
             'text': '修改资料'
         }
@@ -24,7 +24,7 @@ export default {
             'icon': 'fa fa-shopping-cart',
             'text': '报名'
         }, {
-            'url': 'lb-refundmodal',
+            'url': 'orderpaydialog',
             'icon': 'fa fa-money',
             'text': '缴费'
         }
@@ -42,7 +42,7 @@ export default {
             'icon': 'fa fa-flag-o',
             'text': '登记赛事记录'
         }, {
-            'url': 'lb-refundmodal',
+            'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',
             'text': '退费'
         },
