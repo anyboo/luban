@@ -49,7 +49,7 @@
                     </el-select>
                 </el-form-item>
             </template>
-             <template v-if="item.type=='switchdatetime'">
+            <template v-if="item.type=='switchdatetime'">
                 <el-form-item :label="item.label">
                     <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
                     </el-switch>
@@ -57,10 +57,18 @@
                 <el-form-item v-if="localdata.form[item.fieldActive]">
                     <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
                 </el-form-item>
-            </template> 
+            </template>
             <template v-if="item.type=='selectSearch'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                   <lb-selectesearch v-model="localdata.form[item.field]"  :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
+                    <lb-selectesearch v-model="localdata.form[item.field]" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='select'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-select v-model="localdata.form[item.field]" placeholder="请选择">
+                        <el-option v-for="value in getDictData(getNum)" :key="value._id" :label="value.text" :value="value._id">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
             </template>
         </template>
@@ -95,6 +103,15 @@ export default {
         }
     },
     computed: {
+        getNum() {
+            let Num = ''
+            if (this.localdata.form.type == '0') {
+                Num = '7'
+            } else {
+                Num = '8'
+            }
+            return Num
+        },
         getRules() {
             let rules = null
             if (this.module.rulesData) {
