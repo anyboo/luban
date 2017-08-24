@@ -77,6 +77,7 @@ export default {
                         message: '用户或密码错误！',
                         type: 'error'
                     })
+                    this.$store.commit('router', 'lb-studentadd')
                 }
             })
             this.localdata.form = {

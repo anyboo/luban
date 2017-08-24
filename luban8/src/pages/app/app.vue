@@ -1,11 +1,15 @@
 <template>
-    <div class="lbcontainer" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}">
-        <lb-sidebar></lb-sidebar>
-        <lb-header @variety="variety"></lb-header>
-        <lb-body></lb-body>
-        <lb-footer></lb-footer>
+    <div class="lbcontainer">
+        <lb-sidebar :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
+        <div class="app_container" style=" width:100%;">
+            <lb-header @variety="variety"></lb-header>
+            <lb-body></lb-body>
+        </div>
+
         <lb-modalbackdrop></lb-modalbackdrop>
         <lb-dialoglist></lb-dialoglist>
+        <lb-footer></lb-footer>
+
     </div>
 </template>
 <script>

@@ -140,6 +140,11 @@
                                             </el-date-picker>
                                         </div>
                                     </td>
+                                    <td class='qcode'>
+                                        <img :src="qrcodeimg" style="width:10rem;float:right;">
+                                        <span class='print_text'>扫描二维码 绑定学员信息～
+                                        </span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -156,6 +161,18 @@
     </div>
 </template>
 <style  media="print" type="text/css">
+.print_text {
+    display: inline-block;
+    padding-top: 10px;
+    width: 104px;
+    height: 30px;
+    float: right;
+}
+
+.qcode {
+    width: 300px;
+}
+
 @media screen and (min-width: 768px) {
     .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -327,6 +344,8 @@ input {
 }
 </style>
 <script>
+import getUrl from '~/api/restfulapi.js'
+
 export default {
     name: 'printer_receipt',
     data() {
@@ -344,6 +363,7 @@ export default {
         }
         return {
             localdata,
+            qrcodeimg: '',
             order: {},
             currStudent: {},
             classes: {},
@@ -384,6 +404,14 @@ export default {
                     vm.classes = obj.data[0]
                 }
             })
+
+            console.log(this.localdata.form.student_id)
+            getUrl.httpGetUrlQccode(this.uid).then(obj => {
+                console.log(obj)
+                console.log(obj.data.ticket)
+                this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + obj.data.ticket
+            })
+
         }
     },
     computed: {},

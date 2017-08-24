@@ -22,6 +22,11 @@
                         </li>
                     </ul>
                 </div>
+                <span class="school" style="color:white;">陈可城校区</span>
+
+                <span class="screen" @click="fullscreen">
+                    <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>
+                </span>
             </div>
             <div class="bodyTitle">
                 {{getCurrMenu}}
@@ -30,11 +35,27 @@
     </div>
 </template>
 <style>
-.lbHeader_container {
-    display: grid;
+.screen {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    float: right;
+    padding-top: 17px;
+    text-align: center;
+}
+
+.school {
+    display: inline-block;
+    width: 125px;
+    height: 50px;
+    float: right;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.lbHeader {
     width: 100%;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 1px;
 }
 
 .bodyTitle {
@@ -42,11 +63,12 @@
     border-bottom: 1px solid rgb(217, 219, 222);
     padding: 5 20px;
     font-size: 25px;
+    height: 50px;
 }
 
 .firstModule {
     background: rgb(42, 59, 76);
-    height: 49px;
+    height: 50px;
 }
 
 .fa-bars {
@@ -68,8 +90,9 @@
 }
 
 .menu {
+    baseline: middle;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 12px 15px;
     float: right;
     border: 0;
     background: rgb(42, 59, 76);
@@ -82,6 +105,7 @@
 }
 
 .menu img {
+
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -89,6 +113,11 @@
 }
 
 .menu b {
+    position: absolute;
+    top: 2px;
+    font-size: 16px;
+    font-weight: normal;
+    padding-left: 3px;
     display: inline-block;
     background: rgb(42, 59, 76);
     position: relative;
@@ -114,7 +143,7 @@
     width: 160px;
     height: 114px;
     position: absolute;
-    top: 49px;
+    top: 50px;
     right: 0px;
     margin: 0;
     padding: 0;
@@ -152,7 +181,8 @@ export default {
     name: 'header',
     data() {
         return {
-            toShow: false
+            toShow: false,
+            updown: false,
         }
     },
     computed: {
@@ -184,6 +214,34 @@ export default {
     methods: {
         variety() {
             this.$emit('variety')
+        },
+        fullscreen() {
+            if (this.full) {
+                this.full = false
+                if (document.exitFullscreen) {
+                    document.exitFullscreen()
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen()
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen()
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen()
+                }
+                this.updown = false
+            } else {
+                this.full = true
+                var docElm = document.documentElement
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen()
+                } else if (docElm.msRequestFullscreen) {
+                    docElm.msRequestFullscreen()
+                } else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen()
+                } else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen()
+                }
+                this.updown = true
+            }
         },
         handleClickShow() {
             this.toShow = !this.toShow

@@ -1,13 +1,26 @@
 <template>
-    <li :class="getMenuClass">
+    <li :class="getMenuClass" class="li_arrow">
         <a @click="handleClick">
             <i class="fa" :class="menu.menuIcon"></i>
-            <span>{{menu.menuTitle}}</span>
+            <span :class="submenu">{{menu.menuTitle}}</span>
+               <span v-if="submenu=='menuTitle'" class="arrow">
+                   <i class="fa fa-angle-left"   :class="{'fa-angle-down':updown,'fa-angle-left':!updown}" style="color:white;"></i>
+               </span>
         </a>
         <slot></slot>
     </li>
 </template>
 <style>
+.li_arrow{
+    position: relative;
+}
+.arrow{
+    display: inline-block;
+    width:10px;
+    height: 10px;
+    position: absolute;
+    right:25px;
+}
 .cssStyle {
     color: #e74c3c;
 }
@@ -68,9 +81,10 @@
 export default {
     name: 'sidebarMenuItem',
     componentName: 'MenuItem',
-    props: ['menu'],
+    props: ['menu','submenu'],
     data() {
         return {
+            updown:false,
         }
     },
     computed: {
@@ -80,6 +94,7 @@ export default {
             css.isActivec = this.menu.isActive
             return css
         }
+       
     },
     methods: {
         handleClick() {
@@ -87,6 +102,7 @@ export default {
             if (this.menu.to) {
                 this.$store.commit('router',this.menu.to)
             }
+              this.updown = !this.updown
         }
     }
 }

@@ -46,8 +46,6 @@ export default {
     mounted() {
         this.login()
         console.log('登陆成功')
-
-
         this.jumpUp()
         console.log('获取成功')
     },

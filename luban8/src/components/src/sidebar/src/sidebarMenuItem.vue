@@ -20,8 +20,6 @@
     color: #e74c3c;
 }
 
-
-
 /* hover */
 
 .lbSdebarMenu>a:hover {
@@ -44,6 +42,7 @@
 
 .lbSdebarMenuItem>a i {
     margin-left: 40px;
+    height: 20px;
 }
 
 .lbSdebarMenu.isActivec ul {
@@ -85,7 +84,7 @@ export default {
         handleClick() {
             this.$emit('menuchange', this.menu.index)
             if (this.menu.to) {
-                this.$store.commit('router',this.menu.to)
+                this.$store.commit('router', this.menu.to)
             }
         }
     }

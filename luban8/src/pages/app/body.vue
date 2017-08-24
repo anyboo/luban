@@ -1,9 +1,7 @@
 <template>
     <div class="lbBody">
-        <div class="lbBody_lbcontainer">
             <component v-bind:is="getCurrentView">
             </component>
-        </div>
     </div>
 </template>
 <script>
@@ -30,9 +28,9 @@ export default {
         getCurrentView() {
             let view = 'lb-studentadd'
             if (!this.$store.state.models.login) {
-                view = 'lb-systemsign_in'
+                //view = 'lb-systemsign_in'
             } else if (this.$store.state.system.name.length == 0) {
-                view = 'lb-systemsign_in'
+                //view = 'lb-systemsign_in'
             } else {
                 let to = this.$store.state.system.router
                 if (to == '') {
@@ -45,6 +43,5 @@ export default {
             return view
         }
     },
-
 }
 </script>
