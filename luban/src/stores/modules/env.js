@@ -2,6 +2,7 @@ const state = {
     currStudent: {},
     currDialogResult: {},
     currDialog:'',
+    currDialogId:0,
     currMenu: ''
 }
 const getters = {}

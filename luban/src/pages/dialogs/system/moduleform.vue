@@ -58,6 +58,12 @@
                     <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
                 </el-form-item>
             </template>
+            <template v-if="item.type=='timetype'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-time-picker v-model="localdata.form[item.field]" placeholder="选择时间" is-range style="width: 100%;" minTime="00:00">
+                    </el-time-picker>
+                </el-form-item>
+            </template>
             <template v-if="item.type=='selectSearch'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <lb-selectesearch v-model="localdata.form[item.field]" :table="item.table" selected="" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
@@ -69,6 +75,57 @@
                         <el-option v-for="value in getDictData(getDistNum(item))" :key="value._id" :label="value.text" :value="value._id">
                         </el-option>
                     </el-select>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='switchweek'">
+                <el-form-item :label="item.label">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
+                    </el-switch>
+                </el-form-item>
+                <el-form-item label="结束日期" :prop="item.prop" :required="true" v-if="localdata.form[item.fieldActive]">
+                    <el-date-picker :type="item.datetype" placeholder="选择日期" v-model="localdata.form[item.field]" style="width: 100%;"></el-date-picker>
+                </el-form-item>
+                <el-form-item v-if="localdata.form[item.fieldActive]">
+                    <el-col :span="15">
+                        <label>
+                            <input type="checkbox" v-model="localdata.form.day_1" @click="daychange">
+                            <span>星期一</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="localdata.form.day_2" @click="daychange">
+                            <span>星期二</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="localdata.form.day_3" @click="daychange">
+                            <span>星期三</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="localdata.form.day_4" @click="daychange">
+                            <span>星期四</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="localdata.form.day_5" @click="daychange">
+                            <span>星期五</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" @click="daychange" v-model="localdata.form.day_6">
+                            <span>星期六</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" @click="daychange" v-model="localdata.form.day_0">
+                            <span>星期日</span>
+                        </label>
+                    </el-col>
+                    <el-col :span="3">
+                        <label>
+                            <input type="checkbox" @click="workchange" v-model="workday">
+                            <span>工作日</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" @click="workchange" v-model="weekday">
+                            <span>周末</span>
+                        </label>
+                    </el-col>
                 </el-form-item>
             </template>
         </template>
@@ -89,11 +146,45 @@ export default {
                 callback()
             }
         }
+        var validateDatatime = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error(rule.message))
+            } else {
+                if (value.length != 2) {
+                    callback(new Error(rule.message))
+                } else {
+                    callback()
+                }
+            }
+        }
+        var validateDate = (rule, value, callback) => {
+            if (value === '') {
+                if (this.localdata.form.dayloop) {
+                    callback(new Error('请选择日期'))
+                } else {
+                    callback()
+                }
+            } else {
+                if (this.localdata.form.dayloop) {
+                    if (this.getDatetime(this.localdata.form.daterange1) > this.getDatetime(this.localdata.form.daterange2)) {
+                        callback(new Error('结束日期要大于开始日期'))
+                    } else {
+                        callback()
+                    }
+                } else {
+                    callback()
+                }
+            }
+        }
         return {
             moduledata: '',
             validateTel,
+            validateDate,
+            validateDatatime,
             localdata: this.getform(),
             expand: false,
+            workday: false,
+            weekday: false,
             model: this.module.pageTable
         }
     },
@@ -127,6 +218,20 @@ export default {
         },
     },
     methods: {
+        workchange() {
+            this.localdata.form.day_1 = this.workday
+            this.localdata.form.day_2 = this.workday
+            this.localdata.form.day_3 = this.workday
+            this.localdata.form.day_4 = this.workday
+            this.localdata.form.day_5 = this.workday
+            this.localdata.form.day_6 = this.weekday
+            this.localdata.form.day_0 = this.weekday
+        },
+        daychange() {
+            let form = this.localdata.form
+            this.workday = form.day_1 && form.day_2 && form.day_3 && form.day_4 && form.day_5
+            this.weekday = form.day_6 && form.day_0
+        },
         getDistNum(item) {
             return item.dict(this)
         },
@@ -141,8 +246,26 @@ export default {
             let localdata = {}
             if (this.form) {
                 localdata.form = JSON.parse(JSON.stringify(this.form))
+                for (var index in this.module.formField) {
+                    let item = this.module.formField[index]
+                    if (item.type == "timetype") {
+                        localdata.form[item.field][0] = new Date(localdata.form[item.field][0])
+                        localdata.form[item.field][1] = new Date(localdata.form[item.field][1])
+                    }
+                    if (item.type == "datetime") {
+                        localdata.form[item.field] = new Date(localdata.form[item.field])
+                    }
+                }
             } else if (this.module.form) {
                 localdata.form = JSON.parse(JSON.stringify(this.module.form))
+                for (var index in this.module.formField) {
+                    let item = this.module.formField[index]
+                    if (item.type == "timetype") {
+                        localdata.form[item.field][0] = new Date(localdata.form[item.field][0])
+                        let endtime = localdata.form[item.field][1]
+                        localdata.form[item.field][1] = moment(endtime).add(1, 'h').toDate()
+                    }
+                }
             }
             if (this.module.student) {
                 localdata.form.student_id = this.getStudentId()
@@ -151,7 +274,80 @@ export default {
             localdata.form.op_name = this.$store.state.system.name
             return localdata
         },
+        savearrage(item) {
+            let vm = this
+            let eve = []
+            let evnitem = {}
+            if (item._id) {
+                evnitem._id = item._id
+            }
+            evnitem.dayloop = item.dayloop
+            evnitem.sclasses_id = item.sclasses_id
+            evnitem.classes_id = item.classes_id
+            evnitem.teacher_id = item.teacher_id
+            evnitem.daterange1 = vm.getDatetime(vm.localdata.form.daterange1)
+            evnitem.daterange2 = vm.getDatetime(vm.localdata.form.daterange2)
+            evnitem.timerange = []
+            evnitem.timerange[0] = vm.getDatetime(vm.localdata.form.timerange[0])
+            evnitem.timerange[1] = vm.getDatetime(vm.localdata.form.timerange[1])
+            evnitem.dayloop = false
 
+            if (item.dayloop) {
+                let loopdatastart = evnitem.daterange1
+                let loopdataend = evnitem.daterange2
+                let loopcount = 0
+                while (loopdatastart <= loopdataend) {
+                    if (loopcount > 1000) {
+                        break
+                    }
+                    let days = vm.moment(loopdatastart).days()
+                    if (item['day_' + days]) {
+                        evnitem.start = vm.getDate2timeFormat(loopdatastart, evnitem.timerange[0])
+                        evnitem.end = vm.getDate2timeFormat(loopdatastart, evnitem.timerange[1])
+                        evnitem.start = this.moment(evnitem.start).toDate()
+                        evnitem.end = this.moment(evnitem.end).toDate()
+                        let evncpitem = {}
+                        evncpitem.days = days
+                        Object.assign(evncpitem, evnitem)
+                        eve.push(evncpitem)
+                    }
+                    loopdatastart = vm.moment(loopdatastart).add(1, 'days').toDate().getTime()
+                    loopcount++
+                }
+            } else {
+                evnitem.start = vm.getDate2timeFormat(evnitem.daterange1, evnitem.timerange[0])
+                evnitem.end = vm.getDate2timeFormat(evnitem.daterange1, evnitem.timerange[1])
+                evnitem.start = this.moment(evnitem.start).toDate()
+                evnitem.end = this.moment(evnitem.end).toDate()
+                let days = vm.moment(evnitem.start).days()
+                evnitem.days = days
+                eve.push(evnitem)
+            }
+            if (eve.length > 0) {
+                this.mx_db_bulkwrite('coursescheduling', eve).then(response => {
+                    vm.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    vm.lbClosedialog()
+                    this.$store.state.dialogs.dailogdata = null
+                    this.$store.state.envs.currDialog = 'moduleform'
+                })
+            } else {
+                this.$message({
+                    message: '没有选择星期',
+                    type: 'success'
+                })
+            }
+        },
+        appendarrage() {
+            let vm = this
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.savearrage(vm.localdata.form)
+                }
+            })
+        },
         edit(id) {
             this.setEditModle(id)
             this.append()

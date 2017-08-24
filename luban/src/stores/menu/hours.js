@@ -17,7 +17,7 @@ export default {
         menuIcon: 'fa fa-file-sound-o',
         menuShow: 0,
         dropDownMenu: [{
-            'url': 'lb-lessonsdetail',
+            'url': 'arrangeeditform',
             'icon': 'fa fa-pencil',
             'text': '编辑'
         }, {

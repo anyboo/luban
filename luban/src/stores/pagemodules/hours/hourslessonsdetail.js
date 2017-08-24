@@ -67,7 +67,7 @@ export default {
                 {
                     'label': '新增排课',
                     'type': 'success',
-                    'showdialog': 'lb-arrangeedit',
+                    'showdialog': 'arrangeform',
                     'actionoption': 'lessonmanageadd'
                 }, {
                     'label': '批量删除',

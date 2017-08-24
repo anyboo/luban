@@ -43,7 +43,7 @@ export default {
     created() {
         if (this.$store.state.dialogs.dailogdata) {
             if (this.module.student) {
-            }else{
+            } else {
                 this.id = this.$store.state.dialogs.dailogdata['_id']
                 this.formtype = true
                 this.form = JSON.parse(JSON.stringify(this.$store.state.dialogs.dailogdata))
@@ -81,9 +81,9 @@ export default {
         selectmodule() {
             this.lbClosedialog()
             this.$store.state.envs.currDialogResult = this.currentRow
-            if (this.currentRow){
+            if (this.currentRow) {
                 this.$store.state.envs.currDialog = this.currDialog
-            }else{
+            } else {
                 this.$store.state.envs.currDialog = this.module.dialogUrl
             }
         },
@@ -93,15 +93,22 @@ export default {
         editmodule(id) {
             this.$refs['ruleForm'].edit(id)
         },
+        appendarrage(id) {
+            this.$refs['ruleForm'].appendarrage()
+        },
         handleOk() {
             if (this.module._type == 0) {
                 this.selectmodule()
             }
             if (this.module._type == 1) {
-                if (this.id.length > 0) {
-                    this.editmodule(this.id)
+                if (this.module.pageName == 'arrangeform' || this.module.pageName == 'arrangeeditform') {
+                    this.appendarrage()
                 } else {
-                    this.appendmodule()
+                    if (this.id.length > 0) {
+                        this.editmodule(this.id)
+                    } else {
+                        this.appendmodule()
+                    }
                 }
             }
         }
