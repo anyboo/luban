@@ -17,7 +17,7 @@
                     <lb-dialogmmoduleform ref="ruleForm" :module="module" :form="form"></lb-dialogmmoduleform>
                 </template>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" v-if="module._type==1">
                 <button class="btn btn-primary" @click="handleOk">确定</button>
                 <button class="btn btn-warning m-l-xs" @click="lbClosedialog()">关闭</button>
             </div>
@@ -50,7 +50,7 @@ export default {
             }
         }
     },
-    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform },
+    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform},
     computed: {
         title() {
             let text = this.module.pageLable

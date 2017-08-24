@@ -2,9 +2,13 @@
     <div v-if="modalShow">
         <template v-for="item,index in getDialog">
             <lb-dialog :zindex="index*2+1500">
-                <template v-if="getDialogMoudle(item,index)">
+                <template v-if="getDialogMoudle(item,index)==1">
                     <lb-systemdialogmmodule :module="moduleObj[index]">
                     </lb-systemdialogmmodule>
+                </template>
+                <template v-else-if="getDialogMoudle(item,index)==2">
+                    <lb-systemdialogmmodulestep :module="moduleObj[index]">
+                    </lb-systemdialogmmodulestep>
                 </template>
                 <template v-else>
                     <component v-bind:is="item"></component>
@@ -17,9 +21,12 @@
 import dialogpages from '~/stores/dialogpages.js'
 import module from '~/stores/moduledialog.js'
 import moduleform from '~/stores/moduleform.js'
+import modulestep from '~/stores/modulestep.js'
 import systemdialogmmodule from '~/pages/dialogs/system/module.vue'
+import systemdialogmmodulestep from '~/pages/dialogs/system/modulestep.vue'
 
 dialogpages['lb-systemdialogmmodule'] = systemdialogmmodule
+dialogpages['lb-systemdialogmmodulestep'] = systemdialogmmodulestep
 
 export default {
     name: 'dialog',
@@ -42,7 +49,7 @@ export default {
     methods: {
         getDialogMoudle(item, index) {
             console.log(item)
-            let isModlues = false
+            let isModlues = 0
             if (!this.$store.state.models.login) {
                 this.$store.state.system.router = 'lb-systemsign_in'
             } else if (this.$store.state.system.name.length == 0) {
@@ -55,12 +62,18 @@ export default {
                         let moduleObj = module[tomodule]
                         moduleObj._type = 0
                         this.moduleObj[index] = moduleObj
-                        isModlues = true
+                        isModlues = 1
                     } else if (moduleform[tomodule]) {
                         let moduleObj = moduleform[tomodule]
                         moduleObj._type = 1
                         this.moduleObj[index] = moduleObj
-                        isModlues = true
+                        isModlues = 1
+                    }
+                    else if (modulestep[tomodule]) {
+                        let moduleObj = modulestep[tomodule]
+                        moduleObj._type = 2
+                        this.moduleObj[index] = moduleObj
+                        isModlues = 2
                     }
                 }
             }
