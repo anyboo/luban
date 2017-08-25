@@ -5,11 +5,9 @@
             <lb-header @variety="variety"></lb-header>
             <lb-body></lb-body>
         </div>
-
         <lb-modalbackdrop></lb-modalbackdrop>
         <lb-dialoglist></lb-dialoglist>
         <lb-footer></lb-footer>
-
     </div>
 </template>
 <script>

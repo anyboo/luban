@@ -18,10 +18,11 @@
     </div>
 </template>
 <style>
-.definitely{
-    position:fixed;
-    top:20%;
+.definitely {
+    position: fixed;
+    top: 20%;
     left: 30%;
+    z-index: 1500;
 }
 </style>
 
