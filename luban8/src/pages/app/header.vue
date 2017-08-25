@@ -25,6 +25,9 @@
                 </span>
             </div>
         </div>
+        <div class="bodyTitle">
+             {{getCurrMenu}}
+        </div>
     </div>
 </template>
 <style>
@@ -177,6 +180,32 @@ export default {
             toShow: false,
             updown: false,
         }
+    },
+    computed: {
+        getCurrMenu() {
+            var menuName = ''
+            let to = this.$store.state.system.router
+            for (var item of menu) {
+                if (item.to == to) {
+                    menuName = item.menuTitle
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                menuName = subitem.menuTitle
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            if (to == '/' || to == '/web') {
+                menuName = '档案录入'
+            }
+            return menuName
+        }
+
     },
     methods: {
         variety() {
