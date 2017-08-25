@@ -23,6 +23,18 @@ export default {
         }
         ]
     }, {
+        menuTitle: '短信功能',
+        to: 'systemsms',
+        menuIcon: 'fa-address-book-o fa',
+        action: [{
+            'text': '发送学员',
+            'action': 'systememorgsave'
+        },
+        {
+            'text': '发送班级',
+            'action': 'systememorgsave'
+        }]
+    }, {
         menuTitle: '角色权限',
         to: '/system/roles',
         menuIcon: 'fa fa-unlock',
@@ -88,8 +100,7 @@ export default {
         action: [{
             'text': '保存',
             'action': 'systememorgsave'
-        }
-        ]
+        }]
     }, {
         menuTitle: '校区管理',
         to: '/system/school',

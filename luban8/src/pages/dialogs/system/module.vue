@@ -17,7 +17,7 @@
                     <lb-dialogmmoduleform ref="ruleForm" :module="module" :form="form"></lb-dialogmmoduleform>
                 </template>
             </div>
-            <div class="modal-footer" v-if="module._type==1">
+            <div class="modal-footer">
                 <button class="btn btn-primary" @click="handleOk">确定</button>
                 <button class="btn btn-warning m-l-xs" @click="lbClosedialog()">关闭</button>
             </div>

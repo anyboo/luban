@@ -9,7 +9,7 @@
             </component>
         </template>
         <template v-if="getCurrentView == 2">
-            <lb-blank>
+            <lb-blank @blankmounted="blankmounted">
             </lb-blank>
         </template>
     </div>
@@ -42,7 +42,7 @@ export default {
         }
     },
     computed: {
-       getCurrentView() {
+        getCurrentView() {
             let isModlues = 0
             if (!this.$store.state.models.login) {
                 this.currentView = 'lb-systemsign_in'
@@ -74,6 +74,11 @@ export default {
             }
             console.log(isModlues)
             return isModlues
+        }
+    },
+    methods: {
+        blankmounted() {
+            this.$store.state.system.isModlues = true
         }
     },
 }

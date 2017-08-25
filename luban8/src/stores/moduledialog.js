@@ -6,6 +6,9 @@ import selectsclassesdialog from './dialogmodules/selectsclassesdialog.js'
 import trashdialog from './dialogmodules/trashdialog.js'
 import orderpaydialog from './dialogmodules/orderpaydialog.js'
 import orderrefunddialog from './dialogmodules/orderrefunddialog.js'
+import hourslessonsdialog from './dialogmodules/hourslessonsdialog.js'
+import stepstudentdialog from './dialogmodules/stepstudentdialog.js'
+
 
 let pages ={}
 pages['selectclassesdialog'] = selectclassesdialog
@@ -16,5 +19,8 @@ pages['selectsclassesdialog'] = selectsclassesdialog
 pages['trashdialog'] = trashdialog
 pages['orderpaydialog'] = orderpaydialog
 pages['orderrefunddialog'] = orderrefunddialog
+pages['hourslessonsdialog'] = hourslessonsdialog
+pages['stepstudentdialog'] = stepstudentdialog
+
 
 export default pages
