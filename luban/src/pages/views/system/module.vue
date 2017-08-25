@@ -281,7 +281,7 @@ export default {
             multipleSelection: [],
             lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-addmodal', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform'],
+            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform','studentsmsform'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {

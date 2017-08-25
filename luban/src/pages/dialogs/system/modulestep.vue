@@ -49,7 +49,7 @@ export default {
             steps: 1,
             moduletype: 0,
             modulechange: false,
-            moduleobj:{},
+            moduleobj: {},
             stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1
         }
     },
@@ -87,13 +87,13 @@ export default {
         next() {
             if (this.steps < this.stepCount) {
                 this.steps++
-                 this.getModuleData
+                this.getModuleData
             }
         },
         back() {
             if (this.steps > 1) {
                 this.steps--
-                 this.getModuleData
+                this.getModuleData
             }
         }
     }
