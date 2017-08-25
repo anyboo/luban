@@ -2,9 +2,9 @@
     <li :class="getMenuClass" class="li_arrow">
         <a @click="handleClick">
             <i class="fa" :class="menu.menuIcon"></i>
-            <span :class="submenu">{{menu.menuTitle}}</span>
-               <span v-if="submenu=='menuTitle'" class="arrow">
-                   <i class="fa fa-angle-left"   :class="{'fa-angle-down':updown,'fa-angle-left':!updown}" style="color:white;"></i>
+            <span :class="{'submenu':submenu=='menu-title'}">{{menu.menuTitle}}</span>
+               <span v-if="submenu=='menu'" class="arrow">
+                   <i class="fa fa-angle-left" :class="{'fa-angle-down':updown,'fa-angle-left':!updown}" style="color:white;"></i>
                </span>
         </a>
         <slot></slot>

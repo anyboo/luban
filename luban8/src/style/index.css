@@ -8,6 +8,9 @@ body {
     overflow: hidden;
     font-family: "微软雅黑", 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
 }
+table{
+    font-size: 14px;
+}
 ul,
 a {
     list-style: none;

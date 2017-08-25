@@ -34,7 +34,7 @@ export default {
             'prop': 'callback'
         }
     ],
-    'pageTable': 'arrange',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

@@ -229,7 +229,6 @@
     border: 1px solid #cccccc;
     border-radius: 4px;
     transition: .2s;
-    margin: 15px;
     background: #fff;
 }
 

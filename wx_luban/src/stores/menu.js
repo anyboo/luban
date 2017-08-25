@@ -9,7 +9,7 @@ export default [{
 },{
     menuTitle:'排课记录',
     menuIcon:'courseRecord',
-     pageTable:'arrange',
+     pageTable:'order',
 },{
     menuTitle:'考勤记录',
     menuIcon:'salaryRecord',

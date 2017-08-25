@@ -21,7 +21,7 @@ export default {
         {
             'type': 'text',
             'label': '出勤状态',
-            'prop': ''
+            'prop': 'true'
         }
     ],
     'pageTable': 'attendance',
