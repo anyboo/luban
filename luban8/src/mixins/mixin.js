@@ -1,6 +1,4 @@
 import * as types from '~/stores/modules/mutation-types'
-import schema from 'async-validate'
-import schemaall from 'async-validate/plugin/all'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
 import menu from '~/stores/menu.js'
@@ -422,7 +420,6 @@ export default {
             let vm = this
             let modalform = form ? form : vm.localdata.form
             return new Promise((resolve, reject) => {
-                vm.validate()
                 vm.changeFormDateTime(modalform)
                 if (vm.localdata.validator && vm.localdata.validator.errorStatus) {
                     reject()
