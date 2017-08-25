@@ -39,6 +39,7 @@
                 </template>
             </el-radio-group>
         </el-form-item>
+        <hr/>
         <div class="m-t m-b b-t text-center">
             <a v-if="!expand" @click="expand=true" class="inline w b-l b-r b-b r-b">
                 <i class="fa fa-arrow-down"></i>展开填写更多资料
@@ -69,7 +70,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="备注">
-                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control" style="width:320px;"></textarea>
+                <textarea name="note" v-model="localdata.form.note" rows="2"  class="form-control" style="width:320px;"></textarea>
             </el-form-item>
         </div>
     </el-form>

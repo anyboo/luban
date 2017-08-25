@@ -20,7 +20,6 @@
 <style>
 .definitely{
     position:fixed;
-    z-index:5000;
     top:20%;
     left: 30%;
 }

@@ -18,6 +18,9 @@ a {
     padding: 0;
     margin: 0;
 }
+a{
+    cursor: pointer;
+}
 .lbcontainer {
     display: flex;
     width: 100%;
@@ -150,10 +153,6 @@ a:hover{
     display: block !important;
 }
 
-
-/* .modal-body {
-    max-height: 600px !important;
-} */
                                         /* modal */
  .modal-full-width {
         width: 100%;
@@ -219,7 +218,7 @@ a:hover{
         box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5) !important;
         background-clip: padding-box;
     }
-       .modal-header>h3 {
+    .modal-header>h3 {
         font-size: 16px;
         position: relative;
         top: -6px;

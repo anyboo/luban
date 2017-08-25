@@ -7,8 +7,8 @@
             <div class="panel-body">
                 <lb-addstudent ref="ruleForm" :form="form"></lb-addstudent>
             </div>
-            <div class="panel-footer">
-                <button type="button" class="btn btn-primary w" @click="handleClick">确认</button>
+            <div class="panel-footer" style="text-align:center">
+                <button type="button"  class="btn btn-primary w" @click="handleClick">确认</button>
             </div>
         </div>
     </div>
