@@ -13,7 +13,7 @@
                     </component>
                 </template>
                 <template v-if="getCurrentView == 2">
-                    <lb-blank>
+                    <lb-blank @blankmounted="blankmounted">
                     </lb-blank>
                 </template>
             </lb-body>
@@ -111,6 +111,9 @@ export default {
         }
     },
     methods: {
+        blankmounted(){
+            this.$store.state.system.isModlues=true
+        },
         handleClick() {
             this.$emit('dockhidden')
         },
