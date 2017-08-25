@@ -1,11 +1,28 @@
 <template>
     <div class="lbBody">
-            <component v-bind:is="getCurrentView">
+        <template v-if="getCurrentView ==1">
+            <lb-systemmodule :module="moduleObj">
+            </lb-systemmodule>
+        </template>
+        <template v-if="getCurrentView == 0">
+            <component v-bind:is="currentView">
             </component>
+        </template>
+        <template v-if="getCurrentView == 2">
+            <lb-blank>
+            </lb-blank>
+        </template>
     </div>
 </template>
 <script>
 import pages from '~/stores/viewpages.js'
+import blank from './blank.vue'
+import systemmodule from '~/pages/views/system/module.vue'
+import module from '~/stores/module.js'
+
+pages['lb-blank'] = blank
+pages['lb-systemmodule'] = systemmodule
+
 export default {
     name: 'body',
     data() {
@@ -25,22 +42,38 @@ export default {
         }
     },
     computed: {
-        getCurrentView() {
-            let view = 'lb-studentadd'
+       getCurrentView() {
+            let isModlues = 0
             if (!this.$store.state.models.login) {
-                //view = 'lb-systemsign_in'
+                this.currentView = 'lb-systemsign_in'
             } else if (this.$store.state.system.name.length == 0) {
-                //view = 'lb-systemsign_in'
+                this.currentView = 'lb-systemsign_in'
             } else {
                 let to = this.$store.state.system.router
-                if (to == '') {
+                let view = 'lb-studentadd'
+                if (to == '/' || to == '/web') {
                     view = 'lb-studentadd'
                 } else {
-                    view = 'lb-' + to.replace(/\//g, '')
+                    if (to) {
+                        let tomodule = to.replace(/\//g, '')
+                        if (module[tomodule]) {
+                            this.moduleObj = tomodule
+                            if (this.$store.state.system.isModlues) {
+                                this.$store.state.system.isModlues = false
+                                isModlues = 1
+                            } else {
+                                isModlues = 2
+                            }
+                        }
+                        else {
+                            view = 'lb-' + to.replace(/\//g, '')
+                        }
+                    }
                 }
+                this.currentView = view
             }
-            console.log(this.$store.state.system)
-            return view
+            console.log(isModlues)
+            return isModlues
         }
     },
 }

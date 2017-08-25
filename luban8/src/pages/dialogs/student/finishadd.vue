@@ -1,8 +1,8 @@
 <template>
     <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="bg-white wrapper ng-scope">
-                <div class="wrapper text-success text-2x ng-binding">
+            <div class="bg-white wrapper">
+                <div class="wrapper text-success text-2x">
                     <i class="icon-check"></i>{{getStudentName()}}的档案录入成功!
                     <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -13,7 +13,7 @@
                 <div class="panel-footer">
                     <p class="text-info">
                         您还可以继续对
-                        <span class="label bg-info ng-binding">{{getStudentName()}}</span>进行以下操作
+                        <span class="label bg-info">{{getStudentName()}}</span>进行以下操作
                     </p>
                     <br>
                     <div class="clears">

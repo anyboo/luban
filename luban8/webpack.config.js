@@ -19,10 +19,9 @@ module.exports = (options = {}) => ({
         'vuex',
         'vue-resource',
         'vue-router',
-        'vue-loader',
         'moment',
         'lodash',
-        'jquery',
+        'jquery'
     ],
     module: {
         rules: [{
@@ -59,6 +58,9 @@ module.exports = (options = {}) => ({
         }]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            LUBANDEV: JSON.stringify(options.dev)
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),

@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-        <div class="wrapper panel panel-default bg-white ng-scope">
-            <div class="row  m-t arrangeover">
+        <div class="wrapper panel panel-default bg-white" :class="{result:getSelectName}">
+            <div class="row  m-t">
                 <div id='calendar'></div>
             </div>
         </div>
@@ -48,25 +48,45 @@ export default {
                 'value': '学员',
                 'text': '按学员显示',
                 'show': 'lb-selectstudenttpl'
-            }]
+            }],
+            'lookupclasses': {
+                'localField': 'classes_id',
+                'from': 'classes',
+                'foreignField': '_id',
+                'as': 'classes'
+            },
+            'lookupsclasses': {
+                'localField': 'sclasses_id',
+                'from': 'sclasses',
+                'foreignField': '_id',
+                'as': 'sclasses'
+            },
+            'lookuptech': {
+                'localField': 'teacher_id',
+                'from': 'employee',
+                'foreignField': '_id',
+                'as': 'employee'
+            }
         }
         return {
             localdata,
+            tables: ['arrange'],
         }
     },
     mounted() {
         let vm = this
         $('#calendar').fullCalendar({
             schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-            now: '2017-05-07',
-            editable: true,
+            nowIndicator: true,
+            editable: false,
             aspectRatio: 1.8,
-            scrollTime: '00:00',
+            scrollTime: '07:00',
             header: {
                 left: 'arrange today,prev,next',
                 center: 'title',
-                right: 'agendaDay,agendaWeek,timelineDay,timelineWeek,timelineMonth,listWeek'
+                right: 'agendaDay,agendaWeek,month,listWeek'
             },
+            allDaySlot: false,
             customButtons: {
                 arrange: {
                     text: '添加排课',
@@ -75,7 +95,7 @@ export default {
                     }
                 }
             },
-            defaultView: 'timelineDay',
+            defaultView: 'agendaDay',
             views: {
                 timelineDay: {
                     buttonText: '日',
@@ -97,58 +117,80 @@ export default {
                     callback(res)
                 })
             },
+            eventClick: function (calEvent, jsEvent, view) {
+                vm.handleShowDialog('lb-arrangeedit', calEvent)
+            },
             events: function (start, end, timezone, callback) {
-                vm.getTableApidata('arrange').then(function (obj) {
-                    console.log(obj.data.data)
+                let filterObj = []
+                let startTime = vm.getDatetimeStartEndOf(start._d)
+                let endTime = vm.getDatetimeStartEndOf(end._d, end)
+
+                filterObj.push({
+                    'key': 'daterange2',
+                    'value': startTime,
+                    'type': 'gte'
+                })
+                filterObj.push({
+                    'key': 'lookup',
+                    'value': vm.localdata.lookupclasses,
+                    'type': 'lookup'
+                })
+                filterObj.push({
+                    'key': 'lookup',
+                    'value': vm.localdata.lookupsclasses,
+                    'type': 'lookup'
+                })
+                filterObj.push({
+                    'key': 'lookup',
+                    'value': vm.localdata.lookuptech,
+                    'type': 'lookup'
+                })
+                let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+                vm.handleGetFilterTable(filterTxt).then(function (obj) {
                     let eve = []
                     for (var item of obj.data.data) {
                         let evnitem = {}
                         evnitem.id = item._id
                         evnitem.resourceId = item.sclasses_id
-                        evnitem.title = '老师：林祖鑫 班级：音乐五班 教室:wwwwww'//item.classes_id
-                        evnitem.start = '2017-05-07T14:40:00'
-                        evnitem.end = '2017-05-07T16:00:00'
-                        evnitem.description = 'This is a cool event'
-                        eve.push(evnitem)
+                        evnitem.title = ''
+                        if (item.employee && item.employee.length > 0) {
+                            evnitem.title = '老师：' + item.employee[0].name
+                        }
+                        if (item.classes && item.classes.length > 0) {
+                            evnitem.title += ' 班级：' + item.classes[0].class_name
+                        }
+                        if (item.sclasses && item.sclasses.length > 0) {
+                            evnitem.title += ' 教室：' + item.sclasses[0].class_name
+                        }
+                        if (item.dayloop) {
+                            let loopdatastart = item.daterange1
+                            let loopdataend = item.daterange2
+                            let loopcount = 0
+                            while (loopdatastart <= loopdataend) {
+                                if (loopcount > 1000) {
+                                    break
+                                }
+                                let days = vm.moment(loopdatastart).days()
+                                if (item['day_' + days]) {
+                                    evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
+                                    evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
+                                    let evncpitem = {}
+                                    Object.assign(evncpitem, evnitem)
+                                    eve.push(evncpitem)
+                                }
+                                loopdatastart = vm.moment(loopdatastart).add(1, 'days').toDate().getTime()
+                                loopcount++
+                            }
+                        } else {
+                            evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
+                            evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
+                            eve.push(evnitem)
+                        }
                     }
-                    console.log(eve)
                     callback(eve)
                 })
             }
-            /* [{
-                id: '1',
-                resourceId: '59643edb3c6f25461ae7f289',
-                start: '2017-05-07T02:00:00',
-                end: '2017-05-07T07:00:00',
-                title: 'event 1'
-            }, {
-                id: '2',
-                resourceId: 'c',
-                start: '2017-05-07T05:00:00',
-                end: '2017-05-07T22:00:00',
-                title: 'event 2'
-            }, {
-                id: '3',
-                resourceId: 'd',
-                start: '2017-05-06',
-                end: '2017-05-08',
-                title: 'event 3'
-            }, {
-                id: '4',
-                resourceId: 'e',
-                start: '2017-05-07T03:00:00',
-                end: '2017-05-07T08:00:00',
-                title: 'event 4'
-            }, {
-                id: '5',
-                resourceId: 'f',
-                start: '2017-05-07T00:30:00',
-                end: '2017-05-07T02:30:00',
-                title: 'event 5'
-            }]*/
         })
-
-
     },
     computed: {
         getClassesData() {
@@ -165,6 +207,10 @@ export default {
                     this.localdata.form.select_name = ''
                 }
                 this.handleSearch()
+            }
+            if (this.$store.state.envs.currDialog == 'lb-arrange') {
+                $('#calendar').fullCalendar('refetchEvents')
+                this.$store.state.envs.currDialog = ''
             }
             return true
         },

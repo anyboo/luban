@@ -1,5 +1,5 @@
 <template>
-    <label class="btn btn-default ng-pristine ng-untouched ng-valid ng-binding ng-scope" @click="handleClick" :class="{'active':active}">
+    <label class="btn btn-default" @click="handleClick" :class="{'active':active}">
         <i :class='iclass' v-if="iclass"></i>{{itext}}
     </label>
 </template>
@@ -9,7 +9,7 @@ export default {
     props: ['iclass', 'itext', 'ivalue', 'iactive'],
     data() {
         return {
-            
+            curactive:this.iactive
         }
     },
     computed: {
@@ -19,12 +19,12 @@ export default {
     },
     methods: {
         handChange() {
-            this.active = false
+            this.curactive = false
         },
         handleClick() {
-            this.active = true
+            this.curactive = true
             let uid = this._uid
-            if (this.active) {
+            if (this.curactive) {
                 this.$parent.$children.forEach(child => {
                     if (child._uid !== uid) {
                         if (typeof(child.handChange) == 'function')

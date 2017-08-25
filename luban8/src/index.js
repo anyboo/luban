@@ -1,6 +1,6 @@
 import './style/index.css'
 import App from './pages/app/app.vue'
-import lbCom from './components/src'
+import lbCom from './components/packages'
 import stores from './stores'
 import mixin from './mixins/mixin'
 

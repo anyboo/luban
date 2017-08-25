@@ -1,19 +1,23 @@
 <template>
-    <li class="ng-scope angular-ui-tree-node" :collapsed="collapsed">
-        <div class="tree-node tree-node-content ng-scope angular-ui-tree-handle">
+    <li class="angular-ui-tree-node" :collapsed="collapsed">
+        <div class="tree-node tree-node-content angular-ui-tree-handle">
             <div class="tree-node-content">
                 <a class="btn btn-default btn-xs" @click="collapsed=!collapsed">
                     <i class="fa fa-minus-square-o" :class="{'fa-plus-square-o':collapsed,'fa-minus-square-o':!collapsed}"></i>
                 </a>
-                <input class="va-m ng-pristine ng-valid ng-scope ng-touched" type="text" v-model="treeItem.name" @input="handleChange">
-                <a class="btn btn-primary btn-xs m-l-xs ng-scope" data-nodrag="" @click="save_cate" v-if="change" tooltip="保存">
+                <input class="va-m   ng-touched" @blur='handleblur' type="text" v-model="treeItem.name" @input="handleChange">
+                <a class="btn btn-primary btn-xs m-l-xs" data-nodrag="" @click="save_cate" v-if="change" tooltip="保存">
                     <i class="fa fa-check" ng-show="!node._saving"></i>
                 </a>
-                <a class="pull-right btn btn-danger btn-xs" tooltip="删除" @click="remove_cate"><i class="fa fa-times"></i></a>
-                <a class="pull-right btn btn-info btn-xs m-r-xs" tooltip="新增" @click="addItem"><i class="fa fa-plus"></i></a>
+                <a class="pull-right btn btn-danger btn-xs" tooltip="删除" @click="remove_cate">
+                    <i class="fa fa-times"></i>
+                </a>
+                <a class="pull-right btn btn-info btn-xs m-r-xs" tooltip="新增" @click="addItem">
+                    <i class="fa fa-plus"></i>
+                </a>
             </div>
         </div>
-        <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes" :class="{hidden: collapsed}">
+        <ul class="list-unstyled    angular-ui-tree-nodes" :class="{hidden: collapsed}">
             <template v-for="item in getTreeData">
                 <lb-listtree-item :tree-item="item">
                 </lb-listtree-item>
@@ -33,15 +37,26 @@ export default {
         }
         return {
             localdata,
+            textnames: this.treeItem.name,
             collapsed: false,
-            change: this.treeItem.save ? !this.treeItem.save : true,
+            change: this.treeItem.save ? !this.treeItem.save : false,
             model: 'cate',
             tables: ['cate']
         }
     },
     methods: {
+        handleblur() {
+            if (this.treeItem.name == '') {
+                this.treeItem.name = this.textnames
+            }
+        },
         handleChange() {
-            this.change = true
+            if (this.treeItem.name == '') {
+                this.change = false
+            } else {
+                this.change = true
+            }
+
         },
         remove_cate() {
             let vm = this
@@ -86,11 +101,10 @@ export default {
         },
         addItem() {
             let vm = this
-
             if (vm.treeItem && vm.treeItem._id) {
                 vm.modalsType = vm.types.APPEND_API
                 vm.localdata.form = {
-                    name: '',
+                    name: '默认分类',
                     pid: vm.treeItem._id,
                     save: false
                 }
@@ -106,7 +120,7 @@ export default {
         getTreeData() {
             let vm = this
             if (vm.treeItem && vm.treeItem._id) {
-                return vm.lodash.filter(this.$store.state.models.models.cate.data, function(o) {
+                return vm.lodash.filter(this.$store.state.models.models.cate.data, function (o) {
                     return o.pid == vm.treeItem._id
                 })
             }

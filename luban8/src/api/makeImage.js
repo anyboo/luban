@@ -10,7 +10,7 @@ function makeImage(str, width) {
     if (str && str.length > 0) {
         chart = str[0]
     }
-    ctx.fillStyle = '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6)
+    ctx.fillStyle = '#5bc0de' //+ ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6)
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = 'white'
     ctx.font = '48px arial'

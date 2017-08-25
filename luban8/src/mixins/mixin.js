@@ -3,6 +3,7 @@ import schema from 'async-validate'
 import schemaall from 'async-validate/plugin/all'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
+import menu from '~/stores/menu.js'
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -23,7 +24,7 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function () {
+    created: function() {
         this.modalsType = types.APPEND_API
         this._id = ''
         this.lodash = _
@@ -37,35 +38,97 @@ export default {
         this.pagination.pagesize = 10
         this.pagination.pagesizes = [5, 10, 20, 50, 100]
     },
-    mounted: function () {
+    mounted: function() {
         this.handleGetTable()
     },
     computed: {
-        getTableData() {
-            return [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }]
+        getMenuOption() {
+            let menuOption = []
+            let to = this.$store.state.system.router
+            for (var item of menu) {
+                if (item.to == to) {
+                    if (item.dropDownMenu) {
+                        menuOption = item.dropDownMenu
+                    }
+                    break
+                } else {
+                    if (item.menu) {
+                        for (var subitem of item.menu) {
+                            if (subitem.to == to) {
+                                if (subitem.dropDownMenu) {
+                                    menuOption = subitem.dropDownMenu
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            return menuOption
         }
     },
     methods: {
+        getTotalAmout(orders) {
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+            }
+            return parseFloat(totalamount).toFixed(2)
+        },
+        getPayAmout(orders) {
+            var payamount = 0
+            var totalamount = 0
+            if (orders) {
+                for (var item of orders) {
+                    totalamount += Number(item.order_amount)
+                }
+                for (var item of orders) {
+                    payamount += Number(item.unpay_amount)
+                }
+            }
+            return parseFloat(totalamount - payamount).toFixed(2)
+        },
+        handleRouter(event, item) {
+            this.$store.state.envs.currStudent = item
+            this.$store.commit('router', '/student/info')
+            event.stopPropagation()
+        },
+        getRole(role) {
+            if (this.$store.state.system.tel == 'luban') {
+                return true
+            }
+            if (this.$store.state.system.roles) {
+                for (var item of this.$store.state.system.roles) {
+                    if (item.authority && item.authority.indexOf(role) > -1) {
+                        return true
+                    }
+                }
+            }
+            return false
+        },
+        getActionOption(key) {
+            return this.getRole(key + '_opt')
+        },
+        getToFixed(amount) {
+            return parseFloat(amount).toFixed(2)
+        },
         getDatetimeStartOf(value, end) {
             let datetime = moment().startOf(value)
             if (end) {
                 datetime = moment().endOf(value)
+            }
+            return datetime.toDate().getTime()
+        },
+        getDatetimeStartEndOf(value, end) {
+            let datetime = moment(value)
+            if (datetime.isValid()) {
+                if (end) {
+                    datetime = datetime.endOf('month')
+                } else {
+                    datetime = datetime.startOf('month')
+                }
             }
             return datetime.toDate().getTime()
         },
@@ -102,13 +165,39 @@ export default {
             }
             return datetimestr
         },
+        getDate2timeFormat(datestring, timestring) {
+            let dateTemp = moment(datestring)
+            let timeTemp = moment(timestring)
+            let datetimestr = ''
+            let timestr = ''
+            if (dateTemp.isValid()) {
+                datetimestr = dateTemp.format('YYYY-MM-DD')
+            }
+            if (timeTemp.isValid()) {
+                timestr = timeTemp.format(' H:mm')
+            }
+            return datetimestr + timestr
+        },
         getDatetimeFormat(datestring) {
             let dateTemp = moment(datestring)
             let datetimestr = ''
             if (dateTemp.isValid()) {
-                datetimestr = dateTemp.format('YYYY-MM-DD h:mm')
+                datetimestr = dateTemp.format('YYYY-MM-DD H:mm')
             }
             return datetimestr
+        },
+        getDatetimeRanget(starttime,endtime) {
+            let startTemp = moment(starttime)
+            let endTemp = moment(endtime)
+            let starttimestr = ''
+            let endtimestr = ''
+            if (startTemp.isValid()) {
+                starttimestr = startTemp.format('H:mm')
+            }
+            if (endTemp.isValid()) {
+                endtimestr = endTemp.format('H:mm')
+            }
+            return starttimestr+'--'+endtimestr
         },
         getDateNumFormat(datestring) {
             let dateTemp = moment(datestring)
@@ -136,6 +225,47 @@ export default {
         getStudentId() {
             return this.$store.state.envs.currStudent._id
         },
+        getDictDefvalue(type) {
+            let value = ''
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            for (var i = 0; i < tablaData.length; i++) {
+                if (tablaData[i].type == type) {
+                    if (tablaData[i].defvalue) {
+                        value = tablaData[i]._id
+                        break
+                    }
+                }
+            }
+            return value
+        },
+        getDictText(type, value) {
+            let text = ''
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            for (var i = 0; i < tablaData.length; i++) {
+                if (tablaData[i].type == type) {
+                    if (tablaData[i]._id == value) {
+                        text = tablaData[i].text
+                    }
+                }
+            }
+            return text
+        },
+        getDictData(type) {
+            let tablaData = []
+            let tablaName = 'dictionary'
+            tablaData = this.$store.state.models.models[tablaName].data
+            let tablaDatas = []
+            for (var i = 0; i < tablaData.length; i++) {
+                if (tablaData[i].type == type) {
+                    tablaDatas.push(tablaData[i])
+                }
+            }
+            return tablaDatas
+        },
         getTablesData() {
             let tablaData = []
             if (this.tables) {
@@ -149,7 +279,6 @@ export default {
             return tablaData
         },
         handleShowDialog(url, menuData) {
-            console.log(url, menuData)
             this.$store.commit('pushdialog', { url, menuData })
         },
         lbShowdialog(event, url) {
@@ -176,19 +305,16 @@ export default {
         handleGetFilterTableTable(model, filter) {
             let vm = this
             return new Promise((resolve, reject) => {
-                if (vm.tables) {
-                    let table = {}
-                    table.model = model
-                    table.filter = filter
-                    table.alias = this.alias
-                    table.prepage = this.pagination.pagesize
-                    table.page = this.pagination.currentPage - 1
-                    vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
-                        resolve(response)
-                    })
-                } else {
-                    reject()
-                }
+                let table = {}
+                table.model = model
+                table.filter = filter
+                table.alias = this.alias
+                table.prepage = this.pagination.pagesize
+                table.page = this.pagination.currentPage - 1
+                vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
+                    this.pagination.total = response.data.count
+                    resolve(response)
+                })
             })
         },
         handleGetFilterTable(filter) {
@@ -251,11 +377,11 @@ export default {
                     table.id = id
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {
-                        console.log('handleDelete')
+                        // console.log('handleDelete')
                         resolve()
                     }).catch((error) => {
                         reject()
-                        console.log(error, 'Promise error')
+                            //console.log(error, 'Promise error')
                     })
 
                 } else {
@@ -278,9 +404,23 @@ export default {
                 })
             })
         },
-        handleSave() {
+        mx_db_bulkwrite(model, modalform) {
             let vm = this
-            let modalform = vm.localdata.form
+            return new Promise((resolve, reject) => {
+                vm.$store.dispatch(types.BULK_API, {
+                    'model': model,
+                    'form': modalform,
+                }).then((response) => {
+                    resolve(response)
+                }).catch((error) => {
+                    reject()
+                    console.log(error, 'Promise error')
+                })
+            })
+        },
+        handleSave(form) {
+            let vm = this
+            let modalform = form ? form : vm.localdata.form
             return new Promise((resolve, reject) => {
                 vm.validate()
                 vm.changeFormDateTime(modalform)
@@ -314,7 +454,7 @@ export default {
                         console.log(error, 'Promise error')
                     })
                 }
-                console.log(modalform, vm.modalsType)
+                //console.log(modalform, vm.modalsType)
             })
         },
         changeFormDateTime(modalform) {
@@ -368,7 +508,7 @@ export default {
 
         },
         getLookUp(obj, key) {
-            let result = ''
+            let result = null
             if (obj && obj.length > 0) {
                 if (key) {
                     result = obj[0][key]

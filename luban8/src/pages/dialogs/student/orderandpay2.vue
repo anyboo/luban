@@ -5,8 +5,8 @@
         </p>
         <p>
             订单编号:
-            <span class="text-info ng-binding">{{order.order_no}}</span>，应缴金额:
-            <span class="text-success ng-binding">{{order.order_amount}}</span>元,请选择接下来的操作.
+            <span class="text-info">{{order.order_no}}</span>，应缴金额:
+            <span class="text-success">{{order.order_amount}}</span>元,请选择接下来的操作.
         </p>
         <div class="row no-gutter m-t">
             <div class="col-xs-3">

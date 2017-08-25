@@ -1,6 +1,6 @@
 <template>
-    <div class="ng-scope angular-ui-tree">
-        <ul class="list-unstyled ng-pristine ng-untouched ng-valid ng-scope angular-ui-tree-nodes">
+    <div class="angular-ui-tree">
+        <ul class="list-unstyled    angular-ui-tree-nodes">
             <template v-for="item in getTreeData">
                 <lb-listtree-item :tree-item="item">
                 </lb-listtree-item>
@@ -25,20 +25,7 @@ export default {
         }
     },
     methods: {
-        addRoot() {
-            let vm = this
-            vm.modalsType = vm.types.APPEND_API
-            vm.localdata.form =  {
-                name: '',
-                pid: '',
-                save: false
-            }
-            vm.handleSave().then(() => {
-                vm.handleGetTable()
-            }, (e) => {
-                console.log(e)
-            })
-        },
+ 
     },
     computed: {
         getTreeData() {

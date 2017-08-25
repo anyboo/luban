@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="wrapper ng-scope" page-controller="student">
+        <div class="wrapper" page-controller="student">
             <div class="page-bar row m-b">
                 <div class="col-xs-12 col-md-2">
                     <div class="btn-group dropdown" dropdown="">
-                        <a class="btn btn-default" href="javascript:history.back();">返回</a>
+                        <a class="btn btn-default" @click="handleBack">返回</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-10 text-right">
-                    <lb-dropdown :drop-menu-data="localdata.dropDownMenu" :menu-data="getStudentInfo">
+                    <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
                         <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
-                            <i class="fa fa-cog ng-scope"></i>
-                            <span class="ng-scope"> 操作</span>
+                            <i class="fa fa-cog"></i>
+                            <span> 操作</span>
                             </ng-transclude>
                             <span class="caret"></span>
                         </lb-dropdown-button>
@@ -24,36 +24,39 @@
                 <div class="panel-heading">
                     <i class="fa fa-user"></i> 学员信息</div>
                 <div class="panel-body">
-                    <div class="bg-white row no-gutter ng-scope">
-                        <div class="col-xs-12 col-md-4 ng-scope">
+                    <div class="bg-white row no-gutter">
+                        <div class="col-xs-12 col-md-4">
                             <div class="text-center clear">
-                                <div class="face ng-scope" style="width:120px;margin:0 auto">
-                                    <a @click="handleShowDialog('lb-editphotomodal',student)">
-                                        <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px; ">
-                                            <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
-                                        </div>
-                                    </a>
+                                <div class="face" style="width:120px;margin:0 auto">
+                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
+                                        <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-center">
-                                <span class="text-2x ng-binding">{{ student.student_name }}</span>
-                                <span class="ng-binding">
+                                <span class="text-2x">{{ student.student_name }}</span>
+                                <span>
                                     <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
-                                        ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
+                                                                                                                    ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
                                 </span>
                             </p>
                             <ul class="list-unstyled">
                                 <li>
                                     <label class="field">昵称/英文名:</label>
-                                    <span class="ng-binding">{{ student.nickname }}</span>
+                                    <span>{{ student.nickname }}</span>
                                 </li>
-                                <li class="m-t-xs ng-scope">
+                                <li class="m-t-xs">
                                     <label class="field">学员归属:</label>
-                                    <span class="label bg-info ng-binding">{{getEmployeeName}}</span>
+                                    <span class="label bg-info">{{getEmployeeName}}</span>
                                 </li>
                             </ul>
+                            <div>
+                                <el-button @click="handleQrcode()" type="text">我的二维码</el-button>
+                                <!--  {{httpGetUrlQccode(student.student_id)}} -->
+                                <img :src="qrcodeimg">
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-md-8 ng-scope">
+                        <div class="col-xs-12 col-md-8">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-info"></i> 基础信息</div>
@@ -61,36 +64,62 @@
                                     <div class="row no-gutter">
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">住址:</label>
-                                            <span class="ng-binding">{{ student.home_address }}</span>
+                                            <span>{{ student.home_address }}</span>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">备注:</label>
-                                            <span class="ng-binding">{{ student.note }}</span>
+                                            <span>{{ student.note }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">学校:</label>
-                                            <span class="ng-binding">{{ student.school }}</span>
+                                            <span>{{ student.school }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">年级:</label>
-                                            <span class="ng-binding">{{ student.grade }}</span>
+                                            <span>{{ student.grade }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">班级:</label>
-                                            <span class="ng-binding">{{ student.class }}</span>
+                                            <span>{{ student.class }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">建档日期:</label>
-                                            <span class="ng-binding">{{ getDateFormat(student.creattime) }}</span>
+                                            <span>{{ getDateFormat(student.creattime) }}</span>
                                         </div>
-                                        <div class="col-xs-12 col-md-6 ng-scope">
+                                        <div class="col-xs-12 col-md-6">
                                             <label class="inline w-xs text-right">生日:</label>
-                                            <span class="text-info ng-scope">{{ getDateFormat(student.birth) }}</span>
+                                            <span class="text-info">{{ getDateFormat(student.birth) }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <el-table :data="relation" stripe>
+                                <el-table-column prop="tel" label="电话">
+                                </el-table-column>
+                                <el-table-column prop="rel" width="100" label="关系">
+                                </el-table-column>
+                                <el-table-column prop="name" label="名字">
+                                </el-table-column>
+                            </el-table>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!--学员动态记录-->
+            <div class="panel panel-default">
+                <div class="panel-heading" tab-link="student.list">
+                    <span class="tab-title">
+                        <i class="fa fa-list"></i> 学员动态记录</span>
+                </div>
+                <div class="panel-body ng-scope">
+                    <div class="wrapper" tab-nav-link="student.list">
+                        <el-collapse v-model="activeName" accordion>
+                            <template v-for="item in moduledata">
+                                <el-collapse-item :title="item.pageLable">
+                                    <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
+                                </el-collapse-item>
+                            </template>
+                        </el-collapse>
                     </div>
                 </div>
             </div>
@@ -98,54 +127,20 @@
     </div>
 </template>
 <script>
+import systemmodule from '~/pages/views/system/module.vue'
+import pagesmodule from '~/stores/modulestudentinfo.js'
+import getUrl from '~/api/restfulapi.js'
 export default {
     name: 'footer',
     data() {
         let localdata = {
             'form': {
                 'student_id': '',
+                'relations': [],
+                'first_rel_rel': '',
+                'first_tel': '',
+                'first_rel_name': '',
             },
-            'dropDownMenu': [{
-                'url': 'lb-editinfomodal',
-                'icon': 'fa fa-pencil',
-                'text': '修改资料'
-            }/*, {
-                'url': 'lb-editphotomodal',
-                'icon': 'fa fa-image',
-                'text': '更换头像'
-            }*/, {
-                'url': 'lb-ordermodal',
-                'icon': 'fa fa-shopping-cart',
-                'text': '报名'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-money',
-                'text': '缴费'
-            }/*, {
-                'url': 'lb-changeclassmodal',
-                'icon': 'fa fa-exchange',
-                'text': '转班'
-            }*/, {
-                'url': 'lb-addtrackmodal',
-                'icon': 'fa fa-phone-square',
-                'text': '跟踪回访'
-            }, {
-                'url': 'lb-regstudentmatchmodal',
-                'icon': 'fa fa-flag-o',
-                'text': '登记赛事记录'
-            }, {
-                'url': 'lb-refundmodal',
-                'icon': 'fa fa-reply',
-                'text': '退费'
-            }/*, {
-                'url': 'lb-endlessonmodal',
-                'icon': 'fa fa-stop',
-                'text': '结课'
-            },{
-                'url': 'lb-changebranchmodal',
-                'icon': 'icon-shuffle',
-                'text': '转校区'
-            }*/],
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
@@ -153,18 +148,55 @@ export default {
                 'as': 'employee'
             },
         }
+        var validateTel = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入手机号码'))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须为数字1开头并为11位!已输入' + value.length + '位。'))
+            } else {
+                callback()
+            }
+        }
         return {
+            moduledata: pagesmodule,
             localdata,
+            activeName: '1',
             student: {},
+            relation: [],
             tables: ['student'],
-            uid: ''
+            uid: '',
+            qrcodeimg:'',
+            options: [{
+                value: '0',
+                label: '本人'
+            }, {
+                value: '1',
+                label: '爸爸'
+            }, {
+                value: '2',
+                label: '妈妈'
+            }],
+            rules: {
+                first_tel: [
+                    { validator: validateTel, required: true, trigger: 'blur' }
+                ],
+            }
         }
     },
+    components: {
+        'lb-systemmodule': systemmodule
+    },
     mounted() {
-        console.log(this.$store.state.envs.currStudent)
-        if (this.$store.state.envs.currStudent) {
-            this.uid = this.$store.state.envs.currStudent._id
+        let currStudent = this.$store.state.envs.currStudent
+        if (currStudent && currStudent._id && currStudent._id.length > 0) {
+            this.uid = currStudent._id
+            this.$store.commit('student', this.uid)
             this.handleSearch()
+        } else {
+            this.uid = this.$store.state.system.currStudentID
+            if (this.uid) {
+                this.handleSearch()
+            }
         }
     },
     computed: {
@@ -172,6 +204,10 @@ export default {
             let name = '未设定'
             if (this.student.employee && this.student.employee.length > 0) {
                 name = this.getLookUp(this.student.employee, 'name')
+            }
+            if (this.$store.state.envs.currDialog == 'lb-editstudentinfo') {
+                this.handleSearch()
+                this.$store.state.envs.currDialog = ''
             }
             return name
         },
@@ -181,6 +217,20 @@ export default {
     },
     watch: {},
     methods: {
+        handleQrcode() {
+            console.log(this.uid)
+            getUrl.httpGetUrlQccode(this.uid).then(obj => {
+                console.log(obj)
+                console.log(obj.data.ticket)
+                this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='+ obj.data.ticket
+            })
+            /*     Vue.http.get('http://app.bullstech.cn:8888/wxqrcode/'+this.uid).then(obj=>{
+                     console.log(obj)
+                 })  */
+        },
+        handleBack() {
+            this.$store.commit('router', this.$store.state.system.routerback)
+        },
         deleteStudent() {
             let vm = this
             this.$confirm('确定要封存该学员档案吗?', '提示', {
@@ -195,7 +245,7 @@ export default {
                         message: '操作成功',
                         type: 'success'
                     })
-                    history.back()
+                    this.$store.commit('router', this.$store.state.system.routerback)
                 })
             }).catch(() => {
                 this.$message({
@@ -203,10 +253,9 @@ export default {
                     message: '已取消删除'
                 })
             })
-
         },
         handleSearch() {
-            if (this.uid&&this.uid.length > 0) {
+            if (this.uid && this.uid.length > 0) {
                 let filterObj = []
                 let student_id = this.uid
                 if (student_id.length > 0) {
@@ -224,9 +273,43 @@ export default {
                 let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                 this.handleGetFilterTable(filterTxt).then(() => {
                     this.student = this.$store.state.models.models.student.data[0]
+                    this.localdata.form = this.lodash.assign(this.localdata.form, this.student)
+                    let obj = {}
+                    this.relation = []
+                    obj.tel = this.student.first_tel
+                    obj.rel = this.getDictText('1', this.student.first_rel_rel)
+                    obj.name = this.student.first_rel_name
+                    this.relation.push(obj)
+                    this.student.relations.forEach(relobj => {
+                        let objitem = {}
+                        objitem.tel = relobj.tel
+                        objitem.rel = this.getDictText('1', relobj.relation)
+                        objitem.name = relobj.name
+                        this.relation.push(objitem)
+                    })
+                    console.log(this.student, this.relation)
                 })
             }
+        },
+        rest_save() {
+            let student_id = this.uid
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.updateTeble('student', student_id, {
+                        'first_rel_rel': this.localdata.form.first_rel_rel,
+                        'first_tel': this.localdata.form.first_tel,
+                        'first_rel_name': this.localdata.form.first_rel_name,
+                        'relations': this.localdata.form.relations
+                    }).then(() => {
+                        this.lbClosedialog()
+                        this.$store.state.envs.currDialog = 'lb-paynow'
+                        this.dopay = true
+                    })
+                }
+            })
         },
     }
 }
 </script>
+
+

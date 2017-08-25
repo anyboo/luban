@@ -6,8 +6,13 @@ const state = {
     face: '',
     birth: '',
     login: false,
+    roles: [],
     theme: 'rgba(208, 150, 21, 0.8)',
-    router: ''
+    routerback: '',
+    router: '',
+    currStudentID: '',
+    isModlues: true,
+
 }
 const getters = {}
 const actions = {}
@@ -21,7 +26,17 @@ const mutations = {
         state.theme = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
+    class: (state, obj) => {
+        state.currClassID = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    student: (state, obj) => {
+        state.currStudentID = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
     router: (state, obj) => {
+        console.log(obj)
+        state.routerback = state.router
         state.router = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
@@ -30,9 +45,13 @@ const mutations = {
         state.id = obj._id
         state.tel = obj.tel
         state.birth = obj.birth
+        state.roles = obj.roles
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
+        state.routerback = obj.routerback
+        state.currStudentID = obj.currStudentID
+        state.currClassID = obj.currClassID
         state.router = obj.router
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme
@@ -40,6 +59,7 @@ const mutations = {
         state.id = obj.id
         state.tel = obj.tel
         state.birth = obj.birth
+        state.roles = obj.roles
     }
 }
 export default {

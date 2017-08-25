@@ -1,8 +1,8 @@
 <template>
     <div class="modal-dialog modal-sm" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg','modal-full':size == 'full'}">
         <div class="modal-content" modal-transclude>
-            <div class="wrapper ng-scope" page-controller="region_set">
-                <p class="ng-binding">请选择学员 {{getStudentName }} 的归属</p>
+            <div class="wrapper" page-controller="region_set">
+                <p >请选择学员 {{getStudentName }} 的归属</p>
                 <div class="w-sm">
                     <div class="chosen-container chosen-container-single" style="width: 120px;" title>
                         <div class="chosen-drop">
@@ -27,7 +27,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'region_oe_id': '',
+                'region_oe_id': '0',
                 'student_name': '',
             }
         }
@@ -45,7 +45,11 @@ export default {
     },
     computed: {
         getEmployeeData() {
-            let employeeData = this.$store.state.models.models.employee.data
+            let employeeData = [{ name: '请选择', _id: '0' }]
+
+            for (var item of this.$store.state.models.models.employee.data) {
+                employeeData.push({name:item.name,_id:item._id})
+            }
             return employeeData
         },
         getStudentName() {

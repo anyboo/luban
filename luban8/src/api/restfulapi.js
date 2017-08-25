@@ -7,6 +7,12 @@ function httpAuth() {
     Vue.http.headers.common['authtime'] = tokentime
 }
 
+function httpGetUrlQccode(id) {
+    let apiUrlGet = urlUtil.getUrlQccode(id)
+    httpAuth()
+    return Vue.http.get(apiUrlGet)
+}
+
 function httpGetFieldsApi(model, fields) {
     let apiUrlGet = urlUtil.getUrlField(model, fields)
     httpAuth()
@@ -34,7 +40,13 @@ function httpLoginApi(obj) {
 function httpAppendApi({ model, form }) {
     let apiUrl = urlUtil.getUrl(model)
     httpAuth()
-    return Vue.http.post(apiUrl, form, httpAuth())
+    return Vue.http.post(apiUrl, form)
+}
+
+function httpBulkApi({ model, form }) {
+    let apiUrl = urlUtil.getUrls(model)
+    httpAuth()
+    return Vue.http.post(apiUrl, form)
 }
 
 function httpEditApi({ model, id, form }) {
@@ -62,5 +74,7 @@ export default {
     httpDeleteApi,
     httpGetIdApi,
     httpGetFilterApi,
-    httpLoginApi
+    httpLoginApi,
+    httpBulkApi,
+    httpGetUrlQccode
 }
