@@ -1,5 +1,5 @@
 <template>
-    <div v-if="modalShow">
+    <div v-if="modalShow" class='definitely'>
         <template v-for="item,index in getDialog">
             <lb-dialog :zindex="index*2+1500">
                 <template v-if="getDialogMoudle(item,index)==1">
@@ -17,6 +17,15 @@
         </template>
     </div>
 </template>
+<style>
+.definitely{
+    position:fixed;
+    z-index:5000;
+    top:20%;
+    left: 30%;
+}
+</style>
+
 <script>
 import dialogpages from '~/stores/dialogpages.js'
 import module from '~/stores/moduledialog.js'
