@@ -30,9 +30,11 @@ import dialogpages from '~/stores/dialogpages.js'
 import module from '~/stores/moduledialog.js'
 import moduleform from '~/stores/moduleform.js'
 import modulestep from '~/stores/modulestep.js'
+import dialog from './dialog.vue'
 import systemdialogmmodule from '~/pages/dialogs/system/module.vue'
 import systemdialogmmodulestep from '~/pages/dialogs/system/modulestep.vue'
 
+dialogpages['lb-dialog'] = dialog
 dialogpages['lb-systemdialogmmodule'] = systemdialogmmodule
 dialogpages['lb-systemdialogmmodulestep'] = systemdialogmmodulestep
 

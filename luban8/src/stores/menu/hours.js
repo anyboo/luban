@@ -34,7 +34,7 @@ export default {
         to: '/hours/attendance',
         menuIcon: 'fa fa-file-sound-o',
         dropDownMenu: [{
-            'url': 'lb-attendance',
+            'url': 'attendancedialog',//'lb-attendance',
             'icon': 'fa fa-pencil',
             'text': '考勤'
         }]

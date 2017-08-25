@@ -12,6 +12,8 @@ import studentpurpose from './formmodules/studentpurpose.js'
 import orderform from './formmodules/orderform.js'
 import arrangeform from './formmodules/arrangeform.js'
 import arrangeeditform from './formmodules/arrangeeditform.js'
+import studentsmsform from './formmodules/studentsmsform.js'
+import classsmsform from './formmodules/classsmsform.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -28,5 +30,7 @@ pages['studentpurpose'] = studentpurpose
 pages['orderform'] = orderform
 pages['arrangeform'] = arrangeform
 pages['arrangeeditform'] = arrangeeditform
+pages['studentsmsform'] = studentsmsform
+pages['classsmsform'] = classsmsform
 
 export default pages

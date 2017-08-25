@@ -8,28 +8,21 @@
                     <b>luban</b>
                     <span class="cart"></span>
                     <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
-                        <li>
-                            <i class="fa fa-user"></i>
-                            个人资料
+                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
+                            <i class="fa fa-user" style="top:1px;"></i>个人资料
                         </li>
-                        <li>
-                            <i class="fa fa-lock"></i>
-                            锁屏
+                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
+                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
                         </li>
-                        <li>
-                            <i class="fa fa-key"></i>
-                            退出
+                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
+                            <i class="fa fa-key" style="top:1px;"></i>退出
                         </li>
                     </ul>
                 </div>
                 <span class="school" style="color:white;">陈可城校区</span>
-
                 <span class="screen" @click="fullscreen">
                     <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>
                 </span>
-            </div>
-            <div class="bodyTitle">
-                {{getCurrMenu}}
             </div>
         </div>
     </div>
@@ -185,32 +178,6 @@ export default {
             updown: false,
         }
     },
-    computed: {
-        getCurrMenu() {
-            var menuName = ''
-            let to = this.$store.state.system.router
-            for (var item of menu) {
-                if (item.to == to) {
-                    menuName = item.menuTitle
-                    break
-                } else {
-                    if (item.menu) {
-                        for (var subitem of item.menu) {
-                            if (subitem.to == to) {
-                                menuName = subitem.menuTitle
-                                break
-                            }
-                        }
-                    }
-                }
-            }
-            if (to == '/' || to == '/web') {
-                menuName = '档案录入'
-            }
-            return menuName
-        }
-
-    },
     methods: {
         variety() {
             this.$emit('variety')
@@ -245,6 +212,15 @@ export default {
         },
         handleClickShow() {
             this.toShow = !this.toShow
+        },
+        accountexit() {
+            this.$store.commit('user', { name: '', tel: '', _id: '' })
+            this.changeView('/system/sign_in')
+        },
+        changeView(view) {
+            console.log(view)
+            this.$store.commit('router', view)
+            this.toShow = false
         }
     }
 }
