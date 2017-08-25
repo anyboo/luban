@@ -164,7 +164,7 @@ a:hover{
     .bootstrap-wysihtml5-insert-link-modal label.checkbox {
         display: none;
     }
-    .modal .modal-dialog .modal-content {
+   .modal .modal-dialog .modal-content {
         -webkit-border-radius: 0 !important;
         -moz-border-radius: 0 !important;
         border-radius: 0 !important;

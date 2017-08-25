@@ -239,7 +239,7 @@
 
 .table-block .search {
     padding: 12px;
-    padding-bottom: 0px;
+    
 }
 
 .table-block .pagination {
