@@ -65,6 +65,7 @@ a{
 }
 .lbBody{
     height: 777px;
+    margin-bottom:50px;
   
 }
 .lbFooter{
@@ -247,6 +248,4 @@ a:hover{
     .modal-backdrop{
         opacity: .5;
     }
-    .panel-default{
-        overflow: scroll;
-    }
+   
