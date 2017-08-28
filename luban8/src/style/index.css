@@ -181,6 +181,7 @@ a:hover{
         text-align: left !important;
     }
     .modal-over {
+        background: rgb(48,67,86);
         position: fixed;
         top: 0;
         right: 0;

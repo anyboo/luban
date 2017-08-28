@@ -8,7 +8,7 @@
 .lbSdebarHeader {
     width: 100%;
     padding: 12px 0;
-    height: 49px;
+    height: 50px;
     background: #2f4355;
     line-height: 20px;
 }
