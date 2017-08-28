@@ -82,7 +82,7 @@ a.stylemore{
     border-top:0;
     border-radius: 3px;
 }
-a:hover{
+a.stylemore:hover{
     color:red;
 }
 </style>

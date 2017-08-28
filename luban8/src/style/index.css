@@ -35,6 +35,9 @@ a {
     margin: 0px;
     padding: 0px;
 }
+.app_container{
+    flex-grow: 1;
+}
 
 .contaierUnfold {
     width: 200px !important;

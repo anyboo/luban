@@ -1,7 +1,7 @@
 <template>
     <div class="lbcontainer">
         <lb-sidebar :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
-        <div class="app_container" style=" width:100%;">
+        <div class="app_container" >
             <lb-header @variety="variety"></lb-header>
             <lb-body></lb-body>
         </div>
