@@ -38,9 +38,7 @@ export default {
                 {
                     'labels': [
                         { 'label': '未发送' },
-                        { 'label': '已发送' },
-                        { 'label': '发送失败' },
-                        { 'label': '发送成功' }
+                        { 'label': '已发送' }
                     ]
                 }
             ]

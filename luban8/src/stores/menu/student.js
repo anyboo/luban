@@ -45,6 +45,10 @@ export default {
             'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',
             'text': '退费'
+        },{
+            'url': 'storedvalueform',
+            'icon': 'fa fa-reply',
+            'text': '测试专用'
         },
             /* {
                             'url': 'lb-endlessonmodal',
