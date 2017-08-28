@@ -6,11 +6,15 @@
 </template>
 <style>
 .lbSdebarHeader {
-    width: 100%;
+    width: 200px;
     padding: 12px 0;
     height: 50px;
     background: #2f4355;
     line-height: 20px;
+}
+
+.lbcontainerRetraction .lbSdebarHeader {
+    width: 55px;
 }
 
 .lbSdebarHeader img {
