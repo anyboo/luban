@@ -35,23 +35,23 @@
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
                             <template v-for="(value,index) in item.labels">
-                                <el-radio-button :label="index">{{value.label}}</el-radio-button>
+                                <el-radio-button class="normalfont" :label="index">{{value.label}}</el-radio-button>
                             </template>
                         </el-radio-group>
                     </template>
                 </div>
-                <div class="floatlefts" v-if="groupBtnSearch">
+                <div class="pull-right" v-if="groupBtnSearch">
                     <el-button-group>
                         <template v-for="item in groupBtnSearchInfo">
-                            <el-button :type="item.type">
+                            <el-button  style="float:right;" :type="item.type">
                                 {{item.label}}</el-button>
                         </template>
                     </el-button-group>
                 </div>
-                <div style="float:right;" v-if="singleBtnSearch" class="pull-right">
+                <div  v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
-                            <el-button style="float:right;" :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
+                            <el-button style="float:right;margin-left:3px;"  :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
                         </template>
                     </template>
                 </div>
@@ -218,6 +218,9 @@
     </div>
 </template>
 <style>
+.normalfont{
+    font-weight: 500;
+}
 .floatlefts{
     float: left;
     margin-left: 5px;

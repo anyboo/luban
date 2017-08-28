@@ -5,7 +5,7 @@
                 <img class="img-circle" src="/assets/images/a0.jpg">
             </div>
             <p class="h4 m-t m-b">
-                <span v-if="$store.state.system.name.length>0" >{{$store.state.system.name}}</span>
+                <span style="color:white;" v-if="$store.state.system.name.length>0" >{{$store.state.system.name}}</span>
             </p>
             <div class="input-group" v-if="$store.state.system.name.length==0">
                 <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
