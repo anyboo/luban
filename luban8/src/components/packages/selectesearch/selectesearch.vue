@@ -1,5 +1,5 @@
 <template>
-    <el-input :placeholder="getSelectStudentName" :disabled="true">
+    <el-input :placeholder="getSelectStudentName" :disabled="true" >
         <el-button slot="append" icon="search" @click="showDailog(showdialog)"></el-button>
     </el-input>
 </template>

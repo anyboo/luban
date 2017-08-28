@@ -1,37 +1,37 @@
 <template>
-    <div class="table-box" :class="{'table-blockinfo':info,'table-block':!info}">
-        <div class="search" v-if="getSearch">
-            <el-row :gutter="12">
-                <el-col :xs="24" :sm="24" :md="8" :lg="6" v-if="textSearch">
+    <div class="table-box" style="margin:0;" :class="{'table-blockinfo':info,'table-block':!info}">
+        <div class="search" style="height:62px;" v-if="getSearch">
+          
+                <div class="floatlefts"  v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
                         <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
                             <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
                         </el-select>
                     </el-input>
-                </el-col>
-                <el-col :span="2" v-if="handleback">
+                </div>
+                <div class="floatlefts"  v-if="handleback">
                     <div class="btn-group dropdown" dropdown="">
                         <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
                     </div>
-                </el-col>
-                <el-col :xs="8" :sm="6" :md="6" :lg="4" v-if="dateSearch">
+                </div>
+                <div class="floatlefts"  v-if="dateSearch">
                     <div class="block">
                         <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
                         </el-date-picker>
                     </div>
-                </el-col>
-                <el-col :span="4" v-if="classesSearch">
+                </div>
+                <div class="floatlefts" v-if="classesSearch">
                     <el-select v-model="classesId" filterable placeholder="请选择班级">
                         <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
                         </el-option>
                     </el-select>
-                </el-col>
-                <el-col :span="5" v-if="selectSearch">
+                </div>
+                <div class="floatlefts" v-if="selectSearch">
                     <template v-for="item in selectSearchInfo">
                         <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
                     </template>
-                </el-col>
-                <el-col :xs="8" :sm="8" :md="8" :lg="8" v-if="radioGroupSearch">
+                </div>
+                <div class="floatlefts" v-if="radioGroupSearch">
                     <template v-for="item in radioGroupSearchInfo">
                         <el-radio-group v-model="radiovalue" @change="handleSearch">
                             <template v-for="(value,index) in item.labels">
@@ -39,23 +39,22 @@
                             </template>
                         </el-radio-group>
                     </template>
-                </el-col>
-                <el-col :span="5" v-if="groupBtnSearch">
+                </div>
+                <div class="floatlefts" v-if="groupBtnSearch">
                     <el-button-group>
                         <template v-for="item in groupBtnSearchInfo">
                             <el-button :type="item.type">
                                 {{item.label}}</el-button>
                         </template>
                     </el-button-group>
-                </el-col>
-                <el-col :xs="6" :sm="6" :md="6" :lg="5" v-if="singleBtnSearch" class="pull-right">
+                </div>
+                <div style="float:right;" v-if="singleBtnSearch" class="pull-right">
                     <template v-for="item in singleBtnSearchInfo">
                         <template v-if="getActionOption(item.actionoption)">
-                            <el-button :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
+                            <el-button style="float:right;" :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
                         </template>
                     </template>
-                </el-col>
-            </el-row>
+                </div>
         </div>
         <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
             <template v-for="(item,index) in textTableInfo">
@@ -219,6 +218,10 @@
     </div>
 </template>
 <style>
+.floatlefts{
+    float: left;
+    margin-left: 5px;
+}
 .table-blockinfo {
     border-radius: 4px;
     transition: .2s;
