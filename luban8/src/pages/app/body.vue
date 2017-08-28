@@ -1,5 +1,5 @@
 <template>
-    <div class="lbBody">
+    <div class="lbBody" :style="getClientHeight">
         <template v-if="getCurrentView ==1">
             <lb-systemmodule :module="moduleObj">
             </lb-systemmodule>
@@ -27,6 +27,8 @@ export default {
     name: 'body',
     data() {
         return {
+          clientHeight: '800px',
+          overflowy: 'auto'
         }
     },
     components: pages,
@@ -37,11 +39,18 @@ export default {
         }
     },
     mounted() {
+        this.clientHeight = (document.body.clientHeight-135) + 'px'
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
     },
     computed: {
+        getClientHeight() {
+            return {
+                'height': this.clientHeight,
+                'overflow-y': this.overflowy
+            }
+        },
         getCurrentView() {
             let isModlues = 0
             if (!this.$store.state.models.login) {

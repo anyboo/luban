@@ -476,6 +476,7 @@ module.exports.sms = function* () {
     }
     this.body = yield smsinfo
 }
+
 function ajax(options, body) {
     return new Promise(function (resolve) {
         const req = https.request(options, (res) => {
@@ -570,4 +571,12 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     console.log(options)
     wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
+}
+module.exports.smssend = function* smssend(db, id, next) {
+    let sms_opt = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
 }

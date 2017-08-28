@@ -57,7 +57,7 @@ export default {
     computed: {
         getClientHeight() {
             return {
-                'max-height': this.clientHeight,
+                'max-height': this.clientHeight-50,
                 'overflow-y': this.overflowy
             }
         }
