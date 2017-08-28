@@ -2,7 +2,8 @@
     <div class="modal-body">
         <div >
             <div class="row no-gutter">
-                <div class="col-xs-4 text-center" @click="switchPage('lb-cc')">
+                 <div class="col-xs-4 text-center" @click="switchPage('lb-cc')">
+                     <!-- 'lb-cc'  -->
                     <a class="block panel padder-v bg-warning item" style="cursor:pointer;
                 ">
                         <span class="text-white font-thin h1 block">

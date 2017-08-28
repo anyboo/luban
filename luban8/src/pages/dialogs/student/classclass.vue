@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="modal-body">
-            <div >
-                <div >
+            <div>
+                <div>
                     <div class="row no-gutter" :class="{step2:order,step1:!order}">
                         <div class="col-xs-6 bg-light lter  step1 .bg-success:after" :class="{'bg-success':!order}">
                             <h4 class="padder">1.创建订单</h4>
@@ -13,18 +13,18 @@
                     </div>
                     <form name="form1" class="form-horizontal  ng-invalid ng-invalid-required" v-if="!order">
                         <!--<div class="form-group m-t">
-                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
-                                <div class="input-group">
-                                    <input type="text" :placeholder="lesson_name" class="form-control   ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
-                                            <i class="fa fa-book"></i>选择
-                                        </button>
-                                    </span>
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名课程:</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    <div class="input-group">
+                                        <input type="text" :placeholder="lesson_name" class="form-control   ng-invalid ng-invalid-required" ng-readonly="true" required readonly="readonly" v-model="lesson_name">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" @click="lbShowdialog($event,'lb-selectlessontpl')">
+                                                <i class="fa fa-book"></i>选择
+                                            </button>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>-->
+                            </div>-->
                         <div class="form-group m-t">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名班级:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">
-                                <span >报名</span>课次:
+                                <span>报名</span>课次:
                             </label>
                             <div class="col-xs-12 col-sm-9 col-md-5">
                                 <div class="input-group">
@@ -67,15 +67,15 @@
                             </div>
                         </div>
                         <!--
-                                    <div class="form-group">
-                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
-                                        <div class="col-xs-12 col-sm-9 col-md-10">
-                                            <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="  " disabled="disabled" v-model="localdata.form.order_has_time_limited">
-                                                <i></i>
-                                            </label>
-                                        </div>
-                                    </div>-->
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">时间限制:</label>
+                                            <div class="col-xs-12 col-sm-9 col-md-10">
+                                                <label class="i-switch m-t-xs m-r">
+                                                    <input type="checkbox" ng-true-value="1" ng-disabled="order.ol_id == 0" class="  " disabled="disabled" v-model="localdata.form.order_has_time_limited">
+                                                    <i></i>
+                                                </label>
+                                            </div>
+                                        </div>-->
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-3 col-md-2 control-label">折扣金额:</label>
                             <div class="col-xs-12 col-sm-9 col-md-10">
@@ -84,12 +84,12 @@
                                     <i></i>
                                 </label>
                                 <a class="btn btn-default btn-xs pull-right" @click="discount_caculator = !discount_caculator" v-if="localdata.form.has_discount">
-                                    <span v-if="discount_caculator" >关闭</span> 折扣计算器
+                                    <span v-if="discount_caculator">关闭</span> 折扣计算器
                                 </a>
-                                <div v-if="discount_caculator&&localdata.form.has_discount" >
+                                <div v-if="discount_caculator&&localdata.form.has_discount">
                                     <div class="input-group">
                                         <lb-numberinput type="number" class="form-control" v-model="localdata.form.discount" placeholder="输入折扣,打几折输入几，比如打8.5折，请输入8.5">
-                                            </lb-numberinput>
+                                        </lb-numberinput>
                                         <span class="input-group-btn">
                                             <a class="btn btn-info" @click="cacu_discount_amount()">
                                                 <i class="icon-calculator"></i> 计算</a>
@@ -229,7 +229,7 @@ export default {
                     this.class_name = '请选择班级'
                     this.localdata.form.origin_times = ''
                 }
-            } 
+            }
             // else if (this.$store.state.envs.currDialog == 'lb-selectlessontpl') {
             //     if (this.$store.state.envs.currDialogResult) {
             //         this.lesson_name = this.$store.state.envs.currDialogResult.lesson_name

@@ -1,6 +1,6 @@
 <template>
     <el-input  placeholder="请输入数字" v-model="numbervalue" @blur="changeNum" @change="updateValue">
-        <template slot="append">{{text}}</template>
+        <template slot="append" ><div>{{text}}</div></template>
     </el-input>
 </template>
 <script>
