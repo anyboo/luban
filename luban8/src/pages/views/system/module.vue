@@ -1,7 +1,6 @@
 <template>
     <div class="table-box" style="margin:0;" :class="{'table-blockinfo':info,'table-block':!info}">
         <div class="search" style="height:62px;" v-if="getSearch">
-          
                 <div class="floatlefts"  v-if="textSearch">
                     <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
                         <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
@@ -225,14 +224,12 @@
 }
 .table-blockinfo {
     border-radius: 4px;
-    transition: .2s;
     background: #fff;
 }
 
 .table-block {
     border: 1px solid #cccccc;
     border-radius: 4px;
-    transition: .2s;
     margin: 15px;
     background: #fff;
 }

@@ -30,21 +30,16 @@ a {
 }
 
 .lbcontainer {
-    display: flex;
     width: 100%;
     margin: 0px;
     padding: 0px;
 }
-.app_container{
-    flex-grow: 1;
-}
-
 .contaierUnfold {
-    width: 200px !important;
+    width: 180px !important;
 }
 
 .lbcontainerRetraction {
-    width: 58px !important;
+    width: 55px !important;
 }
 
 .lbcontainer i {
@@ -53,8 +48,10 @@ a {
 
 .lbSdebar {
     background: #33485c;
-    z-index: 5;
+
     height: 100%;
+    margin:0;
+    float: left;
 }
 
 .headerSecond {

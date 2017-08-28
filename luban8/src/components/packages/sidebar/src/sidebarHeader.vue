@@ -6,7 +6,7 @@
 </template>
 <style>
 .lbSdebarHeader {
-    width: 200px;
+    width: 180px;
     padding: 12px 0;
     height: 50px;
     background: #2f4355;
