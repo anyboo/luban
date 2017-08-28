@@ -164,7 +164,7 @@ module.exports.all = function* all(db, name, next) {
     let token = this.req.headers.authorization
     let authtime = this.req.headers.authtime
     console.log(db)
-    if (db != "webclone") {
+    if (db != 'webclone' || db != 'test') {
         if (!verify(token, authtime)) {
             this.status = 401
             console.log('Access Forbidden')
@@ -500,24 +500,24 @@ module.exports.wxreg = function* wxreg() {
     var signature = this.query.signature
     var timestamp = this.query.timestamp
     var nonce = this.query.nonce
-    var echostr =this.query.echostr
+    var echostr = this.query.echostr
     var token = "bullstech"
-  
+
     /*  加密/校验流程如下： */
     //1. 将token、timestamp、nonce三个参数进行字典序排序
-    var array = new Array(token,timestamp,nonce)
+    var array = new Array(token, timestamp, nonce)
     array.sort()
-    var str = array.toString().replace(/,/g,"")
-  
+    var str = array.toString().replace(/,/g, "")
+
     //2. 将三个参数字符串拼接成一个字符串进行sha1加密
     var sha1Code = crypto.createHash("sha1");
-    var code = sha1Code.update(str,'utf-8').digest("hex")
-  
-    console.log(code,signature,code===signature)
+    var code = sha1Code.update(str, 'utf-8').digest("hex")
+
+    console.log(code, signature, code === signature)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-    if(code===signature){
+    if (code === signature) {
         this.body = echostr
-    }else{
+    } else {
         this.body = "error"
     }
 }
