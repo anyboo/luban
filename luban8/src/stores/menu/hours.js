@@ -1,6 +1,6 @@
 export default {
     menuTitle: '课时',
-    menuIcon: 'fa-battery',
+    menuIcon: 'fa fa-folder',
     // menuShow: 0,
     menu: [{
         menuTitle: '排课',
@@ -34,7 +34,7 @@ export default {
         to: '/hours/attendance',
         menuIcon: 'fa fa-file-sound-o',
         dropDownMenu: [{
-            'url': 'attendancedialog',//'lb-attendance',
+            'url': 'attendancedialog', //'lb-attendance',
             'icon': 'fa fa-pencil',
             'text': '考勤'
         }]
