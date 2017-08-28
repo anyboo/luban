@@ -13,17 +13,17 @@
             </template>
             <template v-if="item.type=='subduction'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    {{localdata.form[item.field1]-localdata.form[item.field2]}}
+                    {{localdata.form[item.field1]-localdata.form[item.field2]}}{{item.text}}
+                </el-form-item>
+            </template>
+             <template v-if="item.type=='addition'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{Number(localdata.form[item.field1])+Number(localdata.form[item.field2])}}
                 </el-form-item>
             </template>
             <template v-if="item.type=='textTag'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-tag :type="item.color">{{localdata.form[item.field]}}{{item.text}}</el-tag>
-                </el-form-item>
-            </template>
-            <template v-if="item.type=='input'">
-                <el-form-item :label="item.label" :prop="item.prop">
-                    <el-input v-model="localdata.form[item.field]"></el-input>
                 </el-form-item>
             </template>
             <template v-if="item.type=='numberinput'">
@@ -134,7 +134,7 @@
             </template>
             <template v-if="item.type=='switchweek'">
                 <el-form-item :label="item.label">
-                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
+                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
                     </el-switch>
                 </el-form-item>
                 <el-form-item label="结束日期" :prop="item.prop" :required="true" v-if="localdata.form[item.fieldActive]">

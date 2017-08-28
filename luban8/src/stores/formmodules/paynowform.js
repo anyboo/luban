@@ -1,6 +1,6 @@
 export default {
     'pageName': 'paynowform',
-    'pageLable': '班级',
+    'pageLable': '缴费',
     'form': {
         'order_id': '',
         'student_id': '',

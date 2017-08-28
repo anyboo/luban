@@ -19,11 +19,11 @@ export default {
         to: '/fee/list3',
         menuIcon: 'fa fa-battery-0',
         dropDownMenu: [{
-            'url': 'lb-paynowmodal',
+            'url': 'paynowform',
             'icon': 'icon-wallet',
             'text': '现场缴费'
         }, {
-            'url': 'lb-unpayclearmodal',
+            'url': 'unpayclearform',
             'icon': 'icon-ban',
             'text': '欠费清除'
         }]

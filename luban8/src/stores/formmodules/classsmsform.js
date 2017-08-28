@@ -19,7 +19,7 @@ export default {
             'label': '定时发送',
             'prop': '',
             'field': 'fixed_time',
-            'fieldActive': 'active',
+            'fieldActive': false,
             'datetype': 'datetime',
         }
     ],

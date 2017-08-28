@@ -1,9 +1,9 @@
 export default {
-    'pageName': 'orderstepdialog',
-    'pageLable': '杂费',
+    'pageName': 'storedvaluedialog',
+    'pageLable': '预充值',
     'stepsInfo': [{
         'label': '创建订单',
-        'module': 'miscellaneousfees'
+        'module': 'storedvalueform'
     },{
         'label': '缴费',
         'module': 'stepstudentdialog'

@@ -55,7 +55,7 @@ export default {
             'label': '下次回访提醒',
             'prop': '',
             'field': 'next_time',
-            'fieldActive': 'active',
+            'fieldActive': false,
             'datetype': 'datetime',
         }
     ],

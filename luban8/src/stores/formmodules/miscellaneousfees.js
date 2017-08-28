@@ -21,28 +21,25 @@ export default {
         'pay_status': 0,
         'student_id': '',
         'order_no': '',
-        'order_type': 2,
+        'order_type': 3,
         'body': ''
     },
     'formField': [
-        {
-            'type': 'text',
-            'label': '当前余额',
+       {
+            'type': 'select',
+            'label': '缴费项目',
             'prop': '',
-            'field': 'amount',
+            'field': 'sel',
+            'dict': function(vm){
+                let dict = 5
+                return dict
+            }
         },
         {
             'type': 'numberinput',
-            'label': '充值金额',
+            'label': '订单金额',
             'prop': '',
             'field': 'origin_amount',
-            'text': '元'
-        },
-        {
-            'type': 'numberinput',
-            'label': '返现金额',
-            'prop': '',
-            'field': 'back_amount',
             'text': '元'
         },
         {

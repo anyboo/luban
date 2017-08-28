@@ -17,6 +17,8 @@ import classsmsform from './formmodules/classsmsform.js'
 import studentorderform from './formmodules/studentorderform.js'
 import paynowform from './formmodules/paynowform.js'
 import storedvalueform from './formmodules/storedvalueform.js'
+import miscellaneousfees from './formmodules/miscellaneousfees.js'
+import unpayclearform from './formmodules/unpayclearform.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -38,5 +40,7 @@ pages['classsmsform'] = classsmsform
 pages['studentorderform'] = studentorderform
 pages['paynowform'] = paynowform
 pages['storedvalueform'] = storedvalueform
+pages['miscellaneousfees'] = miscellaneousfees
+pages['unpayclearform'] = unpayclearform
 
 export default pages

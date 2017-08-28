@@ -1,6 +1,6 @@
 export default {
-    'pageName': 'orderstepdialog',
-    'pageLable': '杂费',
+    'pageName': 'miscellaneousfeesdialog',
+    'pageLable': '预充值',
     'stepsInfo': [{
         'label': '创建订单',
         'module': 'miscellaneousfees'

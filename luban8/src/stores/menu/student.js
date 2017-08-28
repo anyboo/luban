@@ -46,8 +46,8 @@ export default {
             'icon': 'fa fa-reply',
             'text': '退费'
         },{
-            'url': 'storedvalueform',
-            'icon': 'fa fa-reply',
+            'url': 'miscellaneousfeesdialog',
+            'icon': '',
             'text': '测试专用'
         },
             /* {
