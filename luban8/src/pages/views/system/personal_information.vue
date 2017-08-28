@@ -4,7 +4,7 @@
             <span class="bar"></span>
         </div>
         <a href="" class="off-screen-toggle hide"></a>
-        <div class="app-content-body fade-in-up" ui-view="">
+        <div class="app-content-body" ui-view="">
             <div class="bg-white">
                 <div class="wrapper-md m-t" ng-switch="$action" v-if="status==0">
                     <div ng-switch-when="profile" >
