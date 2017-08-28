@@ -57,6 +57,11 @@ export default {
                     'type': '',
                     'showdialog': 'classsmsdialog',
                     'actionoption': 'lessonmanageles'
+                },  {
+                    'label': '活动推广',
+                    'type': '',
+                    'showdialog': 'allsmsform',
+                    'actionoption': 'allsmsform'
                 },
             ]
         }

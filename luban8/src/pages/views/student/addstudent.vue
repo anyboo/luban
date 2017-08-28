@@ -4,7 +4,7 @@
             <el-input v-model="localdata.form.student_name" style="width:120px;" placeholder="请输入学员姓名"></el-input>
             <el-radio-group v-model="localdata.form.sex">
                 <template v-for="sex in localdata.sex">
-                    <el-radio-button :label="sex.value">{{sex.text}}</el-radio-button>
+                    <el-radio-button :label="sex.value" class="normalfont">{{sex.text}}</el-radio-button>
                 </template>
             </el-radio-group>
         </el-form-item>
@@ -35,16 +35,16 @@
         <el-form-item label="来源渠道">
             <el-radio-group v-model="localdata.form.track_from">
                 <template v-for="way in getDictData('3')">
-                    <el-radio-button :label="way._id">{{way.text}}</el-radio-button>
+                    <el-radio-button class="normalfont" :label="way._id">{{way.text}}</el-radio-button>
                 </template>
             </el-radio-group>
         </el-form-item>
         <hr/>
-        <div class="m-t m-b b-t text-center">
-            <a v-if="!expand" @click="expand=true" class="inline w b-l b-r b-b r-b">
+        <div class="text-center ">
+            <a v-if="!expand" @click="expand=true" class="stylemore inline w b-l b-r b-b r-b">
                 <i class="fa fa-arrow-down"></i>展开填写更多资料
             </a>
-            <a v-if="expand" @click="expand=false" class="inline w b-l b-r b-b r-b">
+            <a v-if="expand" @click="expand=false" class=" stylemore inline w b-l b-r b-b r-b">
                 <i class="fa fa-arrow-up"></i>关闭更多资料
             </a>
         </div>
@@ -75,6 +75,18 @@
         </div>
     </el-form>
 </template>
+<style>
+a.stylemore{
+    border: 1px solid rgb(211,211,211);
+    padding:2px 10px;
+    border-top:0;
+    border-radius: 3px;
+}
+a.stylemore:hover{
+    color:red;
+}
+</style>
+
 <script>
 export default {
     name: 'add',

@@ -218,9 +218,7 @@
     </div>
 </template>
 <style>
-.normalfont{
-    font-weight: 500;
-}
+
 .floatlefts{
     float: left;
     margin-left: 5px;
