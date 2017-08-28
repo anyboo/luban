@@ -6,9 +6,37 @@
                     <el-input v-model="localdata.form[item.field]"></el-input>
                 </el-form-item>
             </template>
+             <template v-if="item.type=='text'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{localdata.form[item.field]}}{{item.text}}
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='subduction'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{localdata.form[item.field1]-localdata.form[item.field2]}}
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='textTag'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-tag :type="item.color">{{localdata.form[item.field]}}{{item.text}}</el-tag>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='input'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-input v-model="localdata.form[item.field]"></el-input>
+                </el-form-item>
+            </template>
             <template v-if="item.type=='numberinput'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='lessonprice'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
+                    <el-tooltip content="用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入" placement="top">
+                        <el-button>用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入</el-button>
+                    </el-tooltip>
                 </el-form-item>
             </template>
             <template v-if="item.type=='datetime'">
@@ -49,13 +77,40 @@
                     </el-select>
                 </el-form-item>
             </template>
-            <template v-if="item.type=='switchdatetime'">
-                <el-form-item :label="item.label">
-                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
+            <template v-if="item.type=='switchdiscount'">
+                <el-form-item :label="item.switchlabel1">
+                    <el-switch v-model="item.fieldActive1" on-text="" off-text="">
                     </el-switch>
                 </el-form-item>
-                <el-form-item v-if="localdata.form[item.fieldActive]">
+                <template v-if="item.fieldActive1">
+                    <el-form-item :label="item.switchlabel2">
+                        <el-switch v-model="item.fieldActive2" on-text="" off-text="">
+                        </el-switch>
+                    </el-form-item>
+                    <el-form-item v-if="item.fieldActive2">
+                        <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2"></lb-numberinput>
+                    </el-form-item>
+                    <el-form-item>
+                        <lb-numberinput v-model="localdata.form[item.field1]" :text="item.text1"></lb-numberinput>
+                    </el-form-item>
+                </template>
+            </template>
+            <template v-if="item.type=='switchdatetime'">
+                <el-form-item :label="item.label">
+                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
+                    </el-switch>
+                </el-form-item>
+                <el-form-item v-if="item.fieldActive">
                     <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='switchnumber'">
+                <el-form-item :label="item.label">
+                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
+                    </el-switch>
+                </el-form-item>
+                <el-form-item v-if="item.fieldActive">
+                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
                 </el-form-item>
             </template>
             <template v-if="item.type=='timetype'">
@@ -182,6 +237,7 @@ export default {
             validateDate,
             validateDatatime,
             localdata: this.getform(),
+            order: {},
             expand: false,
             workday: false,
             weekday: false,
@@ -191,6 +247,27 @@ export default {
     mounted() {
         if (this.module.mounted) {
             this.module.mounted(this)
+        }
+        let vm = this
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.order = vm.$store.state.dialogs.dailogdata
+            vm.localdata.form.order_id = vm.order._id
+            vm.localdata.form.student_id = vm.order.student_id
+            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.money_pay_amount = vm.order.unpay_amount
+            vm.localdata.form.balance_pay_amount = 0
+            vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
+                if (obj.data && obj.data.length > 0) {
+                    vm.currStudent = obj.data[0]
+                    if (this.order.order_type != 2) {
+                        vm.localdata.form.balance_pay_amount = Number(vm.currStudent.amount)
+                        if (vm.localdata.form.balance_pay_amount > vm.localdata.form.money_pay_amount) {
+                            vm.localdata.form.balance_pay_amount = vm.localdata.form.money_pay_amount
+                            vm.localdata.form.money_pay_amount = 0
+                        }
+                    }
+                }
+            })
         }
     },
     computed: {

@@ -29,7 +29,7 @@ export default {
     rules: {
         content: [
             { required: true, message: '请输入发送内容', trigger: 'blur' },
-            { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+            { min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur' }
         ]
     }
 }

@@ -1,6 +1,7 @@
 html {
     height: 100%;
 }
+
 body {
     margin: 0px;
     height: 100%;
@@ -8,9 +9,11 @@ body {
     overflow: hidden;
     font-family: "微软雅黑", 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
 }
-table{
+
+table {
     font-size: 14px;
 }
+
 ul,
 a {
     list-style: none;
@@ -18,24 +21,35 @@ a {
     padding: 0;
     margin: 0;
 }
+<<<<<<< HEAD
 hr{
     margin :0 0;
+=======
+
+hr {
+    margin: 10px 0;
+>>>>>>> edf91b060d92f95a72745f70661fe65bcf6f44b9
 }
-a{
+
+a {
     cursor: pointer;
 }
+
 .lbcontainer {
     display: flex;
     width: 100%;
     margin: 0px;
     padding: 0px;
 }
- .contaierUnfold {
-   width: 200px !important;
+
+.contaierUnfold {
+    width: 200px !important;
 }
+
 .lbcontainerRetraction {
-   width: 58px !important;
-} 
+    width: 58px !important;
+}
+
 .lbcontainer i {
     font-size: 16px;
 }
@@ -45,9 +59,11 @@ a{
     z-index: 5;
     height: 100%;
 }
+
 .headerSecond {
     height: 100px;
 }
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -58,17 +74,25 @@ a{
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
-.lbcontainer  .lbBody{
+
+.lbcontainer .lbBody {
     overflow: auto;
     background: rgb(240, 242, 245);
     padding: 15px;
 }
-.lbFooter{
-    width:100%;
+
+.lbBody {
+    height: 777px;
+    margin-bottom: 50px;
+}
+
+.lbFooter {
+    width: 100%;
     z-index: 100;
     position: fixed;
     bottom: 0;
 }
+
 .lbcontainer .lbFooter {
     background: #2a3b4c;
     box-sizing: border-box;
@@ -102,9 +126,11 @@ a{
 .lbcontainerRetraction .lbSdebarUlStyle li:hover a span {
     display: block;
 }
-.lbcontainerRetraction .lbSdebarUlStyle li:hover a span.arrow{
-    display:none !important;
+
+.lbcontainerRetraction .lbSdebarUlStyle li:hover a span.arrow {
+    display: none !important;
 }
+
 .lbcontainerRetraction .lbSdebarUlStyle .lbSdebarMenu {
     position: relative;
 }
@@ -125,12 +151,11 @@ a{
     width: 195px;
     height: 42px;
     box-sizing: border-box;
-    
-}
-a:hover{
-    text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none;
+}
 
 .lbcontainerRetraction .lbSdebarUlStyle li ul {
     display: none;

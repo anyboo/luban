@@ -52,7 +52,7 @@ export default {
         {
             'type': 'button',
             'label': '操作',
-            'dialog': 'lb-paynowmodal',
+            'dialog': 'paynowform',//'lb-paynowmodal',
             'text': '缴费'
         },
     ],

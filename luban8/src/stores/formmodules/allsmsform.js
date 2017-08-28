@@ -1,10 +1,10 @@
 export default {
-    'pageName': 'studentsmsform',
-    'pageLable': '发送短信',
-    'student': true,
+    'pageName': 'allsmsform',
+    'pageLable': '活动推广',
     'form': {
         'first_tel': '',
         'content': '',
+        'active': false,
         'fixed_time': '',
         'student_id': ''
     },
@@ -26,7 +26,7 @@ export default {
             'label': '定时发送',
             'prop': '',
             'field': 'fixed_time',
-            'fieldActive': false,
+            'fieldActive': 'active',
             'datetype': 'datetime',
         }
     ],
