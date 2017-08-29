@@ -20,6 +20,7 @@ import storedvalueform from './formmodules/storedvalueform.js'
 import miscellaneousfees from './formmodules/miscellaneousfees.js'
 import unpayclearform from './formmodules/unpayclearform.js'
 import allsmsform from './formmodules/allsmsform.js'
+import rolesform from './formmodules/rolesform.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -44,5 +45,6 @@ pages['storedvalueform'] = storedvalueform
 pages['miscellaneousfees'] = miscellaneousfees
 pages['unpayclearform'] = unpayclearform
 pages['allsmsform'] = allsmsform
+pages['rolesform'] = rolesform
 
 export default pages

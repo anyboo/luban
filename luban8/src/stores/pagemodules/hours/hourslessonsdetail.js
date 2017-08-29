@@ -119,7 +119,7 @@ export default {
         },
         {
             'type': 'checkweek',
-            'label': '上课星期',
+            'label': '星期',
         },
         {
             'type': 'constant',

@@ -37,28 +37,41 @@ export default {
             ]
         }, {
             menuTitle: '角色权限',
-            to: '/system/roles',
+            to:'systemroles',//'/system/roles', //
             menuIcon: 'fa fa-unlock',
-            action: [{
-                    'text': '删除',
-                    'action': 'systemrolesdelete'
-                },
-                {
-                    'text': '编辑',
-                    'action': 'systemrolesedit'
-                }, {
-                    'text': '权限设置',
-                    'action': 'systemrolesset'
-                },
-                {
-                    'text': '添加角色',
-                    'action': 'systemrolesroles'
-                },
-                {
-                    'text': '保存',
-                    'action': 'systemrolessave'
-                }
-            ]
+            dropDownMenu: [{
+                'url': 'rolesform',
+                'icon': 'fa fa-pencil',
+                'text': '编辑'
+            },{
+                'url': 'systemrolesset',
+                'icon': 'fa fa-pencil',
+                'text': '权限设置'
+            }, {
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除'
+            }]
+            // action: [{
+            //         'text': '删除',
+            //         'action': 'systemrolesdelete'
+            //     },
+            //     {
+            //         'text': '编辑',
+            //         'action': 'systemrolesedit'
+            //     }, {
+            //         'text': '权限设置',
+            //         'action': 'systemrolesset'
+            //     },
+            //     {
+            //         'text': '添加角色',
+            //         'action': 'systemrolesroles'
+            //     },
+            //     {
+            //         'text': '保存',
+            //         'action': 'systemrolessave'
+            //     }
+            // ]
         }, {
             menuTitle: '员工管理',
             to: '/system/employee',
