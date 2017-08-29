@@ -27,8 +27,8 @@
                 </template>
             </div>
             <div class="modal-footer">
-                <el-button class="btn btn-primary" @click="back()" :disabled="getDisabled">上一步</el-button>
-                <el-button class="btn btn-primary" @click="next()" :disabled="getDisabled">下一步</el-button>
+                <el-button class="btn btn-primary" @click="back()" :disabled="getBackDisabled">上一步</el-button>
+                <el-button class="btn btn-primary" @click="next()" :disabled="getNextDisabled">下一步</el-button>
                 <el-button class="btn btn-warning" @click="lbClosedialog($event)">关闭</el-button>
             </div>
         </div>
@@ -50,15 +50,32 @@ export default {
             moduletype: 0,
             modulechange: false,
             moduleobj: {},
-            stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1
+            stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1,
+            currobj:[]
         }
     },
     mounted() {
         this.getModuleData
     },
     computed: {
-        getDisabled() {
-
+        getNextDisabled() {
+            let disabled = 
+            console.log('getNextDisabled')
+            console.log('------',this.steps,this.stepCount,this.currobj[this.steps])
+            if (this.steps>1&&this.steps<this.stepCount){
+                console.log('------',this.currobj[this.steps])
+                if (this.currobj[this.steps]._id){
+                    disabled = false
+                }
+            }
+            return disabled
+        },
+        getBackDisabled() {
+            let disabled = false
+            if (this.steps==1){
+                disabled = true
+            }
+            return disabled
         },
         getModuleData() {
             let tomodule = this.module.stepsInfo[this.steps - 1].module
@@ -81,7 +98,10 @@ export default {
             this.moduletype = 1
         },
         dialogData(val) {
-            //this.currentRow = val.row
+            console.log(val.row)
+            this.currobj[this.steps] = val.row
+            this.getNextDisabled
+            //this.currentRow = 
             //this.currDialog = val.dialog
         },
         next() {

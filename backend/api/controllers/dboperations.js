@@ -164,7 +164,7 @@ module.exports.all = function* all(db, name, next) {
     let token = this.req.headers.authorization
     let authtime = this.req.headers.authtime
     console.log(db)
-    if (db != 'webclone' || db != 'test') {
+    if (db != 'webclone' && db != 'test') {
         if (!verify(token, authtime)) {
             this.status = 401
             console.log('Access Forbidden')
