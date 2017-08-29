@@ -17,6 +17,30 @@ export default {
         'foreignField': '_id',
         'as': 'classes'
     }],
+    'deleteall': function (vm,param) {
+        let eve = []
+        for (let tableitem of vm.multipleSelection) {
+            let item = {
+                _id:tableitem._id,
+                _delete:true
+            }
+            eve.push(item)
+        }
+        if (eve.length > 0) {
+            vm.mx_db_bulkwrite('coursescheduling', eve).then(response => {
+                vm.$message({
+                    message: '操作成功',
+                    type: 'success'
+                })
+                vm.handleSearch()
+            })
+        } else {
+            vm.$message({
+                message: '请选择一个排课',
+                type: 'success'
+            })
+        }
+    },
     'pageSearch': [
         {
             'type': 'handleback',
@@ -72,7 +96,7 @@ export default {
                 }, {
                     'label': '批量删除',
                     'type': '',
-                    'showdialog': 'lb-cate',
+                    'func': 'deleteall',
                     'actionoption': 'lessonmanageles'
                 },
             ]

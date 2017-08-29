@@ -44,12 +44,12 @@
             <div v-if="singleBtnSearch" class="pull-right">
                 <template v-for="item in singleBtnSearchInfo">
                     <template v-if="getActionOption(item.actionoption)">
-                        <el-button style="float:right;margin-left:3px;" :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
+                        <el-button style="float:right;margin-left:3px;" :type="item.type" @click="singleBtnAction(item)" :icon="item.icon">{{item.label}}</el-button>
                     </template>
                 </template>
             </div>
         </div>
-        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
+        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange" @selection-change="handleSelectionChange">
             <template v-for="(item,index) in textTableInfo">
                 <template v-if="item.type=='checkbox'">
                     <el-table-column type="selection" width="55">
@@ -432,8 +432,17 @@ export default {
         }
     },
     methods: {
-        getRefund(item) {
-
+        handleSelectionChange(val) {
+            this.multipleSelection = val
+        },
+        singleBtnAction(item){
+            if (item.showdialog){
+                this.handOpenDialog(item.showdialog)
+            }else{
+                if (this.moduledata[item.func]){
+                    this.moduledata[item.func](this,item.param)
+                }
+            }
         },
         confirm_delete(id) {
             let vm = this

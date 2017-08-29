@@ -97,10 +97,10 @@
             </template>
             <template v-if="item.type=='switchdatetime'">
                 <el-form-item :label="item.label">
-                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
                     </el-switch>
                 </el-form-item>
-                <el-form-item v-if="item.fieldActive">
+                <el-form-item v-if="localdata.form[item.fieldActive]">
                     <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
                 </el-form-item>
             </template>
@@ -140,7 +140,7 @@
             </template>
             <template v-if="item.type=='switchweek'">
                 <el-form-item :label="item.label">
-                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
                     </el-switch>
                 </el-form-item>
                 <el-form-item label="结束日期" :prop="item.prop" :required="true" v-if="localdata.form[item.fieldActive]">
