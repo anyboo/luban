@@ -22,21 +22,13 @@
                 </el-form-item>
             </template>
             <template v-if="item.type=='textTag'">
-                <el-form-item :label="item.label" :prop="item.prop">
+                <el-form-item :label="item.label">
                     <el-tag :type="item.color">{{localdata.form[item.field]}}{{item.text}}</el-tag>
                 </el-form-item>
             </template>
             <template v-if="item.type=='numberinput'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
-                </el-form-item>
-            </template>
-            <template v-if="item.type=='lessonprice'">
-                <el-form-item :label="item.label" :prop="item.prop">
-                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
-                    <el-tooltip content="用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入" placement="top">
-                        <el-button>用于计算课耗金额 = 应缴金额 ÷ 报名课次(不包括赠送课次) （保留2位小数点，4舍五入</el-button>
-                    </el-tooltip>
                 </el-form-item>
             </template>
             <template v-if="item.type=='datetime'">
@@ -84,10 +76,6 @@
                 </el-form-item>
                 <template v-if="item.fieldActive1">
                     <el-form-item :label="item.switchlabel2">
-                        <el-switch v-model="item.fieldActive2" on-text="" off-text="">
-                        </el-switch>
-                    </el-form-item>
-                    <el-form-item v-if="item.fieldActive2">
                         <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2"></lb-numberinput>
                     </el-form-item>
                     <el-form-item>

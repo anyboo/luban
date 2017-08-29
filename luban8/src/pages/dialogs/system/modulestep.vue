@@ -15,6 +15,7 @@
                         <el-step :title="item.label"></el-step>
                     </template>
                 </el-steps>
+                <hr class="hrstyle">
                 <template v-if="moduletype==1">
                     <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-systemmodule>
                 </template>
@@ -22,6 +23,10 @@
                     <lb-dialogmmoduleform ref="ruleForm" :module="moduleobj"></lb-dialogmmoduleform>
                 </template>
                 <template v-if="moduletype==3">
+                    <lb-blank @blankmounted="blankmounted">
+                    </lb-blank>
+                </template>
+                 <template v-if="moduletype==4">
                     <lb-blank @blankmounted="blankmounted">
                     </lb-blank>
                 </template>
@@ -34,6 +39,12 @@
         </div>
     </div>
 </template>
+<style>
+.hrstyle {
+    margin-bottom: 10px;
+}
+</style>
+
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
 import dialogmmoduleform from './moduleform.vue'
@@ -59,6 +70,7 @@ export default {
     },
     mounted() {
         this.getModuleData
+        this.getNextDisabled()
     },
     computed: {
         getModuleData() {
@@ -73,6 +85,8 @@ export default {
             } else if (moduleform[tomodule]) {
                 this.moduleobj = moduleform[tomodule]
                 this.moduletype = 2
+            }else{
+                this.moduletype = 4
             }
             return this.moduleobj
         }
@@ -84,7 +98,12 @@ export default {
                 if (this.currobj[this.steps] && this.currobj[this.steps]._id) {
                     disabled = false
                 }
+                console.log(this.moduletype)
+                if (this.moduletype == 2) {
+                    disabled = false
+                }
             }
+
             this.nextDisabled = disabled
         },
         getBackDisabled() {

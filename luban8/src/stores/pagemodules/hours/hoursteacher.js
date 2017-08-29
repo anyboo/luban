@@ -1,6 +1,6 @@
 export default {
-    'pageName': 'hoursstudent',
-    'pageLable': '学员课耗',
+    'pageName': 'hoursteacher',
+    'pageLable': '教师课耗',
     'tableSearch': [
         {
             'localField': 'student_id',
@@ -46,7 +46,7 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                        'key': 'student_id',
+                        'key': 'teacher_name',
                         'value': searchValue,
                         'type': ''
                     })
@@ -55,9 +55,9 @@ export default {
             },
             'fields': [
                 {
-                    'text': '请选择学员',
-                    'showdialog': 'selectstudentdialog',
-                    'search': 'student_name'
+                    'text': '请选择老师',
+                    'showdialog': 'selectteacherdialog',
+                    'search': 'teacher_name'
                 }
             ]
         }
@@ -65,9 +65,9 @@ export default {
     'pageTableField': [
         {
             'type': 'tabletext',
-            'label': '学员',
-            'table': 'student',
-            'prop': 'student_name'
+            'label': '老师',
+            'prop': 'name',
+            'table': 'employee'
         },
         {
             'type': 'subtext',
@@ -98,17 +98,6 @@ export default {
             'label': '课程金额',
             'prop': 'unit_price',
             'table': 'course'
-        },
-        {
-            'type': 'tabletext',
-            'label': '授课老师',
-            'prop': 'name',
-            'table': 'employee'
-        },
-        {
-            'type': 'text',
-            'label': '登记时间',
-            'prop': 'creattime',
         }
     ],
     'pageTable': 'attendance',

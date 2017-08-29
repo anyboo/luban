@@ -15,7 +15,7 @@ export default {
         'c_unit_price': '',
         'order_remark': '',
         'present_times': 0,
-        'discount': 0,
+        'discount': 100,
         'discount_amount': 0,
         'order_amount': 0,
         'unpay_amount': 0,
@@ -60,14 +60,13 @@ export default {
         {
             'type': 'switchdiscount',
             'switchlabel1': '折扣金额',
-            'switchlabel2': '计算器',
+            'switchlabel2': '折扣计算器',
             'prop': '',
             'field1': 'has_discount',
             'field2': 'discount',
             'fieldActive1':false,
-            'fieldActive2':false,
             'text1':'元',
-            'text2':'计算',
+            'text2':'%折',
         },
         {
             'type': 'switchnumber',
@@ -78,7 +77,7 @@ export default {
             'text':'次'
         },
         {
-            'type': 'lessonprice',
+            'type': 'numberinput',
             'label': '课耗单价',
             'prop': '',
             'field': 'c_unit_price',

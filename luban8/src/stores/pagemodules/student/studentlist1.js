@@ -87,13 +87,13 @@ export default {
         },
         {
             'type': 'subtext',
-            'label': '所在班级',
+            'label': '班级',
             'prop': 'classes',
             'subprop': 'class_name'
         },
         {
             'type': 'tabletext',
-            'label': '授课老师',
+            'label': '老师',
             'prop': 'name',
             'table': 'employee'
         },

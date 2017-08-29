@@ -26,6 +26,7 @@ export default {
     'tableChange': function (vm, data) {
         let filterObj = []
         return new Promise((resolve, reject) => {
+            let attendance = []
             if (vm.stepsdata) {
                 filterObj.push({
                     'key': 'coursescheduling_id',
@@ -34,7 +35,6 @@ export default {
                 })
                 let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
                 vm.handleGetFilterTableTable('attendance', filterTxt).then((obj) => {
-                    let attendance = []
                     for (let subitem in data) {
                         let studentarray = data[subitem].student
                         if (studentarray && studentarray.length > 0) {
@@ -48,38 +48,35 @@ export default {
                                 }
                             }
                             if (student.attence_flag == vm.radiovalue) {
-                                attendance.push(data[subitem])
+                                attendance.push(student)
                             } else if (vm.radiovalue == '0') {
-                                attendance.push(data[subitem])
+                                attendance.push(student)
                             }
                         }
                     }
                     resolve(attendance)
                 })
             } else {
-                resolve(data)
+                resolve(attendance)
             }
         })
     },
-    'attence': function (vm,param) {
+    'attence': function (vm, param) {
         let eve = []
         for (let tableitem of vm.multipleSelection) {
             let item = {
                 attence_flag: param,
-                classes_id: vm.class_id,
+                classes_id: vm.stepsdata.classes_id,
                 sclasses_id: vm.stepsdata.sclasses_id,
                 teacher_id: vm.stepsdata.teacher_id,
-                student_id: tableitem.student_id,
+                student_id: tableitem._id,
                 coursescheduling_id: vm.stepsdata._id
             }
-            let studentarray = tableitem.student
-            if (studentarray && studentarray.length > 0) {
-                 let student = studentarray[0]
-                 if (student.attence_id){
-                    item._id = student.attence_id
-                 }else{
-
-                 }
+            if (tableitem.attence_id) {
+                item._id = tableitem.attence_id
+            } else {
+                let creattime = new Date()
+                item.creattime = creattime.getTime()
             }
             eve.push(item)
         }
@@ -143,21 +140,19 @@ export default {
             'label': '',
         },
         {
-            'type': 'studentRouter1',
+            'type': 'text',
             'label': '学员',
             'prop': 'student_name'
         },
         {
-            'type': 'tabletext',
+            'type': 'text',
             'label': '英文名',
             'prop': 'nickname',
-            'table': 'student'
         },
         {
-            'type': 'tabletext',
+            'type': 'checkstatus',
+            'statutype': 'attenceStatus',
             'label': '考勤状态',
-            'prop': 'attence_flag',
-            'table': 'student'
         }
     ],
     'pageTable': 'order',

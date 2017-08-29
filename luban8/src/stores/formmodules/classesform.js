@@ -7,24 +7,12 @@ export default {
         'open_time': '',
         'close_time': '',
         'max_student_num': 0,
-        'total_times': 0,
-        'unit_hours': 0,
         'teacher_id': '',
         'del_able': false,
         'class_flag': 0
     },
     'formField': [
-        {
-            'type': 'selectSearch',
-            'label': '授课老师',
-            'prop': 'teacher_id',
-            'field': 'teacher_id',
-            'text': '请选择老师',
-            'showdialog': 'selectteacherdialog',
-            'search': 'name',
-            'table':'employee'
-        },
-        {
+         {
             'type': 'selectSearch',
             'label': '课程',
             'prop': 'course_id',
@@ -33,6 +21,16 @@ export default {
             'showdialog': 'selectlessondialog',
             'search': 'lesson_name',
             'table':'course'
+        },
+        {
+            'type': 'selectSearch',
+            'label': '老师',
+            'prop': 'teacher_id',
+            'field': 'teacher_id',
+            'text': '请选择老师',
+            'showdialog': 'selectteacherdialog',
+            'search': 'name',
+            'table':'employee'
         },
         {
             'type': 'input',
@@ -60,20 +58,6 @@ export default {
             'prop': '',
             'field': 'max_student_num',
             'text': '人'
-        },
-        {
-            'type': 'numberinput',
-            'label': '授课次数',
-            'prop': '',
-            'field': 'total_times',
-            'text': '次'
-        },
-        {
-            'type': 'numberinput',
-            'label': '单次课时',
-            'prop': '',
-            'field': 'unit_hours',
-            'text': '小时'
         }
     ],
     'pageTable': 'classes',

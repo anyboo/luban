@@ -1,9 +1,9 @@
 export default {
     'pageName': 'orderstepdialog',
-    'pageLable': '杂费',
+    'pageLable': '报名',
     'stepsInfo': [{
         'label': '创建订单',
-        'module': 'miscellaneousfees'
+        'module': 'studentorderform'
     },{
         'label': '缴费',
         'module': 'stepstudentdialog'
