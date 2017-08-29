@@ -203,7 +203,7 @@
                 </template>
             </template>
         </el-table>
-        <div class="pagination">
+        <div class="pagination" v-if="getPagination">
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-sizes="pagination.pagesizes" :page-size="pagination.pagesize" layout="total, sizes, prev, pager, next, jumper" :total="pagination.total">
             </el-pagination>
         </div>
@@ -259,7 +259,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
-    props: ['module', 'info', 'searchValue', 'value'],
+    props: ['module', 'info', 'searchValue', 'value','stepsdata'],
     data() {
         return {
             moduledata: '',
@@ -323,6 +323,13 @@ export default {
         }
     },
     computed: {
+        getPagination(){
+            let pagination = true
+            if (this.moduledata.paginationhide){
+                pagination = false
+            }
+            return pagination
+        },
         getCheckHighlight() {
             this.highlight = true
         },
@@ -621,14 +628,19 @@ export default {
             }
             console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            if (this.moduledata.pagesize){
+            if (this.moduledata.pagesize) {
                 this.pagination.pagesize = this.moduledata.pagesize
             }
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
-                    this.moduleTableData = obj.data.data
-                    var table = this.$refs.table
-                    table.$forceUpdate()
+                    if (this.moduledata.tableChange) {
+                        this.moduledata.tableChange(this,obj.data.data).then((obj)=>{
+                             this.moduleTableData =  obj
+                             console.log(obj)
+                        })
+                    } else {
+                        this.moduleTableData = obj.data.data
+                    }
                     console.log(this.moduledata.pageTable, this.moduleTableData)
                 })
             }
