@@ -49,7 +49,7 @@
                 </template>
             </div>
         </div>
-        <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
+        <el-table  ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
             <template v-for="(item,index) in textTableInfo">
                 <template v-if="item.type=='checkbox'">
                     <el-table-column type="selection" width="55">
