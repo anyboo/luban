@@ -1,6 +1,6 @@
 <template>
-    <div class="modal-over bg-black" style="z-index: 101;    margin: -100px 0px 0px -100px;">
-        <div class="modal-center animated fadeInUp text-center" style="width:200px;margin:-100px 0 0 -100px">
+    <div class="modal-over bg-black" style="z-index: 6000;    margin: -100px 0px 0px -100px;">
+        <div class="modal-center text-center" style="width:200px;margin:-100px 0 0 -100px">
             <div class="thumb-lg">
                 <img class="img-circle" src="/assets/images/a0.jpg">
             </div>

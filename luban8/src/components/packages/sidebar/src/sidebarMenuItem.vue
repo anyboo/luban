@@ -13,7 +13,7 @@
 <style>
 .li_arrow{
     position: relative;
-    z-index: 300;
+    z-index: 3000;
 }
 .arrow{
     display: inline-block;
