@@ -16,7 +16,7 @@
                     </template>
                 </el-steps>
                 <template v-if="moduletype==1">
-                    <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData"></lb-systemmodule>
+                    <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-systemmodule>
                 </template>
                 <template v-if="moduletype==2">
                     <lb-dialogmmoduleform ref="ruleForm" :module="moduleobj"></lb-dialogmmoduleform>
@@ -84,12 +84,6 @@ export default {
                 if (this.currobj[this.steps] && this.currobj[this.steps]._id) {
                     disabled = false
                 }
-            }
-            if (this.steps == this.stepCount) {
-                disabled = false
-                this.nextTitle = '确定'
-            } else {
-                this.nextTitle = '下一步'
             }
             this.nextDisabled = disabled
         },
