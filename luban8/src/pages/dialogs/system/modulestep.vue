@@ -15,6 +15,7 @@
                         <el-step :title="item.label"></el-step>
                     </template>
                 </el-steps>
+                <hr class="hrstyle">
                 <template v-if="moduletype==1">
                     <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-systemmodule>
                 </template>
@@ -34,6 +35,13 @@
         </div>
     </div>
 </template>
+<style>
+.hrstyle{
+    margin-bottom:10px;
+}
+
+</style>
+
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
 import dialogmmoduleform from './moduleform.vue'
