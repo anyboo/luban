@@ -22,7 +22,6 @@ import page70 from '~/pages/dialogs/system/cart.vue'
 import page68 from '~/pages/dialogs/student/details.vue'
 import page69 from '~/pages/dialogs/system/dict_items.vue'
 import page72 from '~/pages/dialogs/student/refunds.vue'
-import page73 from '~/pages/dialogs/hours/arrangeedit.vue'
 import page76 from '~/pages/dialogs/hours/attendance.vue'
 import page13 from '~/pages/dialogs/lesson/PrintOrder.vue'
 import page79 from '~/pages/dialogs/system/module.vue'
@@ -53,7 +52,6 @@ pages['lb-addmodal'] = page67
 pages['lb-details'] = page68
 pages['lb-dictitems'] = page69
 pages['lb-refunds'] = page72
-pages['lb-arrangeedit'] = page73
 pages['lb-attendance'] = page76
 pages['lb-authority'] = page77
 pages['lb-printerreceipt'] = page66

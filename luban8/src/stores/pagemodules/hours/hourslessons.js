@@ -11,7 +11,7 @@ export default {
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
-    },],
+    }],
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -75,7 +75,7 @@ export default {
         },
         {
             'type': 'text',
-            'label': '班级名',
+            'label': '班级',
             'prop': 'class_name',
         },
         {

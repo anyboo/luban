@@ -20,6 +20,10 @@
             <el-tag type="success" v-if="lessonData.pay_status==1">部分付款</el-tag>
             <el-tag type="danger"  v-if="lessonData.pay_status==2">支付完成</el-tag>
         </template>
+        <template v-if="typeData.statutype=='defrolestatus'">
+            <el-tag type="gray" v-if="lessonData.defrole">默认</el-tag>
+            <span v-if="lessonData.defrole"></span>
+        </template>
     </div>
 </template>
 <script>
