@@ -44,7 +44,7 @@ export default {
                 'icon': 'fa fa-pencil',
                 'text': '编辑'
             },{
-                'url': 'systemrolesset',
+                'url': 'lb-authority',
                 'icon': 'fa fa-pencil',
                 'text': '权限设置'
             }, {

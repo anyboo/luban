@@ -47,6 +47,11 @@ export default {
             'type': 'text',
             'label': '描述',
             'prop': 'desc',
+        },
+        {
+            'type': 'checkstatus',
+            'statutype': 'defrolestatus',
+            'label': '状态',
         }
     ],
     'pageTable': 'role',

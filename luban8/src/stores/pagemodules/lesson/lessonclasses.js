@@ -6,7 +6,7 @@ export default {
         'from': 'course',
         'foreignField': '_id',
         'as': 'course'
-    },{
+    }, {
         'localField': 'teacher_id',
         'from': 'employee',
         'foreignField': '_id',
@@ -118,7 +118,8 @@ export default {
             'type': 'checkstatus',
             'statutype': 'openlessonsstatus',
             'label': '状态',
-        }, {
+        },
+        {
             'type': 'progress',
             'label': '招生情况',
         },

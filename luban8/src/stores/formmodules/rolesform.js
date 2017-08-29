@@ -18,6 +18,12 @@ export default {
             'prop': '',
             'field': 'desc'
         },
+        {
+            'type': 'switch',
+            'label': '默认角色',
+            'prop': '',
+            'field': 'defrole'
+        }
     ],
     'pageTable': 'role',
     'pageTemplate': 'form',

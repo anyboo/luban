@@ -6,7 +6,7 @@
                     <el-input v-model="localdata.form[item.field]"></el-input>
                 </el-form-item>
             </template>
-             <template v-if="item.type=='text'">
+            <template v-if="item.type=='text'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     {{localdata.form[item.field]}}{{item.text}}
                 </el-form-item>
@@ -16,7 +16,7 @@
                     {{localdata.form[item.field1]-localdata.form[item.field2]}}{{item.text}}
                 </el-form-item>
             </template>
-             <template v-if="item.type=='addition'">
+            <template v-if="item.type=='addition'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     {{Number(localdata.form[item.field1])+Number(localdata.form[item.field2])}}
                 </el-form-item>
@@ -130,6 +130,12 @@
                         <el-option v-for="value in getDictData(getDistNum(item))" :key="value._id" :label="value.text" :value="value._id">
                         </el-option>
                     </el-select>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='switch'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-switch v-model="localdata.form[item.field]" on-text="" off-text="">
+                    </el-switch>
                 </el-form-item>
             </template>
             <template v-if="item.type=='switchweek'">
