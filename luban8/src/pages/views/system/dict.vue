@@ -1,23 +1,16 @@
 <template>
-    <div class="=wrapper">
-        <div class="wrapper-xs">
-            <div class="wrapper panel panel-default bg-white">
-                <div class="panel panel-default" style="margin-top:14px;">
-                    <div class="panel-heading">字典列表</div>
-                    <ul class="list-group">
-    
-                        <li class="list-group-item clear" v-for="(item, index) in localdata.dict">
-                            <span class="pull-right">
-                                <template v-if="getActionOption('systememdictedit')">
-                                    <a @click="handleShowDialog('lb-dictitems',item)">编辑</a>
-                                </template>
-                            </span>
-                            <h4 class="list-group-item-head text-danger">{{item.text}}</h4>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">字典列表</div>
+        <ul class="list-group">
+            <li class="list-group-item clear" v-for="(item, index) in localdata.dict">
+                <span class="pull-right">
+                    <template v-if="getActionOption('systememdictedit')">
+                        <a @click="handleShowDialog('lb-dictitems',item)">编辑</a>
+                    </template>
+                </span>
+                <h4 class="list-group-item-head text-danger">{{item.text}}</h4>
+            </li>
+        </ul>
     </div>
 </template>
 <script>

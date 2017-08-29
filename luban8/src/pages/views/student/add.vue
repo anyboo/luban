@@ -1,15 +1,13 @@
 <template>
-    <div class="wrapper">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-user"></i>学员档案
-            </div>
-            <div class="panel-body">
-                <lb-addstudent ref="ruleForm" :form="form"></lb-addstudent>
-            </div>
-            <div class="panel-footer" style="text-align:center">
-                <button type="button"  class="btn btn-primary w" @click="handleClick">确认</button>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-user"></i>学员档案
+        </div>
+        <div class="panel-body">
+            <lb-addstudent ref="ruleForm" :form="form"></lb-addstudent>
+        </div>
+        <div class="panel-footer" style="text-align:center">
+            <button type="button" class="btn btn-primary w" @click="handleClick">确认</button>
         </div>
     </div>
 </template>
