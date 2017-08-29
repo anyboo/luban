@@ -27,8 +27,8 @@
                 </template>
             </div>
             <div class="modal-footer">
-                <el-button class="btn btn-primary" @click="back()" :disabled="getBackDisabled">上一步</el-button>
-                <el-button class="btn btn-primary" @click="next()" :disabled="getNextDisabled">下一步</el-button>
+                <el-button class="btn btn-primary" @click="back()" :disabled="backDisabled">上一步</el-button>
+                <el-button class="btn btn-primary" @click="next()" :disabled="nextDisabled">{{nextTitle}}</el-button>
                 <el-button class="btn btn-warning" @click="lbClosedialog($event)">关闭</el-button>
             </div>
         </div>
@@ -51,32 +51,16 @@ export default {
             modulechange: false,
             moduleobj: {},
             stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1,
-            currobj:[]
+            currobj: {},
+            nextDisabled: true,
+            backDisabled: true,
+            nextTitle: '下一步'
         }
     },
     mounted() {
         this.getModuleData
     },
     computed: {
-        getNextDisabled() {
-            let disabled = 
-            console.log('getNextDisabled')
-            console.log('------',this.steps,this.stepCount,this.currobj[this.steps])
-            if (this.steps>1&&this.steps<this.stepCount){
-                console.log('------',this.currobj[this.steps])
-                if (this.currobj[this.steps]._id){
-                    disabled = false
-                }
-            }
-            return disabled
-        },
-        getBackDisabled() {
-            let disabled = false
-            if (this.steps==1){
-                disabled = true
-            }
-            return disabled
-        },
         getModuleData() {
             let tomodule = this.module.stepsInfo[this.steps - 1].module
             if (pagesmodule[tomodule]) {
@@ -94,13 +78,34 @@ export default {
         }
     },
     methods: {
+        getNextDisabled() {
+            let disabled = true
+            if (this.steps > 0 && this.steps < this.stepCount) {
+                if (this.currobj[this.steps] && this.currobj[this.steps]._id) {
+                    disabled = false
+                }
+            }
+            if (this.steps == this.stepCount) {
+                disabled = false
+                this.nextTitle = '确定'
+            } else {
+                this.nextTitle = '下一步'
+            }
+            this.nextDisabled = disabled
+        },
+        getBackDisabled() {
+            let disabled = true
+            if (this.steps > 1) {
+                disabled = false
+            }
+            this.backDisabled = disabled
+        },
         blankmounted() {
             this.moduletype = 1
         },
         dialogData(val) {
-            console.log(val.row)
             this.currobj[this.steps] = val.row
-            this.getNextDisabled
+            this.getNextDisabled()
             //this.currentRow = 
             //this.currDialog = val.dialog
         },
@@ -109,12 +114,17 @@ export default {
                 this.steps++
                 this.getModuleData
             }
+            this.getNextDisabled()
+            this.getBackDisabled()
         },
         back() {
             if (this.steps > 1) {
                 this.steps--
                 this.getModuleData
             }
+            this.currobj[this.steps] = null
+            this.getNextDisabled()
+            this.getBackDisabled()
         }
     }
 }

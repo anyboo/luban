@@ -17,6 +17,11 @@ export default {
         'foreignField': '_id',
         'as': 'classes'
     }],
+    'created': function (vm) {
+        if (vm.$store.state.dialogs.dailogdata){
+            vm.selectsearchValue = vm.$store.state.dialogs.dailogdata._id
+        }
+    },
     'pageSearch': [
         {
             'type': 'dateSearch',
@@ -40,7 +45,8 @@ export default {
                 {
                     'text': '请选择班级',
                     'showdialog': 'selectclassesdialog',
-                    'search': 'class_name'
+                    'search': 'class_name',
+                    'table':'classes'
                 }
             ]
         },

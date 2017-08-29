@@ -1,59 +1,53 @@
 <template>
     <div class="table-box" style="margin:0;" :class="{'table-blockinfo':info,'table-block':!info}">
         <div class="search" style="height:62px;" v-if="getSearch">
-                <div class="floatlefts"  v-if="textSearch">
-                    <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
-                        <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
-                            <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
-                        </el-select>
-                    </el-input>
-                </div>
-                <div class="floatlefts"  v-if="handleback">
-                    <div class="btn-group dropdown" dropdown="">
-                        <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
-                    </div>
-                </div>
-                <div class="floatlefts"  v-if="dateSearch">
-                    <div class="block">
-                        <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
-                        </el-date-picker>
-                    </div>
-                </div>
-                <div class="floatlefts" v-if="classesSearch">
-                    <el-select v-model="classesId" filterable placeholder="请选择班级">
-                        <el-option v-for="item in getClassesData" :key="item._id" :label="item.class_name" :value="item._id">
-                        </el-option>
+            <div class="floatlefts" v-if="textSearch">
+                <el-input placeholder="请输入内容" v-model="textSearchValue" @change="handleSearch">
+                    <el-select v-model="textSearchKey" slot="prepend" placeholder="请选择" @change="handleSearch">
+                        <el-option v-for="item in textSearchInfo" :key="item.value" :value="item.value" :label="item.label"></el-option>
                     </el-select>
+                </el-input>
+            </div>
+            <div class="floatlefts" v-if="handleback">
+                <div class="btn-group dropdown" dropdown="">
+                    <a class="btn btn-default" @click="lessonrouter($event,'/hours/lessons')">返回</a>
                 </div>
-                <div class="floatlefts" v-if="selectSearch">
-                    <template v-for="item in selectSearchInfo">
-                        <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
-                    </template>
+            </div>
+            <div class="floatlefts" v-if="dateSearch">
+                <div class="block">
+                    <el-date-picker v-model="datevalue" type="daterange" align="left" placeholder="选择日期范围" :picker-options="pickerOptions" @change="handleSearch">
+                    </el-date-picker>
                 </div>
-                <div class="floatlefts" v-if="radioGroupSearch">
-                    <template v-for="item in radioGroupSearchInfo">
-                        <el-radio-group v-model="radiovalue" @change="handleSearch">
-                            <template v-for="(value,index) in item.labels">
-                                <el-radio-button class="normalfont" :label="index">{{value.label}}</el-radio-button>
-                            </template>
-                        </el-radio-group>
-                    </template>
-                </div>
-                <div class="pull-right" v-if="groupBtnSearch">
-                    <el-button-group>
-                        <template v-for="item in groupBtnSearchInfo">
-                            <el-button  style="float:right;" :type="item.type">
-                                {{item.label}}</el-button>
+            </div>
+            <div class="floatlefts" v-if="selectSearch">
+                <template v-for="item in selectSearchInfo">
+                    <lb-selectesearch @input="handleSearch" v-model="selectsearchValue" :selected="selStudentAddInquiry" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search" :table="item.table"></lb-selectesearch>
+                </template>
+            </div>
+            <div class="floatlefts" v-if="radioGroupSearch">
+                <template v-for="item in radioGroupSearchInfo">
+                    <el-radio-group v-model="radiovalue" @change="handleSearch">
+                        <template v-for="(value,index) in item.labels">
+                            <el-radio-button class="normalfont" :label="index">{{value.label}}</el-radio-button>
                         </template>
-                    </el-button-group>
-                </div>
-                <div  v-if="singleBtnSearch" class="pull-right">
-                    <template v-for="item in singleBtnSearchInfo">
-                        <template v-if="getActionOption(item.actionoption)">
-                            <el-button style="float:right;margin-left:3px;"  :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
-                        </template>
+                    </el-radio-group>
+                </template>
+            </div>
+            <div class="pull-right" v-if="groupBtnSearch">
+                <el-button-group>
+                    <template v-for="item in groupBtnSearchInfo">
+                        <el-button style="float:right;" :type="item.type">
+                            {{item.label}}</el-button>
                     </template>
-                </div>
+                </el-button-group>
+            </div>
+            <div v-if="singleBtnSearch" class="pull-right">
+                <template v-for="item in singleBtnSearchInfo">
+                    <template v-if="getActionOption(item.actionoption)">
+                        <el-button style="float:right;margin-left:3px;" :type="item.type" @click="handOpenDialog(item.showdialog)" :icon="item.icon">{{item.label}}</el-button>
+                    </template>
+                </template>
+            </div>
         </div>
         <el-table ref="table" :data="moduleTableData" stripe border :class="getUpdata" highlight-current-row @current-change="handleTableChange">
             <template v-for="(item,index) in textTableInfo">
@@ -217,11 +211,11 @@
     </div>
 </template>
 <style>
-
-.floatlefts{
+.floatlefts {
     float: left;
     margin-left: 5px;
 }
+
 .table-blockinfo {
     border-radius: 4px;
     background: #fff;
@@ -240,7 +234,6 @@
 
 .table-block .search {
     padding: 12px;
-    
 }
 
 .table-block .pagination {
@@ -277,12 +270,12 @@ export default {
             datevalue: '',
             radiovalue: '0',
             highlight: false,
-            classesId: '',
             selectsearchValue: '',
             multipleSelection: [],
+            deffilterObj: [],
             lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-addmodal', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform','studentsmsform'],
+            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform', 'studentsmsform'],
             hastableSearch: false,
             selStudentAddInquiry: '',
             pickerOptions: {
@@ -319,6 +312,14 @@ export default {
             this.moduledata = this.module
         } else if (typeof (this.module) == 'string' && this.module != '') {
             this.moduledata = pagesmodule[this.module]
+        }
+        if (this.module.created) {
+            this.module.created(this)
+        }
+    },
+    mounted() {
+        if (this.module.mounted) {
+            this.module.mounted(this)
         }
     },
     computed: {
@@ -401,23 +402,16 @@ export default {
         selectesearchFun() {
             return this.getSearchFun('selectSearch')
         },
-        classesSearch() {
-            return this.getModuleSearchInfo('classesSearch').length > 0
-        },
         //表格
         textTableInfo() {
             if (this.moduledata && this.moduledata.pageTableField.length > 0) {
                 let textTableInfo = this.moduledata.pageTableField
                 return textTableInfo
             }
-        },
-        getClassesData() {
-            let classes = this.$store.state.models.models.classes.data
-            return classes
-        },
+        }
     },
     watch: {
-        module: function (val) {
+        module: function(val) {
             if (typeof (val) == 'object') {
                 this.moduledata = val
                 this.handleSearch()
@@ -606,12 +600,15 @@ export default {
                     'type': ''
                 })
             }
+            for (let item of this.deffilterObj) {
+                filterObj.push(item)
+            }
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
                     if (item.type == '') {
                         filterObj.push(item)
-                    } else if (item.type&&item.type.length > 0) {
+                    } else if (item.type && item.type.length > 0) {
                         filterObj.push(item)
                     } else {
                         filterObj.push({
@@ -624,6 +621,9 @@ export default {
             }
             console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            if (this.moduledata.pagesize){
+                this.pagination.pagesize = this.moduledata.pagesize
+            }
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     this.moduleTableData = obj.data.data

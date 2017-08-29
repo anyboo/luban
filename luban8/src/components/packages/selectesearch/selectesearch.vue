@@ -23,7 +23,6 @@ export default {
         }
     },
     mounted() {
-
         if (this.table && this.search_id && this.search_id.length > 0) {
             this.handleGetTableID(this.table, this.search_id).then((obj) => {
                 if (obj.data.length > 0) {
