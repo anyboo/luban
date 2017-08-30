@@ -52,8 +52,8 @@ export default {
         {
             'type': 'selectSearch',
             'label': '班级',
-            'prop': 'classes_id',
-            'field': 'classes_id',
+            'prop': 'class_id',
+            'field': 'class_id',
             'text': '请选择',
             'showdialog': 'selectclassesdialog',
             'search': 'class_name',
@@ -62,14 +62,14 @@ export default {
         {
             'type': 'numberinput',
             'label': '报名课次',
-            'prop': '',
+            'prop': 'origin_times',
             'field': 'origin_times',
             'text': '次'
         },
         {
             'type': 'numberinput',
             'label': '课次单价',
-            'prop': '',
+            'prop': 'unit_price',
             'field': 'unit_price',
             'text': '元/次'
         },
@@ -131,5 +131,17 @@ export default {
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {}
+    rules: {
+        class_id: [
+            { required: true, message: '请选择班级', trigger: 'change' }
+        ],
+        origin_times: [
+            { required: true, message: '请输入报名课次', trigger: 'blur' },
+            { min: 1, max: 300, message: '长度在 1 到 300个字符', trigger: 'blur' }
+        ],
+        unit_price: [
+            { required: true, message: '请输入课次单价', trigger: 'blur' },
+            { min: 1, max: 300, message: '长度在 1 到 300个字符', trigger: 'blur' }
+        ],
+    }
 }
