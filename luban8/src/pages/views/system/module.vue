@@ -132,6 +132,9 @@
                             <template v-if="item.type=='subtext'">
                                 {{ getSubText(scope.row,item.prop,item.subprop) }}
                             </template>
+                            <template v-if="item.type=='substatus'">
+                                <lb-checkstatus :lessonData="scope.row" :typeData="getSubText(scope.row,item.prop,item.subprop)"  :tabletype="item.subprop" v-on:search="handleSearch"></lb-checkstatus>
+                            </template>
                             <template v-if="item.type=='text'">
                                 {{ scope.row[item.prop] }}
                             </template>

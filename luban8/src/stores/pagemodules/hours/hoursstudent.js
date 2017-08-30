@@ -88,10 +88,10 @@ export default {
             'prop': 'unit_hours'
         },
         {
-            'type': 'tabletext',
+            'type': 'substatus',
             'label': '类型',
-            'table': 'course',
-            'prop': 'lesson_type'
+            'prop': 'course',
+            'subprop': 'lesson_type'
         },
         {
             'type': 'tabletext',

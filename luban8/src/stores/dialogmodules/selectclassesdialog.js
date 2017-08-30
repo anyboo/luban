@@ -40,6 +40,12 @@ export default {
         },
         {
             'type': 'tabletext',
+            'label': '课程',
+            'table': 'course',
+            'prop': 'lesson_name',
+        },
+        {
+            'type': 'tabletext',
             'label': '老师',
             'table': 'employee',
             'prop': 'name',
@@ -52,7 +58,7 @@ export default {
         },
         {
             'type': 'textScale',
-            'label': '已报人数',
+            'label': '上课次数',
             'prop1': 'total_times',
             'prop2':'total_times'
         }

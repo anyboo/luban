@@ -30,12 +30,17 @@
             <el-tag type="warning"  v-if="lessonData.attence_flag==2">已考勤</el-tag>
             <el-tag type="danger"  v-if="lessonData.attence_flag==3">请假</el-tag>
         </template>
+        <template v-if="tabletype=='lesson_type'">
+            <el-tag type="gray" v-if="typeData==0">班课</el-tag>
+            <el-tag type="success" v-if="typeData==1">1对1</el-tag>
+            <el-tag type="warning"  v-if="typeData==2">课时包</el-tag>
+        </template>
     </div>
 </template>
 <script>
 export default {
     name: 'LbCheckstatus',
-    props: ['lessonData', 'typeData'],
+    props: ['lessonData', 'typeData','tabletype'],
     data() {
         return {
         }
