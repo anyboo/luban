@@ -48,7 +48,7 @@ export default {
             vm.localdata.form.totletime = Number(vm.localdata.form.origin_times)
         }
     },
-    'beforeSave':function(vm){
+    'beforeSave': function (vm) {
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
         vm.localdata.form.body = `班课[${vm.localdata.form.classes_id}]${vm.localdata.form.totletime}次`
     },
@@ -56,8 +56,8 @@ export default {
         {
             'type': 'selectSearch',
             'label': '班级',
-            'prop': 'class_id',
-            'field': 'class_id',
+            'prop': 'classes_id',
+            'field': 'classes_id',
             'text': '请选择',
             'showdialog': 'selectclassesdialog',
             'search': 'class_name',
@@ -136,16 +136,14 @@ export default {
     'pageTemplate': 'form',
     'pagePath': '',
     rules: {
-        class_id: [
+        classes_id: [
             { required: true, message: '请选择班级', trigger: 'change' }
         ],
         origin_times: [
-            { required: true, message: '请输入报名课次', trigger: 'blur' },
-            { min: 1, max: 300, message: '长度在 1 到 300个字符', trigger: 'blur' }
+            { required: true, message: '请输入报名课次', trigger: 'blur' }
         ],
         unit_price: [
-            { required: true, message: '请输入课次单价', trigger: 'blur' },
-            { min: 1, max: 300, message: '长度在 1 到 300个字符', trigger: 'blur' }
+            { required: true, message: '请输入课次单价', trigger: 'blur' }
         ],
     }
 }

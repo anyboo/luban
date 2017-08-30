@@ -25,18 +25,18 @@ export default {
         'order_type': 3,
         'body': ''
     },
-    'beforeSave':function(vm){
+    'beforeSave': function (vm) {
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
         vm.localdata.form.body = '学杂费[' + vm.localdata.form.sel + '元]'
     },
     'formField': [
-       {
+        {
             'type': 'select',
             'label': '缴费项目',
             'prop': 'sel',
             'field': 'sel',
-            'dict': function(vm){
+            'dict': function (vm) {
                 let dict = 5
                 return dict
             }
@@ -59,7 +59,7 @@ export default {
             'label': '应缴金额',
             'prop': '',
             'field': 'origin_amount',
-            'text':'元'
+            'text': '元'
         }
     ],
     'pageTable': 'order',
@@ -71,7 +71,6 @@ export default {
         ],
         origin_amount: [
             { required: true, message: '请输入订单金额', trigger: 'blur' },
-            { min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur' }
         ]
     }
 }
