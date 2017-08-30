@@ -13,7 +13,6 @@
             </template>
             <template v-if="item.type=='phoneInput'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    <!-- <el-input v-model="localdata.form[item.field]"> -->
                     <template v-for="tag in formdata">
                         <el-tag :key="tag" :closable="true" type="success" @close="handleCloseTag(tag)">
                             {{tag.name}}
@@ -22,7 +21,6 @@
                     <el-button size="small" @click="changetelshow">{{ module.telshow + '/'+pagination.total}}
                         <template v-if="module.telshow <pagination.total">点击加载更多</template>
                     </el-button>
-                    <!-- </el-input> -->
                 </el-form-item>
             </template>
             <template v-if="item.type=='addphone'">
@@ -31,10 +29,10 @@
                     </el-switch>
                 </el-form-item>
                 <template v-if="localdata.form[item.fieldActive]">
-                    <el-form-item label="名字">
+                    <el-form-item label="名字" :prop="item.prop1">
                         <el-input v-model="localdata.form.new_name"></el-input>
                     </el-form-item>
-                    <el-form-item label="号码">
+                    <el-form-item label="号码" :prop="item.prop2">
                         <el-input v-model="localdata.form.new_tel"></el-input>
                     </el-form-item>
                     <el-form-item>
@@ -237,6 +235,23 @@ export default {
                 }
             }
         }
+        var validatePhone = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error(rule.message))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须为数字1开头并为11位!已输入' + value.length + '位。'))
+            } else {
+                let telArr = []
+                for (let item of this.localdata.form.tel) {
+                    telArr.push(item.tel)
+                }
+                if (telArr.indexOf(value) != '-1') {
+                    callback(new Error('号码已存在发送列表中，请核对或者更换新号码'))
+                } else {
+                    callback()
+                }
+            }
+        }
         var validateDate = (rule, value, callback) => {
             if (value === '') {
                 if (this.localdata.form.dayloop) {
@@ -261,6 +276,7 @@ export default {
             validateTel,
             validateDate,
             validateDatatime,
+            validatePhone,
             formdata: [],
             localdata: this.getform(),
             order: {},
@@ -333,12 +349,22 @@ export default {
             }
         },
         handleAdd() {
-            let newdata = {}
-            newdata.tel = this.localdata.form.new_tel
-            newdata.name = this.localdata.form.new_name
-            newdata.student_id = 0
-            this.localdata.form.tel.unshift(newdata)
-            this.changetel(this.module.telshow)
+            this.$refs['ruleForm'].validateField('new_name', (valid) => {
+                if (valid == '') {
+                    this.$refs['ruleForm'].validateField('new_tel', (validtel) => {
+                        if (validtel == '') {
+                            let newdata = {}
+                            newdata.tel = this.localdata.form.new_tel
+                            newdata.name = this.localdata.form.new_name
+                            newdata.student_id = 0
+                            this.localdata.form.tel.unshift(newdata)
+                            this.changetel(this.module.telshow)
+                            this.localdata.form.new_tel = ''
+                            this.localdata.form.new_name = ''
+                        }
+                    })
+                }
+            })
         },
         changetel(telshow) {
             this.pagination.total = this.localdata.form.tel.length

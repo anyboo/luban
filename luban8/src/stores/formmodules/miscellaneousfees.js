@@ -34,7 +34,7 @@ export default {
        {
             'type': 'select',
             'label': '缴费项目',
-            'prop': '',
+            'prop': 'sel',
             'field': 'sel',
             'dict': function(vm){
                 let dict = 5
@@ -44,7 +44,7 @@ export default {
         {
             'type': 'numberinput',
             'label': '订单金额',
-            'prop': '',
+            'prop': 'origin_amount',
             'field': 'origin_amount',
             'text': '元'
         },
@@ -65,5 +65,13 @@ export default {
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {}
+    rules: {
+        sel: [
+            { required: true, message: '请选择缴费项目', trigger: 'blur' }
+        ],
+        origin_amount: [
+            { required: true, message: '请输入订单金额', trigger: 'blur' },
+            { min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur' }
+        ]
+    }
 }
