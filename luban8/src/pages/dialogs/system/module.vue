@@ -89,14 +89,14 @@ export default {
         },
         appendmodule() {
             this.$refs['ruleForm'].append().then(() => {
-                vm.lbClosedialog()
+                this.lbClosedialog()
                 this.$store.state.dialogs.dailogdata = null
                 this.$store.state.envs.currDialog = 'moduleform'
             })
         },
         editmodule(id) {
             this.$refs['ruleForm'].append(id).then(() => {
-                vm.lbClosedialog()
+                this.lbClosedialog()
                 this.$store.state.dialogs.dailogdata = null
                 this.$store.state.envs.currDialog = 'moduleform'
             })

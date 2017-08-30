@@ -9,24 +9,7 @@ export default {
             'type': 'gt'
         }
     ],
-    'pageSearch': [
-        {
-            'type': 'handle',
-            'searchfunction': function (vm) {
-                let filterObj = []
-                let student_id = vm.getStudentId()
-                if (student_id.length > 0) {
-                    filterObj.push({
-                        'key': 'student_id',
-                        'value': student_id,
-                        'type': ''
-                    })
-                }
-                return filterObj
-            },
-            'fields': [{}]
-        }
-    ],
+    'pageSearch': [],
     'pageTableField': [
         {
             'type': 'text',
