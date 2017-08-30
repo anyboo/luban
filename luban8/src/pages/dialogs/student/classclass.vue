@@ -245,7 +245,7 @@ export default {
     watch: {},
     methods: {
         cacu_discount_amount() {
-            this.localdata.form.discount_amount = this.localdata.form.origin_amount * this.localdata.form.discount * 10 / 100
+            
             this.cacu_order_amount()
         },
         cacu_order_amount() {

@@ -26,14 +26,14 @@
                     <lb-blank @blankmounted="blankmounted">
                     </lb-blank>
                 </template>
-                 <template v-if="moduletype==4">
+                <template v-if="moduletype==4">
                     <lb-blank @blankmounted="blankmounted">
                     </lb-blank>
                 </template>
             </div>
             <div class="modal-footer">
-                <el-button class="btn btn-primary" @click="back()" :disabled="backDisabled">上一步</el-button>
-                <el-button class="btn btn-primary" @click="next()" :disabled="nextDisabled">{{nextTitle}}</el-button>
+                <el-button class="btn btn-primary" @click="back()" v-if="backDisabled">上一步</el-button>
+                <el-button class="btn btn-primary" @click="next()" v-if="nextDisabled">下一步</el-button>
                 <el-button class="btn btn-warning" @click="lbClosedialog($event)">关闭</el-button>
             </div>
         </div>
@@ -63,9 +63,8 @@ export default {
             moduleobj: {},
             stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1,
             currobj: {},
-            nextDisabled: true,
-            backDisabled: true,
-            nextTitle: '下一步'
+            nextDisabled: false,
+            backDisabled: false
         }
     },
     mounted() {
@@ -85,7 +84,7 @@ export default {
             } else if (moduleform[tomodule]) {
                 this.moduleobj = moduleform[tomodule]
                 this.moduletype = 2
-            }else{
+            } else {
                 this.moduletype = 4
             }
             return this.moduleobj
@@ -93,23 +92,21 @@ export default {
     },
     methods: {
         getNextDisabled() {
-            let disabled = true
+            let disabled = false
             if (this.steps > 0 && this.steps < this.stepCount) {
                 if (this.currobj[this.steps] && this.currobj[this.steps]._id) {
-                    disabled = false
+                    disabled = true
                 }
-                console.log(this.moduletype)
                 if (this.moduletype == 2) {
-                    disabled = false
+                    disabled = true
                 }
             }
-
             this.nextDisabled = disabled
         },
         getBackDisabled() {
-            let disabled = true
+            let disabled = false
             if (this.steps > 1) {
-                disabled = false
+                disabled = true
             }
             this.backDisabled = disabled
         },
@@ -124,8 +121,12 @@ export default {
         },
         next() {
             if (this.steps < this.stepCount) {
-                this.steps++
-                this.getModuleData
+                if (this.moduletype == 2) {
+                    this.$refs['ruleForm'].append()
+                } else {
+                    this.steps++
+                    this.getModuleData
+                }
             }
             this.getNextDisabled()
             this.getBackDisabled()

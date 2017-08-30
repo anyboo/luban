@@ -10,12 +10,12 @@ export default {
         'back_amount': 0,
         'unit_price': 0,
         'origin_amount': 0,
-        'has_discount': '',
-        'has_present': '',
+        'has_discount': false,
+        'has_present': false,
         'c_unit_price': '',
         'order_remark': '',
         'present_times': 0,
-        'discount': 100,
+        'discount': 0,
         'discount_amount': 0,
         'order_amount': 0,
         'unpay_amount': 0,
@@ -23,7 +23,30 @@ export default {
         'student_id': '',
         'order_no': '',
         'order_type': 1,
+        'totletime': 0,
         'body': ''
+    },
+    'numberChange': function (vm, obj) {
+        if (obj.field == 'discount') {
+            vm.localdata.form.discount_amount = vm.localdata.form.origin_amount * vm.localdata.form.discount / 100
+        }
+        let discount_amount = 0
+        if (vm.localdata.form.has_discount) {
+            discount_amount = vm.localdata.form.discount_amount
+        }
+        vm.localdata.form.origin_amount = vm.localdata.form.origin_times * vm.localdata.form.unit_price
+        let origin_times = Number(vm.localdata.form.origin_times)
+        if (origin_times != 0) {
+            vm.localdata.form.c_unit_price = (vm.localdata.form.origin_amount - discount_amount) / origin_times
+        }
+
+        vm.localdata.form.order_amount = vm.localdata.form.origin_amount - discount_amount
+        vm.localdata.form.unpay_amount = vm.localdata.form.order_amount
+        if (vm.localdata.form.has_present) {
+            vm.localdata.form.totletime = Number(vm.localdata.form.origin_times) + Number(vm.localdata.form.present_times)
+        } else {
+            vm.localdata.form.totletime = Number(vm.localdata.form.origin_times)
+        }
     },
     'formField': [
         {
@@ -55,26 +78,27 @@ export default {
             'label': '订单金额',
             'prop': '',
             'field': 'origin_amount',
-            'text': '元'
+            'text': '元',
+            'disabled': true
         },
         {
             'type': 'switchdiscount',
             'switchlabel1': '折扣金额',
             'switchlabel2': '折扣计算器',
             'prop': '',
-            'field1': 'has_discount',
+            'field1': 'discount_amount',
             'field2': 'discount',
-            'fieldActive1':false,
-            'text1':'元',
-            'text2':'%折',
+            'fieldActive1': 'has_discount',
+            'text1': '元',
+            'text2': '%折',
         },
         {
             'type': 'switchnumber',
             'label': '赠送课次',
             'prop': '',
-            'field': 'has_present',
-            'fieldActive':false,
-            'text':'次'
+            'field': 'present_times',
+            'fieldActive': 'has_present',
+            'text': '次'
         },
         {
             'type': 'numberinput',
@@ -94,14 +118,14 @@ export default {
             'label': '应缴金额',
             'prop': '',
             'field': 'order_amount',
-            'text':'元'
+            'text': '元'
         },
         {
             'type': 'textTag',
             'label': '总课次',
             'prop': '',
-            'field': 'order_amount',
-            'text':'次'
+            'field': 'totletime',
+            'text': '次'
         },
     ],
     'pageTable': 'order',

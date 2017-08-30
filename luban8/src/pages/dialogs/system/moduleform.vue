@@ -28,7 +28,7 @@
             </template>
             <template v-if="item.type=='numberinput'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
+                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text" :field="item.field" @change="numberChange" :disabled="item.disabled"></lb-numberinput>
                 </el-form-item>
             </template>
             <template v-if="item.type=='datetime'">
@@ -71,15 +71,15 @@
             </template>
             <template v-if="item.type=='switchdiscount'">
                 <el-form-item :label="item.switchlabel1">
-                    <el-switch v-model="item.fieldActive1" on-text="" off-text="">
+                    <el-switch v-model="localdata.form[item.fieldActive1]" on-text="" off-text="" :field="item.fieldActive1" @change="numberChange">
                     </el-switch>
                 </el-form-item>
-                <template v-if="item.fieldActive1">
+                <template v-if="localdata.form[item.fieldActive1]">
                     <el-form-item :label="item.switchlabel2">
-                        <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2"></lb-numberinput>
+                        <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2" :field="item.field2" @change="numberChange"></lb-numberinput>
                     </el-form-item>
                     <el-form-item>
-                        <lb-numberinput v-model="localdata.form[item.field1]" :text="item.text1"></lb-numberinput>
+                        <lb-numberinput v-model="localdata.form[item.field1]" :text="item.text1" :field="item.field1" @change="numberChange"></lb-numberinput>
                     </el-form-item>
                 </template>
             </template>
@@ -94,11 +94,11 @@
             </template>
             <template v-if="item.type=='switchnumber'">
                 <el-form-item :label="item.label">
-                    <el-switch v-model="item.fieldActive" on-text="" off-text="">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="" :field="item.fieldActive" @change="numberChange">
                     </el-switch>
                 </el-form-item>
-                <el-form-item v-if="item.fieldActive">
-                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text"></lb-numberinput>
+                <el-form-item v-if="localdata.form[item.fieldActive]">
+                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text" :field="item.field" @change="numberChange"></lb-numberinput>
                 </el-form-item>
             </template>
             <template v-if="item.type=='timetype'">
@@ -286,9 +286,14 @@ export default {
                 }
             }
             return role
-        },
+        }
     },
     methods: {
+        numberChange(obj) {
+            if (this.module.numberChange) {
+                this.module.numberChange(this,obj)
+            }
+        },
         workchange() {
             this.localdata.form.day_1 = this.workday
             this.localdata.form.day_2 = this.workday
