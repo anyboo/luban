@@ -24,6 +24,10 @@
             <el-tag type="gray" v-if="lessonData.defrole">默认</el-tag>
             <span v-if="lessonData.defrole"></span>
         </template>
+        <template v-if="typeData.statutype=='defvaluestatus'">
+            <el-tag type="gray" v-if="lessonData.defvalue">默认</el-tag>
+            <span v-if="lessonData.defrole"></span>
+        </template>
         <template v-if="typeData.statutype=='attenceStatus'">
             <el-tag type="gray" v-if="lessonData.attence_flag==0">所有</el-tag>
             <el-tag type="success" v-if="lessonData.attence_flag==1">未考勤</el-tag>

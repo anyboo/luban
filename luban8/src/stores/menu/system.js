@@ -136,10 +136,19 @@ export default {
             menuTitle: '数据字典管理',
             to: '/system/dict',
             menuIcon: 'fa fa-keyboard-o',
-            action: [{
-                'text': '编辑',
-                'action': 'systememdictedit'
+            dropDownMenu: [{
+                'url': 'dictform',
+                'icon': 'fa fa-pencil',
+                'text': '编辑'
+            }, {
+                'action': 'delete',
+                'icon': 'fa fa-times',
+                'text': '删除'
             }]
+            // action: [{
+            //     'text': '编辑',
+            //     'action': 'systememdictedit'
+            // }]
         }, {
             menuTitle: '日志',
             menuIcon: 'fa fa-picture-o',
