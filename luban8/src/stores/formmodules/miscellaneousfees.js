@@ -1,8 +1,9 @@
 export default {
     'pageName': 'storedvalueform',
     'pageLable': '报名&缴费',
+    'student': true,
     'form': {
-        'class_id': '',
+        'classes_id': '',
         'course_id': '',
         'origin_times': '',
         'unit_price': 0,
@@ -23,6 +24,11 @@ export default {
         'order_no': '',
         'order_type': 3,
         'body': ''
+    },
+    'beforeSave':function(vm){
+        vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
+        vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
+        vm.localdata.form.body = '学杂费[' + vm.localdata.form.sel + '元]'
     },
     'formField': [
        {

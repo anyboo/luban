@@ -86,7 +86,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'class_id': '',
+                'classes_id': '',
                 'course_id': '',
                 'origin_times': '',
                 'unit_price': 0,

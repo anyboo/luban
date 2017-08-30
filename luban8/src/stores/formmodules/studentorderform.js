@@ -3,7 +3,7 @@ export default {
     'pageLable': '报名&缴费',
     'student': true,
     'form': {
-        'class_id': '',
+        'classes_id': '',
         'course_id': '',
         'origin_times': 0,
         'refund_status': 0,
@@ -47,6 +47,10 @@ export default {
         } else {
             vm.localdata.form.totletime = Number(vm.localdata.form.origin_times)
         }
+    },
+    'beforeSave':function(vm){
+        vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
+        vm.localdata.form.body = `班课[${vm.localdata.form.classes_id}]${vm.localdata.form.totletime}次`
     },
     'formField': [
         {

@@ -3,7 +3,7 @@ export default {
     'pageLable': '报名&缴费',
     'student': true,
     'form': {
-        'class_id': '',
+        'classes_id': '',
         'course_id': '',
         'origin_times': 0,
         'refund_status': 0,

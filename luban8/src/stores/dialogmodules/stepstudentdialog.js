@@ -17,7 +17,7 @@ export default {
         if (vm.$store.state.dialogs.dailogdata) {
             vm.selectsearchValue = vm.$store.state.dialogs.dailogdata._id
             vm.deffilterObj.push({
-                'key': 'class_id',
+                'key': 'classes_id',
                 'value': vm.selectsearchValue,
                 'type': ''
             })

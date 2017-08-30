@@ -4,7 +4,7 @@ export default {
     'form': {
         'order_id': '',
         'student_id': '',
-        'class_id': '',
+        'classes_id': '',
         'money_pay_amount': '',
         'pay_type': 0,
         'use_balance': false,

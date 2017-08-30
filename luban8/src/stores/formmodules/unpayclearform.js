@@ -4,7 +4,7 @@ export default {
     'form': {
         'order_id': '',
         'student_id': '',
-        'class_id': '',
+        'classes_id': '',
         'times': 0,
         'amount': 0,
         'note': ''

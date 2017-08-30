@@ -2,7 +2,7 @@ export default {
     'pageName': 'payRecord',
     'pageLable': '缴费记录',
     'tableSearch': [{
-        'localField': 'class_id',
+        'localField': 'classes_id',
         'from': 'classes',
         'foreignField': '_id',
         'as': 'classes'

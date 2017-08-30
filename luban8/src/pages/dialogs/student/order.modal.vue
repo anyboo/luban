@@ -125,7 +125,7 @@ export default {
     watch: {},
     methods: {
         switchPage(page) {
-            this.handleShowDialog(page)
+            this.handleShowDialog(page,this.localdata.form)
         }
     }
 }

@@ -50,7 +50,7 @@ export default {
             }
         }
     },
-    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform},
+    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform },
     computed: {
         title() {
             let text = this.module.pageLable
@@ -88,10 +88,18 @@ export default {
             }
         },
         appendmodule() {
-            this.$refs['ruleForm'].append()
+            this.$refs['ruleForm'].append().then(() => {
+                vm.lbClosedialog()
+                this.$store.state.dialogs.dailogdata = null
+                this.$store.state.envs.currDialog = 'moduleform'
+            })
         },
         editmodule(id) {
-            this.$refs['ruleForm'].edit(id)
+            this.$refs['ruleForm'].append(id).then(() => {
+                vm.lbClosedialog()
+                this.$store.state.dialogs.dailogdata = null
+                this.$store.state.envs.currDialog = 'moduleform'
+            })
         },
         appendarrage(id) {
             this.$refs['ruleForm'].appendarrage()

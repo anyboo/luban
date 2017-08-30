@@ -353,7 +353,7 @@ export default {
             'form': {
                 'order_id': '',
                 'student_id': '',
-                'class_id': '',
+                'classes_id': '',
                 'money_pay_amount': '',
                 'pay_type': 0,
                 'use_balance': false,
@@ -384,7 +384,7 @@ export default {
             vm.pay = pay
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
-            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.classes_id = vm.order.classes_id
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             vm.localdata.form.balance_pay_amount = 0
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
@@ -399,7 +399,7 @@ export default {
                     }
                 }
             })
-            vm.handleGetTableID('classes', vm.order.class_id).then((obj) => {
+            vm.handleGetTableID('classes', vm.order.classes_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     vm.classes = obj.data[0]
                 }

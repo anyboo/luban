@@ -279,12 +279,13 @@ export default {
         if (this.module.mounted) {
             this.module.mounted(this)
         }
+        /*
         let vm = this
         if (vm.$store.state.dialogs.dailogdata) {
             vm.order = vm.$store.state.dialogs.dailogdata
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
-            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.classes_id = vm.order.classes_id
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             vm.localdata.form.balance_pay_amount = 0
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
@@ -299,7 +300,7 @@ export default {
                     }
                 }
             })
-        }
+        }*/
     },
     computed: {
         getRules() {
@@ -328,7 +329,7 @@ export default {
     methods: {
         numberChange(obj) {
             if (this.module.numberChange) {
-                this.module.numberChange(this,obj)
+                this.module.numberChange(this, obj)
             }
         },
         handleAdd() {
@@ -351,7 +352,7 @@ export default {
             }
         },
         changetelshow() {
-            this.changetel(this.module.telshow+10)
+            this.changetel(this.module.telshow + 10)
         },
         handleCloseTag(tag) {
             this.localdata.form.tel.splice(this.localdata.form.tel.indexOf(tag), 1)
@@ -488,28 +489,30 @@ export default {
                 }
             })
         },
-        edit(id) {
-            this.setEditModle(id)
-            this.append()
-        },
-        append() {
-            this.$refs['ruleForm'].validate((valid) => {
-                if (valid) {
-                    let vm = this
-                    for (var index in this.module.formField) {
-                        let item = this.module.formField[index]
-                        if (item.type == "datetime") {
-                            vm.localdata.form[item.field] = vm.getDatetime(vm.localdata.form[item.field])
-                        }
-                    }
-                    // = vm.getDateNumFormat(vm.localdata.form.birth)
-                    vm.handleSave().then((response) => {
-                        vm.lbClosedialog()
-                        this.$store.state.dialogs.dailogdata = null
-                        this.$store.state.envs.currDialog = 'moduleform'
-                    }, (e) => {
-                    })
+        append(id) {
+           return new Promise(resolve => {
+                if (id) {
+                    this.setEditModle(id)
                 }
+                this.$refs['ruleForm'].validate((valid) => {
+                    if (valid) {
+                        let vm = this
+                        for (var index in this.module.formField) {
+                            let item = this.module.formField[index]
+                            if (item.type == "datetime") {
+                                vm.localdata.form[item.field] = vm.getDatetime(vm.localdata.form[item.field])
+                            }
+                        }
+                        if (this.module.beforeSave){
+                            this.module.beforeSave(this)
+                        } 
+                        // = vm.getDateNumFormat(vm.localdata.form.birth)
+                        vm.handleSave().then((response) => {
+                            resolve(response)
+                        }, (e) => {
+                        })
+                    }
+                })
             })
         }
     }

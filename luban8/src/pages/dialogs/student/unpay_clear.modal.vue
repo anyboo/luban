@@ -119,7 +119,7 @@ export default {
             'form': {
                 'order_id': '',
                 'student_id': '',
-                'class_id': '',
+                'classes_id': '',
                 'times': 0,
                 'amount': 0,
                 'note': ''
@@ -140,7 +140,7 @@ export default {
             vm.order = vm.$store.state.dialogs.dailogdata
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
-            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.classes_id = vm.order.classes_id
             vm.localdata.form.amount = vm.order.unpay_amount
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {

@@ -7,7 +7,7 @@
                     <span class="sr-only">关闭</span>
                 </button>
                 <h3 class="modal-title">
-                    {{module.pageLable}}</h3>
+                    {{title}}</h3>
             </div>
             <div class="modal-body">
                 <el-steps :center="true" :active="steps" finish-status="success">
@@ -27,8 +27,7 @@
                     </lb-blank>
                 </template>
                 <template v-if="moduletype==4">
-                    <lb-blank @blankmounted="blankmounted">
-                    </lb-blank>
+                    <component v-bind:is="view" :stepsdata="currobj[steps-1]"></component>
                 </template>
             </div>
             <div class="modal-footer">
@@ -51,10 +50,17 @@ import dialogmmoduleform from './moduleform.vue'
 import pagesmodule from '~/stores/moduledialog.js'
 import moduleform from '~/stores/moduleform.js'
 import blank from '~/pages/app/blank.vue'
+import dialogpages from '~/stores/dialogpages.js'
+
+
+dialogpages['lb-systemmodule'] = systemmodule
+dialogpages['lb-dialogmmoduleform'] = dialogmmoduleform
+dialogpages['lb-blank'] = blank
+
 export default {
     name: 'modulestep',
     props: ['module'],
-    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform, 'lb-blank': blank },
+    components: dialogpages,
     data() {
         return {
             steps: 1,
@@ -64,7 +70,8 @@ export default {
             stepCount: this.module.stepsInfo ? this.module.stepsInfo.length : 1,
             currobj: {},
             nextDisabled: false,
-            backDisabled: false
+            backDisabled: false,
+            view: ''
         }
     },
     mounted() {
@@ -72,6 +79,13 @@ export default {
         this.getNextDisabled()
     },
     computed: {
+        title() {
+            let text = this.module.pageLable
+            if (this.module.student) {
+                text = this.getStudentName() + '学员' + this.module.pageLable
+            }
+            return text
+        },
         getModuleData() {
             let tomodule = this.module.stepsInfo[this.steps - 1].module
             if (pagesmodule[tomodule]) {
@@ -85,6 +99,7 @@ export default {
                 this.moduleobj = moduleform[tomodule]
                 this.moduletype = 2
             } else {
+                this.view = tomodule
                 this.moduletype = 4
             }
             return this.moduleobj
@@ -108,6 +123,9 @@ export default {
             if (this.steps > 1) {
                 disabled = true
             }
+            if (this.moduletype == 4) {
+                disabled = false
+            }
             this.backDisabled = disabled
         },
         blankmounted() {
@@ -122,14 +140,20 @@ export default {
         next() {
             if (this.steps < this.stepCount) {
                 if (this.moduletype == 2) {
-                    this.$refs['ruleForm'].append()
+                    this.$refs['ruleForm'].append().then(obj => {
+                        this.currobj[this.steps] = obj
+                        this.steps++
+                        this.getModuleData
+                        this.getNextDisabled()
+                        this.getBackDisabled()
+                    })
                 } else {
                     this.steps++
                     this.getModuleData
+                    this.getNextDisabled()
+                    this.getBackDisabled()
                 }
             }
-            this.getNextDisabled()
-            this.getBackDisabled()
         },
         back() {
             if (this.steps > 1) {

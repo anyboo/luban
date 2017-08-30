@@ -80,7 +80,7 @@ export default {
             vm.order = vm.$store.state.dialogs.dailogdata
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
-            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.classes_id = vm.order.classes_id
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             vm.localdata.form.balance_pay_amount = 0
 

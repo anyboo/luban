@@ -6,6 +6,8 @@ import unpay_clear from '~/pages/dialogs/student/unpay_clear.modal.vue'
 import refund from '~/pages/dialogs/student/refund.modal.vue'
 import printer_receipt from '~/pages/dialogs/student/printer_receipt.vue'
 import details from '~/pages/dialogs/student/details.vue'
+import orderandpay from '~/pages/dialogs/student/orderandpay.vue'
+
 
 import cate from '~/pages/dialogs/lesson/cate.vue'
 import new_lesson from '~/pages/dialogs/lesson/new_lesson.modal.vue'
@@ -25,6 +27,7 @@ pages['lb-unpayclearmodal'] = unpay_clear
 pages['lb-refundmodal'] = refund
 pages['lb-printerreceipt'] = printer_receipt
 pages['lb-details'] = details
+pages['lb-orderandpay'] = orderandpay
 
 pages['lb-cate'] = cate
 pages['lb-newlessonmodal'] = new_lesson

@@ -178,7 +178,7 @@ export default {
                 'order_id': '',
                 'student_id': '',
                 'pay_id': '',
-                'class_id': '',
+                'classes_id': '',
                 'amount': 0,
                 'refund_to': '1',
                 'money_refund_to': '2',
@@ -228,7 +228,7 @@ export default {
             vm.order = vm.$store.state.dialogs.dailogdata
             vm.localdata.form.order_id = vm.order._id
             vm.localdata.form.student_id = vm.order.student_id
-            vm.localdata.form.class_id = vm.order.class_id
+            vm.localdata.form.classes_id = vm.order.classes_id
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     vm.currStudent = obj.data[0]

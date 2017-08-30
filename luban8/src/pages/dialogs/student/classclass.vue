@@ -176,7 +176,7 @@ export default {
     data() {
         let localdata = {
             'form': {
-                'class_id': '',
+                'classes_id': '',
                 'course_id': '',
                 'origin_times': 0,
                 'refund_status': 0,
@@ -222,10 +222,10 @@ export default {
             if (this.$store.state.envs.currDialog == 'lb-selectclasstpl') {
                 if (this.$store.state.envs.currDialogResult) {
                     this.class_name = this.$store.state.envs.currDialogResult.class_name
-                    this.localdata.form.class_id = this.$store.state.envs.currDialogResult._id
+                    this.localdata.form.classes_id = this.$store.state.envs.currDialogResult._id
                     this.localdata.form.origin_times = this.$store.state.envs.currDialogResult.total_times
                 } else {
-                    this.localdata.form.class_id = ''
+                    this.localdata.form.classes_id = ''
                     this.class_name = '请选择班级'
                     this.localdata.form.origin_times = ''
                 }

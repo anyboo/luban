@@ -34,7 +34,7 @@ student学生结构
 }
 order订单结构
 {
-	'class_id': '',                //班级Id 
+	'classes_id': '',                //班级Id 
 	'course_id': '',     //课程ID
 	'origin_times': 0,    //上课次数
 	'refund_status':0,    //退款状态  0未退款  1部分退款   2 完取退款
@@ -60,7 +60,7 @@ pay支付结构
 {
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
-'class_id': '',       //班级ID
+'classes_id': '',       //班级ID
 'money_pay_amount': '',//支付金额
 'pay_type': 0,        //支付类型  0 支付 1退款
 'use_balance': false,  //是否余额支付
@@ -71,7 +71,7 @@ refund退费结构
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
  'pay_id':'',         //支付ID
-'class_id': '',       //班级ID
+'classes_id': '',       //班级ID
 'amount':0,//退费金额
 'refund_to': '',	//退款方式
 'money_refund_to':0  //现金退款
@@ -83,7 +83,7 @@ clear清除费用结构
 {
 'order_id': '',       //订单ID
 'student_id': '',    //学员ID
-'class_id': '',       //班级ID
+'classes_id': '',       //班级ID
 'times': '',         ／/清除课时数
 'amount': '',        //清除金额
 'note': ''           //清除备注

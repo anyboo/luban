@@ -10,7 +10,7 @@ export default {
         }, {
             'localField': '_id',
             'from': 'order',
-            'foreignField': 'class_id',
+            'foreignField': 'classes_id',
             'as': 'order'
         }],
     'pageSearch': [

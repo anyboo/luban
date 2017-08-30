@@ -9,7 +9,7 @@ export default {
             'as': 'student'
         },
         {
-            'localField': 'class_id',
+            'localField': 'classes_id',
             'from': 'classes',
             'foreignField': '_id',
             'as': 'classes'
