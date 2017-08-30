@@ -25,7 +25,7 @@ export default {
         'order_type': 2,
         'body': ''
     },
-    'beforeSave':function(vm){
+    'beforeSave': function (vm) {
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
         vm.localdata.form.body = '预交费[' + vm.localdata.form.order_amount + '元]'
@@ -62,16 +62,17 @@ export default {
             'label': '应缴金额',
             'prop': '',
             'field': 'origin_amount',
-            'text':'元'
+            'text': '元'
         }
     ],
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {
-        origin_amount: [
-            { required: true, message: '请输入充值金额', trigger: 'blur' },
-            { min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur' }
-        ],
+    rulesData(vm) {
+        return {
+            origin_amount: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入充值金额', trigger: 'blur' }
+            ],
+        }
     }
 }

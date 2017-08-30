@@ -215,6 +215,15 @@ export default {
     name: 'moduleform',
     props: ['module', 'form'],
     data() {
+        var validateNumberinput = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error(rule.message))
+            } else if (value <= 0) {
+                callback(new Error('请输入大于零的数'))
+            } else {
+                callback()
+            }
+        }
         var validateTel = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入手机号码'))
@@ -277,6 +286,7 @@ export default {
             validateDate,
             validateDatatime,
             validatePhone,
+            validateNumberinput,
             formdata: [],
             localdata: this.getform(),
             order: {},
@@ -516,7 +526,7 @@ export default {
             })
         },
         append(id) {
-           return new Promise(resolve => {
+            return new Promise(resolve => {
                 if (id) {
                     this.setEditModle(id)
                 }
@@ -529,9 +539,9 @@ export default {
                                 vm.localdata.form[item.field] = vm.getDatetime(vm.localdata.form[item.field])
                             }
                         }
-                        if (this.module.beforeSave){
+                        if (this.module.beforeSave) {
                             this.module.beforeSave(this)
-                        } 
+                        }
                         // = vm.getDateNumFormat(vm.localdata.form.birth)
                         vm.handleSave().then((response) => {
                             resolve(response)

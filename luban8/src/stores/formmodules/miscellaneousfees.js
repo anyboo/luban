@@ -65,12 +65,14 @@ export default {
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {
-        sel: [
-            { required: true, message: '请选择缴费项目', trigger: 'blur' }
-        ],
-        origin_amount: [
-            { required: true, message: '请输入订单金额', trigger: 'blur' },
-        ]
+    rulesData(vm) {
+        return {
+            sel: [
+                { required: true, message: '请选择缴费项目', trigger: 'blur' }
+            ],
+            origin_amount: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入充值金额', trigger: 'blur' }
+            ],
+        }
     }
 }

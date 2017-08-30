@@ -135,15 +135,17 @@ export default {
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {
-        classes_id: [
-            { required: true, message: '请选择班级', trigger: 'change' }
-        ],
-        origin_times: [
-            { required: true, message: '请输入报名课次', trigger: 'blur' }
-        ],
-        unit_price: [
-            { required: true, message: '请输入课次单价', trigger: 'blur' }
-        ],
+    rulesData(vm) {
+        return {
+            classes_id: [
+                { required: true, message: '请选择班级', trigger: 'change' }
+            ],
+            origin_times: [
+                { required: true,validator: vm.validateNumberinput, message: '请输入报名课次',trigger: 'blur' }
+            ],
+            unit_price: [
+                { required: true,validator: vm.validateNumberinput, message: '请输入课次单价',trigger: 'blur' }
+            ],
+        }
     }
 }
