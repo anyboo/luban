@@ -11,6 +11,37 @@
                     {{localdata.form[item.field]}}{{item.text}}
                 </el-form-item>
             </template>
+            <template v-if="item.type=='phoneInput'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <!-- <el-input v-model="localdata.form[item.field]"> -->
+                    <template v-for="tag in formdata">
+                        <el-tag :key="tag" :closable="true" type="success" @close="handleCloseTag(tag)">
+                            {{tag.name}}
+                        </el-tag>
+                    </template>
+                    <el-button size="small" @click="changetelshow">{{ module.telshow + '/'+pagination.total}}
+                        <template v-if="module.telshow <pagination.total">点击加载更多</template>
+                    </el-button>
+                    <!-- </el-input> -->
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='addphone'">
+                <el-form-item :label="item.switchlabel">
+                    <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
+                    </el-switch>
+                </el-form-item>
+                <template v-if="localdata.form[item.fieldActive]">
+                    <el-form-item label="名字">
+                        <el-input v-model="localdata.form.new_name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="号码">
+                        <el-input v-model="localdata.form.new_tel"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="handleAdd">添加</el-button>
+                    </el-form-item>
+                </template>
+            </template>
             <template v-if="item.type=='subduction'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     {{localdata.form[item.field1]-localdata.form[item.field2]}}{{item.text}}
@@ -230,12 +261,18 @@ export default {
             validateTel,
             validateDate,
             validateDatatime,
+            formdata: [],
             localdata: this.getform(),
             order: {},
             expand: false,
             workday: false,
             weekday: false,
             model: this.module.pageTable
+        }
+    },
+    created() {
+        if (this.module.created) {
+            this.module.created(this)
         }
     },
     mounted() {
@@ -293,6 +330,33 @@ export default {
             if (this.module.numberChange) {
                 this.module.numberChange(this,obj)
             }
+        },
+        handleAdd() {
+            let newdata = {}
+            newdata.tel = this.localdata.form.new_tel
+            newdata.name = this.localdata.form.new_name
+            newdata.student_id = 0
+            this.localdata.form.tel.unshift(newdata)
+            this.changetel(this.module.telshow)
+        },
+        changetel(telshow) {
+            this.pagination.total = this.localdata.form.tel.length
+            if (telshow > this.pagination.total) {
+                this.module.telshow = this.pagination.total
+            } else {
+                this.module.telshow = telshow
+            }
+            if (this.localdata.form.tel) {
+                this.formdata = this.localdata.form.tel.slice(0, this.module.telshow)
+            }
+        },
+        changetelshow() {
+            this.changetel(this.module.telshow+10)
+        },
+        handleCloseTag(tag) {
+            this.localdata.form.tel.splice(this.localdata.form.tel.indexOf(tag), 1)
+            this.changetel(this.module.telshow)
+            // this.changetelshow()
         },
         workchange() {
             this.localdata.form.day_1 = this.workday

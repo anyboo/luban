@@ -2,18 +2,44 @@ export default {
     'pageName': 'allsmsform',
     'pageLable': '活动推广',
     'form': {
-        'first_tel': '',
+        'tel': [],
         'content': '',
         'active': false,
+        'Active':false,
         'fixed_time': '',
-        'student_id': ''
+        'student_id': '',
+        'new_tel':'',
+        'new_name':''
+    },
+    'telshow':10,
+    'created': function (vm) {
+        let filterObj = []
+        let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+        vm.pagination.pagesize = 1000
+        vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+            let objData=obj.data.data
+            for (let index in objData) {
+                let telitem = {}
+                telitem.tel = objData[index].first_tel
+                telitem.student_id = objData[index]._id
+                telitem.name = objData[index].student_name
+                vm.localdata.form.tel.push(telitem)
+            }
+            vm.module.telshow = 10
+            vm.formdata = vm.localdata.form.tel.slice(0,10)
+        })
     },
     'formField': [
         {
-            'type': 'input',
+            'type': 'phoneInput',
             'label': '发送号码',
             'prop': 'first_tel',
             'field': 'first_tel'
+        },
+        {
+            'type': 'addphone',
+            'switchlabel': '添加新号码',
+            'fieldActive': 'Active',
         },
         {
             'type': 'textarea',
