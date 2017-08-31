@@ -40,7 +40,7 @@
             </el-radio-group>
         </el-form-item>
         <hr/>
-        <div class="text-center ">
+        <div class="text-center distance">
             <a v-if="!expand" @click="expand=true" class="stylemore inline w b-l b-r b-b r-b">
                 <i class="fa fa-arrow-down"></i>展开填写更多资料
             </a>
@@ -76,6 +76,9 @@
     </el-form>
 </template>
 <style>
+.distance{
+    margin-bottom:10px; 
+}
 a.stylemore{
     border: 1px solid rgb(211,211,211);
     padding:2px 10px;

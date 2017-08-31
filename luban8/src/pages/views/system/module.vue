@@ -98,6 +98,10 @@
                                 <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                             </template>
+                             <template v-if="item.type=='datetimeMinute'">
+                                <el-icon name="time"></el-icon>
+                                <span style="margin-left: 10px">{{ getDatetimeFormat(scope.row[item.prop]) }}</span>
+                            </template>
                             <template v-if="item.type=='tabledatetime'">
                                 <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDateFormat(getLookUp(scope.row[item.table],item.prop)) }}</span>

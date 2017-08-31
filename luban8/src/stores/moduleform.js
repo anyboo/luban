@@ -22,6 +22,7 @@ import unpayclearform from './formmodules/unpayclearform.js'
 import allsmsform from './formmodules/allsmsform.js'
 import rolesform from './formmodules/rolesform.js'
 import dictform from './formmodules/dictform.js'
+import refundfrom from './formmodules/refundfrom.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -48,5 +49,6 @@ pages['unpayclearform'] = unpayclearform
 pages['allsmsform'] = allsmsform
 pages['rolesform'] = rolesform
 pages['dictform'] = dictform
+pages['refundfrom'] = refundfrom
 
 export default pages

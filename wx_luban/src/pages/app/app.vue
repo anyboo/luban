@@ -81,7 +81,7 @@ export default {
                                           })
                                       }  */
 
-            let openid = 'oZy8Uwatalkn5-Nfsfd23139nk0lVEFaDeeqwew'
+            let openid = 'oZy8Uwata23l5-Nfsfd239ndfk0lVEFaDeeqwew'
             /*     let openid = this.$store.state.openid.openid */
             let filterObj = []
             filterObj.push({
