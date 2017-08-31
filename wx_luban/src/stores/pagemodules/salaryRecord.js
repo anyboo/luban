@@ -6,22 +6,22 @@ export default {
         {
             'type': 'text',
             'label': '班级',
-            'prop': 'classes',
+            'prop': 'class_name',
         },
         {
             'type': 'text',
             'label': '上课老师',
-            'prop': 'employee'
+            'prop': 'name'
         },
         {
             'type': 'datetime',
             'label': '考勤时间',
-            'prop': 'arrangestart'
+            'prop': 'start'
         },
         {
             'type': 'text',
             'label': '出勤状态',
-            'prop': 'true'
+            'prop': 'attence_flag'
         }
     ],
     'pageTable': 'attendance',

@@ -66,7 +66,7 @@ export default {
             {
                 'key': 'lookup',
                 'value': {
-                    'localField': 'class_id',
+                    'localField': 'classes_id',
                     'from': 'classes',
                     'foreignField': '_id',
                     'as': 'classes'
@@ -86,6 +86,43 @@ export default {
                 'type': 'lookup'
             }
         )
+        filterObj.push(
+            {
+                'key': 'lookup',
+                'value': {
+                    'localField': 'teacher_id',
+                    'from': 'employee',
+                    'foreignField': '_id',
+                    'as': 'employee'
+                },
+                'type': 'lookup'
+            }
+        )
+        filterObj.push(
+            {
+                'key': 'lookup',
+                'value': {
+                    'localField': 'coursescheduling_id',
+                    'from': 'coursescheduling',
+                    'foreignField': '_id',
+                    'as': 'coursescheduling'
+                },
+                'type': 'lookup'
+            }
+        )
+                filterObj.push(
+                    {
+                        'key': 'lookup',
+                        'value': {
+                            'localField': 'class_id',
+                            'from': 'coursescheduling',
+                            'foreignField': 'classes_id',
+                            'as': 'coursescheduling'
+                        },
+                        'type': 'lookup'
+                    }
+                ) 
+
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
         console.log(this.$store.state.commondata.commondata)
         this.handleGetFilterTableTable(this.$store.state.commondata.commondata, filterTxt).then(obj => {
@@ -138,8 +175,31 @@ export default {
             if (itemval.prop == 'order_remark') {
                 info = itemval.label + ' : '
                 if (item.order && item.order.length) {
-                    console.log(item.order, item.order.length)
                     info = itemval.label + ' : ' + item.order[0].order_remark
+                }
+            }
+            if (itemval.prop == 'name') {
+                info = itemval.label + ' : '
+                if (item.employee && item.employee.length) {
+                    info = itemval.label + ' : ' + item.employee[0].name
+                }
+            }
+            if (itemval.prop == 'attence_flag') {
+                if (item[itemval.prop] == 0) {
+                    item[itemval.prop] = '未考勤'
+                    info = itemval.label + ' : ' + item[itemval.prop]
+                }
+                if (item[itemval.prop] == 1) {
+                    item[itemval.prop] = '考勤'
+                    info = itemval.label + ' : ' + item[itemval.prop]
+                }
+                if (item[itemval.prop] == 2) {
+                    item[itemval.prop] = '缺勤'
+                    info = itemval.label + ' : ' + item[itemval.prop]
+                }
+                if (item[itemval.prop] == 3) {
+                    item[itemval.prop] = '请假'
+                    info = itemval.label + ' : ' + item[itemval.prop]
                 }
             }
             return info
@@ -153,6 +213,7 @@ export default {
                     sum[i].createtime = this.getDateFormat(sum[i].createtime)
                     sum[i].daterange1 = this.getDateFormat(sum[i].daterange1)
                     sum[i].daterange2 = this.getDateFormat(sum[i].daterange2)
+                    sum[i].start = this.getDateFormat(sum[i].start)
                 }
             }
             return sum
@@ -160,7 +221,7 @@ export default {
         handleBack() {
             this.$store.commit('homes', 'lb-home')
         },
-        loadBottom: function () {
+        loadBottom: function() {
             let filterObj = []
             filterObj.push({
                 'key': 'student_id',

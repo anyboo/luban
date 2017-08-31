@@ -6,7 +6,7 @@ export default {
         {
             'type': 'text',
             'label': '班级',
-            'prop': 'lesson',
+            'prop': 'class_name',
         },
         {
             'type': 'text',

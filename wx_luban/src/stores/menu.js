@@ -22,4 +22,8 @@ export default [{
     menuTitle:'赛事记录',
     menuIcon:'eventsRecord',
      pageTable:'recording',
+},{
+    menuTitle:'学生课销',
+    menuIcon:'keshi',
+     pageTable:'recording',
 }]
