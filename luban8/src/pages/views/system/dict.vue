@@ -3,13 +3,14 @@
         <div class="panel-heading">字典列表</div>
         <ul class="list-group">
             <li class="list-group-item clear" v-for="(item, index) in localdata.dict">
-                <span class="pull-right">
-                    <template v-if="getActionOption('systememdictedit')">
-                        <a @click="handleShowDialog('dictitemdialog',item)">编辑</a>
-                        <!-- lb-dictitems -->
-                    </template>
-                </span>
-                <h4 class="list-group-item-head text-danger">{{item.text}}</h4>
+                <h6 class="list-group-item-head text-danger" style="font-size:16px;">{{item.text}}
+                    <span class="pull-right">
+                        <template v-if="getActionOption('systememdictedit')">
+                            <a @click="handleShowDialog('dictitemdialog',item)">编辑</a>
+                            <!-- lb-dictitems -->
+                        </template>
+                    </span>
+                </h6>
             </li>
         </ul>
     </div>
