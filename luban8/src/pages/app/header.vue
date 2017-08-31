@@ -42,7 +42,6 @@
 
 .school {
     display: inline-block;
-    width: 125px;
     height: 50px;
     float: right;
     line-height: 50px;
