@@ -35,7 +35,7 @@ export default {
         {
             'type': 'button',
             'label': '操作',
-            'dialog': 'lb-refunds',
+            'dialog': 'refundstepdialog',
             'text': '办理退款'
         },
     ],

@@ -6,9 +6,29 @@
                     <el-input v-model="localdata.form[item.field]"></el-input>
                 </el-form-item>
             </template>
+             <template v-if="item.type=='constant'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{item.field}}
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='getorderPay'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{getorderPay}}{{item.text}}
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='getorder'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{getorder}}{{item.text}}
+                </el-form-item>
+            </template>
             <template v-if="item.type=='text'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     {{localdata.form[item.field]}}{{item.text}}
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='getDatetimeFormat'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{getDatetimeFormat(localdata.form[item.field])}}
                 </el-form-item>
             </template>
             <template v-if="item.type=='phoneInput'">
@@ -282,6 +302,7 @@ export default {
         }
         return {
             moduledata: '',
+            currentRow: null,
             validateTel,
             validateDate,
             validateDatatime,
@@ -329,6 +350,17 @@ export default {
         }*/
     },
     computed: {
+        getorder() {
+            let vm = this
+            let getorderTurn = parseInt(vm.currentRow.money_pay_amount) - (parseInt(vm.order.c_unit_price) * 2) - parseInt(vm.order.back_amount)
+            return getorderTurn
+        },
+        getorderPay() {
+            let vm = this
+            let tiem = parseInt(vm.order.c_unit_price) * 2
+            console.log(tiem)
+            return tiem
+        },
         getRules() {
             let rules = null
             if (this.module.rulesData) {
