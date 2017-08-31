@@ -93,9 +93,9 @@ export default {
             let css = {}
             css[this.menu.cssStyle] = true
             css.isActivec = this.menu.isActive
+            this.updown = this.menu.isActive
             return css
         }
-       
     },
     methods: {
         handleClick() {
@@ -103,7 +103,7 @@ export default {
             if (this.menu.to) {
                 this.$store.commit('router',this.menu.to)
             }
-              this.updown = !this.updown
+            this.updown = !this.updown
         }
     }
 }
