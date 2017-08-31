@@ -2,31 +2,8 @@ export default {
     'pageName': 'systemsms',
     'pageLable': ' 短信功能',
     'tableSearch': [
-        {
-            'localField': 'student_id',
-            'from': 'student',
-            'foreignField': '_id',
-            'as': 'student'
-        },
     ],
     'pageSearch': [
-        {
-            'type': 'textSearch',
-            'fields': [
-                {
-                    'label': '姓名',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'student_name'
-                },
-                {
-                    'label': '手机号',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'first_tel'
-                }
-            ]
-        },
         {
             'type': 'radioGroupSearch',
             'span': 12,
@@ -92,7 +69,7 @@ export default {
             'prop': '已发送',
         }
     ],
-    'pageTable': 'student',
+    'pageTable': 'smssend',//smssend
     'pageTemplate': 'table1',
     'pagePath': ''
 }
