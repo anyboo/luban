@@ -1,5 +1,7 @@
 <template>
     <div v-if="modalShow" class='definitely'>
+        <div class="modal-backdrop" :style="{'z-index':(getDialog.length-1)*2+1500-1}">
+        </div>
         <template v-for="item,index in getDialog">
             <lb-dialog :zindex="index*2+1500">
                 <template v-if="getDialogMoudle(item,index)==1">

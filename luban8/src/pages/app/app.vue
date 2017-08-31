@@ -5,7 +5,6 @@
             <lb-header @variety="variety"></lb-header>
             <lb-body></lb-body>
         </div>
-        <lb-modalbackdrop></lb-modalbackdrop>
         <lb-dialoglist></lb-dialoglist>
         <lb-footer></lb-footer>
     </div>
@@ -25,11 +24,9 @@ import header from './header.vue'
 import body from './body.vue'
 import footer from './footer.vue'
 import dialoglist from './dialoglist.vue'
-import modalbackdrop from './modalbackdrop.vue'
 
 let pages = {}
 pages['lb-dialoglist'] = dialoglist
-pages['lb-modalbackdrop'] = modalbackdrop
 pages['lb-header'] = header
 pages['lb-body'] = body
 pages['lb-footer'] = footer

@@ -1,5 +1,5 @@
 <template>
-    <li :class="getMenuClass" class="li_arrow">
+    <li :class="getMenuClass" class="li_arrow" :style="{'z-index':modalShow?1500:3000}">
         <a @click="handleClick">
             <i class="fa" :class="menu.menuIcon"></i>
             <span :class="{'submenu':submenu=='menu-title'}">{{menu.menuTitle}}</span>
@@ -13,7 +13,6 @@
 <style>
 .li_arrow{
     position: relative;
-    z-index: 3000;
 }
 .arrow{
     display: inline-block;
@@ -33,8 +32,6 @@
 .activeColor {
     color: #e74c3c;
 }
-
-
 
 /* hover */
 
@@ -89,6 +86,9 @@ export default {
         }
     },
     computed: {
+        modalShow() {
+            return this.$store.state.dialogs.modalbackdrop
+        },
         getMenuClass() {
             let css = {}
             css[this.menu.cssStyle] = true
