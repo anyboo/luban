@@ -64,7 +64,7 @@ export default {
     'pagePath': '',
     rules: {
         track_way: [
-            { required: true, message: '请选择沟通方式', trigger: 'blur' },
+            { required: true, message: '请选择沟通方式', trigger: 'change' },
             { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
         ],
         detail: [

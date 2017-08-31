@@ -120,14 +120,14 @@ export default {
             'label': '状态',
         },
         {
-            'type': 'progress',
-            'label': '招生情况',
-        },
-        {
             'type': 'payconditions',
             'label': '缴费情况',
             'order': 'order',
         },
+        {
+            'type': 'progress',
+            'label': '招生情况',
+        }
     ],
     'pageTable': 'classes',
     'pageTemplate': 'table1',
