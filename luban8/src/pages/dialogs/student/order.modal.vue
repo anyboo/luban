@@ -1,42 +1,40 @@
 <template>
-    <div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" @click="lbClosedialog()">
-                        <span aria-hidden="true">×</span>
-                        <span class="sr-only">关闭</span>
-                    </button>
-                    <h3 class="modal-title">
-                        <i class="fa fa-shopping-cart"></i>学员{{localdata.form.student_name }}报名&缴费
-                    </h3>
-                </div>
-                <div class="modal-body" style="padding-bottom: 0px;">
-                    <div class=" no-gutter text-center">
-                        <div class="col-xs-4 text-center lb_frame" @click="switchPage('orderstepdialog')">
-                            <a class="block  bg_yellow  item Alb_frame yellowborder" style="cursor:pointer;">
-                                <span class="text-white font-thin h1 block Slb_frame">
-                                    <i class="fa fa-users "></i>报名
-                                </span>
-                                <span class="text-muted text-sm text-white">课程报名</span>
-                            </a>
-                        </div>
-                        <div class="col-xs-4 text-center lb_frame " @click="switchPage('storedvaluedialog')">
-                            <a class="block  padder-v bg-olive item bg_green Alb_frame greenborder" style="cursor:pointer;">
-                                <span class="text-white font-thin h1 block Slb_frame">
-                                    <i class="fa fa-rmb "></i>预充值
-                                </span>
-                                <span class="text-muted text-white text-sm">钱包余额:0.00</span>
-                            </a>
-                        </div>
-                        <div class="col-xs-4 text-center lb_frame" @click="switchPage('miscellaneousfeesdialog')">
-                            <a class="block bg_orange item Alb_frame orangeborder" style="cursor:pointer;">
-                                <span class="text-white font-thin h1 block Slb_frame">
-                                    <i class="fa fa-money "></i>杂费
-                                </span>
-                                <span class="text-muted text-white text-sm">其他杂费缴费</span>
-                            </a>
-                        </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" @click="lbClosedialog()">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h3 class="modal-title">
+                    <i class="fa fa-shopping-cart"></i>学员{{localdata.form.student_name }}报名&缴费
+                </h3>
+            </div>
+            <div class="modal-body" style="padding-bottom: 0px;">
+                <div class="text-center">
+                    <div class="col-xs-4 text-center lb_frame" @click="switchPage('orderstepdialog')">
+                        <a class="block  bg_yellow  item Alb_frame yellowborder" style="cursor:pointer;">
+                            <span class="text-white font-thin h1 block Slb_frame">
+                                <i class="fa fa-users "></i>报名
+                            </span>
+                            <span class="text-muted text-sm text-white">课程报名</span>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 text-center lb_frame " @click="switchPage('storedvaluedialog')">
+                        <a class="block  padder-v bg-olive item bg_green Alb_frame greenborder" style="cursor:pointer;">
+                            <span class="text-white font-thin h1 block Slb_frame">
+                                <i class="fa fa-rmb "></i>预充值
+                            </span>
+                            <span class="text-muted text-white text-sm">钱包余额:{{localdata.form.amount }}</span>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 text-center lb_frame" @click="switchPage('miscellaneousfeesdialog')">
+                        <a class="block bg_orange item Alb_frame orangeborder" style="cursor:pointer;">
+                            <span class="text-white font-thin h1 block Slb_frame">
+                                <i class="fa fa-money "></i>杂费
+                            </span>
+                            <span class="text-muted text-white text-sm">其他杂费缴费</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -125,7 +123,7 @@ export default {
     watch: {},
     methods: {
         switchPage(page) {
-            this.handleShowDialog(page,this.localdata.form)
+            this.handleShowDialog(page, this.localdata.form)
         }
     }
 }

@@ -26,9 +26,10 @@ export default {
         'body': ''
     },
     'beforeSave': function (vm) {
+        vm.localdata.form.order_amount = vm.localdata.form.origin_amount
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
-        vm.localdata.form.body = '预交费[' + vm.localdata.form.order_amount + '元]'
+        vm.localdata.form.body = '预交费[' + vm.localdata.form.origin_amount + '元]'
     },
     'formField': [
         {

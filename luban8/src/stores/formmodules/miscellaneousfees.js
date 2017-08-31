@@ -26,9 +26,10 @@ export default {
         'body': ''
     },
     'beforeSave': function (vm) {
+        vm.localdata.form.order_amount = vm.localdata.form.origin_amount
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
-        vm.localdata.form.body = '学杂费[' + vm.localdata.form.sel + '元]'
+        vm.localdata.form.body = '学杂费[' +vm.getDictText(5,vm.localdata.form.sel) + ']'
     },
     'formField': [
         {
@@ -68,7 +69,7 @@ export default {
     rulesData(vm) {
         return {
             sel: [
-                { required: true, message: '请选择缴费项目', trigger: 'blur' }
+                { required: true, message: '请选择缴费项目', trigger: 'change' }
             ],
             origin_amount: [
                 { required: true, validator: vm.validateNumberinput, message: '请输入充值金额', trigger: 'blur' }

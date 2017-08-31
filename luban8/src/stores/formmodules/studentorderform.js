@@ -26,6 +26,9 @@ export default {
         'totletime': 0,
         'body': ''
     },
+    'selectChange':function (vm,obj){
+        vm.classes_name = obj.text
+    },
     'numberChange': function (vm, obj) {
         if (obj.field == 'discount') {
             vm.localdata.form.discount_amount = vm.localdata.form.origin_amount * vm.localdata.form.discount / 100
@@ -50,7 +53,7 @@ export default {
     },
     'beforeSave': function (vm) {
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
-        vm.localdata.form.body = `班课[${vm.localdata.form.classes_id}]${vm.localdata.form.totletime}次`
+        vm.localdata.form.body = `班课[${vm.classes_name}]${vm.localdata.form.totletime}次`
     },
     'formField': [
         {

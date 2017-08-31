@@ -1,12 +1,12 @@
 <template>
-    <el-input :placeholder="getSelectStudentName" :disabled="true" >
+    <el-input :placeholder="getSelectStudentName" :disabled="true">
         <el-button slot="append" icon="search" @click="showDailog(showdialog)"></el-button>
     </el-input>
 </template>
 <script>
 export default {
     name: 'LbSelectesearch',
-    props: ['value', 'selected', 'default', 'showdialog', 'searchfield', 'table'],
+    props: ['value', 'selected', 'field', 'default', 'showdialog', 'searchfield', 'table'],
     data() {
         return {
             defaultvalue: this.default,
@@ -56,6 +56,7 @@ export default {
                     if (this.search_id != searchId) {
                         this.search_id = searchId
                         this.$emit('input', searchId)
+                        this.$emit('change', { id: searchId, text: this.defaultvalue, field: this.field })
                     }
                 }
             }

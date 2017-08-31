@@ -18,8 +18,8 @@
                             {{tag.name}}
                         </el-tag>
                     </template>
-                    <el-button size="small" @click="changetelshow">{{ module.telshow + '/'+pagination.total}}
-                        <template v-if="module.telshow <pagination.total">点击加载更多</template>
+                    <el-button size="small" @click="changetelshow">{{ module.telshow + '/' + pagination.total}}
+                        <template v-if="module.telshow < pagination.total">点击加载更多</template>
                     </el-button>
                 </el-form-item>
             </template>
@@ -138,7 +138,7 @@
             </template>
             <template v-if="item.type=='selectSearch'">
                 <el-form-item :label="item.label" :prop="item.prop">
-                    <lb-selectesearch v-model="localdata.form[item.field]" :table="item.table" selected="" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
+                    <lb-selectesearch v-model="localdata.form[item.field]" :field="item.field" @change="selectChange" :table="item.table" selected="" :default="item.text" :showdialog="item.showdialog" :searchfield="item.search"></lb-selectesearch>
                 </el-form-item>
             </template>
             <template v-if="item.type=='select'">
@@ -353,6 +353,12 @@ export default {
         }
     },
     methods: {
+        selectChange(obj){
+            this.$refs['ruleForm'].validateField(obj.field)
+            if (this.module.selectChange) {
+                this.module.selectChange(this, obj)
+            }
+        },
         numberChange(obj) {
             if (this.module.numberChange) {
                 this.module.numberChange(this, obj)
