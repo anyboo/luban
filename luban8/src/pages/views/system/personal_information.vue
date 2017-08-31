@@ -53,8 +53,8 @@
                             <el-input type="password" v-model="localdata.form2.new_pwd_repeat" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label-width="100px">
-                            <el-button type="primary" @click="handleChangePwd">修改密码</el-button>
-                            <el-button type="primary" @click="status=0">返回</el-button>
+                            <button class="btn btn-primary" @click="handleChangePwd">修改密码</button>
+                            <button class="btn btn-primary" @click="status=0">返回</button>
                         </el-form-item>
                     </el-form>
                 </div>

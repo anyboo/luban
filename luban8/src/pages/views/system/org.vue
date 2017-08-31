@@ -19,7 +19,7 @@
                 </el-form-item>
             </el-form>
         </div>
-        <div class="panel-footer" :class="getData">
+        <div class="panel-footer" :class="getData" style='text-align:center'>
             <template v-if="getActionOption('systememorgsave')">
                 <button type="button" class="btn btn-primary" @click="rest_save()">保存</button>
             </template>

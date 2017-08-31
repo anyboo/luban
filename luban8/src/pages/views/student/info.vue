@@ -1,126 +1,118 @@
 <template>
     <div>
-        <div class="wrapper" page-controller="student">
-            <div class="page-bar row m-b">
-                <div class="col-xs-12 col-md-2">
-                    <div class="btn-group dropdown" dropdown="">
-                        <a class="btn btn-default" @click="handleBack">返回</a>
-                    </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="btn-group dropdown" dropdown="">
+                    <a class="btn btn-default" @click="handleBack">返回</a>
                 </div>
-                <div class="col-xs-12 col-md-10 text-right">
-                    <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
-                        <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
-                            <i class="fa fa-cog"></i>
-                            <span> 操作</span>
-                            </ng-transclude>
-                            <span class="caret"></span>
-                        </lb-dropdown-button>
-                    </lb-dropdown>
-                    <button class="btn btn-danger btn-danger m-b-xs ng-isolate-scope" @click="deleteStudent">
-                        <i class="fa fa-trash-o"></i> 封存档案</button>
-                </div>
+                <i class="fa fa-user"></i> 学员信息
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-user"></i> 学员信息</div>
-                <div class="panel-body">
-                    <div class="bg-white row no-gutter">
-                        <div class="col-xs-12 col-md-4">
-                            <div class="text-center clear">
-                                <div class="face" style="width:120px;margin:0 auto">
-                                    <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
-                                        <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
-                                    </div>
+            <div class="panel-body">
+                <div class="bg-white row no-gutter">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="text-center clear">
+                            <div class="face" style="width:120px;margin:0 auto">
+                                <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
+                                    <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
                                 </div>
                             </div>
-                            <p class="text-center">
-                                <span class="text-2x">{{ student.student_name }}</span>
-                                <span>
-                                    <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1'
-                                                                                                                    ,'mans':student.sex=='1','woman':student.sex=='2'}"></i>
-                                </span>
-                            </p>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <label class="field">昵称/英文名:</label>
-                                    <span>{{ student.nickname }}</span>
-                                </li>
-                                <li class="m-t-xs">
-                                    <label class="field">学员归属:</label>
-                                    <span class="label bg-info">{{getEmployeeName}}</span>
-                                </li>
-                            </ul>
-                            <div>
-                                <el-button @click="handleQrcode()" type="text">我的二维码</el-button>
-                                <!--  {{httpGetUrlQccode(student.student_id)}} -->
+                        </div>
+                        <p class="text-center">
+                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
+                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
+                                    <i class="fa fa-cog"></i>
+                                    <span> {{ student.student_name }}</span>
+                                    <span class="caret"></span>
+                                </lb-dropdown-button>
+                            </lb-dropdown>
+                            <span>
+                                <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1','mans':student.sex=='1','woman':student.sex=='2'}"></i>
+                            </span>
+                        </p>
+                        <ul class="list-unstyled">
+                            <li>
+                                <label class="field">昵称/英文名:</label>
+                                <span>{{ student.nickname }}</span>
+                            </li>
+                            <li class="m-t-xs">
+                                <label class="field">学员归属:</label>
+                                <span class="label bg-info">{{getEmployeeName}}</span>
+                            </li>
+                        </ul>
+                        <div>
+                            <el-button @click="deleteStudent" style="color:red;" type="text">封存档案</el-button>
+                        </div>
+                        <div>
+                            <el-popover ref="popover" placement="right"  trigger="click">
                                 <img :src="qrcodeimg">
-                            </div>
+                            </el-popover>
+                            <el-button @click="handleQrcode()" type='text' v-popover:popover>我的二维码</el-button>
                         </div>
-                        <div class="col-xs-12 col-md-8">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <i class="icon-info"></i> 基础信息</div>
-                                <div class="panel-body">
-                                    <div class="row no-gutter">
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">住址:</label>
-                                            <span>{{ student.home_address }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">备注:</label>
-                                            <span>{{ student.note }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">学校:</label>
-                                            <span>{{ student.school }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">年级:</label>
-                                            <span>{{ student.grade }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">班级:</label>
-                                            <span>{{ student.class }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">建档日期:</label>
-                                            <span>{{ getDateFormat(student.creattime) }}</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <label class="inline w-xs text-right">生日:</label>
-                                            <span class="text-info">{{ getDateFormat(student.birth) }}</span>
-                                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i class="icon-info"></i> 基础信息</div>
+                            <div class="panel-body">
+                                <div class="row no-gutter">
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">住址:</label>
+                                        <span>{{ student.home_address }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">备注:</label>
+                                        <span>{{ student.note }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">学校:</label>
+                                        <span>{{ student.school }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">年级:</label>
+                                        <span>{{ student.grade }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">班级:</label>
+                                        <span>{{ student.class }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">建档日期:</label>
+                                        <span>{{ getDateFormat(student.creattime) }}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <label class="inline w-xs text-right">生日:</label>
+                                        <span class="text-info">{{ getDateFormat(student.birth) }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <el-table :data="relation" stripe>
-                                <el-table-column prop="tel" label="电话">
-                                </el-table-column>
-                                <el-table-column prop="rel" width="100" label="关系">
-                                </el-table-column>
-                                <el-table-column prop="name" label="名字">
-                                </el-table-column>
-                            </el-table>
                         </div>
+                        <el-table :data="relation" stripe>
+                            <el-table-column prop="tel" label="电话">
+                            </el-table-column>
+                            <el-table-column prop="rel" width="100" label="关系">
+                            </el-table-column>
+                            <el-table-column prop="name" label="名字">
+                            </el-table-column>
+                        </el-table>
                     </div>
                 </div>
             </div>
-            <!--学员动态记录-->
-            <div class="panel panel-default">
-                <div class="panel-heading" tab-link="student.list">
-                    <span class="tab-title">
-                        <i class="fa fa-list"></i> 学员动态记录</span>
-                </div>
-                <div class="panel-body ng-scope">
-                    <div class="wrapper" tab-nav-link="student.list">
-                        <el-collapse v-model="activeName" accordion>
-                            <template v-for="item in moduledata">
-                                <el-collapse-item :title="item.pageLable">
-                                    <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
-                                </el-collapse-item>
-                            </template>
-                        </el-collapse>
-                    </div>
+        </div>
+        <!--学员动态记录-->
+        <div class="panel panel-default">
+            <div class="panel-heading" tab-link="student.list">
+                <span class="tab-title">
+                    <i class="fa fa-list"></i> 学员动态记录</span>
+            </div>
+            <div class="panel-body ng-scope">
+                <div class="wrapper" tab-nav-link="student.list">
+                    <el-collapse v-model="activeName" accordion>
+                        <template v-for="item in moduledata">
+                            <el-collapse-item :title="item.pageLable">
+                                <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
+                            </el-collapse-item>
+                        </template>
+                    </el-collapse>
                 </div>
             </div>
         </div>
@@ -165,7 +157,7 @@ export default {
             relation: [],
             tables: ['student'],
             uid: '',
-            qrcodeimg:'',
+            qrcodeimg: '',
             options: [{
                 value: '0',
                 label: '本人'
@@ -222,7 +214,7 @@ export default {
             getUrl.httpGetUrlQccode(this.uid).then(obj => {
                 console.log(obj)
                 console.log(obj.data.ticket)
-                this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='+ obj.data.ticket
+                this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + obj.data.ticket
             })
             /*     Vue.http.get('http://app.bullstech.cn:8888/wxqrcode/'+this.uid).then(obj=>{
                      console.log(obj)
