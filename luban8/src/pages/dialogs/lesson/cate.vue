@@ -15,8 +15,12 @@
                         <i class="fa fa-plus"></i>新增大类
                     </a>
                 </p>
-                <lb-listtree :tree-data="getreeData" ref="listtree">
-                </lb-listtree>
+
+                <el-tree :data="getreeData" :props="defaultProps" node-key="_id" default-expand-all :expand-on-click-node="false" :render-content="renderContent">
+                </el-tree>
+
+                <!-- <lb-listtree :tree-data="getreeData" ref="listtree">
+                                                            </lb-listtree> -->
             </div>
             <div class="modal-footer text-center">
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>
@@ -25,6 +29,7 @@
     </div>
 </template>
 <script>
+let id = 10000
 export default {
     name: 'cate',
     data() {
@@ -36,16 +41,57 @@ export default {
         return {
             localdata,
             model: 'cate',
-            tables: ['cate']
+            tables: ['cate'],
+            defaultProps: {
+                children: 'children',
+                label: 'name'
+            }
         }
     },
     computed: {
         getreeData() {
-            return this.$store.state.models.models.cate.data
+            let cateTree = []
+            let cateTreeMap = {}
+            let cateData = this.$store.state.models.models.cate.data
+            for (let item of cateData) {
+                let treeitem = item
+                if (cateTreeMap[item._id]) {
+                    treeitem.children = cateTreeMap[item._id].children
+                } else {
+                    treeitem.children = []
+                }
+                cateTreeMap[item._id] = treeitem
+                if (item.pid == '') {
+                    cateTree.push(treeitem)
+                } else {
+                    if (cateTreeMap[item.pid]) {
+                        cateTreeMap[item.pid].children.push(treeitem)
+                    } else {
+                        cateTreeMap[item.pid] = {}
+                        cateTreeMap[item.pid].children = []
+                        cateTreeMap[item.pid].children.push(treeitem)
+                    }
+                }
+            }
+            console.log('data', cateData,cateTreeMap)
+            return cateTree
         }
     },
     watch: {},
     methods: {
+        append(store, data) {
+            store.append({ id: id++, label: 'testtest', children: [] }, data);
+        },
+        remove(store, data) {
+            store.remove(data);
+        },
+        renderContent(h, { node, data, store }) {
+            return h('lb-listtree', {
+                props: {
+                    data
+                }
+            })
+        },
         handleClick() {
             let vm = this
             vm.modalsType = vm.types.APPEND_API

@@ -1,8 +1,7 @@
 export default {
     'pageName': 'systemsms',
     'pageLable': ' 短信功能',
-    'tableSearch': [
-    ],
+    'tableSearch': [],
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
