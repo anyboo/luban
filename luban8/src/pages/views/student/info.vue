@@ -43,7 +43,7 @@
                             <el-button @click="deleteStudent" style="color:red;" type="text">封存档案</el-button>
                         </div>
                         <div>
-                            <el-popover ref="popover" placement="right"  trigger="click">
+                            <el-popover ref="popover" placement="right" trigger="click">
                                 <img :src="qrcodeimg">
                             </el-popover>
                             <el-button @click="handleQrcode()" type='text' v-popover:popover>我的二维码</el-button>
@@ -98,23 +98,14 @@
                 </div>
             </div>
         </div>
-        <!--学员动态记录-->
-        <div class="panel panel-default">
-            <div class="panel-heading" tab-link="student.list">
-                <span class="tab-title">
-                    <i class="fa fa-list"></i> 学员动态记录</span>
-            </div>
-            <div class="panel-body ng-scope">
-                <div class="wrapper" tab-nav-link="student.list">
-                    <el-collapse v-model="activeName" accordion>
-                        <template v-for="item in moduledata">
-                            <el-collapse-item :title="item.pageLable">
-                                <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
-                            </el-collapse-item>
-                        </template>
-                    </el-collapse>
-                </div>
-            </div>
+        <div class="wrapper" tab-nav-link="student.list">
+            <el-tabs type="border-card">
+                <template v-for="item in moduledata">
+                    <el-tab-pane :label="item.pageLable">
+                        <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
+                    </el-tab-pane>
+                </template>
+            </el-tabs>
         </div>
     </div>
 </template>
