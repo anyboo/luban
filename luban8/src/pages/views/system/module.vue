@@ -68,8 +68,11 @@
                     </el-table-column>
                 </template>
                 <template v-else-if="item.type!='checkbox'&&item.type!='operation'">
-                    <el-table-column :label="item.label">
+                    <el-table-column :label="item.label" :type="item.expand?'expand':''">
                         <template scope="scope">
+                            <template v-if="item.type=='tableexpand'">
+                                <!-- <lb-systemmodule :module="item.props" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule> -->
+                            </template>
                             <template v-if="item.type=='constant'">
                                 {{item.prop}}
                             </template>
@@ -98,7 +101,7 @@
                                 <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDateFormat(scope.row[item.prop]) }}</span>
                             </template>
-                             <template v-if="item.type=='datetimeMinute'">
+                            <template v-if="item.type=='datetimeMinute'">
                                 <el-icon name="time"></el-icon>
                                 <span style="margin-left: 10px">{{ getDatetimeFormat(scope.row[item.prop]) }}</span>
                             </template>
@@ -137,7 +140,7 @@
                                 {{ getSubText(scope.row,item.prop,item.subprop) }}
                             </template>
                             <template v-if="item.type=='substatus'">
-                                <lb-checkstatus :lessonData="scope.row" :typeData="getSubText(scope.row,item.prop,item.subprop)"  :tabletype="item.subprop" v-on:search="handleSearch"></lb-checkstatus>
+                                <lb-checkstatus :lessonData="scope.row" :typeData="getSubText(scope.row,item.prop,item.subprop)" :tabletype="item.subprop" v-on:search="handleSearch"></lb-checkstatus>
                             </template>
                             <template v-if="item.type=='text'">
                                 {{ scope.row[item.prop] }}
@@ -263,10 +266,11 @@
 }
 </style>
 <script>
+import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
-    props: ['module', 'info', 'searchValue', 'value','stepsdata'],
+    props: ['module', 'info', 'searchValue', 'value', 'stepsdata'],
     data() {
         return {
             moduledata: '',
@@ -314,6 +318,9 @@ export default {
             }
         }
     },
+    components: {
+        'lb-systemmodule': systemmodule
+    },
     created() {
         if (typeof (this.module) == 'object') {
             this.moduledata = this.module
@@ -330,9 +337,9 @@ export default {
         }
     },
     computed: {
-        getPagination(){
+        getPagination() {
             let pagination = true
-            if (this.moduledata.paginationhide){
+            if (this.moduledata.paginationhide) {
                 pagination = false
             }
             return pagination
@@ -442,12 +449,12 @@ export default {
         handleSelectionChange(val) {
             this.multipleSelection = val
         },
-        singleBtnAction(item){
-            if (item.showdialog){
+        singleBtnAction(item) {
+            if (item.showdialog) {
                 this.handOpenDialog(item.showdialog)
-            }else{
-                if (this.moduledata[item.func]){
-                    this.moduledata[item.func](this,item.param)
+            } else {
+                if (this.moduledata[item.func]) {
+                    this.moduledata[item.func](this, item.param)
                 }
             }
         },
@@ -650,9 +657,9 @@ export default {
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
                     if (this.moduledata.tableChange) {
-                        this.moduledata.tableChange(this,obj.data.data).then((obj)=>{
-                             this.moduleTableData =  obj
-                             console.log(obj)
+                        this.moduledata.tableChange(this, obj.data.data).then((obj) => {
+                            this.moduleTableData = obj
+                            console.log(obj)
                         })
                     } else {
                         this.moduleTableData = obj.data.data
