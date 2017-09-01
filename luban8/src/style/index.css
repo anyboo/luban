@@ -269,3 +269,6 @@ a:hover {
     .el-table__empty-block {
         height: 0!important;
     }
+    .el-tree__empty-block{
+        height: auto;
+    }

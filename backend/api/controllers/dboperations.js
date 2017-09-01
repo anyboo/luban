@@ -13,8 +13,10 @@ var dbstr = 'mongodb://localhost/'
 const accessKeyId = 'ACSFUX7fLUMpBZM1'
 const secretAccessKey = 'qsGNrvuGnu'
 const queueName = 'Alicom-Queue-1420938370661882-'
-const https = require('https');
+const https = require('https')
+const http = require('http')
 const smsdb = 'lubansms'
+const querystring = require('querystring')
 
 function checkId(id) {
     let result = false
@@ -496,6 +498,30 @@ function ajax(options, body) {
         req.end()
     });
 }
+function ajaxhttp(options, body) {
+    return new Promise(function (resolve) {
+        const req = http.request(options, (res) => {
+            res.setEncoding('utf8')
+            res.on('data', (d) => {
+                try {
+                    let data = JSON.parse(d.toString())
+                    console.log(data)
+                    resolve(data)
+                } catch (e) {
+                    resolve({})
+                }
+            })
+        })
+        if (options.method == 'POST') {
+            req.write(body)
+        }
+
+        req.on('error', (e) => {
+            console.error(e)
+        });
+        req.end()
+    });
+}
 module.exports.wxreg = function* wxreg() {
     if ('GET' != this.method) return yield next
     var signature = this.query.signature
@@ -572,11 +598,52 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
 }
-module.exports.smssend = function* smssend(db, id, next) {
-    let sms_opt = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+
+module.exports.smssend = function* smssend() {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    console.log(model)
+    let smsdata = {
+        type: 'send',
+        username: '18960828505',
+        password: 'A750A4CDD88D39140D81D71615824272',
+        gwid: '408fbb2',
+        mobile: model.mobile,
+        rece: 'json',
+        message: '【' + model.title + '】' + model.message
+    }
+    let body = querystring.stringify(smsdata)
+
+    let options = {
+        hostname: 'jk.106api.cn',
+        port: 80,
+        path: '/smsUTF8.aspx',
+        method: 'POST',
+        agent: false,
+        rejectUnauthorized: false,
+        headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            'Content-Length': body.length,
+        }
+    }
+    let smssendinfo = {}
+    smssendinfo = yield ajaxhttp(options, body)
+
+
+    this.body = yield smssendinfo
+}
+
+module.exports.getsmssend = function* getsmssend() {
+    if ('GET' != this.method) return yield next
+    let access_smssend = {}
+    let get_options = {
+        hostname: 'jk.106api.cn',
+        port: 80,
+        path: '/statusApi.aspx?type=query&username=18960828505&password=A750A4CDD88D39140D81D71615824272&rece=json',
         method: 'GET',
     }
+    access_smssend = yield ajaxhttp(get_options)
+    this.body = yield access_smssend
 }
