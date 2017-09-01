@@ -118,6 +118,12 @@
         </div>
     </div>
 </template>
+<style>
+.el-table__body-wrapper{
+    overflow: hidden;
+}
+</style>
+
 <script>
 import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/modulestudentinfo.js'

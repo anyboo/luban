@@ -1,10 +1,16 @@
 export default {
-    'pageName': 'rolesform',
+    'pageName': 'dictionary',
     'pageLable': '数据字典',
     'form': {
+        'type': '0',
         'text': '默认',
         'sort': '100',
         'defvalue': false
+    },
+    'mounted': function (vm) {
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.localdata.form.type = vm.$store.state.dialogs.dailogdata.type
+        }
     },
     'formField': [
         {
@@ -26,7 +32,7 @@ export default {
             'field': 'defvalue'
         }
     ],
-    'pageTable': 'role',
+    'pageTable': 'dictionary',
     'pageTemplate': 'form',
     'pagePath': '',
     rules: {

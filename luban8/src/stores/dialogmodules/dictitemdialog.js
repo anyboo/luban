@@ -2,6 +2,24 @@ export default {
     'pageName': 'dictitemdialog',
     'pageLable': ' 字典项目',
     'tableSearch': [],
+    'created': function (vm) {
+        if (vm.$store.state.dialogs.dailogdata) {
+            let type = vm.$store.state.dialogs.dailogdata.type
+            vm.deffilterObj.push({
+                'key': 'type',
+                'value': type,
+                'type': ''
+            })
+        }
+    },
+    'getOpenDialogData': function (vm) {
+        let data = {}
+        if (vm.$store.state.dialogs.dailogdata) {
+            data = vm.$store.state.dialogs.dailogdata
+        }
+        console.log(data)
+        return data
+    },
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -27,7 +45,7 @@ export default {
                     'label': '新增',
                     'type': 'success',
                     'showdialog': 'dictform',
-                    'actionoption': 'dictform'
+                    'actionoption': 'dictform',
                 },
             ]
         },
