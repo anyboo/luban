@@ -180,7 +180,7 @@ export default {
             'action': 'studentrecording'
         }],
         dropDownMenu: [{
-            'url': 'lb-details',
+            'url': 'recordingdetail',
             'icon': 'fa fa-pencil',
             'text': '查看详情'
         }, {
