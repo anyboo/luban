@@ -451,7 +451,11 @@ export default {
         },
         singleBtnAction(item) {
             if (item.showdialog) {
-                this.handOpenDialog(item.showdialog)
+                let dialogdata = {}
+                if (this.moduledata.getOpenDialogData) {
+                    dialogdata = this.moduledata.getOpenDialogData(this, item.param)
+                }
+                this.handOpenDialog(item.showdialog,dialogdata)
             } else {
                 if (this.moduledata[item.func]) {
                     this.moduledata[item.func](this, item.param)
@@ -505,14 +509,14 @@ export default {
             this.$store.commit('router', url)
             event.stopPropagation()
         },
-        handOpenDialog(dialog) {
+        handOpenDialog(dialog, data) {
             if (this.openDialogArr.indexOf(dialog) != '-1') {
                 this.selStudentAddInquiry = dialog
                 this.$store.state.envs.currDialog = ''
                 this.$store.state.envs.currDialogResult = null
                 this.handleShowDialog('selectstudentdialog')
             } else {
-                this.handleShowDialog(dialog)
+                this.handleShowDialog(dialog, data)
             }
         },
         getModuleSearchSpan(Search, count) {

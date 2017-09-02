@@ -44,9 +44,11 @@ export default {
         if (this.$store.state.dialogs.dailogdata) {
             if (this.module.student) {
             } else {
-                this.id = this.$store.state.dialogs.dailogdata['_id']
-                this.formtype = true
-                this.form = JSON.parse(JSON.stringify(this.$store.state.dialogs.dailogdata))
+                if (this.$store.state.dialogs.dailogdata['_id']) {
+                    this.id = this.$store.state.dialogs.dailogdata['_id']
+                    this.formtype = true
+                    this.form = JSON.parse(JSON.stringify(this.$store.state.dialogs.dailogdata))
+                }
             }
         }
     },
