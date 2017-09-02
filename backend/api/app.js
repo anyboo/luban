@@ -6,9 +6,13 @@ var route = require('koa-route')
 var cors = require('koa-cors')
 var koa = require('koa')
 var path = require('path')
+var xmlparse = require('./controllers/xmlparse')
 var app = module.exports = new koa()
+
 app.use(logger())
 app.use(cors())
+app.use(xmlparse())
+
 app.use(route.post('/wxreg/', control.wxregpost))
 app.use(route.get('/wxreg/', control.wxreg))
 app.use(route.post('/wx/', control.wx))
