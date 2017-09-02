@@ -4,7 +4,6 @@ import order from '~/pages/dialogs/student/order.modal.vue'
 import pay_now from '~/pages/dialogs/student/pay_now.modal.vue'
 import unpay_clear from '~/pages/dialogs/student/unpay_clear.modal.vue'
 import printer_receipt from '~/pages/dialogs/student/printer_receipt.vue'
-import details from '~/pages/dialogs/student/details.vue'
 import orderandpay from '~/pages/dialogs/student/orderandpay.vue'
 
 import cate from '~/pages/dialogs/lesson/cate.vue'
@@ -21,7 +20,6 @@ pages['lb-ordermodal'] = order
 pages['lb-paynowmodal'] = pay_now
 pages['lb-unpayclearmodal'] = unpay_clear
 pages['lb-printerreceipt'] = printer_receipt
-pages['lb-details'] = details
 pages['lb-orderandpay'] = orderandpay
 
 pages['lb-cate'] = cate
