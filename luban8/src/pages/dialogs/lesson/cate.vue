@@ -15,12 +15,8 @@
                         <i class="fa fa-plus"></i>新增大类
                     </a>
                 </p>
-
                 <el-tree :data="getreeData" :props="defaultProps" node-key="_id" default-expand-all :expand-on-click-node="false" :render-content="renderContent">
                 </el-tree>
-
-                <!-- <lb-listtree :tree-data="getreeData" ref="listtree">
-                                                            </lb-listtree> -->
             </div>
             <div class="modal-footer text-center">
                 <button class="btn btn-warning" @click="lbClosedialog($event)">关闭</button>

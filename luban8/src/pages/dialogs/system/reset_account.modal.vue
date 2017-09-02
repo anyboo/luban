@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div >
                 <div class="modal-header">
-                    <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
+                    <button class="close" type="button" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
                         <span class="sr-only">关闭</span>
                     </button>
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 col-xs-12">登录密码</label>
                             <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control   ng-invalid ng-invalid-required -minlength" minlength="6" required v-model.trim="localdata.form.reset_password">
+                                <input type="text" name="password" minlength="6" required v-model.trim="localdata.form.reset_password">
                             </div>
                             <div class="col-md-5 col-xs-12">
                                 <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='123456'">123456</a>

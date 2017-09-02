@@ -6,18 +6,76 @@ export default {
         'order_id': '',
         'student_id': '',
         'classes_id': '',
-        'money_pay_amount': '',
+        'money_pay_amount': 0,
         'pay_type': 0,
         'use_balance': false,
         'balance_pay_amount': 0,
-        'region_oe_id': '请选择',
+        'region_oe_id': '',
         'print': false
     },
-    'mounted':function(vm){
+    'numberChange': function (vm, obj) {
+        console.log( vm.order.unpay_amount , vm.localdata.form.balance_pay_amount)
+        if (vm.localdata.form.use_balance) {
+            vm.localdata.form.money_pay_amount = vm.order.unpay_amount - vm.localdata.form.balance_pay_amount
+        } else {
+            vm.localdata.form.money_pay_amount = vm.order.unpay_amount
+        }
+    },
+    'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata) {
             vm.order = vm.$store.state.dialogs.dailogdata
-            console.log(vm.order)
+            vm.currStudent = vm.$store.state.envs.currStudent
         }
+    },
+    'beforeSave': function (vm) {
+        vm.localdata.form.order_id = vm.order._id
+        vm.localdata.form.classes_id = vm.order.classes_id
+    },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            function updateOrder() {
+                let unpay_amount = vm.order.unpay_amount - vm.localdata.form.money_pay_amount
+                if (vm.localdata.form.use_balance) {
+                    unpay_amount -= vm.localdata.form.balance_pay_amount
+                }
+                let pay_status = 1
+                if (unpay_amount == 0) {
+                    pay_status = 2
+                } else if (unpay_amount == vm.order.order_amount) {
+                    pay_status = 0
+                }
+                vm.order.unpay_amount = unpay_amount
+                vm.order.pay_amount = vm.order.order_amount - unpay_amount
+                vm.updateTeble('order', vm.order._id, {
+                    'pay_status': pay_status,
+                    'unpay_amount': unpay_amount,
+                    'pay_amount': vm.order.pay_amount
+                }).then(() => {
+                    resolve(obj)
+                })
+            }
+            function setStudentAmountOrder() {
+                let amount = Number(vm.currStudent.amount) - Number(vm.localdata.form.balance_pay_amount)
+                vm.updateTeble('student', vm.currStudent._id, {
+                    'amount': amount
+                }).then(() => {
+                    updateOrder()
+                })
+            }
+            function setStudentAmount() {
+                let amount = Number(vm.currStudent.amount) + Number(vm.order.back_amount) + Number(vm.order.origin_amount)
+                vm.updateTeble('student', vm.currStudent._id, {
+                    'amount': amount
+                }).then(() => {
+                    updateOrder()
+                })
+            }
+            if (vm.order.order_type == 2) {
+                setStudentAmount()
+            } else if (vm.order.order_type == 1) {
+                setStudentAmountOrder()
+            }
+        })
     },
     'formField': [
         {
@@ -54,6 +112,14 @@ export default {
             'text': '元'
         },
         {
+            'type': 'orderpaystudent',
+            'label': '余额付款',
+            'prop': '',
+            'field': 'use_balance',
+            'fieldActive': 'balance_pay_amount',
+            'text': '元'
+        },
+        {
             'type': 'numberinput',
             'label': '现款缴费',
             'prop': 'money_pay_amount',
@@ -63,8 +129,8 @@ export default {
         {
             'type': 'select',
             'label': '缴费方式',
-            'prop': 'sel',
-            'field': 'sel',
+            'prop': 'region_oe_id',
+            'field': 'region_oe_id',
             'dict': function (vm) {
                 let dict = 2
                 return dict
@@ -74,12 +140,14 @@ export default {
     'pageTable': 'pay',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {
-        money_pay_amount: [
-            {required: true, message: '请输入金额', trigger: 'blur' }
-        ],
-        sel: [
-            {required: true, message: '请选择缴费方式', trigger: 'change' }
-        ]
+    rulesData: function (vm) {
+        return {
+            money_pay_amount: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入金额', trigger: 'blur' }
+            ],
+            region_oe_id: [
+                { required: true, message: '请选择缴费方式', trigger: 'change' }
+            ]
+        }
     }
 }

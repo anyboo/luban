@@ -6,7 +6,7 @@
                     <el-input v-model="localdata.form[item.field]"></el-input>
                 </el-form-item>
             </template>
-             <template v-if="item.type=='constant'">
+            <template v-if="item.type=='constant'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     {{item.field}}
                 </el-form-item>
@@ -30,6 +30,18 @@
                 <el-form-item :label="item.label">
                     {{getSubText('vm',item.prop,item.subprop)}}{{item.text}}
                 </el-form-item>
+            </template>
+            <template v-if="item.type=='orderpaystudent'">
+                <template v-if="currStudent.amount > 0 && order.order_type != 2">
+                    <el-form-item :label="item.label">
+                        {{currStudent.amount}}元
+                        <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="" :field="item.fieldActive" @change="numberChange">
+                        </el-switch>
+                    </el-form-item>
+                    <el-form-item v-if="localdata.form[item.fieldActive]">
+                        <lb-numberinput v-model="localdata.form[item.field]" :text="item.text" :field="item.field" @change="numberChange"></lb-numberinput>
+                    </el-form-item>
+                </template>
             </template>
             <template v-if="item.type=='getDatetimeFormat'">
                 <el-form-item :label="item.label" :prop="item.prop">
@@ -390,7 +402,7 @@ export default {
         }
     },
     methods: {
-        selectChange(obj){
+        selectChange(obj) {
             this.$refs['ruleForm'].validateField(obj.field)
             if (this.module.selectChange) {
                 this.module.selectChange(this, obj)
@@ -587,7 +599,13 @@ export default {
                         }
                         // = vm.getDateNumFormat(vm.localdata.form.birth)
                         vm.handleSave().then((response) => {
-                            resolve(response)
+                            if (this.module.afterSave) {
+                                this.module.afterSave(this,response).then((obj)=>{
+                                    resolve(obj)
+                                })
+                            }else{
+                                 resolve(response)
+                            }
                         }, (e) => {
                         })
                     }
