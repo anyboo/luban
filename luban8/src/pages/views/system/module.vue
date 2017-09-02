@@ -68,8 +68,11 @@
                     </el-table-column>
                 </template>
                 <template v-else-if="item.type!='checkbox'&&item.type!='operation'">
-                    <el-table-column :label="item.label">
+                    <el-table-column :label="item.label" :type="item.expand?'expand':''">
                         <template scope="scope">
+                            <template v-if="item.type=='tableexpand'">
+                                <!-- <lb-systemmodule :module="item.props" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule> -->
+                            </template>
                             <template v-if="item.type=='constant'">
                                 {{item.prop}}
                             </template>
@@ -266,6 +269,7 @@
 }
 </style>
 <script>
+import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'systemmodule',
@@ -316,6 +320,9 @@ export default {
                 }]
             }
         }
+    },
+    components: {
+        'lb-systemmodule': systemmodule
     },
     created() {
         if (typeof (this.module) == 'object') {

@@ -99,10 +99,12 @@
             </div>
         </div>
         <div class="wrapper" tab-nav-link="student.list">
-            <el-tabs type="border-card">
-                <template v-for="item in moduledata">
+            <el-tabs type="border-card" @tab-click="showTab">
+                <template v-for="(item,index) in moduledata">
                     <el-tab-pane :label="item.pageLable">
-                        <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
+                        <template v-if="index==tabIndex">
+                            <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id" ></lb-systemmodule>
+                        </template>
                     </el-tab-pane>
                 </template>
             </el-tabs>
@@ -110,7 +112,7 @@
     </div>
 </template>
 <style>
-.el-table__body-wrapper{
+.el-table__body-wrapper {
     overflow: hidden;
 }
 </style>
@@ -152,6 +154,7 @@ export default {
             activeName: '1',
             student: {},
             relation: [],
+            tabIndex: '',
             tables: ['student'],
             uid: '',
             qrcodeimg: '',
@@ -206,6 +209,9 @@ export default {
     },
     watch: {},
     methods: {
+        showTab(tab, event) {
+            this.tabIndex = tab.index
+        },
         handleQrcode() {
             console.log(this.uid)
             getUrl.httpGetUrlQccode(this.uid).then(obj => {

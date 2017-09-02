@@ -1,7 +1,7 @@
 export default {
     'pageName': 'courseRecord',
     'pageLable': '排课记录',
-    'pageSearch': [
+    'tableSearch': [
         {
             'localField': 'sclasses_id',
             'from': 'sclasses',
@@ -17,8 +17,13 @@ export default {
             'from': 'classes',
             'foreignField': '_id',
             'as': 'classes'
-        }
-    ],
+        },{
+            'localField': 'classes_id',
+            'from': 'order',
+            'foreignField': 'classes_id',
+            'as': 'order'
+        }],
+    'pageSearch': [],
     'pageTableField': [
         {
             'type': 'tabletext',
