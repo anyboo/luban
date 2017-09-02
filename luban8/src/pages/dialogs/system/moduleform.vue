@@ -26,6 +26,11 @@
                     {{localdata.form[item.field]}}{{item.text}}
                 </el-form-item>
             </template>
+            <template v-if="item.type=='datetimetext'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    {{getDateFormat(localdata.form[item.field])}}
+                </el-form-item>
+            </template>
             <template v-if="item.type=='vmsubtext'">
                 <el-form-item :label="item.label">
                     {{getSubText('vm',item.prop,item.subprop)}}{{item.text}}

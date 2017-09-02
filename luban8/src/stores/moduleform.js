@@ -23,6 +23,7 @@ import allsmsform from './formmodules/allsmsform.js'
 import rolesform from './formmodules/rolesform.js'
 import dictform from './formmodules/dictform.js'
 import refundfrom from './formmodules/refundfrom.js'
+import recordingdetailform from './formmodules/recordingdetailform.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -50,5 +51,6 @@ pages['allsmsform'] = allsmsform
 pages['rolesform'] = rolesform
 pages['dictform'] = dictform
 pages['refundfrom'] = refundfrom
+pages['recordingdetailform'] = recordingdetailform
 
 export default pages
