@@ -2,7 +2,12 @@ export default {
     'pageName': 'recordingdetailform',
     'pageLable': '赛事详情',
     'student': true,
-    'form': {},
+    'form': {
+        'creattime':'',
+        'match_name':'',
+        'result':'',
+        'info':'',
+    },
     'formField': [
         {
             'type': 'datetimetext',
