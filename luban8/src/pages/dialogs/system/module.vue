@@ -18,7 +18,7 @@
                 </template>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" @click="handleOk">确定</button>
+                <button class="btn btn-primary" @click="handleOk" v-if="module.look?false:true">确定</button>
                 <button class="btn btn-warning m-l-xs" @click="lbClosedialog()">关闭</button>
             </div>
         </div>
@@ -65,9 +65,13 @@ export default {
                 if (this.module.student) {
                     text = this.getStudentName() + '学员' + this.module.pageLable
                 } else {
-                    let formtitle = '新建'
-                    if (this.formtype) {
-                        formtitle = '编辑'
+                    let formtitle = ''
+                    if (this.module.look) {
+                    } else {
+                        formtitle = '新建'
+                        if (this.formtype) {
+                            formtitle = '编辑'
+                        }
                     }
                     text = formtitle + this.module.pageLable
                 }

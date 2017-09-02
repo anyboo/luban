@@ -1,12 +1,17 @@
 export default {
     'pageName': 'recordingdetailform',
     'pageLable': '赛事详情',
-    'student': true,
+    'look': true,
     'form': {
         'creattime':'',
         'match_name':'',
         'result':'',
         'info':'',
+    },
+    'created': function (vm) {
+        if (vm.$store.state.dialogs.dailogdata) {
+            console.log(vm.$store.state.dialogs.dailogdata)
+        }
     },
     'formField': [
         {

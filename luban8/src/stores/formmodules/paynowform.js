@@ -14,12 +14,21 @@ export default {
         'print': false
     },
     'numberChange': function (vm, obj) {
-        console.log( vm.order.unpay_amount , vm.localdata.form.balance_pay_amount)
         if (vm.localdata.form.use_balance) {
+            if (vm.localdata.form.balance_pay_amount == 0 ){
+                if (vm.order.unpay_amount>vm.currStudent.amount){
+                    vm.localdata.form.balance_pay_amount = vm.currStudent.amount
+                }else{
+                    vm.localdata.form.balance_pay_amount = vm.order.unpay_amount
+                }
+            }else if (vm.localdata.form.balance_pay_amount>vm.order.unpay_amount){
+                vm.localdata.form.balance_pay_amount = vm.order.unpay_amount
+            }
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount - vm.localdata.form.balance_pay_amount
         } else {
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
         }
+        console.log( vm.order.unpay_amount , vm.localdata.form.balance_pay_amount)
     },
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata) {
@@ -115,8 +124,8 @@ export default {
             'type': 'orderpaystudent',
             'label': '余额付款',
             'prop': '',
-            'field': 'use_balance',
-            'fieldActive': 'balance_pay_amount',
+            'field': 'balance_pay_amount',
+            'fieldActive': 'use_balance',
             'text': '元'
         },
         {
