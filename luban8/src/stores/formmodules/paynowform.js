@@ -56,14 +56,14 @@ export default {
         {
             'type': 'numberinput',
             'label': '现款缴费',
-            'prop': '',
+            'prop': 'money_pay_amount',
             'field': 'money_pay_amount',
             'text': '元'
         },
         {
             'type': 'select',
             'label': '缴费方式',
-            'prop': '',
+            'prop': 'sel',
             'field': 'sel',
             'dict': function (vm) {
                 let dict = 2
@@ -74,5 +74,12 @@ export default {
     'pageTable': 'pay',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {}
+    rules: {
+        money_pay_amount: [
+            {required: true, message: '请输入金额', trigger: 'blur' }
+        ],
+        sel: [
+            {required: true, message: '请选择缴费方式', trigger: 'change' }
+        ]
+    }
 }
