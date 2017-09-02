@@ -1,6 +1,7 @@
 'use strict'
-var crypto = require('crypto');
+var crypto = require('crypto')
 var parse = require('co-body')
+var parseString = require('xml2js').parseString
 var uploadparse = require('co-busboy')
 var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID
@@ -525,8 +526,8 @@ function ajaxhttp(options, body) {
 
 module.exports.wxregpost = function* wxregpost() {
     if ('POST' != this.method) return yield next
-    var model = yield parse(this, {
-        limit: '200kb'
+    var model = yield parseString(this, {
+        limit: '500kb'
     })
     var signature = this.query.signature
     var timestamp = this.query.timestamp
