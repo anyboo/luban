@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog">
         <div class="modal-content">
-            <div >
+            <div>
                 <div class="modal-header">
                     <button class="close" type="button" ng-click="$dismiss()" @click="lbClosedialog($event)">
                         <span aria-hidden="true">×</span>
@@ -13,24 +13,14 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form name="form1" class="form-validation form-horizontal  ng-invalid ng-invalid-required -minlength">
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">登录账号</label>
-                            <div class="col-md-5 col-xs-12">
-                                <input type="text" name="mobile" class="form-control" :value="username" readonly="true">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-xs-12">登录密码</label>
-                            <div class="col-md-5 col-xs-12">
-                                <input type="text" name="password" class="form-control   ng-invalid ng-invalid-required -minlength" minlength="6" required v-model.trim="localdata.form.reset_password">
-                            </div>
-                            <div class="col-md-5 col-xs-12">
-                                <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='123456'">123456</a>
-                                <a href="javascript:;" class="btn btn-default btn-xs m-l" @click="localdata.form.reset_password='888888'">6个8</a>
-                            </div>
-                        </div>
-                    </form>
+                    <el-form :model="localdata.form" :rules="rules" label-width="100px" ref="ruleForm">
+                        <el-form-item label="登录账号">
+                            {{username}}
+                        </el-form-item>
+                        <el-form-item label="登录密码" prop="reset_password">
+                            <el-input v-model.trim="localdata.form.reset_password"></el-input>
+                        </el-form-item>
+                    </el-form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" @click="do_reset_account()" :disabled="localdata.form.reset_password<6">确定</button>
@@ -54,7 +44,13 @@ export default {
             localdata,
             name: '',
             username: '',
-            uid: ''
+            uid: '',
+            rules: {
+                reset_password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'change' }
+                ],
+            }
         }
     },
     mounted() {
@@ -66,15 +62,20 @@ export default {
     },
     methods: {
         do_reset_account() {
-            this.updateTeble('employee', this.uid, {
-                'pwd': md5(this.localdata.form.reset_password)
-            }).then(() => {
-                this.$message({
-                    message: '设置成功！',
-                    type: 'success'
-                })
-                this.lbClosedialog()
-            })
+            this.$refs['ruleForm'].validate((valid) => {
+                if (valid) {
+                    this.updateTeble('employee', this.uid, {
+                        'pwd': md5(this.localdata.form.reset_password)
+                    }).then(() => {
+                        this.$message({
+                            message: '设置成功！',
+                            type: 'success'
+                        })
+                        this.lbClosedialog()
+                    })
+                }
+            });
+
         }
     }
 }

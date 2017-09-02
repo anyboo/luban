@@ -77,7 +77,7 @@ export default {
             to: '/system/employee',
             menuIcon: 'fa fa-tasks',
             dropDownMenu: [{
-                'url': 'lb-employeeaddmodal',
+                'url': 'employeeform',
                 'icon': 'fa fa-pencil',
                 'text': '编辑资料',
             }, {
