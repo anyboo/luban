@@ -525,7 +525,7 @@ function ajaxhttp(options, body) {
 
 module.exports.wxregpost = function* wxregpost() {
     if ('POST' != this.method) return yield next
-    var model = this.body
+    var model = this
     var signature = this.query.signature
     var timestamp = this.query.timestamp
     var nonce = this.query.nonce
