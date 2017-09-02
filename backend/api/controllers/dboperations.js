@@ -522,30 +522,64 @@ function ajaxhttp(options, body) {
         req.end()
     });
 }
+
+module.exports.wxregpost = function* wxregpost() {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    var signature = this.query.signature
+    var timestamp = this.query.timestamp
+    var nonce = this.query.nonce
+    var openid = this.query.openid
+    var echostr = this.query.echostr
+    var token = 'bullstech'
+    console.log(model,openid)
+    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
+
+    /*  加密/校验流程如下： */
+    //1. 将token、timestamp、nonce三个参数进行字典序排序
+    var array = new Array(token, timestamp, nonce)
+    array.sort()
+    var str = array.toString().replace(/,/g, '')
+
+    //2. 将三个参数字符串拼接成一个字符串进行sha1加密
+    var sha1Code = crypto.createHash('sha1')
+    var code = sha1Code.update(str, 'utf-8').digest('hex')
+
+    console.log(code, signature, code === signature)
+    //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    if (code === signature) {
+        this.body = ''
+    } else {
+        this.body = 'error'
+    }
+}
 module.exports.wxreg = function* wxreg() {
     if ('GET' != this.method) return yield next
     var signature = this.query.signature
     var timestamp = this.query.timestamp
     var nonce = this.query.nonce
     var echostr = this.query.echostr
-    var token = "bullstech"
+    var token = 'bullstech'
+    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
 
     /*  加密/校验流程如下： */
     //1. 将token、timestamp、nonce三个参数进行字典序排序
     var array = new Array(token, timestamp, nonce)
     array.sort()
-    var str = array.toString().replace(/,/g, "")
+    var str = array.toString().replace(/,/g, '')
 
     //2. 将三个参数字符串拼接成一个字符串进行sha1加密
-    var sha1Code = crypto.createHash("sha1");
-    var code = sha1Code.update(str, 'utf-8').digest("hex")
+    var sha1Code = crypto.createHash('sha1')
+    var code = sha1Code.update(str, 'utf-8').digest('hex')
 
     console.log(code, signature, code === signature)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = echostr
     } else {
-        this.body = "error"
+        this.body = 'error'
     }
 }
 module.exports.wx = function* wx() {
@@ -630,8 +664,12 @@ module.exports.smssend = function* smssend() {
     }
     let smssendinfo = {}
     smssendinfo = yield ajaxhttp(options, body)
-
-
+    var db = yield MongoClient.connect(getdbstr(model.db))
+    let smssends = yield db.collection('smssend').insert(
+        {
+            smssendinfo,
+            model
+        })
     this.body = yield smssendinfo
 }
 
@@ -647,3 +685,14 @@ module.exports.getsmssend = function* getsmssend() {
     access_smssend = yield ajaxhttp(get_options)
     this.body = yield access_smssend
 }
+/* module.exports.alipay = function* alipay(){
+    if('POST'!=this.method) return yield next
+        var model = yield parse(this, {
+            limit: '200kb'
+        })
+        console.log(model)
+        let ali ={}
+        let pay ={
+
+        }
+} */
