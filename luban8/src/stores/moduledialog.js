@@ -10,6 +10,7 @@ import hourslessonsdialog from './dialogmodules/hourslessonsdialog.js'
 import stepstudentdialog from './dialogmodules/stepstudentdialog.js'
 import dictitemdialog from './dialogmodules/dictitemdialog.js'
 import refundlistdialog from './dialogmodules/refundlistdialog.js'
+import recordingdetail from './dialogmodules/recordingdetail.js'
 
 let pages ={}
 pages['selectclassesdialog'] = selectclassesdialog
@@ -24,6 +25,6 @@ pages['hourslessonsdialog'] = hourslessonsdialog
 pages['stepstudentdialog'] = stepstudentdialog
 pages['dictitemdialog'] = dictitemdialog
 pages['refundlistdialog'] = refundlistdialog
-
+pages['recordingdetail'] = recordingdetail
 
 export default pages
