@@ -223,6 +223,21 @@ export default {
         getStudentId() {
             return this.$store.state.envs.currStudent._id
         },
+        getSubText(item, prop, subprop) {
+            let text = ''
+            let obj = item
+            if (item=='vm'){
+                obj = this
+            }
+            if (obj) {
+                if (obj[prop]) {
+                    if (typeof(obj[prop][subprop])!='undefined') {
+                        text += obj[prop][subprop]
+                    }
+                }
+            }
+            return text
+        },
         getDictDefvalue(type) {
             let value = ''
             let tablaData = []

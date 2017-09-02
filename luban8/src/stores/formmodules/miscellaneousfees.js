@@ -18,6 +18,7 @@ export default {
         'discount': 0,
         'discount_amount': 0,
         'order_amount': 0,
+        'pay_amount':0,
         'unpay_amount': 0,
         'pay_status': 0,
         'student_id': '',

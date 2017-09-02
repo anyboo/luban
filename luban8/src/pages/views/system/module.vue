@@ -136,6 +136,9 @@
                             <template v-if="item.type=='subtext'">
                                 {{ getSubText(scope.row,item.prop,item.subprop) }}
                             </template>
+                            <template v-if="item.type=='vmsubtext'">
+                                {{ getSubText(vm,item.prop,item.subprop) }}
+                            </template>
                             <template v-if="item.type=='substatus'">
                                 <lb-checkstatus :lessonData="scope.row" :typeData="getSubText(scope.row,item.prop,item.subprop)" :tabletype="item.subprop" v-on:search="handleSearch"></lb-checkstatus>
                             </template>
@@ -541,17 +544,6 @@ export default {
                 }
             }
             return searchInfo
-        },
-        getSubText(item, prop, subprop) {
-            let text = ''
-            if (item) {
-                if (item[prop]) {
-                    if (item[prop][subprop]) {
-                        text = item[prop][subprop]
-                    }
-                }
-            }
-            return text
         },
         getSearchFun(Search) {
             let searchfun

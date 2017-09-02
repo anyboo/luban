@@ -17,15 +17,24 @@ export default {
             'prop': 'order_no'
         },
         {
+            'type': 'text',
+            'label': '订单内容',
+            'prop': 'body'
+        },
+        {
             'type': 'checkstatus',
             'label': '支付状态',
             'statutype': 'checkPay',
         },
         {
-            'type': 'subtract',
+            'type': 'text',
             'label': '已付款',
-            'prop1': 'order_amount',
-            'prop2': 'unpay_amount',
+            'prop': 'order_amount',
+        },
+        {
+            'type': 'text',
+            'label': '已付款',
+            'prop': 'pay_amount',
         },
         {
             'type': 'text',

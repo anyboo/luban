@@ -1,6 +1,7 @@
 export default {
     'pageName': 'paynowform',
     'pageLable': '缴费',
+    'student': true,
     'form': {
         'order_id': '',
         'student_id': '',
@@ -12,45 +13,45 @@ export default {
         'region_oe_id': '请选择',
         'print': false
     },
+    'mounted':function(vm){
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.order = vm.$store.state.dialogs.dailogdata
+            console.log(vm.order)
+        }
+    },
     'formField': [
         {
-            'type': 'text',
-            'label': '学员',
-            'prop': '',
-            'field': 'student_name',
-        },
-        {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '订单号',
-            'prop': '',
-            'field': 'order_no'
+            'prop': 'order',
+            'subprop': 'order_no'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '订单内容',
-            'prop': '',
-            'field': 'body'
+            'prop': 'order',
+            'subprop': 'body'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '订单金额',
-            'prop': '',
-            'field': 'order_amount',
-            'text':'元'
+            'prop': 'order',
+            'subprop': 'order_amount',
+            'text': '元'
         },
         {
-            'type': 'subduction',
+            'type': 'vmsubtext',
             'label': '已缴金额',
-            'prop': '',
-            'field1': 'order_amount',
-            'field2': 'unpay_amount'
+            'prop': 'order',
+            'subprop': 'pay_amount',
+            'text': '元'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '未缴金额',
-            'prop': '',
-            'field': 'unpay_amount',
-            'text':'元'
+            'prop': 'order',
+            'subprop': 'unpay_amount',
+            'text': '元'
         },
         {
             'type': 'numberinput',
@@ -64,7 +65,7 @@ export default {
             'label': '缴费方式',
             'prop': '',
             'field': 'sel',
-            'dict': function(vm){
+            'dict': function (vm) {
                 let dict = 2
                 return dict
             }

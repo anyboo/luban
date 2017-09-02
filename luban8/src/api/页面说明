@@ -49,6 +49,7 @@ order订单结构
 	'discount': 0,         //折扣
 	'discount_amount': 0,  //折扣金额
 	'order_amount': 0,   //订单金额
+	'pay_amount':0,      //已经缴费金额
 	'unpay_amount': 0,  //未付款金额
 	'pay_status': 0,    //支付状态  0  未支付 1 部分支付  2 完成支付
 	'student_id': '',   //学生ID
