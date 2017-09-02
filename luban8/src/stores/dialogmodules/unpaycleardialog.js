@@ -1,6 +1,6 @@
 export default {
     'pageName': 'orderpaydialog',
-    'pageLable': '欠费清除',
+    'pageLable': '缴费',
     'student': true,
     'tableSearch': [
         {
@@ -44,8 +44,8 @@ export default {
         {
             'type': 'button',
             'label': '操作',
-            'dialog': 'paynowform',//'lb-paynowmodal',
-            'text': '缴费'
+            'dialog': 'unpayclearform',
+            'text': '清除'
         },
     ],
     'pageTable': 'order',

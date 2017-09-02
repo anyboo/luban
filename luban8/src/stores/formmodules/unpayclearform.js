@@ -83,14 +83,14 @@ export default {
             'type': 'numberinput',
             'label': '清除课次',
             'text': '次',
-            'prop': '',
+            'prop': 'times',
             'field': 'times'
         },
         {
             'type': 'numberinput',
             'label': '清除金额',
             'text': '元',
-            'prop': '',
+            'prop': 'amount',
             'field': 'amount'
         },
         {
@@ -103,10 +103,18 @@ export default {
     'pageTable': 'clear',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {
-        note: [
-            { required: true, message: '请输入清除原因', trigger: 'blur' },
-            { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
-        ]
+    rulesData(vm) {
+        return {
+            times: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入清除课次', trigger: 'blur' }
+            ],
+            amount: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入清除金额', trigger: 'blur' }
+            ],
+            note: [
+                { required: true, message: '请输入清除原因', trigger: 'blur' },
+                { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+            ]
+        }
     }
 }

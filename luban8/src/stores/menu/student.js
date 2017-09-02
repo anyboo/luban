@@ -27,6 +27,10 @@ export default {
             'url': 'orderpaydialog',
             'icon': 'fa fa-money',
             'text': '缴费'
+        }, {
+            'url': 'unpaycleardialog',
+            'icon': 'fa fa-money',
+            'text': '欠费清除'
         }
             /*, {
                             'url': 'lb-changeclassmodal',
@@ -45,10 +49,6 @@ export default {
             'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',
             'text': '退费'
-        },{
-            'url': 'miscellaneousfeesdialog',
-            'icon': '',
-            'text': '测试专用'
         },
             /* {
                             'url': 'lb-endlessonmodal',

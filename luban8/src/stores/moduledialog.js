@@ -5,6 +5,7 @@ import selectteacherdialog from './dialogmodules/selectteacherdialog.js'
 import selectsclassesdialog from './dialogmodules/selectsclassesdialog.js'
 import trashdialog from './dialogmodules/trashdialog.js'
 import orderpaydialog from './dialogmodules/orderpaydialog.js'
+import unpaycleardialog from './dialogmodules/unpaycleardialog.js'
 import orderrefunddialog from './dialogmodules/orderrefunddialog.js'
 import hourslessonsdialog from './dialogmodules/hourslessonsdialog.js'
 import stepstudentdialog from './dialogmodules/stepstudentdialog.js'
@@ -20,6 +21,7 @@ pages['selectteacherdialog'] = selectteacherdialog
 pages['selectsclassesdialog'] = selectsclassesdialog
 pages['trashdialog'] = trashdialog
 pages['orderpaydialog'] = orderpaydialog
+pages['unpaycleardialog'] = unpaycleardialog
 pages['orderrefunddialog'] = orderrefunddialog
 pages['hourslessonsdialog'] = hourslessonsdialog
 pages['stepstudentdialog'] = stepstudentdialog
