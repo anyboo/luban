@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg print_center">
         <div class="modal-content" modal-transclude>
             <div class="print">
                 <div class="modal-header">
@@ -161,7 +161,7 @@
     </div>
 </template>
 <style  media="print" type="text/css">
-.print_text {
+.print_center .print_text {
     display: inline-block;
     padding-top: 10px;
     width: 104px;
@@ -169,18 +169,18 @@
     float: right;
 }
 
-.qcode {
+.print_center .qcode {
     width: 300px;
 }
 
 @media screen and (min-width: 768px) {
-    .modal-content {
+  .print_center   .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     }
 }
 
-.modal-content {
+.print_center .modal-content {
     height: 424px;
     position: relative;
     background-color: #fff;
@@ -193,62 +193,69 @@
     color: #58666e;
 }
 
-.modal-body {
+.print_center .modal-body {
     height: 338px;
     position: relative;
     padding: 5px;
 }
 
-.table-responsive {
+.print_center .table-responsive {
     min-height: 300px;
 }
 
-table {
+.print_center table {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-table {
+.print_center table {
     background-color: transparent;
 }
 
-tbody {
+.print_center tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
 }
 
-tr {
+.print_center tr {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
 }
 
-td,
-th {
+.print_center td,
+.print_center th {
     color: #58666e;
     font-size: 14px;
 }
 
-.table-print-head {
+.print_center .table-print-head {
     margin: 10px 0;
 }
 
-.table-print-center td {
+.print_center .table-print-center td {
     padding: 8px 10px;
     text-align: center;
 }
 
-.table-print-center thead {
+.print_center .table-print-center thead {
     font-weight: 600;
     text-align: center;
 }
 
-.table-print-center tfoot td {
+.print_center .table-print-center tfoot td {
     color: #D1D1D1;
 }
 
-
+.print_center input {
+    border: 0;
+    border-bottom: 1px solid #dddddd;
+    height: 25px;
+    padding: 2.5px;
+    width: 90px;
+    margin: 2px;
+}
 
 .input_three {
     width: 120px;
@@ -295,26 +302,18 @@ th {
     background-color: #edf1f2;
 }
 
-.modal-footer {
+.print_center .modal-footer {
     padding: 10px;
     background: #f4f5f9;
 }
 
-.modal-footer {
+.print_center .modal-footer {
     padding: 5px;
     text-align: right;
     border-top: 1px solid #e5e5e5;
 }
 
 @media print {
-    input {
-        border: 0;
-        border-bottom: 1px solid #dddddd;
-        height: 25px;
-        padding: 2.5px;
-        width: 90px;
-        margin: 2px;
-    }
     .page-header-topbar,
     #wrapper,
     #footer {
