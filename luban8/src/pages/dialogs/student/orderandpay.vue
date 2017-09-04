@@ -10,7 +10,7 @@
         </p>
         <div class="row no-gutter m-t">
             <div class="col-xs-3">
-                <button type="button" @click="handleShowDialog('lb-paynowmodal',stepsdata)" class="btn btn-primary btn-block">
+                <button type="button" @click="handleShowDialog('paynowform',stepsdata)" class="btn btn-primary btn-block">
                     <i class="icon-wallet"></i>缴费
                 </button>
             </div>

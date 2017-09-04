@@ -152,7 +152,6 @@ export default {
             vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             vm.localdata.form.balance_pay_amount = 0
 
-
             vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
                 if (obj.data && obj.data.length > 0) {
                     vm.currStudent = obj.data[0]

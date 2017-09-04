@@ -94,10 +94,14 @@ export default {
             }
         },
         appendmodule() {
-            this.$refs['ruleForm'].append().then(() => {
+            this.$refs['ruleForm'].append().then((obj) => {
                 this.lbClosedialog()
                 this.$store.state.dialogs.dailogdata = null
                 this.$store.state.envs.currDialog = 'moduleform'
+                if (this.module.afterclose) {
+                    console.log(obj)
+                    this.module.afterclose(this,obj)
+                }
             })
         },
         editmodule(id) {

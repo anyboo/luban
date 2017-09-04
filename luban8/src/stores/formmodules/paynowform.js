@@ -40,6 +40,10 @@ export default {
         vm.localdata.form.order_id = vm.order._id
         vm.localdata.form.classes_id = vm.order.classes_id
     },
+    'afterclose':function(vm,obj){
+        console.log(obj)
+        vm.handleShowDialog('lb-finishorder',obj)
+    },
     'afterSave': function (vm, obj) {
         return new Promise((resolve, reject) => {
             function updateOrder() {
@@ -60,7 +64,7 @@ export default {
                     'unpay_amount': unpay_amount,
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
-                    resolve(obj)
+                    resolve({pay:obj,order:vm.order})
                 })
             }
             function setStudentAmountOrder() {
