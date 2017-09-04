@@ -653,11 +653,6 @@ module.exports.wxmenus = function* wxmenus() {
                       "url":"http://www.baidu.com"
                    },
                    {
-                      "type":"view",
-                      "name":"视频",
-                      "url":"http://v.qq.com/"
-                   },
-                   {
                       "type":"click",
                       "name":"赞一下我们",
                       "key":"V1001_GOOD"
