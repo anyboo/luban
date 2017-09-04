@@ -658,6 +658,7 @@ module.exports.wxmenus = function* wxmenus() {
             },
         ]
     }
+    let body = querystring.stringify(wx_item)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -669,7 +670,6 @@ module.exports.wxmenus = function* wxmenus() {
             'Content-Length': body.length,
         }
     }
-    let body = querystring.stringify(wx_item)
     wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
 }
