@@ -638,6 +638,7 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let access_info = {}
     access_info = yield ajax(access_options)
+    /*
     console.log(access_info)
     let wx_item = {
         "button": [{
@@ -666,7 +667,6 @@ module.exports.wxmenus = function* wxmenus() {
             }]
         }]
     }
-/*     console.log(wx_item) */
     let body = JSON.stringify(wx_item)
     console.log(body)
     let options = {
@@ -681,7 +681,8 @@ module.exports.wxmenus = function* wxmenus() {
         }
     }
     let wxinfo = yield ajax(options, body)
-    this.body = yield wxinfo
+    */
+    this.body = yield access_info
 }
 
 module.exports.wxregpost = function* wxregpost() {
