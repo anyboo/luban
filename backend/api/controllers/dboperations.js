@@ -636,7 +636,7 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let access_info = {}
     access_info = yield ajax(access_options)
-    console.log(options)
+    console.log(access_info)
     let wx_item = {
         "button": [
             {
