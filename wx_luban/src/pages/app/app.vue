@@ -44,9 +44,66 @@ export default {
         }
     },
     mounted() {
-        this.login()
+        /*    this.login() */
+        let vm = this
+        if (this.$store.state.system.name.length > 0) {
+            this.numberValidateForm.user = this.$store.state.system.tel
+        }
+        this.numberValidateForm.pwd = md5(this.numberValidateForm.pwd)
+        let account = { user: this.numberValidateForm.user, pwd: this.numberValidateForm.pwd }
+        vm.$store.dispatch('loginApi', account)
+            .then((data) => {
+                if (data.code == 0) {
+                    let filterObj = []
+                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                    this.handleGetFilterTableTable('dictionary', filterTxt).then(obj => {
+                        console.log(obj)
+                    })
+                    this.$store.commit('user', data.account)
+                }
+            })
         console.log('登陆成功')
-        this.jumpUp()
+        /*     this.jumpUp() */
+        if (this.$store.state.models.login) {
+            this.getTableApidata('dictionary')
+        }
+        let codeurl = window.location.search
+        let codeindex = codeurl.indexOf('=')
+        let codeend = codeurl.indexOf('&')
+        console.log(codeurl);
+        console.log(codeindex);
+        console.log(codeend);
+        let cdstr = ''
+        if (codeend) {
+            cdstr = codeurl.slice(codeindex + 1, codeend)
+        }
+        console.log(cdstr)
+        if (cdstr.length > 0) {
+            Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
+                console.log(obj.bodyText.openid)
+                this.$store.commit('getopenid', obj.bodyText.openid)
+            })
+        }
+
+        /*   let openid = 'oZy8Uwata23l5-Nfsfd239ndfk0lVEFaDeeqwew' */
+        let openid = this.$store.state.openid.openid
+        let filterObj = []
+        filterObj.push({
+            'key': 'openid',
+            'value': openid,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        this.handleGetFilterTableTable('student', filterTxt).then(obj => {
+            /*   console.log(obj.data) */
+            if (obj.data.count > 0) {
+                this.$store.commit('student', obj.data.data[0]._id)
+                this.$store.commit('homes', 'lb-home')
+            } else {
+                this.$store.commit('getopenid', openid)
+                this.$store.commit('homes', 'lb-verification')
+            }
+        })
         console.log('获取成功')
     },
     components: {
@@ -59,67 +116,12 @@ export default {
         'lb-order': common_order,
     },
     methods: {
-        jumpUp() {
-             if (this.$store.state.models.login) {
-                                  this.getTableApidata('dictionary')
-                              }
-                                      let codeurl = window.location.search
-                                      let codeindex = codeurl.indexOf('=')
-                                      let codeend = codeurl.indexOf('&')
-                                      console.log(codeurl);
-                                      console.log(codeindex);
-                                      console.log(codeend);
-                                      let cdstr = ''
-                                      if (codeend) {
-                                          cdstr = codeurl.slice(codeindex + 1, codeend)
-                                      }
-                                      console.log(cdstr)
-                                      if (cdstr.length > 0) {
-                                          Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
-                                              console.log(obj.bodyText.openid)
-                                              this.$store.commit('getopenid', obj.bodyText.openid)
-                                          })
-                                      }  
-
-        /*     let openid = 'oZy8Uwata23l5-Nfsfd239ndfk0lVEFaDeeqwew' */
-                let openid = this.$store.state.openid.openid
-            let filterObj = []
-            filterObj.push({
-                'key': 'openid',
-                'value': openid,
-                'type': ''
-            })
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTableTable('student', filterTxt).then(obj => {
-                /*   console.log(obj.data) */
-                if (obj.data.count > 0) {
-                    this.$store.commit('student', obj.data.data[0]._id)
-                    this.$store.commit('homes', 'lb-home')
-                } else {
-                    this.$store.commit('getopenid', openid)
-                    this.$store.commit('homes', 'lb-verification')
-                }
-            })
-        },
-        login() {
-            let vm = this
-            if (this.$store.state.system.name.length > 0) {
-                this.numberValidateForm.user = this.$store.state.system.tel
-            }
-            this.numberValidateForm.pwd = md5(this.numberValidateForm.pwd)
-            let account = { user: this.numberValidateForm.user, pwd: this.numberValidateForm.pwd }
-            vm.$store.dispatch('loginApi', account)
-                .then((data) => {
-                    if (data.code == 0) {
-                        let filterObj = []
-                        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                        this.handleGetFilterTableTable('dictionary', filterTxt).then(obj => { 
-                            console.log(obj)
-                        })
-                        this.$store.commit('user', data.account)
-                    }
-                })
-        },
+        /*  jumpUp() {
+          
+         }, */
+        /*    login() {
+               
+           }, */
         incrementTotalhome() {
             this.iscolor1 = true
             if (this.iscolor1 = true) {
