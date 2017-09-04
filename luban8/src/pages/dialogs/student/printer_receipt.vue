@@ -248,14 +248,7 @@ th {
     color: #D1D1D1;
 }
 
-input {
-    border: 0;
-    border-bottom: 1px solid #dddddd;
-    height: 25px;
-    padding: 2.5px;
-    width: 90px;
-    margin: 2px;
-}
+
 
 .input_three {
     width: 120px;
@@ -314,6 +307,14 @@ input {
 }
 
 @media print {
+    input {
+        border: 0;
+        border-bottom: 1px solid #dddddd;
+        height: 25px;
+        padding: 2.5px;
+        width: 90px;
+        margin: 2px;
+    }
     .page-header-topbar,
     #wrapper,
     #footer {
