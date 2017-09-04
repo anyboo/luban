@@ -626,54 +626,6 @@ module.exports.getsmssend = function* getsmssend() {
     this.body = yield access_smssend
 }
 
-function* wx_menus() {
-    if ('GET' != this.method) return yield next
-    let access_options = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
-        method: 'GET',
-    }
-    let access_info = {}
-    access_info = yield ajax(access_options)
-    console.log(options)
-    let wx_item = {
-        "button": [
-            {
-                "name": "扫码",
-                "sub_button": [
-                    {
-                        "type": "scancode_waitmsg",
-                        "name": "扫码带提示",
-                        "key": "rselfmenu_0_0",
-                        "sub_button": []
-                    },
-                    {
-                        "type": "scancode_push",
-                        "name": "扫码推事件",
-                        "key": "rselfmenu_0_1",
-                        "sub_button": []
-                    }
-                ]
-            },
-        ]
-    }
-    let options = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
-        method: 'POST',
-        json: true,
-        headers: {
-            "content-type": "application/json",
-            'Content-Length': body.length,
-        }
-    }
-    let body = querystring.stringify(wx_item)
-    wxinfo = yield ajax(options, body)
-    this.body = yield wxinfo
-}
-
 module.exports.wxregpost = function* wxregpost() {
     if ('POST' != this.method) return yield next
     var model = this.req.body.xml
@@ -699,7 +651,49 @@ module.exports.wxregpost = function* wxregpost() {
     console.log(code, signature, code === signature)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
-        yield wx_menus
+        let access_options = {
+            hostname: 'api.weixin.qq.com',
+            port: 443,
+            path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+            method: 'GET',
+        }
+        let access_info = {}
+        access_info = yield ajax(access_options)
+        console.log(options)
+        let wx_item = {
+            "button": [
+                {
+                    "name": "扫码",
+                    "sub_button": [
+                        {
+                            "type": "scancode_waitmsg",
+                            "name": "扫码带提示",
+                            "key": "rselfmenu_0_0",
+                            "sub_button": []
+                        },
+                        {
+                            "type": "scancode_push",
+                            "name": "扫码推事件",
+                            "key": "rselfmenu_0_1",
+                            "sub_button": []
+                        }
+                    ]
+                },
+            ]
+        }
+        let options = {
+            hostname: 'api.weixin.qq.com',
+            port: 443,
+            path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
+            method: 'POST',
+            json: true,
+            headers: {
+                "content-type": "application/json",
+                'Content-Length': body.length,
+            }
+        }
+        let body = querystring.stringify(wx_item)
+        wxinfo = yield ajax(options, body)
         this.body = ''
     } else {
         this.body = 'error'
