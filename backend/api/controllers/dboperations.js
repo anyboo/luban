@@ -670,7 +670,7 @@ module.exports.wxmenus = function* wxmenus() {
             'Content-Length': body.length,
         }
     }
-    wxinfo = yield ajax(options, body)
+    let wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
 }
 
