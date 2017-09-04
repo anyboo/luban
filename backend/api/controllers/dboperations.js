@@ -482,6 +482,7 @@ module.exports.sms = function* () {
 function ajax(options, body) {
     return new Promise(function (resolve) {
         const req = https.request(options, (res) => {
+            res.setEncoding('utf8')
             res.on('data', (d) => {
                 let wxdata = JSON.parse(d.toString())
                 console.log(wxdata)
@@ -659,7 +660,7 @@ module.exports.wxmenus = function* wxmenus() {
             },
             {
                 "type": "click",
-                "name": "赞一下我们",
+                "name": "赞一下",
                 "key": "V1001_GOOD"
             }]
         }]
