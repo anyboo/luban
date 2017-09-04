@@ -642,7 +642,7 @@ module.exports.wxmenus = function* wxmenus() {
         "button": [{
             "type": "click",
             "name": "今日歌曲",
-            "key": "V1001_TODAY_MUSIC"
+            "key": "V1001"
         },
         {
             "name": "菜单",
@@ -661,7 +661,7 @@ module.exports.wxmenus = function* wxmenus() {
             {
                 "type": "click",
                 "name": "赞一下",
-                "key": "V1001_GOOD"
+                "key": "GOOD"
             }]
         }]
     }
