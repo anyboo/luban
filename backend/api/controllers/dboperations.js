@@ -481,6 +481,7 @@ module.exports.sms = function* () {
 
 function ajax(options, body) {
     return new Promise(function (resolve) {
+
         const req = https.request(options, (res) => {
             res.setEncoding('utf8')
             res.on('data', (d) => {
@@ -642,7 +643,7 @@ module.exports.wxmenus = function* wxmenus() {
         "button": [{
             "type": "click",
             "name": "今日歌曲",
-            "key": "V1001"
+            "key": "V1001_TODAY_MUSIC"
         },
         {
             "name": "菜单",
@@ -661,7 +662,7 @@ module.exports.wxmenus = function* wxmenus() {
             {
                 "type": "click",
                 "name": "赞一下",
-                "key": "GOOD"
+                "key": "V1001_GOOD"
             }]
         }]
     }
