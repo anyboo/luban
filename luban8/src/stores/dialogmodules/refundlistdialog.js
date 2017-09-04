@@ -2,6 +2,7 @@ export default {
     'pageName': 'refundlistdialog',
     'pageLable': '缴费记录',
     'student': true,
+    'modallg':true,
     'tableSearch': [],
     'pageSearch': [],
     'pageTableField': [

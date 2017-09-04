@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-dialog">
+    <div class="modal-dialog" :class="{'modal-lg':module.modallg}">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog()">
