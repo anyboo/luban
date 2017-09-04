@@ -665,7 +665,7 @@ module.exports.wxmenus = function* wxmenus() {
         }]
     }
 /*     console.log(wx_item) */
-    let body = querystring.stringify(wx_item)
+    let body = JSON.stringify(wx_item)
     console.log(body)
     let options = {
         hostname: 'api.weixin.qq.com',
