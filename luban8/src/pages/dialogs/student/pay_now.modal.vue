@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style='height:auto'>
             <div></div>
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog($event)">
@@ -12,7 +12,7 @@
                     <span class="label bg-info">{{order.order_no}}</span>缴费
                 </h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style='height:auto'>
                 <div class="wrapper bg-light b-a m-t-xs" v-if="dopay">
                     <p class="m-t m-b text-success text-2x">
                         <i class="fa fa-check-circle-o"></i> 订单缴费成功！</p>
