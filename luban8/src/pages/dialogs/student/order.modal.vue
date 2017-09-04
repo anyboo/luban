@@ -123,6 +123,7 @@ export default {
     watch: {},
     methods: {
         switchPage(page) {
+            this.lbClosedialog()
             this.handleShowDialog(page, this.localdata.form)
         }
     }

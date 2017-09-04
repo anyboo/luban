@@ -2,6 +2,7 @@ export default {
     'pageName': 'orderpaydialog',
     'pageLable': '欠费清除',
     'student': true,
+    'modallg':true,
     'tableSearch': [
         {
             'key': 'pay_status',

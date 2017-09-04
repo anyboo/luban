@@ -83,10 +83,13 @@ export default {
                     updateOrder()
                 })
             }
+            console.log(vm.order.order_type)
             if (vm.order.order_type == 2) {
                 setStudentAmount()
             } else if (vm.order.order_type == 1) {
                 setStudentAmountOrder()
+            }else{
+                updateOrder()
             }
         })
     },

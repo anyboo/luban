@@ -10,7 +10,7 @@
         </p>
         <div class="row no-gutter m-t">
             <div class="col-xs-3">
-                <button type="button" @click="handleShowDialog('paynowform',stepsdata)" class="btn btn-primary btn-block">
+                <button type="button" @click="switchPage" class="btn btn-primary btn-block">
                     <i class="icon-wallet"></i>缴费
                 </button>
             </div>
@@ -31,6 +31,11 @@ export default {
     },
     computed: {},
     watch: {},
-    methods: {}
+    methods: {
+        switchPage(page) {
+            this.lbClosedialog()
+            this.handleShowDialog('paynowform',this.stepsdata)
+        }
+    }
 }
 </script>
