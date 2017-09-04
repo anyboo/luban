@@ -522,64 +522,6 @@ function ajaxhttp(options, body) {
         req.end()
     });
 }
-
-module.exports.wxregpost = function* wxregpost() {
-    if ('POST' != this.method) return yield next
-    var model = this.req.body.xml
-    var signature = this.query.signature
-    var timestamp = this.query.timestamp
-    var nonce = this.query.nonce
-    var openid = this.query.openid
-    var echostr = this.query.echostr
-    var token = 'bullstech'
-    console.log(model,openid)
-    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
-
-    /*  加密/校验流程如下： */
-    //1. 将token、timestamp、nonce三个参数进行字典序排序
-    var array = new Array(token, timestamp, nonce)
-    array.sort()
-    var str = array.toString().replace(/,/g, '')
-
-    //2. 将三个参数字符串拼接成一个字符串进行sha1加密
-    var sha1Code = crypto.createHash('sha1')
-    var code = sha1Code.update(str, 'utf-8').digest('hex')
-
-    console.log(code, signature, code === signature)
-    //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-    if (code === signature) {
-        this.body = ''
-    } else {
-        this.body = 'error'
-    }
-}
-module.exports.wxreg = function* wxreg() {
-    if ('GET' != this.method) return yield next
-    var signature = this.query.signature
-    var timestamp = this.query.timestamp
-    var nonce = this.query.nonce
-    var echostr = this.query.echostr
-    var token = 'bullstech'
-    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
-
-    /*  加密/校验流程如下： */
-    //1. 将token、timestamp、nonce三个参数进行字典序排序
-    var array = new Array(token, timestamp, nonce)
-    array.sort()
-    var str = array.toString().replace(/,/g, '')
-
-    //2. 将三个参数字符串拼接成一个字符串进行sha1加密
-    var sha1Code = crypto.createHash('sha1')
-    var code = sha1Code.update(str, 'utf-8').digest('hex')
-
-    console.log(code, signature, code === signature)
-    //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-    if (code === signature) {
-        this.body = echostr
-    } else {
-        this.body = 'error'
-    }
-}
 module.exports.wx = function* wx() {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
@@ -683,14 +625,110 @@ module.exports.getsmssend = function* getsmssend() {
     access_smssend = yield ajaxhttp(get_options)
     this.body = yield access_smssend
 }
-/* module.exports.alipay = function* alipay(){
-    if('POST'!=this.method) return yield next
-        var model = yield parse(this, {
-            limit: '200kb'
-        })
-        console.log(model)
-        let ali ={}
-        let pay ={
 
+function* wx_menus() {
+    if ('GET' != this.method) return yield next
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
+    let access_info = {}
+    access_info = yield ajax(access_options)
+    console.log(options)
+    let wx_item = {
+        "button": [
+            {
+                "name": "扫码",
+                "sub_button": [
+                    {
+                        "type": "scancode_waitmsg",
+                        "name": "扫码带提示",
+                        "key": "rselfmenu_0_0",
+                        "sub_button": []
+                    },
+                    {
+                        "type": "scancode_push",
+                        "name": "扫码推事件",
+                        "key": "rselfmenu_0_1",
+                        "sub_button": []
+                    }
+                ]
+            },
+        ]
+    }
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
         }
-} */
+    }
+    let body = querystring.stringify(wx_item)
+    wxinfo = yield ajax(options, body)
+    this.body = yield wxinfo
+}
+
+module.exports.wxregpost = function* wxregpost() {
+    if ('POST' != this.method) return yield next
+    var model = this.req.body.xml
+    var signature = this.query.signature
+    var timestamp = this.query.timestamp
+    var nonce = this.query.nonce
+    var openid = this.query.openid
+    var echostr = this.query.echostr
+    var token = 'bullstech'
+    console.log(model, openid)
+    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
+
+    /*  加密/校验流程如下： */
+    //1. 将token、timestamp、nonce三个参数进行字典序排序
+    var array = new Array(token, timestamp, nonce)
+    array.sort()
+    var str = array.toString().replace(/,/g, '')
+
+    //2. 将三个参数字符串拼接成一个字符串进行sha1加密
+    var sha1Code = crypto.createHash('sha1')
+    var code = sha1Code.update(str, 'utf-8').digest('hex')
+
+    console.log(code, signature, code === signature)
+    //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    if (code === signature) {
+        yield wx_menus
+        this.body = ''
+    } else {
+        this.body = 'error'
+    }
+}
+module.exports.wxreg = function* wxreg() {
+    if ('GET' != this.method) return yield next
+    var signature = this.query.signature
+    var timestamp = this.query.timestamp
+    var nonce = this.query.nonce
+    var echostr = this.query.echostr
+    var token = 'bullstech'
+    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
+
+    /*  加密/校验流程如下： */
+    //1. 将token、timestamp、nonce三个参数进行字典序排序
+    var array = new Array(token, timestamp, nonce)
+    array.sort()
+    var str = array.toString().replace(/,/g, '')
+
+    //2. 将三个参数字符串拼接成一个字符串进行sha1加密
+    var sha1Code = crypto.createHash('sha1')
+    var code = sha1Code.update(str, 'utf-8').digest('hex')
+
+    console.log(code, signature, code === signature)
+    //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    if (code === signature) {
+        this.body = echostr
+    } else {
+        this.body = 'error'
+    }
+}
