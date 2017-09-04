@@ -666,8 +666,8 @@ module.exports.wxmenus = function* wxmenus() {
                     }]
             }]
     }
-
-    let body = wx_item
+    console.log(wx_item)
+    let body = querystring.stringify(wx_item)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
