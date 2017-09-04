@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style='height:auto;'>
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog()">
                     <span aria-hidden="true">×</span>
@@ -10,7 +10,7 @@
                     <i class="fa fa-shopping-cart"></i>学员{{localdata.form.student_name }}报名&缴费
                 </h3>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
+            <div class="modal-body" style="padding-bottom: 0px;height:auto;">
                 <div class="text-center">
                     <div class="col-xs-4 text-center lb_frame" @click="switchPage('orderstepdialog')">
                         <a class="block  bg_yellow  item Alb_frame yellowborder" style="cursor:pointer;">

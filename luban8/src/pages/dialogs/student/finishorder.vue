@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="height:auto;">
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog()">
                     <span aria-hidden="true">×</span>
@@ -10,7 +10,7 @@
                     <i class="icon-check"></i>{{order.order_no}}订单缴费
                 </h3>
             </div>
-            <div class="modal-body" style="padding-bottom: 0px;">
+            <div class="modal-body" style="padding-bottom: 0px;height:auto;">
                 <i class="fa fa-check-circle-o"></i> 订单缴费成功！</p>
                 <p>订单编号:
                     <span class="text-info">{{order.order_no}}</span>，应缴金额:

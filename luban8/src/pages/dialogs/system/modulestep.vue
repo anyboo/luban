@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"  style='height:auto;'>
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog()">
                     <span aria-hidden="true">×</span>
@@ -9,7 +9,7 @@
                 <h3 class="modal-title">
                     {{title}}</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"  style='height:auto;'>
                 <el-steps :center="true" :active="steps" finish-status="success">
                     <template v-for="item in module.stepsInfo">
                         <el-step :title="item.label"></el-step>
