@@ -676,10 +676,10 @@ module.exports.wxmenus = function* wxmenus() {
         json: true,
         headers: {
             "content-type": "application/json",
-            'Content-Length': body.length,
+            'Content-Length': wx_item.length,
         }
     }
-    let wxinfo = yield ajax(options, body)
+    let wxinfo = yield ajax(options, wx_item)
     this.body = yield wxinfo
 }
 
