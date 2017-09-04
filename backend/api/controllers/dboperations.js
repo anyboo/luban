@@ -637,41 +637,58 @@ module.exports.wxmenus = function* wxmenus() {
     let access_info = {}
     access_info = yield ajax(access_options)
     console.log(access_info)
-    let wx_item = { 
-        "is_menu_open": 1, 
-        "selfmenu_info": { 
-            "button": [ 
-                { 
-                    "type": "click", 
-                    "name": "今日歌曲", 
+    let wx_item = {
+        "is_menu_open": 1,
+        "selfmenu_info": {
+            "button": [
+                {
+                    "type": "click",
+                    "name": "今日歌曲",
                     "key": "V1001_TODAY_MUSIC"
-                }, 
-                { 
-                    "name": "菜单", 
-                    "sub_button": { 
-                        "list": [ 
-                            { 
-                                "type": "view", 
-                                "name": "搜索", 
+                },
+                {
+                    "name": "菜单",
+                    "sub_button": {
+                        "list": [
+                            {
+                                "type": "view",
+                                "name": "搜索",
                                 "url": "http://www.soso.com/"
-                            }, 
-                            { 
-                                "type": "view", 
-                                "name": "视频", 
+                            },
+                            {
+                                "type": "view",
+                                "name": "视频",
                                 "url": "http://v.qq.com/"
-                            }, 
-                            { 
-                                "type": "click", 
-                                "name": "赞一下我们", 
+                            },
+                            {
+                                "type": "click",
+                                "name": "赞一下我们",
                                 "key": "V1001_GOOD"
                             }
                         ]
                     }
-                }
+                },
+                {
+                    "name": "扫码",
+                    "sub_button": [
+                        {
+                            "type": "scancode_waitmsg",
+                            "name": "扫码带提示",
+                            "key": "rselfmenu_0_0",
+                            "sub_button": []
+                        },
+                        {
+                            "type": "scancode_push",
+                            "name": "扫码推事件",
+                            "key": "rselfmenu_0_1",
+                            "sub_button": []
+                        }
+                    ]
+                },
             ]
         }
-     }
-     
+    }
+
     let body = querystring.stringify(wx_item)
     let options = {
         hostname: 'api.weixin.qq.com',
