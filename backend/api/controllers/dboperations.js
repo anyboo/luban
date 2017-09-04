@@ -657,7 +657,12 @@ module.exports.wxmenus = function* wxmenus() {
                       "name":"赞一下我们",
                       "key":"V1001_GOOD"
                    }]
-              }]
+              },
+              {    
+                "type":"click",
+                "name":"今日头条",
+                "key":"V1001_TODAY_MUSIC"
+            },]
     }
     let body = querystring.stringify(wx_item)
     let options = {
