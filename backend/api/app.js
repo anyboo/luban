@@ -13,6 +13,7 @@ app.use(logger())
 app.use(cors())
 app.use(xmlparse())
 
+app.use(route.post('/wxmedia/', control.wxmedia))
 app.use(route.get('/wxmenus/', control.wxmenus))
 app.use(route.post('/wxreg/', control.wxregpost))
 app.use(route.get('/wxreg/', control.wxreg))

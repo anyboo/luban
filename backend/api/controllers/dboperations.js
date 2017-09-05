@@ -638,50 +638,56 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let access_info = {}
     access_info = yield ajax(access_options)
-    /*
-    console.log(access_info)
-    let wx_item = {
+
+   /*  console.log(access_info) */
+   /*  let wx_item = {
         "button": [{
-            "type": "click",
-            "name": "今日歌曲",
-            "key": "V1001_TODAY_MUSIC"
+            "name": "教育资讯",
+            "sub_button": [{
+                "type": "view_limited",
+                "name": "关于培训",
+                "url": "http://mp.weixin.qq.com/s/_z6fcqIggGknLtl8psvVhw",
+                "media_id": "MEDIA_ID2"
+            }]
         },
         {
-            "name": "菜单",
+            "name": "关于鲁班",
             "sub_button": [{
+                "type": "view_limited",
+                "name": "关于产品",
+                "url": "http://www.bullstech.cn/product.html",
+                "media_id": "MEDIA_ID2"
+            },
+            {
                 "type": "view",
-                "name": "搜索",
-                "url": "http://www.soso.com/"
-            },
-            {
-                "type": "miniprogram",
-                "name": "wxa",
-                "url": "http://mp.weixin.qq.com",
-                "appid": "wx286b93c14bbf93aa",
-                "pagepath": "pages/lunar/index"
-            },
-            {
-                "type": "click",
-                "name": "赞一下",
-                "key": "V1001_GOOD"
+                "name": "学生端",
+                "url": "http://mp.weixin.qq.com/s/_z6fcqIggGknLtl8psvVhw",
             }]
+
+        },
+        {
+            "type": "view_limited",
+            "name": "关于公司",
+            "url": "http://mp.weixin.qq.com/s/8cnyed4kL4wE3m5Jp7kG8A",
+            "media_id": "MEDIA_ID2"
         }]
-    }
-    let body = JSON.stringify(wx_item)
-    console.log(body)
-    let options = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
-        method: 'POST',
-        json: true,
-        headers: {
-            "content-type": "application/json",
-            'Content-Length': body.length,
-        }
-    }
-    let wxinfo = yield ajax(options, body)
-    */
+    } */
+    
+ /* let body = JSON.stringify(wx_item)
+ console.log(body)
+ let options = {
+     hostname: 'api.weixin.qq.com',
+     port: 443,
+     path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
+     method: 'POST',
+     json: true,
+     headers: {
+         "content-type": "application/json",
+         'Content-Length': body.length,
+     }
+ }
+ let wxinfo = yield ajax(options, body)
+ */
     this.body = yield access_info
 }
 
@@ -741,4 +747,25 @@ module.exports.wxreg = function* wxreg() {
     } else {
         this.body = 'error'
     }
+}
+module.exports.wxmedia = function* wxmedia() {
+    if ('POST' != this.method) return yield next
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    let body = JSON.stringify(model)
+    console.log(body)
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/material/batchget_material?access_token=Fu9xqbFLQtWkTqPQozdtghNDRqBQWyDotfgrTLMWodJbYMr-MCGI4GzjcX5PmEaVguOhJS2KSYmSP1TJK2s6R_NNlJk-SXx_p5rLWa12yOUOFYaAHAWNG',
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
+        }
+    }
+    let wxinfo = yield ajax(options, body)
+    this.body = yield access_info
 }
