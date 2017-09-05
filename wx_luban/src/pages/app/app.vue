@@ -32,10 +32,6 @@ export default {
             localdata,
             iscolor1: true,
             iscolor2: false,
-            numberValidateForm: {
-                user: 'luban',
-                pwd: '123456'
-            },
         }
     },
     computed: {
@@ -44,13 +40,8 @@ export default {
         }
     },
     mounted() {
-        /*    this.login() */
         let vm = this
-        if (this.$store.state.system.name.length > 0) {
-            this.numberValidateForm.user = this.$store.state.system.tel
-        }
-        this.numberValidateForm.pwd = md5(this.numberValidateForm.pwd)
-        let account = { user: this.numberValidateForm.user, pwd: this.numberValidateForm.pwd }
+        let account = { user: 'luban', pwd: md5('123456') }
         vm.$store.dispatch('loginApi', account)
             .then((data) => {
                 if (data.code == 0) {
@@ -72,19 +63,20 @@ export default {
                     }
                     console.log(cdstr)
                     if (cdstr.length > 0) {
-                        Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
-                            console.log(obj.bodyText.openid)
-                            this.$store.commit('getopenid', obj.bodyText.openid)
-                            let openid = this.$store.state.openid.openid
+                        Vue.http.post('http://app.bullstech.cn/wx/', { code: cdstr }).then(obj => {
+                            console.log(obj)
+                            this.$store.commit('getopenid', obj.data.openid)
+                            let openid = obj.data.openid
                             filterObj = []
                             filterObj.push({
                                 'key': 'openid',
                                 'value': openid,
                                 'type': ''
                             })
+                             console.log(openid,filterObj)
                             filterTxt = this.base64.encode(JSON.stringify(filterObj))
                             this.handleGetFilterTableTable('student', filterTxt).then(obj => {
-                                 console.log(obj.data) 
+                                console.log(obj.data)
                                 if (obj.data.count > 0) {
                                     this.$store.commit('student', obj.data.data[0]._id)
                                     this.$store.commit('homes', 'lb-home')
@@ -93,13 +85,10 @@ export default {
                                     this.$store.commit('homes', 'lb-verification')
                                 }
                             })
-                            this.$store.commit('user', data.account)
                         })
                     }
-                    /*   let openid = 'oZy8Uwata23l5-Nfsfd239ndfk0lVEFaDeeqwew' */
                 }
             })
-        console.log('登陆成功')
     },
     components: {
         'lb-footer': footer,
