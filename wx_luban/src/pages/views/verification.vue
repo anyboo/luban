@@ -16,7 +16,7 @@
                             <el-input v-model="numberValidateForm.verification"></el-input>
                         </el-col>
                         <el-col :span="12">
-                            <el-button v-bind:class="{touch:iscolor}" class="floatright" type="button" style="width:80%" @click="handleVerification" :disabled="choose">验证码</el-button>
+                            <el-button class="floatright" type="button" style="width:80%" @click="handleVerification" :disabled='choose'>{{views}}</el-button>
                         </el-col>
                     </el-row>
                 </el-form-item>
@@ -33,7 +33,7 @@
 </template>
 <style>
 .touch {
-    color: #7D9EC0;
+    color: #D1D1D1;
 }
 </style>
 <script>
@@ -51,6 +51,8 @@ export default {
             },
             choose: true,
             iscolor: false,
+            timer: 0,
+            views: '验证码',
             rules: {
                 number: [
                     { required: true, message: '请输入电话号码', trigger: 'blur' },
@@ -64,55 +66,68 @@ export default {
         }
     },
     methods: {
+        button_rule() {
+            this.choose = !this.choose
+            let num = 120
+            this.timer = setInterval(() => {
+                this.views = num + 's'
+                num--;
+                if (num === 0) {
+                    clearInterval(this.timer)
+                    this.views = '验证码'
+                    this.choose = !this.choose
+                }
+            }, 1000)
+        },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    Vue.http.post('http://app.bullstech.cn:8888/checksms/', { phone: this.numberValidateForm.number,number:this.numberValidateForm.verification }).then(obj => {
+                    Vue.http.post('http://app.bullstech.cn:8888/checksms/', { phone: this.numberValidateForm.number, number: this.numberValidateForm.verification }).then(obj => {
                         console.log(obj.data.status)
-                        if(obj.data.status == 0){
-                              this.resiget()
-                        }else{
+                        if (obj.data.status == 0) {
+                            this.resiget()
+                        } else {
                             this.$message({
-                        message: '验证码错误',
-                        type: 'error'
-                             })
+                                message: '验证码错误',
+                                type: 'error'
+                            })
                         }
-                })
-                   
+                    })
+                    clearInterval(this.timer)
                 } else {
                     alert('错误！')
                     return false
                 }
             });
         },
-        resiget(){
-        //键值
-                    let token = window.localStorage.getItem('token')
-                    let tokentime = window.localStorage.getItem('tokentime')
-                    Vue.http.headers.common['authorization'] = token
-                    Vue.http.headers.common['authtime'] = tokentime
-                    //查询
-                    var student_ids = ''
-                    let filterObj = []
-                    filterObj.push({
-                        'key': 'first_tel',
-                        'value': this.numberValidateForm.number,
-                        'type': ''
-                    })
-                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                    Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
+        resiget() {
+            //键值
+            let token = window.localStorage.getItem('token')
+            let tokentime = window.localStorage.getItem('tokentime')
+            Vue.http.headers.common['authorization'] = token
+            Vue.http.headers.common['authtime'] = tokentime
+            //查询
+            var student_ids = ''
+            let filterObj = []
+            filterObj.push({
+                'key': 'first_tel',
+                'value': this.numberValidateForm.number,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
+                console.log(obj)
+                if (obj.data.count > 0) {
+                    student_ids = obj.body.data[0]._id
+                    this.$store.commit('student', student_ids)
+                    //绑定
+                    Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id, { openid: this.$store.state.openid.openid }).then(obj => {
                         console.log(obj)
-                        if (obj.data.count > 0) {
-                            student_ids = obj.body.data[0]._id
-                            this.$store.commit('student', student_ids)
-                            //绑定
-                            Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id,{openid:this.$store.state.openid.openid}).then(obj => {
-                                console.log(obj)
-                            })
-                            this.$store.commit('homes', 'lb-home')
-
-                        }
                     })
+                    this.$store.commit('homes', 'lb-home')
+
+                }
+            })
         },
         handleblur() {
             console.log(this.choose)
@@ -134,14 +149,14 @@ export default {
                         message: '该用户不存在',
                         type: 'warning'
                     })
-                }else{
-                    this.choose = false
+                } else {
+                    this.choose = !this.choose
                 }
-                
+
             })
         },
         handleVerification() {
-            this.iscolor = true
+            this.button_rule()
             Vue.http.post('http://app.bullstech.cn:8888/sms/', { phone: this.numberValidateForm.number })
         }
     }

@@ -42,7 +42,7 @@
                                 <div class='disinblock fontwei'>课程订单</div>
                             </el-col>
                             <el-col :span="8">
-                                <div class='colorgray floatright' @click="handleClick">
+                                <div class='colorgray floatright' >
                                     <span>查看所有订单</span>
                                     <i class="fa fa-angle-right " aria-hidden="true"></i>
                                 </div>
@@ -53,7 +53,7 @@
             </el-row>
             <el-row>
                 <el-col :span="24">
-                    <div class="grid-content order-content">
+                    <div class="grid-content order-content" @click="handleClick">
                         <el-row>
                             <el-col :span="12">
                                 <div class="txt-center">

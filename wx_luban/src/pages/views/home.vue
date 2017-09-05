@@ -1,14 +1,5 @@
 <template>
     <div>
-        <div class="home_header greener">
-            <el-row>
-                <el-col :span="24">
-                    <div>
-                        <h3 class='txt-center '>我的主页</h3>
-                    </div>
-                </el-col>
-            </el-row>
-        </div>
         <div class="home_body">
             <div>
                 <img class='home_banner' src="/assets/images/banner1.jpg" >
