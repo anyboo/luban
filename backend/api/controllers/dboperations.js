@@ -687,7 +687,7 @@ module.exports.wxmenus = function* wxmenus() {
         }
     }
     let wxinfo = yield ajax(options, body)
-    this.body = yield wxinfo
+    this.body = yield {access_info,wxinfo}
 }
 
 module.exports.wxregpost = function* wxregpost() {
