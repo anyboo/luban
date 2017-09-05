@@ -1,4 +1,5 @@
 import './style/index.css'
+import './style/scheduler.min.css'
 import App from './pages/app/app.vue'
 import lbCom from './components/packages'
 import stores from './stores'
