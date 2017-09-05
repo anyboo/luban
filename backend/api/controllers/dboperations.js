@@ -639,56 +639,55 @@ module.exports.wxmenus = function* wxmenus() {
     let access_info = {}
     access_info = yield ajax(access_options)
 
-   /*  console.log(access_info) */
-   /*  let wx_item = {
-        "button": [{
-            "name": "教育资讯",
-            "sub_button": [{
-                "type": "view_limited",
-                "name": "关于培训",
-                "url": "http://mp.weixin.qq.com/s/_z6fcqIggGknLtl8psvVhw",
-                "media_id": "MEDIA_ID2"
-            }]
-        },
-        {
-            "name": "关于鲁班",
-            "sub_button": [{
-                "type": "view_limited",
-                "name": "关于产品",
-                "url": "http://www.bullstech.cn/product.html",
-                "media_id": "MEDIA_ID2"
+    let wx_item = {
+        "button": [
+            {
+                "name": "教育资讯",
+                "sub_button": [
+                    {
+                        "type": "view_limited",
+                        "name": "关于培训",
+                        "media_id": "Jx3yEcQbBtg3ZmMBXGQGCHLsznYJdr2b6mZoE1RHjtw"
+                    }
+                ]
             },
             {
-                "type": "view",
-                "name": "学生端",
-                "url": "http://mp.weixin.qq.com/s/_z6fcqIggGknLtl8psvVhw",
-            }]
-
-        },
-        {
-            "type": "view_limited",
-            "name": "关于公司",
-            "url": "http://mp.weixin.qq.com/s/8cnyed4kL4wE3m5Jp7kG8A",
-            "media_id": "MEDIA_ID2"
-        }]
-    } */
-    
- /* let body = JSON.stringify(wx_item)
- console.log(body)
- let options = {
-     hostname: 'api.weixin.qq.com',
-     port: 443,
-     path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
-     method: 'POST',
-     json: true,
-     headers: {
-         "content-type": "application/json",
-         'Content-Length': body.length,
-     }
- }
- let wxinfo = yield ajax(options, body)
- */
-    this.body = yield access_info
+                "name": "关于鲁班",
+                "sub_button": [
+                    {
+                        "type": "view",
+                        "name": "关于产品",
+                        "url": "http://www.bullstech.cn/product.html"
+                    },
+                    {
+                        "type": "view",
+                        "name": "学生端",
+                        "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx30db7ec1537d9afc&redirect_uri=http://wx.bullstech.cn/&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
+                    }
+                ]
+            },
+            {
+                "type": "view_limited",
+                "name": "关于公司",
+                "media_id": "Jx3yEcQbBtg3ZmMBXGQGCDW1u1Goc0aRdOdcAL1sQgc"
+            }
+        ]
+    }
+    let body = JSON.stringify(wx_item)
+    console.log(body)
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
+        }
+    }
+    let wxinfo = yield ajax(options, body)
+    this.body = yield wxinfo
 }
 
 module.exports.wxregpost = function* wxregpost() {
