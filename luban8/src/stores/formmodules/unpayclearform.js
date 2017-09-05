@@ -1,6 +1,7 @@
 export default {
     'pageName': 'unpayclearform',
-    'pageLable': '缴费',
+    'pageLable': '清除费用',
+    'student': true,
     'form': {
         'order_id': '',
         'student_id': '',
@@ -9,75 +10,68 @@ export default {
         'amount': 0,
         'note': ''
     },
+    'created': function (vm) {
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.order = vm.$store.state.dialogs.dailogdata
+            vm.currStudent = vm.$store.state.envs.currStudent
+            vm.localdata.form.order_id = vm.stepsdata.order_id
+            vm.localdata.form.classes_id = vm.stepsdata.classes_id
+        }
+    },
     'formField': [
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '订单号',
-            'prop': '',
-            'field': 'order_no',
+            'prop': 'order',
+            'subprop': 'order_no'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '订单内容',
-            'prop': '',
-            'field': 'body'
+            'prop': 'order',
+            'subprop': 'body'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
+            'label': '订单金额',
+            'prop': 'order',
+            'subprop': 'order_amount',
+            'text': '元'
+        },
+        {
+            'type': 'vmsubtext',
+            'label': '已缴金额',
+            'prop': 'order',
+            'subprop': 'pay_amount',
+            'text': '元'
+        },
+        {
+            'type': 'vmsubtext',
+            'label': '未缴金额',
+            'prop': 'order',
+            'subprop': 'unpay_amount',
+            'text': '元'
+        },
+        {
+            'type': 'vmsubtext',
             'label': '购买课次',
-            'prop': '',
-            'field': 'origin_times',
+            'prop': 'order',
+            'subprop': 'origin_times',
             'text': '次'
         },
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '赠送课次',
-            'prop': '',
-            'field': 'present_times',
+            'prop': 'order',
+            'subprop': 'present_times',
             'text': '次'
         },
         {
-            'type': 'addition',
-            'label': '总课次',
-            'prop': '',
-            'field1': 'origin_times',
-            'field2': 'present_times',
-            'text': '次'
-        },
-        {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '课次单价',
-            'prop': '',
-            'field': 'unit_price',
+            'prop': 'order',
+            'subprop': 'unit_price',
             'text': '元'
-        },
-        {
-            'type': 'text',
-            'label': '总金额',
-            'prop': '',
-            'field': 'order_amount',
-            'text': '元'
-        },
-        {
-            'type': 'subduction',
-            'label': '已付款',
-            'prop': '',
-            'field1': 'order_amount',
-            'field2': 'unpay_amount',
-            'text': '元'
-        },
-        {
-            'type': 'text',
-            'label': '欠费金额',
-            'prop': '',
-            'field': 'unpay_amount',
-            'text': '元'
-        },
-        {
-            'type': 'text',
-            'label': '订单备注',
-            'prop': '',
-            'field': 'order_remark'
         },
         {
             'type': 'numberinput',
@@ -91,7 +85,11 @@ export default {
             'label': '清除金额',
             'text': '元',
             'prop': 'amount',
-            'field': 'amount'
+            'field': 'amount',
+            'max': function (vm) {
+                let maxvalue = vm.order.unpay_amount
+                return maxvalue
+            },
         },
         {
             'type': 'input',

@@ -95,9 +95,13 @@ export default {
             'icon': 'fa fa-shopping-cart',
             'text': '报名'
         }, {
-            'url': 'lb-refundmodal',
+            'url': 'orderpaydialog',
             'icon': 'fa fa-money',
             'text': '缴费'
+        }, {
+            'url': 'unpaycleardialog',
+            'icon': 'fa fa-money',
+            'text': '欠费清除'
         }
             /*, {
                             'url': 'lb-changeclassmodal',
@@ -105,23 +109,23 @@ export default {
                             'text': '转班'
                         }*/
             , {
-            'url': 'lb-addtrackmodal',
+            'url': 'inquiryform',
             'icon': 'fa fa-phone-square',
             'text': '跟踪回访'
         }, {
-            'url': 'lb-regstudentmatchmodal',
+            'url': 'recordingform',
             'icon': 'fa fa-flag-o',
             'text': '登记赛事记录'
         }, {
-            'url': 'lb-refundmodal',
+            'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',
             'text': '退费'
-        }
-            /*, {
+        },
+            /* {
                             'url': 'lb-endlessonmodal',
                             'icon': 'fa fa-stop',
                             'text': '结课'
-                        },{
+                        }, {
                             'url': 'lb-changebranchmodal',
                             'icon': 'icon-shuffle',
                             'text': '转校区'

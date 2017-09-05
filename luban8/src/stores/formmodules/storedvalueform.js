@@ -26,6 +26,9 @@ export default {
         'order_type': 2,
         'body': ''
     },
+    'created':function(vm){
+        vm.student  = vm.$store.state.envs.currStudent
+    },
     'beforeSave': function (vm) {
         vm.localdata.form.order_amount = vm.localdata.form.origin_amount
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
@@ -34,10 +37,11 @@ export default {
     },
     'formField': [
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '当前余额',
-            'prop': '',
-            'field': 'amount',
+            'prop': 'student',
+            'subprop': 'amount',
+            'text': '元'
         },
         {
             'type': 'numberinput',

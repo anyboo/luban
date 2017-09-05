@@ -14,8 +14,8 @@
                 <i class="fa fa-check-circle-o"></i> 订单缴费成功！</p>
                 <p>订单编号:
                     <span class="text-info">{{order.order_no}}</span>，应缴金额:
-                    <span class="text-success">{{order.unpay_amount}}</span>元,本次缴费:
-                    <span class="text-success">{{order.money_pay_amount}}</span>元,请选择接下来的操作.
+                    <span class="text-success">{{order.order_amount}}</span>元,本次缴费:
+                    <span class="text-success">{{pay.money_pay_amount}}</span>元.
                 </p>
             </div>
             <div class="modal-footer">

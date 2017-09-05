@@ -9,7 +9,6 @@ import classesform from './formmodules/classesform.js'
 import flowform from './formmodules/flowform.js'
 import studentregion from './formmodules/studentregion.js'
 import studentpurpose from './formmodules/studentpurpose.js'
-import orderform from './formmodules/orderform.js'
 import arrangeform from './formmodules/arrangeform.js'
 import arrangeeditform from './formmodules/arrangeeditform.js'
 import studentsmsform from './formmodules/studentsmsform.js'
@@ -37,7 +36,6 @@ pages['classesform'] = classesform
 pages['flowform'] = flowform
 pages['studentregion'] = studentregion
 pages['studentpurpose'] = studentpurpose
-pages['orderform'] = orderform
 pages['arrangeform'] = arrangeform
 pages['arrangeeditform'] = arrangeeditform
 pages['studentsmsform'] = studentsmsform

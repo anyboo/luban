@@ -14,21 +14,23 @@ export default {
         'print': false
     },
     'numberChange': function (vm, obj) {
-        if (vm.localdata.form.use_balance) {
-            if (vm.localdata.form.balance_pay_amount == 0 ){
-                if (vm.order.unpay_amount>vm.currStudent.amount){
-                    vm.localdata.form.balance_pay_amount = vm.currStudent.amount
-                }else{
+        if (obj.filed=="use_balance"||obj.filed=="balance_pay_amount"){
+            if (vm.localdata.form.use_balance) {
+                if (vm.localdata.form.balance_pay_amount == 0) {
+                    if (vm.order.unpay_amount > vm.currStudent.amount) {
+                        vm.localdata.form.balance_pay_amount = vm.currStudent.amount
+                    } else {
+                        vm.localdata.form.balance_pay_amount = vm.order.unpay_amount
+                    }
+                } else if (vm.localdata.form.balance_pay_amount > vm.order.unpay_amount) {
                     vm.localdata.form.balance_pay_amount = vm.order.unpay_amount
                 }
-            }else if (vm.localdata.form.balance_pay_amount>vm.order.unpay_amount){
-                vm.localdata.form.balance_pay_amount = vm.order.unpay_amount
+                vm.localdata.form.money_pay_amount = vm.order.unpay_amount - vm.localdata.form.balance_pay_amount
+            } else {
+                vm.localdata.form.money_pay_amount = vm.order.unpay_amount
             }
-            vm.localdata.form.money_pay_amount = vm.order.unpay_amount - vm.localdata.form.balance_pay_amount
-        } else {
-            vm.localdata.form.money_pay_amount = vm.order.unpay_amount
+            vm.$refs['ruleForm'].validateField('money_pay_amount')
         }
-        console.log( vm.order.unpay_amount , vm.localdata.form.balance_pay_amount)
     },
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata) {
@@ -40,9 +42,9 @@ export default {
         vm.localdata.form.order_id = vm.order._id
         vm.localdata.form.classes_id = vm.order.classes_id
     },
-    'afterclose':function(vm,obj){
+    'afterclose': function (vm, obj) {
         console.log(obj)
-        vm.handleShowDialog('lb-finishorder',obj)
+        vm.handleShowDialog('lb-finishorder', obj)
     },
     'afterSave': function (vm, obj) {
         return new Promise((resolve, reject) => {
@@ -64,11 +66,12 @@ export default {
                     'unpay_amount': unpay_amount,
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
-                    resolve({pay:obj,order:vm.order})
+                    resolve({ pay: obj, order: vm.order })
                 })
             }
             function setStudentAmountOrder() {
                 let amount = Number(vm.currStudent.amount) - Number(vm.localdata.form.balance_pay_amount)
+                vm.currStudent.amount = amount
                 vm.updateTeble('student', vm.currStudent._id, {
                     'amount': amount
                 }).then(() => {
@@ -88,7 +91,7 @@ export default {
                 setStudentAmount()
             } else if (vm.order.order_type == 1) {
                 setStudentAmountOrder()
-            }else{
+            } else {
                 updateOrder()
             }
         })
@@ -133,14 +136,37 @@ export default {
             'prop': '',
             'field': 'balance_pay_amount',
             'fieldActive': 'use_balance',
-            'text': '元'
+            'text': '元',
+            'max': function (vm) {
+                let max = vm.order.unpay_amount
+                if (vm.order.unpay_amount > vm.currStudent.amount) {
+                    max = vm.currStudent.amount
+                }
+                return max
+            }
         },
         {
             'type': 'numberinput',
             'label': '现款缴费',
             'prop': 'money_pay_amount',
             'field': 'money_pay_amount',
-            'text': '元'
+            'text': '元',
+            'max': function (vm) {
+                let maxvalue = vm.order.unpay_amount
+                if (vm.localdata.form.use_balance) {
+                    maxvalue -= vm.localdata.form.balance_pay_amount
+                }
+                return maxvalue
+            },
+            'required': function (vm) {
+                let required = true
+                if (vm.localdata.form.use_balance) {
+                    if (vm.localdata.form.balance_pay_amount>0){
+                        required = false
+                    }
+                }
+                return required
+            }
         },
         {
             'type': 'select',
@@ -157,9 +183,29 @@ export default {
     'pageTemplate': 'form',
     'pagePath': '',
     rulesData: function (vm) {
+        vm.validatemountinput = (rule, value, callback) => {
+            let required = true
+            if (vm.localdata.form.use_balance) {
+                if (vm.localdata.form.balance_pay_amount>0){
+                    required = false
+                }
+            }
+            console.log(required,value)
+            if (required){
+                if (value === '') {
+                    callback(new Error(rule.message))
+                } else if (value <= 0) {
+                    callback(new Error('请输入大于零的数'))
+                } else {
+                    callback()
+                }
+            }else{
+                callback()
+            }
+        }
         return {
             money_pay_amount: [
-                { required: true, validator: vm.validateNumberinput, message: '请输入金额', trigger: 'blur' }
+                {  validator: vm.validatemountinput, message: '请输入金额', trigger: 'change' }
             ],
             region_oe_id: [
                 { required: true, message: '请选择缴费方式', trigger: 'change' }

@@ -1,5 +1,5 @@
 <template>
-    <el-input :disabled="disabled" placeholder="请输入数字" v-model="numbervalue" @blur="changeNum" @change="updateValue">
+    <el-input type="number" :disabled="disabled" placeholder="请输入数字" :value="numbervalue" @change="updateValue">
         <template slot="append">
             <div>{{text}}</div>
         </template>
@@ -7,39 +7,40 @@
 </template>
 <script>
 export default {
-    props: ['value', 'text', 'field','disabled'],
+    props: ['value', 'text', 'field', 'disabled', 'min', 'max'],
     name: 'LbNumberinput',
     data() {
         return {
-            numbervalue: Number(this.value)
+            numbervalue: Number(this.value),
+            newnumbervalue:Number(this.value),
+            nummin: this.min ? this.min : 0,
+            nummax: this.max ? this.max : Number.MAX_VALUE
         }
     },
     watch: {
         value: function(val) {
-            this.numbervalue = Number(val)
-            if (Number.isNaN(this.numbervalue)) {
-                this.numbervalue = ''
-            } else if (this.numbervalue < 0) {
-                this.numbervalue = Math.abs(this.numbervalue)
-            }
+            this.newnumbervalue = val
+            this.changeNumber(val)
+        },
+        max:function(val){
+            this.nummax = val
+             this.changeNumber(this.newnumbervalue)
         }
     },
     methods: {
-        changeNum() {
-            this.numbervalue = Number(this.numbervalue)
+        changeNumber(val) {
+            this.numbervalue = Number(val)
+        console.log(this.numbervalue)
             if (Number.isNaN(this.numbervalue)) {
                 this.numbervalue = ''
-            } else if (this.numbervalue < 0) {
-                this.numbervalue = Math.abs(this.numbervalue)
+            } else if (this.numbervalue < this.nummin) {
+                this.numbervalue = ''//this.nummin
+            } else if (this.numbervalue > this.nummax) {
+                this.numbervalue = ''//this.nummax
             }
         },
         updateValue(val) {
-            this.numbervalue = Number(val)
-            if (Number.isNaN(this.numbervalue)) {
-                this.numbervalue = ''
-            } else if (this.numbervalue < 0) {
-                this.numbervalue = Math.abs(this.numbervalue)
-            }
+            this.changeNumber(val)
             this.$emit('input', this.numbervalue)
             this.$emit('change', { val: this.numbervalue, field: this.field })
         }

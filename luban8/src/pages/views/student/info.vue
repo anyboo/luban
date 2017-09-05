@@ -18,13 +18,15 @@
                             </div>
                         </div>
                         <p class="text-center">
-                            <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
-                                <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
-                                    <i class="fa fa-cog"></i>
-                                    <span> {{ student.student_name }}</span>
-                                    <span class="caret"></span>
-                                </lb-dropdown-button>
-                            </lb-dropdown>
+                            <template v-if="loadstudent">
+                                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
+                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
+                                        <i class="fa fa-cog"></i>
+                                        <span> {{ student.student_name }}</span>
+                                        <span class="caret"></span>
+                                    </lb-dropdown-button>
+                                </lb-dropdown>
+                            </template>
                             <span>
                                 <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1','mans':student.sex=='1','woman':student.sex=='2'}"></i>
                             </span>
@@ -103,7 +105,7 @@
                 <template v-for="(item,index) in moduledata">
                     <el-tab-pane :label="item.pageLable">
                         <template v-if="index==tabIndex">
-                            <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id" ></lb-systemmodule>
+                            <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
                         </template>
                     </el-tab-pane>
                 </template>
@@ -149,6 +151,7 @@ export default {
             }
         }
         return {
+            loadstudent: false,
             moduledata: pagesmodule,
             localdata,
             activeName: '1',
@@ -282,6 +285,8 @@ export default {
                         objitem.name = relobj.name
                         this.relation.push(objitem)
                     })
+                    this.$store.state.envs.currStudent = this.student
+                    this.loadstudent = true
                     console.log(this.student, this.relation)
                 })
             }

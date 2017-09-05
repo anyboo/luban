@@ -2,6 +2,14 @@ export default {
     'pageName': 'orderpaydialog',
     'pageLable': '缴费',
     'student': true,
+    'modallg':true,
+    'created': function (vm) {
+        vm.deffilterObj.push({
+            'key': 'student_id',
+            'value': vm.$store.state.envs.currStudent._id,
+            'type': ''
+        })
+    },
     'tableSearch': [
         {
             'key': 'pay_status',

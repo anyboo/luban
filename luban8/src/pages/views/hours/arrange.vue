@@ -1,9 +1,6 @@
 <template>
-    <div class="wrapper">
-        <div class="wrapper panel panel-default bg-white" :class="{result:getSelectName}">
-            <div class="row  m-t">
-                <div id='calendar'></div>
-            </div>
+    <div class="table-block table-box">
+        <div id='calendar' :class="{result:getSelectName}" style="background:white;">
         </div>
     </div>
 </template>
@@ -70,7 +67,7 @@ export default {
         }
         return {
             localdata,
-            tables: ['arrange'],
+            tables: ['coursescheduling'],
         }
     },
     mounted() {
@@ -87,14 +84,6 @@ export default {
                 right: 'agendaDay,agendaWeek,month,listWeek'
             },
             allDaySlot: false,
-            customButtons: {
-                arrange: {
-                    text: '添加排课',
-                    click: function () {
-                        vm.handleShowDialog('lb-arrangeedit')
-                    }
-                }
-            },
             defaultView: 'agendaDay',
             views: {
                 timelineDay: {
@@ -105,9 +94,10 @@ export default {
             navLinks: true,
             resourceAreaWidth: '20%',
             resourceLabelText: '教室',
-            resources: function (callback) {
-                vm.getTableApidata('sclasses').then(function (obj) {
+            resources: function(callback) {
+                vm.getTableApidata('sclasses').then(function(obj) {
                     let res = []
+                    console.log(obj)
                     for (var item of obj.data.data) {
                         let resitem = {}
                         resitem.id = item._id
@@ -117,16 +107,15 @@ export default {
                     callback(res)
                 })
             },
-            eventClick: function (calEvent, jsEvent, view) {
-                vm.handleShowDialog('lb-arrangeedit', calEvent)
+            eventClick: function(calEvent, jsEvent, view) {
+                //vm.handleShowDialog('lb-arrangeedit', calEvent)
             },
-            events: function (start, end, timezone, callback) {
+            events: function(start, end, timezone, callback) {
                 let filterObj = []
                 let startTime = vm.getDatetimeStartEndOf(start._d)
                 let endTime = vm.getDatetimeStartEndOf(end._d, end)
-
                 filterObj.push({
-                    'key': 'daterange2',
+                    'key': 'start',
                     'value': startTime,
                     'type': 'gte'
                 })
@@ -145,8 +134,11 @@ export default {
                     'value': vm.localdata.lookuptech,
                     'type': 'lookup'
                 })
+                console.log(filterObj)
                 let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
-                vm.handleGetFilterTable(filterTxt).then(function (obj) {
+                vm.pagination.pagesize = 500
+                vm.handleGetFilterTableTable('coursescheduling', filterTxt).then(function(obj) {
+                    console.log(obj)
                     let eve = []
                     for (var item of obj.data.data) {
                         let evnitem = {}
@@ -162,31 +154,12 @@ export default {
                         if (item.sclasses && item.sclasses.length > 0) {
                             evnitem.title += ' 教室：' + item.sclasses[0].class_name
                         }
-                        if (item.dayloop) {
-                            let loopdatastart = item.daterange1
-                            let loopdataend = item.daterange2
-                            let loopcount = 0
-                            while (loopdatastart <= loopdataend) {
-                                if (loopcount > 1000) {
-                                    break
-                                }
-                                let days = vm.moment(loopdatastart).days()
-                                if (item['day_' + days]) {
-                                    evnitem.start = vm.getDate2timeFormat(loopdatastart, item.timerange1)
-                                    evnitem.end = vm.getDate2timeFormat(loopdatastart, item.timerange2)
-                                    let evncpitem = {}
-                                    Object.assign(evncpitem, evnitem)
-                                    eve.push(evncpitem)
-                                }
-                                loopdatastart = vm.moment(loopdatastart).add(1, 'days').toDate().getTime()
-                                loopcount++
-                            }
-                        } else {
-                            evnitem.start = vm.getDate2timeFormat(item.daterange1, item.timerange1)
-                            evnitem.end = vm.getDate2timeFormat(item.daterange1, item.timerange2)
-                            eve.push(evnitem)
-                        }
+
+                        evnitem.start = vm.getDatetimeFormat(item.start)
+                        evnitem.end = vm.getDatetimeFormat(item.end)
+                        eve.push(evnitem)
                     }
+                    console.log(eve)
                     callback(eve)
                 })
             }
@@ -198,20 +171,11 @@ export default {
             return classes
         },
         getSelectName() {
-            if (this.$store.state.envs.currDialog == 'lb-selectstudenttpl') {
-                if (this.$store.state.envs.currDialogResult) {
-                    this.localdata.form.select_name = this.$store.state.envs.currDialogResult.student_name
-                    this.localdata.form.select_id = this.$store.state.envs.currDialogResult._id
-                } else {
-                    this.localdata.form.select_id = ''
-                    this.localdata.form.select_name = ''
-                }
-                this.handleSearch()
-            }
+            /*
             if (this.$store.state.envs.currDialog == 'lb-arrange') {
                 $('#calendar').fullCalendar('refetchEvents')
                 this.$store.state.envs.currDialog = ''
-            }
+            }*/
             return true
         },
     },

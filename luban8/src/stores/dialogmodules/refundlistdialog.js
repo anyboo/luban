@@ -1,10 +1,19 @@
 export default {
     'pageName': 'refundlistdialog',
-    'pageLable': '缴费记录',
+    'pageLable': '欠费清除',
     'student': true,
-    'modallg':true,
     'tableSearch': [],
     'pageSearch': [],
+    'created':function(vm){
+        if (vm.$store.state.dialogs.dailogdata) {
+            vm.order = vm.$store.state.dialogs.dailogdata
+            vm.deffilterObj.push({
+                'key': 'order_id',
+                'value': vm.order._id,
+                'type': ''
+            })
+        }
+    },
     'pageTableField': [
         {
             'type': 'datetimeMinute',

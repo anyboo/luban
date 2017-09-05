@@ -147,7 +147,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$store.state.dialogs.dailogdata) {
+        if (this.$store.state.dialogs.dailogdata&&this.$store.state.dialogs.dailogdata['_id']) {
             this.title = '编辑'
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
             this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)

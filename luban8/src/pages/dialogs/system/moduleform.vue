@@ -44,7 +44,7 @@
                         </el-switch>
                     </el-form-item>
                     <el-form-item v-if="localdata.form[item.fieldActive]">
-                        <lb-numberinput v-model="localdata.form[item.field]" :text="item.text" :field="item.field" @change="numberChange"></lb-numberinput>
+                        <lb-numberinput v-model="localdata.form[item.field]" :max="getNumberInputMax(item)" :text="item.text" :field="item.field" @change="numberChange"></lb-numberinput>
                     </el-form-item>
                 </template>
             </template>
@@ -98,8 +98,8 @@
                 </el-form-item>
             </template>
             <template v-if="item.type=='numberinput'">
-                <el-form-item :label="item.label" :prop="item.prop">
-                    <lb-numberinput v-model="localdata.form[item.field]" :text="item.text" :field="item.field" @change="numberChange" :disabled="item.disabled"></lb-numberinput>
+                <el-form-item :label="item.label" :prop="item.prop" :required="getNumberRequired(item)">
+                    <lb-numberinput v-model="localdata.form[item.field]" :max="getNumberInputMax(item)" :text="item.text" :field="item.field" @change="numberChange" :disabled="item.disabled"></lb-numberinput>
                 </el-form-item>
             </template>
             <template v-if="item.type=='datetime'">
@@ -255,7 +255,7 @@
 import moduleform from '~/stores/moduleform.js'
 export default {
     name: 'moduleform',
-    props: ['module', 'form'],
+    props: ['module', 'form','stepsdata'],
     data() {
         var validateNumberinput = (rule, value, callback) => {
             if (value === '') {
@@ -449,6 +449,22 @@ export default {
         getDistNum(item) {
             return item.dict(this)
         },
+        getNumberRequired(item){
+            let data = null
+            if (item.required) {
+                data = item.required(this)
+                console.log(data)
+            }
+            return data
+        },
+        getNumberInputMax(item) {
+            let data = null
+            if (item.max) {
+                data = item.max(this)
+                console.log(data)
+            }
+            return data
+        },
         getSelectData(item) {
             let data = null
             if (item.data) {
@@ -518,8 +534,8 @@ export default {
                     if (item['day_' + days]) {
                         evnitem.start = vm.getDate2timeFormat(loopdatastart, evnitem.timerange[0])
                         evnitem.end = vm.getDate2timeFormat(loopdatastart, evnitem.timerange[1])
-                        evnitem.start = this.moment(evnitem.start).toDate()
-                        evnitem.end = this.moment(evnitem.end).toDate()
+                        evnitem.start = this.moment(evnitem.start).toDate().getTime()
+                        evnitem.end = this.moment(evnitem.end).toDate().getTime()
                         let evncpitem = {}
                         evncpitem.days = days
                         Object.assign(evncpitem, evnitem)
@@ -531,8 +547,8 @@ export default {
             } else {
                 evnitem.start = vm.getDate2timeFormat(evnitem.daterange1, evnitem.timerange[0])
                 evnitem.end = vm.getDate2timeFormat(evnitem.daterange1, evnitem.timerange[1])
-                evnitem.start = this.moment(evnitem.start).toDate()
-                evnitem.end = this.moment(evnitem.end).toDate()
+                evnitem.start = this.moment(evnitem.start).toDate().getTime()
+                evnitem.end = this.moment(evnitem.end).toDate().getTime()
                 let days = vm.moment(evnitem.start).days()
                 evnitem.days = days
                 eve.push(evnitem)

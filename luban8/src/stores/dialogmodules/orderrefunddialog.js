@@ -3,12 +3,25 @@ export default {
     'pageLable': '退费',
     'student': true,
     'modallg':true,
+    'created': function (vm) {
+        vm.deffilterObj.push({
+            'key': 'student_id',
+            'value': vm.$store.state.envs.currStudent._id,
+            'type': ''
+        })
+    },
     'tableSearch': [
         {
             'key': 'pay_status',
             'value': 0,
             'type': 'gt'
-        }
+        },
+        {
+            'key': 'refund_status',
+            'value': 2,
+            'type': 'lt'
+        },
+        
     ],
     'pageSearch': [],
     'pageTableField': [

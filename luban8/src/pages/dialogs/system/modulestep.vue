@@ -1,6 +1,6 @@
 <template>
     <div class="modal-dialog">
-        <div class="modal-content"  style='height:auto;'>
+        <div class="modal-content" style='height:auto;'>
             <div class="modal-header">
                 <button class="close" type="button" @click="lbClosedialog()">
                     <span aria-hidden="true">×</span>
@@ -9,7 +9,7 @@
                 <h3 class="modal-title">
                     {{title}}</h3>
             </div>
-            <div class="modal-body"  style='height:auto;'>
+            <div class="modal-body" style='height:auto;'>
                 <el-steps :center="true" :active="steps" finish-status="success">
                     <template v-for="item in module.stepsInfo">
                         <el-step :title="item.label"></el-step>
@@ -20,7 +20,7 @@
                     <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-systemmodule>
                 </template>
                 <template v-if="moduletype==2">
-                    <lb-dialogmmoduleform ref="ruleForm" :module="moduleobj"></lb-dialogmmoduleform>
+                    <lb-dialogmmoduleform ref="ruleForm" :module="moduleobj" :stepsdata="currobj[steps-1]"></lb-dialogmmoduleform>
                 </template>
                 <template v-if="moduletype==3">
                     <lb-blank @blankmounted="blankmounted">
@@ -33,6 +33,9 @@
             <div class="modal-footer">
                 <el-button class="btn btn-primary" @click="back()" v-if="backDisabled">上一步</el-button>
                 <el-button class="btn btn-primary" @click="next()" v-if="nextDisabled">下一步</el-button>
+                <template v-for="button in buttons">
+                    <el-button class="btn btn-primary" @click="buttonExec(button)">{{button.text}}</el-button>
+                </template>
                 <el-button class="btn btn-warning" @click="lbClosedialog($event)">关闭</el-button>
             </div>
         </div>
@@ -71,6 +74,7 @@ export default {
             currobj: {},
             nextDisabled: false,
             backDisabled: false,
+            buttons: [],
             view: ''
         }
     },
@@ -106,6 +110,19 @@ export default {
         }
     },
     methods: {
+        getButtons() {
+            let buttons = []
+            if (this.module.stepsInfo[this.steps - 1].buttons) {
+                buttons = this.module.stepsInfo[this.steps - 1].buttons
+            }
+            this.buttons = buttons
+            console.log(this.buttons)
+        },
+        buttonExec(button) {
+            if (button.exec) {
+                button.exec(this)
+            }
+        },
         getNextDisabled() {
             let disabled = false
             if (this.steps > 0 && this.steps < this.stepCount) {
@@ -146,12 +163,14 @@ export default {
                         this.getModuleData
                         this.getNextDisabled()
                         this.getBackDisabled()
+                        this.getButtons()
                     })
                 } else {
                     this.steps++
                     this.getModuleData
                     this.getNextDisabled()
                     this.getBackDisabled()
+                    this.getButtons()
                 }
             }
         },
