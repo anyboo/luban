@@ -108,7 +108,9 @@ export default {
                 })
             },
             eventClick: function(calEvent, jsEvent, view) {
-                //vm.handleShowDialog('lb-arrangeedit', calEvent)
+                vm.handleGetTableID('coursescheduling',calEvent._id).then(obj=>{
+                    vm.handleShowDialog('arrangeeditform', obj)
+                })
             },
             events: function(start, end, timezone, callback) {
                 let filterObj = []
@@ -134,11 +136,9 @@ export default {
                     'value': vm.localdata.lookuptech,
                     'type': 'lookup'
                 })
-                console.log(filterObj)
                 let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
                 vm.pagination.pagesize = 500
                 vm.handleGetFilterTableTable('coursescheduling', filterTxt).then(function(obj) {
-                    console.log(obj)
                     let eve = []
                     for (var item of obj.data.data) {
                         let evnitem = {}
@@ -159,7 +159,6 @@ export default {
                         evnitem.end = vm.getDatetimeFormat(item.end)
                         eve.push(evnitem)
                     }
-                    console.log(eve)
                     callback(eve)
                 })
             }

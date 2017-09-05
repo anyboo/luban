@@ -1,6 +1,6 @@
 export default {
     'pageName': 'arrangeeditform',
-    'pageLable': '编辑排课',
+    'pageLable': '排课',
     'form': {
         day_1: false,
         day_2: false,
