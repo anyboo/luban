@@ -1,9 +1,20 @@
 <template>
-    <div class="table-block table-box">
+    <div class="classes">
         <div id='calendar' :class="{result:getSelectName}" style="background:white;">
         </div>
     </div>
 </template>
+<style>
+.classes{
+    width:100%;
+    padding:12px 12px 0 12px;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+</style>
+
 <script>
 export default {
     name: 'arrange',
