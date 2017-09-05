@@ -758,7 +758,7 @@ module.exports.wxmedia = function* wxmedia() {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/material/batchget_material?access_token=Fu9xqbFLQtWkTqPQozdtghNDRqBQWyDotfgrTLMWodJbYMr-MCGI4GzjcX5PmEaVguOhJS2KSYmSP1TJK2s6R_NNlJk-SXx_p5rLWa12yOUOFYaAHAWNG',
+        path: '/cgi-bin/material/batchget_material?access_token=Uo1UNKGUaoIfpQsqSnGg8cga13bX3cznasrLwYOjIGqNwygWeGz6Ofcjt5KGaeix9_ccn82iVgq6zXTWsTj-9qJYNG_UDKE5pYd009K4VpLFY-V7DxFW0qpkK5LosjrvBACdAIAWVX',
         method: 'POST',
         json: true,
         headers: {
