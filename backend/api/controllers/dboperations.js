@@ -542,7 +542,7 @@ module.exports.wx = function* wx() {
     if (wxinfo) {
         wxobj.openid = wxinfo.openid
     }
-    console.log(wxinfo,wxinfo)
+    console.log(wxinfo,wxobj)
     this.body = yield wxobj
 }
 
