@@ -84,7 +84,7 @@ export default {
                             })
                             filterTxt = this.base64.encode(JSON.stringify(filterObj))
                             this.handleGetFilterTableTable('student', filterTxt).then(obj => {
-                                /*   console.log(obj.data) */
+                                 console.log(obj.data) 
                                 if (obj.data.count > 0) {
                                     this.$store.commit('student', obj.data.data[0]._id)
                                     this.$store.commit('homes', 'lb-home')
@@ -111,12 +111,6 @@ export default {
         'lb-order': common_order,
     },
     methods: {
-        /*  jumpUp() {
-          
-         }, */
-        /*    login() {
-               
-           }, */
         incrementTotalhome() {
             this.iscolor1 = true
             if (this.iscolor1 = true) {
