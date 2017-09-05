@@ -66,7 +66,7 @@ export default {
                         Vue.http.post('http://app.bullstech.cn/wx/', { code: cdstr }).then(obj => {
                             console.log(obj)
                             this.$store.commit('getopenid', obj.data.openid)
-                            let openid = 'oZy8Uwatalkn5-N39nk0lVEFaDCw'//obj.data.openid
+                            let openid =obj.data.openid
                             filterObj = []
                             filterObj.push({
                                 'key': 'openid',
