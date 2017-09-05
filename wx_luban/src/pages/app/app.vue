@@ -62,7 +62,7 @@ export default {
                         cdstr = codeurl.slice(codeindex + 1, codeend)
                     }
                     console.log(cdstr)
-       /*              if (cdstr.length > 0) {
+                    if (cdstr.length > 0) {
                         Vue.http.post('http://app.bullstech.cn/wx/', { code: cdstr }).then(obj => {
                             console.log(obj)
                             this.$store.commit('getopenid', obj.data.openid)
@@ -81,12 +81,12 @@ export default {
                                     this.$store.commit('student', obj.data.data[0]._id)
                                     this.$store.commit('homes', 'lb-home')
                                 } else {
-                                    this.$store.commit('getopenid', openid) */
+                                    this.$store.commit('getopenid', openid) 
                                     this.$store.commit('homes', 'lb-verification')
-/*                                 }
+                                }
                             })
                         })
-                    }*/
+                    }
                 }
             })
     }, 
