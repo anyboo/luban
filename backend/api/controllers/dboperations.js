@@ -756,7 +756,7 @@ module.exports.wxmedia = function* wxmedia() {
         path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
-    access_info = yield ajax(access_options)
+    let access_info = yield ajax(access_options)
     var model = yield parse(this, {
         limit: '200kb'
     })
