@@ -542,7 +542,7 @@ module.exports.wx = function* wx() {
     if (wxinfo) {
         wxobj.openid = wxinfo.openid
     }
-    console.log(wxinfo,wxobj)
+    console.log(wxinfo, wxobj)
     this.body = yield wxobj
 }
 
@@ -688,7 +688,7 @@ module.exports.wxmenus = function* wxmenus() {
         }
     }
     let wxinfo = yield ajax(options, body)
-    this.body = yield {access_info,wxinfo}
+    this.body = yield { access_info, wxinfo }
 }
 
 module.exports.wxregpost = function* wxregpost() {
@@ -750,6 +750,13 @@ module.exports.wxreg = function* wxreg() {
 }
 module.exports.wxmedia = function* wxmedia() {
     if ('POST' != this.method) return yield next
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
+    access_info = yield ajax(access_options)
     var model = yield parse(this, {
         limit: '200kb'
     })
@@ -758,7 +765,7 @@ module.exports.wxmedia = function* wxmedia() {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/material/batchget_material?access_token=Uo1UNKGUaoIfpQsqSnGg8cga13bX3cznasrLwYOjIGqNwygWeGz6Ofcjt5KGaeix9_ccn82iVgq6zXTWsTj-9qJYNG_UDKE5pYd009K4VpLFY-V7DxFW0qpkK5LosjrvBACdAIAWVX',
+        path: '/cgi-bin/material/batchget_material?access_token=' + access_info.access_token,
         method: 'POST',
         json: true,
         headers: {
