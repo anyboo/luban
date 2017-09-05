@@ -767,5 +767,5 @@ module.exports.wxmedia = function* wxmedia() {
         }
     }
     let wxinfo = yield ajax(options, body)
-    this.body = yield access_info
+    this.body = yield wxinfo
 }
