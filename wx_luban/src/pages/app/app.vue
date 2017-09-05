@@ -75,30 +75,28 @@ export default {
                         Vue.http.post('http://app.bullstech.cn:8888/wx/', { code: cdstr }).then(obj => {
                             console.log(obj.bodyText.openid)
                             this.$store.commit('getopenid', obj.bodyText.openid)
+                            let openid = this.$store.state.openid.openid
+                            filterObj = []
+                            filterObj.push({
+                                'key': 'openid',
+                                'value': openid,
+                                'type': ''
+                            })
+                            filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                            this.handleGetFilterTableTable('student', filterTxt).then(obj => {
+                                /*   console.log(obj.data) */
+                                if (obj.data.count > 0) {
+                                    this.$store.commit('student', obj.data.data[0]._id)
+                                    this.$store.commit('homes', 'lb-home')
+                                } else {
+                                    this.$store.commit('getopenid', openid)
+                                    this.$store.commit('homes', 'lb-verification')
+                                }
+                            })
+                            this.$store.commit('user', data.account)
                         })
                     }
-
                     /*   let openid = 'oZy8Uwata23l5-Nfsfd239ndfk0lVEFaDeeqwew' */
-                    let openid = this.$store.state.openid.openid
-                    let filterObj = []
-                    filterObj.push({
-                        'key': 'openid',
-                        'value': openid,
-                        'type': ''
-                    })
-                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                    this.handleGetFilterTableTable('student', filterTxt).then(obj => {
-                        /*   console.log(obj.data) */
-                        if (obj.data.count > 0) {
-                            this.$store.commit('student', obj.data.data[0]._id)
-                            this.$store.commit('homes', 'lb-home')
-                        } else {
-                            this.$store.commit('getopenid', openid)
-                            this.$store.commit('homes', 'lb-verification')
-                        }
-                    })
-                    this.$store.commit('user', data.account)
-                    console.log('获取成功')
                 }
             })
         console.log('登陆成功')
