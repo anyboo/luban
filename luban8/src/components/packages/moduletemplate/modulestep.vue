@@ -17,10 +17,10 @@
                 </el-steps>
                 <hr class="hrstyle">
                 <template v-if="moduletype==1">
-                    <lb-systemmodule :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-systemmodule>
+                    <lb-moduletable ref="table" :module="moduleobj" :info="true" @tablechange="dialogData" :stepsdata="currobj[steps-1]"></lb-moduletable>
                 </template>
                 <template v-if="moduletype==2">
-                    <lb-dialogmmoduleform ref="ruleForm" :module="moduleobj" :stepsdata="currobj[steps-1]"></lb-dialogmmoduleform>
+                    <lb-moduleform ref="ruleForm" :module="moduleobj" :stepsdata="currobj[steps-1]"></lb-moduleform>
                 </template>
                 <template v-if="moduletype==3">
                     <lb-blank @blankmounted="blankmounted">
@@ -48,20 +48,15 @@
 </style>
 
 <script>
-import systemmodule from '~/pages/views/system/module.vue'
-import dialogmmoduleform from './moduleform.vue'
 import pagesmodule from '~/stores/moduledialog.js'
 import moduleform from '~/stores/moduleform.js'
 import blank from '~/pages/app/blank.vue'
 import dialogpages from '~/stores/dialogpages.js'
 
-
-dialogpages['lb-systemmodule'] = systemmodule
-dialogpages['lb-dialogmmoduleform'] = dialogmmoduleform
 dialogpages['lb-blank'] = blank
 
 export default {
-    name: 'modulestep',
+    name: 'LbModulestep',
     props: ['module'],
     components: dialogpages,
     data() {
@@ -130,7 +125,7 @@ export default {
                     disabled = true
                 }
                 if (this.moduletype == 2) {
-                    disabled = true
+                    disabled = false
                 }
             }
             this.nextDisabled = disabled

@@ -105,7 +105,7 @@
                 <template v-for="(item,index) in moduledata">
                     <el-tab-pane :label="item.pageLable">
                         <template v-if="index==tabIndex">
-                            <lb-systemmodule :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule>
+                            <lb-moduletable :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-moduletable>
                         </template>
                     </el-tab-pane>
                 </template>
@@ -120,7 +120,6 @@
 </style>
 
 <script>
-import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/modulestudentinfo.js'
 import getUrl from '~/api/restfulapi.js'
 export default {
@@ -177,9 +176,6 @@ export default {
                 ],
             }
         }
-    },
-    components: {
-        'lb-systemmodule': systemmodule
     },
     mounted() {
         let currStudent = this.$store.state.envs.currStudent

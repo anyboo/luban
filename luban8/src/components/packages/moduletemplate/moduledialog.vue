@@ -11,10 +11,10 @@
             </div>
             <div class="modal-body">
                 <template v-if="module._type==0">
-                    <lb-systemmodule :module="module" :info="true" @tablechange="dialogData"></lb-systemmodule>
+                    <lb-moduletable :module="module" :info="true" @tablechange="dialogData"></lb-moduletable>
                 </template>
                 <template v-if="module._type==1">
-                    <lb-dialogmmoduleform ref="ruleForm" :module="module" :form="form"></lb-dialogmmoduleform>
+                    <lb-moduleform ref="ruleForm" :module="module" :form="form"></lb-moduleform>
                 </template>
             </div>
             <div class="modal-footer">
@@ -25,11 +25,8 @@
     </div>
 </template>
 <script>
-import systemmodule from '~/pages/views/system/module.vue'
-import dialogmmoduleform from './moduleform.vue'
-
 export default {
-    name: 'dialogmodule',
+    name: 'LbModuledialog',
     props: ['module'],
     data() {
         return {
@@ -52,7 +49,6 @@ export default {
             }
         }
     },
-    components: { 'lb-systemmodule': systemmodule, 'lb-dialogmmoduleform': dialogmmoduleform },
     computed: {
         title() {
             let text = this.module.pageLable

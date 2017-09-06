@@ -1,8 +1,8 @@
 <template>
     <div class="lbBody" :style="getClientHeight">
         <template v-if="getCurrentView ==1">
-            <lb-systemmodule :module="moduleObj">
-            </lb-systemmodule>
+            <lb-moduletable :module="moduleObj">
+            </lb-moduletable>
         </template>
         <template v-if="getCurrentView == 0">
             <component v-bind:is="currentView">
@@ -17,11 +17,9 @@
 <script>
 import pages from '~/stores/viewpages.js'
 import blank from './blank.vue'
-import systemmodule from '~/pages/views/system/module.vue'
 import module from '~/stores/module.js'
 
 pages['lb-blank'] = blank
-pages['lb-systemmodule'] = systemmodule
 
 export default {
     name: 'body',

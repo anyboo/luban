@@ -1,7 +1,11 @@
 export default {
     'pageName': 'selectstudentdialog',
     'pageLable': '选择学员',
-    'tableSearch': [],
+    'tableSearch': [{
+        'key': 'isdel',
+        'value': false,
+        'type': ''
+    }],
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -23,6 +27,12 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'nickname'
+                },
+                {
+                    'label': '号码',
+                    'defvalue': '',
+                    'default': true,
+                    'value': 'first_tel'
                 }
             ]
         }
@@ -56,6 +66,11 @@ export default {
             'type': 'text',
             'label': '英文名',
             'prop': 'nickname'
+        },
+        {
+            'type': 'text',
+            'label': '手机号码',
+            'prop': 'first_tel'
         }
     ],
     'pageTable': 'student',

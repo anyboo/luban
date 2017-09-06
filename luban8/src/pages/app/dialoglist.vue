@@ -5,12 +5,12 @@
         <template v-for="item,index in getDialog">
             <lb-dialog :zindex="index*2+1500">
                 <template v-if="getDialogMoudle(item,index)==1">
-                    <lb-systemdialogmmodule :module="moduleObj[index]">
-                    </lb-systemdialogmmodule>
+                    <lb-moduledialog :module="moduleObj[index]">
+                    </lb-moduledialog>
                 </template>
                 <template v-else-if="getDialogMoudle(item,index)==2">
-                    <lb-systemdialogmmodulestep :module="moduleObj[index]">
-                    </lb-systemdialogmmodulestep>
+                    <lb-modulestep :module="moduleObj[index]">
+                    </lb-modulestep>
                 </template>
                 <template v-else>
                     <component v-bind:is="item"></component>
@@ -34,12 +34,7 @@ import module from '~/stores/moduledialog.js'
 import moduleform from '~/stores/moduleform.js'
 import modulestep from '~/stores/modulestep.js'
 import dialog from './dialog.vue'
-import systemdialogmmodule from '~/pages/dialogs/system/module.vue'
-import systemdialogmmodulestep from '~/pages/dialogs/system/modulestep.vue'
-
 dialogpages['lb-dialog'] = dialog
-dialogpages['lb-systemdialogmmodule'] = systemdialogmmodule
-dialogpages['lb-systemdialogmmodulestep'] = systemdialogmmodulestep
 
 export default {
     name: 'dialog',

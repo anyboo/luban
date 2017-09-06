@@ -71,6 +71,7 @@
                     <el-table-column :label="item.label" :type="item.expand?'expand':''">
                         <template scope="scope">
                             <template v-if="item.type=='tableexpand'">
+                                <lb-moduletable :module="getSubmoudle(item.module)" :info="true"></lb-moduletable>
                                 <!-- <lb-systemmodule :module="item.props" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule> -->
                             </template>
                             <template v-if="item.type=='constant'">
@@ -269,10 +270,9 @@
 }
 </style>
 <script>
-import systemmodule from '~/pages/views/system/module.vue'
 import pagesmodule from '~/stores/module.js'
 export default {
-    name: 'systemmodule',
+    name: 'LbModuletable',
     props: ['module', 'info', 'searchValue', 'value', 'stepsdata'],
     data() {
         return {
@@ -321,10 +321,8 @@ export default {
             }
         }
     },
-    components: {
-        'lb-systemmodule': systemmodule
-    },
     created() {
+        console.log("mounted")
         if (typeof (this.module) == 'object') {
             this.moduledata = this.module
         } else if (typeof (this.module) == 'string' && this.module != '') {
@@ -335,6 +333,7 @@ export default {
         }
     },
     mounted() {
+        console.log("mounted")
         if (this.module.mounted) {
             this.module.mounted(this)
         }
@@ -449,6 +448,14 @@ export default {
         }
     },
     methods: {
+        getSubmoudle(modulename) {
+            let moduleObj = {}
+            if (pagesmodule[modulename]) {
+                moduleObj = pagesmodule[modulename]
+            }
+            console.log(moduleObj,modulename)
+            return moduleObj
+        },
         handleSelectionChange(val) {
             this.multipleSelection = val
         },
@@ -458,7 +465,7 @@ export default {
                 if (this.moduledata.getOpenDialogData) {
                     dialogdata = this.moduledata.getOpenDialogData(this, item.param)
                 }
-                this.handOpenDialog(item.showdialog,dialogdata)
+                this.handOpenDialog(item.showdialog, dialogdata)
             } else {
                 if (this.moduledata[item.func]) {
                     this.moduledata[item.func](this, item.param)
@@ -503,7 +510,10 @@ export default {
             })
         },
         handleTableChange(val) {
-            this.$emit('tablechange', { 'row': val, 'dialog': this.module.dialogUrl })
+            if (this.module.checkbox) {
+            } else {
+                this.$emit('tablechange', { 'row': val, 'dialog': this.module.dialogUrl })
+            }
         },
         lessonrouter(event, url, info) {
             if (info) {

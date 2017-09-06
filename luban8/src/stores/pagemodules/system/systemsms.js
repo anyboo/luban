@@ -44,13 +44,10 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'studentRouter',
-            'label': '学员'
-        },
-        {
-            'type': 'text',
-            'label': '联系电话',
-            'prop': 'first_tel'
+            'expand': true,
+            'type': 'tableexpand',
+            'label': '发送对象',
+            'module': 'studentlist',
         },
         {
             'type': 'constant',

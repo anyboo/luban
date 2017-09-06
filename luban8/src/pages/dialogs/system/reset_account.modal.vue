@@ -74,8 +74,7 @@ export default {
                         this.lbClosedialog()
                     })
                 }
-            });
-
+            })
         }
     }
 }

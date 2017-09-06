@@ -1,6 +1,6 @@
 export default {
     'pageName': 'allsmsform',
-    'pageLable': '活动推广',
+    'pageLable': '短信发送',
     'form': {
         'tel': [],
         'content': '',
@@ -13,21 +13,64 @@ export default {
     },
     'telshow': 10,
     'created': function (vm) {
-        let filterObj = []
-        let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
-        vm.pagination.pagesize = 1000
-        vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
-            let objData = obj.data.data
-            for (let index in objData) {
+        if (vm.$store.state.dialogs.currdialg=='classsmsdialog'){
+            vm.module.pageLable = '班级群发'
+            for (let item of vm.stepsdata) {
                 let telitem = {}
-                telitem.tel = objData[index].first_tel
-                telitem.student_id = objData[index]._id
-                telitem.name = objData[index].student_name
+                telitem.tel = item.first_tel
+                telitem.student_id = item._id
+                telitem.name = item.student_name
                 vm.localdata.form.tel.push(telitem)
             }
-            vm.module.telshow = 10
+            let len = vm.localdata.form.tel.length
+            if (len>10){
+                vm.module.telshow = 10
+            }else{
+                vm.module.telshow = len
+            }
             vm.formdata = vm.localdata.form.tel.slice(0, 10)
-        })
+            vm.changetel( vm.module.telshow)
+        }else if (vm.$store.state.dialogs.currdialg=='studentsmsform'){
+            let currStudent = vm.$store.state.envs.currStudent
+            let telitem = {}
+            telitem.tel = currStudent.first_tel
+            telitem.student_id = currStudent._id
+            telitem.name = currStudent.student_name
+            vm.localdata.form.tel.push(telitem)
+            vm.module.pageLable = '发送学员'
+            vm.module.telshow = 1
+            let len = vm.localdata.form.tel.length
+            if (len>10){
+                vm.module.telshow = 10
+            }else{
+                vm.module.telshow = len
+            }
+            vm.formdata = vm.localdata.form.tel.slice(0, 10)
+            vm.changetel( vm.module.telshow)
+        }else{
+            let filterObj = []
+            let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+            vm.pagination.pagesize = 1000
+            vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+                let objData = obj.data.data
+                for (let index in objData) {
+                    let telitem = {}
+                    telitem.tel = objData[index].first_tel
+                    telitem.student_id = objData[index]._id
+                    telitem.name = objData[index].student_name
+                    vm.localdata.form.tel.push(telitem)
+                }
+                vm.module.pageLable = '活动推广'
+                let len = vm.localdata.form.tel.length
+                if (len>10){
+                    vm.module.telshow = 10
+                }else{
+                    vm.module.telshow = len
+                }
+                vm.formdata = vm.localdata.form.tel.slice(0, 10)
+                vm.changetel( vm.module.telshow)
+            })
+        }      
     },
     'formField': [
         {

@@ -12,6 +12,7 @@ import checkstatus from './checkstatus/'
 import checkweek from './checkweek/'
 import selectesearch from './selectesearch/'
 import Sidebar from './sidebar/'
+import moduletemplate from './moduletemplate/'
 
 const components = [
     dropdown.LbDropdown,
@@ -28,7 +29,11 @@ const components = [
     checkstatus,
     checkweek,
     selectesearch,
-    Sidebar
+    Sidebar,
+    moduletemplate.moduledialog,
+    moduletemplate.moduleform,
+    moduletemplate.modulestep,
+    moduletemplate.moduletable
 ]
 const install = function(Vue) {
     if (install.installed) return

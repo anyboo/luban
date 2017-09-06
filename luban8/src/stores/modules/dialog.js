@@ -1,6 +1,7 @@
 const state = {
     dailoglist: [],
     dailogdata: {},
+    currdialg:'',
     modalbackdrop: false,
     modalbackdropzindex: 1457
 }
@@ -19,6 +20,7 @@ const mutations = {
     },
     pushdialog: (state, obj) => {
         state.dailogdata = obj.menuData
+        state.currdialg = obj.url
         state.dailoglist.push(obj.url)
         state.modalbackdropzindex = state.dailoglist.length * 2 + 1457
         state.modalbackdrop = true

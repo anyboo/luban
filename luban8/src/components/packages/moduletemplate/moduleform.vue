@@ -254,7 +254,7 @@
 <script>
 import moduleform from '~/stores/moduleform.js'
 export default {
-    name: 'moduleform',
+    name: 'LbModuleform',
     props: ['module', 'form','stepsdata'],
     data() {
         var validateNumberinput = (rule, value, callback) => {

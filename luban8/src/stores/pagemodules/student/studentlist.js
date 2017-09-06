@@ -2,6 +2,10 @@ export default {
     'pageName': 'studentlist',
     'pageLable': '学员管理',
     'tableSearch': [{
+        'key': 'isdel',
+        'value': false,
+        'type': ''
+    },{
         'localField': 'region_oe_id',
         'from': 'employee',
         'foreignField': '_id',

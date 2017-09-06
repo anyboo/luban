@@ -3,6 +3,11 @@ export default {
     'pageLable': '咨询管理',
     'tableSearch': [
         {
+            'key': 'isdel',
+            'value': false,
+            'type': ''
+        },
+        {
             'localField': 'region_oe_id',
             'from': 'employee',
             'foreignField': '_id',
