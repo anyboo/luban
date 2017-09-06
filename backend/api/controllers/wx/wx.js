@@ -149,12 +149,13 @@ module.exports.wxregpost = function* wxregpost() {
         path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
+    //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～
     let access_info = yield net.ajax(access_options)
     let textdata=`{
         "touser":"${openid}",
         "msgtype":"text",
         "text":{
-             "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～"
+             "content":"hello"
         }
     }`
     let options = {
