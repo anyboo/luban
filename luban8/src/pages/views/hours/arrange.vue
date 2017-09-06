@@ -119,9 +119,7 @@ export default {
                 })
             },
             eventClick: function(calEvent, jsEvent, view) {
-                vm.handleGetTableID('coursescheduling',calEvent._id).then(obj=>{
-                    vm.handleShowDialog('arrangeeditform', obj)
-                })
+                vm.handleShowDialog('arrangeeditform', calEvent.data)
             },
             events: function(start, end, timezone, callback) {
                 let filterObj = []
@@ -165,7 +163,7 @@ export default {
                         if (item.sclasses && item.sclasses.length > 0) {
                             evnitem.title += ' 教室：' + item.sclasses[0].class_name
                         }
-
+                        evnitem.data = item
                         evnitem.start = vm.getDatetimeFormat(item.start)
                         evnitem.end = vm.getDatetimeFormat(item.end)
                         eve.push(evnitem)

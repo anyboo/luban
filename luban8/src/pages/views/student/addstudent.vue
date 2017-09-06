@@ -70,23 +70,25 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="备注">
-                <textarea name="note" v-model="localdata.form.note" rows="2"  class="form-control" style="width:320px;"></textarea>
+                <textarea name="note" v-model="localdata.form.note" rows="2" class="form-control" style="width:320px;"></textarea>
             </el-form-item>
         </div>
     </el-form>
 </template>
 <style>
-.distance{
-    margin-bottom:10px; 
+.distance {
+    margin-bottom: 10px;
 }
-a.stylemore{
-    border: 1px solid rgb(211,211,211);
-    padding:2px 10px;
-    border-top:0;
+
+a.stylemore {
+    border: 1px solid rgb(211, 211, 211);
+    padding: 2px 10px;
+    border-top: 0;
     border-radius: 3px;
 }
-a.stylemore:hover{
-    color:red;
+
+a.stylemore:hover {
+    color: red;
 }
 </style>
 
@@ -237,10 +239,37 @@ export default {
                 if (valid) {
                     let vm = this
                     vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
-                    vm.handleSave().then((response) => {
-                        vm.$store.state.envs.currStudent = response
-                        vm.handleShowDialog('lb-finishadd', response)
-                    }, (e) => {
+                    let filterObj = []
+                    filterObj.push({
+                        'key': 'student_name',
+                        'value': vm.localdata.form.student_name,
+                        'type': ''
+                    })
+                    let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+                    vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+                        let objData = obj.data.data
+                        let namecheck = false
+                        if (objData.length > 0) {
+                            if (vm.modalsType == vm.types.APPEND_API) {
+                                namecheck = true
+                            } else {
+                                if (objData[0]._id != this._id) {
+                                    namecheck = true
+                                }
+                            }
+                        }
+                        if (!namecheck) {
+                            vm.handleSave().then((response) => {
+                                vm.$store.state.envs.currStudent = response
+                                vm.handleShowDialog('lb-finishadd', response)
+                            }, (e) => {
+                            })
+                        } else {
+                            this.$message({
+                                message: '名字已经重复，请在名字后面添加备注区分.',
+                                type: 'warning'
+                            })
+                        }
                     })
                 }
             })
