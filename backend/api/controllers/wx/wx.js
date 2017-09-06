@@ -172,8 +172,8 @@ module.exports.wxregpost = function* wxregpost() {
     let texts = yield net.ajax(options, textdata)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
-        this.body = texts
-        console.log('this.body' + this.body)
+        this.body = ''
+        console.log(texts)
     } else {
         this.body = 'error'
     }
