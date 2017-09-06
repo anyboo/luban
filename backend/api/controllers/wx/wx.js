@@ -161,7 +161,7 @@ module.exports.wxregpost = function* wxregpost() {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '//cgi-bin/message/custom/send?access_token=' + access_info.access_token,
+        path: '/cgi-bin/message/custom/send?access_token=' + access_info.access_token,
         method: 'POST',
         json: true,
         headers: {
