@@ -37,6 +37,7 @@ module.exports.wxservice = function* wxservice(type) {
     var model = yield parse(this, {
         limit: '200kb'
     })
+
     let body = JSON.stringify(model)
     let options = {
         hostname: 'api.weixin.qq.com',
@@ -54,6 +55,7 @@ module.exports.wxservice = function* wxservice(type) {
 }
 module.exports.getwxserver = function* getwxserver() {
     if ('GET' != this.method) return yield next
+    let access_smssend = {}
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -66,7 +68,7 @@ module.exports.getwxserver = function* getwxserver() {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/customservice/getkflist?access_token='+access_info.access_token,
+        path: '/cgi-bin/customservice/getkflist?access_token=' + access_info.access_token,
         method: 'GET',
     }
     access_smssend = yield net.ajax(options)
