@@ -8,16 +8,9 @@ const jwt = require('jsonwebtoken')
 var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
-const SMSClient = require('./smsclient.js')
-var dbstr = 'mongodb://localhost/'
-const accessKeyId = 'ACSFUX7fLUMpBZM1'
-const secretAccessKey = 'qsGNrvuGnu'
-const queueName = 'Alicom-Queue-1420938370661882-'
-const https = require('https')
-const http = require('http')
-const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
+var db = require('../../unit/db')
 
 module.exports.smssend = function* smssend() {
     if ('POST' != this.method) return yield next
@@ -54,7 +47,7 @@ module.exports.smssend = function* smssend() {
     }
     let smssendinfo = {}
     smssendinfo = yield net.ajaxhttp(options, body)
-    var db = yield MongoClient.connect(getdbstr(model.db))
+    var db = yield MongoClient.connect(db.getdbstr(model.db))
     let smssends = yield db.collection('smssend').insert(
         {
             smssendinfo,

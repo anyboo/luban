@@ -9,13 +9,13 @@ var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
 const SMSClient = require('./smsclient.js')
-var dbstr = 'mongodb://localhost/'
 const accessKeyId = 'ACSFUX7fLUMpBZM1'
 const secretAccessKey = 'qsGNrvuGnu'
 const queueName = 'Alicom-Queue-1420938370661882-'
 const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
+var db = require('../../unit/db')
 
 
 module.exports.alisms = function* alisms() {
@@ -34,7 +34,7 @@ module.exports.alisms = function* alisms() {
     }
     let number = addNumber(6)
 
-    var db = yield MongoClient.connect(getdbstr(smsdb))
+    var db = yield MongoClient.connect(db.getdbstr(smsdb))
     let nowtime = new Date().getTime()
     let smssend = yield db.collection('smssend').insert(
         {
@@ -81,7 +81,7 @@ module.exports.alichecksms = function* alichecksms(next) {
     var sms = yield parse(this, {
         limit: '500kb'
     })
-    var db = yield MongoClient.connect(getdbstr(smsdb))
+    var db = yield MongoClient.connect(db.getdbstr(smsdb))
     let table = db.collection('sms')
     let options = []
     options.push({
