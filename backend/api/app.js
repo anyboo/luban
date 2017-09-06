@@ -10,6 +10,7 @@ var xmlparse = require('./unit/xmlparse')
 var sms =require('./controllers/sms/sms')
 var alisms =require('./controllers/sms/alisms')
 var wx  = require('./controllers/wx/wx')
+var wxserver  = require('./controllers/wx/wxserver')
 var app = module.exports = new koa()
 
 app.use(logger())
@@ -26,6 +27,7 @@ app.use(route.get('/:db/wxqrcode/:id', wx.wxqrcode))
 
 //微信服务
 
+app.use(route.post('/wxservice/', wxserver.wxservice))
 //短信
 app.use(route.post('/smssend/', sms.smssend))
 app.use(route.get('/getsmssend/', sms.getsmssend))

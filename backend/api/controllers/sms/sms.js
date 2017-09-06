@@ -10,7 +10,7 @@ var Buffer = require('buffer').Buffer
 var path = require('path')
 const querystring = require('querystring')
 var net = require('../../unit/net')
-var db = require('../../unit/db')
+var dbunit = require('../../unit/db')
 
 module.exports.smssend = function* smssend() {
     if ('POST' != this.method) return yield next
@@ -47,7 +47,7 @@ module.exports.smssend = function* smssend() {
     }
     let smssendinfo = {}
     smssendinfo = yield net.ajaxhttp(options, body)
-    var db = yield MongoClient.connect(db.getdbstr(model.db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(model.db))
     let smssends = yield db.collection('smssend').insert(
         {
             smssendinfo,

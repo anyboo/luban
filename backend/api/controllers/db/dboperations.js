@@ -9,7 +9,7 @@ var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
 const querystring = require('querystring')
-var db = require('../../unit/db')
+var dbunit = require('../../unit/db')
 
 function checkId(id) {
     let result = false
@@ -24,7 +24,7 @@ module.exports.login = function* login(db, next) {
         limit: '500kb'
     })
     console.log(user)
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection('employee')
     let options = []
     options.push({
@@ -160,7 +160,7 @@ module.exports.all = function* all(db, name, next) {
             return
         }
     }
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     let query = this.query
     let limit = Number.parseInt(query.prepage || 30)
@@ -257,7 +257,7 @@ module.exports.upload = function* upload(db, next) {
 module.exports.fetch = function* fetch(db, name, id, next) {
     if ('GET' != this.method) return yield next
     if (!checkId(id)) return yield next
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     var model = yield table.find({ '_id': ObjectID(id) }).toArray()
     if (model.length === 0) {
@@ -272,7 +272,7 @@ module.exports.add = function* add(db, name, next) {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     let seqid = yield db.collection('lb_seq_id').findOneAndUpdate({ id: name }, { $inc: { seq: 1 } }, { upsert: true })
     model.lbseqid = seqid.seq
@@ -292,7 +292,7 @@ module.exports.modify = function* modify(db, name, id, next) {
     var data = yield parse(this, {
         limit: '5000kb'
     })
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     changeModelId(data)
     var result = yield table.updateOne({ '_id': ObjectID(id) }, {
@@ -307,7 +307,7 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     let writeobj = []
 
@@ -340,7 +340,7 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
 module.exports.remove = function* remove(db, name, id, next) {
     if ('DELETE' != this.method) return yield next
     if (!checkId(id)) return yield next
-    var db = yield MongoClient.connect(db.getdbstr(db))
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     var removed = yield table.remove({ '_id': ObjectID(id) })
     db.close()

@@ -14,9 +14,6 @@ var net = require('../../unit/net')
 
 module.exports.wxservice = function* wxservice() {
     if ('POST' != this.method) return yield next
-    var model = yield parse(this, {
-        limit: '200kb'
-    })
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -25,7 +22,9 @@ module.exports.wxservice = function* wxservice() {
     }
     let access_info = {}
     access_info = yield net.ajax(access_options)
-
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
     let body = JSON.stringify(model)
     let options = {
         hostname: 'api.weixin.qq.com',
