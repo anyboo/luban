@@ -17,11 +17,27 @@ module.exports.wxservice = function* wxservice() {
     var model = yield parse(this, {
         limit: '200kb'
     })
-    let wx_item = {
-        "kf_account": "test1@test",
-        "nickname": "鲁班小一",
-        "password": "lbtech1",
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
     }
-    let body = JSON.stringify(wx_item)
+    let access_info = {}
+    access_info = yield net.ajax(access_options)
 
+    let body = JSON.stringify(model)
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/customservice/kfaccount/add?access_token=' + access_info.access_token,
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
+        }
+    }
+    let wxinfo = yield net.ajax(options, body)
+    this.body = yield wxinfo
 }

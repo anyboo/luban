@@ -32,7 +32,7 @@ module.exports.smssend = function* smssend() {
     let smsdata = {
         type: 'send',
         username: 'bullstech',
-        password: 'gaoqihao@bullstech.cn',
+        password: 'FC6E673470BA5628D26430089C52D18C',
         gwid: '8b6bf7b',
         mobile: model.mobile,
         rece: 'json',
