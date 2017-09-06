@@ -153,8 +153,7 @@ module.exports.wxregpost = function* wxregpost() {
     let textdata=`{
         "touser":"${openid}",
         "msgtype":"text",
-        "text":
-        {
+        "text":{
              "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～"
         }
     }`
@@ -163,12 +162,12 @@ module.exports.wxregpost = function* wxregpost() {
         port: 443,
         path: '/cgi-bin/message/custom/send?access_token=' + access_info.access_token,
         method: 'POST',
-        json: true,
         headers: {
             "content-type": "application/json",
             'Content-Length': textdata.length,
         }
     }
+    console.log(textdata,textdata.length)
     let texts = yield net.ajax(options, textdata)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
