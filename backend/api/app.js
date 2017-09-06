@@ -28,6 +28,7 @@ app.use(route.get('/:db/wxqrcode/:id', wx.wxqrcode))
 //微信服务
 
 app.use(route.post('/wxservice/:type', wxserver.wxservice))
+app.use(route.post('/getwxserver/', wxserver.getwxserver))
 //短信
 app.use(route.post('/smssend/', sms.smssend))
 app.use(route.get('/getsmssend/', sms.getsmssend))
