@@ -719,10 +719,11 @@ module.exports.wxregpost = function* wxregpost() {
     texts += '<MsgType><![CDATA[text]]></MsgType>'
     texts += '<Content><![CDATA[' + connects + ']]></Content>'
     texts += '</xml>'
-    console.log(texts)
+
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = texts
+        console.log('this.body'+this.body,'body'+body)
     } else {
         this.body = 'error'
     }
