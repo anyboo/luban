@@ -142,19 +142,34 @@ module.exports.wxregpost = function* wxregpost() {
     //2. 将三个参数字符串拼接成一个字符串进行sha1加密
     var sha1Code = crypto.createHash('sha1')
     var code = sha1Code.update(str, 'utf-8').digest('hex')
-    let time = new Date().getTime()
-    let user = 'wx30db7ec1537d9afc'
-    let connects = '欢迎关注布尔斯科技,请点击’关于鲁班‘——>‘学生端’访问报名信息'
-    console.log(time)
-    let texts = ''
-    texts += '<xml>'
-    texts += '<ToUserName><![CDATA[' + openid + ']]></ToUserName>'
-    texts += '<FromUserName><![CDATA[' + user + ']]></FromUserName>'
-    texts += '<CreateTime>' + time + '</CreateTime>'
-    texts += '<MsgType><![CDATA[text]]></MsgType>'
-    texts += '<Content><![CDATA[' + connects + ']]></Content>'
-    texts += '</xml>'
 
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
+    let access_info = yield net.ajax(access_options)
+    let textdata={
+        "touser":openid,
+        "msgtype":"text",
+        "text":
+        {
+             "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～"
+        }
+    }
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '//cgi-bin/message/custom/send?access_token=' + access_info.access_token,
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
+        }
+    }
+    let texts = yield net.ajax(options, textdata)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = texts
