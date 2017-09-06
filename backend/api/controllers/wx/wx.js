@@ -150,15 +150,14 @@ module.exports.wxregpost = function* wxregpost() {
         method: 'GET',
     }
     let access_info = yield net.ajax(access_options)
-    let textdata={
-        "touser":openid,
+    let textdata=`{
+        "touser":"${openid}",
         "msgtype":"text",
         "text":
         {
              "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～"
         }
-    }
-    let body = JSON.stringify(textdata)
+    }`
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -167,10 +166,10 @@ module.exports.wxregpost = function* wxregpost() {
         json: true,
         headers: {
             "content-type": "application/json",
-            'Content-Length': body.length,
+            'Content-Length': textdata.length,
         }
     }
-    let texts = yield net.ajax(options, body)
+    let texts = yield net.ajax(options, textdata)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = ''
