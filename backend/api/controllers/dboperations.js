@@ -542,7 +542,6 @@ module.exports.wx = function* wx() {
     if (wxinfo) {
         wxobj.openid = wxinfo.openid
     }
-    console.log(wxinfo, wxobj)
     this.body = yield wxobj
 }
 
@@ -551,7 +550,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     let wxinfo = {}
     let qcdata = { "action_name": "QR_LIMIT_SCENE", "action_info": { "scene": { "scene_id": id } } }
     let body = JSON.stringify(qcdata)
-
+    console.log(body)
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -571,7 +570,6 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
             'Content-Length': body.length,
         }
     }
-    console.log(options)
     wxinfo = yield ajax(options, body)
     this.body = yield wxinfo
 }
