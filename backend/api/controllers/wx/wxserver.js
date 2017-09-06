@@ -17,4 +17,11 @@ module.exports.wxservice = function* wxservice() {
     var model = yield parse(this, {
         limit: '200kb'
     })
+    let wx_item = {
+        "kf_account": "test1@test",
+        "nickname": "鲁班小一",
+        "password": "lbtech1",
+    }
+    let body = JSON.stringify(wx_item)
+
 }

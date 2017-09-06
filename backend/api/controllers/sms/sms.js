@@ -25,11 +25,15 @@ module.exports.smssend = function* smssend() {
         limit: '200kb'
     })
     console.log(model)
+    //网址：http://dx.106msg.com/login.htm
+    //账号：bullstech
+    //密码：gaoqihao@bullstech.cn
+    //接口网关：8b6bf7b
     let smsdata = {
         type: 'send',
-        username: '18960828505',
-        password: 'A750A4CDD88D39140D81D71615824272',
-        gwid: '408fbb2',
+        username: 'bullstech',
+        password: 'gaoqihao@bullstech.cn',
+        gwid: '8b6bf7b',
         mobile: model.mobile,
         rece: 'json',
         message: '【' + model.title + '】' + model.message
