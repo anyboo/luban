@@ -158,6 +158,7 @@ module.exports.wxregpost = function* wxregpost() {
              "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～"
         }
     }
+    let body = JSON.stringify(textdata)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -169,7 +170,7 @@ module.exports.wxregpost = function* wxregpost() {
             'Content-Length': body.length,
         }
     }
-    let texts = yield net.ajax(options, textdata)
+    let texts = yield net.ajax(options, body)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = ''
