@@ -698,7 +698,6 @@ module.exports.wxregpost = function* wxregpost() {
     var openid = this.query.openid
     var echostr = this.query.echostr
     var token = 'bullstech'
-    console.log(model, openid)
     console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
     let time = new Date()
     let user ="wx30db7ec1537d9afc"
@@ -708,7 +707,6 @@ module.exports.wxregpost = function* wxregpost() {
     var array = new Array(token, timestamp, nonce)
     array.sort()
     var str = array.toString().replace(/,/g, '')
-
     //2. 将三个参数字符串拼接成一个字符串进行sha1加密
     var sha1Code = crypto.createHash('sha1')
     var code = sha1Code.update(str, 'utf-8').digest('hex')
@@ -719,10 +717,10 @@ module.exports.wxregpost = function* wxregpost() {
         <MsgType>text</MsgType>
         <Content>connects</Content>
     </xml>
-    console.log(code, signature, code === signature)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = texts
+        console.log(body)
     } else {
         this.body = 'error'
     }
