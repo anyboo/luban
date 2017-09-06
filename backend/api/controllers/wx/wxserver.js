@@ -62,6 +62,7 @@ module.exports.getwxserver = function* getwxserver() {
     }
     let access_info = {}
     access_info = yield net.ajax(access_options)
+    console.log(access_info)
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -70,4 +71,5 @@ module.exports.getwxserver = function* getwxserver() {
     }
     access_smssend = yield net.ajax(options)
     this.body = yield access_smssend
+    console.log(this.body)
 }
