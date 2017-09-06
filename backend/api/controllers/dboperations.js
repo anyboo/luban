@@ -698,10 +698,7 @@ module.exports.wxregpost = function* wxregpost() {
     var openid = this.query.openid
     var echostr = this.query.echostr
     var token = 'bullstech'
-    console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token)
-    let time = new Date()
-    let user = "wx30db7ec1537d9afc"
-    let connects = "欢迎关注布尔斯科技,请点击’关于鲁班‘——>‘学生端’访问报名信息"
+    /*   console.log('signature:' + signature, 'timestamp:' + timestamp, 'nonce:' + nonce, 'echostr:' + echostr, 'token' + token) */
     /*  加密/校验流程如下： */
     //1. 将token、timestamp、nonce三个参数进行字典序排序
     var array = new Array(token, timestamp, nonce)
@@ -710,18 +707,22 @@ module.exports.wxregpost = function* wxregpost() {
     //2. 将三个参数字符串拼接成一个字符串进行sha1加密
     var sha1Code = crypto.createHash('sha1')
     var code = sha1Code.update(str, 'utf-8').digest('hex')
+    let time = new Date().getTime()
+    let user = 'wx30db7ec1537d9afc'
+    let connects = '欢迎关注布尔斯科技,请点击’关于鲁班‘——>‘学生端’访问报名信息'
+    console.log(time)
     let texts = ''
     texts += '<xml>'
-    texts += '<ToUserName>' + openid + '</ToUserName>'
-    texts += '<FromUserName>' + user + '</FromUserName>'
-    texts += '<CreateTime>' + time.getTime() + '</CreateTime>'
-    texts += '<MsgType>' + text + '</MsgType>'
-    texts += '<Content>' + connects + '</Content>'
+    texts += '<ToUserName><![CDATA[' + openid + ']]></ToUserName>'
+    texts += '<FromUserName><![CDATA[' + user + ']]></FromUserName>'
+    texts += '<CreateTime>' + time + '</CreateTime>'
+    texts += '<MsgType><![CDATA[text]]></MsgType>'
+    texts += '<Content><![CDATA[' + connects + ']]></Content>'
     texts += '</xml>'
+    console.log(texts)
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = texts
-        console.log(body)
     } else {
         this.body = 'error'
     }
