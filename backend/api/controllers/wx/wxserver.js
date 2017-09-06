@@ -12,7 +12,19 @@ var dbstr = 'mongodb://localhost/'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 
-module.exports.wxservice = function* wxservice() {
+
+/* 模版{
+    "kf_account" : "test1@test",
+    "nickname" : "客服1",
+    "password" : "pswmd5",
+} */
+
+/* 鲁班{"kf_account":"gao@bullstech",
+"nickname":"鲁班壹号",
+"password":""
+} */
+//type 选填 add  del update 
+module.exports.wxservice = function* wxservice(type) {
     if ('POST' != this.method) return yield next
     let access_options = {
         hostname: 'api.weixin.qq.com',
@@ -29,7 +41,7 @@ module.exports.wxservice = function* wxservice() {
     let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/customservice/kfaccount/add?access_token=' + access_info.access_token,
+        path: '/customservice/kfaccount/'+type+'?access_token=' + access_info.access_token,
         method: 'POST',
         json: true,
         headers: {
@@ -39,4 +51,7 @@ module.exports.wxservice = function* wxservice() {
     }
     let wxinfo = yield net.ajax(options, body)
     this.body = yield wxinfo
+}
+module.exports.wxserput = function* wxserput() {
+
 }
