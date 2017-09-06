@@ -723,7 +723,7 @@ module.exports.wxregpost = function* wxregpost() {
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = texts
-        console.log('this.body'+this.body,'body'+body)
+        console.log('this.body'+this.body)
     } else {
         this.body = 'error'
     }
