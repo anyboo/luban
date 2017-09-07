@@ -99,7 +99,8 @@ module.exports.wxjssignature = function () {
         var array = new Array(config.nonceStr, access_smssend.ticket,config.timestamp, 'http://yongxin.bullstech.cn')
         array.sort()
         var str = array.toString().replace(/,/g, '')
-        config.signature = sha1Code.update(str, 'utf-8').digest('hex')
+        var sha2Code = crypto.createHash('sha1')
+        config.signature = sha2Code.update(str, 'utf-8').digest('hex')
     })
 }
 module.exports.wxmenus = function* wxmenus() {
