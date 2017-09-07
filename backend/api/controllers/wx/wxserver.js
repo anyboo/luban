@@ -88,6 +88,14 @@ module.exports.wxMass = function* wxMass() {
     var model = yield parse(this, {
         limit: '200kb'
     })
+
+/* 
+    "touser":[
+        "oZy8Uwatalkn5-N39nk0lVEFaDCw",
+        "oZy8UwUZykMMoTgtYc2hysl-vSTY"
+        ],
+        "content":{"hello"} */
+
     let options = {
         "touser": model.touser,
         "msgtype": "text",

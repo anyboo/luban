@@ -17,8 +17,7 @@ var config = {
     timestamp: '', // 必填，生成签名的时间戳
     nonceStr: '', // 必填，生成签名的随机串
     signature: '',// 必填，签名，见附录1
-    jsApiList: [
-        'chooseImage',//拍照或从手机相册中选图接口
+    jsApiList: ['chooseImage',//拍照或从手机相册中选图接口
         'previewImage',//预览图片接口
         'uploadImage',//上传图片接口
         'downloadImage'//下载图片接口
