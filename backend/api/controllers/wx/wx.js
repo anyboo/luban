@@ -203,6 +203,7 @@ module.exports.wxregpost = function* wxregpost() {
         path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
+    console.log(access_options)
     //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单关于鲁班到学生端,查看你的信息吧
     net.ajax(access_options).then(access_info => {
         let textdata = `{
@@ -222,10 +223,8 @@ module.exports.wxregpost = function* wxregpost() {
                 'Content-Length': textdata.length,
             }
         }
-        console.log(textdata, textdata.length)
         let texts = net.ajax(options, textdata)
-
-        console.log(texts)
+       /*  console.log(texts) */
 
     })
 
