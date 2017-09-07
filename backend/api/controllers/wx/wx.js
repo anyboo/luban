@@ -13,15 +13,15 @@ const querystring = require('querystring')
 var net = require('../../unit/net')
 var config = {
     debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: 'wx7e0aa09a76fe616b', // 必填，公众号的唯一标识
+    appId: 'wx30db7ec1537d9afc', // 必填，公众号的唯一标识
     timestamp: '', // 必填，生成签名的时间戳
     nonceStr: '', // 必填，生成签名的随机串
     signature: '',// 必填，签名，见附录1
     jsApiList: ['chooseImage',//拍照或从手机相册中选图接口
-        'previewImage',//预览图片接口
-        'uploadImage',//上传图片接口
-        'downloadImage'//下载图片接口
-    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+         'previewImage',//预览图片接口
+         'uploadImage',//上传图片接口
+         'downloadImage'//下载图片接口
+] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 }
 
 module.exports.wx = function* wx() {
@@ -73,7 +73,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     wxinfo = yield net.ajax(options, body)
     this.body = yield wxinfo
 }
-module.exports.wxsignature = function* wxsignature() {
+module.exports.wxsignature = function* wxsignature(){
     if ('GET' != this.method) return yield next
     this.body = yield config
 }
@@ -82,7 +82,7 @@ module.exports.wxjssignature = function () {
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/token?grant_type=client_credential&appid=wx7e0aa09a76fe616b&secret=def8cea610a77523e47b42d9a28f9182',
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
     let access_info = {}
@@ -94,13 +94,13 @@ module.exports.wxjssignature = function () {
             method: 'GET',
         }
         return net.ajax(options)
-    }).then(access_smssend => {
+    }).then(access_smssend=>{
         var sha1Code = crypto.createHash('sha1')
         var code = sha1Code.update(access_smssend.ticket, 'utf-8').digest('hex')
         config.nonceStr = code.substring(0, 16)
         config.timestamp = new Date().getTime()
 
-        var array = new Array(config.nonceStr, access_smssend.ticket, config.timestamp, 'http://yongxin.bullstech.cn')
+        var array = new Array(config.nonceStr, access_smssend.ticket,config.timestamp, 'http://yongxin.bullstech.cn')
         array.sort()
         var str = array.toString().replace(/,/g, '')
         var sha2Code = crypto.createHash('sha1')
@@ -113,7 +113,7 @@ module.exports.wxmenus = function* wxmenus() {
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/token?grant_type=client_credential&appid=wx7e0aa09a76fe616b&secret=def8cea610a77523e47b42d9a28f9182',
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
     let access_info = {}
