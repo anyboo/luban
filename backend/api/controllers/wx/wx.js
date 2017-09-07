@@ -96,9 +96,10 @@ module.exports.wxjssignature = function () {
         return net.ajax(options)
     }).then(access_smssend => {
         var sha1Code = crypto.createHash('sha1')
-        var code = sha1Code.update(access_smssend.ticket, 'utf-8').digest('hex')
+        config.timestamp = new Date().getTime()/1000
+        var code = sha1Code.update(access_smssend.ticket+config.timestamp, 'utf-8').digest('hex')
         config.nonceStr = code.substring(0, 16)
-        config.timestamp = new Date().getTime()
+    
 
         var str = `jsapi_ticket=${access_smssend.ticket}&noncestr=${config.nonceStr}&timestamp=${config.timestamp}&url=http://yongxin.bullstech.cn`
         var sha2Code = crypto.createHash('sha1')
