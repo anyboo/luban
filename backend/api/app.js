@@ -31,7 +31,7 @@ app.use(route.get('/wxsignature/', wx.wxsignature))
 
 app.use(route.post('/wxservice/:type', wxserver.wxservice))
 app.use(route.get('/getwxserver/', wxserver.getwxserver))
-app.use(route.get('/wxmass/', wxserver.wxmass))
+app.use(route.post('/wxmass/', wxserver.wxmass))
 
 //短信
 app.use(route.post('/smssend/', sms.smssend))
