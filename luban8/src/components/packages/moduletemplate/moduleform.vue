@@ -597,7 +597,7 @@ export default {
                         }
                         if (this.module.handleSave) {
                             this.module.handleSave(this).then((response) => {
-                                    resolve(obj)
+                                    resolve(response)
                                  }, (e) => {
                             })
                         } else {

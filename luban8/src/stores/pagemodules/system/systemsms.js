@@ -10,21 +10,21 @@ export default {
                 let filterObj = []
                 let search_value = form + ''
                 if (search_value.length > 0) {
-                    //if (search_value != '0') {
+                    if (search_value != '0') {
                         filterObj.push({
                             'key': 'status',
                             'value': status,
                             'type': ''
                         })
-                    //}
+                    }
                 }
                 return filterObj
             },
             'fields': [
                 {
                     'labels': [
-                        { 'label': '未发送' },
-                        { 'label': '已发送' }
+                        { 'label': '已发送' },
+                        { 'label': '未发送' }
                     ]
                 }
             ]
@@ -76,13 +76,10 @@ export default {
             'prop': 'status',
             'othertype': [{
                 'value': 0,
-                'text': '未发送'
+                'text': '已发送'
             }, {
                 'value': 1,
                 'text': '未发送'
-            }, {
-                'value': 2,
-                'text': '已发送'
             }]
         }
     ],

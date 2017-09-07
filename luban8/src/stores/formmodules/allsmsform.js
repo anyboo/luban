@@ -5,7 +5,7 @@ export default {
         'tel': [],
         'content': '',
         'title':'',
-        'status': '0',
+        'status': '1',
         'active': false,
         'telActive': false,
         'fixed_time': '',

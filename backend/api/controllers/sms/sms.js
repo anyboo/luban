@@ -22,6 +22,7 @@ module.exports.smssend = function* smssend(db) {
     for(let item of model.tel){
         mobile.push(item.tel)
     }
+   
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
@@ -35,6 +36,7 @@ module.exports.smssend = function* smssend(db) {
         rece: 'json',
         message: '【' + model.title + '】' + model.content + '(退订回T)'
     }
+    console.log(smsdata)
     let body = querystring.stringify(smsdata)
 
     let options = {
@@ -53,6 +55,7 @@ module.exports.smssend = function* smssend(db) {
     smssendinfo = yield net.ajaxhttp(options, body)
     var dbclient = yield MongoClient.connect(dbunit.getdbstr(db))
     model.smssendinfo = smssendinfo
+    model.status = smssendinfo.code
     let smssends = yield dbclient.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }
