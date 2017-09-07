@@ -184,6 +184,7 @@ module.exports.wxregpost = function* wxregpost() {
     var signature = this.query.signature
     var timestamp = this.query.timestamp
     var nonce = this.query.nonce
+    var Event =this.query.Event
     var openid = this.query.openid
     var echostr = this.query.echostr
     var token = 'bullstech'
@@ -203,7 +204,7 @@ module.exports.wxregpost = function* wxregpost() {
         path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
-    console.log(access_options)
+    console.log(Event)
     //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单关于鲁班到学生端,查看你的信息吧
     net.ajax(access_options).then(access_info => {
         let textdata = `{
@@ -224,10 +225,8 @@ module.exports.wxregpost = function* wxregpost() {
             }
         }
         let texts = net.ajax(options, textdata)
-       /*  console.log(texts) */
-
+       console.log(texts) 
     })
-
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = ''
