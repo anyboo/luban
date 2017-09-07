@@ -206,7 +206,7 @@ module.exports.wxregpost = function* wxregpost() {
     }
     console.log(Event)
     //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单关于鲁班到学生端,查看你的信息吧
-    if (Event.indexof('SCAN')== -1) {
+   /*  if (Event.indexof('SCAN')== -1) { */
         net.ajax(access_options).then(access_info => {
             let textdata = `{
             "touser":"${openid}",
@@ -228,7 +228,7 @@ module.exports.wxregpost = function* wxregpost() {
             let texts = net.ajax(options, textdata)
             console.log(texts)
         })
-    }
+   /*  } */
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = ''
