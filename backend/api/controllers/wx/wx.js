@@ -64,6 +64,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
 
 module.exports.wxmenus = function* wxmenus() {
     if ('GET' != this.method) return yield next
+        let access_smssend = {}
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
@@ -72,7 +73,14 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let access_info = {}
     access_info = yield net.ajax(access_options)
-
+    let options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/ticket/getticket?access_token=' + access_info.access_token+'&type=jsapi',
+        method: 'GET',
+    }
+    access_smssend = yield net.ajax(options)
+    this.body = yield access_smssend
     /*    let wx_item = {
         "button": [
             {
@@ -109,20 +117,20 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let body = JSON.stringify(wx_item)
     console.log(body) */
-   /*  let options = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
-        method: 'POST',
-        json: true,
-        headers: {
-            "content-type": "application/json",
-            'Content-Length': body.length,
-        }
-    }
-    let wxinfo = yield net.ajax(options, body) */
-   /*  this.body = yield { access_info, wxinfo } */
-   this.body = yield access_info
+    /*  let options = {
+         hostname: 'api.weixin.qq.com',
+         port: 443,
+         path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
+         method: 'POST',
+         json: true,
+         headers: {
+             "content-type": "application/json",
+             'Content-Length': body.length,
+         }
+     }
+     let wxinfo = yield net.ajax(options, body) */
+    /*  this.body = yield { access_info, wxinfo } */
+
 }
 
 module.exports.wxregpost = function* wxregpost() {
