@@ -96,7 +96,7 @@ module.exports.wxjssignature = function () {
         return net.ajax(options)
     }).then(access_smssend => {
         var sha1Code = crypto.createHash('sha1')
-        config.timestamp = new Date().getTime()/1000
+        config.timestamp = parseInt(new Date().getTime()/1000)
         var code = sha1Code.update(access_smssend.ticket+config.timestamp, 'utf-8').digest('hex')
         config.nonceStr = code.substring(0, 16)
     
