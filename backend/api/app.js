@@ -7,10 +7,10 @@ var cors = require('koa-cors')
 var koa = require('koa')
 var path = require('path')
 var xmlparse = require('./unit/xmlparse')
-var sms =require('./controllers/sms/sms')
-var alisms =require('./controllers/sms/alisms')
-var wx  = require('./controllers/wx/wx')
-var wxserver  = require('./controllers/wx/wxserver')
+var sms = require('./controllers/sms/sms')
+var alisms = require('./controllers/sms/alisms')
+var wx = require('./controllers/wx/wx')
+var wxserver = require('./controllers/wx/wxserver')
 var app = module.exports = new koa()
 
 app.use(logger())
@@ -24,6 +24,7 @@ app.use(route.post('/wxreg/', wx.wxregpost))
 app.use(route.get('/wxreg/', wx.wxreg))
 app.use(route.post('/wx/', wx.wx))
 app.use(route.get('/:db/wxqrcode/:id', wx.wxqrcode))
+app.use(route.get('/wxsignature/', wx.wxsignature))
 
 //微信服务
 
@@ -61,3 +62,10 @@ if (!module.parent) {
     app.listen(8888)
     console.log('listening on port 8888')
 }
+function wxinit(){
+    wx.wxjssignature()
+    setInterval(() => {
+        wx.wxjssignature()
+    }, 60 * 60 * 1000)
+}
+wxinit()
