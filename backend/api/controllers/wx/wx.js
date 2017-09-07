@@ -113,7 +113,7 @@ module.exports.wxmenus = function* wxmenus() {
     let access_options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
-        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx7e0aa09a76fe616b&secret=def8cea610a77523e47b42d9a28f9182',
         method: 'GET',
     }
     let access_info = {}
