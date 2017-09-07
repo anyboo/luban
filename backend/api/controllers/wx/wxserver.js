@@ -76,12 +76,13 @@ module.exports.getwxserver = function* getwxserver() {
     console.log(this.body)
 }
 module.exports.wxmass = function* wxmass() {
-/* 
-    "touser":[
-        "oZy8Uwatalkn5-N39nk0lVEFaDCw",
-        "oZy8UwUZykMMoTgtYc2hysl-vSTY"
-        ],
-        "content":{"hello"} */
+    /* 
+        "touser":[
+            "oZy8Uwatalkn5-N39nk0lVEFaDCw",
+            "oZy8UwUZykMMoTgtYc2hysl-vSTY"
+            ],
+            "content":{"hello"} */
+    let wxinfo = {}
     if ('POST' != this.method) return yield next
     let access_options = {
         hostname: 'api.weixin.qq.com',
