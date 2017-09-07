@@ -149,13 +149,13 @@ module.exports.wxregpost = function* wxregpost() {
         path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
         method: 'GET',
     }
-    //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～
+    //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单关于鲁班到学生端,查看你的信息吧
     net.ajax(access_options).then(access_info => {
         let textdata = `{
             "touser":"${openid}",
             "msgtype":"text",
             "text":{
-                 "content":"hello"
+                 "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单'关于鲁班'到'学生端',查看你的信息吧"
             }
         }`
         let options = {
@@ -172,6 +172,7 @@ module.exports.wxregpost = function* wxregpost() {
         let texts = net.ajax(options, textdata)
 
         console.log(texts)
+
     })
 
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
