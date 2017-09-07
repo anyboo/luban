@@ -17,7 +17,12 @@ var config = {
     timestamp: '', // 必填，生成签名的时间戳
     nonceStr: '', // 必填，生成签名的随机串
     signature: '',// 必填，签名，见附录1
-    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    jsApiList: [
+        'chooseImage',//拍照或从手机相册中选图接口
+        'previewImage',//预览图片接口
+        'uploadImage',//上传图片接口
+        'downloadImage'//下载图片接口
+    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 }
 
 module.exports.wx = function* wx() {
@@ -69,7 +74,7 @@ module.exports.wxqrcode = function* wxqrcode(db, id, next) {
     wxinfo = yield net.ajax(options, body)
     this.body = yield wxinfo
 }
-module.exports.wxsignature = function* wxsignature(){
+module.exports.wxsignature = function* wxsignature() {
     if ('GET' != this.method) return yield next
     this.body = yield config
 }
@@ -90,13 +95,13 @@ module.exports.wxjssignature = function () {
             method: 'GET',
         }
         return net.ajax(options)
-    }).then(access_smssend=>{
+    }).then(access_smssend => {
         var sha1Code = crypto.createHash('sha1')
         var code = sha1Code.update(access_smssend.ticket, 'utf-8').digest('hex')
         config.nonceStr = code.substring(0, 16)
         config.timestamp = new Date().getTime()
 
-        var array = new Array(config.nonceStr, access_smssend.ticket,config.timestamp, 'http://yongxin.bullstech.cn')
+        var array = new Array(config.nonceStr, access_smssend.ticket, config.timestamp, 'http://yongxin.bullstech.cn')
         array.sort()
         var str = array.toString().replace(/,/g, '')
         var sha2Code = crypto.createHash('sha1')
