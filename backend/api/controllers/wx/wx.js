@@ -209,7 +209,7 @@ module.exports.wxregpost = function* wxregpost() {
             "touser":"${openid}",
             "msgtype":"text",
             "text":{
-                 "content":"欢迎关注布尔斯科技登陆学生端查看您的最新信息"
+                 "content":"欢迎关注布尔斯科技"
             }
         }`
         let options = {
