@@ -3,6 +3,7 @@ export default {
     'pageLable': ' 字典项目',
     'tableSearch': [],
     'created': function (vm) {
+        vm.alias = 'dist'
         if (vm.$store.state.dialogs.dailogdata) {
             let type = vm.$store.state.dialogs.dailogdata.type
             vm.deffilterObj.push({

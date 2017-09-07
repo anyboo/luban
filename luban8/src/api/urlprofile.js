@@ -2,14 +2,17 @@ const apiUrl2 = 'http://app.bullstech.cn:8888/'
 const apiUrl1 = 'http://app.bullstech.cn:9999/'
 
 let apiUrl = 'http://app.bullstech.cn:8888/'
+var dbname = 'lubandemo'
 if (LUBANDEV) {
     apiUrl += 'lubandemo/'
 } else {
     let host = window.location.host
     let dbindex = host.indexOf('.')
     let dbstr = 'luban/'
+    dbname = 'luban'
     if (dbindex > 0) {
         dbstr = host.substring(0, dbindex)
+        dbname = dbstr
         dbstr += '/'
     }
     apiUrl += dbstr
@@ -55,5 +58,6 @@ export default {
     apiUrl,
     getUrlFilter,
     getLoginUrl,
-    getUrlQccode
+    getUrlQccode,
+    dbname
 }

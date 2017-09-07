@@ -71,7 +71,7 @@
                     <el-table-column :label="item.label" :type="item.expand?'expand':''">
                         <template scope="scope">
                             <template v-if="item.type=='tableexpand'">
-                                <lb-moduletable :module="getSubmoudle(item.module)" :info="true"></lb-moduletable>
+                                <lb-moduletable :module="getSubmoudle(item.module)" :info="true" :pagedata="scope.row[item.prop]"></lb-moduletable>
                                 <!-- <lb-systemmodule :module="item.props" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule> -->
                             </template>
                             <template v-if="item.type=='constant'">
@@ -273,7 +273,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'LbModuletable',
-    props: ['module', 'info', 'searchValue', 'value', 'stepsdata'],
+    props: ['module', 'info', 'searchValue', 'value', 'stepsdata','pagedata'],
     data() {
         return {
             moduledata: '',
@@ -587,6 +587,10 @@ export default {
             return name
         },
         handleSearch() {
+            if (this.moduledata.pagedata){
+                this.moduleTableData = this.pagedata
+                return 
+            }
             let filterObj = []
             let datetime = this.datevalue
             if (this.dateSearchInfo) {

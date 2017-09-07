@@ -40,6 +40,7 @@ export default {
     created() {
         if (this.$store.state.dialogs.dailogdata) {
             if (this.module.student) {
+            }else if (this.module.append) {
             } else {
                 if (this.$store.state.dialogs.dailogdata['_id']) {
                     this.id = this.$store.state.dialogs.dailogdata['_id']

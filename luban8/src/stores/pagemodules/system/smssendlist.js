@@ -1,20 +1,22 @@
 export default {
-    'pageName': 'systemsms',
+    'pageName': 'smssendlist',
     'pageLable': ' 短信功能',
     'tableSearch': [],
     'pageSearch': [],
     'pageTableField': [
         {
-            'type': 'constant',
-            'label': '电话号码',
-            'prop': '短信内容',
+            'type': 'text',
+            'label': '联系人',
+            'prop': 'name',
         },
         {
-            'type': 'constant',
+            'type': 'text',
             'label': '电话号码',
-            'prop': '短信内容',
+            'prop': 'tel',
         }
     ],
+    'paginationhide':true,
+    'pagedata':true,
     'pageTable': 'smssend',//smssend
     'pageTemplate': 'table1',
     'pagePath': ''

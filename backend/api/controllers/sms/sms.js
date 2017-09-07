@@ -27,9 +27,9 @@ module.exports.smssend = function* smssend() {
         username: 'bullstech',
         password: 'FC6E673470BA5628D26430089C52D18C',
         gwid: '8b6bf7b',
-        mobile: model.mobile,
+        mobile: model.tel.join(),
         rece: 'json',
-        message: '【' + model.title + '】' + model.message
+        message: '【' + model.title + '】' + model.content
     }
     let body = querystring.stringify(smsdata)
 
@@ -48,11 +48,8 @@ module.exports.smssend = function* smssend() {
     let smssendinfo = {}
     smssendinfo = yield net.ajaxhttp(options, body)
     var db = yield MongoClient.connect(dbunit.getdbstr(model.db))
-    let smssends = yield db.collection('smssend').insert(
-        {
-            smssendinfo,
-            model
-        })
+    model.smssendinfo = smssendinfo
+    let smssends = yield db.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }
 

@@ -1,6 +1,7 @@
 import * as types from '~/stores/modules/mutation-types'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
+import urlprofile from '~/api/urlprofile.js'
 import menu from '~/stores/menu.js'
 
 moment.updateLocale('en', {
@@ -25,6 +26,7 @@ export default {
     created: function() {
         this.modalsType = types.APPEND_API
         this._id = ''
+        this.dbstr = urlprofile.dbname
         this.lodash = _
         this.makeImage = makeimage
         this.base64 = base64

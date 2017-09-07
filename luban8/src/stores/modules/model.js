@@ -249,7 +249,6 @@ const mutations = {
         } else {
             state.models[tableName] = response.data
         }
-
     },
     [types.LOGIN_API](state, obj) {
         state.login = obj.login

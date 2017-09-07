@@ -26,6 +26,7 @@ import systememployee from './pagemodules/system/systememployee'
 import systemschool from './pagemodules/system/systemschool'
 import systemsms from './pagemodules/system/systemsms'
 import systemroles from './pagemodules/system/systemroles'
+import smssendlist from './pagemodules/system/smssendlist'
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -56,5 +57,6 @@ pages['systememployee'] = systememployee
 pages['systemschool'] = systemschool
 pages['systemsms'] = systemsms
 pages['systemroles'] = systemroles
+pages['smssendlist'] = smssendlist
 
 export default pages

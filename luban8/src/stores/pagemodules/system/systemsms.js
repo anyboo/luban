@@ -8,6 +8,16 @@ export default {
             'span': 12,
             'searchfunction': function (form) {
                 let filterObj = []
+                let search_value = form + ''
+                if (search_value.length > 0) {
+                    if (search_value != '0') {
+                        filterObj.push({
+                            'key': 'status',
+                            'value': status,
+                            'type': ''
+                        })
+                    }
+                }
                 return filterObj
             },
             'fields': [
@@ -33,7 +43,7 @@ export default {
                     'type': '',
                     'showdialog': 'classsmsdialog',
                     'actionoption': 'lessonmanageles'
-                },  {
+                }, {
                     'label': '活动推广',
                     'type': '',
                     'showdialog': 'allsmsform',
@@ -47,22 +57,33 @@ export default {
             'expand': true,
             'type': 'tableexpand',
             'label': '发送对象',
-            'module': 'studentlist',
+            'module': 'smssendlist',
+            'prop': 'tel',
         },
         {
-            'type': 'constant',
+            'type': 'text',
             'label': '发送内容',
-            'prop': '短信内容',
+            'prop': 'content',
         },
         {
-            'type': 'constant',
+            'type': 'datetimeMinute',
             'label': '发送时间',
-            'prop': '2017-09-18',
-        },
-        {
-            'type': 'constant',
+            'prop': 'creattime',
+        }, {
+            'type': 'getButtongroupText',
             'label': '状态',
-            'prop': '已发送',
+            'color': 'gray',
+            'prop': 'status',
+            'othertype': [{
+                'value': 0,
+                'text': '未发送'
+            }, {
+                'value': 1,
+                'text': '未发送'
+            }, {
+                'value': 2,
+                'text': '已发送'
+            }]
         }
     ],
     'pageTable': 'smssend',//smssend

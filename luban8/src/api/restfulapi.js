@@ -1,5 +1,8 @@
 import urlUtil from './urlprofile'
 
+function getdbstr(){
+    return urlUtil.dbname
+}
 function httpAuth() {
     let token = window.localStorage.getItem('token')
     let tokentime = window.localStorage.getItem('tokentime')
@@ -76,5 +79,6 @@ export default {
     httpGetFilterApi,
     httpLoginApi,
     httpBulkApi,
-    httpGetUrlQccode
+    httpGetUrlQccode,
+    getdbstr
 }
