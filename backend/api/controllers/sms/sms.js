@@ -12,7 +12,7 @@ const querystring = require('querystring')
 var net = require('../../unit/net')
 var dbunit = require('../../unit/db')
 
-module.exports.smssend = function* smssend() {
+module.exports.smssend = function* smssend(db) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '200kb'
@@ -47,9 +47,9 @@ module.exports.smssend = function* smssend() {
     }
     let smssendinfo = {}
     smssendinfo = yield net.ajaxhttp(options, body)
-    var db = yield MongoClient.connect(dbunit.getdbstr(model.db))
+    var dbclient = yield MongoClient.connect(dbunit.getdbstr(db))
     model.smssendinfo = smssendinfo
-    let smssends = yield db.collection('smssend').insert(model)
+    let smssends = yield dbclient.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }
 

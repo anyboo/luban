@@ -34,7 +34,7 @@ app.use(route.get('/getwxserver/', wxserver.getwxserver))
 app.use(route.post('/wxmass/', wxserver.wxmass))
 
 //短信
-app.use(route.post('/smssend/', sms.smssend))
+app.use(route.post('/:db/sms/', sms.smssend))
 app.use(route.get('/getsmssend/', sms.getsmssend))
 
 //阿里
