@@ -150,30 +150,33 @@ module.exports.wxregpost = function* wxregpost() {
         method: 'GET',
     }
     //欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单【关于鲁班】——>【学生端】,查看你的信息吧～
-    let access_info = yield net.ajax(access_options)
-    let textdata=`{
-        "touser":"${openid}",
-        "msgtype":"text",
-        "text":{
-             "content":"hello"
+    net.ajax(access_options).then(access_info => {
+        let textdata = `{
+            "touser":"${openid}",
+            "msgtype":"text",
+            "text":{
+                 "content":"hello"
+            }
+        }`
+        let options = {
+            hostname: 'api.weixin.qq.com',
+            port: 443,
+            path: '/cgi-bin/message/custom/send?access_token=' + access_info.access_token,
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                'Content-Length': textdata.length,
+            }
         }
-    }`
-    let options = {
-        hostname: 'api.weixin.qq.com',
-        port: 443,
-        path: '/cgi-bin/message/custom/send?access_token=' + access_info.access_token,
-        method: 'POST',
-        headers: {
-            "content-type": "application/json",
-            'Content-Length': textdata.length,
-        }
-    }
-    console.log(textdata,textdata.length)
-    let texts = yield net.ajax(options, textdata)
+        console.log(textdata, textdata.length)
+        let texts = net.ajax(options, textdata)
+
+        console.log(texts)
+    })
+
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature) {
         this.body = ''
-        console.log(texts)
     } else {
         this.body = 'error'
     }
