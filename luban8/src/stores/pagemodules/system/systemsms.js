@@ -23,8 +23,8 @@ export default {
             'fields': [
                 {
                     'labels': [
-                        { 'label': '未发送' },
-                        { 'label': '已发送' }
+                        { 'label': '已发送' },
+                        { 'label': '未发送' }
                     ]
                 }
             ]
@@ -76,13 +76,10 @@ export default {
             'prop': 'status',
             'othertype': [{
                 'value': 0,
-                'text': '未发送'
+                'text': '已发送'
             }, {
                 'value': 1,
                 'text': '未发送'
-            }, {
-                'value': 2,
-                'text': '已发送'
             }]
         }
     ],

@@ -55,6 +55,7 @@ module.exports.smssend = function* smssend(db) {
     smssendinfo = yield net.ajaxhttp(options, body)
     var dbclient = yield MongoClient.connect(dbunit.getdbstr(db))
     model.smssendinfo = smssendinfo
+    model.status = smssendinfo.code
     let smssends = yield dbclient.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }
