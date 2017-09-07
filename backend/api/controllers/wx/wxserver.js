@@ -75,7 +75,13 @@ module.exports.getwxserver = function* getwxserver() {
     this.body = yield access_smssend
     console.log(this.body)
 }
-module.exports.wxMass = function* wxMass() {
+module.exports.wxmass = function* wxmass() {
+/* 
+    "touser":[
+        "oZy8Uwatalkn5-N39nk0lVEFaDCw",
+        "oZy8UwUZykMMoTgtYc2hysl-vSTY"
+        ],
+        "content":{"hello"} */
     if ('POST' != this.method) return yield next
     let access_options = {
         hostname: 'api.weixin.qq.com',
@@ -88,14 +94,6 @@ module.exports.wxMass = function* wxMass() {
     var model = yield parse(this, {
         limit: '200kb'
     })
-
-/* 
-    "touser":[
-        "oZy8Uwatalkn5-N39nk0lVEFaDCw",
-        "oZy8UwUZykMMoTgtYc2hysl-vSTY"
-        ],
-        "content":{"hello"} */
-
     let options = {
         "touser": model.touser,
         "msgtype": "text",
