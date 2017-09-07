@@ -26,10 +26,13 @@ app.use(route.post('/wx/', wx.wx))
 app.use(route.get('/:db/wxqrcode/:id', wx.wxqrcode))
 app.use(route.get('/wxsignature/', wx.wxsignature))
 
+
 //微信服务
 
 app.use(route.post('/wxservice/:type', wxserver.wxservice))
 app.use(route.get('/getwxserver/', wxserver.getwxserver))
+app.use(route.get('/wxMass/', wxserver.wxMass))
+
 //短信
 app.use(route.post('/smssend/', sms.smssend))
 app.use(route.get('/getsmssend/', sms.getsmssend))

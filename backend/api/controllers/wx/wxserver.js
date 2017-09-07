@@ -75,3 +75,36 @@ module.exports.getwxserver = function* getwxserver() {
     this.body = yield access_smssend
     console.log(this.body)
 }
+module.exports.wxMass = function* wxMass() {
+    if ('POST' != this.method) return yield next
+    let access_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/token?grant_type=client_credential&appid=wx30db7ec1537d9afc&secret=6a3a743d25071d06f82153d029dee8cf',
+        method: 'GET',
+    }
+    let access_info = {}
+    access_info = yield net.ajax(access_options)
+    var model = yield parse(this, {
+        limit: '200kb'
+    })
+    let options = {
+        "touser": model.touser,
+        "msgtype": "text",
+        "text": { "content": model.content }
+    }
+    var body = JSON.stringify(options)
+    let wx_options = {
+        hostname: 'api.weixin.qq.com',
+        port: 443,
+        path: '/cgi-bin/message/mass/send?access_token=' + access_info.access_token,
+        method: 'POST',
+        json: true,
+        headers: {
+            "content-type": "application/json",
+            'Content-Length': body.length,
+        }
+    }
+    wxinfo = yield net.ajax(wx_options, body)
+    this.body = yield wxinfo
+}
