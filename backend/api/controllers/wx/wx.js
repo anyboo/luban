@@ -155,7 +155,7 @@ module.exports.wxregpost = function* wxregpost() {
             "touser":"${openid}",
             "msgtype":"text",
             "text":{
-                 "content":"欢迎关注布尔斯科技,如果你要登陆学生端,请点击菜单'关于鲁班'到'学生端',查看你的信息吧"
+                 "content":"欢迎关注布尔斯科技"
             }
         }`
         let options = {
