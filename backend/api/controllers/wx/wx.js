@@ -73,7 +73,7 @@ module.exports.wxmenus = function* wxmenus() {
     let access_info = {}
     access_info = yield net.ajax(access_options)
 
- /*    let wx_item = {
+    /*    let wx_item = {
         "button": [
             {
                 "name": "教育资讯",
@@ -109,7 +109,7 @@ module.exports.wxmenus = function* wxmenus() {
     }
     let body = JSON.stringify(wx_item)
     console.log(body) */
-    let options = {
+   /*  let options = {
         hostname: 'api.weixin.qq.com',
         port: 443,
         path: '/cgi-bin/menu/create?access_token=' + access_info.access_token,
@@ -120,8 +120,9 @@ module.exports.wxmenus = function* wxmenus() {
             'Content-Length': body.length,
         }
     }
-    let wxinfo = yield net.ajax(options, body)
-    this.body = yield { access_info, wxinfo }
+    let wxinfo = yield net.ajax(options, body) */
+   /*  this.body = yield { access_info, wxinfo } */
+   this.body = yield access_info
 }
 
 module.exports.wxregpost = function* wxregpost() {
