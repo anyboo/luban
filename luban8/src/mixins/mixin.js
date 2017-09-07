@@ -1,7 +1,6 @@
 import * as types from '~/stores/modules/mutation-types'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
-import urlprofile from '~/api/urlprofile.js'
 import menu from '~/stores/menu.js'
 
 moment.updateLocale('en', {
@@ -23,10 +22,9 @@ moment.updateLocale('en', {
 })
 
 export default {
-    created: function() {
+    created: function () {
         this.modalsType = types.APPEND_API
         this._id = ''
-        this.dbstr = urlprofile.dbname
         this.lodash = _
         this.makeImage = makeimage
         this.base64 = base64
@@ -36,9 +34,9 @@ export default {
         this.pagination.currentPage = 1
         this.pagination.total = 0
         this.pagination.pagesize = 10
-        this.pagination.pagesizes = [5, 10, 20, 50, 100,500]
+        this.pagination.pagesizes = [5, 10, 20, 50, 100, 500]
     },
-    mounted: function() {
+    mounted: function () {
         this.handleGetTable()
     },
     computed: {
@@ -186,7 +184,7 @@ export default {
             }
             return datetimestr
         },
-        getDatetimeRanget(starttime,endtime) {
+        getDatetimeRanget(starttime, endtime) {
             let startTemp = moment(starttime)
             let endTemp = moment(endtime)
             let starttimestr = ''
@@ -197,7 +195,7 @@ export default {
             if (endTemp.isValid()) {
                 endtimestr = endTemp.format('H:mm')
             }
-            return starttimestr+'--'+endtimestr
+            return starttimestr + '--' + endtimestr
         },
         getDateNumFormat(datestring) {
             let dateTemp = moment(datestring)
@@ -228,12 +226,12 @@ export default {
         getSubText(item, prop, subprop) {
             let text = ''
             let obj = item
-            if (item=='vm'){
+            if (item == 'vm') {
                 obj = this
             }
             if (obj) {
                 if (obj[prop]) {
-                    if (typeof(obj[prop][subprop])!='undefined') {
+                    if (typeof (obj[prop][subprop]) != 'undefined') {
                         text += obj[prop][subprop]
                     }
                 }
@@ -396,7 +394,7 @@ export default {
                         resolve()
                     }).catch((error) => {
                         reject()
-                            //console.log(error, 'Promise error')
+                        //console.log(error, 'Promise error')
                     })
 
                 } else {
@@ -425,6 +423,24 @@ export default {
                 vm.$store.dispatch(types.BULK_API, {
                     'model': model,
                     'form': modalform,
+                }).then((response) => {
+                    resolve(response)
+                }).catch((error) => {
+                    reject()
+                    console.log(error, 'Promise error')
+                })
+            })
+        },
+        smsSend(form) {
+            let vm = this
+            let modalform = form ? form : vm.localdata.form
+            return new Promise((resolve, reject) => {
+                let creattime = new Date()
+                modalform.creattime = creattime.getTime()
+
+                vm.$store.dispatch(types.SMS_API, {
+                    'model': vm.model,
+                    'form': modalform
                 }).then((response) => {
                     resolve(response)
                 }).catch((error) => {

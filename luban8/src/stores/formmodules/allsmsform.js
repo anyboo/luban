@@ -5,7 +5,6 @@ export default {
         'tel': [],
         'content': '',
         'title':'',
-        'db':'',
         'status': '0',
         'active': false,
         'telActive': false,
@@ -14,11 +13,13 @@ export default {
         'new_tel': '',
         'new_name': '',
     },
+    'handleSave':function(vm){
+        return vm.smsSend()
+    },
     'append':true,
     'telshow': 10,
     'created': function (vm) {
         vm.getTableApidata('org').then(obj=>{
-            vm.localdata.form.db = vm.dbstr
             let org = obj.data.data
             if (org.length > 0) {
                 vm.localdata.form.title = org[0].name

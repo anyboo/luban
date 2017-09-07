@@ -1,8 +1,5 @@
 import urlUtil from './urlprofile'
 
-function getdbstr(){
-    return urlUtil.dbname
-}
 function httpAuth() {
     let token = window.localStorage.getItem('token')
     let tokentime = window.localStorage.getItem('tokentime')
@@ -46,6 +43,12 @@ function httpAppendApi({ model, form }) {
     return Vue.http.post(apiUrl, form)
 }
 
+function httpSmsApi({ model, form }) {
+    let apiUrl = urlUtil.getSmsUrl()
+    httpAuth()
+    return Vue.http.post(apiUrl, form)
+}
+
 function httpBulkApi({ model, form }) {
     let apiUrl = urlUtil.getUrls(model)
     httpAuth()
@@ -80,5 +83,5 @@ export default {
     httpLoginApi,
     httpBulkApi,
     httpGetUrlQccode,
-    getdbstr
+    httpSmsApi
 }

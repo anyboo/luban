@@ -255,7 +255,7 @@
 import moduleform from '~/stores/moduleform.js'
 export default {
     name: 'LbModuleform',
-    props: ['module', 'form','stepsdata'],
+    props: ['module', 'form', 'stepsdata'],
     data() {
         var validateNumberinput = (rule, value, callback) => {
             if (value === '') {
@@ -449,7 +449,7 @@ export default {
         getDistNum(item) {
             return item.dict(this)
         },
-        getNumberRequired(item){
+        getNumberRequired(item) {
             let data = null
             if (item.required) {
                 data = item.required(this)
@@ -595,17 +595,23 @@ export default {
                         if (this.module.beforeSave) {
                             this.module.beforeSave(this)
                         }
-                        // = vm.getDateNumFormat(vm.localdata.form.birth)
-                        vm.handleSave().then((response) => {
-                            if (this.module.afterSave) {
-                                this.module.afterSave(this,response).then((obj)=>{
+                        if (this.module.handleSave) {
+                            this.module.handleSave(this).then((response) => {
                                     resolve(obj)
-                                })
-                            }else{
-                                 resolve(response)
-                            }
-                        }, (e) => {
-                        })
+                                 }, (e) => {
+                            })
+                        } else {
+                            vm.handleSave().then((response) => {
+                                if (this.module.afterSave) {
+                                    this.module.afterSave(this, response).then((obj) => {
+                                        resolve(obj)
+                                    })
+                                } else {
+                                    resolve(response)
+                                }
+                            }, (e) => {
+                            })
+                        }
                     }
                 })
             })

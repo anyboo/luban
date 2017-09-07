@@ -29,7 +29,7 @@ module.exports.smssend = function* smssend() {
         gwid: '8b6bf7b',
         mobile: model.tel.join(),
         rece: 'json',
-        message: '【' + model.title + '】' + model.content
+        message: '【' + model.title + '】' + model.content + '(退订回T)'
     }
     let body = querystring.stringify(smsdata)
 
