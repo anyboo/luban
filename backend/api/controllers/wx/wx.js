@@ -100,9 +100,7 @@ module.exports.wxjssignature = function () {
         config.nonceStr = code.substring(0, 16)
         config.timestamp = new Date().getTime()
 
-        var array = new Array(config.nonceStr, access_smssend.ticket, config.timestamp, 'http://yongxin.bullstech.cn')
-        array.sort()
-        var str = array.toString().replace(/,/g, '')
+        var str = `jsapi_ticket=${access_smssend.ticket}&noncestr=${config.nonceStr}&timestamp=${config.timestamp}&url=http://yongxin.bullstech.cn`
         var sha2Code = crypto.createHash('sha1')
         config.signature = sha2Code.update(str, 'utf-8').digest('hex')
     })
