@@ -43,6 +43,12 @@ function httpAppendApi({ model, form }) {
     return Vue.http.post(apiUrl, form)
 }
 
+function httpSmsApi({ model, form }) {
+    let apiUrl = urlUtil.getSmsUrl()
+    httpAuth()
+    return Vue.http.post(apiUrl, form)
+}
+
 function httpBulkApi({ model, form }) {
     let apiUrl = urlUtil.getUrls(model)
     httpAuth()
@@ -76,5 +82,6 @@ export default {
     httpGetFilterApi,
     httpLoginApi,
     httpBulkApi,
-    httpGetUrlQccode
+    httpGetUrlQccode,
+    httpSmsApi
 }

@@ -22,7 +22,9 @@ function getLoginUrl() {
 function getApiUrl() {
     return apiUrl + 'api/'
 }
-
+function getSmsUrl() {
+    return apiUrl + 'sms/'
+}
 function getUrlQccode(id) {
     return apiUrl + 'wxqrcode/' + id
 }
@@ -55,5 +57,6 @@ export default {
     apiUrl,
     getUrlFilter,
     getLoginUrl,
-    getUrlQccode
+    getUrlQccode,
+    getSmsUrl
 }

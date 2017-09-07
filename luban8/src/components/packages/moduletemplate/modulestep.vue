@@ -111,6 +111,7 @@ export default {
                 buttons = this.module.stepsInfo[this.steps - 1].buttons
             }
             this.buttons = buttons
+
             console.log(this.buttons)
         },
         buttonExec(button) {
@@ -177,6 +178,7 @@ export default {
             this.currobj[this.steps] = null
             this.getNextDisabled()
             this.getBackDisabled()
+            this.getButtons()
         }
     }
 }

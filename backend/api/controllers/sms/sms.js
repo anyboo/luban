@@ -12,12 +12,17 @@ const querystring = require('querystring')
 var net = require('../../unit/net')
 var dbunit = require('../../unit/db')
 
-module.exports.smssend = function* smssend() {
+module.exports.smssend = function* smssend(db) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '200kb'
     })
     console.log(model)
+    let mobile = []
+    for(let item of model.tel){
+        mobile.push(item.tel)
+    }
+   
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
@@ -27,10 +32,11 @@ module.exports.smssend = function* smssend() {
         username: 'bullstech',
         password: 'FC6E673470BA5628D26430089C52D18C',
         gwid: '8b6bf7b',
-        mobile: model.mobile,
+        mobile: mobile.join(),
         rece: 'json',
-        message: '【' + model.title + '】' + model.message
+        message: '【' + model.title + '】' + model.content + '(退订回T)'
     }
+    console.log(smsdata)
     let body = querystring.stringify(smsdata)
 
     let options = {
@@ -47,12 +53,10 @@ module.exports.smssend = function* smssend() {
     }
     let smssendinfo = {}
     smssendinfo = yield net.ajaxhttp(options, body)
-    var db = yield MongoClient.connect(dbunit.getdbstr(model.db))
-    let smssends = yield db.collection('smssend').insert(
-        {
-            smssendinfo,
-            model
-        })
+    var dbclient = yield MongoClient.connect(dbunit.getdbstr(db))
+    model.smssendinfo = smssendinfo
+    model.status = smssendinfo.code
+    let smssends = yield dbclient.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }
 

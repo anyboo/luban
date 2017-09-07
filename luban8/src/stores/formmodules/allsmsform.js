@@ -4,15 +4,29 @@ export default {
     'form': {
         'tel': [],
         'content': '',
+        'title':'',
+        'status': '1',
         'active': false,
         'telActive': false,
         'fixed_time': '',
         'student_id': '',
         'new_tel': '',
-        'new_name': ''
+        'new_name': '',
     },
+    'handleSave':function(vm){
+        return vm.smsSend()
+    },
+    'append':true,
     'telshow': 10,
     'created': function (vm) {
+        vm.getTableApidata('org').then(obj=>{
+            let org = obj.data.data
+            if (org.length > 0) {
+                vm.localdata.form.title = org[0].name
+            }else{
+                vm.localdata.form.title = '鲁班'
+            }
+        })
         if (vm.$store.state.dialogs.currdialg=='classsmsdialog'){
             vm.module.pageLable = '班级群发'
             for (let item of vm.stepsdata) {

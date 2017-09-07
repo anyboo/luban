@@ -209,6 +209,20 @@ const actions = {
             })
         },
 
+        [types.SMS_API]({ commit }, obj) {
+            return new Promise(resolve => {
+                restfulapi.httpSmsApi(obj)
+                    .then((response) => {
+                        resolve(response.data)
+                    })
+                    .catch(function(response) {
+                        if (response.status == 401) {
+                            commit(types.LOGIN_API, { login: false, data: '' })
+                        }
+                    })
+            })
+        },
+
         [types.EDIT_API]({ commit }, obj) {
             return new Promise(resolve => {
                 restfulapi.httpEditApi(obj)
@@ -249,7 +263,6 @@ const mutations = {
         } else {
             state.models[tableName] = response.data
         }
-
     },
     [types.LOGIN_API](state, obj) {
         state.login = obj.login
