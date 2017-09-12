@@ -97,7 +97,7 @@ export default {
                     'label': '批量删除',
                     'type': '',
                     'func': 'deleteall',
-                    'actionoption': 'lessonmanageles'
+                    'actionoption': 'lessonmanagedeleteall'
                 },
             ]
         }

@@ -62,7 +62,7 @@ export default {
         ],
         action: [{
             'text': '已封存档案',
-            'action': 'studentlist'
+            'action': 'trashdialog'
         }]
 
     },
@@ -169,7 +169,7 @@ export default {
         menuIcon: 'fa fa-drivers-license',
         action: [{
             'text': '跟踪回访登记',
-            'action': 'studenttracksadd'
+            'action': 'inquiryform'
         }]
     }, {
         menuTitle: '生日学员',
@@ -181,7 +181,7 @@ export default {
         menuIcon: 'fa fa-vcard-o',
         action: [{
             'text': '添加赛事记录',
-            'action': 'studentrecording'
+            'action': 'recordingform'
         }],
         dropDownMenu: [{
             'url': 'recordingdetailform',

@@ -92,7 +92,7 @@ export default {
                     'type': 'success',
                     'icon': 'edit',
                     'showdialog': 'inquiryform',
-                    'actionoption': 'studenttracksadd'
+                    'actionoption': 'inquiryform'
                 }
             ]
         },

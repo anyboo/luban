@@ -24,6 +24,13 @@ export default {
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除'
+        }],
+        action: [{
+            'text': '新增排课',
+            'action': 'lessonmanageadd'
+        },{
+            'text': '新增排课',
+            'action': 'lessonmanagedeleteall'
         }]
     }, {
         menuTitle: '课程表',

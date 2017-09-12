@@ -67,7 +67,7 @@ export default {
                     'label': ' 添加赛事记录',
                     'type': 'success',
                     'showdialog': 'recordingform',
-                    'actionoption': 'studentrecording'
+                    'actionoption': 'recordingform'
                 }
             ]
         },

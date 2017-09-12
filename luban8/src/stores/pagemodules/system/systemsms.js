@@ -42,12 +42,12 @@ export default {
                     'label': '发送学员',
                     'type': 'success',
                     'showdialog': 'studentsmsform',
-                    'actionoption': 'lessonmanageadd'
+                    'actionoption': 'studentsmsform'
                 }, {
                     'label': '班级群发',
                     'type': '',
                     'showdialog': 'classsmsdialog',
-                    'actionoption': 'lessonmanageles'
+                    'actionoption': 'classsmsdialog'
                 }, {
                     'label': '活动推广',
                     'type': '',

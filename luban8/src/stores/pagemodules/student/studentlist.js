@@ -75,7 +75,7 @@ export default {
                     'label': '已封存档案',
                     'type': 'success',
                     'showdialog': 'trashdialog',
-                    'actionoption': 'studentlist'
+                    'actionoption': 'trashdialog'
                 },
             ]
         },
