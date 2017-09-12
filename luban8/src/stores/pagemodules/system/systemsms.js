@@ -1,6 +1,11 @@
 export default {
     'pageName': 'systemsms',
     'pageLable': ' 短信功能',
+    'localdata': {
+        'form': {
+            'status':'0'
+        }
+    },
     'tableSearch': [],
     'pageSearch': [
         {
@@ -10,13 +15,13 @@ export default {
                 let filterObj = []
                 let search_value = form + ''
                 if (search_value.length > 0) {
-                    if (search_value != '0') {
+                    //if (search_value != '0') {
                         filterObj.push({
                             'key': 'status',
-                            'value': status,
+                            'value': search_value,
                             'type': ''
                         })
-                    }
+                    //}
                 }
                 return filterObj
             },
@@ -75,10 +80,10 @@ export default {
             'color': 'gray',
             'prop': 'status',
             'othertype': [{
-                'value': 0,
+                'value': '0',
                 'text': '已发送'
             }, {
-                'value': 1,
+                'value': '1',
                 'text': '未发送'
             }]
         }
