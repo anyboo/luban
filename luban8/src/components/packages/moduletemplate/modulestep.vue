@@ -76,6 +76,7 @@ export default {
     mounted() {
         this.getModuleData
         this.getNextDisabled()
+        this.getButtons()
     },
     computed: {
         title() {

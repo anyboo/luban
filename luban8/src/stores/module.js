@@ -27,6 +27,7 @@ import systemschool from './pagemodules/system/systemschool'
 import systemsms from './pagemodules/system/systemsms'
 import systemroles from './pagemodules/system/systemroles'
 import smssendlist from './pagemodules/system/smssendlist'
+import courserecord from './pagemodules/studentinfo/courseRecord'
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -51,6 +52,7 @@ pages['studentlist1'] = studentlist1
 pages['studentlist2'] = studentlist2
 pages['studentlist0'] = studentlist0
 pages['studenttracks'] = studenttracks
+pages['courserecord'] = courserecord
 pages['studentbirthdays'] = studentbirthdays
 pages['studentrecording'] = studentrecording
 pages['systememployee'] = systememployee

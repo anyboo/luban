@@ -71,7 +71,7 @@
                     <el-table-column :label="item.label" :type="item.expand?'expand':''">
                         <template scope="scope">
                             <template v-if="item.type=='tableexpand'">
-                                <lb-moduletable :module="getSubmoudle(item.module)" :info="true" :pagedata="scope.row[item.prop]"></lb-moduletable>
+                                <lb-moduletable :module="getSubmoudle(item.module)" :searchclassesid='scope.row[item.prop]' :info="true" :pagedata="scope.row[item.prop]"></lb-moduletable>
                                 <!-- <lb-systemmodule :module="item.props" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-systemmodule> -->
                             </template>
                             <template v-if="item.type=='constant'">
@@ -273,7 +273,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'LbModuletable',
-    props: ['module', 'info', 'searchValue', 'value', 'stepsdata','pagedata'],
+    props: ['module', 'info', 'searchValue', 'value', 'stepsdata', 'pagedata','searchclassesid'],
     data() {
         return {
             moduledata: '',
@@ -368,7 +368,7 @@ export default {
         },
         getSearch() {
             let nSearch = false
-            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+            if (this.moduledata && this.moduledata.pageSearch && this.moduledata.pageSearch.length > 0) {
                 nSearch = true
             }
             return nSearch
@@ -427,7 +427,7 @@ export default {
         },
         //表格
         textTableInfo() {
-            if (this.moduledata && this.moduledata.pageTableField.length > 0) {
+            if (this.moduledata && this.moduledata.pageTableField && this.moduledata.pageTableField.length > 0) {
                 let textTableInfo = this.moduledata.pageTableField
                 return textTableInfo
             }
@@ -435,6 +435,7 @@ export default {
     },
     watch: {
         module: function(val) {
+            console.log('-----',this.moduledata)
             if (typeof (val) == 'object') {
                 this.moduledata = val
                 this.handleSearch()
@@ -453,7 +454,7 @@ export default {
             if (pagesmodule[modulename]) {
                 moduleObj = pagesmodule[modulename]
             }
-            console.log(moduleObj,modulename)
+            console.log(moduleObj, modulename)
             return moduleObj
         },
         handleSelectionChange(val) {
@@ -534,7 +535,7 @@ export default {
         },
         getModuleSearchSpan(Search, count) {
             let searchSpan = count
-            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+            if (this.moduledata && this.moduledata.pageSearch && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
                     for (let item of this.moduledata.pageSearch) {
@@ -549,7 +550,7 @@ export default {
         },
         getModuleSearchInfo(Search) {
             let searchInfo = []
-            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+            if (this.moduledata && this.moduledata.pageSearch && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
                     for (let item of searchdata) {
@@ -564,7 +565,7 @@ export default {
         },
         getSearchFun(Search) {
             let searchfun
-            if (this.moduledata && this.moduledata.pageSearch.length > 0) {
+            if (this.moduledata && this.moduledata.pageSearch && this.moduledata.pageSearch.length > 0) {
                 let searchdata = this.moduledata.pageSearch
                 if (searchdata) {
                     for (let item of searchdata) {
@@ -587,9 +588,9 @@ export default {
             return name
         },
         handleSearch() {
-            if (this.moduledata.pagedata){
+            if (this.moduledata.pagedata) {
                 this.moduleTableData = this.pagedata
-                return 
+                return
             }
             let filterObj = []
             let datetime = this.datevalue
@@ -637,6 +638,13 @@ export default {
                 filterObj.push({
                     'key': 'student_id',
                     'value': this.searchValue,
+                    'type': ''
+                })
+            }
+            if (this.searchclassesid) {
+                filterObj.push({
+                    'key': 'classes_id',
+                    'value': this.searchclassesid,
                     'type': ''
                 })
             }

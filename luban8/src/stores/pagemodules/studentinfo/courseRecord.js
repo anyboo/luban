@@ -17,7 +17,7 @@ export default {
             'from': 'classes',
             'foreignField': '_id',
             'as': 'classes'
-        },{
+        }, {
             'localField': 'classes_id',
             'from': 'order',
             'foreignField': 'classes_id',

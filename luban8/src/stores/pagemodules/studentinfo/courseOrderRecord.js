@@ -19,7 +19,8 @@ export default {
             'expand': true,
             'type': 'tableexpand',
             'label': '',
-            'moudle': 'courseRecord',
+            'module': 'courserecord',
+            'prop': 'classes_id',
         },
         {
             'type': 'tabletext',
