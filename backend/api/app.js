@@ -56,7 +56,7 @@ app.use(route.delete('/:db/api/:name/:id', control.remove))
 app.use(route.options('/', control.options))
 app.use(route.trace('/', control.trace))
 app.use(route.head('/', control.head))
-app.use(route.get('/download', control.download))
+app.use(route.get('/:db/download/:name', control.download))
 
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')))
