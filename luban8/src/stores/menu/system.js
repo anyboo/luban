@@ -136,8 +136,7 @@ export default {
     }, {
         menuTitle: '系统状态',
         menuIcon: ' fa fa-th',
-        to: '/system/systems',
-        menuShow: 0,
+        to: '/system/systems'
     }, {
         menuTitle: '收费模块',
         menuIcon: 'fa fa-strikethrough',
@@ -155,6 +154,7 @@ export default {
     },{
         menuTitle: '注册',
         menuIcon: ' fa fa-th',
-        to: '/system/reg'
+        to: '/system/reg',
+        menuShow: 0,
     }]
 }

@@ -6,6 +6,7 @@ import systempersonal_information from '~/pages/views/system/personal_informatio
 import systemdict from '~/pages/views/system/dict.vue'
 import systemorg from '~/pages/views/system/org.vue'
 import systemreg from '~/pages/views/system/reg.vue'
+import systemsystems from '~/pages/views/system/systems.vue'
 
 import hoursarrange from '~/pages/views/hours/arrange.vue'
 
@@ -18,6 +19,7 @@ pages['lb-systemsign_in'] = systemsign_in
 pages['lb-systemdict'] = systemdict
 pages['lb-systemorg'] = systemorg
 pages['lb-systemreg'] = systemreg
+pages['lb-systemsystems'] = systemsystems
 
 pages['lb-hoursarrange'] = hoursarrange
 
