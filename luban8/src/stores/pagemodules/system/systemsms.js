@@ -49,7 +49,7 @@ export default {
                     'showdialog': 'classsmsdialog',
                     'actionoption': 'classsmsdialog'
                 }, {
-                    'label': '活动推广',
+                    'label': '全员发送',
                     'type': '',
                     'showdialog': 'allsmsform',
                     'actionoption': 'allsmsform'
@@ -69,6 +69,14 @@ export default {
             'type': 'text',
             'label': '发送内容',
             'prop': 'content',
+        }, {
+            'type': 'text',
+            'label': '发送类型',
+            'prop': 'sms_type',
+        }, {
+            'type': 'text',
+            'label': '发送人',
+            'prop': 'sms_type',
         },
         {
             'type': 'datetimeMinute',

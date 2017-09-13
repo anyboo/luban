@@ -8,7 +8,7 @@ export default {
         'label': ' 班级学员',
         'module': 'stepstudentsmsdialog',
         'buttons': [{
-            'text': '发送',
+            'text': '下一步',
             'exec': function (vm) {
                 let eve = []
                 let multipleSelection = vm.$refs['table'].multipleSelection
@@ -30,7 +30,20 @@ export default {
         }]
     }, {
         'label': '群发内容',
-        'module': 'allsmsform'
+        'module': 'allsmsform',
+        'buttons': [{
+            'text': '发送',
+            'exec': function (vm) {
+                vm.$refs['ruleForm'].append().then((obj) => {
+                    vm.lbClosedialog()
+                    vm.$store.state.dialogs.dailogdata = null
+                    vm.$store.state.envs.currDialog = 'moduleform'
+                    if (vm.module.afterclose) {
+                        vm.module.afterclose(vm,obj)
+                    }
+                })
+            }
+        }]
     }],
     'pageTable': 'attendance',
     'pagePath': ''

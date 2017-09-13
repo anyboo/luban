@@ -23,23 +23,6 @@ export default {
         }
         ]
     }, {
-        menuTitle: '短信',
-        to: 'systemsms',
-        menuIcon: 'fa-address-book-o fa',
-        action: [{
-            'text': '发送学员',
-            'action': 'studentsmsform'
-        },
-        {
-            'text': '班级群发',
-            'action': 'classsmsdialog'
-        },
-        {
-            'text': '活动推广',
-            'action': 'allsmsform'
-        }
-        ]
-    }, {
         menuTitle: '角色权限',
         to: 'systemroles',//'/system/roles', //
         menuIcon: 'fa fa-unlock',

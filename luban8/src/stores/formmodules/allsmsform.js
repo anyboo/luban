@@ -12,6 +12,7 @@ export default {
         'student_id': '',
         'new_tel': '',
         'new_name': '',
+        'sms_type':''
     },
     'handleSave':function(vm){
         return vm.smsSend()
@@ -29,6 +30,7 @@ export default {
         })
         if (vm.$store.state.dialogs.currdialg=='classsmsdialog'){
             vm.module.pageLable = '班级群发'
+            vm.localdata.form.sms_type = '班级群发'
             for (let item of vm.stepsdata) {
                 let telitem = {}
                 telitem.tel = item.first_tel
@@ -45,6 +47,7 @@ export default {
             vm.formdata = vm.localdata.form.tel.slice(0, 10)
             vm.changetel( vm.module.telshow)
         }else if (vm.$store.state.dialogs.currdialg=='studentsmsform'){
+            vm.localdata.form.sms_type = '发送学员'
             let currStudent = vm.$store.state.envs.currStudent
             let telitem = {}
             telitem.tel = currStudent.first_tel
@@ -66,6 +69,7 @@ export default {
             let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
             vm.pagination.pagesize = 1000
             vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+                vm.localdata.form.sms_type = '全员发送'
                 let objData = obj.data.data
                 for (let index in objData) {
                     let telitem = {}
@@ -74,7 +78,7 @@ export default {
                     telitem.name = objData[index].student_name
                     vm.localdata.form.tel.push(telitem)
                 }
-                vm.module.pageLable = '活动推广'
+                vm.module.pageLable = '全员发送'
                 let len = vm.localdata.form.tel.length
                 if (len>10){
                     vm.module.telshow = 10
