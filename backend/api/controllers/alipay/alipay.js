@@ -17,6 +17,6 @@ const querystring = require('querystring')
 var net = require('../../unit/net')
 var dbunit = require('../../unit/db')
 
-module.exports.alipay = function* alipay() {
+/* module.exports.alipay = function* alipay() {
 
-}
+} */
