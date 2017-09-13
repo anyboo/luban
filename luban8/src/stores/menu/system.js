@@ -23,7 +23,7 @@ export default {
         }
         ]
     }, {
-        menuTitle: '短信功能',
+        menuTitle: '短信',
         to: 'systemsms',
         menuIcon: 'fa-address-book-o fa',
         action: [{
@@ -138,8 +138,7 @@ export default {
         menuIcon: ' fa fa-th',
         to: '/system/systems',
         menuShow: 0,
-    },
-    {
+    }, {
         menuTitle: '收费模块',
         menuIcon: 'fa fa-strikethrough',
         to: '/system/charge_module',
@@ -153,6 +152,9 @@ export default {
             'icon': 'fa fa-times',
             'text': '删除'
         }]
-    }
-    ]
+    },{
+        menuTitle: '注册',
+        menuIcon: ' fa fa-th',
+        to: '/system/reg'
+    }]
 }
