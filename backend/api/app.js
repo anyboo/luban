@@ -40,6 +40,8 @@ app.use(route.get('/getsmssend/', sms.getsmssend))
 //阿里
 app.use(route.post('/sms/', alisms.alisms))
 app.use(route.post('/checksms/', alisms.alichecksms))
+//阿里支付
+/* app.use(route.post('/alipay/', alipay.alipay)) */
 
 //数据
 app.use(route.post('/:db/login/', control.login))
@@ -54,6 +56,7 @@ app.use(route.delete('/:db/api/:name/:id', control.remove))
 app.use(route.options('/', control.options))
 app.use(route.trace('/', control.trace))
 app.use(route.head('/', control.head))
+app.use(route.get('/:db/download/:name', control.download))
 
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')))
