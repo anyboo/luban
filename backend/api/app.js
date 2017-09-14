@@ -11,6 +11,7 @@ var sms = require('./controllers/sms/sms')
 var alisms = require('./controllers/sms/alisms')
 var wx = require('./controllers/wx/wx')
 var wxserver = require('./controllers/wx/wxserver')
+var alipay = require('./controllers/alipay/alipay')
 var app = module.exports = new koa()
 
 app.use(logger())
@@ -41,7 +42,7 @@ app.use(route.get('/getsmssend/', sms.getsmssend))
 app.use(route.post('/sms/', alisms.alisms))
 app.use(route.post('/checksms/', alisms.alichecksms))
 //阿里支付
-/*  app.use(route.post('/sendAlipay/', alipay.sendAlipay))  */
+app.use(route.post('/sendAlipay/', alipay.sendAlipay))
 
 //数据
 app.use(route.post('/:db/login/', control.login))
@@ -68,7 +69,7 @@ if (!module.parent) {
     app.listen(8888)
     console.log('listening on port 8888')
 }
-function wxinit(){
+function wxinit() {
     wx.wxjssignature()
     setInterval(() => {
         wx.wxjssignature()
