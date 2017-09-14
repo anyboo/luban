@@ -15,16 +15,18 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 
-var privatePem = fs.readFileSync('./private_key.pem');
-var publicPem = fs.readFileSync('./alipay_public_key.pem');
+
+var privatePem = fs.readFileSync(path.resolve('controllers/alipay/','private_key.pem'))
+var publicPem = fs.readFileSync(path.resolve('controllers/alipay/','alipay_public_key.pem'))
+
 var AlipayConfig = {
-    "gateway":"https://openapi.alipay.com/gateway.do",
-    "app_id":"2017082808427000",
-    "private_key":privatePem,
-    
-    "charset":"utf-8",
-    "alipay_public_key":publicPem,
-    "sign_type":"RSA2"
+    "gateway": "https://openapi.alipay.com/gateway.do",
+    "app_id": "2017082808427000",
+    "private_key": privatePem,
+    "format": "json",
+    "charset": "utf-8",
+    "alipay_public_key": publicPem,
+    "sign_type": "RSA2"
 }
 /* 设置请求网关(gateway)，应用id(app_id)，
 应用私钥(private_key)，编码格式(charset)，支付宝公钥(alipay_public_key)，
