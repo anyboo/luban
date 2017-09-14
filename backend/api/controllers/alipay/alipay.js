@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken')
 var fs = require('fs')
 var Buffer = require('buffer').Buffer
 var path = require('path')
-const SMSClient = require('./smsclient.js')
 const accessKeyId = 'ACSFUX7fLUMpBZM1'
 const secretAccessKey = 'qsGNrvuGnu'
 const queueName = 'Alicom-Queue-1420938370661882-'
