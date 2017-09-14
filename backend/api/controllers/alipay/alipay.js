@@ -22,6 +22,7 @@ var AlipayConfig = {
     "gateway":"https://openapi.alipay.com/gateway.do",
     "app_id":"2017082808427000",
     "private_key":privatePem,
+    "format":"json",
     "charset":"utf-8",
     "alipay_public_key":publicPem,
     "sign_type":"RSA2"
