@@ -15,8 +15,8 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 
-var privatePem = fs.readFileSync('../public/private_key.pem');
-var publicPem = fs.readFileSync('../public/alipay_public_key.pem');
+var privatePem = fs.readFileSync('../../public/private_key.pem');
+var publicPem = fs.readFileSync('../../public/alipay_public_key.pem');
 var AlipayConfig = {
     "gateway":"https://openapi.alipay.com/gateway.do",
     "app_id":"2017082808427000",
