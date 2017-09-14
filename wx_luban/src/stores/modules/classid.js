@@ -6,7 +6,11 @@ const getters = {
         return state.classid
     }
 }
-const actions = {}
+const actions = {
+    getclassid(context,data){
+        context.commit('getclassid', data)
+    }
+}
 const mutations = {
      getclassid(state,data){
         state.classid=data

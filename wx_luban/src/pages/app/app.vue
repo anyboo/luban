@@ -51,7 +51,7 @@ export default {
                         console.log(obj)
                     })
 
-                    let codeurl = window.location.search
+                    /* let codeurl = window.location.search
                     let codeindex = codeurl.indexOf('=')
                     let codeend = codeurl.indexOf('&')
                     console.log(codeurl);
@@ -72,48 +72,55 @@ export default {
                                 'key': 'openid',
                                 'value': openid,
                                 'type': ''
-                            })
-                             console.log(openid,filterObj)
-                            filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                            this.handleGetFilterTableTable('student', filterTxt).then(obj => {
-                                console.log(obj.data)
-                                if (obj.data.count > 0) {
-                                    this.$store.commit('student', obj.data.data[0]._id)
-                                    this.$store.commit('homes', 'lb-home')
-                                } else {
-                                    this.$store.commit('getopenid', openid) 
-                                    this.$store.commit('homes', 'lb-verification')
-                                }
-                            })
-                        })
-                    }
-                }
-            })
+                            }) */
+                    let openid = 'oZy8Uwatal455 - N39nk0lV453FaDCw'
+                    filterObj = []
+                    filterObj.push({
+                        'key': 'openid',
+                        'value': openid,
+                        'type': ''
+                    })
+                    console.log(openid, filterObj)
+                    filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                    this.handleGetFilterTableTable('student', filterTxt).then(obj => {
+                        console.log(obj.data)
+                        if (obj.data.count > 0) {
+                            this.$store.commit('student', obj.data.data[0]._id)
+                            this.$store.commit('homes', 'lb-home')
+                        } else {
+                            this.$store.commit('getopenid', openid)
+                            this.$store.commit('homes', 'lb-verification')
+                        }
+                /*   })*/
+                })  
+  /*   }  */
+}
+           }) 
     }, 
-    components: {
-        'lb-footer': footer,
+components: {
+    'lb-footer': footer,
         'lb-home': home,
-        'lb-user': user,
-        'lb-switchover': switchover,
-        'lb-common': common_use,
-        'lb-verification': verification,
-        'lb-order': common_order,
+            'lb-user': user,
+                'lb-switchover': switchover,
+                    'lb-common': common_use,
+                        'lb-verification': verification,
+                            'lb-order': common_order,
     },
-    methods: {
-        incrementTotalhome() {
-            this.iscolor1 = true
-            if (this.iscolor1 = true) {
-                this.iscolor2 = false
-            }
-            this.$store.commit('homes', 'lb-home')
-        },
-        incrementTotaluser() {
-            this.iscolor2 = true
-            if (this.iscolor2 = true) {
-                this.iscolor1 = false
-            }
-            this.$store.commit('homes', 'lb-user')
+methods: {
+    incrementTotalhome() {
+        this.iscolor1 = true
+        if (this.iscolor1 = true) {
+            this.iscolor2 = false
         }
+        this.$store.commit('homes', 'lb-home')
+    },
+    incrementTotaluser() {
+        this.iscolor2 = true
+        if (this.iscolor2 = true) {
+            this.iscolor1 = false
+        }
+        this.$store.commit('homes', 'lb-user')
     }
+}
 }
 </script>

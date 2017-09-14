@@ -6,7 +6,13 @@ export default {
         'from': 'classes',
         'foreignField': '_id',
         'as': 'classes'
-    }],
+    }, {
+        'localField': 'order_id',
+        'from': 'order',
+        'foreignField': '_id',
+        'as': 'order'
+    },
+    ],
     'pageSearch': [],
     'pageTableField': [
         {
@@ -26,9 +32,9 @@ export default {
         },
         {
             'type': 'tabletext',
-            'label': '课程/班级',
-            'prop': 'class_name',
-            'lookup':'class_name'
+            'label': '订单内容',
+            'prop': 'body',
+            'table': 'order'
         },
         {
             'type': 'text',

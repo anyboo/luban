@@ -3,7 +3,7 @@ export default [{
     prop: 'order_no',
 }, {
     menuTitle: '订单内容',
-    prop: 'class_name',
+    prop: 'body',
 }, {
     menuTitle: '订单备注',
     prop: 'order_remark',
