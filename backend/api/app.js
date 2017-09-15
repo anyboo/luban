@@ -69,10 +69,10 @@ if (!module.parent) {
     app.listen(8888)
     console.log('listening on port 8888')
 }
-function wxinit() {
+/* function wxinit() {
     wx.wxjssignature()
     setInterval(() => {
         wx.wxjssignature()
     }, 60 * 60 * 1000)
 }
-wxinit()
+wxinit() */
