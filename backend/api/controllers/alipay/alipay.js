@@ -81,7 +81,7 @@ module.exports.alipay = function* alipay() {
         timeout_express: '15m',
     }
     let aliinfo = {}
-    let time = moment(new Date()).Format("yyyy-MM-dd hh:mm:ss")
+    let time = moment().Format("yyyy-MM-dd hh:mm:ss")
     //签名参数
     let sign_options = {
         app_id: AlipayConfig.app_id,
@@ -93,6 +93,7 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     var biz_content = JSON.stringify(options)
+    //
      let signs = getSign(sign_options)
     let body_options = {
         app_id: AlipayConfig.app_id,
