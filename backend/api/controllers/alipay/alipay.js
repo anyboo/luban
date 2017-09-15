@@ -14,7 +14,7 @@ const queueName = 'Alicom-Queue-1420938370661882-'
 const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
-var moment = require('moment');
+var moment = require('moment')
 
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
@@ -81,7 +81,7 @@ module.exports.alipay = function* alipay() {
         timeout_express: '15m',
     }
     let aliinfo = {}
-    let time = moment().Format("yyyy-MM-dd hh:mm:ss")
+    let time = moment().format("yyyy-MM-dd hh:mm:ss")
     //签名参数
     let sign_options = {
         app_id: AlipayConfig.app_id,
