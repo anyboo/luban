@@ -64,16 +64,18 @@ module.exports.login = function* login(db, next) {
     var token = ''
     var code = -1
     var message = '登录失败'
+    let account = {}
     if (dbmodel.login) {
         token = jwt.sign(dbmodel, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
         code = 0
         message = '登录成功'
+        account = dbmodel
     } else {
         var profile = {
             user: user.user,
             id: 0
         }
-       
+    
         if (user.user == 'luban' && user.pwd == 'e10adc3949ba59abbe56e057f20f883e') {
             token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
             code = 0
@@ -88,7 +90,7 @@ module.exports.login = function* login(db, next) {
         code,
         token,
         message,
-        account: dbmodel,
+        account: account,
         nowtime
     }
 }
