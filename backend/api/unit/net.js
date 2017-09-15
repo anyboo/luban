@@ -3,10 +3,11 @@ const http = require('http')
 
 module.exports.ajax = function (options, body, html) {
     return new Promise(function (resolve) {
-
+        let data = ''
         const req = https.request(options, (res) => {
             res.setEncoding('utf8')
             res.on('data', (d) => {
+                data+=d.toString()
             })
         })
         if (options.method == 'POST') {
@@ -15,14 +16,14 @@ module.exports.ajax = function (options, body, html) {
         req.on('error', (e) => {
             console.error(e)
         });
-        req.end((d) => {
+        req.end(() => {
             try {
-                console.log(d.toString())
-                let data = {}
+                console.log()
+                let reqdata = data
                 if (html) {
-                    data = d.toString()
+                    
                 } else {
-                    data = JSON.parse(d.toString())
+                    reqdata = JSON.parse(data.toString())
                 }
                 resolve(data)
             } catch (e) {
