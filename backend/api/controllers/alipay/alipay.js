@@ -59,7 +59,7 @@ function getSign(params) {
         var key = privatePem.toString()
         var prestr = getParams(params)
         console.log(prestr)
-        var sign = crypto.createHash('sha256','secret-key')
+        var sign = crypto.createHmac('sha256','secret-key')
         console.log(sign)
         sign.update(prestr)
         sign = sign.digest(key, 'base64')
