@@ -25,7 +25,7 @@ var AlipayConfig = {
     "app_id": "2017082808427000",
     "private_key": privatePem,
     "format": "json",
-    "charset": "utf-8",
+    "charset": "UTF-8",
     "alipay_public_key": publicPem,
     "sign_type": "RSA2"
 }
