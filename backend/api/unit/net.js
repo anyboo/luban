@@ -8,6 +8,7 @@ module.exports.ajax = function (options, body) {
             res.setEncoding('utf8')
             res.on('data', (d) => {
                 try {
+                    console.log(d.toString())
                     let wxdata = JSON.parse(d.toString())
                     console.log(wxdata)
                     resolve(wxdata)

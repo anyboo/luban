@@ -84,6 +84,7 @@ module.exports.alipay = function* alipay() {
     }
     let aliinfo = {}
     let time = moment().format("YYYY-MM-DD HH:mm:ss")
+    var biz_content = JSON.stringify(options)
     //签名参数
     let sign_options = {
         app_id: AlipayConfig.app_id,
@@ -94,9 +95,7 @@ module.exports.alipay = function* alipay() {
         version: '1.0',
         biz_content: biz_content
     }
-    var biz_content = JSON.stringify(options)
-    //
-     let signs = getSign(sign_options)
+    let signs = getSign(sign_options)
     let body_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
