@@ -111,7 +111,7 @@ export default {
         {
             'type': 'datetime',
             'label': '下单日期',
-            'prop': 'creattime',
+            'prop': 'createtime',
         },
         {
             'type': 'getButtongroupText',

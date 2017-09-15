@@ -100,7 +100,7 @@ export default {
         {
             'type': 'datetime',
             'label': '报班日期',
-            'prop': 'creattime',
+            'prop': 'createtime',
         },
         {
             'type': 'constant',

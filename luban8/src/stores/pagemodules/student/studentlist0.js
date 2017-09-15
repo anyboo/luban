@@ -126,7 +126,7 @@ export default {
         {
             'type': 'datetime',
             'label': '建档日期',
-            'prop': 'creattime'
+            'prop': 'createtime'
         },
         {
             'type': 'text',

@@ -7,7 +7,8 @@ export default {
         'short_name': '',
         'branch_tel': '',
         'city': '',
-        'branch_address': ''
+        'branch_address': '',
+        'main': false
     },
     'formField': [
         {

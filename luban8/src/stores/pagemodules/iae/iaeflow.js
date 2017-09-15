@@ -91,7 +91,7 @@ export default {
         {
             'type': 'datetime',
             'label': '日期',
-            'prop': 'creattime'
+            'prop': 'createtime'
         },
         {
             'type': 'textTag',
@@ -129,7 +129,7 @@ export default {
         {
             'type': 'datetime',
             'label': '录入日期',
-            'prop': 'creattime'
+            'prop': 'createtime'
         }
     ],
     'pageTable': 'flow',

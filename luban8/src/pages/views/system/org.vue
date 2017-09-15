@@ -46,6 +46,10 @@ export default {
                 name: [
                     { required: true, message: '请输入机构全称', trigger: 'blur' },
                     { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
+                ], 
+                short_name: [
+                    { required: true, message: '请输入机构简称', trigger: 'blur' },
+                    { min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
                 ],
             }
         }

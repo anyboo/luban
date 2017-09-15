@@ -74,7 +74,7 @@ export default {
         {
             'type': 'text',
             'label': '地址',
-            'prop': 'branch_address',
+            'prop': 'address',
         },
         {
             'type': 'text',

@@ -20,7 +20,7 @@ module.exports.ajax = function (options, body) {
             console.error(e)
         });
         req.end()
-    });
+    })
 }
 module.exports.ajaxhttp = function (options, body) {
     return new Promise(function (resolve) {

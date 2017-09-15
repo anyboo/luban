@@ -108,7 +108,7 @@ export default {
         {
             'type': 'text',
             'label': '登记时间',
-            'prop': 'creattime',
+            'prop': 'createtime',
         }
     ],
     'pageTable': 'attendance',

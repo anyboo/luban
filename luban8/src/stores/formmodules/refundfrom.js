@@ -107,7 +107,7 @@ export default {
              'type': 'getDatetimeFormat',
              'label': '缴费日期',
              'prop': '',
-             'field': 'creattime'
+             'field': 'createtime'
          },*/
         {
             'type': 'numberinput',

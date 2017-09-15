@@ -18,7 +18,7 @@ export default {
         {
             'type': 'datetimeMinute',
             'label': '缴费日期',
-            'prop': 'creattime'
+            'prop': 'createtime'
         },
         {
             'type': 'text',

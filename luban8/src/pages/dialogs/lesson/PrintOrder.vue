@@ -17,7 +17,7 @@
                         <el-table-column type="index" width="55">
                         </el-table-column>
                         <el-table-column property='data' label="缴费日期">
-                            <template scope="scope">{{getDateFormat(scope.row.creattime)}}</template>
+                            <template scope="scope">{{getDateFormat(scope.row.createtime)}}</template>
                         </el-table-column>
                         <el-table-column property="data" label="缴费金额">
                             <template scope="scope">

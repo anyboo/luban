@@ -19,6 +19,37 @@ function checkId(id) {
     }
     return result
 }
+function loginadmin(user) {
+    return new Promise((resolve) => {
+        let logindata = { 'login': false }
+        MongoClient.connect(dbunit.getdbstr('luban8')).then(obj => {
+            let table = db.collection('user')
+            let options = []
+            options.push({
+                '$match': {
+                    'pwd': user.pwd,
+                    'phone': user.user,
+                    'lock': false
+                }
+            })
+            let cursor = table.aggregate(options)
+            cursor.toArray().then(obj => {
+                if (obj.length > 0) {
+                    logindata.login = true
+                    logindata.user = user[0].phone
+                    logindata.name = obj[0].name
+                    logindata.admin = obj[0].admin
+                    logindata.db = obj[0].db
+                    logindata.id = obj[0]._id
+                    resolve(logindata)
+                } else {
+                    resolve(logindata)
+                }
+            })
+        })
+    })
+}
+
 module.exports.login = function* login(db, next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {
@@ -31,7 +62,7 @@ module.exports.login = function* login(db, next) {
     options.push({
         '$match': {
             'pwd': user.pwd,
-            'tel': user.user,
+            'phone': user.user,
             'lock': false
         }
     })
@@ -448,7 +479,7 @@ module.exports.download = function* download(db, name, next) {
     let data = yield cursor.toArray()
     db.close()
     let nowtime = new Date().getTime()
-    var labelbody = xlsx.build([{name: "mySheetName", data: data}])
+    var labelbody = xlsx.build([{ name: "mySheetName", data: data }])
     this.body = labelbody
 
 }

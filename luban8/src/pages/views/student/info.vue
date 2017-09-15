@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-xs-12 col-md-6">
                                         <label class="inline w-xs text-right">建档日期:</label>
-                                        <span>{{ getDateFormat(student.creattime) }}</span>
+                                        <span>{{ getDateFormat(student.createtime) }}</span>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
                                         <label class="inline w-xs text-right">生日:</label>

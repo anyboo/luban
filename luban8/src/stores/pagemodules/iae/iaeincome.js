@@ -25,12 +25,12 @@ export default {
                             endTime = this.getDatetimeEndOf(vm.localdata.form.daterange[1])
                         }
                         filterObj.push({
-                            'key': 'creattime',
+                            'key': 'createtime',
                             'value': startTime,
                             'type': 'gte'
                         })
                         filterObj.push({
-                            'key': 'creattime',
+                            'key': 'createtime',
                             'value': endTime,
                             'type': 'lte'
                         })

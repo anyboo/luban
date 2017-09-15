@@ -81,7 +81,7 @@ export default {
         {
             'type': 'datetimeMinute',
             'label': '发送时间',
-            'prop': 'creattime',
+            'prop': 'createtime',
         }, {
             'type': 'getButtongroupText',
             'label': '状态',
