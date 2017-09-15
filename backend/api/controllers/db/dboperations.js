@@ -19,11 +19,12 @@ function checkId(id) {
     }
     return result
 }
-function loginadmin(user) {
+
+function loginemployee(user) {
     return new Promise((resolve) => {
         let logindata = { 'login': false }
         MongoClient.connect(dbunit.getdbstr('luban8')).then(obj => {
-            let table = db.collection('user')
+            let table = db.collection('employee')
             let options = []
             options.push({
                 '$match': {
@@ -36,10 +37,12 @@ function loginadmin(user) {
             cursor.toArray().then(obj => {
                 if (obj.length > 0) {
                     logindata.login = true
-                    logindata.user = user[0].phone
+                    logindata.user = obj[0].phone
                     logindata.name = obj[0].name
                     logindata.admin = obj[0].admin
                     logindata.db = obj[0].db
+                    logindata.roles_id = obj[0].roles_id
+                    logindata.campus_id = obj[0].campus_id
                     logindata.id = obj[0]._id
                     resolve(logindata)
                 } else {
@@ -49,82 +52,42 @@ function loginadmin(user) {
         })
     })
 }
-
 module.exports.login = function* login(db, next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {
         limit: '500kb'
     })
     console.log(user)
-    var db = yield MongoClient.connect(dbunit.getdbstr(db))
-    let table = db.collection('employee')
-    let options = []
-    options.push({
-        '$match': {
-            'pwd': user.pwd,
-            'phone': user.user,
-            'lock': false
-        }
-    })
-    options.push({
-        '$unwind': '$roles_id'
-    })
-    options.push({
-        '$lookup': {
-            'localField': 'roles_id',
-            'from': 'role',
-            'foreignField': '_id',
-            'as': 'role'
-        }
-    })
-    let cursor = table.aggregate(options)
-    let model = yield cursor.toArray()
-    console.log(model)
+    var dbmodel = yield loginemployee(user)
+    console.log(dbmodel)
     var token = ''
     var code = -1
     var message = '登录失败'
-    var account = {}
-    if (model.length > 0) {
-        var profile = {
-            user: user.user,
-            id: model[0]._id
-        }
-        account = model[0]
-        account.roles = null
-        delete account.roles
-        account.roles = []
-        for (var item of model) {
-            if (item.role.length > 0) {
-                account.roles.push(item.role[0])
-            }
-        }
-        account.pwd = null
-        delete account.pwd
-        token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 /* 1 days */ })
+    if (dbmodel.login) {
+        token = jwt.sign(dbmodel, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
         code = 0
         message = '登录成功'
-    } else {
+    } /* else {
         var profile = {
             user: user.user,
             id: 0
         }
-
+       
         if (user.user == 'luban' && user.pwd == 'e10adc3949ba59abbe56e057f20f883e') {
-            token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 /* 1 days */ })
+            token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
             code = 0
             message = '登录成功'
             account.name = 'luban'
             account._id = 0
             account.tel = 'luban'
         }
-    }
-    db.close()
+    } */
     let nowtime = new Date().getTime()
     this.body = {
         code,
         token,
         message,
-        account,
+        account: dbmodel,
         nowtime
     }
 }

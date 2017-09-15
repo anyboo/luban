@@ -391,11 +391,31 @@ export default {
             this.$refs[formName].resetFields()
         },
         initdata(db) {
-            Vue.http.post('http://app.bullstech.cn/'+db+'/api/campus', campus).then(obj => {
-                return Vue.http.post('http://app.bullstech.cn/'+db+'/api/role', role)
+            let roles_id = []
+            let campus_id = []
+            Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campus).then(obj => {
+                campus_id.push(obj._id)
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
             }).then(obj => {
-                return Vue.http.post('http://app.bullstech.cn/'+db+'/apis/dictionary', dictionary)
+                roles_id.push(obj._id)
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
             }).then(obj => {
+                let employeeform = {
+                    'name': this.infoForm.uname,
+                    'sex': '0',
+                    'roles_id': roles_id,
+                    'campus_id': campus_id,
+                    'is_part_time': '0',
+                    'phone': this.registerForm.phone,
+                    'email': '',
+                    'lock': false,
+                    'admin': true,
+                    'birth': '',
+                    'pwd': md5(this.registerForm.pass),
+                    'db':db
+                }
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
+             }).then(obj => {
                 this.login()
             })
         },
@@ -403,8 +423,8 @@ export default {
             let createtime = new Date()
             let db = 'luban_' + createtime.getTime()
             let user = {
-                lock:false,
-                admin:true,
+                lock: false,
+                admin: true,
                 phone: this.registerForm.phone,
                 createtime: createtime.getTime(),
                 name: this.infoForm.uname,

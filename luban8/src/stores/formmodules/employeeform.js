@@ -6,9 +6,10 @@ export default {
         'sex': '0',
         'roles_id': [],
         'is_part_time': '0',
-        'tel': '',
+        'phone': '',
         'email': '',
         'lock': false,
+        'admin':false,
         'birth': ''
     },
     'formField': [
@@ -21,8 +22,8 @@ export default {
         {
             'type': 'input',
             'label': '账号(手机)',
-            'prop': 'tel',
-            'field': 'tel'
+            'prop': 'phone',
+            'field': 'phone'
         },
         {
             'type': 'input',
@@ -76,8 +77,8 @@ export default {
                 { required: true, message: '请输入姓名', trigger: 'blur' },
                 { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
             ],
-            tel: [
-                { validator: vm.validateTel, required: true, trigger: 'blur' }
+            phone: [
+                { validator: vm.validatephone, required: true, trigger: 'blur' }
             ],
         }
     }

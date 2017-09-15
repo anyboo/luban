@@ -58,12 +58,11 @@ function getSign(params) {
     try {
         var key = privatePem.toString()
         var prestr = getParams(params)
-        console.log(prestr)
-        var sign = crypto.createHmac('sha256','secret-key')
-        console.log(sign)
+        const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
-        sign = sign.digest(key, 'base64')
-        return encodeURIComponent(sign)
+        let hash = sign.sign(key).toString('base64')
+        console.log(hash)
+        return hash
     } catch (err) {
         console.log('getSign err', err)
     }
