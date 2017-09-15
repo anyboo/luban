@@ -59,7 +59,7 @@ function getSign(params) {
         var key = privatePem.toString()
         var prestr = getParams(params)
         console.log(prestr)
-        var sign = crypto.createSign('RSA-SHA2')
+        var sign = crypto.createSign('RSA-SHA1')
         console.log(sign)
         sign.update(prestr)
         sign = sign.sign(key, 'base64')
