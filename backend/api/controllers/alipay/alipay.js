@@ -63,7 +63,7 @@ function getSign(params) {
         console.log(sign)
         sign.update(prestr)
         sign = sign.digest(key, 'base64')
-        return encodeURIComponent(sign)
+        return sign
     } catch (err) {
         console.log('getSign err', err)
     }
