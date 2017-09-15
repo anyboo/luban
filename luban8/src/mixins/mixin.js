@@ -435,8 +435,8 @@ export default {
             let vm = this
             let modalform = form ? form : vm.localdata.form
             return new Promise((resolve, reject) => {
-                let creattime = new Date()
-                modalform.creattime = creattime.getTime()
+                let createtime = new Date()
+                modalform.createtime = createtime.getTime()
 
                 vm.$store.dispatch(types.SMS_API, {
                     'model': vm.model,
@@ -460,8 +460,8 @@ export default {
                 }
 
                 if (vm.modalsType == types.APPEND_API) {
-                    let creattime = new Date()
-                    modalform.creattime = creattime.getTime()
+                    let createtime = new Date()
+                    modalform.createtime = createtime.getTime()
 
                     vm.$store.dispatch(types.APPEND_API, {
                         'model': vm.model,

@@ -20,12 +20,12 @@ export default {
                             endTime = vm.getDatetimeEndOf(form[1])
                         }
                         filterObj.push({
-                            'key': 'creattime',
+                            'key': 'createtime',
                             'value': startTime,
                             'type': 'gte'
                         })
                         filterObj.push({
-                            'key': 'creattime',
+                            'key': 'createtime',
                             'value': endTime,
                             'type': 'lte'
                         })
@@ -66,7 +66,7 @@ export default {
         {
             'type': 'datetime',
             'label': '日期',
-            'prop': 'creattime'
+            'prop': 'createtime'
         },
         {
             'type': 'text',

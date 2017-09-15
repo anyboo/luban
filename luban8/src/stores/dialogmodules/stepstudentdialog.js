@@ -75,8 +75,8 @@ export default {
             if (tableitem.attence_id) {
                 item._id = tableitem.attence_id
             } else {
-                let creattime = new Date()
-                item.creattime = creattime.getTime()
+                let createtime = new Date()
+                item.createtime = createtime.getTime()
             }
             eve.push(item)
         }

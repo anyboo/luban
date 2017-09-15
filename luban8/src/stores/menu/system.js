@@ -137,7 +137,6 @@ export default {
     },{
         menuTitle: '注册',
         menuIcon: ' fa fa-th',
-        to: '/system/reg',
-        menuShow: 0,
+        to: '/system/reg'
     }]
 }
