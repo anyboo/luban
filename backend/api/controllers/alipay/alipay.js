@@ -14,6 +14,7 @@ const queueName = 'Alicom-Queue-1420938370661882-'
 const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
+var moment = require('moment');
 
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
@@ -28,12 +29,50 @@ var AlipayConfig = {
     "alipay_public_key": publicPem,
     "sign_type": "RSA2"
 }
+
+//将支付宝发来的数据生成有序数列
+function getParams(params) {
+    var sPara = [];
+    if (!params) return null;
+    for (var key in params) {
+        if ((!params[key]) || key == "sign" || key == "sign_type") {
+            continue;
+        };
+        sPara.push([key, params[key]]);
+    }
+    sPara = sPara.sort();
+    var prestr = '';
+    for (var i2 = 0; i2 < sPara.length; i2++) {
+        var obj = sPara[i2];
+        if (i2 == sPara.length - 1) {
+            prestr = prestr + obj[0] + '=' + obj[1] + '';
+        } else {
+            prestr = prestr + obj[0] + '=' + obj[1] + '&';
+        }
+    }
+    return prestr;
+}
+
+//签名
+function getSign(params) {
+    try {
+        var key = privatePem.toString()
+        var prestr = getParams(params)
+        var sign = crypto.createSign('RSA-SHA2')
+        sign.update(prestr)
+        sign = sign.sign(key, 'base64')
+        return encodeURIComponent(sign)
+    } catch (err) {
+        console.log('getSign err', err)
+    }
+}
+
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '200kb'
     })
-    let option = {
+    let options = {
         out_trade_no: model.order,
         product_code: 'FAST_INSTANT_TRADE_PAY',
         total_amount: model.amount,
@@ -41,26 +80,37 @@ module.exports.alipay = function* alipay() {
         body: model.body,
         timeout_express: '15m',
     }
-    let aliinfo ={}
-    let time = (new Date()).Format("yyyy-MM-dd hh:mm:ss")
-    var body = JSON.stringify(options)
-    let ali_options = {
-        hostname: 'openapi.alipay.com',
-        port: 443,
-        path: '/gateway.do',
+    let aliinfo = {}
+    let time = moment(new Date()).Format("yyyy-MM-dd hh:mm:ss")
+    //签名参数
+    let sign_options = {
+        app_id: AlipayConfig.app_id,
+        method: 'alipay.trade.page.pay',
+        charset: AlipayConfig.charset,
+        sign_type: AlipayConfig.sign_type,
+        timestamp: time,
+        version: '1.0',
+        biz_content: biz_content
+    }
+    var biz_content = JSON.stringify(options)
+     let signs = getSign(sign_options)
+    let body_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
         format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
-        /*签名  sign */
+        sign: signs,
         timestamp: time,
         version: '1.0',
-        /* biz_content:,
-        业务请求参数的集合，最大长度不限，
-        除公共参数外所有请求参数都必须放在这个参数中传递，
-        具体参照各产品快速接入文档
-        */
+        biz_content: biz_content
+    }
+    var body = JSON.stringify(body_options)
+    let ali_options = {
+        hostname: 'openapi.alipay.com',
+        port: 443,
+        path: '/gateway.do',
+        method: 'POST',
         headers: {
             "content-type": "application/json",
             'Content-Length': body.length,
