@@ -68,7 +68,7 @@ module.exports.login = function* login(db, next) {
         token = jwt.sign(dbmodel, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
         code = 0
         message = '登录成功'
-    } /* else {
+    } else {
         var profile = {
             user: user.user,
             id: 0
@@ -82,7 +82,7 @@ module.exports.login = function* login(db, next) {
             account._id = 0
             account.tel = 'luban'
         }
-    } */
+    } 
     let nowtime = new Date().getTime()
     this.body = {
         code,
