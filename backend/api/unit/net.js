@@ -15,8 +15,8 @@ module.exports.ajax = function (options, body, html) {
         }
         req.on('error', (e) => {
             console.error(e)
-        });
-        req.end(() => {
+        })
+        req.on('close', (e) => {
             try {
                 console.log(data)
                 let reqdata = data
@@ -30,6 +30,7 @@ module.exports.ajax = function (options, body, html) {
                 console.log(e)
             }
         })
+        req.end()
     })
 }
 module.exports.ajaxhttp = function (options, body) {
