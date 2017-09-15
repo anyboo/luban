@@ -15,7 +15,7 @@ module.exports.ajax = function (options, body,html) {
                     }else{
                         data = JSON.parse(d.toString())
                     }
-                    resolve(wxdata)
+                    resolve(data)
                 } catch (e) {
                     console.log(e)
                 }
