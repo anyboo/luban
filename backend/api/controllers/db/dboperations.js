@@ -23,7 +23,7 @@ function checkId(id) {
 function loginemployee(user) {
     return new Promise((resolve) => {
         let logindata = { 'login': false }
-        MongoClient.connect(dbunit.getdbstr('luban8')).then(obj => {
+        MongoClient.connect(dbunit.getdbstr('luban8')).then(db => {
             let table = db.collection('employee')
             let options = []
             options.push({
@@ -48,6 +48,7 @@ function loginemployee(user) {
                 } else {
                     resolve(logindata)
                 }
+                db.close()
             })
         })
     })
