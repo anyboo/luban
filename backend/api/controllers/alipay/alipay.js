@@ -59,10 +59,10 @@ function getSign(params) {
         var key = privatePem.toString()
         var prestr = getParams(params)
         console.log(prestr)
-        var sign = crypto.createSign('RSA-SHA1')
+        var sign = crypto.createHash('sha256')
         console.log(sign)
         sign.update(prestr)
-        sign = sign.sign(key, 'base64')
+        sign = sign.digest(key, 'base64')
         return encodeURIComponent(sign)
     } catch (err) {
         console.log('getSign err', err)
