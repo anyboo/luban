@@ -18,14 +18,14 @@ module.exports.ajax = function (options, body, html) {
         });
         req.end(() => {
             try {
-                console.log()
+                console.log(data)
                 let reqdata = data
                 if (html) {
                     
                 } else {
                     reqdata = JSON.parse(data.toString())
                 }
-                resolve(data)
+                resolve(reqdata)
             } catch (e) {
                 console.log(e)
             }
