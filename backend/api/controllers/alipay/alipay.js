@@ -119,6 +119,6 @@ module.exports.alipay = function* alipay() {
         }
     }
 
-    aliinfo = yield net.ajax(ali_options, body)
+    aliinfo = yield net.ajax(ali_options, body,true)
     this.body = yield aliinfo
 }

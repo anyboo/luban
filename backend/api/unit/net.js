@@ -1,7 +1,7 @@
 const https = require('https')
 const http = require('http')
 
-module.exports.ajax = function (options, body) {
+module.exports.ajax = function (options, body,html) {
     return new Promise(function (resolve) {
 
         const req = https.request(options, (res) => {
@@ -9,8 +9,12 @@ module.exports.ajax = function (options, body) {
             res.on('data', (d) => {
                 try {
                     console.log(d.toString())
-                    let wxdata = JSON.parse(d.toString())
-                    console.log(wxdata)
+                    let data = {}
+                    if (html){
+                        data = d.toString()
+                    }else{
+                        data = JSON.parse(d.toString())
+                    }
                     resolve(wxdata)
                 } catch (e) {
                     console.log(e)
