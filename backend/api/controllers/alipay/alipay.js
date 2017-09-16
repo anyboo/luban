@@ -51,6 +51,27 @@ function getParams(params) {
     }
     return prestr;
 }
+function getVerifyParams(params) {
+    var sPara = [];
+    if (!params) return null;
+    for (var key in params) {
+        if ((!params[key]) || key == "sign"|| key == "sign_type") {
+            continue;
+        };
+        sPara.push([key, params[key]]);
+    }
+    sPara = sPara.sort();
+    var prestr = '';
+    for (var i2 = 0; i2 < sPara.length; i2++) {
+        var obj = sPara[i2];
+        if (i2 == sPara.length - 1) {
+            prestr = prestr + obj[0] + '=' + obj[1] + '';
+        } else {
+            prestr = prestr + obj[0] + '=' + obj[1] + '&';
+        }
+    }
+    return prestr;
+}
 /* app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0
 app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0 */
 /*
@@ -77,7 +98,7 @@ function getSign(params, key) {
 }
 function getVerify(params, key, signature) {
     try {
-        var prestr = getParams(params)
+        var prestr = getVerifyParams(params)
         console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
         const verify = crypto.createVerify('RSA-SHA256')
         verify.update(prestr)
@@ -95,7 +116,7 @@ module.exports.alipaynotify = function* alipaynotify() {
     console.log(model)
     let signature = ''
     var key = publicPem.toString()
-    console.log(getVerify(query, key, signature))
+    console.log(getVerify(model, key, model.sign))
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
