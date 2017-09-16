@@ -119,7 +119,7 @@ module.exports.alipay = function* alipay() {
             'Content-Length': body.length,
         }
     }
-
+    console.log('~!!!!!!!!!~执行成功')
     aliinfo = yield net.ajax(ali_options, body, true)
     aliinfo =iconv.encode(aliinfo,'utf-8')
     this.body = aliinfo
