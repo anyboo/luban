@@ -159,5 +159,5 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajaxgb2312(ali_options, body)
-    this.body = aliinfo
+    this.body = 'https://openapi.alipay.com/gateway.do?' + queryopt
 }
