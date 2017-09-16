@@ -106,7 +106,7 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     var body = JSON.stringify(body_options)
-    let queryopt = querystring.stringify(body_options)
+    let queryopt =body_options
     console.log(body,queryopt)
     let ali_options = {
         hostname: 'openapi.alipay.com',
