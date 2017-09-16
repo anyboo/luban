@@ -64,6 +64,7 @@ function getSign(params) {
     try {
         var key = privatePem.toString()
         var prestr = getParams(params)
+        prestr = 'app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:01:59&version=1.0'
         console.log("~~~~~~~~~~~~~?//////////////////////",prestr)
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
