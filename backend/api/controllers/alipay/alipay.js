@@ -127,7 +127,7 @@ module.exports.alipay = function* alipay() {
     
     request
       .get(aliinfo)
-      .charset('gbk')
+      .charset('gb2312')
       .end((err, res) => {
         this.body = res
       });
