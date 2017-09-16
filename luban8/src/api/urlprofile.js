@@ -1,36 +1,21 @@
-const apiUrl2 = 'http://app.bullstech.cn:8888/'
-const apiUrl1 = 'http://app.bullstech.cn:9999/'
-
-let apiUrl = 'http://app.bullstech.cn:8888/'
-if (LUBANDEV) {
-    apiUrl += 'lubandemo/'
-} else {
-    let host = window.location.host
-    let dbindex = host.indexOf('.')
-    let dbstr = 'luban/'
-    if (dbindex > 0) {
-        dbstr = host.substring(0, dbindex)
-        dbstr += '/'
-    }
-    apiUrl += dbstr
-}
+let apiUrl = 'http://app.bullstech.cn/'
 
 function getLoginUrl() {
     return apiUrl + 'login/'
 }
 
 function getApiUrl() {
-    return apiUrl + 'api/'
+    return apiUrl + window.db + '/api/'
 }
 function getSmsUrl() {
-    return apiUrl + 'sms/'
+    return apiUrl + window.db + '/sms/'
 }
 function getUrlQccode(id) {
-    return apiUrl + 'wxqrcode/' + id
+    return apiUrl + window.db + '/wxqrcode/' + id
 }
 
 function getUrls(model) {
-    return apiUrl + 'apis/' + model + '/'
+    return apiUrl + window.db + '/apis/' + model + '/'
 }
 
 function getUrl(model) {
