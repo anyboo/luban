@@ -75,13 +75,27 @@ function getSign(params, key) {
         console.log('getSign err', err)
     }
 }
+function getVerify(params,key,signature) {
+    try {
+        var prestr = getParams(params)
+        console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
+        const sign = crypto.createVerify('RSA-SHA256')
+        verify.write(prestr)
+        verify.end()
+        return verify.verify(key, signature)
+    } catch (err) {
+        console.log('getSign err', err)
+    }
+}
+
 module.exports.alipaynotify = function* alipaynotify() {
     if ('GET' != this.method) return yield next
     let query = this.query
     console.log(query)
+    let signature = ''
     var key = publicPem.toString()
-    getSign(query,key)
-    this.body = ''
+    console.log(getVerify(query,key,signature))
+    this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
