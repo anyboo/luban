@@ -93,6 +93,7 @@ module.exports.alipay = function* alipay() {
         version: '1.0',
         biz_content: biz_content
     }
+    console.log(sign_options)
     let signs = getSign(sign_options)
     let body_options = {
         app_id: AlipayConfig.app_id,
