@@ -57,7 +57,7 @@ function loginemployee(user) {
         })
     })
 }
-module.exports.login = function* login(db, next) {
+module.exports.login = function* login(next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {
         limit: '500kb'
