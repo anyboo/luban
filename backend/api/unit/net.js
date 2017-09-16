@@ -1,6 +1,6 @@
 const https = require('https')
 const http = require('http')
-const bufferhelper = require('bufferhelper')
+const BufferHelper = require('bufferhelper')
 
 module.exports.ajax = function (options, body, html = false, encoding = 'utf-8') {
     return new Promise(function (resolve) {
