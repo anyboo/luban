@@ -19,7 +19,7 @@ module.exports.ajaxgb2312 = function (options, body) {
         req.on('error', (e) => {
             console.error(e)
         })
-        req.on('end', () => {
+        req.on('close', () => {
             try {
                 var chunkAll = Buffer.concat(arrBuf, bufLength)
                 console.log(chunkAll) 
