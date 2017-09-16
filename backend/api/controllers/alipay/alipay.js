@@ -60,7 +60,7 @@ function getSign(params) {
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
-        /*  console.log(hash) */
+       /*  console.log(hash) */
         return hash
     } catch (err) {
         console.log('getSign err', err)
@@ -106,17 +106,17 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     let queryarray = []
-    for (let item in body_options) {
-        let itemstr = item + '=' + body_options[item]
+    for(let item in body_options){
+        let itemstr = item+'='+encodeURI(body_options[item])
         queryarray.push(itemstr)
     }
     var body = JSON.stringify(body_options)
     let queryopt = queryarray.join('&')
-    console.log(body, queryopt)
+    console.log(body,queryopt)
     let ali_options = {
         hostname: 'openapi.alipay.com',
         port: 443,
-        path: '/gateway.do?' + queryopt,
+        path: '/gateway.do?'+queryopt,
         method: 'POST',
         headers: {
             "content-type": "application/json",
