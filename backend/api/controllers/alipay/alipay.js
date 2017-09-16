@@ -119,6 +119,6 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajax(ali_options, body, true)
-    aliinfo =iconv.decode(aliinfo,'GBK')
+    aliinfo = iconv.decode(aliinfo,'gb2312')
     this.body = aliinfo
 }
