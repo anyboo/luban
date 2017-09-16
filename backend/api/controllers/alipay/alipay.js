@@ -57,6 +57,7 @@ function getSign(params) {
     try {
         var key = privatePem.toString()
         var prestr = getParams(params)
+        console.log(prestr)
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
