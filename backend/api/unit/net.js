@@ -9,9 +9,8 @@ module.exports.ajaxgb2312 = function (options, body) {
         const req = https.request(options, (res) => {
             //res.setEncoding('utf8')
             res.on('data', (d) => {
-                arrBuf.push(d);
-                bufLength += d.length;
-                console.log(d.toString())
+                arrBuf.push(d)
+                bufLength += d.length
             })
         })
         if (options.method == 'POST') {
@@ -23,7 +22,6 @@ module.exports.ajaxgb2312 = function (options, body) {
         req.on('close', (e) => {
             try {
                 var chunkAll = Buffer.concat(arrBuf, bufLength)
-                console.log(chunkAll) 
                 var strJson = iconv.decode(chunkAll,'gb2312')
                 resolve(strJson)
             } catch (e) {

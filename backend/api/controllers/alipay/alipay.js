@@ -88,7 +88,7 @@ function getVerify(params, key, signature) {
 }
 
 module.exports.alipaynotify = function* alipaynotify() {
-    if ('GET' != this.method) return yield next
+    if ('POST' != this.method) return yield next
     let query = this.query
     console.log(query)
     let signature = ''
