@@ -118,5 +118,6 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajaxgb2312(ali_options, body)
+    console.log(aliinfo)
     this.body = aliinfo
 }

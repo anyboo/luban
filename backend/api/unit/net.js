@@ -19,12 +19,12 @@ module.exports.ajaxgb2312 = function (options, body) {
         req.on('error', (e) => {
             console.error(e)
         })
-        req.on('close', () => {
+        req.on('close', (e) => {
             try {
                 var chunkAll = Buffer.concat(arrBuf, bufLength)
                 console.log(chunkAll) 
                 var strJson = iconv.decode(chunkAll,'gb2312')
-                resolve(chunkAll)
+                resolve(strJson)
             } catch (e) {
                 console.log(e)
             }
