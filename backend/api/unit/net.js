@@ -3,7 +3,7 @@ const http = require('http')
 const BufferHelper = require('bufferhelper')
 var iconv = require('iconv-lite')
 
-module.exports.ajax = function (options, body, html = false, encoding = 'utf-8') {
+module.exports.ajax = function (options, body, html, encoding) {
     return new Promise(function (resolve) {
         var bufferHelper = new BufferHelper()
         const req = https.request(options, (res) => {
@@ -22,7 +22,7 @@ module.exports.ajax = function (options, body, html = false, encoding = 'utf-8')
             try {
                 let data = []
                 console.log(encoding)
-                if (encoding != 'utf-8') {
+                if (encoding) {
                     data = iconv.decode(bufferHelper.toBuffer(), encoding)
                 } else {
                     data = bufferHelper.toString()
