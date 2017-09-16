@@ -1,15 +1,14 @@
 const https = require('https')
 const http = require('http')
+const bufferhelper = require('bufferhelper')
 
 module.exports.ajax = function (options, body, html = false, encoding = 'utf-8') {
     return new Promise(function (resolve) {
-        var arrBuf = []
-        var bufLength = 0
+        var bufferHelper = new BufferHelper()
         const req = https.request(options, (res) => {
             res.setEncoding('utf8')
             res.on('data', (d) => {
-                arrBuf.push(d)
-                bufLength += d.length
+                bufferHelper.concat(d)
             })
         })
         if (options.method == 'POST') {
@@ -20,12 +19,11 @@ module.exports.ajax = function (options, body, html = false, encoding = 'utf-8')
         })
         req.on('close', (e) => {
             try {
-                var chunkAll = Buffer.concat(arrBuf, bufLength);
-                var data = ''
+                let data = []
                 if (encoding != 'utf-8') {
-                    data = iconv.decode(chunkAll, encoding); // 汉字不乱码
+                    data = iconv.decode(bufferHelper.toBuffer(), encoding)
                 } else {
-                    data = chunkAll
+                    data = bufferHelper.toString()
                 }
                 console.log(data)
                 let reqdata = data
