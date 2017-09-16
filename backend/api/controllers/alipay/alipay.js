@@ -102,7 +102,7 @@ module.exports.alipay = function* alipay() {
         format: AlipayConfig.format,
         sign_type: AlipayConfig.sign_type,
         charset: AlipayConfig.charset,
-        return_url:'https://m.alipay.com/Gk8NF23',
+      /*   return_url:'http://app.bullstech.cn/alipay', */
         timestamp: time,
         version: '1.0',
         biz_content: biz_content
@@ -114,7 +114,7 @@ module.exports.alipay = function* alipay() {
         format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
-        return_url:'https://m.alipay.com/Gk8NF23',
+       /*  return_url:'http://app.bullstech.cn/alipay', */
         sign: signs,
         timestamp: time,
         version: '1.0',
