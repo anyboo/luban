@@ -1,13 +1,15 @@
 const https = require('https')
 const http = require('http')
+const BufferHelper = require('bufferhelper')
+var iconv = require('iconv-lite')
 
-module.exports.ajax = function (options, body, html) {
+module.exports.ajax = function (options, body, html = false, encoding = 'utf-8') {
     return new Promise(function (resolve) {
-        let data = ''
+        var bufferHelper = new BufferHelper()
         const req = https.request(options, (res) => {
-            //res.setEncoding('utf8')
+            res.setEncoding('utf8')
             res.on('data', (d) => {
-                data+=d.toString()
+                bufferHelper.concat(d)
             })
         })
         if (options.method == 'POST') {
@@ -18,10 +20,16 @@ module.exports.ajax = function (options, body, html) {
         })
         req.on('close', (e) => {
             try {
+                let data = []
+                if (encoding != 'utf-8') {
+                    data = iconv.decode(bufferHelper.toBuffer(), encoding)
+                } else {
+                    data = bufferHelper.toString()
+                }
                 console.log(data)
                 let reqdata = data
                 if (html) {
-                    
+
                 } else {
                     reqdata = JSON.parse(data.toString())
                 }

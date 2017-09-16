@@ -5,9 +5,9 @@
                 <img class="img-circle" src="/assets/images/a0.jpg">
             </div>
             <p class="h4 m-t m-b">
-                <span style="color:white;" v-if="$store.state.system.name.length>0" >{{$store.state.system.name}}</span>
+                <span style="color:white;" v-if="username.length>0">{{username}}</span>
             </p>
-            <div class="input-group" v-if="$store.state.system.name.length==0">
+            <div class="input-group" v-if="username.length==0">
                 <input type="text" v-model="localdata.form.user" class="form-control text-sm  no-border" placeholder="请输入账号" style="width:198px;    border-top-left-radius : 50px !important;border-top-right-radius: 50px !important;border-bottom-right-radius: 50px !important;border-bottom-left-radius: 50px !important;">
                 <span class="input-group-btn"></span>
             </div>
@@ -42,13 +42,21 @@ export default {
             localdata,
         }
     },
-    computed: {},
+    computed: {
+        username(){
+            let name = ''
+            if (this.$store.state.system.name){
+                name = this.$store.state.system.name
+            }
+            return name
+        }
+    },
     watch: {},
     methods: {
         login() {
             let vm = this
-            if (this.$store.state.system.name.length > 0) {
-                this.localdata.form.user = this.$store.state.system.tel
+            if (this.$store.state.system.name&&this.$store.state.system.name.length > 0) {
+                this.localdata.form.user = this.$store.state.system.user
             }
             this.localdata.form.pwd = md5(this.localdata.form.pwd)
             let account = { user: this.localdata.form.user, pwd: this.localdata.form.pwd }
@@ -58,7 +66,7 @@ export default {
                     this.$store.commit('user', data.account)
                     this.$store.commit('router', '/web')
                 } else {
-                    this.$store.commit('user', { name: '', tel: '', _id: '' })
+                    this.$store.commit('user', { login: false })
                     this.$message({
                         message: '用户或密码错误！',
                         type: 'error'

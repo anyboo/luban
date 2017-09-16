@@ -100,6 +100,7 @@
                                 <el-form-item style="margin:1.5rem;width:90%">
                                     <el-button type="primary" @click="submitForm('registerForm')">下一步</el-button>
                                     <el-button @click="resetForm('registerForm')">重置</el-button>
+                                    <el-button @click="login()">登录</el-button>
                                 </el-form-item>
                             </el-form>
                         </el-card>
@@ -110,14 +111,17 @@
                                 <el-form-item label="您的姓名" prop="uname" style="margin:2rem;width:90%">
                                     <el-input v-model="infoForm.uname" style="width:90%"></el-input>
                                 </el-form-item>
-                                <el-form-item label="机构名称" prop="school" style="margin:2rem;width:90%">
-                                    <el-input v-model="infoForm.school" style="width:90%"></el-input>
+                                <el-form-item label="机构名称" prop="name" style="margin:2rem;width:90%">
+                                    <el-input v-model="infoForm.name" style="width:90%"></el-input>
                                 </el-form-item>
-                                <el-form-item label="联系电话" prop="schooltell" style="margin:2rem;width:90%">
-                                    <el-input v-model="infoForm.schooltell" style="width:90%"></el-input>
+                                <el-form-item label="机构简称" prop="short_name" style="margin:2rem;width:90%">
+                                    <el-input v-model="infoForm.short_name" style="width:90%"></el-input>
                                 </el-form-item>
-                                <el-form-item label="机构地址" prop="adress" style="margin:2rem;width:90%">
-                                    <el-input v-model="infoForm.adress" style="width:90%"></el-input>
+                                <el-form-item label="联系电话" prop="tel" style="margin:2rem;width:90%">
+                                    <el-input v-model="infoForm.tel" style="width:90%"></el-input>
+                                </el-form-item>
+                                <el-form-item label="机构地址" prop="address" style="margin:2rem;width:90%">
+                                    <el-input v-model="infoForm.address" style="width:90%"></el-input>
                                 </el-form-item>
                                 <el-form-item style="margin:2rem;width:90%">
                                     <el-button type="primary" @click="submitForm('infoForm')">下一步</el-button>
@@ -136,14 +140,17 @@
                                 <el-form-item label="您的电话：" style="margin:1.5rem;width:90%">
                                     {{registerForm.phone}}
                                 </el-form-item>
-                                <el-form-item label="机构名称：" prop="school" style="margin:1.5rem;width:90%">
-                                    {{infoForm.school}}
+                                <el-form-item label="机构名称：" prop="name" style="margin:1.5rem;width:90%">
+                                    {{infoForm.name}}
                                 </el-form-item>
-                                <el-form-item label="机构电话：" prop="schooltell" style="margin:1.5rem;width:90%">
-                                    {{infoForm.schooltell}}
+                                <el-form-item label="机构简称：" prop="short_name" style="margin:1.5rem;width:90%">
+                                    {{infoForm.short_name}}
                                 </el-form-item>
-                                <el-form-item label="机构地址：" prop="adress" style="margin:1.5rem;width:90%">
-                                    {{infoForm.school}}
+                                <el-form-item label="机构电话：" prop="tel" style="margin:1.5rem;width:90%">
+                                    {{infoForm.tel}}
+                                </el-form-item>
+                                <el-form-item label="机构地址：" prop="address" style="margin:1.5rem;width:90%">
+                                    {{infoForm.name}}
                                 </el-form-item>
                                 <el-form-item style="margin:1.5rem;width:90%">
                                     <el-button type="primary" @click="handleclick">确定</el-button>
@@ -172,73 +179,93 @@
 }
 </style>
 <script>
+import md5 from '~/api/md5.min.js'
+import campus from '~/stores/initdata/campus.js'
+import dictionary from '~/stores/initdata/dictionary.js'
+import role from '~/stores/initdata/role.js'
+
 export default {
     data() {
         var checkphone = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('注册手机号不能为空'));
+                callback(new Error('注册手机号不能为空'))
             } else {
-                let Regphone = /(^(\+86|0086)?\s*1[34578]\d{9}$)/;
+                let Regphone = /(^(\+86|0086)?\s*1[34578]\d{9}$)/
                 if (!Regphone.test(value)) {
-                    callback(new Error('请输入11位手机号码'));
+                    callback(new Error('请输入11位手机号码'))
                 } else {
-                    callback();
+                    let filterObj = []
+                    filterObj.push({
+                        'key': 'phone',
+                        'value': value,
+                        'type': ''
+                    })
+                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                    Vue.http.get('http://app.bullstech.cn/luban8/api/user?filter=' + filterTxt).then(obj => {
+                        if (obj.data.count > 0) {
+                            callback(new Error('用户已经存在,请直接登录.'))
+                        } else {
+                            callback()
+                        }
+                    }).catch(() => {
+                        callback(new Error('服务端校验失败'))
+                    })
                 }
             }
-        };
+        }
         var checkPass = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('密码不能为空'));
             } else {
                 let RegPass = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/;
                 if (!RegPass.test(value)) {
-                    callback(new Error('请输入6-21位字母和数字组合的密码!'));
+                    callback(new Error('请输入6-21位字母和数字组合的密码!'))
                 } else {
-                    callback();
+                    callback()
                 }
             }
-        };
+        }
         var checkshape = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('图形验证码不能为空'));
+                callback(new Error('图形验证码不能为空'))
             } else {
-                if (value != this.validdata) {
-                    callback(new Error('请输入右边验证码'));
+                if (value.toLowerCase() != this.validdata.toLowerCase()) {
+                    callback(new Error('请输入右边验证码'))
                 } else {
                     this.isMsg = true
                     this.shapeDisabled = true
-                    callback();
+                    callback()
                 }
             }
-        };
+        }
         var checkserver = (rule, value, callback) => {
             if (value == false) {
-                callback(new Error('请先阅读并同意注册条款后再进行注册'));
+                callback(new Error('请先阅读并同意注册条款后再进行注册'))
             } else {
-                callback();
+                callback()
             }
-        };
+        }
         var validatePass = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('请再次输入密码'));
+                callback(new Error('请再次输入密码'))
             } else if (value !== this.registerForm.pass) {
-                callback(new Error('两次输入密码不一致!'));
+                callback(new Error('两次输入密码不一致!'))
             } else {
-                callback();
+                callback()
             }
-        };
-        var checkschooltell = (rule, value, callback) => {
+        }
+        var checktel = (rule, value, callback) => {
             if (value === '') {
-                callback(new Error('请输入机构对外电话'));
+                callback(new Error('请输入机构对外电话'))
             } else {
-                let Regschooltell = /^((\d{3,4}\-)|)\d{7,8}(|([-\u8f6c]{1}\d{1,5}))$/;
-                if (!Regschooltell.test(value)) {
-                    callback(new Error('请输入区号-电话号码!'));
+                let Regtel = /^((\d{3,4}\-)|)\d{7,8}(|([-\u8f6c]{1}\d{1,5}))$/
+                if (!Regtel.test(value)) {
+                    callback(new Error('请输入区号-电话号码!'))
                 } else {
-                    callback();
+                    callback()
                 }
             }
-        };
+        }
         return {
             active: 0,
             imagedata: '',
@@ -258,9 +285,10 @@ export default {
             },
             infoForm: {
                 uname: '',
-                school: '',
-                schooltell: '',
-                adress: ''
+                name: '',
+                short_name: '',
+                tel: '',
+                address: ''
             },
             rules: {
                 phone: [
@@ -280,18 +308,22 @@ export default {
                 ],
                 uname: [
                     { required: true, message: '请输入您的名字', trigger: 'change' },
-                    { min: 2, max: 21, message: '请输入您的名字', trigger: 'change' }
+                    { min: 2, max: 50, message: '请输入您的名字', trigger: 'change' }
                 ],
-                school: [
+                name: [
                     { required: true, message: '请输入您的机构名称', trigger: 'change' },
-                    { min: 2, max: 21, message: '请输入您的机构名称', trigger: 'change' }
+                    { min: 2, max: 100, message: '请输入您的机构名称', trigger: 'change' }
                 ],
-                schooltell: [
-                    { required: true, validator: checkschooltell, trigger: 'change' }
+                short_name: [
+                    { required: true, message: '请输入您的机构简称', trigger: 'change' },
+                    { min: 2, max: 8, message: '请输入您的机构名称,2-8个字符', trigger: 'change' }
                 ],
-                adress: [
+                tel: [
+                    { validator: checktel, trigger: 'change' }
+                ],
+                address: [
                     { required: true, message: '请输入您的机构的详细地址', trigger: 'change' },
-                    { min: 5, max: 50, message: '请输入您的机构的详细地址', trigger: 'change' }
+                    { min: 5, max: 250, message: '请输入您的机构的详细地址', trigger: 'change' }
                 ],
                 ischecked: [
                     { validator: checkserver, trigger: 'change' }
@@ -300,24 +332,25 @@ export default {
         }
     },
     mounted() {
-        this.imagedata = this.makeImage()
+        this.imagedata = this.makeregImage()
     },
     methods: {
-        makeImage() {
+        makeregImage() {
             let codes = [];
-            for (let i = 48; i < 57; codes.push(i), i++);
-            for (let i = 60; i < 90; codes.push(i), i++);
-            for (let i = 97; i < 122; codes.push(i), i++);
-            let arr = [];
+            for (let i = 48; i < 57; codes.push(i), i++) {
+            }
+            for (let i = 60; i < 90; codes.push(i), i++) {
+            }
+            for (let i = 97; i < 122; codes.push(i), i++) {
+            }
+            let arr = []
             for (let i = 0; i < 4; i++) {
-                let index = Math.floor(Math.random() * (61 - 0 + 1) + 0);
-                let char = String.fromCharCode(codes[index]);
-                arr.push(char);
+                let index = Math.floor(Math.random() * (61 - 0 + 1) + 0)
+                let char = String.fromCharCode(codes[index])
+                arr.push(char)
             }
             this.validdata = arr.join("")
-            let code = arr.join(" ");
-            console.log(code)
-            console.log(this.validdata)
+            let code = arr.join(" ")
             var canvas = document.createElement('canvas')
             canvas.style.marginTop = '5px'
             canvas.width = 70
@@ -333,12 +366,11 @@ export default {
             return dataurl
         },
         submitServer() {
-            this.$refs.registerForm.validateField('ischecked');
+            this.$refs.registerForm.validateField('ischecked')
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    console.log(this.registerForm.ischecked)
                     if (formName == 'registerForm') {
                         this.active = 1
                     } else if (formName == 'infoForm') {
@@ -346,26 +378,86 @@ export default {
                     } else {
                         this.active = 3
                     }
-                    console.log('succ')
                 } else {
-                    console.log('error submit!!');
-                    console.log(this.registerForm.ischecked)
                     return false;
                 }
             });
         },
+        login() {
+            this.$store.state.models.login = false
+            this.$store.commit('user', { login: false })
+            this.$store.state.system.router = 'lb-systemsign_in'
+        },
         resetForm(formName) {
-            this.$refs[formName].resetFields();
+            this.$refs[formName].resetFields()
+        },
+        initdata(org) {
+            let roles_id = []
+            let campus_id = ''
+            let org_id = org._id
+            let createtime = (new Date()).getTime()
+            let db = 'luban_' + createtime
+            campus.org_id = org_id
+            campus.db = db
+            campus.createtime = createtime
+            role.db = db
+            role.createtime = createtime
+
+            Vue.http.post('http://app.bullstech.cn/luban8/api/campus', campus).then(obj => {
+                campus_id = obj.data._id
+                role.campus_id = campus_id
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/role', role)
+            }).then(obj => {
+                roles_id.push(obj.data._id)
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
+            }).then(obj => {
+                let employeeform = {
+                    'name': this.infoForm.uname,
+                    'sex': '0',
+                    'roles_id': roles_id,
+                    'org_id': org_id,
+                    'campus_id': campus_id,
+                    'is_part_time': '0',
+                    'phone': this.registerForm.phone,
+                    'email': '',
+                    'lock': false,
+                    'admin': true,
+                    'birth': '',
+                    'pwd': md5(this.registerForm.pass),
+                    'db': db,
+                    'usedata': createtime,
+                    'createtime': createtime
+                }
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
+            }).then(obj => {
+                this.login()
+            })
         },
         handleclick() {
-            window.location.href = 'http://127.0.0.1:8010'
+            let createtime = new Date()
+            let db = 'luban_' + createtime.getTime()
+            let user = {
+                lock: false,
+                admin: true,
+                phone: this.registerForm.phone,
+                createtime: createtime.getTime(),
+                name: this.infoForm.uname,
+                pwd: md5(this.registerForm.pass)
+            }
+            Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
+                this.infoForm.user_id = obj.data._id
+                this.infoForm.createtime = obj.data.createtime
+                Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm).then(obj => {
+                    this.initdata(obj.data)
+                })
+            }).catch(() => {
+            })
         },
         handleClose(done) {
             this.$confirm('确认关闭？')
                 .then(_ => {
                     done();
                 })
-                .catch(_ => { });
         },
         getMsg() {
             this.msgDisabled = true
@@ -373,7 +465,7 @@ export default {
             let msg = setInterval(() => {
                 count--
                 this.msgText = count + 's后重新获取'
-                console.log(this.msgText)
+                //console.log(this.msgText)
                 if (count <= 0) {
                     clearInterval(msg)
                     this.msgDisabled = false

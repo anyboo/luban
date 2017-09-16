@@ -1,12 +1,7 @@
 export default {
     'pageName': 'systememployee',
     'pageLable': ' 员工管理',
-    'tableSearch': [{
-        'localField': 'region_oe_id',
-        'from': 'employee',
-        'foreignField': '_id',
-        'as': 'employee'
-    }],
+    'tableSearch': [],
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -21,7 +16,7 @@ export default {
                     'label': '手机号',
                     'defvalue': '',
                     'default': true,
-                    'value': 'mobile'
+                    'value': 'phone'
                 }
             ]
         },
@@ -76,7 +71,7 @@ export default {
         {
             'type': 'notwrite',
             'label': '账号',
-            'prop': 'tel',
+            'prop': 'phone',
         },
         {
             'type': 'teachertype',

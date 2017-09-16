@@ -20,8 +20,8 @@
                     <!--   这里写你需要的另外的模块 -->
                     <template v-for="item in getTime(dbdata)">
                         <el-card class="box-card margin_bottom">
-                            <template v-for="itemval in getpageTable">
-                                <div class="card_text card_item">
+                            <template v-for="itemval in tableitem">
+                                <div class="card_text card_item" @click="cardclick(itemval,item)">
                                     {{getInfo(itemval,item)}}
                                 </div>
                             </template>
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             dbdata: [],
-            moduledata: pagesmodule,
+            moduledata: null,
             scrollHeight: 0,
             scrollTop: 0,
             containerHeight: 0,
@@ -53,118 +53,83 @@ export default {
             bottomText: '下拉加载更多...',
             bottomStatus: '',
             totalCount: '',
+            tableitem: []
         }
     },
     mounted() {
-        let filterObj = []
-        filterObj.push({
-            'key': 'student_id',
-            'value': this.$store.state.student_id.student_id,
-            'type': ''
-        })
-        filterObj.push(
-            {
-                'key': 'lookup',
-                'value': {
-                    'localField': 'classes_id',
-                    'from': 'classes',
-                    'foreignField': '_id',
-                    'as': 'classes'
-                },
-                'type': 'lookup'
-            }
-        )
-        filterObj.push(
-            {
-                'key': 'lookup',
-                'value': {
-                    'localField': 'order_id',
-                    'from': 'order',
-                    'foreignField': '_id',
-                    'as': 'order'
-                },
-                'type': 'lookup'
-            }
-        )
-        filterObj.push(
-            {
-                'key': 'lookup',
-                'value': {
-                    'localField': 'teacher_id',
-                    'from': 'employee',
-                    'foreignField': '_id',
-                    'as': 'employee'
-                },
-                'type': 'lookup'
-            }
-        )
-        filterObj.push(
-            {
-                'key': 'lookup',
-                'value': {
-                    'localField': 'coursescheduling_id',
-                    'from': 'coursescheduling',
-                    'foreignField': '_id',
-                    'as': 'coursescheduling'
-                },
-                'type': 'lookup'
-            }
-        )
-                filterObj.push(
-                    {
-                        'key': 'lookup',
-                        'value': {
-                            'localField': 'class_id',
-                            'from': 'coursescheduling',
-                            'foreignField': 'classes_id',
-                            'as': 'coursescheduling'
-                        },
-                        'type': 'lookup'
-                    }
-                ) 
-
-        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-        console.log(this.$store.state.commondata.commondata)
-        this.handleGetFilterTableTable(this.$store.state.commondata.commondata, filterTxt).then(obj => {
-            this.dbdata = obj.data.data
-            console.log(this.dbdata)
-        })
+        this.getpageTable()
+        this.getdata()
     },
     computed: {
         getTitle() {
             let itemLable = ''
-            for (let i = 0; i < this.moduledata.length; i++) {
-                if (this.moduledata[i].pageTable == this.$store.state.commondata.commondata) {
-                    itemLable = this.moduledata[i].pageLable
-                }
-            }
-            return itemLable
+            this.moduledata = pagesmodule[this.$store.state.commondata.commondata]
+            return this.moduledata.pageLable
         },
         //配置文件
-        getpageTable() {
-            for (let i = 0; i < this.moduledata.length; i++) {
-                if (this.moduledata[i].pageTable == this.$store.state.commondata.commondata) {
-                    var itemTable = []
-                    for (let j = 0; j < this.moduledata[i].pageTableField.length; j++) {
-                        var pageTableField = {}
-                        pageTableField.label = this.moduledata[i].pageTableField[j].label
-                        pageTableField.prop = this.moduledata[i].pageTableField[j].prop
-                        pageTableField.type = this.moduledata[i].pageTableField[j].type
-                        itemTable.push(pageTableField)
-                    }
-                }
-            }
-            console.log(itemTable)
-            return itemTable
-        }
+
     },
     watch: {},
     methods: {
+        getpageTable() {
+            var itemTable = []
+            this.dbdata = []
+            this.moduledata = pagesmodule[this.$store.state.commondata.commondata]
+            this.tableitem = this.moduledata.pageTableField
+            return itemTable
+        },
+        getdata() {
+            let filterObj = []
+            console.log(this.$store.state.classid.classid)
+            if (this.moduledata.pageClasses) {
+                filterObj.push({
+                    'key': 'classes_id',
+                    'value': this.$store.state.classid.classid,
+                    'type': ''
+                })
+            } else {
+                filterObj.push({
+                    'key': 'student_id',
+                    'value': this.$store.state.student_id.student_id,
+                    'type': ''
+                })
+            }
+            if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
+                let tablesSearch = this.moduledata.tableSearch
+                for (let item of tablesSearch) {
+                    if (item.type == '') {
+                        filterObj.push(item)
+                    } else if (item.type && item.type.length > 0) {
+                        filterObj.push(item)
+                    } else {
+                        filterObj.push({
+                            'key': 'lookup',
+                            'value': item,
+                            'type': 'lookup'
+                        })
+                    }
+                }
+            }
+            //course
+            console.log("-----", filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            console.log("------", this.$store.state.commondata.commondata)
+            this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then(obj => {
+                this.dbdata = obj.data.data
+                console.log(this.dbdata)
+            })
+        },
         getInfo(itemval, item) {
             let info
             info = itemval.label + ' : ' + item[itemval.prop]
             if (itemval.type == 'payment') {
                 info = itemval.label + ' : ' + this.getDictData('2', item[itemval.prop])
+            }
+            if (itemval.type == 'subtext') {
+                info = itemval.label + ' : ' + this.getSubText(item, itemval.prop, 'class_name')
+            }
+            if (itemval.type == 'tabletext') {
+                info = itemval.label + ' : ' + this.getLookUp(item[itemval.table], itemval.prop)
             }
             if (itemval.prop == 'class_name') {
                 info = itemval.label + ' : '
@@ -184,6 +149,14 @@ export default {
                     info = itemval.label + ' : ' + item.employee[0].name
                 }
             }
+            //getDatetimeRanget
+             if (itemval.prop1 == 'start'&& itemval.prop2 == 'end') {
+                 info = itemval.label + ' : '+ this.getDatetimeRanget(item[itemval.prop1],item[itemval.prop2])
+                
+             }
+             if(itemval.prop== 'start'){
+                  info = itemval.label + ' : '+this.getDateFormat(item[itemval.prop])
+             } 
             if (itemval.prop == 'attence_flag') {
                 if (item[itemval.prop] == 0) {
                     item[itemval.prop] = '未考勤'
@@ -214,6 +187,7 @@ export default {
                     sum[i].daterange1 = this.getDateFormat(sum[i].daterange1)
                     sum[i].daterange2 = this.getDateFormat(sum[i].daterange2)
                     sum[i].start = this.getDateFormat(sum[i].start)
+                    sum[i].end = this.getDateFormat(sum[i].end)
                 }
             }
             return sum
@@ -255,6 +229,15 @@ export default {
         handleBottomChange(status) {
             this.bottomStatus = status;
         },
+        cardclick(itemval, item) {
+            if (this.moduledata.pageLink) {
+                this.$store.state.classid.classid = item.classes_id
+                this.$store.state.commondata.commondata = this.moduledata.pageLink
+                this.moduledata = pagesmodule[this.$store.state.commondata.commondata]
+                this.getpageTable()
+                this.getdata()
+            }
+        }
     }
 }
 </script>

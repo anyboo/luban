@@ -25,8 +25,8 @@ export default {
     name: 'body',
     data() {
         return {
-          clientHeight: '800px',
-          overflowy: 'auto'
+            clientHeight: '800px',
+            overflowy: 'auto'
         }
     },
     components: pages,
@@ -38,7 +38,7 @@ export default {
     },
     mounted() {
         document.body.onresize = this.resize
-        this.clientHeight = (document.body.clientHeight-131) + 'px'
+        this.clientHeight = (document.body.clientHeight - 131) + 'px'
         if (this.$store.state.models.login) {
             this.getTableApidata('dictionary')
         }
@@ -52,9 +52,14 @@ export default {
         },
         getCurrentView() {
             let isModlues = 0
-            if (!this.$store.state.models.login) {
+            console.log(this.$store.state.system.login, this.$store.state.models.login)
+            if (window.location.href.indexOf('/#/system/reg') != -1) {
+                this.currentView = 'lb-systemreg'
+                window.location.href = '/#'
+                console.log(this.currentView)
+            } else if (!this.$store.state.system.login) {
                 this.currentView = 'lb-systemsign_in'
-            } else if (this.$store.state.system.name.length == 0) {
+            } else if (!this.$store.state.models.login) {
                 this.currentView = 'lb-systemsign_in'
             } else {
                 let to = this.$store.state.system.router
@@ -85,8 +90,8 @@ export default {
         }
     },
     methods: {
-        resize(){
-            this.clientHeight = (document.body.clientHeight-131) + 'px'
+        resize() {
+            this.clientHeight = (document.body.clientHeight - 131) + 'px'
         },
         blankmounted() {
             this.$store.state.system.isModlues = true

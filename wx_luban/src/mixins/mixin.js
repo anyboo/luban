@@ -64,6 +64,45 @@ export default {
         }
     },
     methods: {
+        getDatetimeRanget(starttime, endtime) {
+            let startTemp = moment(starttime)
+            let endTemp = moment(endtime)
+            let starttimestr = ''
+            let endtimestr = ''
+            if (startTemp.isValid()) {
+                starttimestr = startTemp.format('H:mm')
+            }
+            if (endTemp.isValid()) {
+                endtimestr = endTemp.format('H:mm')
+            }
+            return starttimestr + '--' + endtimestr
+        },
+        getLookUp(obj, key) {
+            let result = null
+            if (obj && obj.length > 0) {
+                if (key) {
+                    result = obj[0][key]
+                } else {
+                    result = obj[0]
+                }
+            }
+            return result
+        },
+        getSubText(item, prop, subprop) {
+            let text = ''
+            let obj = item
+            if (item == 'vm') {
+                obj = this
+            }
+            if (obj) {
+                if (obj[prop]) {
+                    if (typeof (obj[prop][subprop]) != 'undefined') {
+                        text += obj[prop][subprop]
+                    }
+                }
+            }
+            return text
+        },
         handleGetFilterTableTable(model, filter) {
             let vm = this
             return new Promise((resolve, reject) => {

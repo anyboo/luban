@@ -3,7 +3,7 @@ export default {
     'pageLable': '赛事详情',
     'look': true,
     'form': {
-        'creattime':'',
+        'createtime':'',
         'match_name':'',
         'result':'',
         'info':'',
@@ -17,8 +17,8 @@ export default {
         {
             'type': 'datetimetext',
             'label': '参赛日期',
-            'prop': 'creattime',
-            'field': 'creattime'
+            'prop': 'createtime',
+            'field': 'createtime'
         },
         {
             'type': 'text',

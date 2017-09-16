@@ -6,7 +6,7 @@ export default {
         {
             'type': 'datetime',
             'label': '日期',
-            'prop': 'creattime',
+            'prop': 'createtime',
         },
         {
             'type': 'text',

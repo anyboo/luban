@@ -9,7 +9,7 @@
                     <div>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>登录账号</dt>
-                            <dd>{{$store.state.system.tel}}</dd>
+                            <dd>{{$store.state.system.user}}</dd>
                         </dl>
                         <dl class="dl-horizontal b-b padder-v">
                             <dt>账号密码</dt>
@@ -198,7 +198,7 @@ export default {
         handleChangePwd() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    let account = { user: this.$store.state.system.tel, pwd: md5(this.localdata.form2.old_pwd) }
+                    let account = { user: this.$store.state.system.user, pwd: md5(this.localdata.form2.old_pwd) }
                     this.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                         if (data.code == 0) {
                             this.updateTeble('employee', this.$store.state.system.id, {

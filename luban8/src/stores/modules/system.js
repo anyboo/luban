@@ -1,18 +1,20 @@
 const state = {
-    wallpaper: 'wood.jpg',
     id: '',
     name: '',
-    tel: '',
+    user: '',
+    db: '',
     face: '',
     birth: '',
+    admin: false,
     login: false,
-    roles: [],
+    roles_id: [],
+    org_id: '',
+    campus_id: '',
     theme: 'rgba(208, 150, 21, 0.8)',
     routerback: '',
     router: '',
     currStudentID: '',
     isModlues: true,
-
 }
 const getters = {}
 const actions = {}
@@ -41,11 +43,17 @@ const mutations = {
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     user: (state, obj) => {
+        state.login = obj.login
+        state.user = obj.user
+        state.birth = obj.birth
         state.name = obj.name
         state.id = obj._id
-        state.tel = obj.tel
-        state.birth = obj.birth
-        state.roles = obj.roles
+        state.db = obj.db
+        state.admin = obj.admin
+        state.roles_id = obj.roles_id
+        state.org_id = obj.org_id
+        state.campus_id = obj.campus_id
+        window.db = obj.db
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     system: (state, obj) => {
@@ -55,11 +63,17 @@ const mutations = {
         state.router = obj.router
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme
-        state.name = obj.name
-        state.id = obj.id
-        state.tel = obj.tel
+        state.login = obj.login
+        state.user = obj.user
         state.birth = obj.birth
-        state.roles = obj.roles
+        state.name = obj.name
+        state.id = obj._id
+        state.db = obj.db
+        state.admin = obj.admin
+        state.roles_id = obj.roles_id
+        state.org_id = obj.org_id
+        state.campus_id = obj.campus_id
+        window.db = obj.db
     }
 }
 export default {

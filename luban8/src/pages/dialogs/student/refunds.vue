@@ -25,7 +25,7 @@
                         <ul class="list-group">
                             <template v-for="item in getTablesData()">
                                 <li class="list-group-item ng-click-active" :class="getCheckRowClass(item._id)" @click="handleListChange(item)">
-                                    <h4 class="list-group-item-heading">缴费日期:{{getDatetimeFormat(item.creattime)}}</h4>
+                                    <h4 class="list-group-item-heading">缴费日期:{{getDatetimeFormat(item.createtime)}}</h4>
                                     <p class="list-group-item-text">缴费金额:
                                         <span class="text-danger">{{item.money_pay_amount}}元</span>,缴费方式:现金
                                     </p>
@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-12 col-md-2">缴费日期:</label>
                                 <div class="col-xs-12 col-md-5">
-                                    <p class="form-control-static">{{getDatetimeFormat(currentRow.creattime)}}</p>
+                                    <p class="form-control-static">{{getDatetimeFormat(currentRow.createtime)}}</p>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -84,7 +84,7 @@
                                 <el-tag type="success">{{ scope.row[item.prop] == '0' ? '全职':'兼职' }}</el-tag>
                             </template>
                             <template v-if="item.type=='notwrite'">
-                                {{scope.row[item.prop].length>0?scope.row[item.prop]:'未填写'}}
+                                {{(scope.row[item.prop]&&scope.row[item.prop].length>0)?scope.row[item.prop]:'未填写'}}
                             </template>
                             <template v-if="item.type=='payment'">
                                 {{getDictText('2',scope.row[item.prop])}}

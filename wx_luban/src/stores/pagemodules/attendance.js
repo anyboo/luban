@@ -1,13 +1,7 @@
 export default {
-    'pageName': 'hoursstudent',
-    'pageLable': '学员课耗',
+    'pageName': 'attendance',
+    'pageLable': '考勤',
     'tableSearch': [
-        {
-            'localField': 'student_id',
-            'from': 'student',
-            'foreignField': '_id',
-            'as': 'student'
-        },
         {
             'localField': 'coursescheduling_id',
             'from': 'coursescheduling',
@@ -38,37 +32,8 @@ export default {
             'as': 'course'
         },
     ],
-    'pageSearch': [
-        {
-            'type': 'selectSearch',
-            'searchfunction': function (form) {
-                let filterObj = []
-                let searchValue = form + ''
-                if (searchValue.length > 0) {
-                    filterObj.push({
-                        'key': 'student_id',
-                        'value': searchValue,
-                        'type': ''
-                    })
-                }
-                return filterObj
-            },
-            'fields': [
-                {
-                    'text': '请选择学员',
-                    'showdialog': 'selectstudentdialog',
-                    'search': 'student_name'
-                }
-            ]
-        }
-    ],
-    'pageTableField': [
-        {
-            'type': 'tabletext',
-            'label': '学员',
-            'table': 'student',
-            'prop': 'student_name'
-        },
+    'pageSearch': [],
+    'pageTableField':  [
         {
             'type': 'subtext',
             'label': '班级',
@@ -88,12 +53,6 @@ export default {
             'prop': 'unit_hours'
         },
         {
-            'type': 'substatus',
-            'label': '类型',
-            'prop': 'course',
-            'subprop': 'lesson_type'
-        },
-        {
             'type': 'tabletext',
             'label': '课程金额',
             'prop': 'unit_price',
@@ -106,12 +65,18 @@ export default {
             'table': 'employee'
         },
         {
-            'type': 'tabletext',
+            'type': 'text',
             'label': '登记时间',
-            'prop': 'createtime',
+            'prop': 'creattime',
+        },
+        {
+            'type': 'text',
+            'label': '出勤状态',
+            'prop': 'attence_flag'
         }
     ],
+    'pageClasses': true,
     'pageTable': 'attendance',
-    'pageTemplate': 'table',
+    'pageTemplate': 'table1',
     'pagePath': ''
 }

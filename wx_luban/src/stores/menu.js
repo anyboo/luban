@@ -1,29 +1,25 @@
 export default [{
     menuTitle:'缴费记录',
     menuIcon:'payRecord',
-     pageTable:'pay',
+     pageTable:'payRecord',
 },{
     menuTitle:'跟踪回访',
     menuIcon:'callbackRecord',
-    pageTable:'inquiry',
+    pageTable:'callbackRecord',
 },{
     menuTitle:'排课记录',
     menuIcon:'courseRecord',
-     pageTable:'order',
+    pageTable:'courseRecordclasses',
 },{
     menuTitle:'考勤记录',
     menuIcon:'salaryRecord',
-     pageTable:'attendance',
+    pageTable:'classes1',
 },{
     menuTitle:'请假记录',
     menuIcon:'lessonleaveRecord',
-     pageTable:'leaves',
+     pageTable:'lessonleaveRecord',
 },{
     menuTitle:'赛事记录',
     menuIcon:'eventsRecord',
-     pageTable:'recording',
-},{
-    menuTitle:'学生课销',
-    menuIcon:'keshi',
-     pageTable:'recording',
+     pageTable:'eventsRecord',
 }]
