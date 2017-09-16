@@ -106,15 +106,15 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     let query_options = {
-        app_id: encodeURIComponent(AlipayConfig.app_id),
-        method: encodeURIComponent('alipay.trade.page.pay'),
-        format: encodeURIComponent(AlipayConfig.format),
-        charset: encodeURIComponent(AlipayConfig.charset),
-        sign_type:encodeURIComponent( AlipayConfig.sign_type),
-        sign: encodeURIComponent(signs),
-        timestamp: encodeURIComponent(time),
-        version: encodeURIComponent('1.0'),
-        biz_content: encodeURIComponent(biz_content)
+        app_id: encode(AlipayConfig.app_id),
+        method: encode('alipay.trade.page.pay'),
+        format: encode(AlipayConfig.format),
+        charset: encode(AlipayConfig.charset),
+        sign_type:encode( AlipayConfig.sign_type),
+        sign: encode(signs),
+        timestamp: encode(time),
+        version: encode('1.0'),
+        biz_content: encode(biz_content)
     }
     var body = JSON.stringify(body_options)
     let queryopt = querystring.stringify(query_options)
