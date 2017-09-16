@@ -113,6 +113,7 @@ module.exports.alipay = function* alipay() {
         format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
+        return_url:'https://m.alipay.com/Gk8NF23',
         sign: signs,
         timestamp: time,
         version: '1.0',
