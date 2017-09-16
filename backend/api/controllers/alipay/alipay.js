@@ -123,7 +123,7 @@ module.exports.alipay = function* alipay() {
     aliinfo = yield net.ajax(ali_options, body, true)
     var gbkBytes = iconv.encode(aliinfo,'utf-8');
     
-   /*  res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.end(gbkBytes) */
-    this.body = aliinfo
+    gbkBytes.setHeader('Content-Type', 'text/html; charset=utf-8')
+
+    this.body = gbkBytes
 }
