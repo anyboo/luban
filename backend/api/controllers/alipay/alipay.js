@@ -121,9 +121,11 @@ module.exports.alipay = function* alipay() {
     }
 
     aliinfo = yield net.ajax(ali_options, body, true)
-    var gbkBytes = iconv.encode(aliinfo,'utf-8');
-    
-    gbkBytes.setHeader('Content-Type', 'text/html; charset=utf-8')
-
-    this.body = gbkBytes
+    const charset = require('superagent-charset')
+    const request = require('superagent')
+    charset(request)
+    request.get(aliinfo).charset('utf-8').end((err, res) => {
+      console.log('--------------->', res.text);
+    });
+    this.body = res
 }
