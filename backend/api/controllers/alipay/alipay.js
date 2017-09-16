@@ -134,7 +134,7 @@ module.exports.alipay = function* alipay() {
                 // arrBuf是个存byte数据块的数组，byte数据块可以转为字符串，数组可不行
                 // bufferhelper也就是替你计算了bufLength而已 
                 var chunkAll = Buffer.concat(arrBuf, bufLength);
-                var strJson = iconv.decode(chunkAll, 'gb2312'); // 汉字不乱码
+                var strJson = iconv.decode(chunkAll, 'utf-8'); // 汉字不乱码
                 this.body = strJson
                 console.log(strJson);
             });
