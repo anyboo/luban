@@ -99,6 +99,7 @@ module.exports.alipay = function* alipay() {
     let sign_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
+        format: AlipayConfig.format,
         sign_type: AlipayConfig.sign_type,
         charset: AlipayConfig.charset,
         timestamp: time,
