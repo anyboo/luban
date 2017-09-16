@@ -60,7 +60,7 @@ function getSign(params) {
         var prestr = getParams(params)
         console.log(prestr)
         const sign = crypto.createSign('RSA-SHA256')
-        sign.update(prestr)
+        sign.update(prestr,AlipayConfig.charset)
         let hash = sign.sign(key).toString('base64')
         console.log(hash)
         return hash
