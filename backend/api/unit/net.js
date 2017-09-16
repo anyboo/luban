@@ -1,13 +1,15 @@
 const https = require('https')
 const http = require('http')
 
-module.exports.ajax = function (options, body, html) {
+module.exports.ajax = function (options, body, html = false, encoding = 'utf-8') {
     return new Promise(function (resolve) {
-        let data = ''
+        var arrBuf = []
+        var bufLength = 0
         const req = https.request(options, (res) => {
             res.setEncoding('utf8')
             res.on('data', (d) => {
-                data+=d.toString()
+                arrBuf.push(d)
+                bufLength += d.length
             })
         })
         if (options.method == 'POST') {
@@ -18,10 +20,17 @@ module.exports.ajax = function (options, body, html) {
         })
         req.on('close', (e) => {
             try {
+                var chunkAll = Buffer.concat(arrBuf, bufLength);
+                var data = ''
+                if (encoding != 'utf-8') {
+                    data = iconv.decode(chunkAll, encoding); // 汉字不乱码
+                } else {
+                    data = chunkAll
+                }
                 console.log(data)
                 let reqdata = data
                 if (html) {
-                    
+
                 } else {
                     reqdata = JSON.parse(data.toString())
                 }
