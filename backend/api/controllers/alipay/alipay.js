@@ -62,7 +62,7 @@ function getSign(params) {
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
-        console.log(hash)
+       /*  console.log(hash) */
         return hash
     } catch (err) {
         console.log('getSign err', err)
