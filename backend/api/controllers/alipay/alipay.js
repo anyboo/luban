@@ -34,7 +34,7 @@ function getParams(params) {
     var sPara = [];
     if (!params) return null;
     for (var key in params) {
-        if ((!params[key]) || key == "sign") {
+        if ((!params[key]) || key == "sign" || key == "format") {
             continue;
         };
         sPara.push([key, params[key]]);
@@ -109,6 +109,7 @@ module.exports.alipay = function* alipay() {
     let body_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
+        format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
         sign: signs,
