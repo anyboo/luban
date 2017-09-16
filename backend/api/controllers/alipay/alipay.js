@@ -89,8 +89,10 @@ function getVerify(params, key, signature) {
 
 module.exports.alipaynotify = function* alipaynotify() {
     if ('POST' != this.method) return yield next
-    let query = this.query
-    console.log(query)
+    var model = yield parse(this, {
+        limit: '5000kb'
+    })
+    console.log(model)
     let signature = ''
     var key = publicPem.toString()
     console.log(getVerify(query, key, signature))
