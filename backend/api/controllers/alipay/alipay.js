@@ -15,6 +15,8 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
+var iconv = require('iconv-lite')
+
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
 var publicPem = fs.readFileSync(path.resolve('controllers/alipay/', 'alipay_public_key.pem'))
@@ -24,7 +26,7 @@ var AlipayConfig = {
     "app_id": "2017082808427000",
     "private_key": privatePem,
     "format": "json",
-    "input_charset": "UTF-8",
+    "charset": "UTF-8",
     "alipay_public_key": publicPem,
     "sign_type": "RSA2"
 }
@@ -88,18 +90,17 @@ module.exports.alipay = function* alipay() {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
         sign_type: AlipayConfig.sign_type,
-        input_charset: AlipayConfig.input_charset,
+        charset: AlipayConfig.charset,
         timestamp: time,
         version: '1.0',
         biz_content: biz_content
     }
-    console.log(sign_options)
     let signs = getSign(sign_options)
     let body_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
         format: AlipayConfig.format,
-        input_charset: AlipayConfig.input_charset,
+        charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
         sign: signs,
         timestamp: time,
@@ -107,6 +108,7 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     var body = JSON.stringify(body_options)
+    console.log(body)
     let ali_options = {
         hostname: 'openapi.alipay.com',
         port: 443,
@@ -118,5 +120,6 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajax(ali_options, body, true)
+ 
     this.body = aliinfo
 }
