@@ -8,6 +8,11 @@ export default {
         action: [{
             'text': '记一笔',
             'action': 'iaeflow'
+        }],
+        dropDownMenu: [{
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
         }]
     }, {
         menuTitle: '收入明细',

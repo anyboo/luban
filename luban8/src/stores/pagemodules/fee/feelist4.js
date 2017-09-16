@@ -5,7 +5,22 @@ export default {
         'localField': 'student_id',
         'from': 'student',
         'foreignField': '_id',
-        'as': 'student'
+        'as': 'student',
+    }, {
+        'localField': 'classes_id',
+        'from': 'classes',
+        'foreignField': '_id',
+        'as': 'classes'
+    },{
+        'localField': 'order_id',
+        'from': 'order',
+        'foreignField': '_id',
+        'as': 'order'
+    }, {
+        'localField': 'classes_id',
+        'from': 'classes',
+        'foreignField': '_id',
+        'as': 'classes'
     }],
     'pageSearch': [
         {
@@ -42,10 +57,10 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                    'key': 'student_id',
-                    'value': searchValue,
-                    'type': ''
-                })
+                        'key': 'student_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
                 }
                 return filterObj
             },
@@ -59,6 +74,12 @@ export default {
         }
     ],
     'pageTableField': [
+        {
+            'type': 'tabletext',
+            'label': '订单号',
+            'table': 'order',
+            'prop': 'order_no'
+        },
         {
             'type': 'datetime',
             'label': '日期',
@@ -74,6 +95,18 @@ export default {
             'label': '学员',
             'table': 'student',
             'prop': 'student_name'
+        },
+        {
+            'type': 'tabletext',
+            'label': '班级',
+            'table': 'classes',
+            'prop': 'class_name'
+        }, {
+            'type': 'tabledouble',
+            'label': '经办人',
+            'table': 'classes',
+            'tableprop':'name',
+            'prop': 'employee',
         }
     ],
     'pageTable': 'refund',

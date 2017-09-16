@@ -1,6 +1,7 @@
 export default {
-    'pageName': 'storedrechargevalue',
+    'pageName': 'systemrechargeform',
     'pageLable': '报名&缴费',
+    'student': true,
     'form': {
         'classes_id': '',
         'course_id': '',
@@ -36,11 +37,11 @@ export default {
     },
     'formField': [
         {
-            'type': 'text',
+            'type': 'vmsubtext',
             'label': '当前余额',
-            'prop': '',
+            'prop': 'student',
             'subprop': 'amount',
-            'text':'元'
+            'text': '元'
         },
         {
             'type': 'numberinput',
@@ -70,7 +71,7 @@ export default {
             'text': '元'
         }
     ],
-    'pageTable': 'rechargeorder',
+    'pageTable': 'rechargesearchorder',
     'pageTemplate': 'form',
     'pagePath': '',
     rulesData(vm) {

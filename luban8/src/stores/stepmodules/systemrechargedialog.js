@@ -1,14 +1,19 @@
 export default {
     'pageName': 'systemrechargedialog',
-    'pageLable': '预充值',
-    'student': true,
+    'pageLable': '充值',
     'stepsInfo': [{
-        'label': '创建订单2313',
-        'module': 'storedrechargevalue'
+        'label': '创建订单',
+        'module': 'systemrechargeform',
+        'buttons': [{
+            'text': '下一步',
+            'exec': function (vm) {
+                vm.next()
+            }
+        }]
     },{
         'label': '缴费',
         'module': 'lb-orderandpay'
     }],
-    'pageTable': 'attendance',
+    'pageTable': 'rechargesearchorder',
     'pagePath': ''
 }

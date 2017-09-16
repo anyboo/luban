@@ -12,6 +12,10 @@ import stepstudentdialog from './dialogmodules/stepstudentdialog.js'
 import dictitemdialog from './dialogmodules/dictitemdialog.js'
 import refundlistdialog from './dialogmodules/refundlistdialog.js'
 import stepstudentsmsdialog from './dialogmodules/stepstudentsmsdialog.js'
+import rechargesearchdialogs from './dialogmodules/rechargesearchdialogs.js'
+import buytextdialogs from './dialogmodules/buytextdialogs.js'
+import smssenddialog from './dialogmodules/smssenddialog.js'
+
 
 let pages ={}
 pages['selectclassesdialog'] = selectclassesdialog
@@ -28,5 +32,8 @@ pages['stepstudentdialog'] = stepstudentdialog
 pages['dictitemdialog'] = dictitemdialog
 pages['refundlistdialog'] = refundlistdialog
 pages['stepstudentsmsdialog'] = stepstudentsmsdialog
+pages['rechargesearchdialogs'] = rechargesearchdialogs
+pages['buytextdialogs'] = buytextdialogs
+pages['smssenddialog'] = smssenddialog
 
 export default pages

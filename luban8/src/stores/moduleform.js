@@ -22,6 +22,8 @@ import dictform from './formmodules/dictform.js'
 import refundfrom from './formmodules/refundfrom.js'
 import recordingdetailform from './formmodules/recordingdetailform.js'
 import storedrechargevalue from './formmodules/storedrechargevalue.js'
+import systembuyform from './formmodules/systembuyform.js'
+import systemrechargeform from './formmodules/systemrechargeform.js'
 
 
 let pages = {}
@@ -50,5 +52,8 @@ pages['dictform'] = dictform
 pages['refundfrom'] = refundfrom
 pages['recordingdetailform'] = recordingdetailform
 pages['storedrechargevalue'] = storedrechargevalue
+pages['systembuyform'] = systembuyform
+
+pages['systemrechargeform'] = systemrechargeform
 
 export default pages

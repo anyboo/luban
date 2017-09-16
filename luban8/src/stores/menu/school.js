@@ -1,6 +1,6 @@
 export default {
     menuTitle: '家校',
-    menuIcon: 'fa-cog',
+    menuIcon: 'fa-handshake-o',
     menu: [ {
         menuTitle: '短信',
         to: 'systemsms',

@@ -191,6 +191,14 @@
                     </el-select>
                 </el-form-item>
             </template>
+            <template v-if="item.type=='selectoptions'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-select v-model="localdata.form[item.field]" placeholder="请选择" style="width: 100%;" @change="selectChange">
+                        <el-option v-for="value in item.optionData" :key="value.value" :label="value.label" :value="value.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </template>
             <template v-if="item.type=='switch'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-switch v-model="localdata.form[item.field]" on-text="" off-text="">
@@ -385,7 +393,8 @@ export default {
     },
     methods: {
         selectChange(obj) {
-            this.$refs['ruleForm'].validateField(obj.field)
+            console.log(obj)
+            //this.$refs['ruleForm'].validateField(obj.field)
             if (this.module.selectChange) {
                 this.module.selectChange(this, obj)
             }
