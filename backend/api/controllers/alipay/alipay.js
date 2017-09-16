@@ -105,8 +105,19 @@ module.exports.alipay = function* alipay() {
         version: '1.0',
         biz_content: biz_content
     }
+    let query_options = {
+        app_id: encodeURIComponent(AlipayConfig.app_id),
+        method: encodeURIComponent('alipay.trade.page.pay'),
+        format: encodeURIComponent(AlipayConfig.format),
+        charset: encodeURIComponent(AlipayConfig.charset),
+        sign_type:encodeURIComponent( AlipayConfig.sign_type),
+        sign: encodeURIComponent(signs),
+        timestamp: encodeURIComponent(time),
+        version: encodeURIComponent('1.0'),
+        biz_content: encodeURIComponent(biz_content)
+    }
     var body = JSON.stringify(body_options)
-    let queryopt = encodeURIComponent(querystring.stringify(sign_options))
+    let queryopt = querystring.stringify(query_options)
     console.log(body,queryopt)
     let ali_options = {
         hostname: 'openapi.alipay.com',
