@@ -43,7 +43,7 @@ app.use(route.post('/sms/', alisms.alisms))
 app.use(route.post('/checksms/', alisms.alichecksms))
 //阿里支付
 app.use(route.post('/alipay/', alipay.alipay))
-app.use(route.post('/alipaynotify/', alipay.alipaynotify))
+app.use(route.get('/alipaynotify/', alipay.alipaynotify))
 //数据
 app.use(route.post('/login/', control.login))
 app.use(route.post('/:db/upload', control.upload))
