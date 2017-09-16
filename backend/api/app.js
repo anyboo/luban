@@ -45,7 +45,7 @@ app.use(route.post('/checksms/', alisms.alichecksms))
 app.use(route.post('/alipay/', alipay.alipay))
 
 //数据
-app.use(route.post('/:db/login/', control.login))
+app.use(route.post('/login/', control.login))
 app.use(route.post('/:db/upload', control.upload))
 app.use(route.get('/:db/api/:name', control.all))
 app.use(route.get('/:db/api/:name/:id', control.fetch))

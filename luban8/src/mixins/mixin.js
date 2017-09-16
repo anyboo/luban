@@ -94,7 +94,7 @@ export default {
             event.stopPropagation()
         },
         getRole(role) {
-            if (this.$store.state.system.tel == 'luban') {
+            if (this.$store.state.system.admin) {
                 return true
             }
             if (this.$store.state.system.roles) {

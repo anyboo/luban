@@ -384,26 +384,38 @@ export default {
             });
         },
         login() {
-            this.$store.commit('user', { name: '', tel: '', _id: '' })
+            this.$store.state.models.login = false
+            this.$store.commit('user', { login: false })
             this.$store.state.system.router = 'lb-systemsign_in'
         },
         resetForm(formName) {
             this.$refs[formName].resetFields()
         },
-        initdata(db) {
+        initdata(org) {
             let roles_id = []
-            let campus_id = []
-            Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campus).then(obj => {
-                campus_id.push(obj._id)
-                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
+            let campus_id = ''
+            let org_id = org._id
+            let createtime = (new Date()).getTime()
+            let db = 'luban_' + createtime
+            campus.org_id = org_id
+            campus.db = db
+            campus.createtime = createtime
+            role.db = db
+            role.createtime = createtime
+
+            Vue.http.post('http://app.bullstech.cn/luban8/api/campus', campus).then(obj => {
+                campus_id = obj.data._id
+                role.campus_id = campus_id
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/role', role)
             }).then(obj => {
-                roles_id.push(obj._id)
+                roles_id.push(obj.data._id)
                 return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
             }).then(obj => {
                 let employeeform = {
                     'name': this.infoForm.uname,
                     'sex': '0',
                     'roles_id': roles_id,
+                    'org_id': org_id,
                     'campus_id': campus_id,
                     'is_part_time': '0',
                     'phone': this.registerForm.phone,
@@ -412,10 +424,12 @@ export default {
                     'admin': true,
                     'birth': '',
                     'pwd': md5(this.registerForm.pass),
-                    'db':db
+                    'db': db,
+                    'usedata': createtime,
+                    'createtime': createtime
                 }
                 return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
-             }).then(obj => {
+            }).then(obj => {
                 this.login()
             })
         },
@@ -428,13 +442,13 @@ export default {
                 phone: this.registerForm.phone,
                 createtime: createtime.getTime(),
                 name: this.infoForm.uname,
-                pwd: md5(this.registerForm.pass),
-                db
+                pwd: md5(this.registerForm.pass)
             }
             Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
-                this.infoForm.user_id = obj._id
+                this.infoForm.user_id = obj.data._id
+                this.infoForm.createtime = obj.data.createtime
                 Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm).then(obj => {
-                    this.initdata(db)
+                    this.initdata(obj.data)
                 })
             }).catch(() => {
             })

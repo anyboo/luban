@@ -33,17 +33,21 @@ function loginemployee(user) {
                     'lock': false
                 }
             })
+            options.push({ '$sort': { 'usedata': -1 } })
+            options.push({ '$limit': 1 })
             let cursor = table.aggregate(options)
             cursor.toArray().then(obj => {
                 if (obj.length > 0) {
                     logindata.login = true
                     logindata.user = obj[0].phone
                     logindata.name = obj[0].name
+                    logindata.birth = obj[0].birth
                     logindata.admin = obj[0].admin
                     logindata.db = obj[0].db
+                    logindata.org_id = obj[0].org_id
                     logindata.roles_id = obj[0].roles_id
                     logindata.campus_id = obj[0].campus_id
-                    logindata.id = obj[0]._id
+                    logindata._id = obj[0]._id
                     resolve(logindata)
                 } else {
                     resolve(logindata)
@@ -64,33 +68,17 @@ module.exports.login = function* login(db, next) {
     var token = ''
     var code = -1
     var message = '登录失败'
-    let account = {}
     if (dbmodel.login) {
         token = jwt.sign(dbmodel, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
         code = 0
         message = '登录成功'
-        account = dbmodel
-    } else {
-        var profile = {
-            user: user.user,
-            id: 0
-        }
-    
-        if (user.user == 'luban' && user.pwd == 'e10adc3949ba59abbe56e057f20f883e') {
-            token = jwt.sign(profile, 'luban', { expiresIn: 60 * 60 * 24 * 3 })
-            code = 0
-            message = '登录成功'
-            account.name = 'luban'
-            account._id = 0
-            account.tel = 'luban'
-        }
-    } 
+    }
     let nowtime = new Date().getTime()
     this.body = {
         code,
         token,
         message,
-        account: account,
+        account: dbmodel,
         nowtime
     }
 }
