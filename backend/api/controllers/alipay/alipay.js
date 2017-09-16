@@ -34,7 +34,7 @@ function getParams(params) {
     var sPara = [];
     if (!params) return null;
     for (var key in params) {
-        if ((!params[key]) || key == "sign" || key == "format") {
+        if ((!params[key]) || key == "sign" ) {
             continue;
         };
         sPara.push([key, params[key]]);
