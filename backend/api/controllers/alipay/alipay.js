@@ -51,6 +51,8 @@ function getParams(params) {
     }
     return prestr;
 }
+/* app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0
+app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0 */
 /*
 app_id=2017082808427000&
 biz_content={"out_trade_no":"32328556","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}
@@ -107,7 +109,6 @@ module.exports.alipay = function* alipay() {
     let body_options = {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
-        format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
         sign: signs,
