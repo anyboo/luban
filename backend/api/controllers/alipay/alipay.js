@@ -59,7 +59,6 @@ function getSign(params) {
     try {
         var key = privatePem.toString()
         var prestr = getParams(params)
-        console.log(prestr,"～～～～～～～～～～～～～～～我的天空～～～～～～～～～～～～～～～～～")
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
@@ -119,8 +118,7 @@ module.exports.alipay = function* alipay() {
             'Content-Length': body.length,
         }
     }
-    console.log('~!!!!!!!!!~执行成功')
     aliinfo = yield net.ajax(ali_options, body, true)
-    aliinfo =iconv.encode(aliinfo,'utf-8')
+    aliinfo =iconv.decode(aliinfo,'GBK')
     this.body = aliinfo
 }
