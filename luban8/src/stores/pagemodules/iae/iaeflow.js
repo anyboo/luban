@@ -6,6 +6,11 @@ export default {
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
+    },{
+        'localField': 'student_id',
+        'from': 'student',
+        'foreignField': '_id',
+        'as': 'student'
     }],
     'pageSearch': [
         {
@@ -17,7 +22,7 @@ export default {
                     let endTime = vm.getDatetime(form[1])
                     if (startTime > 0) {
                         if (startTime == endTime) {
-                            endTime = this.getDatetimeEndOf(vm.localdata.form.daterange[1])
+                            endTime = vm.getDatetimeEndOf(vm.localdata.form.daterange[1])
                         }
                         filterObj.push({
                             'key': 'create_time',
@@ -42,7 +47,7 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                    'key': 'student_id',
+                    'key': 'teacher_id',
                     'value': searchValue,
                     'type': ''
                 })
@@ -89,6 +94,10 @@ export default {
     ],
     'pageTableField': [
         {
+            'type':'operation',
+            'label':'操作'
+        },
+        {
             'type': 'datetime',
             'label': '日期',
             'prop': 'creattime'
@@ -117,6 +126,11 @@ export default {
         },
         {
             'type': 'text',
+            'label': '类别信息',
+            'prop': 'sel',
+        },
+        {
+            'type': 'text',
             'label': '备注',
             'prop': 'note',
         },
@@ -130,7 +144,7 @@ export default {
             'type': 'datetime',
             'label': '录入日期',
             'prop': 'creattime'
-        }
+        },
     ],
     'pageTable': 'flow',
     'pageTemplate': 'table1',

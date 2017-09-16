@@ -30,17 +30,20 @@ export default {
             'field': 'amount'
         },
         {
-            'type': 'select',
+            'type': 'selectoptions',
             'label': '所属分类',
-            'prop': '',
+            'prop': 'sel',
             'field': 'sel',
-            'dict': function(vm){
-                let dict = 8
-                if (vm.localdata.form.type==0){
-                    dict = 7
-                }
-                return dict
-            }
+            'optionData': [{
+                value: '杂费',
+                label: '杂费'
+            }, {
+                value: '日常开支',
+                label: '日常开支'
+            }, {
+                value: '报名缴费',
+                label: '报名缴费'
+            }]
         },
         {
             'type': 'input',

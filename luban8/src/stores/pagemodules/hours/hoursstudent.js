@@ -106,9 +106,10 @@ export default {
             'table': 'employee'
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '登记时间',
-            'prop': 'creattime',
+            'table':'student',
+            'prop': 'first_tel',
         }
     ],
     'pageTable': 'attendance',
