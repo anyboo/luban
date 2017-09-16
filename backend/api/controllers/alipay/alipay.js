@@ -51,13 +51,15 @@ function getParams(params) {
     }
     return prestr;
 }
-
+/*
+app_id=2017082808427000&amp;biz_content={&quot;out_trade_no&quot;:&quot;32328556&quot;,&quot;product_code&quot;:&quot;FAST_INSTANT_TRADE_PAY&quot;,&quot;total_amount&quot;:&quot;88&quot;,&quot;subject&quot;:&quot;luban&quot;,&quot;body&quot;:&quot;lubandemo&quot;,&quot;timeout_express&quot;:&quot;15m&quot;}&amp;charset=utf-8&amp;format=json&amp;method=alipay.trade.page.pay&amp;sign_type=RSA2&amp;timestamp=2017-09-16 18:30:46&amp;version=1.0
+*/
 //签名
 function getSign(params) {
     try {
         var key = privatePem.toString()
         var prestr = getParams(params)
-        console.log(prestr)
+        console.log("~~~~~~~~~~~~~?//////////////////////",prestr)
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
