@@ -15,8 +15,6 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
-var iconv = require('iconv-lite')
-
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
 var publicPem = fs.readFileSync(path.resolve('controllers/alipay/', 'alipay_public_key.pem'))
@@ -119,7 +117,6 @@ module.exports.alipay = function* alipay() {
             'Content-Length': body.length,
         }
     }
-    aliinfo = yield net.ajax(ali_options, body, true)
-    aliinfo =iconv.decode(aliinfo,'gb2312')
+    aliinfo = yield net.ajaxgb2312(ali_options, body)
     this.body = aliinfo
 }
