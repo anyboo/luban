@@ -75,7 +75,7 @@ function getSign(params, key) {
         console.log('getSign err', err)
     }
 }
-function getVerify(params,key,signature) {
+function getVerify(params, key, signature) {
     try {
         var prestr = getParams(params)
         console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
@@ -93,7 +93,7 @@ module.exports.alipaynotify = function* alipaynotify() {
     console.log(query)
     let signature = ''
     var key = publicPem.toString()
-    console.log(getVerify(query,key,signature))
+    console.log(getVerify(query, key, signature))
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
@@ -151,7 +151,7 @@ module.exports.alipay = function* alipay() {
     let ali_options = {
         hostname: 'openapi.alipay.com',
         port: 443,
-        path: '/gateway.do' ,
+        path: '/gateway.do',
         method: 'POST',
         headers: {
             "content-type": "application/json",
@@ -159,5 +159,5 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajaxgb2312(ali_options, body)
-    this.body = 'https://openapi.alipay.com/gateway.do?'+queryopt
+    this.body = aliinfo
 }
