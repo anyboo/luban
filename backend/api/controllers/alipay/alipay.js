@@ -15,6 +15,7 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
+var iconv = require('iconv-lite')
 
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
@@ -60,7 +61,7 @@ function getSign(params) {
         var prestr = getParams(params)
         console.log(prestr)
         const sign = crypto.createSign('RSA-SHA256')
-        sign.update(prestr,AlipayConfig.charset)
+        sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
         console.log(hash)
         return hash
@@ -120,5 +121,8 @@ module.exports.alipay = function* alipay() {
     }
 
     aliinfo = yield net.ajax(ali_options, body,true)
+    aliinfo = iconv.encode(str,'GB2312')
+    aliinfo = iconv.decode(str,'utf8')
+    aliinfo = aliinfo.toString()
     this.body =  aliinfo
 }
