@@ -79,7 +79,7 @@ function getVerify(params,key,signature) {
     try {
         var prestr = getParams(params)
         console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
-        const sign = crypto.createVerify('RSA-SHA256')
+        const verify = crypto.createVerify('RSA-SHA256')
         verify.write(prestr)
         verify.end()
         return verify.verify(key, signature)
