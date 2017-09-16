@@ -119,10 +119,8 @@ module.exports.alipay = function* alipay() {
             'Content-Length': body.length,
         }
     }
-
+   
     aliinfo = yield net.ajax(ali_options, body,true)
-    aliinfo = iconv.encode(str,'GB2312')
-    aliinfo = iconv.decode(str,'utf8')
-    aliinfo = aliinfo.toString()
+    iconv.encode(aliinfo, 'utf8').toString('gb2312')
     this.body =  aliinfo
 }
