@@ -151,7 +151,7 @@ module.exports.alipay = function* alipay() {
     let ali_options = {
         hostname: 'openapi.alipay.com',
         port: 443,
-        path: '/gateway.do?' + queryopt,
+        path: '/gateway.do' ,
         method: 'POST',
         headers: {
             "content-type": "application/json",
