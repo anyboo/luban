@@ -52,8 +52,13 @@ function getParams(params) {
     return prestr;
 }
 /*
-app_id=2017082808427000&amp;biz_content={&quot;out_trade_no&quot;:&quot;32328556&quot;,&quot;product_code&quot;:&quot;FAST_INSTANT_TRADE_PAY&quot;,&quot;total_amount&quot;:&quot;88&quot;,&quot;subject&quot;:&quot;luban&quot;,&quot;body&quot;:&quot;lubandemo&quot;,&quot;timeout_express&quot;:&quot;15m&quot;}&amp;charset=utf-8&amp;format=json&amp;method=alipay.trade.page.pay&amp;sign_type=RSA2&amp;timestamp=2017-09-16 18:30:46&amp;version=1.0
-*/
+app_id=2017082808427000&
+biz_content={"out_trade_no":"32328556","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}
+&charset=utf-8
+&method=alipay.trade.page.pay
+&sign_type=RSA2
+&timestamp=2017-09-16 18:33:21
+&version=1.0*/
 //签名
 function getSign(params) {
     try {
@@ -63,7 +68,7 @@ function getSign(params) {
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
-        /*  console.log(hash) */
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!",hash)
         return hash
     } catch (err) {
         console.log('getSign err', err)
