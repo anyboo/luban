@@ -11,6 +11,7 @@ module.exports.ajaxgb2312 = function (options, body) {
             res.on('data', (d) => {
                 arrBuf.push(d);
                 bufLength += d.length;
+                console.log(d.toString())
             })
         })
         if (options.method == 'POST') {
