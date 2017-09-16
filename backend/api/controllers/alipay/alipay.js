@@ -106,11 +106,12 @@ module.exports.alipay = function* alipay() {
         biz_content: biz_content
     }
     var body = JSON.stringify(body_options)
-    console.log(body)
+    let queryopt = querystring.stringify(sign_options)
+    console.log(body,queryopt)
     let ali_options = {
         hostname: 'openapi.alipay.com',
         port: 443,
-        path: '/gateway.do',
+        path: '/gateway.do?'+queryopt,
         method: 'POST',
         headers: {
             "content-type": "application/json",
