@@ -91,7 +91,7 @@ module.exports.alipay = function* alipay() {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
         sign_type: AlipayConfig.sign_type,
-        charset: AlipayConfig.charset,
+        charset: "UTF-8",
         timestamp: time,
         version: '1.0',
         biz_content: biz_content
@@ -101,7 +101,7 @@ module.exports.alipay = function* alipay() {
         app_id: AlipayConfig.app_id,
         method: 'alipay.trade.page.pay',
         format: AlipayConfig.format,
-        charset: AlipayConfig.charset,
+        charset: "UTF-8",
         sign_type: AlipayConfig.sign_type,
         sign: signs,
         timestamp: time,
@@ -120,6 +120,6 @@ module.exports.alipay = function* alipay() {
         }
     }
 
-    aliinfo = yield net.ajax(ali_options, body)
+    aliinfo = yield net.ajax(ali_options, body, true)
     this.body = aliinfo
 }
