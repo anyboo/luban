@@ -121,14 +121,21 @@ module.exports.alipay = function* alipay() {
     }
 
     aliinfo = yield net.ajax(ali_options, body, true)
-    const charset = require('superagent-charset');
-    const request = require('superagent');
-    charset(request);
-    
-    request
-      .get(aliinfo)
-      .content('text/html; charset=utf-8')
-      .end((err, res) => {
-        this.body = res
-      });
+    var http = require("http")
+    var url = 'aliinfo'
+    http.get(url, function(res){
+        var arrBuf = []
+        var bufLength = 0
+        res.on("data", function(chunk){
+            arrBuf.push(chunk)
+            bufLength += chunk.length
+        })
+        .on("end", function(){
+            // arrBuf是个存byte数据块的数组，byte数据块可以转为字符串，数组可不行
+            // bufferhelper也就是替你计算了bufLength而已 
+            var chunkAll = Buffer.concat(arrBuf, bufLength);   
+            var strJson = iconv.decode(chunkAll,'gb2312'); // 汉字不乱码
+          this.body = strJson
+        });
+    });
     }
