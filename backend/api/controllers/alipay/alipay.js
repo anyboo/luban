@@ -159,13 +159,5 @@ module.exports.alipay = function* alipay() {
         }
     }
     aliinfo = yield net.ajaxgb2312(ali_options, body)
-    ali_options = {
-        hostname: 'openapi.alipay.com',
-        port: 443,
-        path: '/gateway.do?' + queryopt,
-        method: 'GET',
-    }
-    aliinfo = yield net.ajaxgb2312(ali_options)
-    console.log(aliinfo)
-    this.body = aliinfo
+    this.body = 'https://openapi.alipay.com/gateway.do?'+queryopt
 }
