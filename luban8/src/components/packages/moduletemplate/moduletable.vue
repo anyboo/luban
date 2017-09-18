@@ -675,8 +675,15 @@ export default {
             if (this.moduledata.pagesize) {
                 this.pagination.pagesize = this.moduledata.pagesize
             }
+            if (this.moduledata.pagedb){
+                filterObj.push({
+                    'key': 'db',
+                    'value': this.$store.state.system.db,
+                    'type': ''
+                })
+            }
             if (this.moduledata && this.moduledata.pageTable) {
-                this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt).then((obj) => {
+                this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt,this.moduledata.pagedb).then((obj) => {
                     if (this.moduledata.tableChange) {
                         this.moduledata.tableChange(this, obj.data.data).then((obj) => {
                             this.moduleTableData = obj

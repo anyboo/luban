@@ -606,11 +606,18 @@ export default {
                         }
                         if (this.module.handleSave) {
                             this.module.handleSave(this).then((response) => {
-                                    resolve(response)
-                                 }, (e) => {
+                                resolve(response)
+                            }, (e) => {
                             })
                         } else {
-                            vm.handleSave().then((response) => {
+                            if (this.module.pagedb) {
+                                this.localdata.form.db = this.$store.state.system.db
+                            }
+                            vm.handleSavedb({
+                                db: this.module.pagedb,
+                                form : this.localdata.form,
+                                table: this.module.pageTable,
+                            }).then((response) => {
                                 if (this.module.afterSave) {
                                     this.module.afterSave(this, response).then((obj) => {
                                         resolve(obj)

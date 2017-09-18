@@ -82,6 +82,7 @@ export default {
             'prop': 'branch_tel',
         }
     ],
+    'pagedb': 'luban8',
     'pageTable': 'campus',
     'pageTemplate': 'table1',
     'pagePath': ''

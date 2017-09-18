@@ -2,6 +2,9 @@ import * as types from '~/stores/modules/mutation-types'
 import makeimage from '~/api/makeImage.js'
 import base64 from '~/api/base64.js'
 import menu from '~/stores/menu.js'
+import campus from '~/stores/initdata/campus.js'
+import dictionary from '~/stores/initdata/dictionary.js'
+import role from '~/stores/initdata/role.js'
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -315,13 +318,14 @@ export default {
             let filterTxt = base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTable(filterTxt)
         },
-        handleGetFilterTableTable(model, filter) {
+        handleGetFilterTableTable(model, filter, db) {
             let vm = this
             return new Promise((resolve, reject) => {
                 let table = {}
                 table.model = model
                 table.filter = filter
                 table.alias = this.alias
+                table.db = db
                 table.prepage = this.pagination.pagesize
                 table.page = this.pagination.currentPage - 1
                 vm.$store.dispatch(types.GET_Filter_API, table).then((response) => {
@@ -402,13 +406,14 @@ export default {
                 }
             })
         },
-        updateTeble(table, id, data) {
+        updateTeble(table, id, data, db) {
             let vm = this
             return new Promise((resolve, reject) => {
                 vm.$store.dispatch(types.EDIT_API, {
                     'model': table,
                     'id': id,
                     'form': data,
+                    'db': db
                 }).then((response) => {
                     resolve(response)
                 }).catch((error) => {
@@ -449,23 +454,65 @@ export default {
                 })
             })
         },
-        handleSave(form) {
+        initdbdata(org_id, campusform) {
+            let roles_id = []
+            let campus_id = ''
+            let createtime = (new Date()).getTime()
+            let db = 'luban_' + createtime
+            let campusobj = {}
+            if (campusform) {
+                Object.assign(campusobj, campusform)
+            } else {
+                Object.assign(campusobj, campus)
+            }
+            campusobj.org_id = org_id
+            campusobj.db = db
+            campusobj.createtime = createtime
+            role.db = db
+            role.createtime = createtime
+
+            Vue.http.post('http://app.bullstech.cn/luban8/api/campus', campusobj).then(obj => {
+                campus_id = obj.data._id
+                role.campus_id = campus_id
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
+            }).then(obj => {
+                roles_id.push(obj.data._id)
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
+            }).then(obj => {
+                let employeeform = {
+                    'name': this.$store.state.system.name,
+                    'sex': '0',
+                    'roles_id': roles_id,
+                    'org_id': org_id,
+                    'campus_id': campus_id,
+                    'is_part_time': '0',
+                    'phone': this.$store.state.system.phone,
+                    'email': '',
+                    'lock': false,
+                    'admin': true,
+                    'birth': '',
+                    'pwd': this.$store.state.system.pwd,
+                    'db': db,
+                    'usedate': createtime,
+                    'createtime': createtime
+                }
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
+            })
+        },
+        handleSavedb({ db, table, form }) {
             let vm = this
             let modalform = form ? form : vm.localdata.form
+            let modaltable = table ? table : vm.model
             return new Promise((resolve, reject) => {
                 vm.changeFormDateTime(modalform)
-                if (vm.localdata.validator && vm.localdata.validator.errorStatus) {
-                    reject()
-                    return
-                }
-
                 if (vm.modalsType == types.APPEND_API) {
                     let createtime = new Date()
                     modalform.createtime = createtime.getTime()
 
                     vm.$store.dispatch(types.APPEND_API, {
-                        'model': vm.model,
-                        'form': modalform
+                        'model': modaltable,
+                        'form': modalform,
+                        'db': db
                     }).then((response) => {
                         resolve(response)
                     }).catch((error) => {
@@ -477,6 +524,7 @@ export default {
                         'model': vm.model,
                         'id': vm._id,
                         'form': modalform,
+                        'db': db
                     }).then((response) => {
                         resolve(response)
                     }).catch((error) => {
@@ -486,6 +534,9 @@ export default {
                 }
                 //console.log(modalform, vm.modalsType)
             })
+        },
+        handleSave(form) {
+            return this.handleSavedb({ form })
         },
         changeFormDateTime(modalform) {
             let vm = this

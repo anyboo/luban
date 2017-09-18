@@ -9,6 +9,7 @@ const state = {
     login: false,
     roles_id: [],
     org_id: '',
+    pwd: '',
     campus_id: '',
     theme: 'rgba(208, 150, 21, 0.8)',
     routerback: '',
@@ -67,7 +68,7 @@ const mutations = {
         state.user = obj.user
         state.birth = obj.birth
         state.name = obj.name
-        state.id = obj._id
+        state.id = obj.id
         state.db = obj.db
         state.admin = obj.admin
         state.roles_id = obj.roles_id

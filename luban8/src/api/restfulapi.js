@@ -19,8 +19,8 @@ function httpGetFieldsApi(model, fields) {
     return Vue.http.get(apiUrlGet)
 }
 
-function httpGetFilterApi({ model, filter, prepage, page }) {
-    let apiUrl = urlUtil.getUrlFilter(model, filter, prepage, page)
+function httpGetFilterApi({ model, filter, prepage, page, db }) {
+    let apiUrl = urlUtil.getUrlFilter(model, filter, prepage, page, db)
     httpAuth()
     return Vue.http.get(apiUrl)
 }
@@ -37,8 +37,8 @@ function httpLoginApi(obj) {
     return Vue.http.post(apiUrl, form)
 }
 
-function httpAppendApi({ model, form }) {
-    let apiUrl = urlUtil.getUrl(model)
+function httpAppendApi({ model, form, db }) {
+    let apiUrl = urlUtil.getUrl(model, db)
     httpAuth()
     return Vue.http.post(apiUrl, form)
 }
@@ -55,20 +55,20 @@ function httpBulkApi({ model, form }) {
     return Vue.http.post(apiUrl, form)
 }
 
-function httpEditApi({ model, id, form }) {
-    let apiUrl = urlUtil.getUrlById(model, id)
+function httpEditApi({ model, id, form, db }) {
+    let apiUrl = urlUtil.getUrlById(model, id, db)
     httpAuth()
     return Vue.http.put(apiUrl, form)
 }
 
-function httpGetIdApi({ model, id }) {
-    let apiUrl = urlUtil.getUrlById(model, id)
+function httpGetIdApi({ model, id, db }) {
+    let apiUrl = urlUtil.getUrlById(model, id, db)
     httpAuth()
     return Vue.http.get(apiUrl)
 }
 
-function httpDeleteApi({ model, id }) {
-    let apiUrl = urlUtil.getUrlById(model, id)
+function httpDeleteApi({ model, id, db }) {
+    let apiUrl = urlUtil.getUrlById(model, id, db)
     httpAuth()
     return Vue.http.delete(apiUrl)
 }

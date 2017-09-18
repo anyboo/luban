@@ -1,7 +1,7 @@
  <template>
     <div class="panel panel-default">
         <div class="panel-heading">
-            机构基本信息 
+            机构基本信息
         </div>
         <div class="panel-body">
             <el-form :model="localdata.form" :rules="rules" label-width="120px" ref="ruleForm">
@@ -46,7 +46,7 @@ export default {
                 name: [
                     { required: true, message: '请输入机构全称', trigger: 'blur' },
                     { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
-                ], 
+                ],
                 short_name: [
                     { required: true, message: '请输入机构简称', trigger: 'blur' },
                     { min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
@@ -55,32 +55,31 @@ export default {
         }
     },
     mounted() {
-        this.getTableApidata('org')
-    },
-    computed: {
-        getData() {
-            let org = this.$store.state.models.models.org.data
-            if (org.length > 0) {
-                this.localdata.form = org[0]
+        let filterObj = []
+        filterObj.push({
+            'key': '_id',
+            'value': this.$store.state.system.org_id,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+            if (obj.data.count > 0) {
+                this.localdata.form = obj.data.data[0]
+            } else {
             }
-            return true
-        },
+        }).catch(() => {
+        })
     },
     methods: {
         rest_save() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    if (this.localdata.form._id && this.localdata.form._id.length > 0) {
-                        this.setEditModle(this.localdata.form._id)
-                    }
-                    this.handleSave().then((required) => {
+                    Vue.http.put('http://app.bullstech.cn/luban8/api/org/' + this.$store.state.system.org_id, this.localdata.form).then(obj => {
                         this.$message({
                             message: '操作成功',
                             type: 'success'
                         })
-                        this.getTableApidata('org')
-                    }, () => {
-
+                    }).catch(() => {
                     })
                 }
             })

@@ -4,8 +4,12 @@ function getLoginUrl() {
     return apiUrl + 'login/'
 }
 
-function getApiUrl() {
-    return apiUrl + window.db + '/api/'
+function getApiUrl(db) {
+    let dbstr = window.db
+    if (db) {
+        dbstr = db
+    }
+    return apiUrl + dbstr + '/api/'
 }
 function getSmsUrl() {
     return apiUrl + window.db + '/sms/'
@@ -18,20 +22,20 @@ function getUrls(model) {
     return apiUrl + window.db + '/apis/' + model + '/'
 }
 
-function getUrl(model) {
-    return getApiUrl() + model + '/'
+function getUrl(model, db) {
+    return getApiUrl(db) + model + '/'
 }
 
-function getUrlById(model, id) {
-    return getApiUrl() + model + '/' + id
+function getUrlById(model, id, db) {
+    return getApiUrl(db) + model + '/' + id
 }
 
-function getUrlField(model, fields) {
-    return getApiUrl() + model + '/?fields=' + encodeURIComponent(fields.join())
+function getUrlField(model, fields, db) {
+    return getApiUrl(db) + model + '/?fields=' + encodeURIComponent(fields.join())
 }
 
-function getUrlFilter(model, filter, prepage, page) {
-    return getApiUrl() + model + '/?page=' + page + '&prepage=' + prepage + '&filter=' + filter
+function getUrlFilter(model, filter, prepage, page, db) {
+    return getApiUrl(db) + model + '/?page=' + page + '&prepage=' + prepage + '&filter=' + filter
 }
 
 export default {

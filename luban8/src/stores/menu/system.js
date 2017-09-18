@@ -134,9 +134,5 @@ export default {
             'icon': 'fa fa-times',
             'text': '删除'
         }]
-    },{
-        menuTitle: '注册',
-        menuIcon: ' fa fa-th',
-        to: '/system/reg'
     }]
 }

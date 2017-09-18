@@ -180,9 +180,6 @@
 </style>
 <script>
 import md5 from '~/api/md5.min.js'
-import campus from '~/stores/initdata/campus.js'
-import dictionary from '~/stores/initdata/dictionary.js'
-import role from '~/stores/initdata/role.js'
 
 export default {
     data() {
@@ -391,48 +388,6 @@ export default {
         resetForm(formName) {
             this.$refs[formName].resetFields()
         },
-        initdata(org) {
-            let roles_id = []
-            let campus_id = ''
-            let org_id = org._id
-            let createtime = (new Date()).getTime()
-            let db = 'luban_' + createtime
-            campus.org_id = org_id
-            campus.db = db
-            campus.createtime = createtime
-            role.db = db
-            role.createtime = createtime
-
-            Vue.http.post('http://app.bullstech.cn/luban8/api/campus', campus).then(obj => {
-                campus_id = obj.data._id
-                role.campus_id = campus_id
-                return Vue.http.post('http://app.bullstech.cn/luban8/api/role', role)
-            }).then(obj => {
-                roles_id.push(obj.data._id)
-                return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
-            }).then(obj => {
-                let employeeform = {
-                    'name': this.infoForm.uname,
-                    'sex': '0',
-                    'roles_id': roles_id,
-                    'org_id': org_id,
-                    'campus_id': campus_id,
-                    'is_part_time': '0',
-                    'phone': this.registerForm.phone,
-                    'email': '',
-                    'lock': false,
-                    'admin': true,
-                    'birth': '',
-                    'pwd': md5(this.registerForm.pass),
-                    'db': db,
-                    'usedate': createtime,
-                    'createtime': createtime
-                }
-                return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
-            }).then(obj => {
-                this.login()
-            })
-        },
         handleclick() {
             let createtime = new Date()
             let db = 'luban_' + createtime.getTime()
@@ -446,9 +401,14 @@ export default {
             }
             Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
                 this.infoForm.user_id = obj.data._id
+                this.$store.state.system.name = obj.data.name
+                this.$store.state.system.phone = obj.data.phone
+                this.$store.state.system.pwd = obj.data.pwd
                 this.infoForm.createtime = obj.data.createtime
-                Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm).then(obj => {
-                    this.initdata(obj.data)
+                return Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm)
+            }).then(obj => {
+                this.initdbdata(obj.data._id).then(obj => {
+                    this.login()
                 })
             }).catch(() => {
             })

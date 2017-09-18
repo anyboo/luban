@@ -89,6 +89,7 @@ export default {
             'prop': 'email',
         }
     ],
+    'pagedb': 'luban8',
     'pageTable': 'employee',
     'pageTemplate': 'table1',
     'pagePath': ''

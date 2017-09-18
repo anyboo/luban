@@ -10,6 +10,9 @@ export default {
         'branch_address': '',
         'main': false
     },
+    //'handleSave':function(vm){
+    //    return vm.initdbdata(vm.$store.state.system.org_id,vm.localdata.form)
+    //},
     'formField': [
         {
             'type': 'input',
@@ -42,6 +45,7 @@ export default {
             'field': 'address'
         }
     ],
+    'pagedb': 'luban8',
     'pageTable': 'campus',
     'pageTemplate': 'form',
     'pagePath': '',
