@@ -33,7 +33,7 @@ function loginemployee(user) {
                     'lock': false
                 }
             })
-            options.push({ '$sort': { 'usedata': -1 } })
+            options.push({ '$sort': { 'usedate': -1 } })
             options.push({ '$limit': 1 })
             let cursor = table.aggregate(options)
             cursor.toArray().then(obj => {
