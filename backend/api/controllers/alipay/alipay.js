@@ -72,25 +72,13 @@ function getVerifyParams(params) {
     }
     return prestr;
 }
-/* app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0
-app_id=2017082808427000&biz_content={"out_trade_no":"32325858","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}&charset=utf-8&method=alipay.trade.page.pay&sign_type=RSA2&timestamp=2017-09-16 19:37:44&version=1.0 */
-/*
-app_id=2017082808427000&
-biz_content={"out_trade_no":"32328556","product_code":"FAST_INSTANT_TRADE_PAY","total_amount":"88","subject":"luban","body":"lubandemo","timeout_express":"15m"}
-&charset=utf-8
-&method=alipay.trade.page.pay
-&sign_type=RSA2
-&timestamp=2017-09-16 18:33:21
-&version=1.0*/
 //签名
 function getSign(params, key) {
     try {
         var prestr = getParams(params)
-        console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
         const sign = crypto.createSign('RSA-SHA256')
         sign.update(prestr)
         let hash = sign.sign(key).toString('base64')
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!", hash)
         return hash
     } catch (err) {
         console.log('getSign err', err)
@@ -99,7 +87,6 @@ function getSign(params, key) {
 function getVerify(params, key, signature) {
     try {
         var prestr = getVerifyParams(params)
-        console.log("~~~~~~~~~~~~~?//////////////////////", prestr)
         const verify = crypto.createVerify('RSA-SHA256')
         verify.update(prestr)
         return verify.verify(key, signature)
@@ -107,17 +94,17 @@ function getVerify(params, key, signature) {
         console.log('getSign err', err)
     }
 }
-
 module.exports.alipaynotify = function* alipaynotify() {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    console.log(model)
+    console.log('~~~~~notify~~~~',model)
     let signature = ''
     var key = publicPem.toString()
-    console.log(getVerify(model, key, model.sign))
-    this.body = 'success'
+    let success = 'success'
+    this.body = success
+    console.log(success)
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
@@ -142,7 +129,7 @@ module.exports.alipay = function* alipay() {
         format: AlipayConfig.format,
         sign_type: AlipayConfig.sign_type,
         charset: AlipayConfig.charset,
-        return_url: 'https://m.alipay.com/Gk8NF23',
+        return_url: 'https://www.baidu.com/',
         notify_url: 'http://app.bullstech.cn/alipaynotify',
         timestamp: time,
         version: '1.0',
@@ -156,7 +143,7 @@ module.exports.alipay = function* alipay() {
         format: AlipayConfig.format,
         charset: AlipayConfig.charset,
         sign_type: AlipayConfig.sign_type,
-        return_url: 'https://m.alipay.com/Gk8NF23',
+        return_url: 'https://www.baidu.com/',
         notify_url: 'http://app.bullstech.cn/alipaynotify',
         sign: signs,
         timestamp: time,
