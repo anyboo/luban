@@ -102,7 +102,8 @@ module.exports.alipaynotify = function* alipaynotify() {
     console.log('~~~~~notify~~~~',model)
     let signature = ''
     var key = publicPem.toString()
-    this.body = 'success'
+    let success = 'success'
+    this.body = success
     console.log(success)
 }
 module.exports.alipay = function* alipay() {
