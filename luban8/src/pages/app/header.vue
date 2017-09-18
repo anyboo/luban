@@ -3,41 +3,23 @@
         <div class="lbHeader_container">
             <div class="firstModule">
                 <i class="fa fa-bars" @click='variety()'></i>
-
-                <el-dropdown class='menu'>
+                <el-dropdown class='menu' trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         <b>{{$store.state.system.name}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </span>
-                    <el-dropdown-menu slot="dropdown" >
-                        <el-dropdown-item @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="info">
                             <i class="fa fa-user" style="top:1px;"></i>个人资料
-                            </el-dropdown-item>
-                        <el-dropdown-item  @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
-                               <i class="fa fa-lock" style="top:1px;"></i>锁屏
-                            </el-dropdown-item>
-                        <el-dropdown-item  @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
+                        </el-dropdown-item>
+                        <el-dropdown-item command="sign_in">
+                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
+                        </el-dropdown-item>
+                        <el-dropdown-item command="exit">
                             <i class="fa fa-key" style="top:1px;"></i>退出
-                            </el-dropdown-item>
+                        </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-
-               <!--  <div class='menu' @click='handleClickShow()'>
-                    <b class="fa fa-user-o"></b>
-                    <b>{{$store.state.system.name}}</b>
-                    <span class="cart"></span>
-                    <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
-                            <i class="fa fa-user" style="top:1px;"></i>个人资料
-                        </li>
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
-                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
-                        </li>
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
-                            <i class="fa fa-key" style="top:1px;"></i>退出
-                        </li>
-                    </ul>
-                </div> -->
                 <span class="school">校区</span>
                 <span class="screen" @click="fullscreen">
                     <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>
@@ -195,7 +177,6 @@ export default {
     name: 'header',
     data() {
         return {
-            toShow: false,
             updown: false,
         }
     },
@@ -257,8 +238,14 @@ export default {
                 this.updown = true
             }
         },
-        handleClickShow() {
-            this.toShow = !this.toShow
+        handleCommand(command) {
+            if (command == 'info') {
+                this.changeView('/system/personal_information')
+            } else if (command == 'sign_in') {
+                this.changeView('/system/sign_in')
+            } else if (command == 'exit') {
+                this.accountexit()
+            }
         },
         accountexit() {
             this.$store.commit('user', { login: false })
@@ -267,7 +254,6 @@ export default {
         changeView(view) {
             console.log(view)
             this.$store.commit('router', view)
-            this.toShow = false
         }
     }
 }

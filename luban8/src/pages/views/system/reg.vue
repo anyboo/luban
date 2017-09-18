@@ -191,14 +191,7 @@ export default {
                 if (!Regphone.test(value)) {
                     callback(new Error('请输入11位手机号码'))
                 } else {
-                    let filterObj = []
-                    filterObj.push({
-                        'key': 'phone',
-                        'value': value,
-                        'type': ''
-                    })
-                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                    Vue.http.get('http://app.bullstech.cn/luban8/api/user?filter=' + filterTxt).then(obj => {
+                    Vue.http.get('http://app.bullstech.cn/luban8/count/phone' + value).then(obj => {
                         if (obj.data.count > 0) {
                             callback(new Error('用户已经存在,请直接登录.'))
                         } else {
@@ -292,7 +285,9 @@ export default {
                     { required: true, validator: checkphone, trigger: 'change' },
                 ],
                 pass: [
-                    { required: true, validator: checkPass, trigger: 'change' },
+                    //{ required: true, validator: checkPass, trigger: 'change' },
+                    { required: true, message: '请输入密码', trigger: 'change' },
+                    { min: 6, max: 50, message: '请输入6位以上密码', trigger: 'change' }
                 ],
                 checkpass: [
                     { required: true, validator: validatePass, trigger: 'change' }

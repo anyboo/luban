@@ -76,6 +76,16 @@ function loginemployee(user) {
         })
     })
 }
+module.exports.count = function* count(db, field, name, next) {
+    if ('GET' != this.method) return yield next
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    let table = db.collection(name)
+    let findobj = {}
+    findobj[field] = name
+    var count = yield table.find(findobj).count()
+    db.close()
+    this.body = count
+}
 module.exports.login = function* login(next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {

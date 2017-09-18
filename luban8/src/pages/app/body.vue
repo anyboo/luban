@@ -39,7 +39,7 @@ export default {
     mounted() {
         document.body.onresize = this.resize
         this.clientHeight = (document.body.clientHeight - 131) + 'px'
-        if (this.$store.state.models.login) {
+        if (this.$store.state.system.login) {
             this.getTableApidata('dictionary')
         }
     },
