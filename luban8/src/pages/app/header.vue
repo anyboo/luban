@@ -242,6 +242,7 @@ export default {
             if (command == 'info') {
                 this.changeView('/system/personal_information')
             } else if (command == 'sign_in') {
+                this.$store.commit('userout', { login: false })
                 this.changeView('/system/sign_in')
             } else if (command == 'exit') {
                 this.accountexit()

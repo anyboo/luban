@@ -79,7 +79,7 @@ export default {
                         if (obj.data.count > 0) {
                             let account = obj.data.data[0]
                             account.db = db
-                            account.user = data.account.phone
+                            account.user = data.account.user
                             account.login = data.account.login
                             account.admin = data.account.admin
                             this.getTableApidata('dictionary')

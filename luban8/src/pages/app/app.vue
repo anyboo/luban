@@ -1,6 +1,6 @@
 <template>
     <div class="lbcontainer">
-        <lb-sidebar v-if="$store.state.system.login" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
+        <lb-sidebar v-if="login" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
         <div class="app_container" :class="{'margincontaierUnfold':isvariety,'marginlbcontainerRetraction':!isvariety}">
             <lb-header @variety="variety"></lb-header>
             <lb-body></lb-body>
@@ -39,6 +39,11 @@ export default {
         }
     },
     components: pages,
+    computed:{
+        login(){
+            return this.$store.state.system.login
+        }
+    },
     methods: {
         variety() {
             this.isvariety = !this.isvariety

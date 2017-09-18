@@ -45,7 +45,6 @@ export default {
             'field': 'address'
         }
     ],
-    'pagedb': 'luban8',
     'pageTable': 'campus',
     'pageTemplate': 'form',
     'pagePath': '',
