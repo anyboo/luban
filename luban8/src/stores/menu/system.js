@@ -2,6 +2,19 @@ export default {
     menuTitle: '设置',
     menuIcon: 'fa-cog',
     menu: [{
+        menuTitle: '每日总结',
+        to: 'systemreport',
+        menuIcon: 'fa-address-book-o fa',
+        dropDownMenu: [{
+            'url': 'reportform',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        },{
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }],
+    },{
         menuTitle: '个人信息',
         to: '/system/personal_information',
         menuIcon: 'fa-address-book-o fa',
@@ -15,8 +28,7 @@ export default {
         }, {
             'text': '设置生日',
             'action': 'systempersonabirthd'
-        }
-        ]
+        }]
     }, {
         menuTitle: '角色权限',
         to: 'systemroles',//'/system/roles', //

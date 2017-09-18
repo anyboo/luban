@@ -25,7 +25,7 @@ import recordingdetailform from './formmodules/recordingdetailform.js'
 import storedrechargevalue from './formmodules/storedrechargevalue.js'
 import systembuyform from './formmodules/systembuyform.js'
 import systemrechargeform from './formmodules/systemrechargeform.js'
-
+import reportform from './formmodules/reportform.js'
 
 let pages = {}
 pages['sclassesform'] = sclassesform
@@ -55,6 +55,7 @@ pages['refundfrom'] = refundfrom
 pages['recordingdetailform'] = recordingdetailform
 pages['storedrechargevalue'] = storedrechargevalue
 pages['systembuyform'] = systembuyform
+pages['reportform'] = reportform
 
 pages['systemrechargeform'] = systemrechargeform
 

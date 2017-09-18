@@ -28,6 +28,8 @@ import systemsms from './pagemodules/system/systemsms'
 import systemroles from './pagemodules/system/systemroles'
 import smssendlist from './pagemodules/system/smssendlist'
 import courserecord from './pagemodules/studentinfo/courseRecord'
+import systemreport from './pagemodules/system/systemreport'
+
 
 let pages = {}
 pages['lessonsclasses'] = lessonsclasses
@@ -60,5 +62,5 @@ pages['systemschool'] = systemschool
 pages['systemsms'] = systemsms
 pages['systemroles'] = systemroles
 pages['smssendlist'] = smssendlist
-
+pages['systemreport'] = systemreport
 export default pages
