@@ -62,6 +62,7 @@ export default {
             let account = { user: this.localdata.form.user, pwd: this.localdata.form.pwd }
             vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                 if (data.code == 0) {
+                    console.log(data.account)
                     this.getTableApidata('dictionary')
                     this.$store.commit('user', data.account)
                     this.$store.commit('router', '/web')

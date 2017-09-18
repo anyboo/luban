@@ -33,6 +33,22 @@ function loginemployee(user) {
                     'lock': false
                 }
             })
+            options.push({
+                '$lookup': {
+                    'localField': 'org_id',
+                    'from': 'org',
+                    'foreignField': '_id',
+                    'as': 'org'
+                }
+            })
+            options.push({
+                '$lookup': {
+                    'localField': 'campus_id',
+                    'from': 'campus',
+                    'foreignField': '_id',
+                    'as': 'campus'
+                }
+            })
             options.push({ '$sort': { 'usedate': -1 } })
             options.push({ '$limit': 1 })
             let cursor = table.aggregate(options)
