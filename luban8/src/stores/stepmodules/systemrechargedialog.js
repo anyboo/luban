@@ -12,7 +12,7 @@ export default {
         }]
     },{
         'label': '缴费',
-        'module': 'lb-orderandpay'
+        'module': 'lb-sysorderandpay'
     }],
     'pageTable': 'rechargesearchorder',
     'pagePath': ''

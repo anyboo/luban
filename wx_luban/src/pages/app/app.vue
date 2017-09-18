@@ -51,7 +51,7 @@ export default {
                         console.log(obj)
                     })
 
-                    /* let codeurl = window.location.search
+                    let codeurl = window.location.search
                     let codeindex = codeurl.indexOf('=')
                     let codeend = codeurl.indexOf('&')
                     console.log(codeurl);
@@ -72,8 +72,8 @@ export default {
                                 'key': 'openid',
                                 'value': openid,
                                 'type': ''
-                            }) */
-                    let openid = 'oZy8Uwatal455 - N39nk0lV453FaDCw'
+                            }) 
+                  /*   let openid = 'oZy8Uwatal455 - N39nk0lV453FaDCw'*/
                     filterObj = []
                     filterObj.push({
                         'key': 'openid',

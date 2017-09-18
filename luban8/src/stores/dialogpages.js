@@ -4,6 +4,7 @@ import edit_info from '~/pages/dialogs/student/edit_info.modal.vue'
 import order from '~/pages/dialogs/student/order.modal.vue'
 import printer_receipt from '~/pages/dialogs/student/printer_receipt.vue'
 import orderandpay from '~/pages/dialogs/student/orderandpay.vue'
+import sysorderandpay from '~/pages/dialogs/student/sysorderandpay.vue'
 
 import cate from '~/pages/dialogs/lesson/cate.vue'
 import new_lesson from '~/pages/dialogs/lesson/new_lesson.modal.vue'
@@ -19,6 +20,8 @@ pages['lb-editinfomodal'] = edit_info
 pages['lb-ordermodal'] = order
 pages['lb-printerreceipt'] = printer_receipt
 pages['lb-orderandpay'] = orderandpay
+pages['lb-sysorderandpay'] = sysorderandpay
+
 
 pages['lb-cate'] = cate
 pages['lb-newlessonmodal'] = new_lesson
