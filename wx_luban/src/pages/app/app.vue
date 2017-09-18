@@ -91,9 +91,9 @@ export default {
                             this.$store.commit('getopenid', openid)
                             this.$store.commit('homes', 'lb-verification')
                         }
-                /*   })*/
+                })
                 })  
-  /*   }  */
+   }  
 }
            }) 
     }, 
