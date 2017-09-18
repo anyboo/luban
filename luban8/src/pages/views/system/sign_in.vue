@@ -43,9 +43,9 @@ export default {
         }
     },
     computed: {
-        username(){
+        username() {
             let name = ''
-            if (this.$store.state.system.name){
+            if (this.$store.state.system.name) {
                 name = this.$store.state.system.name
             }
             return name
@@ -55,17 +55,36 @@ export default {
     methods: {
         login() {
             let vm = this
-            if (this.$store.state.system.name&&this.$store.state.system.name.length > 0) {
+            if (this.$store.state.system.name && this.$store.state.system.name.length > 0) {
                 this.localdata.form.user = this.$store.state.system.user
             }
             this.localdata.form.pwd = md5(this.localdata.form.pwd)
             let account = { user: this.localdata.form.user, pwd: this.localdata.form.pwd }
             vm.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
                 if (data.code == 0) {
-                    console.log(data.account)
-                    this.getTableApidata('dictionary')
-                    this.$store.commit('user', data.account)
-                    this.$store.commit('router', '/web')
+                    let filterObj = []
+                    filterObj.push({
+                        'key': 'user_id',
+                        'value': data.account._id,
+                        'type': ''
+                    })
+                    filterObj.push({
+                        'key': 'lock',
+                        'value': false,
+                        'type': ''
+                    })
+                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                    let db = data.account.db
+                    this.handleGetFilterTableTable('employee', filterTxt, db).then((obj) => {
+                        if (obj.data.count > 0) {
+                            let obj = obj.data[0]
+                            obj.db = db
+                            console.log(obj)
+                            this.getTableApidata('dictionary')
+                            this.$store.commit('user', obj)
+                            this.$store.commit('router', '/web')
+                        }
+                    })
                 } else {
                     this.$store.commit('user', { login: false })
                     this.$message({

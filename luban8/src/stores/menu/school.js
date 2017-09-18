@@ -14,7 +14,7 @@ export default {
             'action': 'classsmsdialog'
         },
         {
-            'text': '活动推广',
+            'text': '全员发送',
             'action': 'allsmsform'
         }
         ]

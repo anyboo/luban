@@ -14,9 +14,6 @@ export default {
     },
     'beforeSave':function(vm){
         let createtime = (new Date()).getTime()
-        vm.localdata.form.org_id =  vm.$store.state.system.org_id
-        vm.localdata.form.campus_id =  vm.$store.state.system.campus_id
-        vm.localdata.form.db =  vm.$store.state.system.db
         vm.localdata.form.usedate =  createtime
     },
     'formField': [
@@ -72,7 +69,6 @@ export default {
             ]
         }
     ],
-    'pagedb': 'luban8',
     'pageTable': 'employee',
     'pageTemplate': 'form',
     'pagePath': '',

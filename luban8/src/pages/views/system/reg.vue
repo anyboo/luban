@@ -405,9 +405,12 @@ export default {
                 this.$store.state.system.phone = obj.data.phone
                 this.$store.state.system.pwd = obj.data.pwd
                 this.infoForm.createtime = obj.data.createtime
+                let createtime = (new Date()).getTime()
+                let db = 'luban_' + createtime
+                this.infoForm.db = db
                 return Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm)
             }).then(obj => {
-                this.initdbdata(obj.data._id).then(obj => {
+                this.initdbdata(obj.data).then(obj => {
                     this.login()
                 })
             }).catch(() => {

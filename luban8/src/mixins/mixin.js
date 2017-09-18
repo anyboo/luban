@@ -455,11 +455,13 @@ export default {
                 })
             })
         },
-        initdbdata(org_id, campusform) {
+        initdbdata(org, campusform) {
             let roles_id = []
             let campus_id = ''
+            let org_id = org._id
+            let user_id = org.user_id
+            let db = org.db
             let createtime = (new Date()).getTime()
-            let db = 'luban_' + createtime
             let campusobj = {}
             if (campusform) {
                 Object.assign(campusobj, campusform)
@@ -467,14 +469,11 @@ export default {
                 Object.assign(campusobj, campus)
             }
             campusobj.org_id = org_id
-            campusobj.db = db
             campusobj.createtime = createtime
-            role.db = db
             role.createtime = createtime
 
-            Vue.http.post('http://app.bullstech.cn/luban8/api/campus', campusobj).then(obj => {
+            Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campusobj).then(obj => {
                 campus_id = obj.data._id
-                role.campus_id = campus_id
                 return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
             }).then(obj => {
                 roles_id.push(obj.data._id)
@@ -483,21 +482,20 @@ export default {
                 let employeeform = {
                     'name': this.$store.state.system.name,
                     'sex': '0',
+                    'user_id': user_id,
                     'roles_id': roles_id,
                     'org_id': org_id,
-                    'campus_id': campus_id,
+                    'campus_id': [campus_id],
                     'is_part_time': '0',
                     'phone': this.$store.state.system.phone,
                     'email': '',
                     'lock': false,
                     'admin': true,
                     'birth': '',
-                    'pwd': this.$store.state.system.pwd,
-                    'db': db,
                     'usedate': createtime,
                     'createtime': createtime
                 }
-                return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
+                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/employee', employeeform)
             })
         },
         handleSavedb({ db, table, form }) {
@@ -509,6 +507,7 @@ export default {
                 if (vm.modalsType == types.APPEND_API) {
                     let createtime = new Date()
                     modalform.createtime = createtime.getTime()
+                    modalform.org_id = this.$store.state.system.org_id
                     modalform.campus_id = this.$store.state.system.campus_id
 
                     vm.$store.dispatch(types.APPEND_API, {
