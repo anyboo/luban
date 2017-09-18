@@ -84,9 +84,9 @@
                                 </el-form-item>
                                 <el-form-item label="图形验证码" prop="shape" style="margin:1.5rem;width:90%;padding:3px">
                                     <el-input v-model="registerForm.shape" style="width:35%" :disabled="shapeDisabled"></el-input>
-                                    <span @click="imagedata=makeImage()" style="cursor:pointer">
+                                    <span @click="imagedata=makeregImage()" style="cursor:pointer">
                                         <img :src="imagedata" style=";vertical-align:middle;">
-                                        <span @click="imagedata=makeImage()" style="color:#00CACA">看不清?点击换一个</span>
+                                        <span @click="imagedata=makeregImage()" style="color:#00CACA">看不清?点击换一个</span>
                                     </span>
                                 </el-form-item>
                                 <el-form-item label="短信验证码" prop="phonemsg" style="margin:1.5rem;width:90%" v-if="isMsg">
@@ -425,7 +425,7 @@ export default {
                     'birth': '',
                     'pwd': md5(this.registerForm.pass),
                     'db': db,
-                    'usedata': createtime,
+                    'usedate': createtime,
                     'createtime': createtime
                 }
                 return Vue.http.post('http://app.bullstech.cn/luban8/api/employee', employeeform)
