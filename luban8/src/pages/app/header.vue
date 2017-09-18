@@ -4,7 +4,7 @@
             <div class="firstModule">
                 <i class="fa fa-bars" @click='variety()'></i>
                 <div class='menu' @click='handleClickShow()'>
-                    <img src="/assets/images/a0.jpg">
+                    <b class="fa fa-user-o"></b>
                     <b>{{$store.state.system.name}}</b>
                     <span class="cart"></span>
                     <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
