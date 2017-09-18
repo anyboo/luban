@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-over bg-black" style="z-index: 6000;    margin: -100px 0px 0px -100px;">
+    <div class="modal-over bg-black" style="z-index: 1000;    margin: -100px 0px 0px -100px;">
         <div class="modal-center text-center" style="width:200px;margin:-100px 0 0 -100px">
             <div class="thumb-lg">
                 <img class="img-circle" src="/assets/images/a0.jpg">
@@ -75,6 +75,7 @@ export default {
                     })
                     let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                     let db = data.account.db
+                    console.log( data)
                     this.handleGetFilterTableTable('employee', filterTxt, db).then((obj) => {
                         if (obj.data.count > 0) {
                             let obj = obj.data[0]
@@ -83,6 +84,11 @@ export default {
                             this.getTableApidata('dictionary')
                             this.$store.commit('user', obj)
                             this.$store.commit('router', '/web')
+                        } else {
+                            this.$message({
+                                message: '用户不存在或者已经被禁用！',
+                                type: 'error'
+                            })
                         }
                     })
                 } else {

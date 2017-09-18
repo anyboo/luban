@@ -1,6 +1,6 @@
 <template>
     <div class="lbcontainer">
-        <lb-sidebar :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
+        <lb-sidebar v-if="$store.state.system.login" :class="{'contaierUnfold':isvariety,'lbcontainerRetraction':!isvariety}"></lb-sidebar>
         <div class="app_container" :class="{'margincontaierUnfold':isvariety,'marginlbcontainerRetraction':!isvariety}">
             <lb-header @variety="variety"></lb-header>
             <lb-body></lb-body>

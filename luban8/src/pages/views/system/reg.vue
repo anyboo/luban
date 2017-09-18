@@ -384,13 +384,14 @@ export default {
             this.$refs[formName].resetFields()
         },
         handleclick() {
-            let createtime = new Date()
-            let db = 'luban_' + createtime.getTime()
+            let createtime = (new Date()).getTime()
+            let db = 'luban_' + createtime
             let user = {
                 lock: false,
                 admin: true,
                 phone: this.registerForm.phone,
-                createtime: createtime.getTime(),
+                db,
+                createtime: createtime,
                 name: this.infoForm.uname,
                 pwd: md5(this.registerForm.pass)
             }
@@ -400,8 +401,6 @@ export default {
                 this.$store.state.system.phone = obj.data.phone
                 this.$store.state.system.pwd = obj.data.pwd
                 this.infoForm.createtime = obj.data.createtime
-                let createtime = (new Date()).getTime()
-                let db = 'luban_' + createtime
                 this.infoForm.db = db
                 return Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm)
             }).then(obj => {

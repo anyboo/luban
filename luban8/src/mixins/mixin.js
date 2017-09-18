@@ -472,7 +472,7 @@ export default {
             campusobj.createtime = createtime
             role.createtime = createtime
 
-            Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campusobj).then(obj => {
+            return Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campusobj).then(obj => {
                 campus_id = obj.data._id
                 return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
             }).then(obj => {
