@@ -60,6 +60,8 @@ function loginemployee(user) {
                     logindata.birth = obj[0].birth
                     logindata.admin = obj[0].admin
                     logindata.db = obj[0].db
+                    logindata.campus = obj[0].campus
+                    logindata.org = obj[0].org
                     logindata.org_id = obj[0].org_id
                     logindata.roles_id = obj[0].roles_id
                     logindata.campus_id = obj[0].campus_id
