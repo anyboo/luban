@@ -75,14 +75,15 @@ export default {
                     })
                     let filterTxt = this.base64.encode(JSON.stringify(filterObj))
                     let db = data.account.db
-                    console.log( data)
                     this.handleGetFilterTableTable('employee', filterTxt, db).then((obj) => {
                         if (obj.data.count > 0) {
-                            let obj = obj.data[0]
-                            obj.db = db
-                            console.log(obj)
+                            let account = obj.data.data[0]
+                            account.db = db
+                            account.user = data.account.phone
+                            account.login = data.account.login
+                            account.admin = data.account.admin
                             this.getTableApidata('dictionary')
-                            this.$store.commit('user', obj)
+                            this.$store.commit('user', account)
                             this.$store.commit('router', '/web')
                         } else {
                             this.$message({
