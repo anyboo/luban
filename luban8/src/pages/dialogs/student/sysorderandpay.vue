@@ -57,9 +57,7 @@ export default {
             let urls = window.open()
             Vue.http.post('http://app.bullstech.cn/alipay', { "order": this.stepsdata.order_no, "amount": this.stepsdata.order_amount, "name": this.stepsdata.body, "body": this.stepsdata.order_remark }).then(data => {
                 console.log(data)
-
                 urls.location = data.data
-
             })
 
         }

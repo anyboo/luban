@@ -49,6 +49,11 @@ export default {
             'label': '金额',
             'prop': 'order_amount'
         },
+        {
+            'type': 'text',
+            'label': '支付状态',
+            'prop': 'pay_status'
+        },
     ],
     'pageTable': 'rechargesearchorder',
     'pageTemplate': 'table1',
