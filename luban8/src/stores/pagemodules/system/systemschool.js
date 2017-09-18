@@ -10,7 +10,7 @@ export default {
                     'label': '校区名',
                     'defvalue': '',
                     'default': true,
-                    'value': 'branch_name'
+                    'value': 'name'
                 },
                 {
                     'label': '校区简称',
@@ -59,7 +59,7 @@ export default {
         {
             'type': 'text',
             'label': '校区名',
-            'prop': 'branch_name',
+            'prop': 'name',
         },
         {
             'type': 'text',

@@ -485,7 +485,7 @@ export default {
                     'user_id': user_id,
                     'roles_id': roles_id,
                     'org_id': org_id,
-                    'campus_id': campus_id,
+                    'campusarray_id': [campus_id],
                     'is_part_time': '0',
                     'phone': this.$store.state.system.phone,
                     'email': '',

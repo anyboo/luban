@@ -3,7 +3,7 @@ export default {
     'pageLable': '校区',
     'form': {
         'group_name': '',
-        'branch_name': '',
+        'name': '',
         'short_name': '',
         'branch_tel': '',
         'city': '',
@@ -17,8 +17,8 @@ export default {
         {
             'type': 'input',
             'label': '校区名',
-            'prop': 'branch_name',
-            'field': 'branch_name'
+            'prop': 'name',
+            'field': 'name'
         },
         {
             'type': 'input',
@@ -49,7 +49,7 @@ export default {
     'pageTemplate': 'form',
     'pagePath': '',
     rules: {
-        branch_name: [
+        name: [
             { required: true, message: '请输入校区名', trigger: 'blur' },
             { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
         ],

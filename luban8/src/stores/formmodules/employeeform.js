@@ -4,17 +4,18 @@ export default {
     'form': {
         'name': '',
         'sex': '0',
+        'campusarray_id': [],
         'roles_id': [],
         'is_part_time': '0',
         'phone': '',
         'email': '',
         'lock': false,
-        'admin':false,
+        'admin': false,
         'birth': ''
     },
-    'beforeSave':function(vm){
+    'beforeSave': function (vm) {
         let createtime = (new Date()).getTime()
-        vm.localdata.form.usedate =  createtime
+        vm.localdata.form.usedate = createtime
     },
     'formField': [
         {
@@ -30,16 +31,22 @@ export default {
             'field': 'phone'
         },
         {
+            'type': 'campusoption',
+            'label': '校区',
+            'prop': 'campusarray_id',
+            'field': 'campusarray_id',
+        },
+        {
+            'type': 'rolesoption',
+            'label': '角色',
+            'prop': '',
+            'field': 'roles_id',
+        },
+        {
             'type': 'input',
             'label': 'Email',
             'prop': '',
             'field': 'email'
-        },
-        {
-            'type': 'option',
-            'label': '角色',
-            'prop': '',
-            'field': 'roles_id',
         },
         {
             'type': 'datetime',
@@ -74,12 +81,16 @@ export default {
     'pagePath': '',
     mounted(vm) {
         vm.getTableApidata('role')
+        vm.getTableApidata('campus')
     },
     rulesData(vm) {
         return {
             name: [
                 { required: true, message: '请输入姓名', trigger: 'blur' },
                 { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+            ],
+            campusarray_id: [
+                { type: 'array', required: true, message: '请输入校区', trigger: 'blur' }
             ],
             phone: [
                 { validator: vm.validatephone, required: true, trigger: 'blur' }
