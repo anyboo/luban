@@ -19,7 +19,7 @@
                         </li>
                     </ul>
                 </div>
-                <span class="school" style="color:white;">校区</span>
+                <span class="school" >校区</span>
                 <span class="screen" @click="fullscreen">
                     <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>
                 </span>
@@ -34,19 +34,18 @@
 .screen {
     display: inline-block;
     width: 50px;
-    height: 50px;
-    float: right;
-    padding-top: 17px;
     text-align: center;
 }
-
 .school {
     display: inline-block;
     height: 50px;
-    float: right;
     line-height: 50px;
     text-align: center;
     font-size: 16px;
+    float: right;
+    color:white;
+    margin-right: 40%;
+    
 }
 
 .lbHeader {
@@ -86,6 +85,7 @@
 
 .menu {
     baseline: middle;
+    height: 50;
     display: inline-block;
     padding: 12px 15px;
     float: right;
