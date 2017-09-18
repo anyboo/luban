@@ -53,8 +53,8 @@
                             <el-input type="password" v-model="localdata.form2.new_pwd_repeat" auto-complete="off"></el-input>
                         </el-form-item>
                         <el-form-item label-width="100px">
-                            <button class="btn btn-primary" @click="handleChangePwd">修改密码</button>
-                            <button class="btn btn-primary" @click="status=0">返回</button>
+                            <button type="button" class="btn btn-primary" @click="handleChangePwd">修改密码</button>
+                            <button type="button" class="btn btn-primary" @click="status=0">返回</button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -198,12 +198,13 @@ export default {
         handleChangePwd() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    let account = { user: this.$store.state.system.phone, pwd: md5(this.localdata.form2.old_pwd) }
+                    let account = { user: this.$store.state.system.user, pwd: md5(this.localdata.form2.old_pwd) }
                     this.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
+                        console.log(data)
                         if (data.code == 0) {
                             this.updateTeble('employee', this.$store.state.system.id, {
                                 'pwd': md5(this.localdata.form2.new_pwd)
-                            },'luban8').then(() => {
+                            }, 'luban8').then(() => {
                                 this.$message({
                                     message: '设置成功！',
                                     type: 'success'

@@ -56,7 +56,7 @@ export default {
     mounted() {
         if (this.$store.state.dialogs.dailogdata) {
             this.name = this.$store.state.dialogs.dailogdata.name
-            this.username = this.$store.state.dialogs.dailogdata.tel
+            this.username = this.$store.state.dialogs.dailogdata.phone
             this.uid = this.$store.state.dialogs.dailogdata._id
         }
     },
@@ -66,7 +66,7 @@ export default {
                 if (valid) {
                     this.updateTeble('employee', this.uid, {
                         'pwd': md5(this.localdata.form.reset_password)
-                    }).then(() => {
+                    },'luban8').then(() => {
                         this.$message({
                             message: '设置成功！',
                             type: 'success'

@@ -245,6 +245,11 @@ export default {
                         'value': vm.localdata.form.student_name,
                         'type': ''
                     })
+                    filterObj.push({
+                        'key': 'campus_id',
+                        'value': this.$store.state.system.campus_id,
+                        'type': ''
+                    })
                     let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
                     vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
                         let objData = obj.data.data

@@ -2,11 +2,6 @@ export default {
     menuTitle: '设置',
     menuIcon: 'fa-cog',
     menu: [{
-        menuTitle: '参数配置',
-        to: '/system/config',
-        menuIcon: 'fa fa-wrench',
-        menuShow: 0,
-    }, {
         menuTitle: '个人信息',
         to: '/system/personal_information',
         menuIcon: 'fa-address-book-o fa',
@@ -107,6 +102,15 @@ export default {
         menuTitle: '数据字典管理',
         to: '/system/dict',
         menuIcon: 'fa fa-keyboard-o',
+        dropDownMenu: [{
+            'url': 'dictform',
+            'icon': 'fa fa-pencil',
+            'text': '编辑'
+        }, {
+            'action': 'delete',
+            'icon': 'fa fa-times',
+            'text': '删除'
+        }],
         action: [{
             'text': '编辑',
             'action': 'systememdictedit'

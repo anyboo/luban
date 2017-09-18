@@ -276,7 +276,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'LbModuletable',
-    props: ['module', 'info', 'searchValue', 'value', 'stepsdata', 'pagedata','searchclassesid'],
+    props: ['module', 'info', 'searchValue', 'value', 'stepsdata', 'pagedata', 'searchclassesid'],
     data() {
         return {
             moduledata: '',
@@ -438,7 +438,7 @@ export default {
     },
     watch: {
         module: function(val) {
-            console.log('-----',this.moduledata)
+            console.log('-----', this.moduledata)
             if (typeof (val) == 'object') {
                 this.moduledata = val
                 this.handleSearch()
@@ -671,19 +671,35 @@ export default {
                 }
             }
             console.log(filterObj)
-            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata.pagesize) {
                 this.pagination.pagesize = this.moduledata.pagesize
             }
-            if (this.moduledata.pagedb){
+            if (this.moduledata.pagedb) {
                 filterObj.push({
                     'key': 'db',
                     'value': this.$store.state.system.db,
                     'type': ''
                 })
+                if (this.moduledata.pagecampus) {
+                    filterObj.push({
+                        'key': 'campus_id',
+                        'value': this.$store.state.system.campus_id,
+                        'type': ''
+                    })
+                }
+            } else {
+                if (this.moduledata.pagenocampus) {
+                }else{
+                    filterObj.push({
+                        'key': 'campus_id',
+                        'value': this.$store.state.system.campus_id,
+                        'type': ''
+                    })
+                }
             }
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
-                this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt,this.moduledata.pagedb).then((obj) => {
+                this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt, this.moduledata.pagedb).then((obj) => {
                     if (this.moduledata.tableChange) {
                         this.moduledata.tableChange(this, obj.data.data).then((obj) => {
                             this.moduleTableData = obj
@@ -768,7 +784,7 @@ export default {
                     }).then(() => {
                         this.tables = []
                         this.tables.push(this.moduledata.pageTable)
-                        this.handleDelete(data._id).then(() => {
+                        this.handleDelete(data._id, this.moduledata.pagedb).then(() => {
                             this.$message({
                                 message: '删除成功',
                                 type: 'success'
@@ -800,7 +816,7 @@ export default {
                 }).then(() => {
                     this.updateTeble('employee', data._id, {
                         'lock': lock
-                    }).then(() => {
+                    }, 'luban8').then(() => {
                         this.$message({
                             message: infomessage,
                             type: 'success'

@@ -385,13 +385,14 @@ export default {
                 }
             }
         },
-        handleDelete(id) {
+        handleDelete(id, db) {
             let vm = this
             return new Promise((resolve, reject) => {
                 if (vm.tables) {
                     let table = {}
                     table.model = vm.tables[0]
                     table.id = id
+                    table.db = db
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {
                         // console.log('handleDelete')
@@ -508,6 +509,7 @@ export default {
                 if (vm.modalsType == types.APPEND_API) {
                     let createtime = new Date()
                     modalform.createtime = createtime.getTime()
+                    modalform.campus_id = this.$store.state.system.campus_id
 
                     vm.$store.dispatch(types.APPEND_API, {
                         'model': modaltable,

@@ -5,14 +5,13 @@
     </div>
 </template>
 <style>
-.classes{
-    width:100%;
-    padding:12px 12px 0 12px;
+.classes {
+    width: 100%;
+    padding: 12px 12px 0 12px;
     background: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 5px;
 }
-
 </style>
 
 <script>
@@ -144,6 +143,11 @@ export default {
                     'key': 'lookup',
                     'value': vm.localdata.lookuptech,
                     'type': 'lookup'
+                })
+                filterObj.push({
+                    'key': 'campus_id',
+                    'value': vm.$store.state.system.campus_id,
+                    'type': ''
                 })
                 let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
                 vm.pagination.pagesize = 500

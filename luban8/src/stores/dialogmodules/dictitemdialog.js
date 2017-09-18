@@ -45,7 +45,7 @@ export default {
                 {
                     'label': '新增',
                     'type': 'success',
-                    'showdialog': 'dictform',
+                    'showdialog': 'dictformnew',
                     'actionoption': 'dictform',
                 },
             ]
@@ -73,6 +73,7 @@ export default {
             'label': '状态',
         }
     ],
+    'pagenocampus': true,
     'pageTable': 'dictionary',
     'pageTemplate': 'table1',
     'pagePath': ''

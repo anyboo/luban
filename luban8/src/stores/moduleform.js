@@ -19,6 +19,7 @@ import unpayclearform from './formmodules/unpayclearform.js'
 import allsmsform from './formmodules/allsmsform.js'
 import rolesform from './formmodules/rolesform.js'
 import dictform from './formmodules/dictform.js'
+import dictformnew from './formmodules/dictformnew.js'
 import refundfrom from './formmodules/refundfrom.js'
 import recordingdetailform from './formmodules/recordingdetailform.js'
 import storedrechargevalue from './formmodules/storedrechargevalue.js'
@@ -49,6 +50,7 @@ pages['allsmsform'] = allsmsform
 pages['studentsmsform'] = allsmsform
 pages['rolesform'] = rolesform
 pages['dictform'] = dictform
+pages['dictformnew'] = dictformnew
 pages['refundfrom'] = refundfrom
 pages['recordingdetailform'] = recordingdetailform
 pages['storedrechargevalue'] = storedrechargevalue

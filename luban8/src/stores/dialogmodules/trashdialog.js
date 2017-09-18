@@ -42,7 +42,7 @@ export default {
         },
         {
             'type': 'studentoperation',
-            'label': '操作1',
+            'label': '操作',
         }
     ],
     'pageTable': 'student',
