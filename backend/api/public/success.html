@@ -82,6 +82,7 @@
     <script>
         $(function () {
             $.ajax({
+                type : "POST",
                 url: "http://app.bullstech.cn/alipaynotify",
                 success: function (data) {
                     var html = "";
