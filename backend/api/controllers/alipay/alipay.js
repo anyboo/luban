@@ -116,7 +116,7 @@ module.exports.alipaynotify = function* alipaynotify() {
         }
     )
     console.log(table)
-    this.body = success
+    this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
