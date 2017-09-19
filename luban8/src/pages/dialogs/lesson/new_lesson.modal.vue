@@ -108,10 +108,6 @@ export default {
             },{
                 'value': '1',
                 'text': '1对1'
-            },
-            {
-                'value': '2',
-                'text': '课时包'
             }],
             'form': {
                 'lesson_type': '0',
