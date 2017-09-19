@@ -116,9 +116,9 @@ module.exports.alipaynotify = function* alipaynotify() {
     let org = yield db.collection('org').findOneAndUpdate({
         'org_id': order.org_id
     }, {
-            $inc:{'amount':model.total_amount} 
+            $inc:{'amount':parseInt(model.total_amount)} 
         })
-    console.log('~~~~~~~~~~table~~~~~~~~~~', table)
+    console.log('~~~~~~~~~~table~~~~~~~~~~', order)
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
