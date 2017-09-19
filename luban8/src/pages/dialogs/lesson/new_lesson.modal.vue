@@ -75,7 +75,7 @@
                                         <el-option label="1个半小时" value="1.50"></el-option>
                                         <el-option label="2小时" value="2.00"></el-option>
                                     </el-select>
-                                    <el-button slot="append">人</el-button>
+                                    <el-button slot="append">小时</el-button>
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="课程总时长:">
