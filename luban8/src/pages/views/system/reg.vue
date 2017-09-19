@@ -191,7 +191,7 @@ export default {
                 if (!Regphone.test(value)) {
                     callback(new Error('请输入11位手机号码'))
                 } else {
-                    Vue.http.get('http://app.bullstech.cn/luban8/count/user/phone/' + value).then(obj => {
+                   Vue.http.get('http://app.bullstech.cn/luban8/count/user?phone=' + value).then(obj => {
                         if (obj.data > 0) {
                             callback(new Error('用户已经存在,请直接登录.'))
                         } else {
