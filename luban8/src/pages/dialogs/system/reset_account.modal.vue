@@ -54,7 +54,7 @@ export default {
                 if (value.length < 2) {
                     callback(new Error('请输入2位以上账号'))
                 } else {
-                    Vue.http.get('http://app.bullstech.cn/luban8/count/user/?bind=false&phone=' + value).then(obj => {
+                    Vue.http.get('http://app.bullstech.cn/luban8/count/user/?bind=true&phone=' + value).then(obj => {
                         if (obj.data > 0) {
                             callback(new Error('账号已经存在,请重新输入.'))
                         } else {

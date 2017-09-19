@@ -95,6 +95,29 @@ module.exports.count = function* count(db, table, next) {
     db.close()
     this.body = count
 }
+module.exports.id = function* id(db, table, next) {
+    if ('GET' != this.method) return yield next
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    let collection = db.collection(table)
+    let findobj = {}
+    for (let item in this.query) {
+        let value = this.query[item]
+        if (value == 'true') {
+            findobj[item] = true
+        } else if (value == 'false') {
+            findobj[item] = false
+        } else {
+            findobj[item] = this.query[item]
+        }
+    }
+    var model = yield collection.find(findobj).toArray()
+    let idlist = []
+    for (let item of model) {
+        idlist.push(item._id)
+    }
+    db.close()
+    this.body = idlist
+}
 module.exports.login = function* login(next) {
     if ('POST' != this.method) return yield next
     var user = yield parse(this, {
