@@ -5,8 +5,8 @@
                 <span class="screen">
                     <i class="fa fa-bars" @click='variety()'></i>
                 </span>
-                <el-dropdown class='menu' trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
+                <el-dropdown class="menu" @command="handleCommand">
+                    <span class="el-dropdown-link menuspan">
                         <b class="fa fa-user-o"></b>
                         <b>{{$store.state.system.name}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
@@ -23,7 +23,23 @@
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <span class="school">校区</span>
+                <el-dropdown class="school" @command="handleCommand">
+                    <span class="el-dropdown-link menuspan">
+                        <b>校区</b>
+                        <i class="el-icon-caret-bottom el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="info">
+                            <i class="fa fa-user" style="top:1px;"></i>个人资料
+                        </el-dropdown-item>
+                        <el-dropdown-item command="sign_in">
+                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
+                        </el-dropdown-item>
+                        <el-dropdown-item command="exit">
+                            <i class="fa fa-key" style="top:1px;"></i>退出
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
                 <span class="screen" @click="fullscreen">
                     <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>
                 </span>
@@ -40,8 +56,8 @@
     width: 50px;
     height: 50px;
     position: relative;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
 }
 
 
@@ -86,14 +102,23 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-.fa-fw:hover{
-    color:#e74c3c;
+
+.fa-fw:hover {
+    color: #e74c3c;
 }
-.fa-expand:hover{
-    color:#e74c3c;
+
+.fa-expand:hover {
+    color: #e74c3c;
 }
+
 .fa-bars:hover {
     color: #e74c3c;
+}
+
+.menuspan {
+    height: 50;
+    baseline: middle;
+    display: inline-block;
 }
 
 .menu {
