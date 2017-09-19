@@ -609,6 +609,7 @@ export default {
             })
         },
         savedb(resolve) {
+            let vm = this
             if (this.module.pagedb) {
                 this.localdata.form.db = this.$store.state.system.db
             }
