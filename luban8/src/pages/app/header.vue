@@ -25,19 +25,14 @@
                 </el-dropdown>
                 <el-dropdown class="school" @command="handleCommand">
                     <span class="el-dropdown-link menuspan">
-                        <b>校区</b>
+                        <b>{{campusname}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item command="info">
-                            <i class="fa fa-user" style="top:1px;"></i>个人资料
-                        </el-dropdown-item>
-                        <el-dropdown-item command="sign_in">
-                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
-                        </el-dropdown-item>
-                        <el-dropdown-item command="exit">
-                            <i class="fa fa-key" style="top:1px;"></i>退出
-                        </el-dropdown-item>
+                        <template v-for="item in campus">
+                            <el-dropdown-item command="info">{{item.name}}
+                            </el-dropdown-item>
+                        </template>
                     </el-dropdown-menu>
                 </el-dropdown>
                 <span class="screen" @click="fullscreen">
@@ -215,7 +210,41 @@ export default {
     data() {
         return {
             updown: false,
+            campus: [],
+            campusname:''
         }
+    },
+    mounted() {
+        this.getTableApidata('campus').then(obj => {
+            console.log(obj)
+            this.campus = []
+            let campusarray_id = this.$store.state.system.campusarray_id
+            let campus_id = this.$store.state.system.campus_id
+
+            console.log(campusarray_id)
+            let find = false
+            let lastcampusname = ''
+            let lastcampusid = ''
+            for (let item of obj.data.data) {
+                if (campusarray_id.indexOf(item._id) != -1) {
+                    this.campus.push(item)
+                }
+                if (campus_id&&campus_id.length>0){
+                    if (campus_id==item._id){
+                        this.campusname = item.name
+                        find = true
+                    }
+                }
+                lastcampusname = item.name
+                lastcampusid = item._id
+            }
+            if (!find){
+                this.campusname = lastcampusname
+                this.$store.state.system.campus_id = lastcampusid
+            }
+            console.log('gettable', this.campus)
+        })
+
     },
     computed: {
         getCurrMenu() {
