@@ -2,6 +2,7 @@ export default {
     'pageName': 'reportform',
     'pageLable': '汇报',
     'form': {
+        'own':'',
         'tasks': '',
         'start': '',
         'end': '',
@@ -9,6 +10,12 @@ export default {
         'note': ''
     },
     'formField': [
+         {
+            'type': 'input',
+            'label': '汇报人',
+            'prop': 'own',
+            'field': 'own'
+        },
         {
             'type': 'input',
             'label': '今日任务',
@@ -47,6 +54,9 @@ export default {
     'pageTemplate': 'form',
     'pagePath': '',
     rules: {
+        own: [
+            { required: true, message: '请输入汇报人', trigger: 'blur' }
+        ],
         tasks: [
             { required: true, message: '请输入今日任务', trigger: 'blur' }
         ],

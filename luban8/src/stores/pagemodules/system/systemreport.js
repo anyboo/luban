@@ -52,6 +52,11 @@ export default {
         },
         {
             'type': 'text',
+            'label': '汇报人',
+            'prop': 'own',
+        },
+        {
+            'type': 'text',
             'label': '今日任务',
             'prop': 'tasks',
         },
