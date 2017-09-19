@@ -24,9 +24,10 @@
     </div>
 </template>
 <style>
-.clpadding{
-    padding-top:17px !important;
+.clpadding {
+    padding-top: 17px !important;
 }
+
 .bg-info {
     color: #fff;
     background-color: #4d90fe;
@@ -58,30 +59,38 @@ export default {
     name: 'systems',
     data() {
         return {
+            org: null
         }
     },
     mounted() {
-        this.getTableApidata('org')
+        let filterObj = []
+        filterObj.push({
+            'key': '_id',
+            'value': this.$store.state.system.org_id,
+            'type': ''
+        })
+        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+            if (obj.data.count > 0) {
+                this.org = obj.data.data[0]
+            } else {
+            }
+        }).catch(() => {
+        })
     },
     computed: {
         getData() {
-            let balance = 0
-            let org = this.$store.state.models.models.org.data
-            if (org.length > 0) {
-                if (org[0].balance) {
-                    balance = org[0].balance
-                }
-            } console.log('333', balance)
-            return balance
+            let amount = 0
+            if (this.org&&this.org.amount) {
+                amount = this.org.amount
+            } 
+            return amount
         },
         getSms() {
             let sms = 0
-            let org = this.$store.state.models.models.org.data
-            if (org.length > 0) {
-                if (org[0].sms) {
-                    sms = parseInt(org[0].sms)
-                }
-            } console.log('2314', sms)
+            if (this.org&&this.org.sms) {
+                sms = this.org.sms
+            } 
             return sms
         },
     },
