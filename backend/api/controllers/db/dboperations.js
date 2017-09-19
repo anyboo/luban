@@ -82,8 +82,9 @@ module.exports.count = function* count(db, table, next) {
     let collection = db.collection(table)
     let findobj = {}
     for(let item in  this.query){
-        findobj[item] = query[item]
+        findobj[item] = this.query[item]
     }
+    console.log(findobj)
     var count = yield collection.find(findobj).count()
     db.close()
     this.body = count
