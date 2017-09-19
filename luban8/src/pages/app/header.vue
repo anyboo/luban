@@ -2,7 +2,9 @@
     <div class="lbHeader">
         <div class="lbHeader_container">
             <div class="firstModule">
-                <i class="fa fa-bars" @click='variety()'></i>
+                <span class="screen">
+                    <i class="fa fa-bars" @click='variety()'></i>
+                </span>
                 <el-dropdown class='menu' trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         <b class="fa fa-user-o"></b>
@@ -36,8 +38,12 @@
 .screen {
     display: inline-block;
     width: 50px;
-    text-align: center;
+    height: 50px;
+    position: relative;
+    top:0px;
+    left:0px;
 }
+
 
 .school {
     display: inline-block;
@@ -80,7 +86,12 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-
+.fa-fw:hover{
+    color:#e74c3c;
+}
+.fa-expand:hover{
+    color:#e74c3c;
+}
 .fa-bars:hover {
     color: #e74c3c;
 }

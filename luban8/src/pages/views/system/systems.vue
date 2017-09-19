@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper bg-light ng-scope">
-        <div class="wrapper b-a r-5x bg-white box-shadow m-t bg_self">
+        <div class="wrapper b-a r-5x bg-white box-shadow m-t bg_self clpadding">
             <button class="btn btn-default pull-right" @click="lbShowdialog($event,'systemrechargedialog')">
                 <i class="fa fa-money"></i> 充值</button>
             <button class="btn btn-default pull-right r m-r distance" @click="lbShowdialog($event,'rechargesearchdialogs')">
@@ -10,7 +10,7 @@
                 <span class="label bg-info ng-binding">￥{{getData}}</span>
             </h5>
         </div>
-        <div class="wrapper b-a r-5x bg-white box-shadow m-t bg_self">
+        <div class="wrapper b-a r-5x bg-white box-shadow m-t bg_self clpadding">
             <button class="btn btn-default pull-right r" @click="lbShowdialog($event,'systembuyform')">
                 <i class="icon-basket"></i> 购买</button>
             <button class="btn btn-default pull-right r m-r distance" @click="lbShowdialog($event,'buytextdialogs')">
@@ -24,6 +24,9 @@
     </div>
 </template>
 <style>
+.clpadding{
+    padding-top:17px !important;
+}
 .bg-info {
     color: #fff;
     background-color: #4d90fe;
