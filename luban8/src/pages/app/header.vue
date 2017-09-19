@@ -6,38 +6,39 @@
 
                 <el-dropdown class='menu'>
                     <span class="el-dropdown-link">
+                        <b class="fa fa-user-o"></b>
                         <b>{{$store.state.system.name}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </span>
-                    <el-dropdown-menu slot="dropdown" >
+                    <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
                             <i class="fa fa-user" style="top:1px;"></i>个人资料
-                            </el-dropdown-item>
-                        <el-dropdown-item  @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
-                               <i class="fa fa-lock" style="top:1px;"></i>锁屏
-                            </el-dropdown-item>
-                        <el-dropdown-item  @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
+                        </el-dropdown-item>
+                        <el-dropdown-item @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
+                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
+                        </el-dropdown-item>
+                        <el-dropdown-item @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
                             <i class="fa fa-key" style="top:1px;"></i>退出
-                            </el-dropdown-item>
+                        </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
 
-               <!--  <div class='menu' @click='handleClickShow()'>
-                    <b class="fa fa-user-o"></b>
-                    <b>{{$store.state.system.name}}</b>
-                    <span class="cart"></span>
-                    <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
-                            <i class="fa fa-user" style="top:1px;"></i>个人资料
-                        </li>
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
-                            <i class="fa fa-lock" style="top:1px;"></i>锁屏
-                        </li>
-                        <li @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
-                            <i class="fa fa-key" style="top:1px;"></i>退出
-                        </li>
-                    </ul>
-                </div> -->
+                <!--  <div class='menu' @click='handleClickShow()'>
+                        <b class="fa fa-user-o"></b>
+                        <b>{{$store.state.system.name}}</b>
+                        <span class="cart"></span>
+                        <ul class="menuShow" :class="{'dispalyShow':toShow,'displayNone':!toShow}">
+                            <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/personal_information')">
+                                <i class="fa fa-user" style="top:1px;"></i>个人资料
+                            </li>
+                            <li @mouseout="toShow=false" @mouseover="toShow=true" @click="changeView('/system/sign_in')">
+                                <i class="fa fa-lock" style="top:1px;"></i>锁屏
+                            </li>
+                            <li @mouseout="toShow=false" @mouseover="toShow=true" @click="accountexit()">
+                                <i class="fa fa-key" style="top:1px;"></i>退出
+                            </li>
+                        </ul>
+                    </div> -->
                 <span class="school">校区</span>
                 <span class="screen" @click="fullscreen">
                     <i class="fa fa-fw" :class="{'fa-compress':updown,'fa-expand':!updown}" style="color:white;"></i>

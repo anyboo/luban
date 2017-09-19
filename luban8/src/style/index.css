@@ -275,3 +275,6 @@ a:hover {
     .panel-default > .panel-heading {
         background: #eef1f6;
     }
+    .bg_self button {
+         font-size: 14px !important; 
+    }
