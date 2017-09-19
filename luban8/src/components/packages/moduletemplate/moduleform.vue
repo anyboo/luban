@@ -398,7 +398,7 @@ export default {
             }
             return role
         },
-         getcampusData() {
+        getcampusData() {
             let role = this.$store.state.models.models.campus.data
             if (this.title == '添加') {
                 for (var item of role) {
@@ -608,6 +608,25 @@ export default {
                 }
             })
         },
+        savedb(resolve) {
+            if (this.module.pagedb) {
+                this.localdata.form.db = this.$store.state.system.db
+            }
+            vm.handleSavedb({
+                db: this.module.pagedb,
+                form: this.localdata.form,
+                table: this.module.pageTable,
+            }).then((response) => {
+                if (this.module.afterSave) {
+                    this.module.afterSave(this, response).then((obj) => {
+                        resolve(obj)
+                    })
+                } else {
+                    resolve(response)
+                }
+            }, (e) => {
+            })
+        },
         append(id) {
             return new Promise(resolve => {
                 if (id) {
@@ -631,23 +650,7 @@ export default {
                             }, (e) => {
                             })
                         } else {
-                            if (this.module.pagedb) {
-                                this.localdata.form.db = this.$store.state.system.db
-                            }
-                            vm.handleSavedb({
-                                db: this.module.pagedb,
-                                form : this.localdata.form,
-                                table: this.module.pageTable,
-                            }).then((response) => {
-                                if (this.module.afterSave) {
-                                    this.module.afterSave(this, response).then((obj) => {
-                                        resolve(obj)
-                                    })
-                                } else {
-                                    resolve(response)
-                                }
-                            }, (e) => {
-                            })
+                            this.savedb(resolve)
                         }
                     }
                 })

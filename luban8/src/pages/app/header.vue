@@ -217,12 +217,10 @@ export default {
     },
     mounted() {
         this.getTableApidata('campus').then(obj => {
-            console.log(obj)
             this.campus = []
             let campusarray_id = this.$store.state.system.campusarray_id
             let campus_id = this.$store.state.system.campus_id
 
-            console.log(campusarray_id)
             let find = false
             let lastcampusname = ''
             let lastcampusid = ''
@@ -244,7 +242,6 @@ export default {
                 this.campusname = lastcampusname
                 this.$store.state.system.campus_id = lastcampusid
             }
-            console.log('gettable', this.campus)
         })
 
     },

@@ -41,18 +41,13 @@ export default {
                 amount = vm.org.amount
             }
             console.log(amount , vm.localdata.form.order_amount)
-            if (amount > vm.localdata.form.order_amount) {
+            if (amount < vm.localdata.form.order_amount) {
                 vm.$message({
                     type: 'info',
                     message: '请先充值后再购买！'
                 })
-                reject({})
             } else {
-                vm.$message({
-                    type: 'info',
-                    message: '请先充值后再购买！'
-                })
-                resolve({})
+                vm.savedb(resolve)
             } 
         })
     },
@@ -82,17 +77,17 @@ export default {
         },
         {
             'type': 'text',
+            'label': '短信条数',
+            'prop': '',
+            'field': 'sms_count',
+            'text': '条'
+        },
+        {
+            'type': 'text',
             'label': '应缴金额',
             'prop': '',
             'field': 'order_amount',
             'text': '元'
-        },
-        {
-            'type': 'text',
-            'label': '条数',
-            'prop': '',
-            'field': 'sms_count',
-            'text': '条'
         }
     ],
     'pagedb': 'luban8',
