@@ -106,16 +106,19 @@ module.exports.alipaynotify = function* alipaynotify() {
     if (model.trade_status == 'TRADE_SUCCESS') {
         pay_status = 1
     }
+    //org_id: 59c0baa9b6ffda325a8737ae,
     var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
-    let table = yield db.collection('order').findOneAndUpdate(
-        {
-            'order_no': model.out_trade_no
-        }, {
+    let order = yield db.collection('order').findOneAndUpdate({
+        'order_no': model.out_trade_no
+    }, {
             'pay_status': pay_status
-
-        }
-    )
-    console.log('~~~~~~~~~~table~~~~~~~~~~',table)
+        })
+    let org = yield db.collection('org').findOneAndUpdate({
+        'org_id': order.org_id
+    }, {
+            $inc:{'amount':model.total_amount} 
+        })
+    console.log('~~~~~~~~~~table~~~~~~~~~~', table)
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
