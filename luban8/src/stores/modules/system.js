@@ -9,7 +9,7 @@ const state = {
     login: false,
     roles_id: [],
     org_id: '',
-    pwd: '',
+    user_id: '',
     campus_id: '',
     theme: 'rgba(208, 150, 21, 0.8)',
     routerback: '',
@@ -43,6 +43,10 @@ const mutations = {
         state.router = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
+    userout: (state, obj) => {
+        state.login = false
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
     user: (state, obj) => {
         state.login = obj.login
         state.user = obj.user
@@ -52,6 +56,7 @@ const mutations = {
         state.db = obj.db
         state.admin = obj.admin
         state.roles_id = obj.roles_id
+        state.user_id = obj.user_id
         state.org_id = obj.org_id
         state.campus_id = obj.campus_id
         window.db = obj.db
@@ -69,6 +74,7 @@ const mutations = {
         state.birth = obj.birth
         state.name = obj.name
         state.id = obj.id
+        state.user_id = obj.user_id
         state.db = obj.db
         state.admin = obj.admin
         state.roles_id = obj.roles_id

@@ -54,6 +54,7 @@ export default {
             'label': '状态',
         }
     ],
+    'pagenocampus': true,
     'pageTable': 'role',
     'pageTemplate': 'table1',
     'pagePath': ''

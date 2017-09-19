@@ -47,8 +47,6 @@ export default {
             'prop': 'is_part_time',
         }
     ],
-    'pagedb': 'luban8',
-    'pagecampus': true,
     'pageTable': 'employee',
     'pageTemplate': 'table1',
     'pagePath': ''

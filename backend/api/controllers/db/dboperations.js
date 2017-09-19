@@ -24,7 +24,7 @@ function loginemployee(user) {
     return new Promise((resolve) => {
         let logindata = { 'login': false }
         MongoClient.connect(dbunit.getdbstr('luban8')).then(db => {
-            let table = db.collection('employee')
+            let table = db.collection('user')
             let options = []
             options.push({
                 '$match': {
@@ -50,7 +50,7 @@ function loginemployee(user) {
                     'as': 'campus'
                 }
             })*/
-            options.push({ '$sort': { 'usedate': -1 } })
+            //options.push({ '$sort': { 'usedate': -1 } })
             options.push({ '$limit': 1 })
             let cursor = table.aggregate(options)
             cursor.toArray().then(obj => {
@@ -58,14 +58,14 @@ function loginemployee(user) {
                     logindata.login = true
                     logindata.user = obj[0].phone
                     logindata.name = obj[0].name
-                    logindata.birth = obj[0].birth
+                    //logindata.birth = obj[0].birth
                     logindata.admin = obj[0].admin
                     logindata.db = obj[0].db
                     //logindata.campus = obj[0].campus
                     //logindata.org = obj[0].org
-                    logindata.org_id = obj[0].org_id
-                    logindata.roles_id = obj[0].roles_id
-                    logindata.campus_id = obj[0].campus_id
+                    //logindata.org_id = obj[0].org_id
+                    //logindata.roles_id = obj[0].roles_id
+                    //logindata.campus_id = obj[0].campus_id
                     logindata._id = obj[0]._id
                     resolve(logindata)
                 } else {
@@ -75,6 +75,16 @@ function loginemployee(user) {
             })
         })
     })
+}
+module.exports.count = function* count(db, field, name, next) {
+    if ('GET' != this.method) return yield next
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    let table = db.collection(name)
+    let findobj = {}
+    findobj[field] = name
+    var count = yield table.find(findobj).count()
+    db.close()
+    this.body = count
 }
 module.exports.login = function* login(next) {
     if ('POST' != this.method) return yield next

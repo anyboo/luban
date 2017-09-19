@@ -200,9 +200,8 @@ export default {
                 if (valid) {
                     let account = { user: this.$store.state.system.user, pwd: md5(this.localdata.form2.old_pwd) }
                     this.$store.dispatch(this.types.LOGIN_API, account).then((data) => {
-                        console.log(data)
                         if (data.code == 0) {
-                            this.updateTeble('employee', this.$store.state.system.id, {
+                            this.updateTeble('user', this.$store.state.system.user_id, {
                                 'pwd': md5(this.localdata.form2.new_pwd)
                             }, 'luban8').then(() => {
                                 this.$message({
@@ -225,7 +224,7 @@ export default {
             })
         },
         handleChangeInfo() {
-            this.handleSavedb({ db: 'luban8', table: 'employee', form: this.localdata.form }).then(() => {
+            this.handleSavedb({ table: 'employee', form: this.localdata.form }).then(() => {
                 this.$message({
                     message: '操作成功',
                     type: 'success'

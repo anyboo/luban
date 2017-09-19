@@ -1,40 +1,34 @@
 export default {
-    'pageName': 'systemschool',
-    'pageLable': ' 校区管理',
+    'pageName': 'systemreport',
+    'pageLable': ' 每日汇报',
     'tableSearch': [],
     'pageSearch': [
         {
             'type': 'textSearch',
             'fields': [
                 {
-                    'label': '校区名',
+                    'label': '今日任务',
                     'defvalue': '',
                     'default': true,
-                    'value': 'name'
+                    'value': 'tasks'
                 },
                 {
-                    'label': '校区简称',
+                    'label': '时间',
                     'defvalue': '',
                     'default': true,
-                    'value': 'short_name'
+                    'value': 'start'
                 },
                 {
-                    'label': '所在地区',
+                    'label': '今日总结',
                     'defvalue': '',
                     'default': true,
-                    'value': 'group_name'
+                    'value': 'summary'
                 },
                 {
-                    'label': '地址',
+                    'label': '批注',
                     'defvalue': '',
                     'default': true,
-                    'value': 'branch_address'
-                },
-                {
-                    'label': '联系电话',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'branch_tel'
+                    'value': 'note'
                 }
             ]
         },
@@ -42,9 +36,9 @@ export default {
             'type': 'singleBtnSearch',
             'fields': [
                 {
-                    'label': '添加新校区',
+                    'label': '添加新汇报',
                     'type': 'success',
-                    'showdialog': 'campusform',
+                    'showdialog': 'reportform',
                     'actionoption': 'systememorgsavestudent'
                 },
             ]
@@ -58,32 +52,33 @@ export default {
         },
         {
             'type': 'text',
-            'label': '校区名',
-            'prop': 'name',
+            'label': '今日任务',
+            'prop': 'tasks',
+        },
+        {
+            'type': 'datetimeMinute',
+            'label': '时间',
+            'prop': 'start',
+            'prop2': 'end'
+        },
+        {
+            'type': 'datetimeMinute',
+            'label': '时间',
+            'prop': 'end',
         },
         {
             'type': 'text',
-            'label': '校区简称',
-            'prop': 'short_name',
+            'label': '今日总结',
+            'prop': 'summary',
         },
         {
             'type': 'text',
-            'label': '所在地区',
-            'prop': 'group_name',
-        },
-        {
-            'type': 'text',
-            'label': '地址',
-            'prop': 'address',
-        },
-        {
-            'type': 'text',
-            'label': '联系电话',
-            'prop': 'branch_tel',
+            'label': '批注',
+            'prop': 'note',
         }
     ],
-    'pagenocampus': true,
-    'pageTable': 'campus',
+    'pagedb': 'luban8',
+    'pageTable': 'summary',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

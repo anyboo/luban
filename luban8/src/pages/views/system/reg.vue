@@ -191,14 +191,7 @@ export default {
                 if (!Regphone.test(value)) {
                     callback(new Error('请输入11位手机号码'))
                 } else {
-                    let filterObj = []
-                    filterObj.push({
-                        'key': 'phone',
-                        'value': value,
-                        'type': ''
-                    })
-                    let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                    Vue.http.get('http://app.bullstech.cn/luban8/api/user?filter=' + filterTxt).then(obj => {
+                    Vue.http.get('http://app.bullstech.cn/luban8/count/phone/' + value).then(obj => {
                         if (obj.data.count > 0) {
                             callback(new Error('用户已经存在,请直接登录.'))
                         } else {
@@ -292,7 +285,9 @@ export default {
                     { required: true, validator: checkphone, trigger: 'change' },
                 ],
                 pass: [
-                    { required: true, validator: checkPass, trigger: 'change' },
+                    //{ required: true, validator: checkPass, trigger: 'change' },
+                    { required: true, message: '请输入密码', trigger: 'change' },
+                    { min: 6, max: 50, message: '请输入6位以上密码', trigger: 'change' }
                 ],
                 checkpass: [
                     { required: true, validator: validatePass, trigger: 'change' }
@@ -389,13 +384,14 @@ export default {
             this.$refs[formName].resetFields()
         },
         handleclick() {
-            let createtime = new Date()
-            let db = 'luban_' + createtime.getTime()
+            let createtime = (new Date()).getTime()
+            let db = 'luban_' + createtime
             let user = {
                 lock: false,
                 admin: true,
                 phone: this.registerForm.phone,
-                createtime: createtime.getTime(),
+                db,
+                createtime: createtime,
                 name: this.infoForm.uname,
                 pwd: md5(this.registerForm.pass)
             }
@@ -405,9 +401,10 @@ export default {
                 this.$store.state.system.phone = obj.data.phone
                 this.$store.state.system.pwd = obj.data.pwd
                 this.infoForm.createtime = obj.data.createtime
+                this.infoForm.db = db
                 return Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm)
             }).then(obj => {
-                this.initdbdata(obj.data._id).then(obj => {
+                this.initdbdata(obj.data).then(obj => {
                     this.login()
                 })
             }).catch(() => {

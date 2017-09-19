@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 col-xs-3">当前校区：</label>
                                 <div class="col-md-5 col-xs-9">
-                                    <p class="form-control-static" ng-bind-html="student.ob_id|branch_name">
+                                    <p class="form-control-static" ng-bind-html="student.ob_id|name">
                                         <label class="badge bg-info badge-xm">福州布尔培训</label>
                                     </p>
                                 </div>
@@ -26,7 +26,7 @@
                             <div class="form-group" ng-if="branch_rest.$loaded">
                                 <label class="col-xs-3 col-md-2 control-label">新校区：</label>
                                 <div class="col-xs-9 col-md-5">
-                                    <select class="form-control  ng-dirty -parse ng-touched" ng-options="item.ob_id as item.branch_name for item in branch_rest.$list" v-model="localdata.form.change_branch_ob_id">
+                                    <select class="form-control  ng-dirty -parse ng-touched" ng-options="item.ob_id as item.name for item in branch_rest.$list" v-model="localdata.form.change_branch_ob_id">
                                         <option value class>选择校区</option>
                                         <option value="0">福州布尔培训</option>
                                     </select>

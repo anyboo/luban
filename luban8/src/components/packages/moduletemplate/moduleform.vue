@@ -132,10 +132,18 @@
                     </el-input>
                 </el-form-item>
             </template>
-            <template v-if="item.type=='option'">
+            <template v-if="item.type=='rolesoption'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-select v-model="localdata.form[item.field]" multiple placeholder="请选择" style="width: 100%;">
                         <el-option v-for="value in getroleData" :key="value._id" :label="value.name" :value="value._id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='campusoption'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-select v-model="localdata.form[item.field]" multiple placeholder="请选择" style="width: 100%;">
+                        <el-option v-for="value in getcampusData" :key="value._id" :label="value.name" :value="value._id">
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -379,6 +387,19 @@ export default {
         },
         getroleData() {
             let role = this.$store.state.models.models.role.data
+            if (this.title == '添加') {
+                for (var item of role) {
+                    if (item.defrole) {
+                        if (this.localdata.form.roles_id.indexOf(item._id) == -1) {
+                            this.localdata.form.roles_id.push(item._id)
+                        }
+                    }
+                }
+            }
+            return role
+        },
+         getcampusData() {
+            let role = this.$store.state.models.models.campus.data
             if (this.title == '添加') {
                 for (var item of role) {
                     if (item.defrole) {
