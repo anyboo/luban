@@ -73,7 +73,7 @@ export default {
         }, {
             'url': 'lb-resetaccountmodal',
             'icon': 'fa fa-key',
-            'text': '重置密码'
+            'text': '账号设置'
         }, {
             'action': 'delete',
             'icon': 'fa fa-times',

@@ -388,6 +388,7 @@ export default {
             let db = 'luban_' + createtime
             let user = {
                 lock: false,
+                bind: true,
                 admin: true,
                 phone: this.registerForm.phone,
                 db,

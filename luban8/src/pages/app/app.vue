@@ -11,11 +11,11 @@
 </template>
 <style>
 .margincontaierUnfold {
-  margin-left: 180px;
+    margin-left: 180px;
 }
 
 .marginlbcontainerRetraction {
-     margin-left: 55px;
+    margin-left: 55px;
 }
 </style>
 
@@ -39,9 +39,13 @@ export default {
         }
     },
     components: pages,
-    computed:{
-        login(){
-            return this.$store.state.system.login
+    computed: {
+        login() {
+            let login = this.$store.state.system.login
+            if (login) {
+                login = this.$store.state.models.login
+            }
+            return login
         }
     },
     methods: {
