@@ -1,22 +1,114 @@
 <html lang="cn">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>支付通知</title>
-        <style>
-        .success{
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>支付通知</title>
+    <style>
+        .cont {
+            border: 1px solid #dddddd;
+            width: 800px;
             position: fixed;
-            font-size:30px;
-            top:25%;
-            left: 35%;
-            background: rgba(52, 137, 211, 0.63);
-            color:#ffffff;
+            border-radius: 5px;
+            top: 10%;
+            left: 29%;
+            background: rgb(254, 244, 213);
+            color: rgb(225, 86, 64);
         }
-        </style>
-    </head>
-    <body>
-    <div class="success">
-        支付成功！请点击浏览器关闭按钮～
+
+        img {
+            width: 200px;
+            height: 150px;
+            vertical-align: middle;
+            border-radius: 50%;
+            padding-left: 50px;
+            padding-top: 50px;
+        }
+
+        .success {
+            position: absolute;
+            top: 65px;
+            right: 100px;
+            font-size: 90px;
+        }
+
+        #text_content {
+            color: rgb(245, 189, 72);
+
+            width: 100%;
+            min-height: 50px;
+            margin-top: 50px;
+        }
+
+        #text_content>ul {
+            list-style: none;
+        }
+
+        #text_content>ul>li {
+            float: left;
+            padding-left: 25px;
+        }
+
+        .timer {
+            font-size: 18px;
+            width: 100%;
+            min-height: 10px;
+            padding-bottom: 10px;
+            float: right;
+        }
+
+        .timer>span {
+            float: right;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <img src="image/right.png" alt="">
+        <span class="success">
+            支付成功！
+        </span>
+        <div id="text_content">
+            <ul>
+            </ul>
+        </div>
+        <div class='timer'>
+            <span>页面将在<b> 3</b>s 后关闭</span>
+        </div>
     </div>
-    </body>
-    </html>
+    <script src="jquery-1.9.1.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type : "POST",
+                url: "http://app.bullstech.cn/alipaynotify",
+                data:{},
+                success: function (data) {
+                    var html = "";
+                    $.each(data, function (i, p) {
+                        html += `
+                        <ul>
+                                <li>
+                                    订单号:${p.order}
+                                </li>
+                                <li>
+                                    已付款:${p.amount}
+                                </li>
+                                <li>
+                                    订单标题:${p.name}
+                                </li>
+                                <li>
+                                    订单备注:${p.body}
+                                </li>
+                            </ul>
+                `
+                    })
+                    $("#text_content").html(html);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
