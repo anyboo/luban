@@ -15,6 +15,7 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
+var dbunit = require('../../unit/db')
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
 var publicPem = fs.readFileSync(path.resolve('controllers/alipay/', 'alipay_public_key.pem'))
