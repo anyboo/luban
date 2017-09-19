@@ -76,12 +76,14 @@ function loginemployee(user) {
         })
     })
 }
-module.exports.count = function* count(db, table,field, name, next) {
+module.exports.count = function* count(db, table, next) {
     if ('GET' != this.method) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let collection = db.collection(table)
     let findobj = {}
-    findobj[field] = name
+    for(let item in  this.query){
+        findobj[item] = query[item]
+    }
     var count = yield collection.find(findobj).count()
     db.close()
     this.body = count
