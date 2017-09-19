@@ -118,7 +118,7 @@ module.exports.alipaynotify = function* alipaynotify() {
     }, {
             $inc:{'amount':parseInt(model.total_amount)} 
         })
-    console.log('~~~~~~~~~~table~~~~~~~~~~', table)
+    console.log('~~~~~~~~~~table~~~~~~~~~~', order)
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
