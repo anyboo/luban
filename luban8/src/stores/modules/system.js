@@ -48,6 +48,9 @@ const mutations = {
         state.login = false
         window.localStorage.setItem('system', JSON.stringify(state))
     },
+    save: (state) => {
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
     user: (state, obj) => {
         state.login = obj.login
         state.user = obj.user

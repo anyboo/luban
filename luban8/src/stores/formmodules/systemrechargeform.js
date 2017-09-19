@@ -7,9 +7,10 @@ export default {
         'pay_status': 0,
         'order_no': '',
         'order_type': 1,
+        'amount': 0,
         'body': ''
     },
-    'created':function(vm){
+    'created': function (vm) {
         vm.localdata.form.db = vm.$store.state.system.db
         let filterObj = []
         filterObj.push({
@@ -20,7 +21,7 @@ export default {
         let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
-                vm.org = obj.data.data[0]
+                vm.localdata.form.amount = obj.data.data[0].amount
             } else {
             }
         }).catch(() => {
@@ -29,13 +30,14 @@ export default {
     'beforeSave': function (vm) {
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
         vm.localdata.form.body = '交费[' + vm.localdata.form.order_amount + '元]'
+        vm.localdata.form.amount = null
+        delete vm.localdata.form.amount
     },
     'formField': [
         {
-            'type': 'vmsubtext',
+            'type': 'text',
             'label': '当前余额',
-            'prop': 'org',
-            'subprop': 'amount',
+            'field': 'amount',
             'text': '元'
         },
         {
@@ -59,7 +61,7 @@ export default {
             'text': '元'
         }
     ],
-    'pagedb':'luban8',
+    'pagedb': 'luban8',
     'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',

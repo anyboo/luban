@@ -4,7 +4,8 @@ export default {
     'form': {
         'sms_count': 1000,
         'order_amount': 90,
-        'combo': '90'
+        'combo': '90',
+        'amount':0
     },
     'created': function (vm) {
         vm.localdata.form.db = vm.$store.state.system.db
@@ -17,7 +18,7 @@ export default {
         let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
-                vm.org = obj.data.data[0]
+                vm.localdata.form.amount = obj.data.data[0].amount
             } else {
             }
         }).catch(() => {
@@ -32,31 +33,26 @@ export default {
         } else if (obj == 350) {
             vm.localdata.form.sms_count = 5000
         }
-        console.log(obj)
     },
     'handleSave': function (vm) {
         return new Promise((resolve, reject) => {
-            let amount = 0
-            if (vm.org.amount){
-                amount = vm.org.amount
-            }
-            console.log(amount , vm.localdata.form.order_amount)
-            if (amount < vm.localdata.form.order_amount) {
+            if (vm.localdata.form.amount < vm.localdata.form.order_amount) {
                 vm.$message({
                     type: 'info',
                     message: '请先充值后再购买！'
                 })
             } else {
+                vm.localdata.form.amount = null
+                delete vm.localdata.form.amount
                 vm.savedb(resolve)
             } 
         })
     },
     'formField': [
         {
-            'type': 'vmsubtext',
+            'type': 'text',
             'label': '当前余额',
-            'prop': 'org',
-            'subprop': 'amount',
+            'field': 'amount',
             'text': '元'
         },
         {

@@ -216,38 +216,15 @@ export default {
         }
     },
     mounted() {
-        this.getTableApidata('campus').then(obj => {
-            this.campus = []
-            let campusarray_id = this.$store.state.system.campusarray_id
-            let campus_id = this.$store.state.system.campus_id
 
-            let find = false
-            let lastcampusname = ''
-            let lastcampusid = ''
-            this.campusarray = obj.data.data
-            for (let item of obj.data.data) {
-                if (campusarray_id.indexOf(item._id) != -1) {
-                    this.campus.push(item)
-                }
-                if (campus_id && campus_id.length > 0) {
-                    if (campus_id == item._id) {
-                        this.campusname = item.name
-                        find = true
-                    }
-                }
-                lastcampusname = item.name
-                lastcampusid = item._id
-            }
-            if (!find) {
-                this.campusname = lastcampusname
-                this.$store.state.system.campus_id = lastcampusid
-            }
-        })
 
     },
     computed: {
         getCurrMenu() {
             var menuName = ''
+            if (this.$store.state.system.campusarray_id.length>0){
+                this.getcampus()
+            }
             let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
@@ -272,6 +249,35 @@ export default {
 
     },
     methods: {
+        getcampus() {
+            this.getTableApidata('campus').then(obj => {
+                this.campus = []
+                let campusarray_id = this.$store.state.system.campusarray_id
+                let campus_id = this.$store.state.system.campus_id
+
+                let find = false
+                let lastcampusname = ''
+                let lastcampusid = ''
+                this.campusarray = obj.data.data
+                for (let item of obj.data.data) {
+                    if (campusarray_id.indexOf(item._id) != -1) {
+                        this.campus.push(item)
+                    }
+                    if (campus_id && campus_id.length > 0) {
+                        if (campus_id == item._id) {
+                            this.campusname = item.name
+                            find = true
+                        }
+                    }
+                    lastcampusname = item.name
+                    lastcampusid = item._id
+                }
+                if (!find) {
+                    this.campusname = lastcampusname
+                    this.$store.state.system.campus_id = lastcampusid
+                }
+            })
+        },
         variety() {
             this.$emit('variety')
         },
@@ -310,11 +316,11 @@ export default {
                 }
             }
             this.$store.state.system.campus_id = command
-             this.$store.state.envs.currDialog = 'moduleform'
+            this.$store.state.envs.currDialog = 'moduleform'
             this.updateTeble('employee', this.$store.state.system.id, {
                 'campus_id': command
             }).then(() => {
-
+                this.$store.commit('save')
             })
         },
         handleCommand(command) {

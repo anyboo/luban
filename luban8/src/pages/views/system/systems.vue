@@ -24,11 +24,12 @@
     </div>
 </template>
 <style>
-.text-muted{
+.text-muted {
     font-size: 14px !important;
 }
-.clpadding{
-    padding-top:17px !important;
+
+.clpadding {
+    padding-top: 17px !important;
 }
 
 .bg-info {
@@ -73,6 +74,10 @@ export default {
             'type': ''
         })
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+        let token = window.localStorage.getItem('token')
+        let tokentime = window.localStorage.getItem('tokentime')
+        Vue.http.headers.common['authorization'] = token
+        Vue.http.headers.common['authtime'] = tokentime
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
                 this.org = obj.data.data[0]
@@ -84,16 +89,16 @@ export default {
     computed: {
         getData() {
             let amount = 0
-            if (this.org&&this.org.amount) {
+            if (this.org && this.org.amount) {
                 amount = this.org.amount
-            } 
+            }
             return amount
         },
         getSms() {
             let sms = 0
-            if (this.org&&this.org.sms) {
+            if (this.org && this.org.sms) {
                 sms = this.org.sms
-            } 
+            }
             return sms
         },
     },
