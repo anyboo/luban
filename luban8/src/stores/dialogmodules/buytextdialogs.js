@@ -30,10 +30,11 @@ export default {
         {
             'type': 'text',
             'label': '金额',
-            'prop': 'origin_amount',
+            'prop': 'order_amount',
         }
     ],
-    'pageTable': 'rechargeorder',
+    'pagedb': 'luban8',
+    'pageTable': 'smsorder',
     'pageTemplate': 'table1',
     'pagePath': '',
 }
