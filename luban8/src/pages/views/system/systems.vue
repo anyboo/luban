@@ -24,6 +24,9 @@
     </div>
 </template>
 <style>
+.text-muted{
+    font-size: 14px !important;
+}
 .clpadding{
     padding-top:17px !important;
 }
