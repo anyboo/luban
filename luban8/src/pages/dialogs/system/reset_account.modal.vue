@@ -133,27 +133,42 @@ export default {
                             this.lbClosedialog()
                         })
                     } else {
-                        let createtime = (new Date()).getTime()
-                        let user = {
-                            lock: false,
-                            bind: true,
-                            admin: false,
-                            phone: this.localdata.form.username,
-                            db: this.$store.state.system.db,
-                            createtime: createtime,
-                            name: this.name,
-                            pwd: md5(this.localdata.form.reset_password)
-                        }
-                        Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
-                            return this.updateTeble('employee', this.uid, {
-                                'user_id': obj.data._id
-                            })
-                        }).then(() => {
-                            this.$message({
-                                message: '设置成功！',
-                                type: 'success'
-                            })
-                            this.lbClosedialog()
+                        Vue.http.get('http://app.bullstech.cn/luban8/id/user/?bind=false&phone=' + this.localdata.form.username).then(obj => {
+                            if (obj.data.length > 0) {
+                                this.updateTeble('employee', this.uid, {
+                                    'user_id': obj.data[0]
+                                }).then(() => {
+                                    this.$message({
+                                        message: '设置成功！',
+                                        type: 'success'
+                                    })
+                                    this.lbClosedialog()
+                                })
+                            }
+                            else {
+                                let createtime = (new Date()).getTime()
+                                let user = {
+                                    lock: false,
+                                    bind: true,
+                                    admin: false,
+                                    phone: this.localdata.form.username,
+                                    db: this.$store.state.system.db,
+                                    createtime: createtime,
+                                    name: this.name,
+                                    pwd: md5(this.localdata.form.reset_password)
+                                }
+                                Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
+                                    return this.updateTeble('employee', this.uid, {
+                                        'user_id': obj.data._id
+                                    })
+                                }).then(() => {
+                                    this.$message({
+                                        message: '设置成功！',
+                                        type: 'success'
+                                    })
+                                    this.lbClosedialog()
+                                })
+                            }
                         })
                     }
                 }
