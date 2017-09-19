@@ -99,25 +99,23 @@ module.exports.alipaynotify = function* alipaynotify() {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    console.log('~~~~~notify~~~~', model)
     let signature = ''
     var key = publicPem.toString()
-    /* if (model.trade_status == 'TRADE_SUCCESS') {
-        var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
-        let table = yield db.collection('order').findOneAndUpdate(
-            {
-                //订单号匹配
-                model.out_trade_no
-            }, {
-                    //更新字段状态
-                   
-            }
-        )
-    } */
+    let pay_status = 2
+    if (model.trade_status == 'TRADE_SUCCESS') {
+        pay_status = 1
+    }
+    var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+    let table = yield db.collection('order').findOneAndUpdate(
+        {
+            'order_no': model.out_trade_no
+        }, {
+            'pay_status': pay_status
 
-
+        }
+    )
+    console.log(table)
     this.body = success
-    console.log(success)
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
