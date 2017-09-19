@@ -15,6 +15,7 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
+var dbunit = require('../../unit/db')
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
 var publicPem = fs.readFileSync(path.resolve('controllers/alipay/', 'alipay_public_key.pem'))
@@ -99,25 +100,23 @@ module.exports.alipaynotify = function* alipaynotify() {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    console.log('~~~~~notify~~~~', model)
     let signature = ''
     var key = publicPem.toString()
-    /* if (model.trade_status == 'TRADE_SUCCESS') {
-        var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
-        let table = yield db.collection('order').findOneAndUpdate(
-            {
-                //订单号匹配
-                model.out_trade_no
-            }, {
-                    //更新字段状态
-                   
-            }
-        )
-    } */
+    let pay_status = 2
+    if (model.trade_status == 'TRADE_SUCCESS') {
+        pay_status = 1
+    }
+    var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+    let table = yield db.collection('order').findOneAndUpdate(
+        {
+            'order_no': model.out_trade_no
+        }, {
+            'pay_status': pay_status
 
-
-    this.body = success
-    console.log(success)
+        }
+    )
+    console.log('~~~~~~~~~~table~~~~~~~~~~',table)
+    this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next
