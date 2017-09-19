@@ -115,7 +115,7 @@ module.exports.alipaynotify = function* alipaynotify() {
 
         }
     )
-    console.log(table)
+    console.log('~~~~~~~~~~table~~~~~~~~~~',table)
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
