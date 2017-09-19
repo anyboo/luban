@@ -11,6 +11,7 @@ const state = {
     org_id: '',
     user_id: '',
     campus_id: '',
+    campusarray_id: [],
     theme: 'rgba(208, 150, 21, 0.8)',
     routerback: '',
     router: '',
@@ -59,6 +60,7 @@ const mutations = {
         state.user_id = obj.user_id
         state.org_id = obj.org_id
         state.campus_id = obj.campus_id
+        state.campusarray_id = obj.campusarray_id
         window.db = obj.db
         window.localStorage.setItem('system', JSON.stringify(state))
     },
@@ -80,6 +82,7 @@ const mutations = {
         state.roles_id = obj.roles_id
         state.org_id = obj.org_id
         state.campus_id = obj.campus_id
+        state.campusarray_id = obj.campusarray_id
         window.db = obj.db
     }
 }
