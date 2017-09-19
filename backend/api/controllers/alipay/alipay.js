@@ -55,7 +55,7 @@ function getVerifyParams(params) {
     var sPara = [];
     if (!params) return null;
     for (var key in params) {
-        if ((!params[key]) || key == "sign"|| key == "sign_type") {
+        if ((!params[key]) || key == "sign" || key == "sign_type") {
             continue;
         };
         sPara.push([key, params[key]]);
@@ -99,10 +99,23 @@ module.exports.alipaynotify = function* alipaynotify() {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    console.log('~~~~~notify~~~~',model)
+    console.log('~~~~~notify~~~~', model)
     let signature = ''
     var key = publicPem.toString()
-    let success = 'success'
+    /* if (model.trade_status == 'TRADE_SUCCESS') {
+        var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+        let table = yield db.collection('order').findOneAndUpdate(
+            {
+                //订单号匹配
+                model.out_trade_no
+            }, {
+                    //更新字段状态
+                   
+            }
+        )
+    } */
+
+
     this.body = success
     console.log(success)
 }
