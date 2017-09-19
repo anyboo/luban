@@ -113,13 +113,13 @@ module.exports.alipaynotify = function* alipaynotify() {
     }, {
             $set:{'pay_status': pay_status}
         })
-        console.log('~~~~~~~~~~amount~~~~~~~~~~',parseFloat(model.total_amount))
+        console.log('~~~~~~~~~~amount~~~~~~~~~~',order.org_id,parseFloat(model.total_amount))
     let org = yield db.collection('org').findOneAndUpdate({
         '_id': ObjectID(order.org_id)
     }, {
             $inc:{'amount':parseFloat(model.total_amount)} 
         })
-    console.log('~~~~~~~~~~table~~~~~~~~~~', order)
+    console.log('~~~~~~~~~~table~~~~~~~~~~', org)
     this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
