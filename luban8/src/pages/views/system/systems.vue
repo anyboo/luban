@@ -24,8 +24,11 @@
     </div>
 </template>
 <style>
-.clpadding {
-    padding-top: 17px !important;
+.text-muted{
+    font-size: 14px !important;
+}
+.clpadding{
+    padding-top:17px !important;
 }
 
 .bg-info {

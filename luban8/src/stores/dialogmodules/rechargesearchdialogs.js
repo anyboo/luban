@@ -23,12 +23,6 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'nickname'
-                },
-                {
-                    'label': '充值详情',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'first_tel'
                 }
             ]
         }
@@ -55,7 +49,8 @@ export default {
             'prop': 'pay_status'
         },
     ],
-    'pageTable': 'rechargesearchorder',
+    'pagedb': 'luban8',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': '',
     rulesData(vm) {
