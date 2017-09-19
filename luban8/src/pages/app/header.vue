@@ -23,14 +23,14 @@
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-dropdown class="school" @command="handleCommand">
+                <el-dropdown class="school" @command="handlecapusCommand">
                     <span class="el-dropdown-link menuspan">
                         <b>{{campusname}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <template v-for="item in campus">
-                            <el-dropdown-item command="info">{{item.name}}
+                            <el-dropdown-item :command="item._id">{{item.name}}
                             </el-dropdown-item>
                         </template>
                     </el-dropdown-menu>
@@ -211,7 +211,8 @@ export default {
         return {
             updown: false,
             campus: [],
-            campusname:''
+            campusarray: [],
+            campusname: ''
         }
     },
     mounted() {
@@ -225,12 +226,13 @@ export default {
             let find = false
             let lastcampusname = ''
             let lastcampusid = ''
+            this.campusarray = obj.data.data
             for (let item of obj.data.data) {
                 if (campusarray_id.indexOf(item._id) != -1) {
                     this.campus.push(item)
                 }
-                if (campus_id&&campus_id.length>0){
-                    if (campus_id==item._id){
+                if (campus_id && campus_id.length > 0) {
+                    if (campus_id == item._id) {
                         this.campusname = item.name
                         find = true
                     }
@@ -238,7 +240,7 @@ export default {
                 lastcampusname = item.name
                 lastcampusid = item._id
             }
-            if (!find){
+            if (!find) {
                 this.campusname = lastcampusname
                 this.$store.state.system.campus_id = lastcampusid
             }
@@ -303,6 +305,20 @@ export default {
                 }
                 this.updown = true
             }
+        },
+        handlecapusCommand(command) {
+            for (let item of this.campusarray) {
+                if (command == item._id) {
+                    this.campusname = item.name
+                }
+            }
+            this.$store.state.system.campus_id = command
+             this.$store.state.envs.currDialog = 'moduleform'
+            this.updateTeble('employee', this.$store.state.system.id, {
+                'campus_id': command
+            }).then(() => {
+
+            })
         },
         handleCommand(command) {
             if (command == 'info') {
