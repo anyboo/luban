@@ -81,10 +81,16 @@ module.exports.count = function* count(db, table, next) {
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let collection = db.collection(table)
     let findobj = {}
-    for(let item in  this.query){
-        findobj[item] = this.query[item]
+    for (let item in this.query) {
+        let value = this.query[item]
+        if (value == 'true') {
+            findobj[item] = true
+        } else if (value == 'false') {
+            findobj[item] = false
+        } else {
+            findobj[item] = this.query[item]
+        }
     }
-    console.log(findobj)
     var count = yield collection.find(findobj).count()
     db.close()
     this.body = count
