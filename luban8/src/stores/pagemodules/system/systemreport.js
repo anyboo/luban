@@ -62,13 +62,13 @@ export default {
         },
         {
             'type': 'datetimeMinute',
-            'label': '时间',
+            'label': '开始时间',
             'prop': 'start',
             'prop2': 'end'
         },
         {
             'type': 'datetimeMinute',
-            'label': '时间',
+            'label': '结束时间',
             'prop': 'end',
         },
         {
