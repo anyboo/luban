@@ -158,7 +158,7 @@ export default {
             ],
             unit_price: [
                 { required: true,validator: vm.validateNumberinput, message: '请输入课次单价',trigger: 'blur' }
-            ],
+            ]
         }
     }
 }
