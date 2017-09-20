@@ -22,8 +22,12 @@
     overflow: auto;
     padding: 0px;
     margin: 0px;
-    SCROLLBAR-DARKSHADOW-COLOR:#374d63;
 }
+::-webkit-scrollbar  
+{  
+    width: 1px;  
+    background-color: #374d63;  
+}  
 
 .lbSdebarUlStyle a {
     display: inline-block;
