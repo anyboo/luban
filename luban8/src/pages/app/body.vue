@@ -40,7 +40,7 @@ export default {
         document.body.onresize = this.resize
         this.clientHeight = (document.body.clientHeight - 131) + 'px'
         if (this.$store.state.system.login) {
-            this.getTableApidata('dictionary')
+            this.getroles()
         }
     },
     computed: {

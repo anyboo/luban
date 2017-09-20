@@ -95,9 +95,7 @@ export default {
                             account.login = data.account.login
                             account.admin = data.account.admin
                             
-                            console.log(account.roles_id)
-                            
-                            this.getTableApidata('dictionary')
+                            this.getroles()
                             this.$store.commit('user', account)
                             this.$store.commit('router', '/web')
                         } else {

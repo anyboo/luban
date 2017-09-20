@@ -145,10 +145,10 @@ module.exports.login = function* login(next) {
 }
 
 function changeArrayModelId(model) {
-    for (var idindex in iditem) {
-        if (checkId(iditem[idindex])) {
-            let monkid = ObjectID(iditem[idindex])
-            iditem[idindex] = monkid
+    for (var idindex in model) {
+        if (checkId(model[idindex])) {
+            let monkid = ObjectID(model[idindex])
+            model[idindex] = monkid
         }
     }
 }
