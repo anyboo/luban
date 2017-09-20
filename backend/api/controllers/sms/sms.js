@@ -22,7 +22,16 @@ module.exports.smssend = function* smssend(db) {
     for(let item of model.tel){
         mobile.push(item.tel)
     }
-   
+   //org_id: 59c0baa9b6ffda325a8737ae,
+   var orgdb = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+   let org = yield orgdb.collection('org').findOneAndUpdate({
+       'db': db
+   }, {
+           $inc:{'sms':-(model.tel.length)} ,
+           $inc:{'smssend':model.tel.length}
+       })
+       console.log(db)
+
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
