@@ -57,6 +57,7 @@ module.exports.smssend = function* smssend(db) {
     model.smssendinfo = smssendinfo
     model.status = smssendinfo.code
     let smssends = yield dbclient.collection('smssend').insert(model)
+    console.log(model)
     this.body = yield smssendinfo
 }
 
