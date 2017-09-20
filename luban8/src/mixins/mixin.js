@@ -69,6 +69,20 @@ export default {
         }
     },
     methods: {
+        getroles(){
+            let filterObj = []
+            filterObj.push({
+                'key': '_id',
+                'value': this.$store.state.system.roles_id,
+                'type': 'in'
+            })
+            console.log(filterObj)
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTableTable('roles', filterTxt, db).then((obj) => {
+                console.log(obj.data)
+            })
+            this.getTableApidata('dictionary')
+        },
         getTotalAmout(orders) {
             var totalamount = 0
             if (orders) {

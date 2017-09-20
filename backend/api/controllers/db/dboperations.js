@@ -144,6 +144,14 @@ module.exports.login = function* login(next) {
     }
 }
 
+function changeArrayModelId(model) {
+    for (var idindex in model) {
+        if (checkId(model[idindex])) {
+            let monkid = ObjectID(model[idindex])
+            model[idindex] = monkid
+        }
+    }
+}
 function changeModelId(model) {
     for (var item in model) {
         if (typeof item == 'string') {
@@ -159,7 +167,6 @@ function changeModelId(model) {
                                 console.log('-----', iditem[idindex], monkid)
                             }
                         }
-
                     } else {
                         if (checkId(model[item])) {
                             let monkid = ObjectID(model[item])
@@ -252,7 +259,21 @@ module.exports.all = function* all(db, name, next) {
                         findObj[key] = findObj[key] || {}
                         findObj[key]['$gte'] = value
                         console.log(findObj[key])
-                    } else {
+                    }  else if (type == 'in') {
+                        findObj[key] = findObj[key] || {}
+                        if (key.indexOf('_id') >= 0) {
+                            changeArrayModelId(value)
+                        }
+                        findObj[key]['$in'] = value
+                        console.log(findObj[key])
+                    } else if (type == 'nin') {
+                        findObj[key] = findObj[key] || {}
+                        if (key.indexOf('_id') >= 0) {
+                            changeArrayModelId(value)
+                        }
+                        findObj[key]['$nin'] = value
+                        console.log(findObj[key])
+                    }else {
                         findObj[key] = value
                     }
                 }

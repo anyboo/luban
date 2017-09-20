@@ -1,4 +1,5 @@
 <template>
+
     <el-form :model="localdata.form" :rules="getRules" label-width="100px" ref="ruleForm">
         <template v-for="item in module.formField">
             <template v-if="item.type=='input'">

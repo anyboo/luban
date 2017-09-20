@@ -221,6 +221,9 @@ export default {
     },
     computed: {
         getCurrMenu() {
+            if (!this.$store.state.system.login){
+                return 
+            }
             var menuName = ''
             if (this.$store.state.system.campusarray_id.length>0){
                 this.getcampus()

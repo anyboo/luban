@@ -1,8 +1,8 @@
 <template>
     <div class="modal-over bg-black" style="z-index: 1000;    margin: -100px 0px 0px -100px;">
         <div class="modal-center text-center" style="width:200px;margin:-100px 0 0 -100px">
-            <div class="thumb-lg">
-                <img class="img-circle" src="/assets/images/a0.jpg">
+            <div class="userbg">
+                <div class="fa fa-user-o usersize"></div>
             </div>
             <p class="h4 m-t m-b">
                 <span style="color:white;" v-if="username.length>0">{{username}}</span>
@@ -24,7 +24,19 @@
     </div>
 </template>
 <style >
+.userbg {
+    border-radius: 65px;
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.2);
+    margin-left:60px;
+}
 
+.usersize {
+    font-size: 58;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 3px;
+}
 </style>
 <script>
 import md5 from '~/api/md5.min.js'
@@ -82,7 +94,8 @@ export default {
                             account.user = data.account.user
                             account.login = data.account.login
                             account.admin = data.account.admin
-                            this.getTableApidata('dictionary')
+                            
+                            this.getroles()
                             this.$store.commit('user', account)
                             this.$store.commit('router', '/web')
                         } else {
