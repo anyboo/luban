@@ -2,11 +2,11 @@
     <div class='lbSdebarUlStyle'>
         <lb-sidebarMenu>
             <template v-for='menuItem of menu'>
-                <lb-sidebarMenuItem submenu="menu" :menu-title="menuItem.menuTitle"  @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem" >
+                <lb-sidebarMenuItem submenu="menu" :menu-title="menuItem.menuTitle" @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem">
                     <template v-if="menuItem.menu">
                         <lb-sidebarMenu>
                             <template v-for="menuItem1 of menuItem.menu">
-                                <lb-sidebarMenuItem submenu="menu-title"  @menuchange='menuchange' v-if="menuItem1.menuShow!=0" :menu="menuItem1" >
+                                <lb-sidebarMenuItem submenu="menu-title" @menuchange='menuchange' v-if="menuItem1.menuShow!=0" :menu="menuItem1">
                                 </lb-sidebarMenuItem>
                             </template>
                         </lb-sidebarMenu>
@@ -18,8 +18,11 @@
 </template>
 <style>
 .lbSdebarUlStyle {
+    max-height: 88.8%;
+    overflow: auto;
     padding: 0px;
     margin: 0px;
+    SCROLLBAR-DARKSHADOW-COLOR:#374d63;
 }
 
 .lbSdebarUlStyle a {
@@ -60,7 +63,7 @@ export default {
         let index = 0
         for (var item of menuStore) {
             let menuitem = {}
-            Object.assign(menuitem,item)
+            Object.assign(menuitem, item)
             menuitem.cssStyle = 'lbSdebarMenu'
             menuitem.isActive = false
             menuitem.index = ++index
@@ -83,11 +86,11 @@ export default {
                     let childSel = false
                     if (item.menu) {
                         for (var subitem of item.menu) {
-                            if (subitem.index == index){
+                            if (subitem.index == index) {
                                 subitem.isActive = true
                                 childSel = true
-                            }else{
-                                 subitem.isActive = false
+                            } else {
+                                subitem.isActive = false
                             }
                         }
                     }
