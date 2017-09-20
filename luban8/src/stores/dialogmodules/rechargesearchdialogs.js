@@ -44,8 +44,19 @@ export default {
             'prop': 'order_amount'
         },
         {
-            'type': 'text',
+            'type': 'getButtongroupText',
             'label': '支付状态',
+            'color': 'gray',
+            'othertype': [{
+                'value': 0,
+                'text': '未支付'
+            }, {
+                'value': 1,
+                'text': '已支付'
+            }, {
+                'value': 2,
+                'text': '支付失败'
+            }],
             'prop': 'pay_status'
         },
     ],

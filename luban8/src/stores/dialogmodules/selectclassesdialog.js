@@ -11,6 +11,11 @@ export default {
         'from': 'order',
         'foreignField': 'classes_id',
         'as': 'order'
+    }, {
+        'localField': 'course_id',
+        'from': 'course',
+        'foreignField': '_id',
+        'as': 'course'
     }],
     'pageSearch': [
         {

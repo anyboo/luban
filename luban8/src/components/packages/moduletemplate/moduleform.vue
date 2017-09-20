@@ -157,7 +157,7 @@
                     <el-form-item :label="item.switchlabel2">
                         <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2" :field="item.field2" @change="numberChange"></lb-numberinput>
                     </el-form-item>
-                    <el-form-item>
+                    <el-form-item :label="item.switchlabel3">
                         <lb-numberinput v-model="localdata.form[item.field1]" :text="item.text1" :field="item.field1" @change="numberChange"></lb-numberinput>
                     </el-form-item>
                 </template>
