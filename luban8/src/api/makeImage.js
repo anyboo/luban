@@ -1,5 +1,5 @@
 function makeImage(str, width) {
-    width = width || 80
+    width = width 
     var canvas = document.createElement('canvas')
     canvas.width = width
     canvas.height = width
@@ -13,9 +13,9 @@ function makeImage(str, width) {
     ctx.fillStyle = '#5bc0de' //+ ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6)
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = 'white'
-    ctx.font = '48px arial'
+    ctx.font = '30px arial'
     ctx.textAlign = 'center'
-    ctx.fillText(chart, 40, 55)
+    ctx.fillText(chart, 25, 35)
     var dataurl = canvas.toDataURL('image/png')
 
     return dataurl
