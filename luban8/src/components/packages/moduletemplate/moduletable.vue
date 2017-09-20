@@ -158,6 +158,9 @@
                             <template v-if="item.type=='studentRouter'">
                                 <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
                             </template>
+                            <template v-if="item.type=='teacherRouter'">
+                                <lb-studentrouter :lessonData="scope.row"></lb-studentrouter>
+                            </template>
                             <template v-if="item.type=='studentRouter1'">
                                 <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                             </template>

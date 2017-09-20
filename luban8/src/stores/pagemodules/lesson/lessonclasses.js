@@ -98,10 +98,8 @@ export default {
             'prop': 'class_name',
         },
         {
-            'type': 'tabletext',
+            'type': ' ',
             'label': '老师',
-            'table': 'employee',
-            'prop': 'name',
         },
         {
             'type': 'tabletext',

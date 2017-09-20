@@ -96,6 +96,11 @@ export default {
             this.$store.commit('router', '/student/info')
             event.stopPropagation()
         },
+        handleRouter1(event, item) {
+            this.$store.state.envs.currStudent = item
+            this.$store.commit('router', '/student/info')
+            event.stopPropagation()
+        },
         getRole(role) {
             if (this.$store.state.system.admin) {
                 return true

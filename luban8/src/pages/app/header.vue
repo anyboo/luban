@@ -211,26 +211,22 @@ export default {
         return {
             updown: false,
             campus: [],
-            campusname:''
+            campusname: ''
         }
     },
     mounted() {
         this.getTableApidata('campus').then(obj => {
-            console.log(obj)
             this.campus = []
+            let lastcampusname = ''
+            let lastcampusid =''
             let campusarray_id = this.$store.state.system.campusarray_id
             let campus_id = this.$store.state.system.campus_id
-
-            console.log(campusarray_id)
-            let find = false
-            let lastcampusname = ''
-            let lastcampusid = ''
-            for (let item of obj.data.data) {
-                if (campusarray_id.indexOf(item._id) != -1) {
+            for(let item of obj.data.data){
+                if(campusarray_id.indexOf(item._id)!=-1){
                     this.campus.push(item)
                 }
-                if (campus_id&&campus_id.length>0){
-                    if (campus_id==item._id){
+                if(campus_id&&campus_id.length>0){
+                    if(campus_id==item._id){
                         this.campusname = item.name
                         find = true
                     }
@@ -238,13 +234,11 @@ export default {
                 lastcampusname = item.name
                 lastcampusid = item._id
             }
-            if (!find){
+            if(!find){
                 this.campusname = lastcampusname
-                this.$store.state.system.campus_id = lastcampusid
+                this.$store.state.system.campusid = lastcampusid
             }
-            console.log('gettable', this.campus)
         })
-
     },
     computed: {
         getCurrMenu() {
