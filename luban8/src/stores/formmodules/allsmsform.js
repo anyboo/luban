@@ -20,13 +20,20 @@ export default {
     'append':true,
     'telshow': 10,
     'created': function (vm) {
-        vm.getTableApidata('org').then(obj=>{
-            let org = obj.data.data
-            if (org.length > 0) {
-                vm.localdata.form.title = org[0].name
-            }else{
+        let filterObj = []
+        filterObj.push({
+            'key': '_id',
+            'value': vm.$store.state.system.org_id,
+            'type': ''
+        })
+        let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+            if (obj.data.count > 0) {
+                vm.localdata.form.title = obj.data.data[0]
+            } else {
                 vm.localdata.form.title = '鲁班'
             }
+        }).catch(() => {
         })
         if (vm.$store.state.dialogs.currdialg=='classsmsdialog'){
             vm.module.pageLable = '班级群发'

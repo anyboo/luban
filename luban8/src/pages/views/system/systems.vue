@@ -18,7 +18,7 @@
             <h5>
                 <i class="fa fa-mobile"></i> 短信剩余:
                 <span class="label bg-info ng-binding">{{getSms}}</span>
-                <small class="text-muted m-l ng-binding">已使用:0 条</small>
+                <small class="text-muted m-l ng-binding">已使用:{{getSmsSend}} 条</small>
             </h5>
         </div>
     </div>
@@ -100,6 +100,13 @@ export default {
                 sms = this.org.sms
             }
             return sms
+        },
+        getSmsSend() {
+            let smssend = 0
+            if (this.org && this.org.smssend) {
+                smssend = this.org.smssend
+            }
+            return smssend
         },
     },
     methods: {

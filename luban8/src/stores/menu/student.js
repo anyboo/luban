@@ -44,7 +44,7 @@ export default {
         }, {
             'url': 'recordingform',
             'icon': 'fa fa-flag-o',
-            'text': '登记赛事记录'
+            'text': '赛事记录'
         }, {
             'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',
@@ -115,7 +115,7 @@ export default {
         }, {
             'url': 'recordingform',
             'icon': 'fa fa-flag-o',
-            'text': '登记赛事记录'
+            'text': '赛事记录'
         }, {
             'url': 'orderrefunddialog',
             'icon': 'fa fa-reply',

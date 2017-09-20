@@ -325,7 +325,6 @@ export default {
         }
     },
     created() {
-        console.log("mounted")
         if (typeof (this.module) == 'object') {
             this.moduledata = this.module
         } else if (typeof (this.module) == 'string' && this.module != '') {
@@ -336,9 +335,13 @@ export default {
         }
     },
     mounted() {
-        console.log("mounted")
         if (this.module.mounted) {
             this.module.mounted(this)
+        }
+        for(let item of this.textSearchInfo){
+           if (item.default){
+               this.textSearchKey = item.value
+           }
         }
     },
     computed: {
@@ -689,13 +692,16 @@ export default {
                 }
             } else {
                 if (this.moduledata.pagenocampus) {
-                }else{
+                } else {
                     filterObj.push({
                         'key': 'campus_id',
                         'value': this.$store.state.system.campus_id,
                         'type': ''
                     })
                 }
+            }
+            if (this.moduledata.pagealias) {
+                this.alias = this.moduledata.pagealias
             }
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
@@ -816,7 +822,7 @@ export default {
                 }).then(() => {
                     this.updateTeble('employee', data._id, {
                         'lock': lock
-                    }, 'luban8').then(() => {
+                    }).then(() => {
                         this.$message({
                             message: infomessage,
                             type: 'success'

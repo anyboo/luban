@@ -1,7 +1,7 @@
 <template>
     <div class='lbSdebarUlStyle'>
         <lb-sidebarMenu>
-            <template v-for='menuItem of menu'>
+            <template v-for='menuItem of getMenu'>
                 <lb-sidebarMenuItem submenu="menu" :menu-title="menuItem.menuTitle" @menuchange='menuchange' v-if='menuItem.menuShow!=0' :menu="menuItem">
                     <template v-if="menuItem.menu">
                         <lb-sidebarMenu>
@@ -24,10 +24,6 @@
     margin: 0px;
 }
 
-
-
-
-
 ::-webkit-scrollbar {
     width: 14px;
     height: 14px;
@@ -44,17 +40,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color:#ffffff;
+    background-color: #ffffff;
     min-height: 20px;
     background-clip: content-box;
-     box-shadow: 0 0 0 5px rgba(0, 0, 0, .2) inset; 
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, .2) inset;
 }
 
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
- ::-webkit-scrollbar-thumb  .lbSdebarUlStyle {
-     box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset; 
+
+ ::-webkit-scrollbar-thumb .lbSdebarUlStyle {
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset;
 }
 
 .lbSdebarUlStyle a {
@@ -92,21 +89,44 @@ export default {
         'lb-sidebarMenuItem': sidebarMenuItem
     },
     mounted() {
-        let index = 0
-        for (var item of menuStore) {
-            let menuitem = {}
-            Object.assign(menuitem, item)
-            menuitem.cssStyle = 'lbSdebarMenu'
-            menuitem.isActive = false
-            menuitem.index = ++index
-            if (menuitem.menu) {
-                for (var subitem of menuitem.menu) {
-                    subitem.cssStyle = 'lbSdebarMenuItem'
-                    subitem.isActive = false
-                    subitem.index = ++index
+
+    },
+    computed: {
+        getMenu() {
+            this.menu = []
+            if (this.$store.state.system.roles && this.$store.state.system.roles.length > 0) {
+                let index = 0
+                for (var item of menuStore) {
+                    let menuitem = {}
+                    Object.assign(menuitem, item)
+                    menuitem.cssStyle = 'lbSdebarMenu'
+                    menuitem.isActive = false
+                    menuitem.index = ++index
+                    menuitem.menu = []
+                    if (item.menu) {
+                        let find = false
+                        for (var subitem of item.menu) {
+                            let submenuitem = {}
+                            Object.assign(submenuitem, subitem)
+                            submenuitem.cssStyle = 'lbSdebarMenuItem'
+                            submenuitem.isActive = false
+                            submenuitem.index = ++index
+                            if (submenuitem.to) {
+                                if (this.getRole(submenuitem.to)) {
+                                    find = true
+                                    menuitem.menu.push(submenuitem)
+                                }
+                            }
+                        }
+                        if (find) {
+                            this.menu.push(menuitem)
+                        }
+                    } else {
+                        this.menu.push(menuitem)
+                    }
                 }
             }
-            this.menu.push(menuitem)
+            return this.menu
         }
     },
     methods: {

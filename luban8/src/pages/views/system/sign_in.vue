@@ -95,8 +95,8 @@ export default {
                             account.login = data.account.login
                             account.admin = data.account.admin
                             
-                            this.getroles()
                             this.$store.commit('user', account)
+                            this.getroles()
                             this.$store.commit('router', '/web')
                         } else {
                             this.$message({

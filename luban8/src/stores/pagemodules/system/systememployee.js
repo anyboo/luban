@@ -15,7 +15,7 @@ export default {
                 {
                     'label': '手机号',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'phone'
                 }
             ]

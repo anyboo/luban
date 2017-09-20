@@ -15,7 +15,7 @@ export default {
                 {
                     'label': '金额',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'fee'
                 },
             ]

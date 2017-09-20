@@ -8,6 +8,7 @@ const state = {
     admin: false,
     login: false,
     roles_id: [],
+    roles: [],
     org_id: '',
     user_id: '',
     campus_id: '',

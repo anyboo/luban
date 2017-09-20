@@ -118,6 +118,7 @@ export default {
             }]
         }
     ],
+    'pagenocampus': true,
     'pageTable': 'smssend',//smssend
     'pageTemplate': 'table1',
     'pagePath': ''

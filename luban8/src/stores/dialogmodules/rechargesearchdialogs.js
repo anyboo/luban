@@ -15,13 +15,13 @@ export default {
                 {
                     'label': '订单时间',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'sex'
                 },
                 {
                     'label': '金额',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'nickname'
                 }
             ]

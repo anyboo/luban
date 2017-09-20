@@ -15,19 +15,19 @@ export default {
                 {
                     'label': '时间',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'start'
                 },
                 {
                     'label': '今日总结',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'summary'
                 },
                 {
                     'label': '批注',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'note'
                 }
             ]

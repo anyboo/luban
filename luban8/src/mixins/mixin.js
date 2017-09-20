@@ -45,6 +45,7 @@ export default {
     computed: {
         getMenuOption() {
             let menuOption = []
+            let menuOptionrole = []
             let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
@@ -65,6 +66,20 @@ export default {
                     }
                 }
             }
+            if (this.$store.state.system.roles && this.$store.state.system.roles.length > 0) {
+                for(let item in menuOption){
+                    let find = false
+                    if (menuOption[item].url){
+                        find = this.getActionOption(menuOption[item].url)
+                    }
+                    if (menuOption[item].action){
+                        find = this.getActionOption(menuOption[item].action)
+                    }
+                    if (find){
+                        menuOptionrole.push(item)
+                    }
+                }
+            }
             return menuOption
         }
     },
@@ -76,10 +91,10 @@ export default {
                 'value': this.$store.state.system.roles_id,
                 'type': 'in'
             })
-            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            this.handleGetFilterTableTable('roles', filterTxt, db).then((obj) => {
-                console.log(obj.data)
+            this.handleGetFilterTableTable('role', filterTxt, db).then((obj) => {
+                this.$store.state.system.roles = obj.data.data
+                console.log(this.$store.state.system.roles)
             })
             this.getTableApidata('dictionary')
         },

@@ -281,7 +281,7 @@ export default {
                 address: '',
                 amount: 0,
                 sms: 0,
-                sendsms: 0
+                smssend: 0
             },
             rules: {
                 phone: [

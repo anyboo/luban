@@ -25,7 +25,7 @@ export default {
                 {
                     'label': '老师姓名',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'employee.name'
                 }
             ]
