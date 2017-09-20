@@ -47,11 +47,14 @@
     background-color:#ffffff;
     min-height: 20px;
     background-clip: content-box;
-     box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset; 
+     box-shadow: 0 0 0 5px rgba(0, 0, 0, .2) inset; 
 }
 
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+ ::-webkit-scrollbar-thumb  .lbSdebarUlStyle {
+     box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset; 
 }
 
 .lbSdebarUlStyle a {
