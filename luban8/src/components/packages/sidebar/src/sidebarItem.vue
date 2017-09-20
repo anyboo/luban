@@ -24,23 +24,34 @@
     margin: 0px;
 }
 
+
+
+
+
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 14px;
+    height: 14px;
 }
 
-
-/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 5px solid transparent;
+}
 
 ::-webkit-scrollbar-track {
-    /*  -webkit-box-shadow: inset 0 0 6px rgba(50, 50, 50, 0.3);  */
-    /* border-radius: 10px; */
-    background-color:#374d63;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2) inset;
 }
-/*定义滑块 内阴影+圆角*/ 
+
 ::-webkit-scrollbar-thumb {
-  /*   border-radius: 10px; */
-     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #ddd;
+    background-color:#ffffff;
+    min-height: 20px;
+    background-clip: content-box;
+     box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset; 
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
 .lbSdebarUlStyle a {
