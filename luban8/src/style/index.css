@@ -214,7 +214,7 @@ a:hover {
         left: 50%;
     }
     .modal-body {
-        max-height: 650px !important;
+        max-height: 550px !important;
         overflow-y: auto;
         overflow-x: hidden;
     }
