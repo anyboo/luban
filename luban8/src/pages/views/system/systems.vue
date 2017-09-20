@@ -67,27 +67,13 @@ export default {
         }
     },
     mounted() {
-        let filterObj = []
-        filterObj.push({
-            'key': '_id',
-            'value': this.$store.state.system.org_id,
-            'type': ''
-        })
-        let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-        let token = window.localStorage.getItem('token')
-        let tokentime = window.localStorage.getItem('tokentime')
-        Vue.http.headers.common['authorization'] = token
-        Vue.http.headers.common['authtime'] = tokentime
-        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
-            if (obj.data.count > 0) {
-                this.org = obj.data.data[0]
-            } else {
-            }
-        }).catch(() => {
-        })
     },
     computed: {
         getData() {
+            if ('moduleform' == this.$store.state.envs.currDialog) {
+                this.handleSearch()
+                this.$store.state.envs.currDialog = ''
+            }
             let amount = 0
             if (this.org && this.org.amount) {
                 amount = this.org.amount
@@ -110,7 +96,27 @@ export default {
         },
     },
     methods: {
-
+        handleSearch() {
+            console.log('handleSearch')
+            let filterObj = []
+            filterObj.push({
+                'key': '_id',
+                'value': this.$store.state.system.org_id,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            let token = window.localStorage.getItem('token')
+            let tokentime = window.localStorage.getItem('tokentime')
+            Vue.http.headers.common['authorization'] = token
+            Vue.http.headers.common['authtime'] = tokentime
+            Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+                if (obj.data.count > 0) {
+                    this.org = obj.data.data[0]
+                } else {
+                }
+            }).catch(() => {
+            })
+        }
     }
 }
 </script>

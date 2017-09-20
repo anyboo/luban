@@ -5,7 +5,7 @@ export default {
         'sms_count': 1000,
         'order_amount': 90,
         'combo': '90',
-        'amount':0
+        'amount': 0
     },
     'created': function (vm) {
         vm.localdata.form.db = vm.$store.state.system.db
@@ -19,6 +19,7 @@ export default {
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
                 vm.localdata.form.amount = obj.data.data[0].amount
+                vm.org = obj.data.data[0]
             } else {
             }
         }).catch(() => {
@@ -42,10 +43,25 @@ export default {
                     message: '请先充值后再购买！'
                 })
             } else {
+                let amount = vm.localdata.form.amount
+                let sms = vm.localdata.form.sms_count
+                if (vm.org && vm.org.sms) {
+                    sms += vm.org.sms
+                }
+                amount -= vm.localdata.form.order_amount
                 vm.localdata.form.amount = null
                 delete vm.localdata.form.amount
+                vm.updateTeble('org', vm.$store.state.system.org_id, {
+                    'sms': sms,
+                    'amount': amount
+                }, 'luban8').then(() => {
+                    vm.$message({
+                        message: '设置成功！',
+                        type: 'success'
+                    })
+                })
                 vm.savedb(resolve)
-            } 
+            }
         })
     },
     'formField': [

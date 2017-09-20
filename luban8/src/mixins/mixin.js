@@ -472,7 +472,9 @@ export default {
             return new Promise((resolve, reject) => {
                 let createtime = new Date()
                 modalform.createtime = createtime.getTime()
-
+                modalform.org_id = this.$store.state.system.org_id
+                modalform.campus_id = this.$store.state.system.campus_id
+                
                 vm.$store.dispatch(types.SMS_API, {
                     'model': vm.model,
                     'form': modalform
