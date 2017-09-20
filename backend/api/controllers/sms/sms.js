@@ -30,7 +30,7 @@ module.exports.smssend = function* smssend(db) {
            $inc:{'sms':-(model.tel.length)} ,
            $inc:{'smssend':model.tel.length}
        })
-       console.log(db)
+       console.log('~~~~db~~~~~~',db)
 
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
