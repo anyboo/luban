@@ -1,5 +1,4 @@
 <template>
-
     <el-form :model="localdata.form" :rules="getRules" label-width="100px" ref="ruleForm">
         <template v-for="item in module.formField">
             <template v-if="item.type=='input'">
@@ -293,7 +292,7 @@ export default {
             }
         }
         var validateDatatime = (rule, value, callback) => {
-            if (value === '') {
+            if (value === createtime) {
                 callback(new Error(rule.message))
             } else {
                 if (value.length != 2) {
@@ -320,6 +319,37 @@ export default {
                 }
             }
         }
+        var validatePhoneemp = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error(rule.message))
+            } else if (!(/^1\d{10}$/.test(value))) {
+                callback(new Error('手机号码必须为数字1开头并为11位!已输入' + value.length + '位。'))
+            } else {
+                let filterObj = []
+                filterObj.push({
+                    'key': 'phone',
+                    'value': value,
+                    'type': ''
+                })
+                filterObj.push({
+                    'key': 'campus_id',
+                    'value': this.$store.state.system.campus_id,
+                    'type': ''
+                })
+                let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+                this.handleGetFilterTableTable('employee', filterTxt).then((obj) => {
+                    let objData = obj.data.data
+                    if (objData.length > 0) {
+                        callback(new Error('该号码已注册，请更换新号码'))
+                    } else {
+                        callback()
+                    }
+                })
+            }
+        }
+        /*   var validaterulename = (rule, value, callback) => {
+              if(value === )
+          } */
         var validateDate = (rule, value, callback) => {
             if (value === '') {
                 if (this.localdata.form.dayloop) {
@@ -346,6 +376,7 @@ export default {
             validateDate,
             validateDatatime,
             validatePhone,
+            validatePhoneemp,
             validateNumberinput,
             formdata: [],
             localdata: this.getform(),
