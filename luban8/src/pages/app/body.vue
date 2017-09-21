@@ -40,7 +40,7 @@ export default {
         document.body.onresize = this.resize
         this.clientHeight = (document.body.clientHeight - 131) + 'px'
         if (this.$store.state.system.login) {
-            this.getTableApidata('dictionary')
+            this.getroles()
         }
     },
     computed: {
@@ -52,11 +52,9 @@ export default {
         },
         getCurrentView() {
             let isModlues = 0
-            console.log(this.$store.state.system.login, this.$store.state.models.login)
             if (window.location.href.indexOf('/#/system/reg') != -1) {
                 this.currentView = 'lb-systemreg'
                 window.location.href = '/#'
-                console.log(this.currentView)
             } else if (!this.$store.state.system.login) {
                 this.currentView = 'lb-systemsign_in'
             } else if (!this.$store.state.models.login) {
@@ -85,7 +83,6 @@ export default {
                 }
                 this.currentView = view
             }
-            console.log(isModlues)
             return isModlues
         }
     },

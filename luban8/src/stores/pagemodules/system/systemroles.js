@@ -15,7 +15,7 @@ export default {
                 {
                     'label': '描述',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'desc'
                 }
             ]

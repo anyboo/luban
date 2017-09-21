@@ -11,6 +11,7 @@ export default {
         return {
             defaultvalue: this.default,
             search_id: this.value,
+            objdata: null,
             currDialogId: 0
         }
     },
@@ -43,9 +44,11 @@ export default {
             if (this.$store.state.envs.currDialog == this.showdialog && this.$store.state.envs.currDialogId == this.currDialogId) {
                 if (this.selected == '') {
                     let searchId = ''
+                    this.objdata = null
                     if (this.$store.state.envs.currDialogResult) {
                         let fieldValue = this.searchfield.trim()
                         this.defaultvalue = this.$store.state.envs.currDialogResult[fieldValue]
+                        this.objdata = this.$store.state.envs.currDialogResult
                         searchId = this.$store.state.envs.currDialogResult._id
                     } else {
                         searchId = ''
@@ -56,7 +59,7 @@ export default {
                     if (this.search_id != searchId) {
                         this.search_id = searchId
                         this.$emit('input', searchId)
-                        this.$emit('change', { id: searchId, text: this.defaultvalue, field: this.field })
+                        this.$emit('change', { id: searchId, text: this.defaultvalue, field: this.field, data: this.objdata })
                     }
                 }
             }

@@ -18,15 +18,20 @@
             <h5>
                 <i class="fa fa-mobile"></i> 短信剩余:
                 <span class="label bg-info ng-binding">{{getSms}}</span>
-                <small class="text-muted m-l ng-binding">已使用:0 条</small>
+                <small class="text-muted m-l ng-binding">已使用:{{getSmsSend}} 条</small>
             </h5>
         </div>
     </div>
 </template>
 <style>
-.clpadding{
-    padding-top:17px !important;
+.text-muted {
+    font-size: 14px !important;
 }
+
+.clpadding {
+    padding-top: 17px !important;
+}
+
 .bg-info {
     color: #fff;
     background-color: #4d90fe;
@@ -58,35 +63,60 @@ export default {
     name: 'systems',
     data() {
         return {
+            org: null
         }
     },
     mounted() {
-        this.getTableApidata('org')
     },
     computed: {
         getData() {
-            let balance = 0
-            let org = this.$store.state.models.models.org.data
-            if (org.length > 0) {
-                if (org[0].balance) {
-                    balance = org[0].balance
-                }
-            } console.log('333', balance)
-            return balance
+            if ('moduleform' == this.$store.state.envs.currDialog) {
+                this.handleSearch()
+                this.$store.state.envs.currDialog = ''
+            }
+            let amount = 0
+            if (this.org && this.org.amount) {
+                amount = this.org.amount
+            }
+            return amount
         },
         getSms() {
             let sms = 0
-            let org = this.$store.state.models.models.org.data
-            if (org.length > 0) {
-                if (org[0].sms) {
-                    sms = parseInt(org[0].sms)
-                }
-            } console.log('2314', sms)
+            if (this.org && this.org.sms) {
+                sms = this.org.sms
+            }
             return sms
+        },
+        getSmsSend() {
+            let smssend = 0
+            if (this.org && this.org.smssend) {
+                smssend = this.org.smssend
+            }
+            return smssend
         },
     },
     methods: {
-
+        handleSearch() {
+            console.log('handleSearch')
+            let filterObj = []
+            filterObj.push({
+                'key': '_id',
+                'value': this.$store.state.system.org_id,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            let token = window.localStorage.getItem('token')
+            let tokentime = window.localStorage.getItem('tokentime')
+            Vue.http.headers.common['authorization'] = token
+            Vue.http.headers.common['authtime'] = tokentime
+            Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+                if (obj.data.count > 0) {
+                    this.org = obj.data.data[0]
+                } else {
+                }
+            }).catch(() => {
+            })
+        }
     }
 }
 </script>

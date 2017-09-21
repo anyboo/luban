@@ -1,60 +1,50 @@
 export default {
     'pageName': 'systemrechargeform',
-    'pageLable': '报名&缴费',
-    'student': true,
+    'pageLable': '系统缴费',
     'form': {
-        'classes_id': '',
-        'course_id': '',
-        'origin_times': '',
-        'unit_price': 0,
-        'origin_amount': 0,
-        'refund_status': 0,
-        'back_amount': 0,
-        'has_discount': '',
-        'has_present': '',
-        'c_unit_price': '',
         'order_remark': '',
-        'present_times': '',
-        'discount': 0,
-        'discount_amount': 0,
         'order_amount': 0,
-        'pay_amount':0,
-        'unpay_amount': 0,
         'pay_status': 0,
-        'student_id': '',
         'order_no': '',
-        'order_type': 2,
+        'order_type': 1,
+        'amount': 0,
         'body': ''
     },
-    'created':function(vm){
-        vm.student  = vm.$store.state.envs.currStudent
+    'created': function (vm) {
+        vm.localdata.form.db = vm.$store.state.system.db
+        let filterObj = []
+        filterObj.push({
+            'key': '_id',
+            'value': vm.$store.state.system.org_id,
+            'type': ''
+        })
+        let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+            if (obj.data.count > 0) {
+                vm.localdata.form.amount = obj.data.data[0].amount
+            } else {
+            }
+        }).catch(() => {
+        })
     },
     'beforeSave': function (vm) {
-        vm.localdata.form.order_amount = vm.localdata.form.origin_amount
-        vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
-        vm.localdata.form.body = '预交费[' + vm.localdata.form.origin_amount + '元]'
+        vm.localdata.form.body = '交费[' + vm.localdata.form.order_amount + '元]'
+        vm.localdata.form.amount = null
+        delete vm.localdata.form.amount
     },
     'formField': [
         {
-            'type': 'vmsubtext',
+            'type': 'text',
             'label': '当前余额',
-            'prop': 'student',
-            'subprop': 'amount',
+            'field': 'amount',
             'text': '元'
         },
         {
             'type': 'numberinput',
             'label': '充值金额',
-            'prop': 'origin_amount',
-            'field': 'origin_amount',
-            'text': '元'
-        },
-        {
-            'type': 'numberinput',
-            'label': '返现金额',
-            'prop': '',
-            'field': 'back_amount',
+            'prop': 'order_amount',
+            'field': 'order_amount',
             'text': '元'
         },
         {
@@ -67,16 +57,17 @@ export default {
             'type': 'text',
             'label': '应缴金额',
             'prop': '',
-            'field': 'origin_amount',
+            'field': 'order_amount',
             'text': '元'
         }
     ],
-    'pageTable': 'rechargesearchorder',
+    'pagedb': 'luban8',
+    'pageTable': 'order',
     'pageTemplate': 'form',
     'pagePath': '',
     rulesData(vm) {
         return {
-            origin_amount: [
+            order_amount: [
                 { required: true, validator: vm.validateNumberinput, message: '请输入充值金额', trigger: 'blur' }
             ],
         }

@@ -15,7 +15,7 @@ export default {
                 {
                     'label': '金额',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'fee'
                 },
             ]
@@ -30,10 +30,11 @@ export default {
         {
             'type': 'text',
             'label': '金额',
-            'prop': 'origin_amount',
+            'prop': 'order_amount',
         }
     ],
-    'pageTable': 'rechargeorder',
+    'pagedb': 'luban8',
+    'pageTable': 'smsorder',
     'pageTemplate': 'table1',
     'pagePath': '',
 }

@@ -19,19 +19,19 @@ export default {
                 {
                     'label': '性别',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'sex'
                 },
                 {
                     'label': '英文名',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'nickname'
                 },
                 {
                     'label': '号码',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'first_tel'
                 }
             ]

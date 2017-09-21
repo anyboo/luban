@@ -1,4 +1,5 @@
 <template>
+
     <el-form :model="localdata.form" :rules="getRules" label-width="100px" ref="ruleForm">
         <template v-for="item in module.formField">
             <template v-if="item.type=='input'">
@@ -155,9 +156,9 @@
                 </el-form-item>
                 <template v-if="localdata.form[item.fieldActive1]">
                     <el-form-item :label="item.switchlabel2">
-                        <lb-numberinput v-model="localdata.form[item.field2]" :text="item.text2" :field="item.field2" @change="numberChange"></lb-numberinput>
+                        <lb-numberinput max="10" v-model="localdata.form[item.field2]" :text="item.text2" :field="item.field2" @change="numberChange"></lb-numberinput>
                     </el-form-item>
-                    <el-form-item>
+                    <el-form-item :label="item.switchlabel3">
                         <lb-numberinput v-model="localdata.form[item.field1]" :text="item.text1" :field="item.field1" @change="numberChange"></lb-numberinput>
                     </el-form-item>
                 </template>
@@ -398,7 +399,7 @@ export default {
             }
             return role
         },
-         getcampusData() {
+        getcampusData() {
             let role = this.$store.state.models.models.campus.data
             if (this.title == '添加') {
                 for (var item of role) {
@@ -608,6 +609,26 @@ export default {
                 }
             })
         },
+        savedb(resolve) {
+            let vm = this
+            if (this.module.pagedb) {
+                this.localdata.form.db = this.$store.state.system.db
+            }
+            vm.handleSavedb({
+                db: this.module.pagedb,
+                form: this.localdata.form,
+                table: this.module.pageTable,
+            }).then((response) => {
+                if (this.module.afterSave) {
+                    this.module.afterSave(this, response).then((obj) => {
+                        resolve(obj)
+                    })
+                } else {
+                    resolve(response)
+                }
+            }, (e) => {
+            })
+        },
         append(id) {
             return new Promise(resolve => {
                 if (id) {
@@ -631,23 +652,7 @@ export default {
                             }, (e) => {
                             })
                         } else {
-                            if (this.module.pagedb) {
-                                this.localdata.form.db = this.$store.state.system.db
-                            }
-                            vm.handleSavedb({
-                                db: this.module.pagedb,
-                                form : this.localdata.form,
-                                table: this.module.pageTable,
-                            }).then((response) => {
-                                if (this.module.afterSave) {
-                                    this.module.afterSave(this, response).then((obj) => {
-                                        resolve(obj)
-                                    })
-                                } else {
-                                    resolve(response)
-                                }
-                            }, (e) => {
-                            })
+                            this.savedb(resolve)
                         }
                     }
                 })

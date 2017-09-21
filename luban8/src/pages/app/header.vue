@@ -23,14 +23,14 @@
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-dropdown class="school" @command="handleCommand">
+                <el-dropdown class="school" @command="handlecapusCommand">
                     <span class="el-dropdown-link menuspan">
                         <b>{{campusname}}</b>
                         <i class="el-icon-caret-bottom el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <template v-for="item in campus">
-                            <el-dropdown-item command="info">{{item.name}}
+                            <el-dropdown-item :command="item._id">{{item.name}}
                             </el-dropdown-item>
                         </template>
                     </el-dropdown-menu>
@@ -211,38 +211,23 @@ export default {
         return {
             updown: false,
             campus: [],
+            campusarray: [],
             campusname: ''
         }
     },
     mounted() {
-        this.getTableApidata('campus').then(obj => {
-            this.campus = []
-            let lastcampusname = ''
-            let lastcampusid =''
-            let campusarray_id = this.$store.state.system.campusarray_id
-            let campus_id = this.$store.state.system.campus_id
-            for(let item of obj.data.data){
-                if(campusarray_id.indexOf(item._id)!=-1){
-                    this.campus.push(item)
-                }
-                if(campus_id&&campus_id.length>0){
-                    if(campus_id==item._id){
-                        this.campusname = item.name
-                        find = true
-                    }
-                }
-                lastcampusname = item.name
-                lastcampusid = item._id
-            }
-            if(!find){
-                this.campusname = lastcampusname
-                this.$store.state.system.campusid = lastcampusid
-            }
-        })
+
+
     },
     computed: {
         getCurrMenu() {
+            if (!this.$store.state.system.login){
+                return 
+            }
             var menuName = ''
+            if (this.$store.state.system.campusarray_id.length>0){
+                this.getcampus()
+            }
             let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
@@ -267,6 +252,35 @@ export default {
 
     },
     methods: {
+        getcampus() {
+            this.getTableApidata('campus').then(obj => {
+                this.campus = []
+                let campusarray_id = this.$store.state.system.campusarray_id
+                let campus_id = this.$store.state.system.campus_id
+
+                let find = false
+                let lastcampusname = ''
+                let lastcampusid = ''
+                this.campusarray = obj.data.data
+                for (let item of obj.data.data) {
+                    if (campusarray_id.indexOf(item._id) != -1) {
+                        this.campus.push(item)
+                    }
+                    if (campus_id && campus_id.length > 0) {
+                        if (campus_id == item._id) {
+                            this.campusname = item.name
+                            find = true
+                        }
+                    }
+                    lastcampusname = item.name
+                    lastcampusid = item._id
+                }
+                if (!find) {
+                    this.campusname = lastcampusname
+                    this.$store.state.system.campus_id = lastcampusid
+                }
+            })
+        },
         variety() {
             this.$emit('variety')
         },
@@ -297,6 +311,20 @@ export default {
                 }
                 this.updown = true
             }
+        },
+        handlecapusCommand(command) {
+            for (let item of this.campusarray) {
+                if (command == item._id) {
+                    this.campusname = item.name
+                }
+            }
+            this.$store.state.system.campus_id = command
+            this.$store.state.envs.currDialog = 'moduleform'
+            this.updateTeble('employee', this.$store.state.system.id, {
+                'campus_id': command
+            }).then(() => {
+                this.$store.commit('save')
+            })
         },
         handleCommand(command) {
             if (command == 'info') {

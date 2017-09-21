@@ -11,6 +11,11 @@ export default {
         'from': 'order',
         'foreignField': 'classes_id',
         'as': 'order'
+    }, {
+        'localField': 'course_id',
+        'from': 'course',
+        'foreignField': '_id',
+        'as': 'course'
     }],
     'pageSearch': [
         {
@@ -25,7 +30,7 @@ export default {
                 {
                     'label': '老师姓名',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'employee.name'
                 }
             ]

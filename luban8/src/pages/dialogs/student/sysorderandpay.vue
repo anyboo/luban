@@ -21,7 +21,7 @@
         <div class="row no-gutter m-t">
             <div class="col-xs-3">
                 <button type="button" @click="switchPage" class="btn btn-primary btn-block">
-                    <i class="icon-wallet"></i>缴费
+                    <i class="icon-wallet"></i>支付宝缴费
                 </button>
 
             </div>

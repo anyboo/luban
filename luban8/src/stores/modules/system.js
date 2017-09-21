@@ -8,6 +8,7 @@ const state = {
     admin: false,
     login: false,
     roles_id: [],
+    roles: [],
     org_id: '',
     user_id: '',
     campus_id: '',
@@ -51,6 +52,9 @@ const mutations = {
     },
     userout: (state, obj) => {
         state.login = false
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    save: (state) => {
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     user: (state, obj) => {

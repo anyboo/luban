@@ -15,7 +15,7 @@ export default {
                 {
                     'label': '课程编号',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'lesson_no'
                 }
             ]

@@ -10,7 +10,7 @@
                     <i class="fa fa-flag"></i>{{title}}课程
                 </h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body lbselect">
                 <el-form :model="localdata.form" :rules="rules" ref="ruleForm" label-width="100px">
                     <el-collapse value="1">
                         <el-collapse-item title="基本信息" name="1">
@@ -39,7 +39,7 @@
                                         <el-option label="半年" value="180"></el-option>
                                         <el-option label="1年" value="365"></el-option>
                                     </el-select>
-                                    <el-button slot="append">人</el-button>
+                                    <el-button slot="append">天</el-button>
                                 </el-input>
                             </el-form-item>
                         </el-collapse-item>
@@ -75,11 +75,11 @@
                                         <el-option label="1个半小时" value="1.50"></el-option>
                                         <el-option label="2小时" value="2.00"></el-option>
                                     </el-select>
-                                    <el-button slot="append">人</el-button>
+                                    <el-button slot="append">小时</el-button>
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="课程总时长:">
-                                 <lb-numberinput v-model="localdata.form.inc_hours" text="小时"></lb-numberinput>
+                                <lb-numberinput v-model="localdata.form.inc_hours" text="小时"></lb-numberinput>
                             </el-form-item>
                         </el-collapse-item>
                     </el-collapse>
@@ -92,6 +92,11 @@
         </div>
     </div>
 </template>
+<style>
+.lbselect .el-select .el-input {
+    width: 100;
+}
+</style>
 <script>
 export default {
     name: 'newLesson',
@@ -100,26 +105,23 @@ export default {
             'lesson_type': [{
                 'value': '0',
                 'text': '班课'
-            }, {
+            },{
                 'value': '1',
                 'text': '1对1'
-            }, {
-                'value': '2',
-                'text': '课时包'
             }],
             'form': {
                 'lesson_type': '0',
                 'cate_array': [],
                 'lesson_name': '',
                 'lesson_no': '',
-                'lesson_days': 0,
+                'lesson_days': '30',
                 'price_model': '0',
                 'unit_price': 0,
                 'inc_times': 0,
                 'inc_period': 0,
                 'inc_timesprice': 0,
                 'price': 0,
-                'unit_hours': 0,
+                'unit_hours': '0.75',
                 'inc_hours': 0
             },
             'price_model': [{
@@ -135,23 +137,28 @@ export default {
             model: 'course',
             title: '创建',
             rules: {
-                lesson_name: [
-                    { required: true, message: '请输入课程名', trigger: 'blur' },
-                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
-                ],
-                lesson_no: [
-                    { required: true, message: '请输入课程编号', trigger: 'blur' },
-                    { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
-                ]
+                lesson_name: [{
+                    required: true, message: '请输入课程名', trigger: 'blur'
+                },
+                {
+                    min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur'
+                }],
+                lesson_no: [{
+                    required: true, message: '请输入课程编号', trigger: 'blur'
+                },
+                {
+                    min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur'
+                }]
             }
         }
     },
     mounted() {
-        if (this.$store.state.dialogs.dailogdata&&this.$store.state.dialogs.dailogdata['_id']) {
+        if (this.$store.state.dialogs.dailogdata && this.$store.state.dialogs.dailogdata['_id']) {
             this.title = '编辑'
             this.setEditModle(this.$store.state.dialogs.dailogdata['_id'])
             this.localdata.form = this.lodash.assign(this.localdata.form, this.$store.state.dialogs.dailogdata)
-        } else {
+        }
+        else {
             this.title = '创建'
         }
         this.getTableApidata('cate')
@@ -170,7 +177,8 @@ export default {
             for (var subitem of cateData) {
                 if (subitem.pid == '') {
                     treeData.push(treemap[subitem._id])
-                } else {
+                }
+                else {
                     if (typeof treemap[subitem.pid] == 'object') {
                         if (typeof treemap[subitem.pid].children !== 'object') {
                             treemap[subitem.pid].children = []
@@ -187,7 +195,8 @@ export default {
         changeTimePrice() {
             if (this.localdata.form.price_model == '1') {
                 this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_timesprice
-            } else {
+            }
+            else {
                 this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_period
             }
         },
@@ -202,7 +211,7 @@ export default {
             }
         },
         handleTimeCommand(value) {
-            this.localdata.form.unit_hours = value
+            this.localdata.form.unit_hours = value 
             this.changeTimeInc()
         },
         handleHoursCommand() {
@@ -223,12 +232,15 @@ export default {
                         this.$store.state.envs.currDialog = 'lb-lesson'
                     }, (e) => {
                         console.log(e)
-                    })
-                } else {
+                    }
+                    )
+                }
+                else {
                     return false;
                 }
             })
         }
     }
 }
+
 </script>

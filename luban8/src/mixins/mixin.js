@@ -45,6 +45,7 @@ export default {
     computed: {
         getMenuOption() {
             let menuOption = []
+            let menuOptionrole = []
             let to = this.$store.state.system.router
             for (var item of menu) {
                 if (item.to == to) {
@@ -65,10 +66,38 @@ export default {
                     }
                 }
             }
+            if (this.$store.state.system.roles && this.$store.state.system.roles.length > 0) {
+                for(let item in menuOption){
+                    let find = false
+                    if (menuOption[item].url){
+                        find = this.getActionOption(menuOption[item].url)
+                    }
+                    if (menuOption[item].action){
+                        find = this.getActionOption(menuOption[item].action)
+                    }
+                    if (find){
+                        menuOptionrole.push(item)
+                    }
+                }
+            }
             return menuOption
         }
     },
     methods: {
+        getroles(){
+            let filterObj = []
+            filterObj.push({
+                'key': '_id',
+                'value': this.$store.state.system.roles_id,
+                'type': 'in'
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTableTable('role', filterTxt, db).then((obj) => {
+                this.$store.state.system.roles = obj.data.data
+                console.log(this.$store.state.system.roles)
+            })
+            this.getTableApidata('dictionary')
+        },
         getTotalAmout(orders) {
             var totalamount = 0
             if (orders) {
@@ -449,7 +478,9 @@ export default {
             return new Promise((resolve, reject) => {
                 let createtime = new Date()
                 modalform.createtime = createtime.getTime()
-
+                modalform.org_id = this.$store.state.system.org_id
+                modalform.campus_id = this.$store.state.system.campus_id
+                
                 vm.$store.dispatch(types.SMS_API, {
                     'model': vm.model,
                     'form': modalform

@@ -22,13 +22,13 @@ export default {
                 {
                     'label': '性别',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'sex'
                 },
                 {
                     'label': '类型',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'is_part_time'
                 }
             ]

@@ -24,19 +24,19 @@ export default {
                 {
                     'label': '手机号',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'first_tel'
                 },
                 {
                     'label': '住址',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'home_address'
                 },
                 {
                     'label': '英文名',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'nickname'
                 }
             ]

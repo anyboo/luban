@@ -17,12 +17,20 @@ module.exports.smssend = function* smssend(db) {
     var model = yield parse(this, {
         limit: '200kb'
     })
-    console.log(model)
+    console.log('~~~~~~~~model~~~~~~~~~~~' + model)
     let mobile = []
-    for(let item of model.tel){
+    for (let item of model.tel) {
         mobile.push(item.tel)
     }
-   
+    //org_id: 59c0baa9b6ffda325a8737ae,
+    var orgdb = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+    let org = yield orgdb.collection('org').findOneAndUpdate({
+        'db': db
+    }, {
+            $inc: { 'sms': -(model.tel.length), 'smssend': model.tel.length }
+        })
+    console.log('~~~~db~~~~~~', db)
+
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
@@ -36,7 +44,7 @@ module.exports.smssend = function* smssend(db) {
         rece: 'json',
         message: '【' + model.title + '】' + model.content + '(退订回T)'
     }
-    console.log(smsdata)
+    console.log('~~~~~~~~smsdata~~~~~~~~~~~' + smsdata)
     let body = querystring.stringify(smsdata)
 
     let options = {
@@ -56,6 +64,7 @@ module.exports.smssend = function* smssend(db) {
     var dbclient = yield MongoClient.connect(dbunit.getdbstr(db))
     model.smssendinfo = smssendinfo
     model.status = smssendinfo.code
+    dbunit.changeModelId(model)
     let smssends = yield dbclient.collection('smssend').insert(model)
     this.body = yield smssendinfo
 }

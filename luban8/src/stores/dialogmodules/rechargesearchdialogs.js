@@ -15,20 +15,14 @@ export default {
                 {
                     'label': '订单时间',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'sex'
                 },
                 {
                     'label': '金额',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'nickname'
-                },
-                {
-                    'label': '充值详情',
-                    'defvalue': '',
-                    'default': true,
-                    'value': 'first_tel'
                 }
             ]
         }
@@ -50,12 +44,24 @@ export default {
             'prop': 'order_amount'
         },
         {
-            'type': 'text',
+            'type': 'getButtongroupText',
             'label': '支付状态',
+            'color': 'gray',
+            'othertype': [{
+                'value': 0,
+                'text': '未支付'
+            }, {
+                'value': 1,
+                'text': '已支付'
+            }, {
+                'value': 2,
+                'text': '支付失败'
+            }],
             'prop': 'pay_status'
         },
     ],
-    'pageTable': 'rechargesearchorder',
+    'pagedb': 'luban8',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': '',
     rulesData(vm) {

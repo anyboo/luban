@@ -15,6 +15,7 @@ const smsdb = 'lubansms'
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var moment = require('moment')
+var dbunit = require('../../unit/db')
 
 var privatePem = fs.readFileSync(path.resolve('controllers/alipay/', 'private_key.pem'))
 var publicPem = fs.readFileSync(path.resolve('controllers/alipay/', 'alipay_public_key.pem'))
@@ -55,7 +56,7 @@ function getVerifyParams(params) {
     var sPara = [];
     if (!params) return null;
     for (var key in params) {
-        if ((!params[key]) || key == "sign"|| key == "sign_type") {
+        if ((!params[key]) || key == "sign" || key == "sign_type") {
             continue;
         };
         sPara.push([key, params[key]]);
@@ -99,12 +100,28 @@ module.exports.alipaynotify = function* alipaynotify() {
     var model = yield parse(this, {
         limit: '5000kb'
     })
-    console.log('~~~~~notify~~~~',model)
     let signature = ''
     var key = publicPem.toString()
-    let success = 'success'
-    this.body = success
-    console.log(success)
+    let pay_status = 2
+    if (model.trade_status == 'TRADE_SUCCESS') {
+        pay_status = 1
+    }
+    //org_id: 59c0baa9b6ffda325a8737ae,
+    var db = yield MongoClient.connect(dbunit.getdbstr('luban8'))
+    let order = yield db.collection('order').findOneAndUpdate({
+        'order_no': model.out_trade_no
+    }, {
+            $set: { 'pay_status': pay_status }
+        })
+    let org = yield db.collection('org').findOneAndUpdate({
+        '_id': ObjectID(order.value.org_id)
+    }, {
+            $inc: { 'amount': parseFloat(model.total_amount) }
+        })
+    model.org_id = ObjectID(order.value.org_id)
+    let alipay = yield db.collection('alipay').insert(model)
+    console.log('~~~~~~~~~~table~~~~~~~~~~', org)
+    this.body = 'success'
 }
 module.exports.alipay = function* alipay() {
     if ('POST' != this.method) return yield next

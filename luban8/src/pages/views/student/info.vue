@@ -11,13 +11,13 @@
                 <div class="bg-white row no-gutter">
                     <div class="col-xs-12 col-md-4">
                         <div class="text-center clear">
-                            <div class="face" style="width:120px;margin:0 auto">
-                                <div class="avatar-wrapper adres-css" style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:120px; height:120px;">
-                                    <img :src="makeImage(student.student_name,80)" style="vertical-align:top;" width="100%" height="">
+                            <div class="face" style="width:80px;margin:0 auto">
+                                <div class="avatar-wrapper adres-css " style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:80px; height:80px;">
+                                    <img :src="makeImage(student.student_name,50)" class='canvasimg' style="vertical-align:top;" width="80" height="">
                                 </div>
                             </div>
                         </div>
-                        <p class="text-center">
+                        <p class="text-center namediv">
                             <template v-if="loadstudent">
                                 <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
                                     <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
@@ -31,7 +31,7 @@
                                 <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1','mans':student.sex=='1','woman':student.sex=='2'}"></i>
                             </span>
                         </p>
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled ">
                             <li>
                                 <label class="field">昵称/英文名:</label>
                                 <span>{{ student.nickname }}</span>
@@ -40,16 +40,22 @@
                                 <label class="field">学员归属:</label>
                                 <span class="label bg-info">{{getEmployeeName}}</span>
                             </li>
+
+                            <li>
+                                <el-button @click="deleteStudent" style="color:red;" type="text">封存档案</el-button>
+                            </li>
+                            <li>
+                                <el-popover ref="popover" placement="right" trigger="click">
+                                    <img :src="qrcodeimg">
+                                </el-popover>
+                                <el-button @click="handleQrcode()" type='text' v-popover:popover>我的二维码</el-button>
+                            </li>
+                            <li>
+                                <span>微信绑定:</span>
+                                <el-button v-if="wxinstall === '0'" type="text">未绑定</el-button>
+                                <el-button v-else-if="wxinstall === '1'" @click="handleUnopenid()" style="color:red;" type="text">解除绑定</el-button>
+                            </li>
                         </ul>
-                        <div>
-                            <el-button @click="deleteStudent" style="color:red;" type="text">封存档案</el-button>
-                        </div>
-                        <div>
-                            <el-popover ref="popover" placement="right" trigger="click">
-                                <img :src="qrcodeimg">
-                            </el-popover>
-                            <el-button @click="handleQrcode()" type='text' v-popover:popover>我的二维码</el-button>
-                        </div>
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <div class="panel panel-default">
@@ -114,6 +120,24 @@
     </div>
 </template>
 <style>
+ul.list-unstyled>li {
+    float: left !important;
+    padding-left: 32% !important;
+    padding-right: 10%;
+}
+
+.faceimg {
+    margin-left: 10px;
+}
+
+.namediv {
+    margin-top: 10px;
+}
+
+.canvasimg {
+    border-radius: 50%;
+}
+
 .el-table__body-wrapper {
     overflow: hidden;
 }
@@ -205,9 +229,29 @@ export default {
         getStudentInfo() {
             return this.student
         },
+        wxinstall() {
+            let stand = ''
+            if (this.student.openid) {
+                return stand = '1';
+            } else {
+                return stand = '0';
+            }
+        }
+
+
     },
     watch: {},
     methods: {
+        handleUnopenid() {
+            this.updateTeble('student', this.uid, {
+                'openid': ''
+            }).then(() => {
+                this.$message({
+                    message: '解绑成功！',
+                    type: 'success'
+                })
+            })
+        },
         showTab(tab, event) {
             this.tabIndex = tab.index
         },

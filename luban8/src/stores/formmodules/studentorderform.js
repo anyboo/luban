@@ -8,7 +8,7 @@ export default {
         'origin_times': 0,
         'refund_status': 0,
         'back_amount': 0,
-        'unit_price': 0,
+        'unit_price': '',
         'origin_amount': 0,
         'has_discount': false,
         'has_present': false,
@@ -28,11 +28,19 @@ export default {
         'body': ''
     },
     'selectChange':function (vm,obj){
+        console.log(obj.data)
+        console.log('~~~~`'+obj.text, '~~~~`'+obj.data.course[0].inc_times)
         vm.classes_name = obj.text
+        vm.localdata.form.origin_times = obj.data.course[0].inc_times
+        vm.localdata.form.unit_price = obj.data.course[0].unit_price
+        if (vm.module.numberChange) {
+            vm.module.numberChange(vm, obj)
+        }
     },
     'numberChange': function (vm, obj) {
         if (obj.field == 'discount') {
-            vm.localdata.form.discount_amount = vm.localdata.form.origin_amount * vm.localdata.form.discount / 100
+            vm.localdata.form.discount_amount = vm.localdata.form.origin_amount - (vm.localdata.form.origin_amount * vm.localdata.form.discount/10)
+            console.log('折扣价格'+vm.localdata.form.discount_amount , '订单金额'+vm.localdata.form.origin_amount,'折扣'+vm.localdata.form.discount)
         }
         let discount_amount = 0
         if (vm.localdata.form.has_discount) {
@@ -93,12 +101,13 @@ export default {
             'type': 'switchdiscount',
             'switchlabel1': '折扣金额',
             'switchlabel2': '折扣计算器',
+            'switchlabel3': '扣减金额',
             'prop': '',
             'field1': 'discount_amount',
             'field2': 'discount',
             'fieldActive1': 'has_discount',
             'text1': '元',
-            'text2': '%折',
+            'text2': '折',
         },
         {
             'type': 'switchnumber',
@@ -149,7 +158,7 @@ export default {
             ],
             unit_price: [
                 { required: true,validator: vm.validateNumberinput, message: '请输入课次单价',trigger: 'blur' }
-            ],
+            ]
         }
     }
 }

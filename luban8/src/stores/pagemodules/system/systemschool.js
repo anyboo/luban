@@ -15,25 +15,25 @@ export default {
                 {
                     'label': '校区简称',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'short_name'
                 },
                 {
                     'label': '所在地区',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'group_name'
                 },
                 {
                     'label': '地址',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'branch_address'
                 },
                 {
                     'label': '联系电话',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'branch_tel'
                 }
             ]

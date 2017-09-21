@@ -19,7 +19,7 @@ export default {
                 {
                     'label': '联系电话',
                     'defvalue': '',
-                    'default': true,
+                    'default': false,
                     'value': 'first_tel'
                 }
             ]
