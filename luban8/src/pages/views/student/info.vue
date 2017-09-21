@@ -2,10 +2,20 @@
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="btn-group dropdown" dropdown="">
-                    <a class="btn btn-default" @click="handleBack">返回</a>
-                </div>
-                <i class="fa fa-user"></i> 学员信息
+                <el-button-group>
+                    <el-button @click="handleBack" type="info" size="small">返回</el-button>
+                    <el-button @click="deleteStudent" type="danger" size="small">封存档案</el-button>
+                    <el-popover ref="popover" placement="right" trigger="click">
+                        <img :src="qrcodeimg">
+                    </el-popover>
+                    <el-button size="small" @click="handleQrcode()" type='success' v-popover:popover>我的二维码</el-button>
+                </el-button-group>
+                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
+                    <el-button type="success" size="small" slot="buttonslot">
+                        <i class="fa fa-user"></i> 操作
+                        <i class="el-icon-caret-bottom el-icon--right"></i>
+                    </el-button>
+                </lb-dropdown>
             </div>
             <div class="panel-body">
                 <div class="bg-white row no-gutter">
@@ -19,13 +29,7 @@
                         </div>
                         <p class="text-center namediv">
                             <template v-if="loadstudent">
-                                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
-                                    <lb-dropdown-button slot="buttonslot" button-class="btn btn-default m-b-xs" button-tooltip="操作">
-                                        <i class="fa fa-cog"></i>
-                                        <span> {{ student.student_name }}</span>
-                                        <span class="caret"></span>
-                                    </lb-dropdown-button>
-                                </lb-dropdown>
+                                <h2>{{ student.student_name }}</h2>
                             </template>
                             <span>
                                 <i class="fa" :class="{'fa-female ':student.sex=='2','fa-male':student.sex=='1','mans':student.sex=='1','woman':student.sex=='2'}"></i>
@@ -36,23 +40,17 @@
                                 <label class="field">昵称/英文名:</label>
                                 <span>{{ student.nickname }}</span>
                             </li>
+                             <li>
+                                <label class="field">账号余额:</label>
+                                <span>{{ student.amount }}元</span>
+                            </li>
                             <li class="m-t-xs">
                                 <label class="field">学员归属:</label>
-                                <span class="label bg-info">{{getEmployeeName}}</span>
-                            </li>
-
-                            <li>
-                                <el-button @click="deleteStudent" style="color:red;" type="text">封存档案</el-button>
+                                <el-tag :type="getEmployeeName!='未设定'?'success':'gray'">{{getEmployeeName}}</el-tag>
                             </li>
                             <li>
-                                <el-popover ref="popover" placement="right" trigger="click">
-                                    <img :src="qrcodeimg">
-                                </el-popover>
-                                <el-button @click="handleQrcode()" type='text' v-popover:popover>我的二维码</el-button>
-                            </li>
-                            <li>
-                                <span>微信绑定:</span>
-                                <el-button v-if="wxinstall === '0'" type="text">未绑定</el-button>
+                                <label class="field">微信绑定:</label>
+                                <el-tag type="gray" v-if="wxinstall === '0'">未绑定</el-tag>
                                 <el-button v-else-if="wxinstall === '1'" @click="handleUnopenid()" style="color:red;" type="text">解除绑定</el-button>
                             </li>
                         </ul>
@@ -288,7 +286,7 @@ export default {
             }).catch(() => {
                 this.$message({
                     type: 'info',
-                    message: '已取消删除'
+                    message: '已取消封存'
                 })
             })
         },

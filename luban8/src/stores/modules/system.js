@@ -32,10 +32,6 @@ const mutations = {
         state.theme = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
-    class: (state, obj) => {
-        state.currClassID = obj
-        window.localStorage.setItem('system', JSON.stringify(state))
-    },
     student: (state, obj) => {
         state.currStudentID = obj
         window.localStorage.setItem('system', JSON.stringify(state))

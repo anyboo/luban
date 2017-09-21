@@ -186,7 +186,7 @@
                             </template>
                             <template v-if="item.type=='payconditions'">
                                 <el-tooltip :content='"￥"+getPayAmout(scope.row[item.order])+"/￥"+getTotalAmout(scope.row[item.order])' placement="top">
-                                    <el-button>￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
+                                    <el-button size="small">￥{{getPayAmout(scope.row[item.order])}}/￥{{getTotalAmout(scope.row[item.order])}}</el-button>
                                 </el-tooltip>
                             </template>
                             <template v-if="item.type=='progress'">
@@ -527,7 +527,7 @@ export default {
         },
         lessonrouter(event, url, info) {
             if (info) {
-                this.$store.commit('class', info._id)
+                this.$store.commit('classes', info._id)
             }
             this.$store.commit('router', url)
             event.stopPropagation()
