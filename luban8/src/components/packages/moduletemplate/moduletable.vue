@@ -161,6 +161,9 @@
                             <template v-if="item.type=='studentRouter1'">
                                 <lb-studentrouter :lessonData="getLookUp(scope.row.student)"></lb-studentrouter>
                             </template>
+                            <template v-if="item.type=='teacherRouter'">
+                                <lb-teacherrouter :lessonData="scope.row"></lb-teacherrouter>
+                            </template>
                             <template v-if="item.type=='studentlink'">
                                 <a class="link" @click="handleRouter($event,scope.row[item.prop])">
                                     <span></span>{{ getLookUp(scope.row[item.prop],'student_name') }}

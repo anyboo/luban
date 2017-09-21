@@ -1,5 +1,6 @@
 const state = {
     currStudent: {},
+    currClasses:{},
     currDialogResult: {},
     currDialog: '',
     currDialogId: 0,
