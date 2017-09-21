@@ -18,15 +18,15 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">课程名:</label>
-                        <span></span>
+                        <span>{{getLookUp(classes.course,'lesson_name')}}</span>
                     </div>
-                    <div class="col-xs-12 col-md-6">
-                        <label class="inline w-xs text-right">所在校区:</label>
-                        <span></span>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 col-md-6" v-if="type==checkstatus">
                         <label class="inline w-xs text-right">状态:</label>
-                        <span></span>
+                        <span style="display:inline-block">
+                            <template>
+                                <lb-checkstatus :lessonData="classes" :typeData="{statutype:'openlessonsstatus'}" v-on:search="handleSearch"></lb-checkstatus>
+                            </template>
+                        </span>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">开课时间:</label>
@@ -71,6 +71,12 @@ export default {
                 'foreignField': '_id',
                 'as': 'employee'
             },
+            'courseData': {
+                'localField': 'course_id',
+                'from': 'course',
+                'foreignField': '_id',
+                'as': 'course'
+            },
         }
         var validateTel = (rule, value, callback) => {
             if (value === '') {
@@ -91,7 +97,7 @@ export default {
             tables: ['classes'],
             uid: '',
             qrcodeimg: '',
-            classes: {}
+            classes: {},
         }
     },
     mounted() {
@@ -131,6 +137,11 @@ export default {
                 filterObj.push({
                     'key': 'lookup',
                     'value': this.localdata.lookup,
+                    'type': 'lookup'
+                })
+                filterObj.push({
+                    'key': 'lookup',
+                    'value': this.localdata.courseData,
                     'type': 'lookup'
                 })
                 let filterTxt = this.base64.encode(JSON.stringify(filterObj))

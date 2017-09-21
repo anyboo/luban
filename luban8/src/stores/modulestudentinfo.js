@@ -14,5 +14,4 @@ pages.push(salaryRecord)
 pages.push(lessonleaveRecord)
 pages.push(eventsRecord)
 
-
 export default pages
