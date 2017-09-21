@@ -16,8 +16,9 @@ export default {
             'prop': 'student_name',
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '联系电话',
+            'table':'student',
             'prop': 'first_tel'
         },
     ],

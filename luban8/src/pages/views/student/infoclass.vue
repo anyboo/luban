@@ -8,7 +8,7 @@
                         <img :src="qrcodeimg">
                     </el-popover>
                 </el-button-group>
-                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
+                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getclassesInfo">
                     <el-button type="success" size="small" slot="buttonslot">
                         <i class="fa fa-user"></i> 操作
                         <i class="el-icon-caret-bottom el-icon--right"></i>
@@ -39,22 +39,20 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">开课时间:</label>
-                        <span>{{ getDateFormat(student.createtime) }}</span>
+                        <span>{{ getDateFormat(classes.createtime) }}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="wrapper" tab-nav-link="student.list">
-            <el-tabs type="border-card" @tab-click="showTab">
-                <template v-for="(item,index) in moduledata">
-                    <el-tab-pane :label="item.pageLable">
-                        <template v-if="index==tabIndex">
-                            <lb-moduletable :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-moduletable>
-                        </template>
-                    </el-tab-pane>
-                </template>
-            </el-tabs>
-        </div>
+        <el-tabs type="border-card" @tab-click="showTab">
+            <template v-for="(item,index) in moduledata">
+                <el-tab-pane :label="item.pageLable">
+                    <template v-if="index==tabIndex">
+                        <lb-moduletable :module="item" :info="true" :searchclassesid="uid"></lb-moduletable>
+                    </template>
+                </el-tab-pane>
+            </template>
+        </el-tabs>
     </div>
 </template>
 <style>
@@ -97,11 +95,9 @@ export default {
             }
         }
         return {
-            loadstudent: false,
             moduledata: pagesmodule,
             localdata,
             activeName: '1',
-            student: {},
             tabIndex: '',
             tables: ['classes'],
             uid: '',
@@ -109,7 +105,7 @@ export default {
             classes: {},
         }
     },
-    mounted() {
+    created() {
         let currClasses = this.$store.state.envs.currClasses
         if (currClasses && currClasses._id && currClasses._id.length > 0) {
             this.uid = currClasses._id
@@ -124,7 +120,7 @@ export default {
         console.log('fd', currClasses)
     },
     computed: {
-        getStudentInfo() {
+        getclassesInfo() {
             return this.classes
         },
     },

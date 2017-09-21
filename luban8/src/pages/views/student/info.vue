@@ -40,7 +40,7 @@
                                 <label class="field">昵称/英文名:</label>
                                 <span>{{ student.nickname }}</span>
                             </li>
-                             <li>
+                            <li>
                                 <label class="field">账号余额:</label>
                                 <span>{{ student.amount }}元</span>
                             </li>
@@ -104,43 +104,17 @@
                 </div>
             </div>
         </div>
-        <div class="wrapper" tab-nav-link="student.list">
-            <el-tabs type="border-card" @tab-click="showTab">
-                <template v-for="(item,index) in moduledata">
-                    <el-tab-pane :label="item.pageLable">
-                        <template v-if="index==tabIndex">
-                            <lb-moduletable :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-moduletable>
-                        </template>
-                    </el-tab-pane>
-                </template>
-            </el-tabs>
-        </div>
+        <el-tabs type="border-card" @tab-click="showTab">
+            <template v-for="(item,index) in moduledata">
+                <el-tab-pane :label="item.pageLable">
+                    <template v-if="index==tabIndex">
+                        <lb-moduletable :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-moduletable>
+                    </template>
+                </el-tab-pane>
+            </template>
+        </el-tabs>
     </div>
 </template>
-<style>
-ul.list-unstyled>li {
-    float: left !important;
-    padding-left: 32% !important;
-    padding-right: 10%;
-}
-
-.faceimg {
-    margin-left: 10px;
-}
-
-.namediv {
-    margin-top: 10px;
-}
-
-.canvasimg {
-    border-radius: 50%;
-}
-
-.el-table__body-wrapper {
-    overflow: hidden;
-}
-</style>
-
 <script>
 import pagesmodule from '~/stores/modulestudentinfo.js'
 import getUrl from '~/api/restfulapi.js'
