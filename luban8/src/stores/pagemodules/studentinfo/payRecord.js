@@ -10,7 +10,7 @@ export default {
     'pageSearch': [],
     'pageTableField': [
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '日期',
             'prop': 'createtime',
         },

@@ -7,20 +7,10 @@ export default {
         'foreignField': '_id',
         'as': 'student',
     }, {
-        'localField': 'classes_id',
-        'from': 'classes',
-        'foreignField': '_id',
-        'as': 'classes'
-    },{
         'localField': 'order_id',
         'from': 'order',
         'foreignField': '_id',
         'as': 'order'
-    }, {
-        'localField': 'classes_id',
-        'from': 'classes',
-        'foreignField': '_id',
-        'as': 'classes'
     }],
     'pageSearch': [
         {
@@ -75,13 +65,7 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'tabletext',
-            'label': '订单号',
-            'table': 'order',
-            'prop': 'order_no'
-        },
-        {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '日期',
             'prop': 'createtime'
         },
@@ -98,16 +82,20 @@ export default {
         },
         {
             'type': 'tabletext',
-            'label': '班级',
-            'table': 'classes',
-            'prop': 'class_name'
+            'label': '订单号',
+            'table': 'order',
+            'prop': 'order_no'
+        },
+        {
+            'type': 'tabletext',
+            'label': '订单内容',
+            'table': 'order',
+            'prop': 'body'
         }, {
-            'type': 'tabledouble',
+            'type': 'text',
             'label': '经办人',
-            'table': 'classes',
-            'tableprop':'name',
-            'prop': 'employee',
-        }
+            'prop': 'op_name',
+        },
     ],
     'pageTable': 'refund',
     'pageTemplate': 'table1',

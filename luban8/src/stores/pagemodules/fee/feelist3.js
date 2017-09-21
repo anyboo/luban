@@ -6,6 +6,10 @@ export default {
         'from': 'student',
         'foreignField': '_id',
         'as': 'student'
+    }, {
+        'key': 'pay_status',
+        'value': 2,
+        'type': 'lt'
     }],
     'pageSearch': [
         {
@@ -42,10 +46,10 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                    'key': 'student_id',
-                    'value': searchValue,
-                    'type': ''
-                })
+                        'key': 'student_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
                 }
                 return filterObj
             },
@@ -64,19 +68,9 @@ export default {
             'label': '操作',
         },
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '日期',
             'prop': 'createtime'
-        },
-        {
-            'type': 'text',
-            'label': '订单号',
-            'prop': 'order_no',
-        },
-        {
-            'type': 'text',
-            'label': '订单内容',
-            'prop': 'body'
         },
         {
             'type': 'getToFixed',
@@ -93,6 +87,16 @@ export default {
             'label': '学员',
             'table': 'student',
             'prop': 'student_name'
+        },
+        {
+            'type': 'text',
+            'label': '订单号',
+            'prop': 'order_no',
+        },
+        {
+            'type': 'text',
+            'label': '订单内容',
+            'prop': 'body'
         }
     ],
     'pageTable': 'order',
