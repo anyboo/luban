@@ -71,7 +71,9 @@ export default {
                         'amount': obj.money_pay_amount,
                         'sel': '0',
                         'note': vm.order.body,            
-                        'op_id': vm.order.op_id,          
+                        'op_id': vm.order.op_id, 
+                        'order_id': vm.order._id,
+                        'pay_id': obj._id,
                         'create_time': vm.order.createtime,  
                         'check_status': 0,
                     }
