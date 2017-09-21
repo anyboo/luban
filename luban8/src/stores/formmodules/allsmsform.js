@@ -4,7 +4,7 @@ export default {
     'form': {
         'tel': [],
         'content': '',
-        'title':'',
+        'title': '',
         'status': '1',
         'active': false,
         'telActive': false,
@@ -12,12 +12,25 @@ export default {
         'student_id': '',
         'new_tel': '',
         'new_name': '',
-        'sms_type':''
+        'sms_type': ''
     },
-    'handleSave':function(vm){
+    'handleSave': function (vm) {
         return vm.smsSend()
     },
-    'append':true,
+    'validform': function (vm) {
+        let valid = false
+        let sms = vm.org.sms
+        if (sms > vm.localdata.form.tel.length) {
+            valid = true
+        } else {
+            vm.$message({
+                message: '短信发送条数超出,请先充值购买短信.',
+                type: 'info'
+            })
+        }
+        return valid
+    },
+    'append': true,
     'telshow': 10,
     'created': function (vm) {
         let filterObj = []
@@ -30,12 +43,13 @@ export default {
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
                 vm.localdata.form.title = obj.data.data[0].short_name
+                vm.org = obj.data.data[0]
             } else {
                 vm.localdata.form.title = '鲁班'
             }
         }).catch(() => {
         })
-        if (vm.$store.state.dialogs.currdialg=='classsmsdialog'){
+        if (vm.$store.state.dialogs.currdialg == 'classsmsdialog') {
             vm.module.pageLable = '班级群发'
             vm.localdata.form.sms_type = '班级群发'
             for (let item of vm.stepsdata) {
@@ -46,14 +60,14 @@ export default {
                 vm.localdata.form.tel.push(telitem)
             }
             let len = vm.localdata.form.tel.length
-            if (len>10){
+            if (len > 10) {
                 vm.module.telshow = 10
-            }else{
+            } else {
                 vm.module.telshow = len
             }
             vm.formdata = vm.localdata.form.tel.slice(0, 10)
-            vm.changetel( vm.module.telshow)
-        }else if (vm.$store.state.dialogs.currdialg=='studentsmsform'){
+            vm.changetel(vm.module.telshow)
+        } else if (vm.$store.state.dialogs.currdialg == 'studentsmsform') {
             vm.localdata.form.sms_type = '发送学员'
             let currStudent = vm.$store.state.envs.currStudent
             let telitem = {}
@@ -64,14 +78,14 @@ export default {
             vm.module.pageLable = '发送学员'
             vm.module.telshow = 1
             let len = vm.localdata.form.tel.length
-            if (len>10){
+            if (len > 10) {
                 vm.module.telshow = 10
-            }else{
+            } else {
                 vm.module.telshow = len
             }
             vm.formdata = vm.localdata.form.tel.slice(0, 10)
-            vm.changetel( vm.module.telshow)
-        }else{
+            vm.changetel(vm.module.telshow)
+        } else {
             let filterObj = []
             let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
             vm.pagination.pagesize = 1000
@@ -87,15 +101,15 @@ export default {
                 }
                 vm.module.pageLable = '全员发送'
                 let len = vm.localdata.form.tel.length
-                if (len>10){
+                if (len > 10) {
                     vm.module.telshow = 10
-                }else{
+                } else {
                     vm.module.telshow = len
                 }
                 vm.formdata = vm.localdata.form.tel.slice(0, 10)
-                vm.changetel( vm.module.telshow)
+                vm.changetel(vm.module.telshow)
             })
-        }      
+        }
     },
     'formField': [
         {
@@ -140,7 +154,7 @@ export default {
                 { min: 1, max: 256, message: '长度在 1 到 256 个字符', trigger: 'blur' }
             ],
             'new_tel': [
-                { required: true,validator: vm.validatePhone, trigger: 'blur' }
+                { required: true, validator: vm.validatePhone, trigger: 'blur' }
             ]
         }
     }
