@@ -122,6 +122,9 @@
                             <template v-if="item.type=='getButtongroupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                             </template>
+                              <template v-if="item.type=='getButtongrouplookupText'">
+                                <el-tag :type="item.color">{{getButtongroupText(item.othertype,getLookUp(scope.row[item.table],item.prop))}}</el-tag>
+                            </template>
                             <template v-if="item.type=='getdataPurpose'">
                                 <el-tag :type="getDictText(scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             </template>

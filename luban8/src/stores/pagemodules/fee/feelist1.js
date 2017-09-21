@@ -7,10 +7,10 @@ export default {
         'foreignField': '_id',
         'as': 'student'
     }, {
-        'localField': 'classes_id',
-        'from': 'classes',
+        'localField': 'order_id',
+        'from': 'order',
         'foreignField': '_id',
-        'as': 'classes'
+        'as': 'order'
     }],
     'pageSearch': [
         {
@@ -47,10 +47,10 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                    'key': 'student_id',
-                    'value': searchValue,
-                    'type': ''
-                })
+                        'key': 'student_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
                 }
                 return filterObj
             },
@@ -81,15 +81,38 @@ export default {
             'prop': 'student_name'
         },
         {
+            'type': 'tabletext',
+            'label': '订单号',
+            'table': 'order',
+            'prop': 'order_no'
+        },
+        {
             'type': 'dicttext',
             'label': '付款方式',
             'prop': 'region_oe_id',
         },
         {
+            'type': 'getButtongrouplookupText',
+            'label': '类型',
+            'color': 'gray',
+            'table': 'order',
+            'prop': 'order_type',
+            'othertype': [{
+                'value': 1,
+                'text': '报名费'
+            }, {
+                'value': 2,
+                'text': '预交费'
+            }, {
+                'value': 3,
+                'text': '学杂费'
+            }],
+        },
+        {
             'type': 'tabletext',
-            'label': '课程/班级',
-            'table': 'classes',
-            'prop': 'class_name'
+            'label': '缴费内容',
+            'table': 'order',
+            'prop': 'body'
         },
         {
             'type': 'text',
