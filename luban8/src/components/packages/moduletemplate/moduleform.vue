@@ -273,6 +273,31 @@ export default {
     name: 'LbModuleform',
     props: ['module', 'form', 'stepsdata'],
     data() {
+        var studentorderapply = (rule, value, callback) => {
+            console.log('!!  ' + value + '  !!')
+            let filterObj = []
+            filterObj.push({
+                'key': 'classes_id',
+                'value': value,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'campus_id',
+                'value': this.$store.state.system.campus_id,
+                'type': ''
+            })
+            let filterTxt = this.base64.encode(JSON.stringify(filterObj))
+            this.handleGetFilterTableTable('order', filterTxt).then((obj) => {
+                let objData = obj.data.data
+                if (objData.length > 0) {
+                    callback(new Error(rule.message))
+                } else {
+                    callback()
+                }
+            })
+        }
+
+
         var validateNumberinput = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error(rule.message))
@@ -347,9 +372,6 @@ export default {
                 })
             }
         }
-        /*   var validaterulename = (rule, value, callback) => {
-              if(value === )
-          } */
         var validateDate = (rule, value, callback) => {
             if (value === '') {
                 if (this.localdata.form.dayloop) {
@@ -375,6 +397,7 @@ export default {
             validateTel,
             validateDate,
             validateDatatime,
+            studentorderapply,
             validatePhone,
             validatePhoneemp,
             validateNumberinput,
@@ -675,8 +698,8 @@ export default {
                             }
                         }
                         if (this.module.validform) {
-                            if (!this.module.validform(this)){
-                                return 
+                            if (!this.module.validform(this)) {
+                                return
                             }
                         }
                         if (this.module.beforeSave) {

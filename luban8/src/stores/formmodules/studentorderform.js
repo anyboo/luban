@@ -31,11 +31,13 @@ export default {
         console.log(obj.data)
         console.log('~~~~`'+obj.text, '~~~~`'+obj.data.course[0].inc_times)
         vm.classes_name = obj.text
+
         vm.localdata.form.origin_times = obj.data.course[0].inc_times
         vm.localdata.form.unit_price = obj.data.course[0].unit_price
         if (vm.module.numberChange) {
             vm.module.numberChange(vm, obj)
         }
+        vm.$refs['ruleForm'].validateField(obj.field)
     },
     'numberChange': function (vm, obj) {
         if (obj.field == 'discount') {
@@ -151,7 +153,8 @@ export default {
     rulesData(vm) {
         return {
             classes_id: [
-                { required: true, message: '请选择班级', trigger: 'change' }
+                { required: true, message: '请选择班级', trigger: 'change' },
+               {  message: '学员已报名该班级',validator:vm.studentorderapply, trigger: 'change' } 
             ],
             origin_times: [
                 { required: true,validator: vm.validateNumberinput, message: '请输入报名课次',trigger: 'blur' }
