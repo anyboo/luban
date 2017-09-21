@@ -67,7 +67,7 @@ export default {
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
                     let flowform = {
-                        'type': '1',              
+                        'type': 1,              
                         'amount': obj.money_pay_amount,
                         'sel': '0',
                         'note': vm.order.body,            
