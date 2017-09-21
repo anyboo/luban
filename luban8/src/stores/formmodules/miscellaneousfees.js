@@ -30,7 +30,7 @@ export default {
         vm.localdata.form.order_amount = vm.localdata.form.origin_amount
         vm.localdata.form.unpay_amount = vm.localdata.form.origin_amount
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
-        vm.localdata.form.body = '学杂费[' +vm.getDictText(5,vm.localdata.form.sel) + ']'
+        vm.localdata.form.body = '学杂费[' +vm.getDictText(vm.localdata.form.sel) + ']'
     },
     'formField': [
         {

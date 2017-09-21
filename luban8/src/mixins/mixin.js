@@ -67,15 +67,15 @@ export default {
                 }
             }
             if (this.$store.state.system.roles && this.$store.state.system.roles.length > 0) {
-                for(let item in menuOption){
+                for (let item in menuOption) {
                     let find = false
-                    if (menuOption[item].url){
+                    if (menuOption[item].url) {
                         find = this.getActionOption(menuOption[item].url)
                     }
-                    if (menuOption[item].action){
+                    if (menuOption[item].action) {
                         find = this.getActionOption(menuOption[item].action)
                     }
-                    if (find){
+                    if (find) {
                         menuOptionrole.push(item)
                     }
                 }
@@ -84,7 +84,7 @@ export default {
         }
     },
     methods: {
-        getroles(){
+        getroles() {
             let filterObj = []
             filterObj.push({
                 'key': '_id',
@@ -94,7 +94,6 @@ export default {
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             this.handleGetFilterTableTable('role', filterTxt, db).then((obj) => {
                 this.$store.state.system.roles = obj.data.data
-                console.log(this.$store.state.system.roles)
             })
             this.getTableApidata('dictionary')
         },
@@ -126,7 +125,6 @@ export default {
             event.stopPropagation()
         },
         handleRouter1(event, item) {
-            console.log(item)
             this.$store.state.envs.currClasses = item
             this.$store.commit('router', '/lesson/infoclass')
             event.stopPropagation()
@@ -233,7 +231,7 @@ export default {
             if (endTemp.isValid()) {
                 endtimestr = endTemp.format('H:mm')
             }
-            return starttimestr + '--' + endtimestr
+            return starttimestr + '-' + endtimestr
         },
         getDateNumFormat(datestring) {
             let dateTemp = moment(datestring)
@@ -291,16 +289,15 @@ export default {
             }
             return value
         },
-        getDictText(type, value) {
+        getDictText(value) {
             let text = ''
             let tablaData = []
             let tablaName = 'dictionary'
             tablaData = this.$store.state.models.models[tablaName].data
             for (var i = 0; i < tablaData.length; i++) {
-                if (tablaData[i].type == type) {
-                    if (tablaData[i]._id == value) {
-                        text = tablaData[i].text
-                    }
+                if (tablaData[i]._id == value) {
+                    text = tablaData[i].text
+                    break
                 }
             }
             return text
@@ -430,11 +427,9 @@ export default {
                     table.db = db
 
                     vm.$store.dispatch(types.DELETE_API, table).then(() => {
-                        // console.log('handleDelete')
                         resolve()
                     }).catch((error) => {
                         reject()
-                        //console.log(error, 'Promise error')
                     })
 
                 } else {
@@ -454,7 +449,6 @@ export default {
                     resolve(response)
                 }).catch((error) => {
                     reject()
-                    console.log(error, 'Promise error')
                 })
             })
         },
@@ -468,7 +462,6 @@ export default {
                     resolve(response)
                 }).catch((error) => {
                     reject()
-                    console.log(error, 'Promise error')
                 })
             })
         },
@@ -480,7 +473,7 @@ export default {
                 modalform.createtime = createtime.getTime()
                 modalform.org_id = this.$store.state.system.org_id
                 modalform.campus_id = this.$store.state.system.campus_id
-                
+
                 vm.$store.dispatch(types.SMS_API, {
                     'model': vm.model,
                     'form': modalform
@@ -488,7 +481,6 @@ export default {
                     resolve(response)
                 }).catch((error) => {
                     reject()
-                    console.log(error, 'Promise error')
                 })
             })
         },
@@ -555,7 +547,6 @@ export default {
                         resolve(response)
                     }).catch((error) => {
                         reject()
-                        console.log(error, 'Promise error')
                     })
                 } else {
                     vm.$store.dispatch(types.EDIT_API, {
@@ -567,10 +558,8 @@ export default {
                         resolve(response)
                     }).catch((error) => {
                         reject()
-                        console.log(error, 'Promise error')
                     })
                 }
-                //console.log(modalform, vm.modalsType)
             })
         },
         handleSave(form) {

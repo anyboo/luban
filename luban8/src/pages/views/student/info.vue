@@ -313,13 +313,13 @@ export default {
                     let obj = {}
                     this.relation = []
                     obj.tel = this.student.first_tel
-                    obj.rel = this.getDictText('1', this.student.first_rel_rel)
+                    obj.rel = this.getDictText(this.student.first_rel_rel)
                     obj.name = this.student.first_rel_name
                     this.relation.push(obj)
                     this.student.relations.forEach(relobj => {
                         let objitem = {}
                         objitem.tel = relobj.tel
-                        objitem.rel = this.getDictText('1', relobj.relation)
+                        objitem.rel = this.getDictText(relobj.relation)
                         objitem.name = relobj.name
                         this.relation.push(objitem)
                     })

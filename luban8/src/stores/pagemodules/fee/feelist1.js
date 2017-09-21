@@ -81,7 +81,7 @@ export default {
             'prop': 'student_name'
         },
         {
-            'type': 'payment',
+            'type': 'dicttext',
             'label': '付款方式',
             'prop': 'region_oe_id',
         },

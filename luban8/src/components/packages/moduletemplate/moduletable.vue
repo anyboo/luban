@@ -86,8 +86,8 @@
                             <template v-if="item.type=='notwrite'">
                                 {{(scope.row[item.prop]&&scope.row[item.prop].length>0)?scope.row[item.prop]:'未填写'}}
                             </template>
-                            <template v-if="item.type=='payment'">
-                                {{getDictText('2',scope.row[item.prop])}}
+                            <template v-if="item.type=='dicttext'">
+                                {{getDictText(scope.row[item.prop])}}
                             </template>
                             <template v-if="item.type=='lessoncount'">
                                 {{ scope.row[item.prop]?scope.row[item.prop].length:0 }}
@@ -123,7 +123,7 @@
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                             </template>
                             <template v-if="item.type=='getdataPurpose'">
-                                <el-tag :type="getDictText('6',scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
+                                <el-tag :type="getDictText(scope.row[item.prop])==getdataPurpose(scope.row[item.prop])?'primary':'gray'">{{ getdataPurpose(scope.row[item.prop])}}</el-tag>
                             </template>
                             <template v-if="item.type=='getEmployeeName'">
                                 <el-tag :type="getEmployeeName(scope.row)=='未设定'?'gray':'primary'">{{ getEmployeeName(scope.row) }}</el-tag>
@@ -428,7 +428,6 @@ export default {
             return this.getModuleSearchInfo('selectSearch').length > 0
         },
         selectSearchInfo() {
-            console.log('2222', this.getModuleSearchInfo('selectSearch'))
             return this.getModuleSearchInfo('selectSearch')
         },
         selectesearchFun() {
@@ -444,7 +443,6 @@ export default {
     },
     watch: {
         module: function(val) {
-            console.log('-----', this.moduledata)
             if (typeof (val) == 'object') {
                 this.moduledata = val
                 this.handleSearch()
@@ -463,7 +461,6 @@ export default {
             if (pagesmodule[modulename]) {
                 moduleObj = pagesmodule[modulename]
             }
-            console.log(moduleObj, modulename)
             return moduleObj
         },
         handleSelectionChange(val) {
@@ -712,7 +709,6 @@ export default {
                     if (this.moduledata.tableChange) {
                         this.moduledata.tableChange(this, obj.data.data).then((obj) => {
                             this.moduleTableData = obj
-                            console.log(obj)
                         })
                     } else {
                         this.moduleTableData = obj.data.data
@@ -760,9 +756,9 @@ export default {
         },
         getdataPurpose(value) {
             let purpose = ''
-            purpose = this.getDictText('6', value)
+            purpose = this.getDictText(value)
             if (purpose == '') {
-                purpose = this.getDictText('6', this.getDictDefvalue('6'))
+                purpose = this.getDictText(this.getDictDefvalue('6'))
             }
             return purpose
         },

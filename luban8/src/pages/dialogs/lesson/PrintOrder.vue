@@ -25,7 +25,7 @@
                             </template>
                         </el-table-column>
                         <el-table-column property="data" label="付款方式">
-                            <template scope="scope">{{getDictText('2',scope.row.region_oe_id)}}</template>
+                            <template scope="scope">{{getDictText(scope.row.region_oe_id)}}</template>
                         </el-table-column>
                         <el-table-column property="data" label="收据">
                             <template scope="scope">{{getprint(scope.row.print)}}</template>

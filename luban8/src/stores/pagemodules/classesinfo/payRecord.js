@@ -20,7 +20,7 @@ export default {
             'prop': 'money_pay_amount'
         },
         {
-            'type': 'payment',
+            'type': 'dicttext',
             'label': '付款方式',
             'prop': 'region_oe_id'
         },

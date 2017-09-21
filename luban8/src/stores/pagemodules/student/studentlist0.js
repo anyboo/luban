@@ -119,7 +119,7 @@ export default {
             'prop': 'purpose',
         },
         {
-            'type': 'text',
+            'type': 'dicttext',
             'label': '来源渠道',
             'prop': 'track_from',
         },
