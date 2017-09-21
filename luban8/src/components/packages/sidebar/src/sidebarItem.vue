@@ -19,9 +19,12 @@
 <style>
 .lbSdebarUlStyle {
     max-height: 88.8%;
-    overflow: auto;
     padding: 0px;
     margin: 0px;
+}
+
+.contaierUnfold .lbSdebarUlStyle {
+    overflow: auto;
 }
 
 ::-webkit-scrollbar {
