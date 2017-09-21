@@ -577,6 +577,9 @@ export default {
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
             evnitem.teacher_id = item.teacher_id
+            evnitem.org_id = this.$store.state.system.org_id
+            evnitem.campus_id = this.$store.state.system.campus_id
+
             evnitem.daterange1 = vm.getDatetime(vm.localdata.form.daterange1)
             evnitem.daterange2 = vm.getDatetime(vm.localdata.form.daterange2)
             evnitem.timerange = []
@@ -675,8 +678,8 @@ export default {
                             }
                         }
                         if (this.module.validform) {
-                            if (!this.module.validform(this)){
-                                return 
+                            if (!this.module.validform(this)) {
+                                return
                             }
                         }
                         if (this.module.beforeSave) {

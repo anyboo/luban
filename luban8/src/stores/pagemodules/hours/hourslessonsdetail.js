@@ -46,7 +46,7 @@ export default {
             'type': 'handleback',
             'searchfunction': function (vm) {
                 let filterObj = []
-                let classId = vm.$store.state.system.currClassID
+                let classId = vm.$store.state.system.currClassesID
                 if (classId.length > 0) {
                     filterObj.push({
                         'key': 'classes_id',
