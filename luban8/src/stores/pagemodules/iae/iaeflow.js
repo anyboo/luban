@@ -2,15 +2,10 @@ export default {
     'pageName': 'iaeflow',
     'pageLable': '流水',
     'tableSearch': [{
-        'localField': 'teacher_id',
+        'localField': 'op_id',
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
-    },{
-        'localField': 'student_id',
-        'from': 'student',
-        'foreignField': '_id',
-        'as': 'student'
     }],
     'pageSearch': [
         {
@@ -41,45 +36,6 @@ export default {
             'fields': [{}]
         },
         {
-            'type': 'selectSearch',
-            'searchfunction': function (form) {
-                let filterObj = []
-                let searchValue = form + ''
-                if (searchValue.length > 0) {
-                    filterObj.push({
-                    'key': 'teacher_id',
-                    'value': searchValue,
-                    'type': ''
-                })
-                }
-                return filterObj
-            },
-            'fields': [
-                {
-                    'text': '请选择学员',
-                    'showdialog': 'selectstudentdialog',
-                    'search': 'student_name'
-                }
-            ]
-        },
-        {
-            'type': 'radioGroupSearch',
-            'fields': [
-                {
-                    'label': '所有',
-                    'icon': ''
-                },
-                {
-                    'label': '支出',
-                    'icon': ''
-                },
-                {
-                    'label': '收入',
-                    'icon': ''
-                }
-            ]
-        },
-        {
             'type': 'singleBtnSearch',
             'fields': [
                 {
@@ -98,9 +54,9 @@ export default {
             'label':'操作'
         },
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '日期',
-            'prop': 'createtime'
+            'prop': 'create_time'
         },
         {
             'type': 'textTag',
@@ -116,17 +72,17 @@ export default {
                 'value': '',
                 'text': '所有'
             }, {
-                'value': '0',
+                'value': 0,
                 'text': '支出'
             }, {
-                'value': '1',
+                'value': 1,
                 'text': '收入'
             }],
             'prop': 'type'
         },
         {
-            'type': 'text',
-            'label': '类别信息',
+            'type': 'dicttext',
+            'label': '类别',
             'prop': 'sel',
         },
         {
@@ -141,7 +97,7 @@ export default {
             'prop': 'name',
         },
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '录入日期',
             'prop': 'createtime'
         }

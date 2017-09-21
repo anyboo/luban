@@ -66,6 +66,7 @@ export default {
                     'unpay_amount': unpay_amount,
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
+                    
                     resolve({ pay: obj, order: vm.order })
                 })
             }

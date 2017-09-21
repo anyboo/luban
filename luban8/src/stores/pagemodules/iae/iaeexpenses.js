@@ -38,7 +38,7 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '日期',
             'prop': 'create_time'
         },

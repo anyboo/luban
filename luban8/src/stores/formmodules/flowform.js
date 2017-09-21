@@ -2,16 +2,15 @@ export default {
     'pageName': 'flowform',
     'pageLable': '流水',
     'form': {
-        'type': '0',
+        'type': 0,
         'amount': '',
-        'odi_id': '',
         'sel': '',
         'note': '',
         'op_id': '',
         'create_time': new Date(),
         'check_status': 0,
     },
-    'mounted':function(vm){
+    'mounted': function (vm) {
         console.log(vm.$store.state.system.id)
         vm.localdata.form.op_id = vm.$store.state.system.id
     },
@@ -26,7 +25,7 @@ export default {
                 { 'label': '收入' }
             ]
         },
-         {
+        {
             'type': 'numberinput',
             'label': '金额',
             'text': '元',
@@ -34,28 +33,19 @@ export default {
             'field': 'amount'
         },
         {
-            'type': 'selectoptions',
+            'type': 'select',
             'label': '所属分类',
             'prop': 'sel',
             'field': 'sel',
-            'optionData': [{
-                value: '杂费',
-                label: '杂费'
-            }, {
-                value: '日常开支',
-                label: '日常开支'
-            }, {
-                value: '报名缴费',
-                label: '报名缴费'
-            }]
+            'dict': function (vm) {
+                let dict = 7
+                if (vm.localdata.form.type == 0) {
+                    dict = 8
+                }
+                return dict
+            }
         },
         {
-            'type': 'input',
-            'label': '备注',
-            'prop': '',
-            'field': 'note',
-        },
-         {
             'type': 'selectSearch',
             'label': '经办人',
             'prop': 'op_id',
@@ -69,7 +59,13 @@ export default {
             'label': '日期',
             'prop': '',
             'field': 'create_time',
-            'datetype': 'date',
+            'datetype': 'datetime',
+        },
+        {
+            'type': 'input',
+            'label': '备注',
+            'prop': '',
+            'field': 'note',
         }
     ],
     'pageTable': 'flow',

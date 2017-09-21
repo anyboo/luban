@@ -84,7 +84,7 @@ export default {
             'prop': 'student_name',
         },
         {
-            'type': 'datetime',
+            'type': 'datetimeMinute',
             'label': '付款日期',
             'prop': 'create_time'
         },
