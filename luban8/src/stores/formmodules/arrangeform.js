@@ -19,17 +19,15 @@ export default {
         timerange2: '',
         timerange: [new Date(), new Date()]
     },
+    'mounted': function (vm) {
+        vm.localdata.form.classes_id = vm.$store.state.system.currClassesID
+        vm.handleGetTableID('classes', vm.localdata.form.classes_id).then((obj) => {
+            if (obj.data.length > 0) {
+                vm.localdata.form.teacher_id = obj.data[0].teacher_id
+            } 
+        })
+    },
     'formField': [
-        {
-            'type': 'selectSearch',
-            'label': '授课老师',
-            'prop': 'teacher_id',
-            'field': 'teacher_id',
-            'text': '请选择老师',
-            'showdialog': 'selectteacherdialog',
-            'search': 'name',
-            'table': 'employee'
-        },
         {
             'type': 'selectSearch',
             'label': '班级',
@@ -39,6 +37,16 @@ export default {
             'showdialog': 'selectclassesdialog',
             'search': 'class_name',
             'table': 'classes'
+        },
+        {
+            'type': 'selectSearch',
+            'label': '授课老师',
+            'prop': 'teacher_id',
+            'field': 'teacher_id',
+            'text': '请选择老师',
+            'showdialog': 'selectteacherdialog',
+            'search': 'name',
+            'table': 'employee'
         },
         {
             'type': 'selectSearch',

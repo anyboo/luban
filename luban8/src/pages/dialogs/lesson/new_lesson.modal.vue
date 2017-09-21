@@ -44,6 +44,7 @@
                             </el-form-item>
                         </el-collapse-item>
                         <el-collapse-item title="定价" name="2">
+                            <!--
                             <el-form-item label="收费模式" v-if="this.localdata.form.lesson_type=='0'">
                                 <el-radio-group v-model="localdata.form.price_model" @change="handleHoursCommand">
                                     <template v-for="(value,index) in localdata.price_model">
@@ -51,13 +52,14 @@
                                     </template>
                                 </el-radio-group>
                             </el-form-item>
+                            -->
                             <el-form-item label="单价">
-                                <lb-numberinput v-model="localdata.form.unit_price" text="元/次" @change="changeTimePrice" v-if="localdata.form.price_model=='1'"></lb-numberinput>
-                                <lb-numberinput v-model="localdata.form.unit_price" text="期/次" @change="changeTimePrice" v-if="localdata.form.price_model=='0'"></lb-numberinput>
+                                <lb-numberinput v-model="localdata.form.unit_price" text="元/次" @change="changeTimePrice"></lb-numberinput>
+                                <!--<lb-numberinput v-model="localdata.form.unit_price" text="期/次" @change="changeTimePrice" v-if="localdata.form.price_model=='0'"></lb-numberinput>-->
                             </el-form-item>
                             <el-form-item label="总共">
-                                <lb-numberinput v-model="localdata.form.inc_timesprice" text="次" @change="changeTimePrice" v-if="localdata.form.price_model=='1'"></lb-numberinput>
-                                <lb-numberinput v-model="localdata.form.inc_period" text="期" @change="changeTimePrice" v-if="localdata.form.price_model=='0'"></lb-numberinput>
+                                <lb-numberinput v-model="localdata.form.inc_timesprice" text="次" @change="changeTimePrice"></lb-numberinput>
+                                <!--<lb-numberinput v-model="localdata.form.inc_period" text="期" @change="changeTimePrice" v-if="localdata.form.price_model=='0'"></lb-numberinput>-->
                             </el-form-item>
                             <el-form-item label="售价">
                                 <lb-numberinput v-model="localdata.form.price" text="元"></lb-numberinput>
@@ -115,7 +117,7 @@ export default {
                 'lesson_name': '',
                 'lesson_no': '',
                 'lesson_days': '30',
-                'price_model': '0',
+                'price_model': '1',
                 'unit_price': 0,
                 'inc_times': 0,
                 'inc_period': 0,

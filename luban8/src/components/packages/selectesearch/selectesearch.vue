@@ -21,22 +21,26 @@ export default {
                 this.defaultvalue = this.default
             }
             this.search_id = val
+            this.getdefaulatvalue()
         }
     },
     mounted() {
-        if (this.table && this.search_id && this.search_id.length > 0) {
-            this.handleGetTableID(this.table, this.search_id).then((obj) => {
-                if (obj.data.length > 0) {
-                    this.defaultvalue = obj.data[0][this.searchfield]
-                }
-            })
-        }
+        this.getdefaulatvalue()
     },
     methods: {
         showDailog(showdialog) {
             this.currDialogId = this.$store.state.envs.currDialogId + 1
             this.$store.state.envs.currDialogId = this.currDialogId
             this.handleShowDialog(showdialog)
+        },
+        getdefaulatvalue() {
+            if (this.table && this.search_id && this.search_id.length > 0) {
+                this.handleGetTableID(this.table, this.search_id).then((obj) => {
+                    if (obj.data.length > 0) {
+                        this.defaultvalue = obj.data[0][this.searchfield]
+                    }
+                })
+            }
         },
     },
     computed: {
