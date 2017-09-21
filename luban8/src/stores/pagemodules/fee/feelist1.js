@@ -87,6 +87,12 @@ export default {
             'prop': 'order_no'
         },
         {
+            'type': 'tabletext',
+            'label': '订单内容',
+            'table': 'order',
+            'prop': 'body'
+        },
+        {
             'type': 'dicttext',
             'label': '付款方式',
             'prop': 'region_oe_id',
@@ -107,12 +113,6 @@ export default {
                 'value': 3,
                 'text': '学杂费'
             }],
-        },
-        {
-            'type': 'tabletext',
-            'label': '缴费内容',
-            'table': 'order',
-            'prop': 'body'
         },
         {
             'type': 'text',
