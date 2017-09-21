@@ -7,12 +7,13 @@ export default {
         'sel': '',
         'note': '',
         'op_id': '',
-        'create_time': new Date(),
+        'create_time': '',
         'check_status': 0,
     },
     'mounted': function (vm) {
         console.log(vm.$store.state.system.id)
         vm.localdata.form.op_id = vm.$store.state.system.id
+        vm.localdata.form.create_time = new Date()
     },
     'formField': [
         {
@@ -57,7 +58,7 @@ export default {
         {
             'type': 'datetime',
             'label': '日期',
-            'prop': '',
+            'prop': 'create_time',
             'field': 'create_time',
             'datetype': 'datetime',
         },
@@ -71,5 +72,20 @@ export default {
     'pageTable': 'flow',
     'pageTemplate': 'form',
     'pagePath': '',
-    rules: {}
+    rulesData(vm) {
+        return {
+            amount: [
+                { required: true, validator: vm.validateNumberinput, message: '请输入金额', trigger: 'blur' }
+            ],
+            sel: [
+                { required: true, message: '请选择所属分类', trigger: 'change' }
+            ],
+            op_id: [
+                { required: true, message: '请选择老师／经办人', trigger: 'change' }
+            ],
+            create_time: [
+                { type: 'date', required: true, message: '请输入日期', trigger: 'blur' }
+            ],
+        }
+    }
 }
