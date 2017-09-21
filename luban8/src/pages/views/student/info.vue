@@ -42,7 +42,7 @@
                             </li>
                              <li>
                                 <label class="field">账号余额:</label>
-                                <span>{{ student.nickname }}</span>
+                                <span>{{ student.amount }}</span>
                             </li>
                             <li class="m-t-xs">
                                 <label class="field">学员归属:</label>
