@@ -66,7 +66,18 @@ export default {
                     'unpay_amount': unpay_amount,
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
-                    resolve({ pay: obj, order: vm.order })
+                    let flowform = {
+                        'type': '1',              
+                        'amount': obj.money_pay_amount,
+                        'sel': '0',
+                        'note': vm.order.body,            
+                        'op_id': vm.order.op_id,          
+                        'create_time': vm.order.createtime,  
+                        'check_status': 0,
+                    }
+                    vm.handleSavedb({'table':'flow','form':flowform}).then(()=>{
+                        resolve({ pay: obj, order: vm.order })
+                    })
                 })
             }
             function setStudentAmountOrder() {
