@@ -81,7 +81,7 @@ export default {
             'prop': 'type'
         },
         {
-            'type': 'dicttext',
+            'type': 'text',
             'label': '类别',
             'prop': 'sel',
         },

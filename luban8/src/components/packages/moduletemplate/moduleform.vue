@@ -194,7 +194,7 @@
             <template v-if="item.type=='select'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-select v-model="localdata.form[item.field]" placeholder="请选择" style="width: 100%;">
-                        <el-option v-for="value in getDictData(getDistNum(item))" :key="value._id" :label="value.text" :value="value._id">
+                        <el-option v-for="value in getDictData(getDistNum(item))" :key="value.text" :label="value.text" :value="value.text">
                         </el-option>
                     </el-select>
                 </el-form-item>
