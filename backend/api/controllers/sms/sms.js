@@ -27,7 +27,7 @@ module.exports.smssend = function* smssend(db) {
     let org = yield orgdb.collection('org').findOneAndUpdate({
         'db': db
     }, {
-            $inc: [{ 'sms': -(model.tel.length) }, { 'smssend': model.tel.length }]
+            $inc: { 'sms': -(model.tel.length), 'smssend': model.tel.length }
         })
     console.log('~~~~db~~~~~~', db)
 

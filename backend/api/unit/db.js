@@ -2,6 +2,14 @@
 var ObjectID = require('mongodb').ObjectID
 var dbstr = 'mongodb://localhost/'
 
+function checkId(id) {
+    let result = false
+    if (id && (id.length == 12 || id.length == 24)) {
+        result = true
+    }
+    return result
+}
+
 module.exports.getdbstr = function (db) {
     let dbtemp = "lubandemo"
     if (db && db.length > 0) {
@@ -9,13 +17,7 @@ module.exports.getdbstr = function (db) {
     }
     return dbstr + dbtemp
 }
-module.exports.checkId = function checkId(id) {
-    let result = false
-    if (id && (id.length == 12 || id.length == 24)) {
-        result = true
-    }
-    return result
-}
+module.exports.checkId = checkId
 module.exports.changeArrayModelId = function changeArrayModelId(model) {
     for (var idindex in model) {
         if (checkId(model[idindex])) {
