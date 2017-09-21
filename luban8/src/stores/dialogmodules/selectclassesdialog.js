@@ -7,11 +7,6 @@ export default {
         'foreignField': '_id',
         'as': 'employee'
     }, {
-        'localField': '_id',
-        'from': 'order',
-        'foreignField': 'classes_id',
-        'as': 'order'
-    }, {
         'localField': 'course_id',
         'from': 'course',
         'foreignField': '_id',
@@ -26,12 +21,6 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'class_name'
-                },
-                {
-                    'label': '老师姓名',
-                    'defvalue': '',
-                    'default': false,
-                    'value': 'employee.name'
                 }
             ]
         },
@@ -55,12 +44,14 @@ export default {
             'table': 'employee',
             'prop': 'name',
         },
+        /*
         {
             'type': 'textScale',
             'label': '已报人数',
             'prop1': 'order',
             'prop2':'max_student_num'
         },
+        */
         {
             'type': 'textScale',
             'label': '上课次数',

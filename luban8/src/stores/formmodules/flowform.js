@@ -7,9 +7,13 @@ export default {
         'odi_id': '',
         'sel': '',
         'note': '',
-        'teacher_id': '',
+        'op_id': '',
         'create_time': new Date(),
         'check_status': 0,
+    },
+    'mounted':function(vm){
+        console.log(vm.$store.state.system.id)
+        vm.localdata.form.op_id = vm.$store.state.system.id
     },
     'formField': [
         {
@@ -54,11 +58,11 @@ export default {
          {
             'type': 'selectSearch',
             'label': '经办人',
-            'prop': 'student_id',
-            'field': 'student_id',
+            'prop': 'op_id',
+            'field': 'op_id',
             'text': '请选择老师',
-            'showdialog': 'selectstudentdialog',
-            'search': 'student_name'
+            'showdialog': 'selectteacherdialog',
+            'search': 'name'
         },
         {
             'type': 'datetime',

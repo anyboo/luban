@@ -80,6 +80,17 @@ refund退费结构
 'times':0 ,    //扣减课次
 'note':''      //退费备注       
 }
+流水表flow
+{
+   'type': '0',               //类型  0支出  1收入
+        'amount': '',         //金额
+        'odi_id': '',
+        'sel': '',
+        'note': '',            //备注
+        'op_id': '',           //操作人员
+        'create_time': new Date(),  //
+        'check_status': 0,
+		}
 clear清除费用结构
 {
 'order_id': '',       //订单ID

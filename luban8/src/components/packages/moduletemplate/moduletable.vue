@@ -597,6 +597,7 @@ export default {
             return name
         },
         handleSearch() {
+            console.log('handleSearch')
             if (this.moduledata.pagedata) {
                 this.moduleTableData = this.pagedata
                 return
@@ -635,7 +636,7 @@ export default {
                     filterObj.push(item)
                 }
             }
-            let textsearch_value = this.textSearchValue
+            let textsearch_value = this.textSearchValue.trim()
             if (textsearch_value.length > 0) {
                 filterObj.push({
                     'key': this.textSearchKey,

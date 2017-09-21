@@ -35,28 +35,6 @@ export default {
             ],
         },
         {
-            'type': 'selectSearch',
-            'searchfunction': function (form) {
-                let filterObj = []
-                let searchValue = form + ''
-                if (searchValue.length > 0) {
-                    filterObj.push({
-                        'key': 'course_id',
-                        'value': searchValue,
-                        'type': ''
-                    })
-                }
-                return filterObj
-            },
-            'fields': [
-                {
-                    'text': '请选择发送类型',
-                    'showdialog': 'smssenddialog',
-                    'search': 'lesson_name'
-                }
-            ]
-        },
-        {
             'type': 'singleBtnSearch',
             'span': 5,
             'fields': [

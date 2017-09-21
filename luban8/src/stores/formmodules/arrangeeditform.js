@@ -20,16 +20,6 @@ export default {
     'formField': [
         {
             'type': 'selectSearch',
-            'label': '授课老师',
-            'prop': 'teacher_id',
-            'field': 'teacher_id',
-            'text': '请选择老师',
-            'showdialog': 'selectteacherdialog',
-            'search': 'name',
-            'table': 'employee'
-        },
-        {
-            'type': 'selectSearch',
             'label': '班级',
             'prop': 'classes_id',
             'field': 'classes_id',
@@ -37,6 +27,16 @@ export default {
             'showdialog': 'selectclassesdialog',
             'search': 'class_name',
             'table': 'classes'
+        },
+        {
+            'type': 'selectSearch',
+            'label': '授课老师',
+            'prop': 'teacher_id',
+            'field': 'teacher_id',
+            'text': '请选择老师',
+            'showdialog': 'selectteacherdialog',
+            'search': 'name',
+            'table': 'employee'
         },
         {
             'type': 'selectSearch',

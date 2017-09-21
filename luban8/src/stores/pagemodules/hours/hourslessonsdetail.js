@@ -17,6 +17,11 @@ export default {
         'foreignField': '_id',
         'as': 'classes'
     }],
+    'mounted':function(vm){
+        console.log('wer')
+        vm.selectsearchValue = vm.$store.state.system.currClassesID
+        console.log(vm.$store.state.system.currClassesID)
+    },
     'deleteall': function (vm,param) {
         let eve = []
         for (let tableitem of vm.multipleSelection) {

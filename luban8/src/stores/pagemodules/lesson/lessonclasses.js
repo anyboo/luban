@@ -21,13 +21,13 @@ export default {
                     'defvalue': '',
                     'default': true,
                     'value': 'class_name'
-                },
+                }/*,
                 {
-                    'label': '老师姓名',
+                    'label': '老师名',
                     'defvalue': '',
                     'default': false,
                     'value': 'employee.name'
-                }
+                }*/
             ]
         },
         {
@@ -99,7 +99,7 @@ export default {
         {
             'type': 'tabletext',
             'label': '老师',
-            'prop':'op_name',
+            'prop':'name',
             'table':'employee'
         },
         {

@@ -469,8 +469,6 @@ export default {
     },
     methods: {
         selectChange(obj) {
-            console.log(obj)
-            //this.$refs['ruleForm'].validateField(obj.field)
             if (this.module.selectChange) {
                 this.module.selectChange(this, obj)
             }

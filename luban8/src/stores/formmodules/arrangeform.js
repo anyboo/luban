@@ -27,13 +27,9 @@ export default {
             }
         })
     },
-    'selectChange': function (vm) {
+    'selectChange': function (vm,obj) {
         if (vm.localdata.form.classes_id != vm.$store.state.system.currClassesID) {
-            vm.handleGetTableID('classes', vm.localdata.form.classes_id).then((obj) => {
-                if (obj.data.length > 0) {
-                    vm.localdata.form.teacher_id = obj.data[0].teacher_id
-                }
-            })
+            vm.localdata.form.teacher_id = obj.data.teacher_id
         }
     },
     'formField': [
