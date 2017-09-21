@@ -17,11 +17,6 @@ export default {
             'from': 'classes',
             'foreignField': '_id',
             'as': 'classes'
-        }, {
-            'localField': 'classes_id',
-            'from': 'order',
-            'foreignField': 'classes_id',
-            'as': 'order'
         }],
     'pageSearch': [],
     'pageTableField': [
@@ -40,8 +35,8 @@ export default {
         {
             'type': 'tabletext',
             'label': '上课老师',
-            'table': 'employee',
-            'prop': 'name',
+            'table': 'classes',
+            'prop': 'op_name',
         },
         {
             'type': 'datetime',
