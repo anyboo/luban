@@ -255,6 +255,14 @@ export default {
             validateTel
         }
     },
+    mounted() {
+        if (this.$store.state.dialogs.currdialg != 'lb-editinfomodal') {
+            this.getTableApidata('dictionary').then((obj) => {
+                this.localdata.form.first_rel_rel = this.getDictDefvalue('1')
+                this.localdata.form.track_from = this.getDictDefvalue('3')
+            })
+        }
+    },
     methods: {
         handleEdit() {
             this.$refs['ruleForm'].validate((valid) => {
