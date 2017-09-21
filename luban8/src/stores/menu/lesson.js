@@ -44,7 +44,7 @@ export default {
         menuIcon: 'fa fa-user-circle',
         menuShow: 0,
         dropDownMenu: [{
-            'url': 'lb-editinfomodal',
+            'url': 'classesform',
             'icon': 'fa fa-pencil',
             'text': '修改资料'
         }]

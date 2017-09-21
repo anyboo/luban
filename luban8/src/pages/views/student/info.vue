@@ -235,8 +235,6 @@ export default {
                 return stand = '0';
             }
         }
-
-
     },
     watch: {},
     methods: {

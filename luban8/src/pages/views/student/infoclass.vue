@@ -2,9 +2,18 @@
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="btn-group dropdown" dropdown="">
-                    <a class="btn btn-default" @click="handleBack">返回</a>
-                </div>
+                <el-button-group>
+                    <el-button @click="handleBack" type="info" size="small">返回</el-button>
+                    <el-popover ref="popover" placement="right" trigger="click">
+                        <img :src="qrcodeimg">
+                    </el-popover>
+                </el-button-group>
+                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getStudentInfo">
+                    <el-button type="success" size="small" slot="buttonslot">
+                        <i class="fa fa-user"></i> 操作
+                        <i class="el-icon-caret-bottom el-icon--right"></i>
+                    </el-button>
+                </lb-dropdown>
             </div>
             <div>
                 <div class="row no-gutter center">
@@ -114,7 +123,11 @@ export default {
         }
         console.log('fd', currClasses)
     },
-    computed: {},
+    computed: {
+        getStudentInfo() {
+            return this.classes
+        },
+    },
     watch: {},
     methods: {
         showTab(tab, event) {

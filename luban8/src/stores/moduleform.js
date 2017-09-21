@@ -56,7 +56,6 @@ pages['recordingdetailform'] = recordingdetailform
 pages['storedrechargevalue'] = storedrechargevalue
 pages['systembuyform'] = systembuyform
 pages['reportform'] = reportform
-
 pages['systemrechargeform'] = systemrechargeform
 
 export default pages

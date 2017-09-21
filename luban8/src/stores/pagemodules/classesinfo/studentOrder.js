@@ -2,27 +2,17 @@ export default {
     'pageName': 'studentOrder',
     'pageLable': '学员记录',
     'tableSearch': [{
-        'localField': 'classes_id',
-        'from': 'classes',
-        'foreignField': '_id',
-        'as': 'classes'
-    }, {
         'localField': 'student_id',
         'from': 'student',
         'foreignField': '_id',
         'as': 'student'
-    },
-    {
-        'localField': 'course_id',
-        'from': 'order',
-        'foreignField': '_id',
-        'as': 'course'
     }],
     'pageSearch': [],
     'pageTableField': [
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '姓名',
+            'table':'student',
             'prop': 'student_name',
         },
         {
@@ -31,7 +21,7 @@ export default {
             'prop': 'first_tel'
         },
     ],
-    'pageTable': 'student',
+    'pageTable': 'order',
     'pageTemplate': 'table1',
     'pagePath': ''
 }
