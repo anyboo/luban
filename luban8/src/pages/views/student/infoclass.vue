@@ -59,7 +59,7 @@
 </style>
 
 <script>
-import pagesmodule from '~/stores/modulestudentinfo.js'
+import pagesmodule from '~/stores/moduleclassesinfo.js'
 import getUrl from '~/api/restfulapi.js'
 export default {
     name: 'infoclass',
