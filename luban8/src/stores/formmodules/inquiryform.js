@@ -11,6 +11,15 @@ export default {
         'detail': '',
         'student_id': ''
     },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            vm.updateTeble('student', obj.student_id, {
+                'inquiry_id': obj._id
+            }).then(() => {
+                resolve()
+            })
+        })
+    },
     'formField': [
         {
             'type': 'radiogroup',
