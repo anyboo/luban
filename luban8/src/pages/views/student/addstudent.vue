@@ -122,6 +122,42 @@ export default {
                 callback()
             }
         }
+        var validateName = (rule, value, callback) => {
+            let vm = this
+            let filterObj = []
+
+            filterObj.push({
+                'key': 'student_name',
+                'value': value,
+                'type': ''
+            })
+            filterObj.push({
+                'key': 'campus_id',
+                'value': this.$store.state.system.campus_id,
+                'type': ''
+            })
+            let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+            vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+                let objData = obj.data.data
+                let namecheck = false
+                if (objData.length > 0) {
+                    console.log(this.$store.state.dialogs.currdialg)
+                    if (this.$store.state.dialogs.currdialg != 'lb-editinfomodal') {
+                        namecheck = true
+                    } else {
+                        let id = this.$store.state.dialogs.dailogdata['_id']
+                        if (objData[0]._id != id) {
+                            namecheck = true
+                        }
+                    }
+                    if (namecheck) {
+                        callback(new Error('名字已经重复，请在名字后面添加备注区分.'))
+                    } else {
+                        callback()
+                    }
+                }
+            })
+        }
         return {
             localdata,
             expand: false,
@@ -209,7 +245,8 @@ export default {
             rules: {
                 student_name: [
                     { required: true, message: '请输入姓名', trigger: 'blur' },
-                    { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+                    { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' },
+                    { validator: validateName, trigger: 'blur' }
                 ],
                 first_tel: [
                     { validator: validateTel, required: true, trigger: 'blur' }
@@ -239,42 +276,10 @@ export default {
                 if (valid) {
                     let vm = this
                     vm.localdata.form.birthstr = vm.getDateNumFormat(vm.localdata.form.birth)
-                    let filterObj = []
-                    filterObj.push({
-                        'key': 'student_name',
-                        'value': vm.localdata.form.student_name,
-                        'type': ''
-                    })
-                    filterObj.push({
-                        'key': 'campus_id',
-                        'value': this.$store.state.system.campus_id,
-                        'type': ''
-                    })
-                    let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
-                    vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
-                        let objData = obj.data.data
-                        let namecheck = false
-                        if (objData.length > 0) {
-                            if (vm.modalsType == vm.types.APPEND_API) {
-                                namecheck = true
-                            } else {
-                                if (objData[0]._id != this._id) {
-                                    namecheck = true
-                                }
-                            }
-                        }
-                        if (!namecheck) {
-                            vm.handleSave().then((response) => {
-                                vm.$store.state.envs.currStudent = response
-                                vm.handleShowDialog('lb-finishadd', response)
-                            }, (e) => {
-                            })
-                        } else {
-                            this.$message({
-                                message: '名字已经重复，请在名字后面添加备注区分.',
-                                type: 'warning'
-                            })
-                        }
+                    vm.handleSave().then((response) => {
+                        vm.$store.state.envs.currStudent = response
+                        vm.handleShowDialog('lb-finishadd', response)
+                    }, (e) => {
                     })
                 }
             })

@@ -13,6 +13,7 @@ const mutations = {
     popdialog: (state) => {
         state.dailoglist = _.dropRight(state.dailoglist)
         if (state.dailoglist.length == 0) {
+            state.currdialg = ''
             state.modalbackdrop = false
         } else {
             state.modalbackdropzindex = state.dailoglist.length * 2 + 1457

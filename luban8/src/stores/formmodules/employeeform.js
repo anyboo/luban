@@ -26,7 +26,7 @@ export default {
         },
         {
             'type': 'input',
-            'label': '账号(手机)',
+            'label': '手机',
             'prop': 'phone',
             'field': 'phone'
         },
@@ -87,13 +87,14 @@ export default {
         return {
             name: [
                 { required: true, message: '请输入姓名', trigger: 'blur' },
-                { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' }
+                { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' },
+          /*       { validator: vm.validaterulename, trigger: 'blur' } */
             ],
             campusarray_id: [
                 { type: 'array', required: true, message: '请输入校区', trigger: 'blur' }
             ],
             phone: [
-                { validator: vm.validatephone, required: true, trigger: 'blur' }
+                { validator: vm.validatePhoneemp, required: true, trigger: 'blur' }
             ],
         }
     }
