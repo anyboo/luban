@@ -39,6 +39,17 @@ export default {
             'action': 'lessonmanageles'
         }]
     }, {
+        menuTitle: '班级信息',
+        to: '/lesson/infoclass',
+        menuIcon: 'fa fa-user-circle',
+        menuShow: 0,
+        dropDownMenu: [{
+            'url': 'lb-editinfomodal',
+            'icon': 'fa fa-pencil',
+            'text': '修改资料'
+        }]
+    },
+    {
         menuTitle: '班级设置',
         to: '/lesson/classes',
         menuIcon: 'fa fa-gear',

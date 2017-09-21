@@ -97,8 +97,9 @@ export default {
             event.stopPropagation()
         },
         handleRouter1(event, item) {
-            this.$store.state.envs.currStudent = item
-            this.$store.commit('router', '/student/info')
+            console.log(item)
+            this.$store.state.envs.currClasses = item
+            this.$store.commit('router', '/lesson/infoclass')
             event.stopPropagation()
         },
         getRole(role) {
