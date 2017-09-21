@@ -119,7 +119,7 @@ module.exports.alipaynotify = function* alipaynotify() {
             $inc: { 'amount': parseFloat(model.total_amount) }
         })
     model.org_id = ObjectID(order.value.org_id)
-    let org = yield db.collection('alipay').insert(model)
+    let alipay = yield db.collection('alipay').insert(model)
     console.log('~~~~~~~~~~table~~~~~~~~~~', org)
     this.body = 'success'
 }
