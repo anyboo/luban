@@ -98,7 +98,7 @@ export default {
         }, {
             'type': 'text',
             'label': '发送人',
-            'prop': 'sms_type',
+            'prop': 'op_name',
         },
         {
             'type': 'datetimeMinute',

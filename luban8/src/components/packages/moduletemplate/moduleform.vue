@@ -674,6 +674,11 @@ export default {
                                 vm.localdata.form[item.field] = vm.getDatetime(vm.localdata.form[item.field])
                             }
                         }
+                        if (this.module.validform) {
+                            if (!this.module.validform(this)){
+                                return 
+                            }
+                        }
                         if (this.module.beforeSave) {
                             this.module.beforeSave(this)
                         }

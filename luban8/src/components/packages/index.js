@@ -13,6 +13,7 @@ import checkweek from './checkweek/'
 import selectesearch from './selectesearch/'
 import Sidebar from './sidebar/'
 import moduletemplate from './moduletemplate/'
+import teacherrouter from './teacherrouter/'
 
 const components = [
     dropdown.LbDropdown,
@@ -24,6 +25,7 @@ const components = [
     lessonprice,
     lessontype,
     studentrouter,
+    teacherrouter,
     studenttracksadd,
     lasttrack,
     checkstatus,
@@ -53,6 +55,7 @@ export default {
     lessonprice,
     lessontype,
     studentrouter,
+    teacherrouter,
     studenttracksadd,
     lasttrack,
     checkstatus,

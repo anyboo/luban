@@ -93,15 +93,14 @@ export default {
             'prop': 'setting'
         },
         {
-            'type': 'text',
+            'type': 'teacherRouter',
             'label': '班级名',
-            'prop': 'class_name',
         },
         {
             'type': 'tabletext',
             'label': '老师',
-            'table': 'employee',
-            'prop': 'name',
+            'prop':'op_name',
+            'table':'employee'
         },
         {
             'type': 'tabletext',
