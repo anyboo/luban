@@ -14,7 +14,7 @@ export default {
         'print': false
     },
     'numberChange': function (vm, obj) {
-        if (obj.filed=="use_balance"||obj.filed=="balance_pay_amount"){
+        if (obj.filed == "use_balance" || obj.filed == "balance_pay_amount") {
             if (vm.localdata.form.use_balance) {
                 if (vm.localdata.form.balance_pay_amount == 0) {
                     if (vm.order.unpay_amount > vm.currStudent.amount) {
@@ -66,18 +66,26 @@ export default {
                     'unpay_amount': unpay_amount,
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
+                    let sel = ''
+                    if(vm.order.order_type == 1) {
+                        sel = '报名费用'
+                    } else if (vm.order.order_type == 2) {
+                        sel = '预交费'
+                    } else {
+                        sel = '学杂费'
+                    }
                     let flowform = {
-                        'type': 1,              
+                        'type': 1,
                         'amount': obj.money_pay_amount,
-                        'sel': '0',
-                        'note': vm.order.body,            
-                        'op_id': vm.order.op_id, 
+                        'sel': sel,
+                        'note': vm.order.body,
+                        'op_id': vm.order.op_id,
                         'order_id': vm.order._id,
                         'pay_id': obj._id,
-                        'create_time': vm.order.createtime,  
+                        'create_time': vm.order.createtime,
                         'check_status': 0,
                     }
-                    vm.handleSavedb({'table':'flow','form':flowform}).then(()=>{
+                    vm.handleSavedb({ 'table': 'flow', 'form': flowform }).then(() => {
                         resolve({ pay: obj, order: vm.order })
                     })
                 })
@@ -174,7 +182,7 @@ export default {
             'required': function (vm) {
                 let required = true
                 if (vm.localdata.form.use_balance) {
-                    if (vm.localdata.form.balance_pay_amount>0){
+                    if (vm.localdata.form.balance_pay_amount > 0) {
                         required = false
                     }
                 }
@@ -199,12 +207,12 @@ export default {
         vm.validatemountinput = (rule, value, callback) => {
             let required = true
             if (vm.localdata.form.use_balance) {
-                if (vm.localdata.form.balance_pay_amount>0){
+                if (vm.localdata.form.balance_pay_amount > 0) {
                     required = false
                 }
             }
-            console.log(required,value)
-            if (required){
+            console.log(required, value)
+            if (required) {
                 if (value === '') {
                     callback(new Error(rule.message))
                 } else if (value <= 0) {
@@ -212,13 +220,13 @@ export default {
                 } else {
                     callback()
                 }
-            }else{
+            } else {
                 callback()
             }
         }
         return {
             money_pay_amount: [
-                {  validator: vm.validatemountinput, message: '请输入金额', trigger: 'change' }
+                { validator: vm.validatemountinput, message: '请输入金额', trigger: 'change' }
             ],
             region_oe_id: [
                 { required: true, message: '请选择缴费方式', trigger: 'change' }
