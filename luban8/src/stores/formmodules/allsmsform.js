@@ -29,7 +29,7 @@ export default {
         let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
         Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
-                vm.localdata.form.title = obj.data.data[0]
+                vm.localdata.form.title = obj.data.data[0].short_name
             } else {
                 vm.localdata.form.title = '鲁班'
             }

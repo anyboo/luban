@@ -111,13 +111,15 @@ module.exports.alipaynotify = function* alipaynotify() {
     let order = yield db.collection('order').findOneAndUpdate({
         'order_no': model.out_trade_no
     }, {
-            $set:{'pay_status': pay_status}
+            $set: { 'pay_status': pay_status }
         })
     let org = yield db.collection('org').findOneAndUpdate({
         '_id': ObjectID(order.value.org_id)
     }, {
-            $inc:{'amount':parseFloat(model.total_amount)} 
+            $inc: { 'amount': parseFloat(model.total_amount) }
         })
+    model.org_id = ObjectID(order.value.org_id)
+    let org = yield db.collection('alipay').insert(model)
     console.log('~~~~~~~~~~table~~~~~~~~~~', org)
     this.body = 'success'
 }

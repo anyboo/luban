@@ -12,14 +12,6 @@ const querystring = require('querystring')
 var dbunit = require('../../unit/db')
 var xlsx = require('node-xlsx')
 
-function checkId(id) {
-    let result = false
-    if (id && (id.length == 12 || id.length == 24)) {
-        result = true
-    }
-    return result
-}
-
 function loginemployee(user) {
     return new Promise((resolve) => {
         let logindata = { 'login': false }
@@ -144,44 +136,6 @@ module.exports.login = function* login(next) {
     }
 }
 
-function changeArrayModelId(model) {
-    for (var idindex in model) {
-        if (checkId(model[idindex])) {
-            let monkid = ObjectID(model[idindex])
-            model[idindex] = monkid
-        }
-    }
-}
-function changeModelId(model) {
-    for (var item in model) {
-        if (typeof item == 'string') {
-            if (item.indexOf('_id') >= 0) {
-                try {
-                    console.log('-----', item, model[item], typeof model[item])
-                    if (typeof model[item] === 'object') {
-                        let iditem = model[item]
-                        for (var idindex in iditem) {
-                            if (checkId(iditem[idindex])) {
-                                let monkid = ObjectID(iditem[idindex])
-                                iditem[idindex] = monkid
-                                console.log('-----', iditem[idindex], monkid)
-                            }
-                        }
-                    } else {
-                        if (checkId(model[item])) {
-                            let monkid = ObjectID(model[item])
-                            model[item] = monkid
-                        }
-                    }
-
-                } catch (e) {
-                    console.log(e)
-                }
-            }
-        }
-    }
-}
-
 function verify(token, authtime) {
     let result = false
     console.log(token, authtime)
@@ -262,14 +216,14 @@ module.exports.all = function* all(db, name, next) {
                     }  else if (type == 'in') {
                         findObj[key] = findObj[key] || {}
                         if (key.indexOf('_id') >= 0) {
-                            changeArrayModelId(value)
+                            dbunit.changeArrayModelId(value)
                         }
                         findObj[key]['$in'] = value
                         console.log(findObj[key])
                     } else if (type == 'nin') {
                         findObj[key] = findObj[key] || {}
                         if (key.indexOf('_id') >= 0) {
-                            changeArrayModelId(value)
+                            dbunit.changeArrayModelId(value)
                         }
                         findObj[key]['$nin'] = value
                         console.log(findObj[key])
@@ -282,7 +236,7 @@ module.exports.all = function* all(db, name, next) {
             console.log(e)
         }
     }
-    changeModelId(findObj)
+    dbunit.changeModelId(findObj)
     if (!findsort) {
         sortObj = { '_id': -1 }
     }
@@ -324,7 +278,7 @@ module.exports.upload = function* upload(db, next) {
 
 module.exports.fetch = function* fetch(db, name, id, next) {
     if ('GET' != this.method) return yield next
-    if (!checkId(id)) return yield next
+    if (!dbunit.checkId(id)) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     var model = yield table.find({ '_id': ObjectID(id) }).toArray()
@@ -344,7 +298,7 @@ module.exports.add = function* add(db, name, next) {
     let table = db.collection(name)
     let seqid = yield db.collection('lb_seq_id').findOneAndUpdate({ id: name }, { $inc: { seq: 1 } }, { upsert: true })
     model.lbseqid = seqid.seq
-    changeModelId(model)
+    dbunit.changeModelId(model)
     console.log(model)
     var inserted = yield table.insert(model)
     if (!inserted) {
@@ -356,13 +310,13 @@ module.exports.add = function* add(db, name, next) {
 
 module.exports.modify = function* modify(db, name, id, next) {
     if ('PUT' != this.method) return yield next
-    if (!checkId(id)) return yield next
+    if (!dbunit.checkId(id)) return yield next
     var data = yield parse(this, {
         limit: '5000kb'
     })
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
-    changeModelId(data)
+    dbunit.changeModelId(data)
     var result = yield table.updateOne({ '_id': ObjectID(id) }, {
         $set: data
     })
@@ -380,7 +334,7 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
     let writeobj = []
 
     model.forEach((element) => {
-        changeModelId(element)
+        dbunit.changeModelId(element)
         let opt = {}
         if (element._id) {
             if (element._delete) {
@@ -407,7 +361,7 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
 
 module.exports.remove = function* remove(db, name, id, next) {
     if ('DELETE' != this.method) return yield next
-    if (!checkId(id)) return yield next
+    if (!dbunit.checkId(id)) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
     var removed = yield table.remove({ '_id': ObjectID(id) })
@@ -501,7 +455,7 @@ module.exports.download = function* download(db, name, next) {
             console.log(e)
         }
     }
-    changeModelId(findObj)
+    dbunit.changeModelId(findObj)
     if (!findsort) {
         sortObj = { '_id': -1 }
     }
