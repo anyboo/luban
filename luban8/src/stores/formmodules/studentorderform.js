@@ -32,7 +32,7 @@ export default {
         console.log('~~~~`'+obj.text, '~~~~`'+obj.data.course[0].inc_times)
         vm.classes_name = obj.text
 
-        vm.localdata.form.origin_times = obj.data.course[0].inc_times
+        vm.localdata.form.origin_times = obj.data.course[0].inc_timesprice
         vm.localdata.form.unit_price = obj.data.course[0].unit_price
         if (vm.module.numberChange) {
             vm.module.numberChange(vm, obj)

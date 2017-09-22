@@ -2,7 +2,7 @@ export default {
     'pageName': 'iaeicome',
     'pageLable': '支出明细',
     'tableSearch': [{
-        'localField': 'teacher_id',
+        'localField': 'op_id',
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
