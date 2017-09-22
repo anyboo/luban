@@ -82,10 +82,11 @@ module.exports.count = function* count(db, table, next) {
         } else {
             findobj[item] = this.query[item]
         }
-        dbunit.changeModelId(findObj)
     }
+    dbunit.changeModelId(findObj)
     var count = yield collection.find(findobj).count()
     db.close()
+   
     this.body = count
 }
 module.exports.id = function* id(db, table, next) {
