@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">老师:</label>
-                        <span>{{classes.op_name}}</span>
+                        <span>{{getLookUp(classes.employee,'name')}}</span>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">课程名:</label>
