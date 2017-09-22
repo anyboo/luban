@@ -38,7 +38,30 @@ export default {
             vm.updateTeble('order', vm.order._id, {
                 'refund_status': refund_status,
                 'back_amount': back_amount
+
             }).then(() => {
+                let sel = ''
+                if (vm.order.order_type == 1) {
+                    sel = '报名'
+                } else if (vm.order.order_type == 2) {
+                    sel = '预交'
+                } else {
+                    sel = '学杂'
+                }
+                let flowform = {
+                    'type': 0,
+                    'amount': vm.localdata.form.amount,
+                    'sel': sel+'退费',
+                    'note': vm.localdata.form.note,
+                    'op_id': vm.order.op_id,
+                    'order_id': vm.order._id,
+                    'refund_id': obj._id,
+                    'create_time': obj.createtime,
+                    'check_status': 0,
+                }
+                vm.handleSavedb({ 'table': 'flow', 'form': flowform }).then(() => {
+                    resolve({ pay: obj, order: vm.order })
+                })
                 vm.$message({
                     message: '退款成功',
                     type: 'success'
@@ -150,6 +173,7 @@ export default {
                 { 'label': '直接结课' },
                 { 'label': '扣减课次' }
             ]
+
         },*/
         {
             'type': 'input',

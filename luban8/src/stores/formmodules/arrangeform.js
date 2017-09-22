@@ -44,6 +44,18 @@ export default {
             vm.localdata.form.teacher_id = obj.data.teacher_id
         }
     },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('coursescheduling', 'classes_id', vm.localdata.form.classes_id).then(response => {
+                    console.log(response)
+                vm.updateTeble('classes', vm.localdata.form.classes_id, {
+                    'arrangecount':response
+                }).then(() => {
+                    resolve()
+                })
+            })
+        })
+    },
     'formField': [
         {
             'type': 'selectSearch',

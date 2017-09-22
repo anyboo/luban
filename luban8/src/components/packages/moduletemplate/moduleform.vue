@@ -641,6 +641,10 @@ export default {
             }
             if (eve.length > 0) {
                 this.mx_db_bulkwrite('coursescheduling', eve).then(response => {
+                    if (this.module.afterSave) {
+                        this.module.afterSave(this, response).then((obj) => {
+                        })
+                    } 
                     vm.$message({
                         message: '操作成功',
                         type: 'success'

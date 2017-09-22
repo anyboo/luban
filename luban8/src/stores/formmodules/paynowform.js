@@ -82,7 +82,7 @@ export default {
                         'op_id': vm.order.op_id,
                         'order_id': vm.order._id,
                         'pay_id': obj._id,
-                        'create_time': vm.order.createtime,
+                        'create_time': obj.createtime,
                         'check_status': 0,
                     }
                     vm.handleSavedb({ 'table': 'flow', 'form': flowform }).then(() => {
