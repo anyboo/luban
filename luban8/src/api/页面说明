@@ -126,6 +126,9 @@ classes班级{
 'teacher_id': '',     //老师
 'del_able': false   //是否删除
 'class_flag':0      //班级状态  0 未开班，1 已经开班  2 已经结班
+'regcount':0,       //报名数
+'attendcount':0     //上课情况
+'arrangecount':0     //排课数
 }
 coursescheduling排课
  {

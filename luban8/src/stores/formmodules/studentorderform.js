@@ -66,6 +66,17 @@ export default {
         vm.localdata.form.order_no = 'LB' + vm.moment().format('YYYYMMDDssSSSS')
         vm.localdata.form.body = `班课[${vm.classes_name}]${vm.localdata.form.totletime}次`
     },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('order', 'classes_id', vm.localdata.form.classes_id).then(response => {
+                vm.updateTeble('classes', vm.localdata.form.classes_id, {
+                    'regcount':response
+                }).then(() => {
+                    resolve(obj)
+                })
+            })
+        })
+    },
     'formField': [
         {
             'type': 'selectSearch',

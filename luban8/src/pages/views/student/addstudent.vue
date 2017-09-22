@@ -123,40 +123,48 @@ export default {
             }
         }
         var validateName = (rule, value, callback) => {
-            let vm = this
-            let filterObj = []
+            if (value === '') {
+                callback(new Error('请输入学员姓名'))
+            } else if (value.length < 2) {
+                callback(new Error('请输入学员姓名2位以上'))
+            } else {
+                let vm = this
+                let filterObj = []
 
-            filterObj.push({
-                'key': 'student_name',
-                'value': value,
-                'type': ''
-            })
-            filterObj.push({
-                'key': 'campus_id',
-                'value': this.$store.state.system.campus_id,
-                'type': ''
-            })
-            let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
-            vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
-                let objData = obj.data.data
-                let namecheck = false
-                if (objData.length > 0) {
-                    console.log(this.$store.state.dialogs.currdialg)
-                    if (this.$store.state.dialogs.currdialg != 'lb-editinfomodal') {
-                        namecheck = true
-                    } else {
-                        let id = this.$store.state.dialogs.dailogdata['_id']
-                        if (objData[0]._id != id) {
+                filterObj.push({
+                    'key': 'student_name',
+                    'value': value,
+                    'type': ''
+                })
+                filterObj.push({
+                    'key': 'campus_id',
+                    'value': this.$store.state.system.campus_id,
+                    'type': ''
+                })
+                let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
+                vm.handleGetFilterTableTable('student', filterTxt).then((obj) => {
+                    let objData = obj.data.data
+                    let namecheck = false
+                    if (objData.length > 0) {
+                        console.log(this.$store.state.dialogs.currdialg)
+                        if (this.$store.state.dialogs.currdialg != 'lb-editinfomodal') {
                             namecheck = true
+                        } else {
+                            let id = this.$store.state.dialogs.dailogdata['_id']
+                            if (objData[0]._id != id) {
+                                namecheck = true
+                            }
                         }
-                    }
-                    if (namecheck) {
-                        callback(new Error('名字已经重复，请在名字后面添加备注区分.'))
+                        if (namecheck) {
+                            callback(new Error('名字已经重复，请在名字后面添加备注区分.'))
+                        } else {
+                            callback()
+                        }
                     } else {
                         callback()
                     }
-                }
-            })
+                })
+            }
         }
         return {
             localdata,
@@ -244,9 +252,7 @@ export default {
             }],
             rules: {
                 student_name: [
-                    { required: true, message: '请输入姓名', trigger: 'blur' },
-                    { min: 1, max: 256, message: '长度在 1 到 256个字符', trigger: 'blur' },
-                    { validator: validateName, trigger: 'blur' }
+                    { required: true, validator: validateName, trigger: 'blur' }
                 ],
                 first_tel: [
                     { validator: validateTel, required: true, trigger: 'blur' }

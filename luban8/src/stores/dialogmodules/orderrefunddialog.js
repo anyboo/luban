@@ -21,7 +21,6 @@ export default {
             'value': 2,
             'type': 'lt'
         },
-        
     ],
     'pageSearch': [],
     'pageTableField': [

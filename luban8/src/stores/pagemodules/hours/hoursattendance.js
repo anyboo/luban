@@ -7,11 +7,11 @@ export default {
             'from': 'employee',
             'foreignField': '_id',
             'as': 'employee'
-        }, {
-            'localField': '_id',
-            'from': 'order',
-            'foreignField': 'classes_id',
-            'as': 'order'
+        },{
+            'localField': 'course_id',
+            'from': 'course',
+            'foreignField': '_id',
+            'as': 'course'
         }],
     'pageSearch': [
         {
@@ -52,14 +52,23 @@ export default {
         },
         {
             'type': 'textScale',
-            'label': ' 已报人数',
-            'prop1': 'order',
+            'label': '排课情况',
+            'table': 'course',
+            'prop1': 'arrangecount',
+            'prop2': 'inc_timesprice',
+        },
+        {
+            'type': 'textScale1',
+            'label': '报名情况',
+            'prop1': 'regcount',
             'prop2': 'max_student_num',
         },
         {
-            'type': 'constant',
-            'label': ' 上课次数',
-            'prop': '5/10',
+            'type': 'textScale',
+            'label': '上课情况',
+            'table': 'course',
+            'prop1': 'attendcount',
+            'prop2': 'inc_timesprice',
         },
     ],
     'pageTable': 'classes',
