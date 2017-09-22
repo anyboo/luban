@@ -633,6 +633,18 @@ export default {
         handleCurrentChange(value) {
             this.pagination.currentPage = value
             this.handleGetTable()
+        },
+        getCount(table, field, value) {
+            return new Promise((resolve, reject) => {
+                Vue.http.get('http://app.bullstech.cn/' + this.$store.state.system.db + '/count/' + table + '?' + field + '=' + vlue)
+                .then((response) => {
+                    let obj = response.data
+                    resolve(obj)
+                }).catch((error) => {
+                    reject()
+                })
+            })
         }
     }
+
 }
