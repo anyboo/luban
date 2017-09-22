@@ -1,6 +1,7 @@
 import studentadd from '~/pages/views/student/add.vue'
 import studentinfo from '~/pages/views/student/info.vue'
 import infoclass from '~/pages/views/student/infoclass.vue'
+import infoorder from '~/pages/views/student/infoorder.vue'
 
 import systemsign_in from '~/pages/views/system/sign_in.vue'
 import systempersonal_information from '~/pages/views/system/personal_information.vue'
@@ -15,6 +16,7 @@ var pages = {}
 pages['lb-studentadd'] = studentadd
 pages['lb-studentinfo'] = studentinfo
 pages['lb-lessoninfoclass'] = infoclass
+pages['lb-orderinfoorder'] = infoorder
 
 pages['lb-systempersonal_information'] = systempersonal_information
 pages['lb-systemsign_in'] = systemsign_in

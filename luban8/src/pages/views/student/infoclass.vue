@@ -29,12 +29,9 @@
                         <label class="inline w-xs text-right">课程名:</label>
                         <span>{{getLookUp(classes.course,'lesson_name')}}</span>
                     </div>
-                    <div class="col-xs-12 col-md-6" v-if="type==checkstatus">
+                    <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">状态:</label>
                         <span style="display:inline-block">
-                            <template>
-                                <lb-checkstatus :lessonData="classes" :typeData="{statutype:'openlessonsstatus'}" v-on:search="handleSearch"></lb-checkstatus>
-                            </template>
                         </span>
                     </div>
                     <div class="col-xs-12 col-md-6">
@@ -107,6 +104,7 @@ export default {
     },
     created() {
         let currClasses = this.$store.state.envs.currClasses
+        console.log('sjdgh',currClasses)
         if (currClasses && currClasses._id && currClasses._id.length > 0) {
             this.uid = currClasses._id
             this.$store.commit('classes', this.uid)

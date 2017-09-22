@@ -122,13 +122,6 @@ export default {
     name: 'footer',
     data() {
         let localdata = {
-            'form': {
-                'student_id': '',
-                'relations': [],
-                'first_rel_rel': '',
-                'first_tel': '',
-                'first_rel_name': '',
-            },
             'lookup': {
                 'localField': 'region_oe_id',
                 'from': 'employee',
@@ -146,31 +139,14 @@ export default {
             }
         }
         return {
-            loadstudent: false,
             moduledata: pagesmodule,
             localdata,
             activeName: '1',
-            student: {},
-            relation: [],
             tabIndex: '',
             tables: ['student'],
             uid: '',
             qrcodeimg: '',
-            options: [{
-                value: '0',
-                label: '本人'
-            }, {
-                value: '1',
-                label: '爸爸'
-            }, {
-                value: '2',
-                label: '妈妈'
-            }],
-            rules: {
-                first_tel: [
-                    { validator: validateTel, required: true, trigger: 'blur' }
-                ],
-            }
+            student:{}
         }
     },
     mounted() {
@@ -279,8 +255,9 @@ export default {
                     'type': 'lookup'
                 })
                 let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-                this.handleGetFilterTable(filterTxt).then(() => {
-                    this.student = this.$store.state.models.models.student.data[0]
+                this.handleGetFilterTable(filterTxt).then((objstudent) => {
+                    console.log(objstudent)
+                    this.student = objstudent.data.data[0]
                     this.localdata.form = this.lodash.assign(this.localdata.form, this.student)
                     let obj = {}
                     this.relation = []

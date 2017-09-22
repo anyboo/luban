@@ -18,6 +18,7 @@ const state = {
     router: '',
     currStudentID: '',
     currClassesID:'',
+    currOrderID:'',
     isModlues: true,
 }
 const getters = {}
@@ -38,6 +39,10 @@ const mutations = {
     },
     classes: (state, obj) => {
         state.currClassesID = obj
+        window.localStorage.setItem('system', JSON.stringify(state))
+    },
+    order: (state, obj) => {
+        state.currOrderID = obj
         window.localStorage.setItem('system', JSON.stringify(state))
     },
     router: (state, obj) => {
@@ -73,6 +78,7 @@ const mutations = {
         state.routerback = obj.routerback
         state.currStudentID = obj.currStudentID
         state.currClassesID = obj.currClassesID
+        state.currOrderID = obj.currOrderID       
         state.router = obj.router
         state.wallpaper = obj.wallpaper
         state.theme = obj.theme

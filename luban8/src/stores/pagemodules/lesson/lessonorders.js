@@ -1,6 +1,6 @@
 export default {
     'pageName': 'lessonorders',
-    'pageLable': '班级设置',
+    'pageLable': '订单',
     'tableSearch': [{
         'localField': 'student_id',
         'from': 'student',
@@ -95,9 +95,8 @@ export default {
             }],
         },
         {
-            'type': 'text',
+            'type': 'orderRouter',
             'label': '订单号',
-            'prop': 'order_no',
         },
         {
             'type': 'getToFixed',

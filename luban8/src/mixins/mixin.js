@@ -129,6 +129,12 @@ export default {
             this.$store.commit('router', '/lesson/infoclass')
             event.stopPropagation()
         },
+        handleRouter2(event, item) {
+            this.$store.state.envs.currOrder = item
+            console.log('currOrder',this.$store.state.envs.currOrder)
+            this.$store.commit('router', '/order/infoorder')
+            event.stopPropagation()
+        },
         getRole(role) {
             if (this.$store.state.system.admin) {
                 return true

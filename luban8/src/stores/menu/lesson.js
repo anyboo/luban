@@ -50,6 +50,17 @@ export default {
         }]
     },
     {
+        menuTitle: '订单信息',
+        to: '/order/infoorder',
+        menuIcon: 'fa fa-user-circle',
+        menuShow: 0,
+        dropDownMenu: [{
+            'url': 'classesform',
+            'icon': 'fa fa-pencil',
+            'text': '修改资料'
+        }]
+    },
+    {
         menuTitle: '班级设置',
         to: '/lesson/classes',
         menuIcon: 'fa fa-gear',
@@ -57,7 +68,7 @@ export default {
             'url': 'classesform',
             'icon': 'fa fa-pencil',
             'text': '编辑'
-        }, {
+        },  {
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除'

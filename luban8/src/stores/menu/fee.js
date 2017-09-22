@@ -30,6 +30,18 @@ export default {
     }, {
         menuTitle: '退费明细',
         to: '/fee/list4',
-        menuIcon: 'fa fa-battery-half',
-    }]
+        menuIcon: 'fa fa-battery-half', 
+    }, {
+        menuTitle: '订单信息',
+        to: '/order/infoorder',
+        menuIcon: 'fa fa-user-circle',
+        menuShow: 0,
+        dropDownMenu: [{
+            'url': 'lessonorderform',
+            'icon': 'fa fa-pencil',
+            'text': '修改订单'
+        }]
+    }
+
+    ]
 }

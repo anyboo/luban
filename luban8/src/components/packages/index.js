@@ -14,6 +14,7 @@ import selectesearch from './selectesearch/'
 import Sidebar from './sidebar/'
 import moduletemplate from './moduletemplate/'
 import teacherrouter from './teacherrouter/'
+import orderrouter from './orderrouter/'
 
 const components = [
     dropdown.LbDropdown,
@@ -26,6 +27,7 @@ const components = [
     lessontype,
     studentrouter,
     teacherrouter,
+    orderrouter,
     studenttracksadd,
     lasttrack,
     checkstatus,
@@ -56,6 +58,7 @@ export default {
     lessontype,
     studentrouter,
     teacherrouter,
+    orderrouter,
     studenttracksadd,
     lasttrack,
     checkstatus,

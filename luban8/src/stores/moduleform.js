@@ -6,6 +6,7 @@ import inquiryform from './formmodules/inquiryform.js'
 import recordingform from './formmodules/recordingform.js'
 import employeeform from './formmodules/employeeform.js'
 import classesform from './formmodules/classesform.js'
+import lessonorderform from './formmodules/lessonorderform.js'
 import flowform from './formmodules/flowform.js'
 import studentregion from './formmodules/studentregion.js'
 import studentpurpose from './formmodules/studentpurpose.js'
@@ -57,5 +58,6 @@ pages['storedrechargevalue'] = storedrechargevalue
 pages['systembuyform'] = systembuyform
 pages['reportform'] = reportform
 pages['systemrechargeform'] = systemrechargeform
+pages['lessonorderform'] = lessonorderform
 
 export default pages

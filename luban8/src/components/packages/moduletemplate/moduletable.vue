@@ -122,7 +122,7 @@
                             <template v-if="item.type=='getButtongroupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                             </template>
-                              <template v-if="item.type=='getButtongrouplookupText'">
+                            <template v-if="item.type=='getButtongrouplookupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,getLookUp(scope.row[item.table],item.prop))}}</el-tag>
                             </template>
                             <template v-if="item.type=='getdataPurpose'">
@@ -166,6 +166,9 @@
                             </template>
                             <template v-if="item.type=='teacherRouter'">
                                 <lb-teacherrouter :lessonData="scope.row"></lb-teacherrouter>
+                            </template>
+                            <template v-if="item.type=='orderRouter'">
+                                <lb-orderrouter :lessonData="scope.row"></lb-orderrouter>
                             </template>
                             <template v-if="item.type=='studentlink'">
                                 <a class="link" @click="handleRouter($event,scope.row[item.prop])">
@@ -282,7 +285,7 @@
 import pagesmodule from '~/stores/module.js'
 export default {
     name: 'LbModuletable',
-    props: ['module', 'info', 'searchValue', 'value', 'stepsdata', 'pagedata', 'searchclassesid'],
+    props: ['module', 'info', 'searchValue', 'value', 'stepsdata', 'pagedata', 'searchclassesid', 'searchorderid'],
     data() {
         return {
             moduledata: '',
@@ -344,10 +347,10 @@ export default {
         if (this.module.mounted) {
             this.module.mounted(this)
         }
-        for(let item of this.textSearchInfo){
-           if (item.default){
-               this.textSearchKey = item.value
-           }
+        for (let item of this.textSearchInfo) {
+            if (item.default) {
+                this.textSearchKey = item.value
+            }
         }
     },
     computed: {
@@ -658,6 +661,14 @@ export default {
                     'type': ''
                 })
             }
+            if (this.searchorderid) {
+                filterObj.push({
+                    'key': 'order_id',
+                    'value': this.searchorderid,
+                    'type': ''
+                })
+            }
+
             for (let item of this.deffilterObj) {
                 filterObj.push(item)
             }
