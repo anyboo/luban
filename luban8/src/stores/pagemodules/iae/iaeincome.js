@@ -5,7 +5,11 @@ export default {
         'localField': 'op_id',
         'from': 'employee',
         'foreignField': '_id',
-        'as': 'employee'
+        'as': 'employee',
+    },{
+        'key': 'type',
+        'value': 1,
+        'type':''
     }],
     'pageSearch': [
         {
@@ -84,9 +88,9 @@ export default {
             'color': 'gray'
         },
         {
-            'type': 'constant',
-            'label': '付款方式',
-            'prop': '现金',
+            'type': 'text',
+            'label': '类别',
+            'prop': 'sel',
         },
         {
             'type': 'text',
