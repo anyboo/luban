@@ -20,18 +20,6 @@ export default {
         timerange: [new Date(),new Date()]
     },
     'mounted': function (vm) {
-        let timedate = new Date()
-        timedate.setMinutes(0)
-        timedate.setSeconds(0)
-        timedate.setMilliseconds(0)
-        let timedate2 = new Date()
-        timedate2.setMinutes(0)
-        timedate2.setSeconds(0)
-        timedate2.setMilliseconds(0)
-        timedate2.setHours(timedate2.getHours()+2)
-        vm.localdata.form.timerange[0] = timedate
-        vm.localdata.form.timerange[1] = timedate2
-
         vm.localdata.form.classes_id = vm.$store.state.system.currClassesID
         vm.handleGetTableID('classes', vm.localdata.form.classes_id).then((obj) => {
             if (obj.data.length > 0) {
@@ -47,7 +35,6 @@ export default {
     'afterSave': function (vm, obj) {
         return new Promise((resolve, reject) => {
             vm.getCount('coursescheduling', 'classes_id', vm.localdata.form.classes_id).then(response => {
-                    console.log(response)
                 vm.updateTeble('classes', vm.localdata.form.classes_id, {
                     'arrangecount':response
                 }).then(() => {

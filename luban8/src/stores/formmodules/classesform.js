@@ -7,12 +7,15 @@ export default {
         'open_time': '',
         'close_time': '',
         'max_student_num': 0,
+        'regcount': 0,
+        'arrangecount': 0,
+        'attendcount': 0,
         'teacher_id': '',
         'del_able': false,
         'class_flag': 0
     },
     'formField': [
-         {
+        {
             'type': 'selectSearch',
             'label': '课程',
             'prop': 'course_id',
@@ -20,7 +23,7 @@ export default {
             'text': '请选择课程',
             'showdialog': 'selectlessondialog',
             'search': 'lesson_name',
-            'table':'course'
+            'table': 'course'
         },
         {
             'type': 'selectSearch',
@@ -30,7 +33,7 @@ export default {
             'text': '请选择老师',
             'showdialog': 'selectteacherdialog',
             'search': 'name',
-            'table':'employee'
+            'table': 'employee'
         },
         {
             'type': 'input',

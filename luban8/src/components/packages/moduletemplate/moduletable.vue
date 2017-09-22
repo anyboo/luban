@@ -122,7 +122,7 @@
                             <template v-if="item.type=='getButtongroupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
                             </template>
-                              <template v-if="item.type=='getButtongrouplookupText'">
+                            <template v-if="item.type=='getButtongrouplookupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,getLookUp(scope.row[item.table],item.prop))}}</el-tag>
                             </template>
                             <template v-if="item.type=='getdataPurpose'">
@@ -179,7 +179,10 @@
                                 {{ getLookUp(getLookUp(scope.row[item.table],item.prop),item.tableprop)}}
                             </template>
                             <template v-if="item.type=='textScale'">
-                                <el-tag type="warning">{{scope.row[item.prop1]?scope.row[item.prop1].length:0}}/{{getLookUp(scope.row[item.table],item.prop2)}}</el-tag>
+                                <el-tag type="primary">{{scope.row[item.prop1]}}&nbsp;/&nbsp;{{getLookUp(scope.row[item.table],item.prop2)}}</el-tag>
+                            </template>
+                            <template v-if="item.type=='textScale1'">
+                                <el-tag type="primary">{{scope.row[item.prop1]}}&nbsp;/&nbsp;{{scope.row[item.prop2]}}</el-tag>
                             </template>
                             <template v-if="item.type=='textTag'">
                                 <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
@@ -344,10 +347,10 @@ export default {
         if (this.module.mounted) {
             this.module.mounted(this)
         }
-        for(let item of this.textSearchInfo){
-           if (item.default){
-               this.textSearchKey = item.value
-           }
+        for (let item of this.textSearchInfo) {
+            if (item.default) {
+                this.textSearchKey = item.value
+            }
         }
     },
     computed: {
@@ -786,7 +789,7 @@ export default {
                         message: '该教室已有排课，请先删除排课教室再进行此操作'
                     })
                 } else {
-                    this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+                    this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'warning'
@@ -794,6 +797,9 @@ export default {
                         this.tables = []
                         this.tables.push(this.moduledata.pageTable)
                         this.handleDelete(data._id, this.moduledata.pagedb).then(() => {
+                            if (this.moduledata.afterdelete) {
+                                this.moduledata.afterdelete(this, data)
+                            }
                             this.$message({
                                 message: '删除成功',
                                 type: 'success'

@@ -80,7 +80,7 @@ export default {
             }).catch(() => {
                 this.$message({
                     type: 'info',
-                    message: '已确定核对'
+                    message: '已取消核对'
                 })
             }
                 )

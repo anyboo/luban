@@ -277,6 +277,11 @@ export default {
             console.log('!!  ' + value + '  !!')
             let filterObj = []
             filterObj.push({
+                'key': 'student_id',
+                'value': this.getStudentId(),
+                'type': ''
+            })
+            filterObj.push({
                 'key': 'classes_id',
                 'value': value,
                 'type': ''
@@ -594,6 +599,7 @@ export default {
             if (item._id) {
                 evnitem._id = item._id
             }
+            evnitem.attend = false
             evnitem.dayloop = item.dayloop
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
@@ -644,7 +650,7 @@ export default {
                     if (this.module.afterSave) {
                         this.module.afterSave(this, response).then((obj) => {
                         })
-                    } 
+                    }
                     vm.$message({
                         message: '操作成功',
                         type: 'success'

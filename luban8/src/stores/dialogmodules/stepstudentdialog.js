@@ -82,6 +82,18 @@ export default {
         }
         if (eve.length > 0) {
             vm.mx_db_bulkwrite('attendance', eve).then(response => {
+                vm.updateTeble('coursescheduling', vm.stepsdata._id, {
+                    'attend': true
+                }).then(() => {
+                    let query = { 'attend': true }
+                    vm.getCount('coursescheduling', 'classes_id', vm.stepsdata.classes_id, query).then(data => {
+                        vm.updateTeble('classes', vm.stepsdata.classes_id, {
+                            'attendcount': data
+                        }).then(() => {
+                            vm.$store.state.envs.currDialog = 'moduleform'
+                        })
+                    })
+                })
                 vm.$message({
                     message: '操作成功',
                     type: 'success'

@@ -17,22 +17,33 @@ export default {
         'foreignField': '_id',
         'as': 'classes'
     }],
-    'mounted':function(vm){
-        console.log('wer')
+    'mounted': function (vm) {
         vm.selectsearchValue = vm.$store.state.system.currClassesID
-        console.log(vm.$store.state.system.currClassesID)
     },
-    'deleteall': function (vm,param) {
+    'afterdelete':function (vm,data) {
+        vm.getCount('coursescheduling', 'classes_id', data.classes_id).then(response => {
+            vm.updateTeble('classes', data.classes_id, {
+                'arrangecount': response
+            }).then(() => {
+            })
+        })
+    },
+    'deleteall': function (vm, param) {
         let eve = []
+        let data = null
         for (let tableitem of vm.multipleSelection) {
             let item = {
-                _id:tableitem._id,
-                _delete:true
+                _id: tableitem._id,
+                _delete: true
             }
+            data = tableitem
             eve.push(item)
         }
         if (eve.length > 0) {
             vm.mx_db_bulkwrite('coursescheduling', eve).then(response => {
+                if (vm.moduledata.afterdelete) {
+                    vm.moduledata.afterdelete(vm, data)
+                }
                 vm.$message({
                     message: '操作成功',
                     type: 'success'
