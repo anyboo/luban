@@ -27,10 +27,21 @@ export default {
             }
         })
     },
-    'selectChange': function (vm,obj) {
+    'selectChange': function (vm, obj) {
         if (vm.localdata.form.classes_id != vm.$store.state.system.currClassesID) {
             vm.localdata.form.teacher_id = obj.data.teacher_id
         }
+    },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('arrange', 'classes_id', vm.localdata.form.classes_id).then(obj => {
+                vm.updateTeble('classes', vm.localdata.form.classes_id, {
+                    'arrangecount':obj
+                }).then(() => {
+                    resolve()
+                })
+            })
+        })
     },
     'formField': [
         {
