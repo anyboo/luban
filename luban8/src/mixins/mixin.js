@@ -636,7 +636,7 @@ export default {
         },
         getCount(table, field, value) {
             return new Promise((resolve, reject) => {
-                Vue.http.get('http://app.bullstech.cn/' + this.$store.state.system.db + '/count/' + table + '?' + field + '=' + vlue)
+                Vue.http.get('http://app.bullstech.cn/' + this.$store.state.system.db + '/count/' + table + '?' + field + '=' + value)
                 .then((response) => {
                     let obj = response.data
                     resolve(obj)
