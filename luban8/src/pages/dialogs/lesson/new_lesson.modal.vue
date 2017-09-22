@@ -66,9 +66,9 @@
                             </el-form-item>
                         </el-collapse-item>
                         <el-collapse-item title="内容" name="3">
-                            <el-form-item label="授课次数" v-if="localdata.form.price_model == '0'">
+                            <!--<el-form-item label="授课次数" v-if="localdata.form.price_model == '0'">
                                 <lb-numberinput v-model="localdata.form.inc_times" text="次" @change="changeTimeInc"></lb-numberinput>
-                            </el-form-item>
+                            </el-form-item>-->
                             <el-form-item label="单次课时长">
                                 <el-input placeholder="请输入内容" v-model="localdata.form.unit_hours" @change="changeTimeInc">
                                     <el-select v-model="localdata.form.unit_hours" slot="prepend" placeholder="请选择">
@@ -195,12 +195,12 @@ export default {
     watch: {},
     methods: {
         changeTimePrice() {
-            if (this.localdata.form.price_model == '1') {
-                this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_timesprice
-            }
-            else {
-                this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_period
-            }
+            //if (this.localdata.form.price_model == '1') {
+            this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_timesprice
+            //}
+            //else {
+                //this.localdata.form.price = this.localdata.form.unit_price * this.localdata.form.inc_period
+            //}
         },
         changeTimeInc() {
             this.localdata.form.inc_hours = this.localdata.form.unit_hours * this.localdata.form.inc_times

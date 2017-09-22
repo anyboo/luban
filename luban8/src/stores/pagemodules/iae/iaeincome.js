@@ -2,12 +2,7 @@ export default {
     'pageName': 'iaeicome',
     'pageLable': '收入明细',
     'tableSearch': [{
-        'localField': 'student_id',
-        'from': 'student',
-        'foreignField': '_id',
-        'as': 'student'
-    }, {
-        'localField': 'teacher_id',
+        'localField': 'op_id',
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
@@ -78,12 +73,6 @@ export default {
     ],
     'pageTableField': [
         {
-            'type': 'tabletext',
-            'label': '学员',
-            'table': 'student',
-            'prop': 'student_name',
-        },
-        {
             'type': 'datetimeMinute',
             'label': '付款日期',
             'prop': 'create_time'
@@ -106,7 +95,7 @@ export default {
         },
         {
             'type': 'tabletext',
-            'label': '学员',
+            'label': '经办人',
             'table': 'employee',
             'prop': 'name',
         },
