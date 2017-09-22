@@ -34,7 +34,7 @@ export default {
     },
     'afterSave': function (vm, obj) {
         return new Promise((resolve, reject) => {
-            vm.getCount('arrange', 'classes_id', vm.localdata.form.classes_id).then(response => {
+            vm.getCount('coursescheduling', 'classes_id', vm.localdata.form.classes_id).then(response => {
                     console.log(response)
                 vm.updateTeble('classes', vm.localdata.form.classes_id, {
                     'arrangecount':response

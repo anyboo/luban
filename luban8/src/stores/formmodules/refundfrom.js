@@ -42,16 +42,16 @@ export default {
             }).then(() => {
                 let sel = ''
                 if (vm.order.order_type == 1) {
-                    sel = '报名费用'
+                    sel = '报名'
                 } else if (vm.order.order_type == 2) {
-                    sel = '预交费'
+                    sel = '预交'
                 } else {
-                    sel = '学杂费'
+                    sel = '学杂'
                 }
                 let flowform = {
                     'type': 0,
                     'amount': vm.localdata.form.amount,
-                    'sel': sel,
+                    'sel': sel+'退费',
                     'note': vm.localdata.form.note,
                     'op_id': vm.order.op_id,
                     'order_id': vm.order._id,
