@@ -278,3 +278,7 @@ a:hover {
     .bg_self button {
          font-size: 14px !important; 
     }
+    .el-table__body tr.current-row>td {
+        background-color: rgba(135,206,250,.3) !important;
+        
+    }
