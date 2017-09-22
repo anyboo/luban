@@ -179,10 +179,10 @@
                                 {{ getLookUp(getLookUp(scope.row[item.table],item.prop),item.tableprop)}}
                             </template>
                             <template v-if="item.type=='textScale'">
-                                <el-tag type="warning">{{scope.row[item.prop1]}}/{{getLookUp(scope.row[item.table],item.prop2)}}</el-tag>
+                                <el-tag type="primary">{{scope.row[item.prop1]}}&nbsp;/&nbsp;{{getLookUp(scope.row[item.table],item.prop2)}}</el-tag>
                             </template>
                             <template v-if="item.type=='textScale1'">
-                                <el-tag type="warning">{{scope.row[item.prop1]}}/{{scope.row[item.prop2]}}</el-tag>
+                                <el-tag type="primary">{{scope.row[item.prop1]}}&nbsp;/&nbsp;{{scope.row[item.prop2]}}</el-tag>
                             </template>
                             <template v-if="item.type=='textTag'">
                                 <el-tag :type="item.color">{{ getToFixed(scope.row[item.prop])}}</el-tag>
