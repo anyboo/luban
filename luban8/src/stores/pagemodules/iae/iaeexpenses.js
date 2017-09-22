@@ -5,7 +5,12 @@ export default {
         'localField': 'op_id',
         'from': 'employee',
         'foreignField': '_id',
-        'as': 'employee'
+        'as': 'employee',
+        
+    },{
+        'key': 'type',
+        'value': 0,
+        'type':''
     }],
     'pageSearch': [
         {
@@ -34,6 +39,19 @@ export default {
                 return filterObj
             },
             'fields': [{}]
+        },
+        {
+            'type': 'radioGroupSearch',
+            'fields': [
+                {
+                    'label': '未对账',
+                    'icon': ''
+                },
+                {
+                    'label': '已对账',
+                    'icon': ''
+                }
+            ]
         }
     ],
     'pageTableField': [
@@ -50,6 +68,11 @@ export default {
         },
         {
             'type': 'text',
+            'label': '类别',
+            'prop': 'sel',
+        },
+        {
+            'type': 'text',
             'label': '备注',
             'prop': 'note',
         },
@@ -58,6 +81,16 @@ export default {
             'label': '经办人',
             'table': 'employee',
             'prop': 'name',
+        },
+        {
+            'type': 'checkstatus',
+            'statutype': 'accountcheck',
+            'label': '对账状态'
+        },
+        {
+            'type': 'checkstatus',
+            'statutype': 'checkAccount',
+            'label': '操作'
         }
     ],
     'pageTable': 'flow',

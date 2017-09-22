@@ -124,8 +124,10 @@ export default {
             'order': 'order',
         },
         {
-            'type': 'progress',
-            'label': '招生情况',
+            'type': 'textScale1',
+            'label': '报名情况',
+            'prop1': 'regcount',
+            'prop2': 'max_student_num',
         }
     ],
     'pageTable': 'classes',

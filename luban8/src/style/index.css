@@ -8,6 +8,7 @@ body {
     font-size: 14px;
     overflow: hidden;
     font-family: "微软雅黑", 'Luxi Sans', 'DejaVu Sans', Tahoma, 'Hiragino Sans GB', STHeiti;
+    padding-right: 0px !important;
 }
 
 table {
@@ -278,3 +279,8 @@ a:hover {
     .bg_self button {
          font-size: 14px !important; 
     }
+    .el-table__body tr.current-row>td {
+        background-color: rgba(135,206,250,.3) !important;
+        
+    }
+

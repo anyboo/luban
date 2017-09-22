@@ -83,8 +83,11 @@ module.exports.count = function* count(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
+    console.log(table,findobj,this.query)
+    dbunit.changeModelId(findobj)
     var count = yield collection.find(findobj).count()
     db.close()
+   
     this.body = count
 }
 module.exports.id = function* id(db, table, next) {
@@ -213,7 +216,7 @@ module.exports.all = function* all(db, name, next) {
                         findObj[key] = findObj[key] || {}
                         findObj[key]['$gte'] = value
                         console.log(findObj[key])
-                    }  else if (type == 'in') {
+                    } else if (type == 'in') {
                         findObj[key] = findObj[key] || {}
                         if (key.indexOf('_id') >= 0) {
                             dbunit.changeArrayModelId(value)
@@ -227,7 +230,7 @@ module.exports.all = function* all(db, name, next) {
                         }
                         findObj[key]['$nin'] = value
                         console.log(findObj[key])
-                    }else {
+                    } else {
                         findObj[key] = value
                     }
                 }

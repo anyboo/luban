@@ -17,7 +17,7 @@ export default {
         teacher_id: '',
         timerange1: '',
         timerange2: '',
-        timerange: [new Date(), new Date()]
+        timerange: [new Date(),new Date()]
     },
     'mounted': function (vm) {
         vm.localdata.form.classes_id = vm.$store.state.system.currClassesID
@@ -27,10 +27,21 @@ export default {
             }
         })
     },
-    'selectChange': function (vm,obj) {
+    'selectChange': function (vm, obj) {
         if (vm.localdata.form.classes_id != vm.$store.state.system.currClassesID) {
             vm.localdata.form.teacher_id = obj.data.teacher_id
         }
+    },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('coursescheduling', 'classes_id', vm.localdata.form.classes_id).then(response => {
+                vm.updateTeble('classes', vm.localdata.form.classes_id, {
+                    'arrangecount':response
+                }).then(() => {
+                    resolve()
+                })
+            })
+        })
     },
     'formField': [
         {

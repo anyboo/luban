@@ -57,6 +57,22 @@ order订单结构
 	'order_type': 1, //订单类型 1订单  2 预交费  3 学杂费
 	'body': ''  //订单内容
 }
+课程表lesson
+{
+ 'lesson_type': '0',              //课程类型 0 班科  1 1对1
+'cate_array': [],    //课程分类
+'lesson_name': '',    //课程名
+'lesson_no': '',      //课程编号
+'lesson_days': '30', //课程时间跨度
+'price_model': '1',   //收费模式
+'unit_price': 0,    //单价
+'inc_times': 0,       //排课次数
+'inc_period': 0,     //上课次数
+'inc_timesprice': 0,   //授课次数
+'price': 0,           //价格
+'unit_hours': '0.75',  //单次课时长
+'inc_hours': 0      //课程总时长
+}
 pay支付结构
 {
 'order_id': '',       //订单ID
@@ -110,6 +126,9 @@ classes班级{
 'teacher_id': '',     //老师
 'del_able': false   //是否删除
 'class_flag':0      //班级状态  0 未开班，1 已经开班  2 已经结班
+'regcount':0,       //报名数
+'attendcount':0     //上课情况
+'arrangecount':0     //排课数
 }
 coursescheduling排课
  {
