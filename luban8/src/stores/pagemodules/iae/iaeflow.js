@@ -55,7 +55,7 @@ export default {
         },
         {
             'type': 'datetimeMinute',
-            'label': '日期',
+            'label': '流水日期',
             'prop': 'create_time'
         },
         {
