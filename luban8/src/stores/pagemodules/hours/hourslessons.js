@@ -92,9 +92,10 @@ export default {
         },
         {
             'type': 'textScale',
-            'label': ' 排课次数',
+            'label': '排课次数',
+            'table': 'course',
             'prop1': 'total_times',
-            'prop2': 'total_times',
+            'prop2': 'inc_timesprice',
         }
     ],
     'pageTable': 'classes',
