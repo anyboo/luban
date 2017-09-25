@@ -278,7 +278,7 @@ module.exports.all = function* all(db, name, next) {
     options.push({ '$sort': sortObj })
     options.push({$group : {_id : null, count : {$sum : 1}}})
 
-    console.log(options, name, count)
+    console.log(options, name)
     let cursor = table.aggregate(options)
     let group = yield cursor.toArray()
     console.log(group)
