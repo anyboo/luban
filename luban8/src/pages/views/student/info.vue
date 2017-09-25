@@ -108,7 +108,7 @@
             <template v-for="(item,index) in moduledata">
                 <el-tab-pane :label="item.pageLable">
                     <template v-if="index==tabIndex">
-                        <lb-moduletable :module="item" :info="true" :search-value="$store.state.envs.currStudent._id"></lb-moduletable>
+                        <lb-moduletable :module="item" :info="true" :search-value="uid"></lb-moduletable>
                     </template>
                 </el-tab-pane>
             </template>
@@ -149,7 +149,7 @@ export default {
             student:{}
         }
     },
-    mounted() {
+    created() {
         let currStudent = this.$store.state.envs.currStudent
         if (currStudent && currStudent._id && currStudent._id.length > 0) {
             this.uid = currStudent._id
