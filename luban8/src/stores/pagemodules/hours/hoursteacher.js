@@ -3,16 +3,9 @@ export default {
     'pageLable': '教师课耗',
     'tableSearch': [
         {
-            'localField': 'student_id',
-            'from': 'student',
-            'foreignField': '_id',
-            'as': 'student'
-        },
-        {
-            'localField': 'coursescheduling_id',
-            'from': 'coursescheduling',
-            'foreignField': '_id',
-            'as': 'coursescheduling'
+            'key': 'attend',
+            'value': true,
+            'type': ''
         },
         {
             'localField': 'classes_id',
@@ -76,15 +69,13 @@ export default {
             'subprop': 'class_name'
         },
         {
-            'type': 'tabledatetime',
+            'type': 'datetime',
             'label': '上课时间',
-            'table': 'coursescheduling',
             'prop': 'start'
         },
         {
-            'type': 'datetimetableRange',
+            'type': 'datetimeRange',
             'label': '上课时间段',
-            'table': 'coursescheduling',
             'prop1': 'start',
             'prop2': 'end',
         },
@@ -107,7 +98,7 @@ export default {
             'table': 'course'
         }
     ],
-    'pageTable': 'attendance',
+    'pageTable': 'coursescheduling',
     'pageTemplate': 'table',
     'pagePath': ''
 }
