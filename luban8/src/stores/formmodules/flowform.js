@@ -34,7 +34,7 @@ export default {
             'field': 'amount'
         },
         {
-            'type': 'select',
+            'type': 'selecttext',
             'label': '所属分类',
             'prop': 'sel',
             'field': 'sel',

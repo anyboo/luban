@@ -6,6 +6,10 @@ export default {
         'from': 'student',
         'foreignField': '_id',
         'as': 'student'
+    },{
+        'key': 'order_type',
+        'value': 1,
+        'type': ''
     }],
     'pageSearch': [],
     'pageTableField': [

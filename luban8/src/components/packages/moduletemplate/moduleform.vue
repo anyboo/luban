@@ -37,7 +37,7 @@
                 </el-form-item>
             </template>
             <template v-if="item.type=='orderpaystudent'">
-                <template v-if="currStudent.amount > 0 && order.order_type != 2">
+                <template v-if="studentamount">
                     <el-form-item :label="item.label">
                         {{currStudent.amount}}元
                         <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="" :field="item.fieldActive" @change="numberChange">
@@ -192,6 +192,14 @@
                 </el-form-item>
             </template>
             <template v-if="item.type=='select'">
+                <el-form-item :label="item.label" :prop="item.prop">
+                    <el-select v-model="localdata.form[item.field]" placeholder="请选择" style="width: 100%;">
+                        <el-option v-for="value in getDictData(getDistNum(item))" :key="value._id" :label="value.text" :value="value._id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </template>
+            <template v-if="item.type=='selecttext'">
                 <el-form-item :label="item.label" :prop="item.prop">
                     <el-select v-model="localdata.form[item.field]" placeholder="请选择" style="width: 100%;">
                         <el-option v-for="value in getDictData(getDistNum(item))" :key="value.text" :label="value.text" :value="value.text">
@@ -412,7 +420,8 @@ export default {
             expand: false,
             workday: false,
             weekday: false,
-            model: this.module.pageTable
+            model: this.module.pageTable,
+            studentamount:false
         }
     },
     created() {
@@ -426,6 +435,9 @@ export default {
         }
     },
     computed: {
+        getstudentamount(){
+            this.studentamount = this.currStudent&&this.currStudent.amount > 0 && this.order.order_type != 2
+        },
         getorder() {
             let vm = this
             let getorderTurn = parseInt(vm.currentRow.money_pay_amount) - (parseInt(vm.order.c_unit_price) * 2) - parseInt(vm.order.back_amount)

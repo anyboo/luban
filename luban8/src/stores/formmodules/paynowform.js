@@ -35,7 +35,15 @@ export default {
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata) {
             vm.order = vm.$store.state.dialogs.dailogdata
-            vm.currStudent = vm.$store.state.envs.currStudent
+            vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
+                if (obj.data.length > 0) {
+                    vm.$store.state.envs.currStudent = obj.data[0]
+                    vm.currStudent = obj.data[0]
+                    vm.localdata.form.student_id = vm.order.student_id
+                    vm.getstudentamount
+                }
+            })
+
         }
     },
     'beforeSave': function (vm) {
@@ -67,7 +75,7 @@ export default {
                     'pay_amount': vm.order.pay_amount
                 }).then(() => {
                     let sel = ''
-                    if(vm.order.order_type == 1) {
+                    if (vm.order.order_type == 1) {
                         sel = '报名费用'
                     } else if (vm.order.order_type == 2) {
                         sel = '预交费'

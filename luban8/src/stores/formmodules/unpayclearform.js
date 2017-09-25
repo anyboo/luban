@@ -13,9 +13,14 @@ export default {
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata) {
             vm.order = vm.$store.state.dialogs.dailogdata
-            vm.currStudent = vm.$store.state.envs.currStudent
-            vm.localdata.form.order_id = vm.stepsdata.order_id
-            vm.localdata.form.classes_id = vm.stepsdata.classes_id
+            vm.localdata.form.order_id = vm.order.order_id
+            vm.localdata.form.classes_id = vm.order.classes_id
+            vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
+                if (obj.data.length > 0) {
+                    vm.$store.state.envs.currStudent = obj.data[0]
+                    vm.currStudent = obj.data[0]
+                }
+            })
         }
     },
     'formField': [

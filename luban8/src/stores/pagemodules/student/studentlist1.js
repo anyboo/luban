@@ -3,6 +3,11 @@ export default {
     'pageLable': '在读学员',
     'tableSearch': [
         {
+            'key': 'order_type',
+            'value': 1,
+            'type': ''
+        },
+        {
             'localField': 'student_id',
             'from': 'student',
             'foreignField': '_id',

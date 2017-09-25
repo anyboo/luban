@@ -12,6 +12,10 @@ export default {
         'from': 'course',
         'foreignField': '_id',
         'as': 'course'
+    }, {
+        'key': 'order_type',
+        'value': 1,
+        'type': ''
     }],
     'pageSearch': [],
     'pageTableField': [
