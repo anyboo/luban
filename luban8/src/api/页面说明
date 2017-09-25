@@ -140,7 +140,7 @@ coursescheduling排课
 	sclasses_id: '',  //教室ID 
 	teacher_id: '',   //老师ID
 } 
-attence考勤
+attendance考勤
 {
 	attence_flag: 0,  //考勤标识   1未考勤，2考勤，3请假
 	classes_id: '',  //班级ID

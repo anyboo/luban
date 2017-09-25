@@ -70,7 +70,9 @@ export default {
                 sclasses_id: vm.stepsdata.sclasses_id,
                 teacher_id: vm.stepsdata.teacher_id,
                 student_id: tableitem._id,
-                coursescheduling_id: vm.stepsdata._id
+                coursescheduling_id: vm.stepsdata._id,
+                org_id: vm.$store.state.system.org_id,
+                campus_id: vm.$store.state.system.campus_id
             }
             if (tableitem.attence_id) {
                 item._id = tableitem.attence_id
@@ -82,23 +84,27 @@ export default {
         }
         if (eve.length > 0) {
             vm.mx_db_bulkwrite('attendance', eve).then(response => {
-                vm.updateTeble('coursescheduling', vm.stepsdata._id, {
-                    'attend': true
-                }).then(() => {
-                    let query = { 'attend': true }
-                    vm.getCount('coursescheduling', 'classes_id', vm.stepsdata.classes_id, query).then(data => {
-                        vm.updateTeble('classes', vm.stepsdata.classes_id, {
-                            'attendcount': data
-                        }).then(() => {
-                            vm.$store.state.envs.currDialog = 'moduleform'
+                vm.getCount('attendance', 'coursescheduling_id', vm.stepsdata._id).then(data => {
+                    console.log('attendance----', data, vm.stepsdata._id)
+                    vm.updateTeble('coursescheduling', vm.stepsdata._id, {
+                        'attend': true,
+                        'schedulingcount': data
+                    }).then(() => {
+                        let query = { 'attend': true }
+                        vm.getCount('coursescheduling', 'classes_id', vm.stepsdata.classes_id, query).then(data => {
+                            vm.updateTeble('classes', vm.stepsdata.classes_id, {
+                                'attendcount': data
+                            }).then(() => {
+                                vm.$store.state.envs.currDialog = 'moduleform'
+                            })
                         })
                     })
+                    vm.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    vm.handleSearch()
                 })
-                vm.$message({
-                    message: '操作成功',
-                    type: 'success'
-                })
-                vm.handleSearch()
             })
         } else {
             vm.$message({

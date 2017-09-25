@@ -85,7 +85,7 @@ export default {
             'type': 'textScale',
             'label': '考勤状态',
             'table': 'classes',
-            'prop1': 'attendcount',
+            'prop1': 'schedulingcount',
             'prop2': 'regcount',
                 
         },

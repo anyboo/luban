@@ -600,6 +600,7 @@ export default {
                 evnitem._id = item._id
             }
             evnitem.attend = false
+            evnitem.schedulingcount = 0
             evnitem.dayloop = item.dayloop
             evnitem.sclasses_id = item.sclasses_id
             evnitem.classes_id = item.classes_id
