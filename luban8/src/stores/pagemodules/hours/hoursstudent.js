@@ -82,6 +82,13 @@ export default {
             'prop': 'start'
         },
         {
+            'type': 'datetimetableRange',
+            'label': '上课时间段',
+            'table': 'coursescheduling',
+            'prop1': 'start',
+            'prop2': 'end',
+        },
+        {
             'type': 'tabletext',
             'label': '时长',
             'table': 'course',
@@ -104,11 +111,6 @@ export default {
             'label': '授课老师',
             'prop': 'name',
             'table': 'employee'
-        },
-        {
-            'type': 'tabletext',
-            'label': '登记时间',
-            'prop': 'createtime',
         }
     ],
     'pageTable': 'attendance',

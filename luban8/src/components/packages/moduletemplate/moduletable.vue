@@ -113,6 +113,9 @@
                             <template v-if="item.type=='datetimeRange'">
                                 <span style="margin-left: 10px">{{ getDatetimeRanget(scope.row[item.prop1],scope.row[item.prop2]) }}</span>
                             </template>
+                            <template v-if="item.type=='datetimetableRange'">
+                                <span style="margin-left: 10px">{{ getDatetimeRanget(getLookUp(scope.row[item.table],item.prop1),getLookUp(scope.row[item.table],item.prop2)) }}</span>
+                            </template>
                             <template v-if="item.type=='lesson'">
                                 <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
                             </template>
