@@ -21,12 +21,11 @@
                         <div class="text-center clear">
                             <div class="face" style="width:80px;margin:0 auto">
                                 <div class="avatar-wrapper adres-css " style="border-radius:0; display:block; overflow:hidden;border-radius: 120px; width:80px; height:80px;">
-                                   <!-- <img :src="makeImage(order.student_name,50)" class='canvasimg' style="vertical-align:top;" width="80" height="">
-                                -->
+                                    <img :src="makeImage(getLookUp(order.student,'student_name'),50)" class='canvasimg' style="vertical-align:top;" width="80" height="">
                                 </div>
                             </div>
                         </div>
-                         <ul class="list-unstyled ">
+                        <ul class="list-unstyled ">
                             <li>
                                 <label class="field">昵称:</label>
                                 <span>{{ getLookUp(order.student,'student_name') }}</span>
