@@ -16,6 +16,12 @@ export default {
         'from': 'classes',
         'foreignField': '_id',
         'as': 'classes'
+    },
+    {
+        'localField': '_id',
+        'from': 'attence',
+        'foreignField': 'attence_id',
+        'as': 'attence'
     }],
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata){
@@ -80,6 +86,12 @@ export default {
             'label': '时间段',
             'prop1': 'start',
             'prop2': 'end',
+        },
+        {
+            'type': 'text',
+            'label': '考勤状态',
+            'prop': 'attend',
+                
         },
         {
             'type': 'checkweek',

@@ -149,7 +149,7 @@
                             <template v-if="item.type=='substatus'">
                                 <lb-checkstatus :lessonData="scope.row" :typeData="getSubText(scope.row,item.prop,item.subprop)" :tabletype="item.subprop" v-on:search="handleSearch"></lb-checkstatus>
                             </template>
-                            <template v-if="item.type=='text'">
+                            <template v-if="item.type=='text'" :class="getAttence">
                                 {{ scope.row[item.prop] }}
                             </template>
                             <template v-if="item.type=='textphone'">
@@ -345,6 +345,8 @@ export default {
         if (this.module.created) {
             this.module.created(this)
         }
+
+
     },
     mounted() {
         if (this.module.mounted) {
@@ -355,6 +357,7 @@ export default {
                 this.textSearchKey = item.value
             }
         }
+
     },
     computed: {
         getPagination() {
@@ -384,6 +387,7 @@ export default {
                 }
             }
         },
+
         getSearch() {
             let nSearch = false
             if (this.moduledata && this.moduledata.pageSearch && this.moduledata.pageSearch.length > 0) {
@@ -732,6 +736,17 @@ export default {
                         this.moduleTableData = obj.data.data
                     }
                     console.log(this.moduledata.pageTable, this.moduleTableData)
+                    if (this.moduledata.pageTable == 'coursescheduling') {
+                        for (var i = 0; i < this.moduleTableData.length; i++) {
+                            if (this.moduleTableData[i].attend == true) {
+                                this.moduleTableData[i].attend = '已考勤'
+                                console.log('success')
+                            } else {
+                                this.moduleTableData[i].attend = '未考勤'
+                            }
+                        }
+
+                    }
                 })
             }
         },
