@@ -201,6 +201,7 @@ module.exports.all = function* all(db, name, next) {
     let filter = query.filter
     let findObj = {}
     let sortObj = {}
+    let groupobj = {}
     let findsort = false
     let options = []
     console.log(filter)
@@ -252,6 +253,13 @@ module.exports.all = function* all(db, name, next) {
                         }
                         findObj[key]['$nin'] = value
                         console.log(findObj[key])
+                    } else if (type == 'groupby') {
+                        findObj[key] = findObj[key] || {}
+                        if (key.indexOf('_id') >= 0) {
+                            dbunit.changeArrayModelId(value)
+                        }
+                        findObj[key]['$nin'] = value
+                        console.log(findObj[key])
                     } else {
                         findObj[key] = value
                     }
@@ -265,14 +273,21 @@ module.exports.all = function* all(db, name, next) {
     if (!findsort) {
         sortObj = { '_id': -1 }
     }
-    let count = yield table.count(findObj)
+    //let count = yield table.count(findObj)
     options.push({ '$match': findObj })
     options.push({ '$sort': sortObj })
-    options.push({ '$skip': skip })
-    options.push({ '$limit': limit })
+    options.push({$group : {_id : null, count : {$sum : 1}}})
+
     console.log(options, name, count)
     let cursor = table.aggregate(options)
-    let data = yield cursor.toArray()
+    let group = yield cursor.toArray()
+    console.log(group)
+    options.pop()
+    options.push({ '$skip': skip })
+    options.push({ '$limit': limit })
+    let count = group.count
+    let tablecursor = table.aggregate(options)
+    let data = yield tablecursor.toArray()
     db.close()
     let nowtime = new Date().getTime()
     this.body = yield {
