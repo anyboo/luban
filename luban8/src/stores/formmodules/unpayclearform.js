@@ -23,6 +23,23 @@ export default {
             })
         }
     },
+    'afterSave': function (vm, obj) {
+        return new Promise((resolve, reject) => {
+            let unpay_amount = Number(vm.order.unpay_amount) - Number(vm.localdata.form.amount)
+            let pay_status = 1
+            if (unpay_amount == 0) {
+                pay_status = 2
+            } else if (unpay_amount == vm.order.order_amount) {
+                pay_status = 0
+            }
+            vm.updateTeble('order', vm.order._id, {
+                'pay_status': pay_status,
+                'unpay_amount': unpay_amount
+            }).then(() => {
+                resolve({ order: vm.order })
+            })
+        })
+    },
     'formField': [
         {
             'type': 'vmsubtext',
