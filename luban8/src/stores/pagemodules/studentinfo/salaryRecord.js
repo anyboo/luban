@@ -3,49 +3,84 @@ export default {
     'pageLable': '考勤记录',
     'tableSearch': [
         {
-            'localField': 'teacher_id',
-            'from': 'employee',
-            'foreignField': '_id',
-            'as': 'employee'
-        }, {
-            'localField': 'classes_id',
-            'from': 'classes',
-            'foreignField': '_id',
-            'as': 'classes'
-        }, {
-            'localField': 'arrange_id',
-            'from': 'arrange',
-            'foreignField': '_id',
-            'as': 'arrange'
-        }, {
             'localField': 'student_id',
             'from': 'student',
             'foreignField': '_id',
             'as': 'student'
+        },
+        {
+            'localField': 'coursescheduling_id',
+            'from': 'coursescheduling',
+            'foreignField': '_id',
+            'as': 'coursescheduling'
+        },
+        {
+            'localField': 'classes_id',
+            'from': 'classes',
+            'foreignField': '_id',
+            'as': 'classes'
+        },
+        {
+            'localField': 'teacher_id',
+            'from': 'employee',
+            'foreignField': '_id',
+            'as': 'employee'
+        },
+        {
+            'key': 'course_id',
+            'value': '$classes',
+            'type': 'unwind'
+        },
+        {
+            'localField': 'classes.course_id',
+            'from': 'course',
+            'foreignField': '_id',
+            'as': 'course'
         }],
     'pageSearch': [],
     'pageTableField': [
         {
-            'type': 'tabletext',
+            'type': 'subtext',
             'label': '班级',
-            'table': 'classes',
-            'prop': 'class_name'
+            'prop': 'classes',
+            'subprop': 'class_name'
+        },
+        {
+            'type': 'tabledatetime',
+            'label': '上课时间',
+            'table': 'coursescheduling',
+            'prop': 'start'
+        },
+        {
+            'type': 'datetimetableRange',
+            'label': '上课时间段',
+            'table': 'coursescheduling',
+            'prop1': 'start',
+            'prop2': 'end',
         },
         {
             'type': 'tabletext',
-            'label': '上课老师',
-            'table': 'employee',
-            'prop': 'name'
+            'label': '时长',
+            'table': 'course',
+            'prop': 'unit_hours'
         },
         {
-            'type': 'datetime',
-            'label': '考勤时间',
-            'prop': 'arrangestart'
+            'type': 'substatus',
+            'label': '类型',
+            'prop': 'course',
+            'subprop': 'lesson_type'
         },
         {
-            'type': 'constant',
-            'label': '出勤状态',
-            'prop': '正常出勤'
+            'type': 'tabletext',
+            'label': '课程金额',
+            'prop': 'unit_price',
+            'table': 'course'
+        },
+        {
+            'type': 'tabletext',
+            'label': '授课老师',
+            'prop': 'name',
+            'table': 'employee'
         }
     ],
     'pageTable': 'attendance',

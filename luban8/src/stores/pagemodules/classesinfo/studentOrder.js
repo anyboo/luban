@@ -25,6 +25,11 @@ export default {
             'table':'student',
             'prop': 'first_tel'
         },
+        {
+            'type': 'datetime',
+            'label': '报名日期',
+            'prop': 'createtime',
+        },
     ],
     'pageTable': 'order',
     'pageTemplate': 'table1',

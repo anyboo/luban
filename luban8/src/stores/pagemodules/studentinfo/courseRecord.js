@@ -56,7 +56,12 @@ export default {
         },
         {
             'type': 'checkweek',
-            'label': '上课星期',
+            'label': '星期',
+        },
+        {
+            'type': 'attendtext',
+            'label': '上课状态',
+            'prop': 'attend',
         }
     ],
     'pageTable': 'coursescheduling',

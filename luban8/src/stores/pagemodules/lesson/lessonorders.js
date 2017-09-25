@@ -79,6 +79,10 @@ export default {
             'prop': 'student_name',
         },
         {
+            'type': 'orderRouter',
+            'label': '订单号',
+        },
+        {
             'type': 'getButtongroupText',
             'label': '类型',
             'color': 'gray',
@@ -93,10 +97,6 @@ export default {
                 'value': 3,
                 'text': '学杂费'
             }],
-        },
-        {
-            'type': 'orderRouter',
-            'label': '订单号',
         },
         {
             'type': 'getToFixed',

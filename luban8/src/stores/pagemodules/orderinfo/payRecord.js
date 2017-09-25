@@ -1,7 +1,12 @@
 export default {
     'pageName': 'payRecord',
     'pageLable': '缴费记录',
-    'tableSearch': [{
+    'tableSearch': [  {
+        'localField': 'student_id',
+        'from': 'student',
+        'foreignField': '_id',
+        'as': 'student'
+    },{
         'localField': 'order_id',
         'from': 'order',
         'foreignField': '_id',
@@ -9,6 +14,12 @@ export default {
     }],
     'pageSearch': [],
     'pageTableField': [
+        {
+            'type': 'tabletext',
+            'label': '学员',
+            'table': 'student',
+            'prop': 'student_name'
+        },
         {
             'type': 'datetimeMinute',
             'label': '日期',

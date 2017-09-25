@@ -59,7 +59,7 @@
             <template v-for="(item,index) in moduledata">
                 <el-tab-pane :label="item.pageLable">
                     <template v-if="index==tabIndex">
-                        <lb-moduletable :module="item" :info="true" :searchorderid="$store.state.system.currOrderID"></lb-moduletable>
+                        <lb-moduletable :module="item" :info="true" :searchorderid="uid"></lb-moduletable>
                     </template>
                 </el-tab-pane>
             </template>

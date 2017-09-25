@@ -14,6 +14,12 @@ export default {
     }],
     'pageSearch': [],
     'pageTableField': [
+       {
+            'type': 'tabletext',
+            'label': '学员',
+            'table': 'student',
+            'prop': 'student_name'
+        },
         {
             'type': 'datetimeMinute',
             'label': '日期',
@@ -40,11 +46,6 @@ export default {
             'type': 'text',
             'label': '经办人',
             'prop': 'op_name',
-        },{
-            'type': 'tabletext',
-            'label': '学员',
-            'table': 'student',
-            'prop': 'student_name'
         }
     ],
     'pageTable': 'refund',

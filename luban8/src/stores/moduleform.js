@@ -21,7 +21,7 @@ import allsmsform from './formmodules/allsmsform.js'
 import rolesform from './formmodules/rolesform.js'
 import dictform from './formmodules/dictform.js'
 import dictformnew from './formmodules/dictformnew.js'
-import refundfrom from './formmodules/refundfrom.js'
+import refundform from './formmodules/refundform.js'
 import recordingdetailform from './formmodules/recordingdetailform.js'
 import storedrechargevalue from './formmodules/storedrechargevalue.js'
 import systembuyform from './formmodules/systembuyform.js'
@@ -52,7 +52,7 @@ pages['studentsmsform'] = allsmsform
 pages['rolesform'] = rolesform
 pages['dictform'] = dictform
 pages['dictformnew'] = dictformnew
-pages['refundfrom'] = refundfrom
+pages['refundform'] = refundform
 pages['recordingdetailform'] = recordingdetailform
 pages['storedrechargevalue'] = storedrechargevalue
 pages['systembuyform'] = systembuyform

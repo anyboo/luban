@@ -82,12 +82,25 @@ export default {
         to: '/lesson/orders',
         menuIcon: 'fa fa-envelope-o',
         dropDownMenu: [{
-            'url': 'lb-refunds',
+            'url': 'paynowform',
+            'icon': 'icon-wallet',
+            'text': '现场缴费',
+            'menuctrl': 'pay_status',
+            'menuvalue': [0,1]
+        }, {
+            'url': 'unpayclearform',
+            'icon': 'icon-ban',
+            'text': '欠费清除',
+            'menuctrl': 'pay_status',
+            'menuvalue': [1]
+        },{
+            'url': 'refundstepdialog',
             'icon': 'fa fa-reply',
             'text': '办理退款',
             'menuctrl': 'pay_status',
             'menuvalue': [1, 2]
-        }, {
+        }, 
+        {
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除',

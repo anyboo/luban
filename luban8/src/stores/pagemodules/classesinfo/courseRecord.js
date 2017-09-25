@@ -35,8 +35,8 @@ export default {
         {
             'type': 'tabletext',
             'label': '上课老师',
-            'table': 'classes',
-            'prop': 'op_name',
+            'table': 'employee',
+            'prop': 'name',
         },
         {
             'type': 'datetime',
@@ -51,7 +51,12 @@ export default {
         },
         {
             'type': 'checkweek',
-            'label': '上课星期',
+            'label': '星期',
+        },
+        {
+            'type': 'attendtext',
+            'label': '上课状态',
+            'prop': 'attend',
         }
     ],
     'pageTable': 'coursescheduling',

@@ -8,7 +8,7 @@ export default {
         'buttons': []
     }, {
         'label': '确认退款',
-        'module': 'refundfrom',
+        'module': 'refundform',
         'buttons': [{
             'text': '确定',
             'exec': function (vm) { 

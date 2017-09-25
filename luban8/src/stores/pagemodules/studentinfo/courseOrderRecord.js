@@ -1,22 +1,28 @@
 export default {
     'pageName': 'courseOrderRecord',
     'pageLable': '排课记录',
-    'tableSearch': [{
-        'localField': 'classes_id',
-        'from': 'classes',
-        'foreignField': '_id',
-        'as': 'classes'
-    },
-    {
-        'localField': 'course_id',
-        'from': 'course',
-        'foreignField': '_id',
-        'as': 'course'
-    }, {
-        'key': 'order_type',
-        'value': 1,
-        'type': ''
-    }],
+    'tableSearch': [
+        {
+            'key': 'order_type',
+            'value': 1,
+            'type': ''
+        }, {
+            'localField': 'classes_id',
+            'from': 'classes',
+            'foreignField': '_id',
+            'as': 'classes'
+        },
+        {
+            'key': 'course_id',
+            'value': '$classes',
+            'type': 'unwind'
+        },
+        {
+            'localField': 'classes.course_id',
+            'from': 'course',
+            'foreignField': '_id',
+            'as': 'course'
+        }],
     'pageSearch': [],
     'pageTableField': [
         {
@@ -27,10 +33,10 @@ export default {
             'prop': 'classes_id',
         },
         {
-            'type': 'tabletext',
+            'type': 'subtext',
             'label': '班级名',
-            'table': 'classes',
-            'prop': 'class_name',
+            'prop': 'classes',
+            'subprop': 'class_name',
         },
         {
             'type': 'tabletext',

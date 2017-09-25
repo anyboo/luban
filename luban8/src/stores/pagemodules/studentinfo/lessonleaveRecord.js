@@ -9,11 +9,6 @@ export default {
             'prop': 'daterange1',
         },
         {
-            'type': 'datetime',
-            'label': '复课时间',
-            'prop': 'daterange2'
-        },
-        {
             'type': 'text',
             'label': '请假原因',
             'prop': 'reason'

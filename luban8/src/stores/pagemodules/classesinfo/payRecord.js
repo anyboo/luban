@@ -6,9 +6,20 @@ export default {
         'from': 'order',
         'foreignField': '_id',
         'as': 'order'
+    },{
+        'localField': 'student_id',
+        'from': 'student',
+        'foreignField': '_id',
+        'as': 'student',
     }],
     'pageSearch': [],
     'pageTableField': [
+        {
+            'type': 'tabletext',
+            'label': '学员',
+            'table': 'student',
+            'prop': 'student_name'
+        },
         {
             'type': 'datetimeMinute',
             'label': '日期',

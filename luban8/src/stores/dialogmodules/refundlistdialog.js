@@ -7,6 +7,11 @@ export default {
     'created':function(vm){
         if (vm.$store.state.dialogs.dailogdata) {
             vm.order = vm.$store.state.dialogs.dailogdata
+            vm.handleGetTableID('student', vm.order.student_id).then((obj) => {
+                if (obj.data.length > 0) {
+                    vm.$store.state.envs.currStudent = obj.data[0]
+                }
+            })
             vm.deffilterObj.push({
                 'key': 'order_id',
                 'value': vm.order._id,

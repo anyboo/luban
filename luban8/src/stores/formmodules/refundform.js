@@ -1,5 +1,5 @@
 export default {
-    'pageName': 'refundfrom',
+    'pageName': 'refundform',
     'pageLable': '确认退款',
     'student': true,
     'form': {
