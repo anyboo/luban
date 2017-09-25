@@ -86,6 +86,9 @@
                             <template v-if="item.type=='notwrite'">
                                 {{(scope.row[item.prop]&&scope.row[item.prop].length>0)?scope.row[item.prop]:'未填写'}}
                             </template>
+                            <template v-if="item.type=='attendtext'">
+                                {{(scope.row[item.prop])?'已上课':'未上课'}}
+                            </template>
                             <template v-if="item.type=='dicttext'">
                                 {{getDictText(scope.row[item.prop])}}
                             </template>

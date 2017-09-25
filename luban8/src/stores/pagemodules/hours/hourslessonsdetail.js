@@ -172,9 +172,9 @@ export default {
             'label': '星期',
         },
         {
-            'type': 'constant',
-            'label': '排课状态',
-            'prop': '已排课',
+            'type': 'attendtext',
+            'label': '上课状态',
+            'prop': 'attend',
         }
     ],
     'pageTable': 'coursescheduling',

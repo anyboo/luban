@@ -85,7 +85,7 @@ module.exports.deletes = function* deletes(db, table, next) {
     }
     console.log(table,findobj,this.query)
     dbunit.changeModelId(findobj)
-    var count = yield collection.find(findobj).count()
+    var count = yield collection.remove(findobj)
     db.close()
    
     this.body = count
