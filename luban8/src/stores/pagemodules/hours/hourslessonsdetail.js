@@ -20,42 +20,52 @@ export default {
     'mounted': function (vm) {
         vm.selectsearchValue = vm.$store.state.system.currClassesID
     },
-    'afterdelete':function (vm,data) {
+    'afterdelete': function (vm, data) {
         vm.getCount('coursescheduling', 'classes_id', data.classes_id).then(response => {
             vm.updateTeble('classes', data.classes_id, {
                 'arrangecount': response
             }).then(() => {
             })
+            vm.deletesdb('attendance','coursescheduling_id',data._id).then(() => {
+            })
         })
     },
     'deleteall': function (vm, param) {
-        let eve = []
-        let data = null
-        for (let tableitem of vm.multipleSelection) {
-            let item = {
-                _id: tableitem._id,
-                _delete: true
-            }
-            data = tableitem
-            eve.push(item)
-        }
-        if (eve.length > 0) {
-            vm.mx_db_bulkwrite('coursescheduling', eve).then(response => {
-                if (vm.moduledata.afterdelete) {
-                    vm.moduledata.afterdelete(vm, data)
+        vm.$confirm('此操作将删除批量记录, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(() => {
+            let eve = []
+            let data = null
+            for (let tableitem of vm.multipleSelection) {
+                let item = {
+                    _id: tableitem._id,
+                    _delete: true
                 }
+                data = tableitem
+                eve.push(item)
+            }
+            if (eve.length > 0) {
+                vm.mx_db_bulkwrite('coursescheduling', eve).then(response => {
+                    if (vm.moduledata.afterdelete) {
+                        vm.moduledata.afterdelete(vm, data)
+                    }
+                    vm.$message({
+                        message: '操作成功',
+                        type: 'success'
+                    })
+                    vm.handleSearch()
+                })
+            } else {
                 vm.$message({
-                    message: '操作成功',
+                    message: '请选择一个排课',
                     type: 'success'
                 })
-                vm.handleSearch()
-            })
-        } else {
-            vm.$message({
-                message: '请选择一个排课',
-                type: 'success'
-            })
-        }
+            }
+        }).catch(e=>{
+
+        })
     },
     'pageSearch': [
         {

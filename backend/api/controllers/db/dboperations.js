@@ -68,6 +68,28 @@ function loginemployee(user) {
         })
     })
 }
+module.exports.deletes = function* deletes(db, table, next) {
+    if ('GET' != this.method) return yield next
+    var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    let collection = db.collection(table)
+    let findobj = {}
+    for (let item in this.query) {
+        let value = this.query[item]
+        if (value == 'true') {
+            findobj[item] = true
+        } else if (value == 'false') {
+            findobj[item] = false
+        } else {
+            findobj[item] = this.query[item]
+        }
+    }
+    console.log(table,findobj,this.query)
+    dbunit.changeModelId(findobj)
+    var count = yield collection.find(findobj).count()
+    db.close()
+   
+    this.body = count
+}
 module.exports.count = function* count(db, table, next) {
     if ('GET' != this.method) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
