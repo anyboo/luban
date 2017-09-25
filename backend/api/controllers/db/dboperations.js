@@ -285,7 +285,10 @@ module.exports.all = function* all(db, name, next) {
     options.pop()
     options.push({ '$skip': skip })
     options.push({ '$limit': limit })
-    let count = group.count
+    let count = 0
+    if (group&&group.length>0){
+        count = group[0].count
+    }
     console.log(count)
     let tablecursor = table.aggregate(options)
     let data = yield tablecursor.toArray()
