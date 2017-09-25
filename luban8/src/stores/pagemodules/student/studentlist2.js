@@ -31,8 +31,8 @@ export default {
             'type': 'radioGroupSearch',
             'searchfunction': function (form) {
                 let filterObj = []
-                let search_value = form+''
-                if (search_value.length>0) {
+                let search_value = form-1
+                if (search_value>=0) {
                     filterObj.push({
                         'key': 'pay_status',
                         'value': Number(search_value),
@@ -44,6 +44,7 @@ export default {
             'fields': [
                 {
                     'labels': [
+                        { 'label': '所有' },
                         { 'label': '未缴费' },
                         { 'label': '部分缴费' },
                         { 'label': '已缴费' },
