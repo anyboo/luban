@@ -736,17 +736,6 @@ export default {
                         this.moduleTableData = obj.data.data
                     }
                     console.log(this.moduledata.pageTable, this.moduleTableData)
-                    if (this.moduledata.pageTable == 'coursescheduling') {
-                        for (var i = 0; i < this.moduleTableData.length; i++) {
-                            if (this.moduleTableData[i].attend == true) {
-                                this.moduleTableData[i].attend = '已考勤'
-                                console.log('success')
-                            } else {
-                                this.moduleTableData[i].attend = '未考勤'
-                            }
-                        }
-
-                    }
                 })
             }
         },

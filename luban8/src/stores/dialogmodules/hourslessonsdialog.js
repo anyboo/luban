@@ -16,12 +16,6 @@ export default {
         'from': 'classes',
         'foreignField': '_id',
         'as': 'classes'
-    },
-    {
-        'localField': '_id',
-        'from': 'attence',
-        'foreignField': 'attence_id',
-        'as': 'attence'
     }],
     'created': function (vm) {
         if (vm.$store.state.dialogs.dailogdata){
@@ -88,9 +82,10 @@ export default {
             'prop2': 'end',
         },
         {
-            'type': 'text',
+            'type': 'tabletext',
             'label': '考勤状态',
-            'prop': 'attend',
+            'table': 'classes',
+            'prop': 'attendcount',
                 
         },
         {
