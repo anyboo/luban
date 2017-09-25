@@ -736,18 +736,6 @@ export default {
                         this.moduleTableData = obj.data.data
                     }
                     console.log(this.moduledata.pageTable, this.moduleTableData)
-                    if(this.moduledata.pageTable == 'coursescheduling'){
-                        for(var i = 0;i<this.moduleTableData.length;i++){
-                           
-                            if(this.moduleTableData[i].classes[0].attendcount){
-                                 console.log(this.moduleTableData[i].classes[0].attendcount)
-                                this.moduleTableData[i].classes[0].attendcount = this.moduleTableData[i].classes[0].attendcount+'/'+this.moduleTableData[i].classes[0].arrangecount
-                            }else{
-                                this.moduleTableData[i].classes[0].attendcount = '未考勤'
-                            }
-                            
-                        }
-                    }
                 })
             }
         },

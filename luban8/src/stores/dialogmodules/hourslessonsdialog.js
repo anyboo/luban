@@ -82,10 +82,11 @@ export default {
             'prop2': 'end',
         },
         {
-            'type': 'tabletext',
+            'type': 'textScale',
             'label': '考勤状态',
             'table': 'classes',
-            'prop': 'attendcount',
+            'prop1': 'attendcount',
+            'prop2': 'regcount',
                 
         },
         {
