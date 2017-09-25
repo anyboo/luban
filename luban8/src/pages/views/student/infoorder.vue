@@ -8,12 +8,6 @@
                         <img :src="qrcodeimg">
                     </el-popover>
                 </el-button-group>
-                <lb-dropdown :drop-menu-data="getMenuOption" :menu-data="getOrderInfo">
-                    <el-button type="success" size="small" slot="buttonslot">
-                        <i class="fa fa-user"></i> 操作
-                        <i class="el-icon-caret-bottom el-icon--right"></i>
-                    </el-button>
-                </lb-dropdown>
             </div>
             <div class="panel-body">
                 <div class="bg-white row no-gutter">
@@ -24,14 +18,14 @@
                                     <img :src="makeImage(getLookUp(order.student,'student_name'),50)" class='canvasimg' style="vertical-align:top;" width="80" height="">
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <ul class="list-unstyled ">
                             <li>
-                                <label class="field">昵称:</label>
+                                <label class="field">学员:</label> 
                                 <span>{{ getLookUp(order.student,'student_name') }}</span>
                             </li>
                         </ul>
-                    </div>
+                    </div>  
                     <div class="col-xs-12 col-md-8">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -41,10 +35,6 @@
                                     <div class="col-xs-12 col-md-6">
                                         <label class="inline w-xs text-right">订单号:</label>
                                         <span>{{ order.order_no }}</span>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6">
-                                        <label class="inline w-xs text-right">学员:</label>
-                                        <span>{{getLookUp(order.student,'student_name')}}</span>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
                                         <label class="inline w-xs text-right">订单金额:</label>
