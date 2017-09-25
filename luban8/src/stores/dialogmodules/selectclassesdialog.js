@@ -51,13 +51,14 @@ export default {
             'prop1': 'order',
             'prop2':'max_student_num'
         },
-        */
+       
         {
             'type': 'textScale',
             'label': '上课次数',
             'prop1': 'total_times',
             'prop2':'total_times'
         }
+         */
     ],
     'pageTable': 'classes',
     'pageTemplate': 'table1',
