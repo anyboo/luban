@@ -32,6 +32,7 @@
                     <div class="col-xs-12 col-md-6">
                         <label class="inline w-xs text-right">状态:</label>
                         <span style="display:inline-block">
+                            <lb-checkstatus :lessonData="classes" :typeData="{'statutype':'openlessonsstatus'}" v-on:search="handleSearch"></lb-checkstatus>
                         </span>
                     </div>
                     <div class="col-xs-12 col-md-6">
