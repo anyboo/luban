@@ -6,11 +6,20 @@ export default {
         'from': 'student',
         'foreignField': '_id',
         'as': 'student'
+    }, {
+        'localField': 'coursescheduling_id',
+        'from': 'coursescheduling',
+        'foreignField': '_id',
+        'as': 'coursescheduling'
+    }, {
+        'key': 'attence_flag',
+        'value': '3',
+        'type': ''
     }],
     'pageSearch': [
         {
             'type': 'dateSearch',
-            'searchfunction': function (form,vm) {
+            'searchfunction': function (form, vm) {
                 let filterObj = []
                 if (form && form.length == 2) {
                     let startTime = vm.getDatetime(form[0])
@@ -20,21 +29,20 @@ export default {
                             endTime = vm.getDatetimeEndOf(form[1])
                         }
                         filterObj.push({
-                        'key': 'daterange1',
-                        'value': startTime,
-                        'type': 'gte'
-                    })
-                    filterObj.push({
-                        'key': 'daterange1',
-                        'value': endTime,
-                        'type': 'lte'
-                    })
+                            'key': 'daterange1',
+                            'value': startTime,
+                            'type': 'gte'
+                        })
+                        filterObj.push({
+                            'key': 'daterange1',
+                            'value': endTime,
+                            'type': 'lte'
+                        })
                     }
                 }
-                console.log('22222', filterObj)
                 return filterObj
             },
-            'fields': [{} ]
+            'fields': [{}]
         },
         {
             'type': 'selectSearch',
@@ -43,10 +51,10 @@ export default {
                 let searchValue = form + ''
                 if (searchValue.length > 0) {
                     filterObj.push({
-                    'key': 'student_id',
-                    'value': searchValue,
-                    'type': ''
-                })
+                        'key': 'student_id',
+                        'value': searchValue,
+                        'type': ''
+                    })
                 }
                 return filterObj
             },
@@ -64,12 +72,12 @@ export default {
                 {
                     'label': '请假登记',
                     'type': 'success',
-                    'showdialog':'leavesform',
-                    'actionoption':'hoursleaves'
+                    'showdialog': 'studentattendancedialog',
+                    'actionoption': 'hoursleaves'
                 }
             ]
         },
-        
+
     ],
     'pageTableField': [
         {
@@ -83,22 +91,26 @@ export default {
             'prop': 'student_name',
         },
         {
-            'type': 'datetime',
-            'label': '请假时间',
-            'prop': 'daterange1'
+            'type': 'tabledatetime',
+            'label': '日期',
+            'table': 'coursescheduling',
+            'prop': 'start',
         },
         {
-            'type': 'text',
-            'label': '请假原因',
-            'prop': 'reason',
+            'type': 'datetimetableRange',
+            'label': '时间段',
+            'table': 'coursescheduling',
+            'prop1': 'start',
+            'prop2': 'end',
         },
         {
-            'type': 'datetime',
-            'label': '登记时间',
-            'prop': 'createtime',
+            'type': 'tablecheckweek',
+            'table': 'coursescheduling',
+            'prop': 'days',
+            'label': '星期',
         }
     ],
-    'pageTable': 'leaves',
+    'pageTable': 'attendance',
     'pageTemplate': 'table1',
     'pagePath': ''
 }

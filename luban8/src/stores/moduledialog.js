@@ -15,6 +15,7 @@ import stepstudentsmsdialog from './dialogmodules/stepstudentsmsdialog.js'
 import rechargesearchdialogs from './dialogmodules/rechargesearchdialogs.js'
 import buytextdialogs from './dialogmodules/buytextdialogs.js'
 import smssenddialog from './dialogmodules/smssenddialog.js'
+import studentlessonsdialog from './dialogmodules/studentlessonsdialog.js'
 
 
 let pages ={}
@@ -35,5 +36,7 @@ pages['stepstudentsmsdialog'] = stepstudentsmsdialog
 pages['rechargesearchdialogs'] = rechargesearchdialogs
 pages['buytextdialogs'] = buytextdialogs
 pages['smssenddialog'] = smssenddialog
+pages['studentlessonsdialog'] = studentlessonsdialog
+
 
 export default pages

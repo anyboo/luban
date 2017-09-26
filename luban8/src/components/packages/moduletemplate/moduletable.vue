@@ -44,7 +44,9 @@
             <div v-if="singleBtnSearch" class="pull-right">
                 <template v-for="item in singleBtnSearchInfo">
                     <template v-if="getActionOption(item.actionoption)">
-                        <el-button style="float:right;margin-left:3px;" :type="item.type" @click="singleBtnAction(item)" :icon="item.icon">{{item.label}}</el-button>
+                        <el-button style="float:right;margin-left:3px;" :type="item.type" @click="singleBtnAction(item)" :icon="item.icon">
+                            <template v-if="searchshowtext">{{searchshowtext}}
+                            </template> {{item.label}}</el-button>
                     </template>
                 </template>
             </div>
@@ -123,7 +125,10 @@
                                 <lb-lessontype :lessonData="scope.row" :typeData="item"></lb-lessontype>
                             </template>
                             <template v-if="item.type=='checkweek'">
-                                <lb-checkweek :lessonData="scope.row"></lb-checkweek>
+                                <lb-checkweek :lessonData="scope.row.days"></lb-checkweek>
+                            </template>
+                            <template v-if="item.type=='tablecheckweek'">
+                                <lb-checkweek :lessonData="getLookUp(scope.row[item.table],item.prop)"></lb-checkweek>
                             </template>
                             <template v-if="item.type=='getButtongroupText'">
                                 <el-tag :type="item.color">{{getButtongroupText(item.othertype,scope.row[item.prop])}}</el-tag>
@@ -308,11 +313,13 @@ export default {
             selectsearchValue: '',
             multipleSelection: [],
             deffilterObj: [],
+            deffilter: true,
             lesson_name: '请选择课程',
             lbTagArr: ['lb-trash', 'lb-addmodal', 'lb-editstudentinfo', 'lb-inquiry', 'lb-recording', 'lb-newsclass', 'lb-lesson', 'lb-openclass', 'lb-leaveshours', 'lb-suspendshours', 'lb-flow', 'lb-unpay_clear', 'lb-attendance'],
-            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform', 'studentsmsform'],
+            openDialogArr: ['leavesform', 'suspendform', 'recordingform', 'inquiryform', 'studentsmsform', 'studentlessonsdialog'],
             hastableSearch: false,
             selStudentAddInquiry: '',
+            pagedatalateload: false,
             pickerOptions: {
                 shortcuts: [{
                     text: '最近一周',
@@ -613,11 +620,14 @@ export default {
             return name
         },
         handleSearch() {
-            console.log('handleSearch')
+            if (this.pagedatalateload) {
+                return
+            }
             if (this.moduledata.pagedata) {
                 this.moduleTableData = this.pagedata
                 return
             }
+            console.log('handleSearch')
             let filterObj = []
             let datetime = this.datevalue
             if (this.dateSearchInfo) {
@@ -640,7 +650,7 @@ export default {
             }
             let selectesearch = this.selectsearchValue
             if (this.selectesearchFun) {
-                let filterObjItem = this.selectesearchFun(selectesearch)
+                let filterObjItem = this.selectesearchFun(selectesearch, this)
                 for (let item of filterObjItem) {
                     filterObj.push(item)
                 }
@@ -682,9 +692,12 @@ export default {
                 })
             }
 
-            for (let item of this.deffilterObj) {
-                filterObj.push(item)
+            if (this.deffilter) {
+                for (let item of this.deffilterObj) {
+                    filterObj.push(item)
+                }
             }
+
             if (this.moduledata && this.moduledata.tableSearch && this.moduledata.tableSearch.length > 0) {
                 let tablesSearch = this.moduledata.tableSearch
                 for (let item of tablesSearch) {
@@ -701,7 +714,7 @@ export default {
                     }
                 }
             }
-            console.log(filterObj)
+
             if (this.moduledata.pagesize) {
                 this.pagination.pagesize = this.moduledata.pagesize
             }
@@ -731,6 +744,7 @@ export default {
             if (this.moduledata.pagealias) {
                 this.alias = this.moduledata.pagealias
             }
+            console.log(filterObj)
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
             if (this.moduledata && this.moduledata.pageTable) {
                 this.handleGetFilterTableTable(this.moduledata.pageTable, filterTxt, this.moduledata.pagedb).then((obj) => {
