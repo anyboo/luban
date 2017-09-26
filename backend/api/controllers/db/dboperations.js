@@ -22,27 +22,10 @@ function loginemployee(user) {
                 '$match': {
                     'pwd': user.pwd,
                     'phone': user.user,
-                    'lock': false
+                    'lock': false,
+                    '_delete': { '$ne': true }
                 }
             })
-            /*
-            options.push({
-                '$lookup': {
-                    'localField': 'org_id',
-                    'from': 'org',
-                    'foreignField': '_id',
-                    'as': 'org'
-                }
-            })
-            options.push({
-                '$lookup': {
-                    'localField': 'campus_id',
-                    'from': 'campus',
-                    'foreignField': '_id',
-                    'as': 'campus'
-                }
-            })*/
-            //options.push({ '$sort': { 'usedate': -1 } })
             options.push({ '$limit': 1 })
             let cursor = table.aggregate(options)
             cursor.toArray().then(obj => {
@@ -50,14 +33,8 @@ function loginemployee(user) {
                     logindata.login = true
                     logindata.user = obj[0].phone
                     logindata.name = obj[0].name
-                    //logindata.birth = obj[0].birth
                     logindata.admin = obj[0].admin
                     logindata.db = obj[0].db
-                    //logindata.campus = obj[0].campus
-                    //logindata.org = obj[0].org
-                    //logindata.org_id = obj[0].org_id
-                    //logindata.roles_id = obj[0].roles_id
-                    //logindata.campus_id = obj[0].campus_id
                     logindata._id = obj[0]._id
                     resolve(logindata)
                 } else {
@@ -83,11 +60,11 @@ module.exports.deletes = function* deletes(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
-    console.log(table,findobj,this.query)
+    console.log(table, findobj, this.query)
     dbunit.changeModelId(findobj)
-    var count = yield collection.remove(findobj)
+    var count = yield collection.updateMany(findobj, { $set: { '_delete': true } })
     db.close()
-   
+
     this.body = count
 }
 module.exports.count = function* count(db, table, next) {
@@ -105,11 +82,12 @@ module.exports.count = function* count(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
-    console.log(table,findobj,this.query)
+    findObj['_delete'] = { '$ne': true }
+    console.log(table, findobj, this.query)
     dbunit.changeModelId(findobj)
     var count = yield collection.find(findobj).count()
     db.close()
-   
+
     this.body = count
 }
 module.exports.id = function* id(db, table, next) {
@@ -127,6 +105,7 @@ module.exports.id = function* id(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
+    findObj['_delete'] = { '$ne': true }
     var model = yield collection.find(findobj).toArray()
     let idlist = []
     for (let item of model) {
@@ -273,10 +252,11 @@ module.exports.all = function* all(db, name, next) {
     if (!findsort) {
         sortObj = { '_id': -1 }
     }
+    findObj['_delete'] = { '$ne': true }
     //let count = yield table.count(findObj)
     options.push({ '$match': findObj })
     options.push({ '$sort': sortObj })
-    options.push({$group : {_id : null, count : {$sum : 1}}})
+    options.push({ $group: { _id: null, count: { $sum: 1 } } })
 
     console.log(options, name)
     let cursor = table.aggregate(options)
@@ -286,7 +266,7 @@ module.exports.all = function* all(db, name, next) {
     options.push({ '$skip': skip })
     options.push({ '$limit': limit })
     let count = 0
-    if (group&&group.length>0){
+    if (group && group.length > 0) {
         count = group[0].count
     }
     console.log(count)
@@ -382,8 +362,12 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
         let opt = {}
         if (element._id) {
             if (element._delete) {
-                opt.deleteOne = {
+                //opt.deleteOne = {
+                //    filter: { '_id': element._id }
+                //}
+                opt.updateOne = {
                     filter: { '_id': element._id }
+                    , update: { $set: { '_delete': true } }
                 }
             } else {
                 opt.updateOne = {
@@ -408,7 +392,7 @@ module.exports.remove = function* remove(db, name, id, next) {
     if (!dbunit.checkId(id)) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
     let table = db.collection(name)
-    var removed = yield table.remove({ '_id': ObjectID(id) })
+    var removed = yield table.updateOne({ '_id': ObjectID(id) }, { $set: { '_delete': true } })
     db.close()
     if (!removed) {
         this.throw(405, 'Unable to delete.')

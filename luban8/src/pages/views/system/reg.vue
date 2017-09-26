@@ -381,12 +381,21 @@ export default {
         login() {
             this.$store.state.models.login = false
             this.$store.commit('user', { login: false })
-            this.$store.state.system.router = 'lb-systemsign_in'
+            window.location.href = '/'
         },
         resetForm(formName) {
             this.$refs[formName].resetFields()
         },
         handleclick() {
+            Vue.http.get('http://app.bullstech.cn/luban8/count/user?phone=' + this.registerForm.phone).then(obj => {
+                if (obj.data > 0) {
+                     this.$message({
+                        message: '用户已经存在,请直接登录.',
+                        type: 'info'
+                    })
+                    return 
+                }
+            })
             let createtime = (new Date()).getTime()
             let db = 'luban_' + createtime
             let user = {
