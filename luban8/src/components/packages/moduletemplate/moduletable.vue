@@ -813,43 +813,52 @@ export default {
                 this.handleGetTable()
             })
         },
+        deletecommand(data) {
+            this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.tables = []
+                this.tables.push(this.moduledata.pageTable)
+                this.handleDelete(data._id, this.moduledata.pagedb).then(() => {
+                    if (this.moduledata.afterdelete) {
+                        this.moduledata.afterdelete(this, data)
+                    }
+                    this.$message({
+                        message: '删除成功',
+                        type: 'success'
+                    })
+                    this.handleSearch()
+                })
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                })
+            })
+        },
         handleCommand({
             action,
             data
         }) {
-            if (action == 'delete') {
-                if (data.sclesses) {
-                    this.$message({
-                        type: 'info',
-                        message: '该教室已有排课，请先删除排课教室再进行此操作'
+            if (action == 'classesclosed') {
+                this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                })
+            } else if (action == 'delete') {
+                if (this.moduledata.beforedelete) {
+                    this.moduledata.beforedelete(this, data).then(deldata => {
+                        this.deletecommand(deldata)
                     })
-                } else {
-                    this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        this.tables = []
-                        this.tables.push(this.moduledata.pageTable)
-                        this.handleDelete(data._id, this.moduledata.pagedb).then(() => {
-                            if (this.moduledata.afterdelete) {
-                                this.moduledata.afterdelete(this, data)
-                            }
-                            this.$message({
-                                message: '删除成功',
-                                type: 'success'
-                            })
-                            this.handleSearch()
-                        })
-                    }).catch(() => {
-                        this.$message({
-                            type: 'info',
-                            message: '已取消删除'
-                        })
-                    })
+                }else{
+                    this.deletecommand(data)
                 }
-            }
-            if (action == 'lock' || action == 'unlock') {
+
+            } else if (action == 'lock' || action == 'unlock') {
                 let info = '离职封存适用于员工离职之后，封存之后该账号对应的历史记录保留在系统，但是不能再登陆系统, 是否继续?'
                 let infomessage = '封存成功'
                 let lock = true

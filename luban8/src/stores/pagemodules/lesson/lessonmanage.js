@@ -38,6 +38,20 @@ export default {
             ]
         }
     ],
+    'beforedelete': function (vm, data) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('classes', 'course_id', data._id).then(count => {
+                if (count > 0) {
+                    this.$message({
+                        type: 'info',
+                        message: '该课程已有班级，请先删除班级后再进行此操作'
+                    })
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
     'pageTableField': [
         {
             'type': 'operation',
@@ -50,7 +64,7 @@ export default {
             'lesson_type': 'lesson_type',
             'lesson_name': 'lesson_name',
             'lesson_no': 'lesson_no',
-            'othertype':[{
+            'othertype': [{
                 'value': '0',
                 'text': '班课'
             }, {
@@ -63,19 +77,19 @@ export default {
         },
         {
             'type': 'lessonpriceText',
-            'typeinfo':'singleprice',
+            'typeinfo': 'singleprice',
             'label': ' 课程单价',
             'prop': 'unit_price',
         },
         {
             'type': 'lessonpriceText',
-            'typeinfo':'price',
+            'typeinfo': 'price',
             'label': '课程售价',
             'prop': 'price',
         },
         {
             'type': 'contentText',
-            'typeinfo':'singletime',
+            'typeinfo': 'singletime',
             'label': '单次课时',
         },
         {
@@ -85,7 +99,7 @@ export default {
         },
         {
             'type': 'contentText',
-            'typeinfo':'time',
+            'typeinfo': 'time',
             'label': '总课长',
         }
     ],

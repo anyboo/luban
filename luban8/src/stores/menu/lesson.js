@@ -68,7 +68,11 @@ export default {
             'url': 'classesform',
             'icon': 'fa fa-pencil',
             'text': '编辑'
-        },  {
+        },{
+            'action': 'classesclosed',
+            'icon': 'fa fa-pencil',
+            'text': '结课'
+        }, {
             'action': 'delete',
             'icon': 'fa fa-times',
             'text': '删除'

@@ -82,7 +82,7 @@ module.exports.count = function* count(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
-    findObj['_delete'] = { '$ne': true }
+    findobj['_delete'] = { '$ne': true }
     console.log(table, findobj, this.query)
     dbunit.changeModelId(findobj)
     var count = yield collection.find(findobj).count()
@@ -105,7 +105,7 @@ module.exports.id = function* id(db, table, next) {
             findobj[item] = this.query[item]
         }
     }
-    findObj['_delete'] = { '$ne': true }
+    findobj['_delete'] = { '$ne': true }
     var model = yield collection.find(findobj).toArray()
     let idlist = []
     for (let item of model) {
