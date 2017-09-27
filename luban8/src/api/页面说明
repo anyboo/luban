@@ -129,6 +129,7 @@ classes班级{
 'regcount':0,       //报名数
 'attendcount':0     //上课情况
 'arrangecount':0     //排课数
+'closed':false       //是否结课
 }
 coursescheduling排课
  {

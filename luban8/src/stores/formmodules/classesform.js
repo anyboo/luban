@@ -12,7 +12,8 @@ export default {
         'attendcount': 0,
         'teacher_id': '',
         'del_able': false,
-        'class_flag': 0
+        'class_flag': 0,
+        'closed': false
     },
     'formField': [
         {

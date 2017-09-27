@@ -8,6 +8,11 @@ export default {
             'type': ''
         },
         {
+            'key': 'classes.closed',
+            'value': true,
+            'type': 'ne'
+        },
+        {
             'localField': 'student_id',
             'from': 'student',
             'foreignField': '_id',

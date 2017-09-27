@@ -92,10 +92,17 @@ export default {
                     }).then(() => {
                         let query = { 'attend': true }
                         vm.getCount('coursescheduling', 'classes_id', vm.stepsdata.classes_id, query).then(data => {
-                            vm.updateTeble('classes', vm.stepsdata.classes_id, {
-                                'attendcount': data
-                            }).then(() => {
-                                vm.$store.state.envs.currDialog = 'moduleform'
+                            vm.handleGetTableID('student', vm.stepsdata.classes_id).then((obj) => {
+                                if (obj.data.length > 0) {
+                                    let classesclose = false
+                                    classesclose.closed = obj.data[0].inc_timesprice >= data
+                                    vm.updateTeble('classes', vm.stepsdata.classes_id, {
+                                        'attendcount': data,
+                                        'closed': classesclose
+                                    }).then(() => {
+                                        vm.$store.state.envs.currDialog = 'moduleform'
+                                    })
+                                }
                             })
                         })
                     })

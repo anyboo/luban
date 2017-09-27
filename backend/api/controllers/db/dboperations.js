@@ -218,6 +218,10 @@ module.exports.all = function* all(db, name, next) {
                         findObj[key] = findObj[key] || {}
                         findObj[key]['$gte'] = value
                         console.log(findObj[key])
+                    }else if (type == 'ne') {
+                        findObj[key] = findObj[key] || {}
+                        findObj[key]['$ne'] = value
+                        console.log(findObj[key])
                     } else if (type == 'in') {
                         findObj[key] = findObj[key] || {}
                         if (key.indexOf('_id') >= 0) {
