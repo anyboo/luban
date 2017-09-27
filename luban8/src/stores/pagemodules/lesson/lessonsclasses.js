@@ -1,7 +1,21 @@
 export default {
     'pageName': 'lessonsclasses',
     'pageLable': '教室设置',
-    'tableSearch':[],
+    'tableSearch': [],
+    'beforedelete': function (vm, data) {
+        return new Promise((resolve, reject) => {
+            vm.getCount('coursescheduling', 'sclasses_id', data._id).then(count => {
+                if (count > 0) {
+                    vm.$message({
+                        type: 'info',
+                        message: '该教室已有排课，请先删除排课后再进行此操作'
+                    })
+                } else {
+                    resolve(data)
+                }
+            })
+        })
+    },
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -20,8 +34,8 @@ export default {
                 {
                     'label': '新建教室',
                     'type': 'success',
-                    'showdialog':'sclassesform',
-                    'actionoption':'lessonsclasses'
+                    'showdialog': 'sclassesform',
+                    'actionoption': 'lessonsclasses'
                 }
             ]
         },
@@ -31,7 +45,7 @@ export default {
             'type': 'operation',
             'label': '操作',
             'prop': 'setting',
-            'fields': [{'msg':'编辑','action':'plus'},{'msg':'删除','action':'delete'}]
+            'fields': [{ 'msg': '编辑', 'action': 'plus' }, { 'msg': '删除', 'action': 'delete' }]
         },
         {
             'type': 'text',

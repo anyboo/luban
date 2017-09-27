@@ -18,7 +18,7 @@
         <template v-if="typeData.statutype=='checkPay'">
             <el-tag type="gray" v-if="lessonData.pay_status==0">未付款</el-tag>
             <el-tag type="success" v-if="lessonData.pay_status==1">部分付款</el-tag>
-            <el-tag type="danger"  v-if="lessonData.pay_status==2">支付完成</el-tag>
+            <el-tag type="danger" v-if="lessonData.pay_status==2">支付完成</el-tag>
         </template>
         <template v-if="typeData.statutype=='defrolestatus'">
             <el-tag type="gray" v-if="lessonData.defrole">默认</el-tag>
@@ -31,20 +31,20 @@
         <template v-if="typeData.statutype=='attenceStatus'">
             <el-tag type="gray" v-if="lessonData.attence_flag==0">所有</el-tag>
             <el-tag type="success" v-if="lessonData.attence_flag==1">未考勤</el-tag>
-            <el-tag type="warning"  v-if="lessonData.attence_flag==2">已考勤</el-tag>
-            <el-tag type="danger"  v-if="lessonData.attence_flag==3">请假</el-tag>
+            <el-tag type="warning" v-if="lessonData.attence_flag==2">已考勤</el-tag>
+            <el-tag type="danger" v-if="lessonData.attence_flag==3">请假</el-tag>
         </template>
         <template v-if="tabletype=='lesson_type'">
             <el-tag type="gray" v-if="typeData==0">班课</el-tag>
             <el-tag type="success" v-if="typeData==1">1对1</el-tag>
-            <el-tag type="warning"  v-if="typeData==2">课时包</el-tag>
+            <el-tag type="warning" v-if="typeData==2">课时包</el-tag>
         </template>
     </div>
 </template>
 <script>
 export default {
     name: 'LbCheckstatus',
-    props: ['lessonData', 'typeData','tabletype'],
+    props: ['lessonData', 'typeData', 'tabletype'],
     data() {
         return {
         }
@@ -55,11 +55,19 @@ export default {
         getOpen(item, value) {
             let opentime = new Date()
             if (value == 'close') {
-                return item.status == 2
+                return item.class_flag == 2
             } else if (value == 'open') {
-                return item.open_time < opentime.getTime()
+                if (item.class_flag == 2) {
+                    return false
+                } else {
+                    return item.open_time < opentime.getTime()
+                }
             } else {
-                return item.open_time > opentime.getTime()
+                if (item.class_flag == 2) {
+                    return false
+                } else {
+                    return item.open_time > opentime.getTime()
+                }
             }
         },
         handleCheck(id) {

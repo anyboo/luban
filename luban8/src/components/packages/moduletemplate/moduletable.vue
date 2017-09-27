@@ -843,18 +843,33 @@ export default {
             data
         }) {
             if (action == 'classesclosed') {
-                this.$confirm('此操作将删除该记录, 是否继续?', '提示', {
+                this.$confirm('班级 ' + data.class_name + ' 结课是否继续 ? ', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    this.updateTeble('classes', data._id, {
+                        'closed': true,
+                        'class_flag': 2,
+                    }).then(() => {
+                        this.$message({
+                            message: '结课成功',
+                            type: 'success'
+                        })
+                        this.handleSearch()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消结课'
+                    })
                 })
             } else if (action == 'delete') {
                 if (this.moduledata.beforedelete) {
                     this.moduledata.beforedelete(this, data).then(deldata => {
                         this.deletecommand(deldata)
                     })
-                }else{
+                } else {
                     this.deletecommand(data)
                 }
 

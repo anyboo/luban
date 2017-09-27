@@ -11,7 +11,33 @@ export default {
         'from': 'employee',
         'foreignField': '_id',
         'as': 'employee'
+    }, {
+        'localField': '_id',
+        'from': 'order',
+        'foreignField': 'classes_id',
+        'as': 'order'
     }],
+    'beforedelete': function (vm, data) {
+        return new Promise((resolve, reject) => { 
+            if (data.order && data.order.length > 0) {
+                vm.$message({
+                    type: 'info',
+                    message: '该班级已有学员,班级不能删除'
+                })
+            } else {
+                vm.getCount('coursescheduling', 'classes_id', data._id).then(count => {
+                    if (count > 0) {
+                        vm.$message({
+                            type: 'info',
+                            message: '该班级已有排课，请先删除排课后再进行此操作'
+                        })
+                    } else {
+                        resolve(data)
+                    }
+                })
+            }
+        })
+    },
     'pageSearch': [
         {
             'type': 'textSearch',
@@ -99,8 +125,8 @@ export default {
         {
             'type': 'tabletext',
             'label': '老师',
-            'prop':'name',
-            'table':'employee'
+            'prop': 'name',
+            'table': 'employee'
         },
         {
             'type': 'tabletext',

@@ -42,7 +42,7 @@ export default {
         return new Promise((resolve, reject) => {
             vm.getCount('classes', 'course_id', data._id).then(count => {
                 if (count > 0) {
-                    this.$message({
+                    vm.$message({
                         type: 'info',
                         message: '该课程已有班级，请先删除班级后再进行此操作'
                     })
