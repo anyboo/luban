@@ -11,8 +11,9 @@ var path = require('path')
 const querystring = require('querystring')
 var net = require('../../unit/net')
 var dbunit = require('../../unit/db')
+var moment = require('moment')
 
-module.exports.smssend = function* smssend(db) {
+module.exports.smssend = function* smssend(db ) {
     if ('POST' != this.method) return yield next
     var model = yield parse(this, {
         limit: '200kb'
@@ -30,7 +31,7 @@ module.exports.smssend = function* smssend(db) {
             $inc: { 'sms': -(model.tel.length), 'smssend': model.tel.length }
         })
     console.log('~~~~db~~~~~~', db)
-
+      let datetime = moment(model.fixed_time).format("YYYY-MM-DD HH:mm:ss")
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
@@ -41,6 +42,7 @@ module.exports.smssend = function* smssend(db) {
         password: 'FC6E673470BA5628D26430089C52D18C',
         gwid: '8b6bf7b',
         mobile: mobile.join(),
+        dstime:datetime,
         rece: 'json',
         message: '【' + model.title + '】' + model.content + '(退订回T)'
     }

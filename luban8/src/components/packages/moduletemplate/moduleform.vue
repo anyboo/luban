@@ -167,8 +167,8 @@
                     <el-switch v-model="localdata.form[item.fieldActive]" on-text="" off-text="">
                     </el-switch>
                 </el-form-item>
-                <el-form-item v-if="localdata.form[item.fieldActive]">
-                    <el-date-picker type="datetime" v-model="localdata.form[item.field]"></el-date-picker>
+                <el-form-item v-if="localdata.form[item.fieldActive]" :required="true" :prop="item.prop">
+                    <el-date-picker type="datetime" v-model="localdata.form[item.field]" style='width:100%'></el-date-picker>
                 </el-form-item>
             </template>
             <template v-if="item.type=='switchnumber'">
@@ -310,7 +310,20 @@ export default {
             })
         }
 
+        var validateTiming = (rule, value, callback) => {
+            let date = moment(value)
+            let timeest = date.diff(new Date())
+            if (moment().isValid()) {
+                if (timeest <= 3628991) {
+                    callback(new Error('请选择当前时间1个小时后'))
+                } else {
+                    callback()
+                }
+            } else {
+                callback(new Error('无效时间'))
+            }
 
+        }
         var validateNumberinput = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error(rule.message))
@@ -409,6 +422,7 @@ export default {
             currentRow: null,
             validateTel,
             validateDate,
+            validateTiming,
             validateDatatime,
             studentorderapply,
             validatePhone,
@@ -421,7 +435,7 @@ export default {
             workday: false,
             weekday: false,
             model: this.module.pageTable,
-            studentamount:false
+            studentamount: false
         }
     },
     created() {
@@ -435,8 +449,8 @@ export default {
         }
     },
     computed: {
-        getstudentamount(){
-            this.studentamount = this.currStudent&&this.currStudent.amount > 0 && this.order.order_type != 2
+        getstudentamount() {
+            this.studentamount = this.currStudent && this.currStudent.amount > 0 && this.order.order_type != 2
         },
         getorder() {
             let vm = this

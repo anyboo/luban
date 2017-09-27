@@ -134,7 +134,7 @@ export default {
         {
             'type': 'switchdatetime',
             'label': '定时发送',
-            'prop': '',
+            'prop': 'fixed_time',
             'field': 'fixed_time',
             'fieldActive': 'active',
             'datetype': 'datetime',
@@ -155,6 +155,9 @@ export default {
             ],
             'new_tel': [
                 { required: true, validator: vm.validatePhone, trigger: 'blur' }
+            ],
+            'fixed_time':[
+                {required: true, validator: vm.validateTiming, trigger: 'change'}
             ]
         }
     }
