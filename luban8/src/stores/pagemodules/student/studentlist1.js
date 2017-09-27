@@ -36,6 +36,18 @@ export default {
             'as': 'employee'
         },
     ],
+    'tableChange': function (vm, data) {
+        return new Promise((resolve, reject) => {
+            for(let item of data){
+                let attendcount = 0
+                if (item.classes.attendcount){
+                    attendcount = parseInt(item.classes.attendcount)
+                }
+                item.residue = parseInt(item.origin_times) - attendcount
+            }
+            resolve(data)
+        })
+    },
     'pageSearch': [
         {
             'type': 'radioGroupSearch',
@@ -135,9 +147,9 @@ export default {
             'prop': 'c_unit_price',
         },
         {
-            'type': 'constant',
+            'type': 'text',
             'label': '剩余课次',
-            'prop': '3',
+            'prop': 'residue',
         }
     ],
     'pageTable': 'order',

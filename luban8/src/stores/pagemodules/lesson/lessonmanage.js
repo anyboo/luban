@@ -79,9 +79,14 @@ export default {
             'label': '单次课时',
         },
         {
+            'type': 'text',
+            'prop': 'inc_timesprice',
+            'label': '总课时',
+        },
+        {
             'type': 'contentText',
             'typeinfo':'time',
-            'label': '总课时',
+            'label': '总课长',
         }
     ],
     'pageTable': 'course',

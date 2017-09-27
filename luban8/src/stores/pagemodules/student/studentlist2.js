@@ -98,7 +98,7 @@ export default {
         },
         {
             'type': 'subtext',
-            'label': '所在班级',
+            'label': '班级',
             'prop': 'classes',
             'subprop': 'class_name'
         },
@@ -124,9 +124,10 @@ export default {
             'prop': 'origin_times',
         },
         {
-            'type': 'constant',
+            'type': 'subtext',
             'label': '实际消耗',
-            'prop': '1',
+            'prop': 'classes',
+            'subprop': 'attendcount'
         },
         {
             'type': 'getButtongroupText',
