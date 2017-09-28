@@ -32,6 +32,8 @@ module.exports.smssend = function* smssend(db ) {
         })
     console.log('~~~~db~~~~~~', db)
       let datetime = moment(model.fixed_time).format("YYYY-MM-DD HH:mm:ss")
+      console.log('~~~~~time~~~~~~~~~',datetime)
+      console.log(datetime)
     //网址：http://dx.106msg.com/login.htm
     //账号：bullstech
     //密码：gaoqihao@bullstech.cn
