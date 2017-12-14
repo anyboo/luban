@@ -507,12 +507,12 @@ export default {
             campusobj.createtime = createtime
             role.createtime = createtime
 
-            return Vue.http.post('http://app.bullstech.cn/' + db + '/api/campus', campusobj).then(obj => {
+            return Vue.http.post('http://api.luban8.cn:8888/' + db + '/api/campus', campusobj).then(obj => {
                 campus_id = obj.data._id
-                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/role', role)
+                return Vue.http.post('http://api.luban8.cn:8888/' + db + '/api/role', role)
             }).then(obj => {
                 roles_id.push(obj.data._id)
-                return Vue.http.post('http://app.bullstech.cn/' + db + '/apis/dictionary', dictionary)
+                return Vue.http.post('http://api.luban8.cn:8888/' + db + '/apis/dictionary', dictionary)
             }).then(obj => {
                 let employeeform = {
                     'name': this.$store.state.system.name,
@@ -530,7 +530,7 @@ export default {
                     'usedate': createtime,
                     'createtime': createtime
                 }
-                return Vue.http.post('http://app.bullstech.cn/' + db + '/api/employee', employeeform)
+                return Vue.http.post('http://api.luban8.cn:8888/' + db + '/api/employee', employeeform)
             })
         },
         handleSavedb({ db, table, form }) {
@@ -642,7 +642,7 @@ export default {
         },
         getCount(table, field, value, query) {
             return new Promise((resolve, reject) => {
-                let url = 'http://app.bullstech.cn/' + this.$store.state.system.db + '/count/' + table + '/?campus_id=' + this.$store.state.system.campus_id + '&' + field + '=' + value
+                let url = 'http://api.luban8.cn:8888/' + this.$store.state.system.db + '/count/' + table + '/?campus_id=' + this.$store.state.system.campus_id + '&' + field + '=' + value
                 if (query) {
                     for (let item in query) {
                         url += '&' + item + '=' + query[item]
@@ -659,7 +659,7 @@ export default {
         },
         deletesdb(table, field, value, query) {
             return new Promise((resolve, reject) => {
-                let url = 'http://app.bullstech.cn/' + this.$store.state.system.db + '/deletes/' + table + '/?campus_id=' + this.$store.state.system.campus_id + '&' + field + '=' + value
+                let url = 'http://api.luban8.cn:8888/' + this.$store.state.system.db + '/deletes/' + table + '/?campus_id=' + this.$store.state.system.campus_id + '&' + field + '=' + value
                 if (query) {
                     for (let item in query) {
                         url += '&' + item + '=' + query[item]

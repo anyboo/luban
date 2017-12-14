@@ -54,7 +54,7 @@ export default {
                 if (value.length < 2) {
                     callback(new Error('请输入2位以上账号'))
                 } else {
-                    Vue.http.get('http://app.bullstech.cn/luban8/count/user/?bind=true&phone=' + value).then(obj => {
+                    Vue.http.get('http://api.luban8.cn:8888/luban8/count/user/?bind=true&phone=' + value).then(obj => {
                         if (obj.data > 0) {
                             callback(new Error('账号已经存在,请重新输入.'))
                         } else {
@@ -133,7 +133,7 @@ export default {
                             this.lbClosedialog()
                         })
                     } else {
-                        Vue.http.get('http://app.bullstech.cn/luban8/id/user/?bind=false&phone=' + this.localdata.form.username).then(obj => {
+                        Vue.http.get('http://api.luban8.cn:8888/luban8/id/user/?bind=false&phone=' + this.localdata.form.username).then(obj => {
                             if (obj.data.length > 0) {
                                 this.updateTeble('employee', this.uid, {
                                     'user_id': obj.data[0]
@@ -157,7 +157,7 @@ export default {
                                     name: this.name,
                                     pwd: md5(this.localdata.form.reset_password)
                                 }
-                                Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
+                                Vue.http.post('http://api.luban8.cn:8888/luban8/api/user', user).then(obj => {
                                     return this.updateTeble('employee', this.uid, {
                                         'user_id': obj.data._id
                                     })

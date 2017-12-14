@@ -1,7 +1,7 @@
-const apiUrl2 = 'http://app.bullstech.cn:8888/'
-const apiUrl1 = 'http://app.bullstech.cn:9999/'
+const apiUrl2 = 'http://api.luban8.cn:8888/'
+const apiUrl1 = 'http://api.luban8.cn:9999/'
 
-let apiUrl = 'http://app.bullstech.cn:8888/'
+let apiUrl = 'http://api.luban8.cn:8888/'
 if (LUBANDEV) {
     apiUrl += 'lubandemo/'
 } else {

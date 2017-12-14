@@ -127,7 +127,7 @@ export default {
 
     },
     mounted() {
-        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id).then(obj => {
+        Vue.http.get('http://api.luban8.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id).then(obj => {
             if (obj.data.length > 0) {
                 this.dbdata = obj.data[0]
             }
@@ -139,7 +139,7 @@ export default {
             'type': ''
         })
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/order/?filter=' + filterTxt).then(obj => {
+        Vue.http.get('http://api.luban8.cn:8888/lubandemo/api/order/?filter=' + filterTxt).then(obj => {
             this.order_data = obj.data.data
         })
     },

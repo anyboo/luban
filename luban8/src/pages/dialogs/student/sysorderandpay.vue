@@ -55,7 +55,7 @@ export default {
     methods: {
         switchPage() {
             let urls = window.open()
-            Vue.http.post('http://app.bullstech.cn/alipay', { "order": this.stepsdata.order_no, "amount": this.stepsdata.order_amount, "name": this.stepsdata.body, "body": this.stepsdata.order_remark }).then(data => {
+            Vue.http.post('http://api.luban8.cn:8888/alipay', { "order": this.stepsdata.order_no, "amount": this.stepsdata.order_amount, "name": this.stepsdata.body, "body": this.stepsdata.order_remark }).then(data => {
                 console.log(data)
                 urls.location = data.data
             })

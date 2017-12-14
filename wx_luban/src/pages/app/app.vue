@@ -63,7 +63,7 @@ export default {
                     }
                     console.log(cdstr)
                     if (cdstr.length > 0) {
-                        Vue.http.post('http://app.bullstech.cn/wx/', { code: cdstr }).then(obj => {
+                        Vue.http.post('http://api.luban8.cn:8888/wx/', { code: cdstr }).then(obj => {
                             console.log(obj)
                             this.$store.commit('getopenid', obj.data.openid)
                             let openid =obj.data.openid

@@ -1,4 +1,4 @@
-let apiUrl = 'http://app.bullstech.cn:8888/'
+let apiUrl = 'http://api.luban8.cn:8888/'
 //看不懂
 //if (LUBANDEV) {
     apiUrl += 'lubandemo/'

@@ -208,7 +208,7 @@ export default {
                 console.log(obj.data.ticket)
                 this.qrcodeimg = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + obj.data.ticket
             })
-            /*     Vue.http.get('http://app.bullstech.cn:8888/wxqrcode/'+this.uid).then(obj=>{
+            /*     Vue.http.get('http://api.luban8.cn:8888/wxqrcode/'+this.uid).then(obj=>{
                      console.log(obj)
                  })  */
         },

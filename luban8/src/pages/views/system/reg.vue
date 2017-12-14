@@ -191,7 +191,7 @@ export default {
                 if (!Regphone.test(value)) {
                     callback(new Error('请输入11位手机号码'))
                 } else {
-                    Vue.http.get('http://app.bullstech.cn/luban8/count/user?phone=' + value).then(obj => {
+                    Vue.http.get('http://api.luban8.cn:8888/luban8/count/user?phone=' + value).then(obj => {
                         if (obj.data > 0) {
                             callback(new Error('用户已经存在,请直接登录.'))
                         } else {
@@ -387,7 +387,7 @@ export default {
             this.$refs[formName].resetFields()
         },
         handleclick() {
-            Vue.http.get('http://app.bullstech.cn/luban8/count/user?phone=' + this.registerForm.phone).then(obj => {
+            Vue.http.get('http://api.luban8.cn:8888/luban8/count/user?phone=' + this.registerForm.phone).then(obj => {
                 if (obj.data > 0) {
                      this.$message({
                         message: '用户已经存在,请直接登录.',
@@ -408,14 +408,14 @@ export default {
                 name: this.infoForm.uname,
                 pwd: md5(this.registerForm.pass)
             }
-            Vue.http.post('http://app.bullstech.cn/luban8/api/user', user).then(obj => {
+            Vue.http.post('http://api.luban8.cn:8888/luban8/api/user', user).then(obj => {
                 this.infoForm.user_id = obj.data._id
                 this.$store.state.system.name = obj.data.name
                 this.$store.state.system.phone = obj.data.phone
                 this.$store.state.system.pwd = obj.data.pwd
                 this.infoForm.createtime = obj.data.createtime
                 this.infoForm.db = db
-                return Vue.http.post('http://app.bullstech.cn/luban8/api/org', this.infoForm)
+                return Vue.http.post('http://api.luban8.cn:8888/luban8/api/org', this.infoForm)
             }).then(obj => {
                 this.initdbdata(obj.data).then(obj => {
                     this.login()

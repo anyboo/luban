@@ -82,7 +82,7 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    Vue.http.post('http://app.bullstech.cn:8888/checksms/', { phone: this.numberValidateForm.number, number: this.numberValidateForm.verification }).then(obj => {
+                    Vue.http.post('http://api.luban8.cn:8888/checksms/', { phone: this.numberValidateForm.number, number: this.numberValidateForm.verification }).then(obj => {
                         console.log(obj.data.status)
                         if (obj.data.status == 0) {
                             this.resiget()
@@ -115,13 +115,13 @@ export default {
                 'type': ''
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
+            Vue.http.get('http://api.luban8.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
                 console.log(obj)
                 if (obj.data.count > 0) {
                     student_ids = obj.body.data[0]._id
                     this.$store.commit('student', student_ids)
                     //绑定
-                    Vue.http.put('http://app.bullstech.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id, { openid: this.$store.state.openid.openid }).then(obj => {
+                    Vue.http.put('http://api.luban8.cn:8888/lubandemo/api/student/' + this.$store.state.student_id.student_id, { openid: this.$store.state.openid.openid }).then(obj => {
                         console.log(obj)
                     })
                     this.$store.commit('homes', 'lb-home')
@@ -143,7 +143,7 @@ export default {
                 'type': ''
             })
             let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-            Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
+            Vue.http.get('http://api.luban8.cn:8888/lubandemo/api/student?filter=' + filterTxt).then(obj => {
                 if (obj.data.count <= 0) {
                     this.$message({
                         message: '该用户不存在',
@@ -157,7 +157,7 @@ export default {
         },
         handleVerification() {
             this.button_rule()
-            Vue.http.post('http://app.bullstech.cn:8888/sms/', { phone: this.numberValidateForm.number })
+            Vue.http.post('http://api.luban8.cn:8888/sms/', { phone: this.numberValidateForm.number })
         }
     }
 }

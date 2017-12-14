@@ -19,7 +19,7 @@ export default {
             'type': ''
         })
         let filterTxt = vm.base64.encode(JSON.stringify(filterObj))
-        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+        Vue.http.get('http://api.luban8.cn:8888/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
                 vm.localdata.form.amount = obj.data.data[0].amount
             } else {

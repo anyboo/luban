@@ -82,7 +82,7 @@ export default {
             }
         )
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-        Vue.http.get('http://app.bullstech.cn:8888/lubandemo/api/order/?filter=' + filterTxt).then(obj => {
+        Vue.http.get('http://api.luban8.cn:8888/lubandemo/api/order/?filter=' + filterTxt).then(obj => {
             this.order_data = obj.data.data
             console.log(this.order_data)
         })

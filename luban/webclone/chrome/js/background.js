@@ -7,7 +7,7 @@ setTimeout(function () {
     zip.file("info.dat", JSON.stringify(webInfo))
         .generateAsync({ type: "base64" })
         .then(function (base64) {
-            $.post('http://app.bullstech.cn:8888/webclone/api/eqxiu', { info: base64 }, function (data) {
+            $.post('http://api.luban8.cn:8888/webclone/api/eqxiu', { info: base64 }, function (data) {
                 console.log(data)
             })
         })

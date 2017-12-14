@@ -34,7 +34,7 @@ export default {
         }
     },
     mounted() {
-        this.$http.get('http://app.bullstech.cn:8888/webclone/api/eqxiu').then((req) => {
+        this.$http.get('http://api.luban8.cn:8888/webclone/api/eqxiu').then((req) => {
             if (req.data) {
                 if (req.data && req.data.count > 0) {
                     this.unzip(req.data.data[0].info)

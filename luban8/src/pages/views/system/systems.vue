@@ -109,7 +109,7 @@ export default {
             let tokentime = window.localStorage.getItem('tokentime')
             Vue.http.headers.common['authorization'] = token
             Vue.http.headers.common['authtime'] = tokentime
-            Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+            Vue.http.get('http://api.luban8.cn:8888/luban8/api/org?filter=' + filterTxt).then(obj => {
                 if (obj.data.count > 0) {
                     this.org = obj.data.data[0]
                 } else {

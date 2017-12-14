@@ -62,7 +62,7 @@ export default {
             'type': ''
         })
         let filterTxt = this.base64.encode(JSON.stringify(filterObj))
-        Vue.http.get('http://app.bullstech.cn/luban8/api/org?filter=' + filterTxt).then(obj => {
+        Vue.http.get('http://api.luban8.cn:8888/luban8/api/org?filter=' + filterTxt).then(obj => {
             if (obj.data.count > 0) {
                 this.localdata.form = obj.data.data[0]
             } else {
@@ -74,7 +74,7 @@ export default {
         rest_save() {
             this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    Vue.http.put('http://app.bullstech.cn/luban8/api/org/' + this.$store.state.system.org_id, this.localdata.form).then(obj => {
+                    Vue.http.put('http://api.luban8.cn:8888/luban8/api/org/' + this.$store.state.system.org_id, this.localdata.form).then(obj => {
                         this.$message({
                             message: '操作成功',
                             type: 'success'
