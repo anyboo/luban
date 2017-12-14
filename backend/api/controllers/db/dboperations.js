@@ -11,38 +11,41 @@ var path = require('path')
 const querystring = require('querystring')
 var dbunit = require('../../unit/db')
 var xlsx = require('node-xlsx')
-var uuid = require('node-uuid')
-var sprintf = require("sprintf-js").sprintf
+var username = "root"
+var password = "luban8"
 
 function loginemployee(user) {
     return new Promise((resolve) => {
         let logindata = { 'login': false }
         MongoClient.connect(dbunit.getdbstr('luban8')).then(db => {
-            let table = db.collection('user')
-            let options = []
-            options.push({
-                '$match': {
-                    'pwd': user.pwd,
-                    'phone': user.user,
-                    'lock': false,
-                    '_delete': { '$ne': true }
-                }
-            })
-            options.push({ '$limit': 1 })
-            let cursor = table.aggregate(options)
-            cursor.toArray().then(obj => {
-                if (obj.length > 0) {
-                    logindata.login = true
-                    logindata.user = obj[0].phone
-                    logindata.name = obj[0].name
-                    logindata.admin = obj[0].admin
-                    logindata.db = obj[0].db
-                    logindata._id = obj[0]._id
-                    resolve(logindata)
-                } else {
-                    resolve(logindata)
-                }
-                db.close()
+            var adminDb = db.admin()
+            adminDb.authenticate(username, password, function (err, result) {
+                let table = db.collection('user')
+                let options = []
+                options.push({
+                    '$match': {
+                        'pwd': user.pwd,
+                        'phone': user.user,
+                        'lock': false,
+                        '_delete': { '$ne': true }
+                    }
+                })
+                options.push({ '$limit': 1 })
+                let cursor = table.aggregate(options)
+                cursor.toArray().then(obj => {
+                    if (obj.length > 0) {
+                        logindata.login = true
+                        logindata.user = obj[0].phone
+                        logindata.name = obj[0].name
+                        logindata.admin = obj[0].admin
+                        logindata.db = obj[0].db
+                        logindata._id = obj[0]._id
+                        resolve(logindata)
+                    } else {
+                        resolve(logindata)
+                    }
+                    db.close()
+                })
             })
         })
     })
@@ -50,6 +53,8 @@ function loginemployee(user) {
 module.exports.deletes = function* deletes(db, table, next) {
     if ('GET' != this.method) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let collection = db.collection(table)
     let findobj = {}
     for (let item in this.query) {
@@ -72,6 +77,8 @@ module.exports.deletes = function* deletes(db, table, next) {
 module.exports.count = function* count(db, table, next) {
     if ('GET' != this.method) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let collection = db.collection(table)
     let findobj = {}
     for (let item in this.query) {
@@ -95,6 +102,8 @@ module.exports.count = function* count(db, table, next) {
 module.exports.id = function* id(db, table, next) {
     if ('GET' != this.method) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let collection = db.collection(table)
     let findobj = {}
     for (let item in this.query) {
@@ -175,6 +184,8 @@ module.exports.all = function* all(db, name, next) {
         }
     }
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     let query = this.query
     let limit = Number.parseInt(query.prepage || 30)
@@ -220,7 +231,7 @@ module.exports.all = function* all(db, name, next) {
                         findObj[key] = findObj[key] || {}
                         findObj[key]['$gte'] = value
                         console.log(findObj[key])
-                    }else if (type == 'ne') {
+                    } else if (type == 'ne') {
                         findObj[key] = findObj[key] || {}
                         findObj[key]['$ne'] = value
                         console.log(findObj[key])
@@ -310,6 +321,8 @@ module.exports.fetch = function* fetch(db, name, id, next) {
     if ('GET' != this.method) return yield next
     if (!dbunit.checkId(id)) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     var model = yield table.find({ '_id': ObjectID(id) }).toArray()
     if (model.length === 0) {
@@ -325,6 +338,8 @@ module.exports.add = function* add(db, name, next) {
         limit: '5000kb'
     })
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     let seqid = yield db.collection('lb_seq_id').findOneAndUpdate({ id: name }, { $inc: { seq: 1 } }, { upsert: true })
     model.lbseqid = seqid.seq
@@ -345,6 +360,8 @@ module.exports.modify = function* modify(db, name, id, next) {
         limit: '5000kb'
     })
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     dbunit.changeModelId(data)
     var result = yield table.updateOne({ '_id': ObjectID(id) }, {
@@ -360,6 +377,8 @@ module.exports.bulkWrite = function* bulkWrite(db, name, next) {
         limit: '5000kb'
     })
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     let writeobj = []
 
@@ -397,6 +416,8 @@ module.exports.remove = function* remove(db, name, id, next) {
     if ('DELETE' != this.method) return yield next
     if (!dbunit.checkId(id)) return yield next
     var db = yield MongoClient.connect(dbunit.getdbstr(db))
+    var adminDb = db.admin()
+    yield adminDb.authenticate(username, password)
     let table = db.collection(name)
     var removed = yield table.updateOne({ '_id': ObjectID(id) }, { $set: { '_delete': true } })
     db.close()
