@@ -1,6 +1,6 @@
 
 var ObjectID = require('mongodb').ObjectID
-var dbstr = 'mongodb://localhost/'
+var dbstr = 'mongodb://root:luban8@dds-bp108344997413c41.mongodb.rds.aliyuncs.com:3717,dds-bp108344997413c42.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-4724627 '
 
 function checkId(id) {
     let result = false
