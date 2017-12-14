@@ -11,6 +11,8 @@ var path = require('path')
 const querystring = require('querystring')
 var dbunit = require('../../unit/db')
 var xlsx = require('node-xlsx')
+var uuid = require('node-uuid')
+var sprintf = require("sprintf-js").sprintf
 
 function loginemployee(user) {
     return new Promise((resolve) => {
