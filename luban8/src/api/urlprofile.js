@@ -1,4 +1,4 @@
-let apiUrl = 'http://app.bullstech.cn/'
+let apiUrl = 'http://47.96.31.29:8888/'
 
 function getLoginUrl() {
     return apiUrl + 'login/'
